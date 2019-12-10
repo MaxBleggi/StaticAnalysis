@@ -1,0 +1,221 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/res/values-af/strings.xml" target="_blank">/xumo_apk/jadx_source_code/res/values-af/strings.xml</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="strings.xml" data-line="" class="code line-numbers"><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;resources&gt;
+    &lt;string name="abc_action_bar_home_description"&gt;Navigeer tuis&lt;/string&gt;
+    &lt;string name="abc_action_bar_up_description"&gt;Navigeer op&lt;/string&gt;
+    &lt;string name="abc_action_menu_overflow_description"&gt;Nog opsies&lt;/string&gt;
+    &lt;string name="abc_action_mode_done"&gt;Klaar&lt;/string&gt;
+    &lt;string name="abc_activity_chooser_view_see_all"&gt;Sien alles&lt;/string&gt;
+    &lt;string name="abc_activitychooserview_choose_application"&gt;Kies \'n program&lt;/string&gt;
+    &lt;string name="abc_capital_off"&gt;AF&lt;/string&gt;
+    &lt;string name="abc_capital_on"&gt;AAN&lt;/string&gt;
+    &lt;string name="abc_menu_alt_shortcut_label"&gt;Alt+&lt;/string&gt;
+    &lt;string name="abc_menu_ctrl_shortcut_label"&gt;Ctrl+&lt;/string&gt;
+    &lt;string name="abc_menu_delete_shortcut_label"&gt;delete&lt;/string&gt;
+    &lt;string name="abc_menu_enter_shortcut_label"&gt;enter&lt;/string&gt;
+    &lt;string name="abc_menu_function_shortcut_label"&gt;Funksie+&lt;/string&gt;
+    &lt;string name="abc_menu_meta_shortcut_label"&gt;Meta+&lt;/string&gt;
+    &lt;string name="abc_menu_shift_shortcut_label"&gt;Shift+&lt;/string&gt;
+    &lt;string name="abc_menu_space_shortcut_label"&gt;spasiebalk&lt;/string&gt;
+    &lt;string name="abc_menu_sym_shortcut_label"&gt;Simbool+&lt;/string&gt;
+    &lt;string name="abc_prepend_shortcut_label"&gt;Kieslys+&lt;/string&gt;
+    &lt;string name="abc_search_hint"&gt;Soek …&lt;/string&gt;
+    &lt;string name="abc_searchview_description_clear"&gt;Vee navraag uit&lt;/string&gt;
+    &lt;string name="abc_searchview_description_query"&gt;Soeknavraag&lt;/string&gt;
+    &lt;string name="abc_searchview_description_search"&gt;Soek&lt;/string&gt;
+    &lt;string name="abc_searchview_description_submit"&gt;Dien navraag in&lt;/string&gt;
+    &lt;string name="abc_searchview_description_voice"&gt;Stemsoektog&lt;/string&gt;
+    &lt;string name="abc_shareactionprovider_share_with"&gt;Deel met&lt;/string&gt;
+    &lt;string name="abc_shareactionprovider_share_with_application"&gt;Deel met %s&lt;/string&gt;
+    &lt;string name="abc_toolbar_collapse_description"&gt;Vou in&lt;/string&gt;
+    &lt;string name="cast_ad_label"&gt;Advertensie&lt;/string&gt;
+    &lt;string name="cast_casting_to_device"&gt;Saai tans uit na %1$s&lt;/string&gt;
+    &lt;string name="cast_closed_captions"&gt;Onderskrifte&lt;/string&gt;
+    &lt;string name="cast_closed_captions_unavailable"&gt;Onderskrifte is onbeskikbaar&lt;/string&gt;
+    &lt;string name="cast_connecting_to_device"&gt;Koppel tans aan %1$s&lt;/string&gt;
+    &lt;string name="cast_disconnect"&gt;Ontkoppel&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_ad_image_description"&gt;Prent wat gewys word wanneer die uitsaai-ontvanger \'n advertensie speel&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_ad_in_progress"&gt;Onvoltooide advertensie …&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_background_image"&gt;Albumkunswerk&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_live_stream_indicator"&gt;Regstreekse stroming&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_loading"&gt;Laai tans …&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_skip_ad_label"&gt;Slaan advertensie oor&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_skip_ad_text"&gt;Jy kan advertensie oor %1$d oorslaan …&lt;/string&gt;
+    &lt;string name="cast_forward"&gt;Spoel vorentoe&lt;/string&gt;
+    &lt;string name="cast_forward_10"&gt;Spoel 10 sekondes vorentoe&lt;/string&gt;
+    &lt;string name="cast_forward_30"&gt;Spoel 30 sekondes vorentoe&lt;/string&gt;
+    &lt;string name="cast_intro_overlay_button_text"&gt;@android:string/ok&lt;/string&gt;
+    &lt;string name="cast_mute"&gt;Demp&lt;/string&gt;
+    &lt;string name="cast_notification_connected_message"&gt;Gekoppel aan %1$s&lt;/string&gt;
+    &lt;string name="cast_notification_connecting_message"&gt;Koppel tans aan %1$s&lt;/string&gt;
+    &lt;string name="cast_notification_default_channel_name"&gt;Cast&lt;/string&gt;
+    &lt;string name="cast_notification_disconnect"&gt;Ontkoppel&lt;/string&gt;
+    &lt;string name="cast_pause"&gt;Laat wag&lt;/string&gt;
+    &lt;string name="cast_play"&gt;Speel&lt;/string&gt;
+    &lt;string name="cast_rewind"&gt;Spoel terug&lt;/string&gt;
+    &lt;string name="cast_rewind_10"&gt;Spoel tien sekondes terug&lt;/string&gt;
+    &lt;string name="cast_rewind_30"&gt;Spoel dertig sekondes terug&lt;/string&gt;
+    &lt;string name="cast_seek_bar"&gt;Speelsoekkontrole&lt;/string&gt;
+    &lt;string name="cast_skip_next"&gt;Slaan oor na volgende item&lt;/string&gt;
+    &lt;string name="cast_skip_prev"&gt;Slaan oor na vorige item&lt;/string&gt;
+    &lt;string name="cast_stop"&gt;Stop&lt;/string&gt;
+    &lt;string name="cast_stop_live_stream"&gt;Stop regstreekse stroom&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_audio"&gt;Oudio&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_cancel"&gt;Kanselleer&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_closed_captions"&gt;Onderskrifte&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_default_track_name"&gt;Snit %1$d&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_none"&gt;Geen&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_ok"&gt;OK&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_subtitles"&gt;Onderskrifte&lt;/string&gt;
+    &lt;string name="cast_unmute"&gt;Ontdemp&lt;/string&gt;
+    &lt;string name="common_google_play_services_enable_button"&gt;Aktiveer&lt;/string&gt;
+    &lt;string name="common_google_play_services_enable_text"&gt;%1$s sal nie werk nie tensy jy Google Play-dienste aktiveer.&lt;/string&gt;
+    &lt;string name="common_google_play_services_enable_title"&gt;Aktiveer Google Play-dienste&lt;/string&gt;
+    &lt;string name="common_google_play_services_install_button"&gt;Installeer&lt;/string&gt;
+    &lt;string name="common_google_play_services_install_text"&gt;%1$s sal nie sonder Google Play Dienste werk nie, wat nie op jou toestel is nie.&lt;/string&gt;
+    &lt;string name="common_google_play_services_install_title"&gt;Kry Google Play-dienste&lt;/string&gt;
+    &lt;string name="common_google_play_services_notification_channel_name"&gt;Beskikbaarheid van Google Play-dienste&lt;/string&gt;
+    &lt;string name="common_google_play_services_notification_ticker"&gt;Google Play Services-fout&lt;/string&gt;
+    &lt;string name="common_google_play_services_unknown_issue"&gt;%1$s ondervind probleme met Google Play Dienste. Probeer asseblief weer.&lt;/string&gt;
+    &lt;string name="common_google_play_services_unsupported_text"&gt;%1$s sal nie werk sonder Google Play Dienste nie, wat nie deur jou toestel gesteun word nie.&lt;/string&gt;
+    &lt;string name="common_google_play_services_update_button"&gt;Dateer op&lt;/string&gt;
+    &lt;string name="common_google_play_services_update_text"&gt;%1$s sal nie werk nie tensy jy Google Play Dienste opdateer.&lt;/string&gt;
+    &lt;string name="common_google_play_services_update_title"&gt;Dateer Google Play-dienste op&lt;/string&gt;
+    &lt;string name="common_google_play_services_updating_text"&gt;%1$s sal nie sonder Google Play-dienste werk nie, wat tans opdateer.&lt;/string&gt;
+    &lt;string name="common_google_play_services_wear_update_text"&gt;Nuwe weergawe van Google Play-dienste is nodig. Dit sal binnekort self opdateer.&lt;/string&gt;
+    &lt;string name="common_open_on_phone"&gt;Maak oop op foon&lt;/string&gt;
+    &lt;string name="common_signin_button_text"&gt;Meld aan&lt;/string&gt;
+    &lt;string name="common_signin_button_text_long"&gt;Meld aan met Google&lt;/string&gt;
+    &lt;string name="exo_controls_fastforward_description"&gt;Spoel vorentoe&lt;/string&gt;
+    &lt;string name="exo_controls_fullscreen_description"&gt;Volskermmodus&lt;/string&gt;
+    &lt;string name="exo_controls_next_description"&gt;Volgende snit&lt;/string&gt;
+    &lt;string name="exo_controls_pause_description"&gt;Onderbreek&lt;/string&gt;
+    &lt;string name="exo_controls_play_description"&gt;Speel&lt;/string&gt;
+    &lt;string name="exo_controls_previous_description"&gt;Vorige snit&lt;/string&gt;
+    &lt;string name="exo_controls_repeat_all_description"&gt;Herhaal alles&lt;/string&gt;
+    &lt;string name="exo_controls_repeat_off_description"&gt;Herhaal niks&lt;/string&gt;
+    &lt;string name="exo_controls_repeat_one_description"&gt;Herhaal een&lt;/string&gt;
+    &lt;string name="exo_controls_rewind_description"&gt;Spoel terug&lt;/string&gt;
+    &lt;string name="exo_controls_shuffle_description"&gt;Skommel&lt;/string&gt;
+    &lt;string name="exo_controls_stop_description"&gt;Stop&lt;/string&gt;
+    &lt;string name="exo_download_completed"&gt;Aflaai is voltooi&lt;/string&gt;
+    &lt;string name="exo_download_description"&gt;Aflaai&lt;/string&gt;
+    &lt;string name="exo_download_downloading"&gt;Laai tans af&lt;/string&gt;
+    &lt;string name="exo_download_failed"&gt;Kon nie aflaai nie&lt;/string&gt;
+    &lt;string name="exo_download_notification_channel_name"&gt;Aflaaie&lt;/string&gt;
+    &lt;string name="exo_download_removing"&gt;Verwyder tans aflaaie&lt;/string&gt;
+    &lt;string name="exo_item_list"&gt;%1$s, %2$s&lt;/string&gt;
+    &lt;string name="exo_track_bitrate"&gt;%1$.2f Mbps&lt;/string&gt;
+    &lt;string name="exo_track_mono"&gt;Mono&lt;/string&gt;
+    &lt;string name="exo_track_resolution"&gt;%1$d × %2$d&lt;/string&gt;
+    &lt;string name="exo_track_selection_auto"&gt;Outo&lt;/string&gt;
+    &lt;string name="exo_track_selection_none"&gt;Geen&lt;/string&gt;
+    &lt;string name="exo_track_selection_title_audio"&gt;Oudio&lt;/string&gt;
+    &lt;string name="exo_track_selection_title_text"&gt;SMS&lt;/string&gt;
+    &lt;string name="exo_track_selection_title_video"&gt;Video&lt;/string&gt;
+    &lt;string name="exo_track_stereo"&gt;Stereo&lt;/string&gt;
+    &lt;string name="exo_track_surround"&gt;Omringklank&lt;/string&gt;
+    &lt;string name="exo_track_surround_5_point_1"&gt;5.1-omringklank&lt;/string&gt;
+    &lt;string name="exo_track_surround_7_point_1"&gt;7.1-omringklank&lt;/string&gt;
+    &lt;string name="exo_track_unknown"&gt;Onbekend&lt;/string&gt;
+    &lt;string name="expand_button_title"&gt;Gevorderd&lt;/string&gt;
+    &lt;string name="fcm_fallback_notification_channel_label"&gt;Diverse&lt;/string&gt;
+    &lt;string name="mr_button_content_description"&gt;Uitsaai-knoppie&lt;/string&gt;
+    &lt;string name="mr_cast_button_connected"&gt;Uitsaai-knoppie. Gekoppel&lt;/string&gt;
+    &lt;string name="mr_cast_button_connecting"&gt;Uitsaai-knoppie. Koppel tans&lt;/string&gt;
+    &lt;string name="mr_cast_button_disconnected"&gt;Uitsaai-knoppie. Ontkoppel&lt;/string&gt;
+    &lt;string name="mr_chooser_searching"&gt;Soek tans toestelle&lt;/string&gt;
+    &lt;string name="mr_chooser_title"&gt;Saai uit na&lt;/string&gt;
+    &lt;string name="mr_controller_album_art"&gt;Albumkunswerk&lt;/string&gt;
+    &lt;string name="mr_controller_casting_screen"&gt;Saai tans skerm uit&lt;/string&gt;
+    &lt;string name="mr_controller_close_description"&gt;Maak toe&lt;/string&gt;
+    &lt;string name="mr_controller_collapse_group"&gt;Vou in&lt;/string&gt;
+    &lt;string name="mr_controller_disconnect"&gt;Ontkoppel&lt;/string&gt;
+    &lt;string name="mr_controller_expand_group"&gt;Vou uit&lt;/string&gt;
+    &lt;string name="mr_controller_no_info_available"&gt;Geen inligting is beskikbaar nie&lt;/string&gt;
+    &lt;string name="mr_controller_no_media_selected"&gt;Geen media is gekies nie&lt;/string&gt;
+    &lt;string name="mr_controller_pause"&gt;Onderbreek&lt;/string&gt;
+    &lt;string name="mr_controller_play"&gt;Speel&lt;/string&gt;
+    &lt;string name="mr_controller_stop"&gt;Stop&lt;/string&gt;
+    &lt;string name="mr_controller_stop_casting"&gt;Hou op uitsaai&lt;/string&gt;
+    &lt;string name="mr_controller_volume_slider"&gt;Volumeglyer&lt;/string&gt;
+    &lt;string name="mr_system_route_name"&gt;Stelsel&lt;/string&gt;
+    &lt;string name="mr_user_route_category_name"&gt;Toestelle&lt;/string&gt;
+    &lt;string name="search_menu_title"&gt;Soek&lt;/string&gt;
+    &lt;string name="status_bar_notification_info_overflow"&gt;999+&lt;/string&gt;
+    &lt;string name="summary_collapsed_preference_list"&gt;%1$s, %2$s&lt;/string&gt;
+    &lt;string name="v7_preference_off"&gt;AF&lt;/string&gt;
+    &lt;string name="v7_preference_on"&gt;AAN&lt;/string&gt;
+&lt;/resources&gt;
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:2 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

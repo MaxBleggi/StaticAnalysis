@@ -1,0 +1,221 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/androidx/appcompat/content/res/AppCompatResources.java" target="_blank">/xumo_apk/jadx_source_code/androidx/appcompat/content/res/AppCompatResources.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="AppCompatResources.java" data-line="" class="code line-numbers"><code>package androidx.appcompat.content.res;
+
+import android.content.Context;
+import android.content.res.ColorStateList;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
+import android.os.Build.VERSION;
+import android.util.Log;
+import android.util.SparseArray;
+import android.util.TypedValue;
+import androidx.annotation.ColorRes;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatDrawableManager;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ColorStateListInflaterCompat;
+import java.util.WeakHashMap;
+
+public final class AppCompatResources {
+    private static final String LOG_TAG = "AppCompatResources";
+    private static final ThreadLocal&lt;TypedValue&gt; TL_TYPED_VALUE = new ThreadLocal();
+    private static final Object sColorStateCacheLock = new Object();
+    private static final WeakHashMap&lt;Context, SparseArray&lt;ColorStateListCacheEntry&gt;&gt; sColorStateCaches = new WeakHashMap(0);
+
+    private static class ColorStateListCacheEntry {
+        final Configuration configuration;
+        final ColorStateList value;
+
+        ColorStateListCacheEntry(@NonNull ColorStateList colorStateList, @NonNull Configuration configuration) {
+            this.value = colorStateList;
+            this.configuration = configuration;
+        }
+    }
+
+    private AppCompatResources() {
+    }
+
+    public static ColorStateList getColorStateList(@NonNull Context context, @ColorRes int i) {
+        if (VERSION.SDK_INT &gt;= 23) {
+            return context.getColorStateList(i);
+        }
+        ColorStateList cachedColorStateList = getCachedColorStateList(context, i);
+        if (cachedColorStateList != null) {
+            return cachedColorStateList;
+        }
+        cachedColorStateList = inflateColorStateList(context, i);
+        if (cachedColorStateList == null) {
+            return ContextCompat.getColorStateList(context, i);
+        }
+        addColorStateListToCache(context, i, cachedColorStateList);
+        return cachedColorStateList;
+    }
+
+    @Nullable
+    public static Drawable getDrawable(@NonNull Context context, @DrawableRes int i) {
+        return AppCompatDrawableManager.get().getDrawable(context, i);
+    }
+
+    @Nullable
+    private static ColorStateList inflateColorStateList(Context context, int i) {
+        if (isColorInt(context, i)) {
+            return null;
+        }
+        Resources resources = context.getResources();
+        try {
+            return ColorStateListInflaterCompat.createFromXml(resources, resources.getXml(i), context.getTheme());
+        } catch (Context context2) {
+            Log.e(LOG_TAG, "Failed to inflate ColorStateList, leaving it to the framework", context2);
+            return null;
+        }
+    }
+
+    /* JADX WARNING: inconsistent code. */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    @androidx.annotation.Nullable
+    private static android.content.res.ColorStateList getCachedColorStateList(@androidx.annotation.NonNull android.content.Context r4, @androidx.annotation.ColorRes int r5) {
+        /*
+        r0 = sColorStateCacheLock;
+        monitor-enter(r0);
+        r1 = sColorStateCaches;	 Catch:{ all -&gt; 0x0035 }
+        r1 = r1.get(r4);	 Catch:{ all -&gt; 0x0035 }
+        r1 = (android.util.SparseArray) r1;	 Catch:{ all -&gt; 0x0035 }
+        if (r1 == 0) goto L_0x0032;
+    L_0x000d:
+        r2 = r1.size();	 Catch:{ all -&gt; 0x0035 }
+        if (r2 &lt;= 0) goto L_0x0032;
+    L_0x0013:
+        r2 = r1.get(r5);	 Catch:{ all -&gt; 0x0035 }
+        r2 = (androidx.appcompat.content.res.AppCompatResources.ColorStateListCacheEntry) r2;	 Catch:{ all -&gt; 0x0035 }
+        if (r2 == 0) goto L_0x0032;
+    L_0x001b:
+        r3 = r2.configuration;	 Catch:{ all -&gt; 0x0035 }
+        r4 = r4.getResources();	 Catch:{ all -&gt; 0x0035 }
+        r4 = r4.getConfiguration();	 Catch:{ all -&gt; 0x0035 }
+        r4 = r3.equals(r4);	 Catch:{ all -&gt; 0x0035 }
+        if (r4 == 0) goto L_0x002f;
+    L_0x002b:
+        r4 = r2.value;	 Catch:{ all -&gt; 0x0035 }
+        monitor-exit(r0);	 Catch:{ all -&gt; 0x0035 }
+        return r4;
+    L_0x002f:
+        r1.remove(r5);	 Catch:{ all -&gt; 0x0035 }
+    L_0x0032:
+        monitor-exit(r0);	 Catch:{ all -&gt; 0x0035 }
+        r4 = 0;
+        return r4;
+    L_0x0035:
+        r4 = move-exception;
+        monitor-exit(r0);	 Catch:{ all -&gt; 0x0035 }
+        throw r4;
+        */
+        throw new UnsupportedOperationException("Method not decompiled: androidx.appcompat.content.res.AppCompatResources.getCachedColorStateList(android.content.Context, int):android.content.res.ColorStateList");
+    }
+
+    private static void addColorStateListToCache(@NonNull Context context, @ColorRes int i, @NonNull ColorStateList colorStateList) {
+        synchronized (sColorStateCacheLock) {
+            SparseArray sparseArray = (SparseArray) sColorStateCaches.get(context);
+            if (sparseArray == null) {
+                sparseArray = new SparseArray();
+                sColorStateCaches.put(context, sparseArray);
+            }
+            sparseArray.append(i, new ColorStateListCacheEntry(colorStateList, context.getResources().getConfiguration()));
+        }
+    }
+
+    private static boolean isColorInt(@NonNull Context context, @ColorRes int i) {
+        context = context.getResources();
+        TypedValue typedValue = getTypedValue();
+        context.getValue(i, typedValue, true);
+        if (typedValue.type &lt; 28 || typedValue.type &gt; 31) {
+            return false;
+        }
+        return true;
+    }
+
+    @NonNull
+    private static TypedValue getTypedValue() {
+        TypedValue typedValue = (TypedValue) TL_TYPED_VALUE.get();
+        if (typedValue != null) {
+            return typedValue;
+        }
+        typedValue = new TypedValue();
+        TL_TYPED_VALUE.set(typedValue);
+        return typedValue;
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:4 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

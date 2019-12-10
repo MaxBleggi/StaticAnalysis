@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="34" android:versionName="1.1" android:compileSdkVersion="28" android:compileSdkVersionCodename="9" package="com.xumo.xumo.tv" platformBuildVersionCode="34" platformBuildVersionName="1.1">
+    <uses-sdk android:minSdkVersion="19" android:targetSdkVersion="28" />
+    <permission android:name="com.xumo.xumo.c2dm.permission.C2D_MESSAGE" android:protectionLevel="signature|signatureOrSystem" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="com.xumo.xumo.c2dm.permission.C2D_MESSAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-feature android:name="android.software.leanback" android:required="true" />
+    <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
+    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <application android:theme="@style/AppTheme" android:label="@string/app_name" android:icon="@mipmap/ic_launcher" android:name="com.xumo.xumo.application.XumoApplication" android:allowBackup="true" android:supportsRtl="true" android:banner="@drawable/xumo_banner" android:appComponentFactory="androidx.core.app.CoreComponentFactory">
+        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+        <meta-data android:name="com.google.firebase.messaging.default_notification_icon" android:resource="@drawable/ic_xumo_android_icon" />
+        <meta-data android:name="com.google.firebase.messaging.default_notification_color" android:resource="@color/xumo_black" />
+        <meta-data android:name="com.google.firebase.messaging.default_notification_channel_id" android:value="@string/default_notification_channel_id" />
+        <meta-data android:name="io.fabric.ApiKey" android:value="2611d57b285fbaca2aaeb2121e32adf3349e0b09" />
+        <activity android:theme="@style/AppTheme_Splash" android:name="com.xumo.xumo.activity.SplashActivity" android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <data android:scheme="xumo" android:host="open" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+        </activity>
+        <activity android:theme="@style/TvTheme" android:label="@string/app_name" android:name="com.xumo.xumo.activity.MainTvActivity" android:screenOrientation="landscape" android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="http" android:host="www.xumo.com" />
+                <data android:scheme="https" android:host="www.xumo.com" />
+                <data android:scheme="http" android:host="www.xumo.tv" />
+                <data android:scheme="https" android:host="www.xumo.tv" />
+                <data android:scheme="http" android:host="xumo.page.link" />
+                <data android:scheme="https" android:host="xumo.page.link" />
+            </intent-filter>
+        </activity>
+        <service android:name="com.xumo.xumo.service.XumoFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name="com.xumo.xumo.service.XumoFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name="com.xumo.xumo.service.XumoFcmJobService" android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service android:name="com.xumo.xumo.service.XumoFcmAlarmService" />
+        <receiver android:name="com.xumo.xumo.receivers.XumoFcmReceiver" android:permission="com.google.android.c2dm.permission.SEND" android:exported="true">
+            <intent-filter android:priority="1000">
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <category android:name="{applicationId}" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.google.android.gms.cast.framework.media.MediaIntentReceiver" android:exported="false" />
+        <service android:name="com.google.android.gms.cast.framework.media.MediaNotificationService" android:exported="false" />
+        <service android:name="com.google.android.gms.cast.framework.ReconnectionService" android:exported="false" />
+        <service android:name="com.google.firebase.messaging.FirebaseMessagingService" android:exported="true">
+            <intent-filter android:priority="-500">
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name="com.google.firebase.components.ComponentDiscoveryService" android:exported="false">
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar" android:value="com.google.firebase.components.ComponentRegistrar" />
+            <meta-data android:name="com.google.firebase.components:com.google.firebase.iid.Registrar" android:value="com.google.firebase.components.ComponentRegistrar" />
+        </service>
+        <receiver android:name="com.google.android.gms.measurement.AppMeasurementReceiver" android:enabled="true" android:exported="false" />
+        <receiver android:name="com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver" android:permission="android.permission.INSTALL_PACKAGES" android:enabled="true" android:exported="true">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
+        <service android:name="com.google.android.gms.measurement.AppMeasurementService" android:enabled="true" android:exported="false" />
+        <service android:name="com.google.android.gms.measurement.AppMeasurementJobService" android:permission="android.permission.BIND_JOB_SERVICE" android:enabled="true" android:exported="false" />
+        <receiver android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver" android:permission="com.google.android.c2dm.permission.SEND" android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </receiver>
+        <service android:name="com.google.firebase.iid.FirebaseInstanceIdService" android:exported="true">
+            <intent-filter android:priority="-500">
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <provider android:name="com.google.firebase.provider.FirebaseInitProvider" android:exported="false" android:authorities="com.xumo.xumo.tv.firebaseinitprovider" android:initOrder="100" />
+        <activity android:theme="@*android:style/Theme.Translucent.NoTitleBar" android:name="com.google.android.gms.common.api.GoogleApiActivity" android:exported="false" />
+        <provider android:name="com.crashlytics.android.CrashlyticsInitProvider" android:exported="false" android:authorities="com.xumo.xumo.tv.crashlyticsinitprovider" android:initOrder="90" />
+    </application>
+</manifest>

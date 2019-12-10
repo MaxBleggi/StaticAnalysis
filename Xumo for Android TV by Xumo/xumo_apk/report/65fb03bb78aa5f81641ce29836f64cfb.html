@@ -1,0 +1,500 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9"><div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/res/values/strings.xml" target="_blank">/xumo_apk/jadx_source_code/res/values/strings.xml</a></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-7">report</i><h5>https?:</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>An URL was found, this might be an API endpoint or just a link to documentation. Hopefully the first one.</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#strings_xml239http" class="active">line 239</a></li></ul></div><div class="card-content"><div id="strings_xml239http">Code @ line 239<pre data-start="236" data-line="239" data-src="strings.xml" class="code line-numbers"><code>    &lt;string name="fab_transformation_sheet_behavior"&gt;com.google.android.material.transformation.FabTransformationSheetBehavior&lt;/string&gt;
+    &lt;string name="facebook_video_instream_placement_id"&gt;207855416416243_450405515494564&lt;/string&gt;
+    &lt;string name="fcm_fallback_notification_channel_label"&gt;Miscellaneous&lt;/string&gt;
+    &lt;string name="firebase_database_url"&gt;https://luminous-inferno-9466.firebaseio.com&lt;/string&gt;
+    &lt;string name="for_channel_info"&gt; FOR CHANNEL INFO&lt;/string&gt;
+    &lt;string name="for_info"&gt; FOR INFO&lt;/string&gt;
+    &lt;string name="gcm_defaultSenderId"&gt;195802334108&lt;/string&gt;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL3Jlcy92YWx1ZXMvc3RyaW5ncy54bWx8fHxsaW5lOiAyMzkgOiBodHRwcz86fHx8N3x8fGh0dHBzPzp8fHwyMzl8fHwyMzY">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL3Jlcy92YWx1ZXMvc3RyaW5ncy54bWx8fHxsaW5lOiAyMzkgOiBodHRwcz86fHx8N3x8fGh0dHBzPzp8fHwyMzl8fHwyMzY')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL3Jlcy92YWx1ZXMvc3RyaW5ncy54bWx8fHxsaW5lOiAyMzkgOiBodHRwcz86fHx8N3x8fGh0dHBzPzp8fHwyMzl8fHwyMzY').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL3Jlcy92YWx1ZXMvc3RyaW5ncy54bWx8fHxsaW5lOiAyMzkgOiBodHRwcz86fHx8N3x8fGh0dHBzPzp8fHwyMzl8fHwyMzY" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL3Jlcy92YWx1ZXMvc3RyaW5ncy54bWx8fHxsaW5lOiAyMzkgOiBodHRwcz86fHx8N3x8fGh0dHBzPzp8fHwyMzl8fHwyMzY' , 'ICAgIDxzdHJpbmcgbmFtZT0iZmFiX3RyYW5zZm9ybWF0aW9uX3NoZWV0X2JlaGF2aW9yIj5jb20uZ29vZ2xlLmFuZHJvaWQubWF0ZXJpYWwudHJhbnNmb3JtYXRpb24uRmFiVHJhbnNmb3JtYXRpb25TaGVldEJlaGF2aW9yPC9zdHJpbmc+CiAgICA8c3RyaW5nIG5hbWU9ImZhY2Vib29rX3ZpZGVvX2luc3RyZWFtX3BsYWNlbWVudF9pZCI+MjA3ODU1NDE2NDE2MjQzXzQ1MDQwNTUxNTQ5NDU2NDwvc3RyaW5nPgogICAgPHN0cmluZyBuYW1lPSJmY21fZmFsbGJhY2tfbm90aWZpY2F0aW9uX2NoYW5uZWxfbGFiZWwiPk1pc2NlbGxhbmVvdXM8L3N0cmluZz4KICAgIDxzdHJpbmcgbmFtZT0iZmlyZWJhc2VfZGF0YWJhc2VfdXJsIj5odHRwczovL2x1bWlub3VzLWluZmVybm8tOTQ2Ni5maXJlYmFzZWlvLmNvbTwvc3RyaW5nPgogICAgPHN0cmluZyBuYW1lPSJmb3JfY2hhbm5lbF9pbmZvIj4gRk9SIENIQU5ORUwgSU5GTzwvc3RyaW5nPgogICAgPHN0cmluZyBuYW1lPSJmb3JfaW5mbyI+IEZPUiBJTkZPPC9zdHJpbmc+CiAgICA8c3RyaW5nIG5hbWU9ImdjbV9kZWZhdWx0U2VuZGVySWQiPjE5NTgwMjMzNDEwODwvc3RyaW5nPgo=');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-50">report</i><h5>(private|secret|api|aws)[_-]?key</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>Sensitive parameters which can contain hardcoded credentials. The score is quite low because this query is often a false-positive.</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#strings_xml243priv" class="active">line 243</a></li><li class="tab"><a style="color: #d82c2b;" href="#strings_xml245priv">line 245</a></li></ul></div><div class="card-content"><div id="strings_xml243priv">Code @ line 243<pre data-start="240" data-line="243" data-src="strings.xml" class="code line-numbers"><code>    &lt;string name="for_channel_info"&gt; FOR CHANNEL INFO&lt;/string&gt;
+    &lt;string name="for_info"&gt; FOR INFO&lt;/string&gt;
+    &lt;string name="gcm_defaultSenderId"&gt;195802334108&lt;/string&gt;
+    &lt;string name="google_api_key"&gt;AIzaSyA4tLi8dfUekh6_OrtpPTONb_DEmKNVq-I&lt;/string&gt;
+    &lt;string name="google_app_id"&gt;1:195802334108:android:30aa87e9f5fdf480&lt;/string&gt;
+    &lt;string name="google_crash_reporting_api_key"&gt;AIzaSyA4tLi8dfUekh6_OrtpPTONb_DEmKNVq-I&lt;/string&gt;
+    &lt;string name="google_storage_bucket"&gt;luminous-inferno-9466.appspot.com&lt;/string&gt;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL3Jlcy92YWx1ZXMvc3RyaW5ncy54bWx8fHxsaW5lOiAyNDMgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwyNDN8fHwyNDA">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL3Jlcy92YWx1ZXMvc3RyaW5ncy54bWx8fHxsaW5lOiAyNDMgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwyNDN8fHwyNDA')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL3Jlcy92YWx1ZXMvc3RyaW5ncy54bWx8fHxsaW5lOiAyNDMgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwyNDN8fHwyNDA').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL3Jlcy92YWx1ZXMvc3RyaW5ncy54bWx8fHxsaW5lOiAyNDMgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwyNDN8fHwyNDA" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL3Jlcy92YWx1ZXMvc3RyaW5ncy54bWx8fHxsaW5lOiAyNDMgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwyNDN8fHwyNDA' , 'ICAgIDxzdHJpbmcgbmFtZT0iZm9yX2NoYW5uZWxfaW5mbyI+IEZPUiBDSEFOTkVMIElORk88L3N0cmluZz4KICAgIDxzdHJpbmcgbmFtZT0iZm9yX2luZm8iPiBGT1IgSU5GTzwvc3RyaW5nPgogICAgPHN0cmluZyBuYW1lPSJnY21fZGVmYXVsdFNlbmRlcklkIj4xOTU4MDIzMzQxMDg8L3N0cmluZz4KICAgIDxzdHJpbmcgbmFtZT0iZ29vZ2xlX2FwaV9rZXkiPkFJemFTeUE0dExpOGRmVWVraDZfT3J0cFBUT05iX0RFbUtOVnEtSTwvc3RyaW5nPgogICAgPHN0cmluZyBuYW1lPSJnb29nbGVfYXBwX2lkIj4xOjE5NTgwMjMzNDEwODphbmRyb2lkOjMwYWE4N2U5ZjVmZGY0ODA8L3N0cmluZz4KICAgIDxzdHJpbmcgbmFtZT0iZ29vZ2xlX2NyYXNoX3JlcG9ydGluZ19hcGlfa2V5Ij5BSXphU3lBNHRMaThkZlVla2g2X09ydHBQVE9OYl9ERW1LTlZxLUk8L3N0cmluZz4KICAgIDxzdHJpbmcgbmFtZT0iZ29vZ2xlX3N0b3JhZ2VfYnVja2V0Ij5sdW1pbm91cy1pbmZlcm5vLTk0NjYuYXBwc3BvdC5jb208L3N0cmluZz4K');  
+                                            });
+                                            </script>
+                                            </div><div id="strings_xml245priv">Code @ line 245<pre data-start="242" data-line="245" data-src="strings.xml" class="code line-numbers"><code>    &lt;string name="gcm_defaultSenderId"&gt;195802334108&lt;/string&gt;
+    &lt;string name="google_api_key"&gt;AIzaSyA4tLi8dfUekh6_OrtpPTONb_DEmKNVq-I&lt;/string&gt;
+    &lt;string name="google_app_id"&gt;1:195802334108:android:30aa87e9f5fdf480&lt;/string&gt;
+    &lt;string name="google_crash_reporting_api_key"&gt;AIzaSyA4tLi8dfUekh6_OrtpPTONb_DEmKNVq-I&lt;/string&gt;
+    &lt;string name="google_storage_bucket"&gt;luminous-inferno-9466.appspot.com&lt;/string&gt;
+    &lt;string name="guide"&gt;GUIDE&lt;/string&gt;
+    &lt;string name="guide_logo"&gt;GUIDE |&lt;/string&gt;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL3Jlcy92YWx1ZXMvc3RyaW5ncy54bWx8fHxsaW5lOiAyNDUgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwyNDV8fHwyNDI">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL3Jlcy92YWx1ZXMvc3RyaW5ncy54bWx8fHxsaW5lOiAyNDUgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwyNDV8fHwyNDI')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL3Jlcy92YWx1ZXMvc3RyaW5ncy54bWx8fHxsaW5lOiAyNDUgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwyNDV8fHwyNDI').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL3Jlcy92YWx1ZXMvc3RyaW5ncy54bWx8fHxsaW5lOiAyNDUgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwyNDV8fHwyNDI" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL3Jlcy92YWx1ZXMvc3RyaW5ncy54bWx8fHxsaW5lOiAyNDUgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwyNDV8fHwyNDI' , 'ICAgIDxzdHJpbmcgbmFtZT0iZ2NtX2RlZmF1bHRTZW5kZXJJZCI+MTk1ODAyMzM0MTA4PC9zdHJpbmc+CiAgICA8c3RyaW5nIG5hbWU9Imdvb2dsZV9hcGlfa2V5Ij5BSXphU3lBNHRMaThkZlVla2g2X09ydHBQVE9OYl9ERW1LTlZxLUk8L3N0cmluZz4KICAgIDxzdHJpbmcgbmFtZT0iZ29vZ2xlX2FwcF9pZCI+MToxOTU4MDIzMzQxMDg6YW5kcm9pZDozMGFhODdlOWY1ZmRmNDgwPC9zdHJpbmc+CiAgICA8c3RyaW5nIG5hbWU9Imdvb2dsZV9jcmFzaF9yZXBvcnRpbmdfYXBpX2tleSI+QUl6YVN5QTR0TGk4ZGZVZWtoNl9PcnRwUFRPTmJfREVtS05WcS1JPC9zdHJpbmc+CiAgICA8c3RyaW5nIG5hbWU9Imdvb2dsZV9zdG9yYWdlX2J1Y2tldCI+bHVtaW5vdXMtaW5mZXJuby05NDY2LmFwcHNwb3QuY29tPC9zdHJpbmc+CiAgICA8c3RyaW5nIG5hbWU9Imd1aWRlIj5HVUlERTwvc3RyaW5nPgogICAgPHN0cmluZyBuYW1lPSJndWlkZV9sb2dvIj5HVUlERSB8PC9zdHJpbmc+Cg==');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-10">report</i><h5>passw(d|ord)?</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>Sensitive parameters which can contain hardcoded credentials. The score is quite low because this query is often a false-positive.</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#strings_xml292pass" class="active">line 292</a></li><li class="tab"><a style="color: #d82c2b;" href="#strings_xml293pass">line 293</a></li><li class="tab"><a style="color: #d82c2b;" href="#strings_xml294pass">line 294</a></li><li class="tab"><a style="color: #d82c2b;" href="#strings_xml295pass">line 295</a></li><li class="tab"><a style="color: #d82c2b;" href="#strings_xml296pass">line 296</a></li></ul></div><div class="card-content"><div id="strings_xml292pass">Code @ line 292<pre data-start="289" data-line="292" data-src="strings.xml" class="code line-numbers"><code>    &lt;string name="on_now_playing"&gt;Now Playing&lt;/string&gt;
+    &lt;string name="on_now_time_min_left"&gt;%s Min Left&lt;/string&gt;
+    &lt;string name="open_guide"&gt;Open Guide&lt;/string&gt;
+    &lt;string name="password_toggle_content_description"&gt;Show password&lt;/string&gt;
+    &lt;string name="path_password_eye"&gt;M12,4.5C7,4.5 2.73,7.61 1,12c1.73,4.39 6,7.5 11,7.5s9.27,-3.11 11,-7.5c-1.73,-4.39 -6,-7.5 -11,-7.5zM12,17c-2.76,0 -5,-2.24 -5,-5s2.24,-5 5,-5 5,2.24 5,5 -2.24,5 -5,5zM12,9c-1.66,0 -3,1.34 -3,3s1.34,3 3,3 3,-1.34 3,-3 -1.34,-3 -3,-3z&lt;/string&gt;
+    &lt;string name="path_password_eye_mask_strike_through"&gt;M2,4.27 L19.73,22 L22.27,19.46 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z&lt;/string&gt;
+    &lt;string name="path_password_eye_mask_visible"&gt;M2,4.27 L2,4.27 L4.54,1.73 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z&lt;/string&gt;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL3Jlcy92YWx1ZXMvc3RyaW5ncy54bWx8fHxsaW5lOiAyOTIgOiBwYXNzdyhkfG9yZCk/fHx8MTB8fHxwYXNzdyhkfG9yZCk/fHx8MjkyfHx8Mjg5">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL3Jlcy92YWx1ZXMvc3RyaW5ncy54bWx8fHxsaW5lOiAyOTIgOiBwYXNzdyhkfG9yZCk/fHx8MTB8fHxwYXNzdyhkfG9yZCk/fHx8MjkyfHx8Mjg5')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL3Jlcy92YWx1ZXMvc3RyaW5ncy54bWx8fHxsaW5lOiAyOTIgOiBwYXNzdyhkfG9yZCk/fHx8MTB8fHxwYXNzdyhkfG9yZCk/fHx8MjkyfHx8Mjg5').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL3Jlcy92YWx1ZXMvc3RyaW5ncy54bWx8fHxsaW5lOiAyOTIgOiBwYXNzdyhkfG9yZCk/fHx8MTB8fHxwYXNzdyhkfG9yZCk/fHx8MjkyfHx8Mjg5" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL3Jlcy92YWx1ZXMvc3RyaW5ncy54bWx8fHxsaW5lOiAyOTIgOiBwYXNzdyhkfG9yZCk/fHx8MTB8fHxwYXNzdyhkfG9yZCk/fHx8MjkyfHx8Mjg5' , 'ICAgIDxzdHJpbmcgbmFtZT0ib25fbm93X3BsYXlpbmciPk5vdyBQbGF5aW5nPC9zdHJpbmc+CiAgICA8c3RyaW5nIG5hbWU9Im9uX25vd190aW1lX21pbl9sZWZ0Ij4lcyBNaW4gTGVmdDwvc3RyaW5nPgogICAgPHN0cmluZyBuYW1lPSJvcGVuX2d1aWRlIj5PcGVuIEd1aWRlPC9zdHJpbmc+CiAgICA8c3RyaW5nIG5hbWU9InBhc3N3b3JkX3RvZ2dsZV9jb250ZW50X2Rlc2NyaXB0aW9uIj5TaG93IHBhc3N3b3JkPC9zdHJpbmc+CiAgICA8c3RyaW5nIG5hbWU9InBhdGhfcGFzc3dvcmRfZXllIj5NMTIsNC41QzcsNC41IDIuNzMsNy42MSAxLDEyYzEuNzMsNC4zOSA2LDcuNSAxMSw3LjVzOS4yNywtMy4xMSAxMSwtNy41Yy0xLjczLC00LjM5IC02LC03LjUgLTExLC03LjV6TTEyLDE3Yy0yLjc2LDAgLTUsLTIuMjQgLTUsLTVzMi4yNCwtNSA1LC01IDUsMi4yNCA1LDUgLTIuMjQsNSAtNSw1ek0xMiw5Yy0xLjY2LDAgLTMsMS4zNCAtMywzczEuMzQsMyAzLDMgMywtMS4zNCAzLC0zIC0xLjM0LC0zIC0zLC0zejwvc3RyaW5nPgogICAgPHN0cmluZyBuYW1lPSJwYXRoX3Bhc3N3b3JkX2V5ZV9tYXNrX3N0cmlrZV90aHJvdWdoIj5NMiw0LjI3IEwxOS43MywyMiBMMjIuMjcsMTkuNDYgTDQuNTQsMS43MyBMNC41NCwxIEwyMywxIEwyMywyMyBMMSwyMyBMMSw0LjI3IFo8L3N0cmluZz4KICAgIDxzdHJpbmcgbmFtZT0icGF0aF9wYXNzd29yZF9leWVfbWFza192aXNpYmxlIj5NMiw0LjI3IEwyLDQuMjcgTDQuNTQsMS43MyBMNC41NCwxLjczIEw0LjU0LDEgTDIzLDEgTDIzLDIzIEwxLDIzIEwxLDQuMjcgWjwvc3RyaW5nPgo=');  
+                                            });
+                                            </script>
+                                            </div><div id="strings_xml293pass">Code @ line 293<pre data-start="290" data-line="293" data-src="strings.xml" class="code line-numbers"><code>    &lt;string name="on_now_time_min_left"&gt;%s Min Left&lt;/string&gt;
+    &lt;string name="open_guide"&gt;Open Guide&lt;/string&gt;
+    &lt;string name="password_toggle_content_description"&gt;Show password&lt;/string&gt;
+    &lt;string name="path_password_eye"&gt;M12,4.5C7,4.5 2.73,7.61 1,12c1.73,4.39 6,7.5 11,7.5s9.27,-3.11 11,-7.5c-1.73,-4.39 -6,-7.5 -11,-7.5zM12,17c-2.76,0 -5,-2.24 -5,-5s2.24,-5 5,-5 5,2.24 5,5 -2.24,5 -5,5zM12,9c-1.66,0 -3,1.34 -3,3s1.34,3 3,3 3,-1.34 3,-3 -1.34,-3 -3,-3z&lt;/string&gt;
+    &lt;string name="path_password_eye_mask_strike_through"&gt;M2,4.27 L19.73,22 L22.27,19.46 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z&lt;/string&gt;
+    &lt;string name="path_password_eye_mask_visible"&gt;M2,4.27 L2,4.27 L4.54,1.73 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z&lt;/string&gt;
+    &lt;string name="path_password_strike_through"&gt;M3.27,4.27 L19.74,20.74&lt;/string&gt;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL3Jlcy92YWx1ZXMvc3RyaW5ncy54bWx8fHxsaW5lOiAyOTMgOiBwYXNzdyhkfG9yZCk/fHx8MTB8fHxwYXNzdyhkfG9yZCk/fHx8MjkzfHx8Mjkw">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL3Jlcy92YWx1ZXMvc3RyaW5ncy54bWx8fHxsaW5lOiAyOTMgOiBwYXNzdyhkfG9yZCk/fHx8MTB8fHxwYXNzdyhkfG9yZCk/fHx8MjkzfHx8Mjkw')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL3Jlcy92YWx1ZXMvc3RyaW5ncy54bWx8fHxsaW5lOiAyOTMgOiBwYXNzdyhkfG9yZCk/fHx8MTB8fHxwYXNzdyhkfG9yZCk/fHx8MjkzfHx8Mjkw').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL3Jlcy92YWx1ZXMvc3RyaW5ncy54bWx8fHxsaW5lOiAyOTMgOiBwYXNzdyhkfG9yZCk/fHx8MTB8fHxwYXNzdyhkfG9yZCk/fHx8MjkzfHx8Mjkw" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL3Jlcy92YWx1ZXMvc3RyaW5ncy54bWx8fHxsaW5lOiAyOTMgOiBwYXNzdyhkfG9yZCk/fHx8MTB8fHxwYXNzdyhkfG9yZCk/fHx8MjkzfHx8Mjkw' , 'ICAgIDxzdHJpbmcgbmFtZT0ib25fbm93X3RpbWVfbWluX2xlZnQiPiVzIE1pbiBMZWZ0PC9zdHJpbmc+CiAgICA8c3RyaW5nIG5hbWU9Im9wZW5fZ3VpZGUiPk9wZW4gR3VpZGU8L3N0cmluZz4KICAgIDxzdHJpbmcgbmFtZT0icGFzc3dvcmRfdG9nZ2xlX2NvbnRlbnRfZGVzY3JpcHRpb24iPlNob3cgcGFzc3dvcmQ8L3N0cmluZz4KICAgIDxzdHJpbmcgbmFtZT0icGF0aF9wYXNzd29yZF9leWUiPk0xMiw0LjVDNyw0LjUgMi43Myw3LjYxIDEsMTJjMS43Myw0LjM5IDYsNy41IDExLDcuNXM5LjI3LC0zLjExIDExLC03LjVjLTEuNzMsLTQuMzkgLTYsLTcuNSAtMTEsLTcuNXpNMTIsMTdjLTIuNzYsMCAtNSwtMi4yNCAtNSwtNXMyLjI0LC01IDUsLTUgNSwyLjI0IDUsNSAtMi4yNCw1IC01LDV6TTEyLDljLTEuNjYsMCAtMywxLjM0IC0zLDNzMS4zNCwzIDMsMyAzLC0xLjM0IDMsLTMgLTEuMzQsLTMgLTMsLTN6PC9zdHJpbmc+CiAgICA8c3RyaW5nIG5hbWU9InBhdGhfcGFzc3dvcmRfZXllX21hc2tfc3RyaWtlX3Rocm91Z2giPk0yLDQuMjcgTDE5LjczLDIyIEwyMi4yNywxOS40NiBMNC41NCwxLjczIEw0LjU0LDEgTDIzLDEgTDIzLDIzIEwxLDIzIEwxLDQuMjcgWjwvc3RyaW5nPgogICAgPHN0cmluZyBuYW1lPSJwYXRoX3Bhc3N3b3JkX2V5ZV9tYXNrX3Zpc2libGUiPk0yLDQuMjcgTDIsNC4yNyBMNC41NCwxLjczIEw0LjU0LDEuNzMgTDQuNTQsMSBMMjMsMSBMMjMsMjMgTDEsMjMgTDEsNC4yNyBaPC9zdHJpbmc+CiAgICA8c3RyaW5nIG5hbWU9InBhdGhfcGFzc3dvcmRfc3RyaWtlX3Rocm91Z2giPk0zLjI3LDQuMjcgTDE5Ljc0LDIwLjc0PC9zdHJpbmc+Cg==');  
+                                            });
+                                            </script>
+                                            </div><div id="strings_xml294pass">Code @ line 294<pre data-start="291" data-line="294" data-src="strings.xml" class="code line-numbers"><code>    &lt;string name="open_guide"&gt;Open Guide&lt;/string&gt;
+    &lt;string name="password_toggle_content_description"&gt;Show password&lt;/string&gt;
+    &lt;string name="path_password_eye"&gt;M12,4.5C7,4.5 2.73,7.61 1,12c1.73,4.39 6,7.5 11,7.5s9.27,-3.11 11,-7.5c-1.73,-4.39 -6,-7.5 -11,-7.5zM12,17c-2.76,0 -5,-2.24 -5,-5s2.24,-5 5,-5 5,2.24 5,5 -2.24,5 -5,5zM12,9c-1.66,0 -3,1.34 -3,3s1.34,3 3,3 3,-1.34 3,-3 -1.34,-3 -3,-3z&lt;/string&gt;
+    &lt;string name="path_password_eye_mask_strike_through"&gt;M2,4.27 L19.73,22 L22.27,19.46 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z&lt;/string&gt;
+    &lt;string name="path_password_eye_mask_visible"&gt;M2,4.27 L2,4.27 L4.54,1.73 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z&lt;/string&gt;
+    &lt;string name="path_password_strike_through"&gt;M3.27,4.27 L19.74,20.74&lt;/string&gt;
+    &lt;string name="play_button"&gt;PLAY&lt;/string&gt;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL3Jlcy92YWx1ZXMvc3RyaW5ncy54bWx8fHxsaW5lOiAyOTQgOiBwYXNzdyhkfG9yZCk/fHx8MTB8fHxwYXNzdyhkfG9yZCk/fHx8Mjk0fHx8Mjkx">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL3Jlcy92YWx1ZXMvc3RyaW5ncy54bWx8fHxsaW5lOiAyOTQgOiBwYXNzdyhkfG9yZCk/fHx8MTB8fHxwYXNzdyhkfG9yZCk/fHx8Mjk0fHx8Mjkx')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL3Jlcy92YWx1ZXMvc3RyaW5ncy54bWx8fHxsaW5lOiAyOTQgOiBwYXNzdyhkfG9yZCk/fHx8MTB8fHxwYXNzdyhkfG9yZCk/fHx8Mjk0fHx8Mjkx').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL3Jlcy92YWx1ZXMvc3RyaW5ncy54bWx8fHxsaW5lOiAyOTQgOiBwYXNzdyhkfG9yZCk/fHx8MTB8fHxwYXNzdyhkfG9yZCk/fHx8Mjk0fHx8Mjkx" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL3Jlcy92YWx1ZXMvc3RyaW5ncy54bWx8fHxsaW5lOiAyOTQgOiBwYXNzdyhkfG9yZCk/fHx8MTB8fHxwYXNzdyhkfG9yZCk/fHx8Mjk0fHx8Mjkx' , 'ICAgIDxzdHJpbmcgbmFtZT0ib3Blbl9ndWlkZSI+T3BlbiBHdWlkZTwvc3RyaW5nPgogICAgPHN0cmluZyBuYW1lPSJwYXNzd29yZF90b2dnbGVfY29udGVudF9kZXNjcmlwdGlvbiI+U2hvdyBwYXNzd29yZDwvc3RyaW5nPgogICAgPHN0cmluZyBuYW1lPSJwYXRoX3Bhc3N3b3JkX2V5ZSI+TTEyLDQuNUM3LDQuNSAyLjczLDcuNjEgMSwxMmMxLjczLDQuMzkgNiw3LjUgMTEsNy41czkuMjcsLTMuMTEgMTEsLTcuNWMtMS43MywtNC4zOSAtNiwtNy41IC0xMSwtNy41ek0xMiwxN2MtMi43NiwwIC01LC0yLjI0IC01LC01czIuMjQsLTUgNSwtNSA1LDIuMjQgNSw1IC0yLjI0LDUgLTUsNXpNMTIsOWMtMS42NiwwIC0zLDEuMzQgLTMsM3MxLjM0LDMgMywzIDMsLTEuMzQgMywtMyAtMS4zNCwtMyAtMywtM3o8L3N0cmluZz4KICAgIDxzdHJpbmcgbmFtZT0icGF0aF9wYXNzd29yZF9leWVfbWFza19zdHJpa2VfdGhyb3VnaCI+TTIsNC4yNyBMMTkuNzMsMjIgTDIyLjI3LDE5LjQ2IEw0LjU0LDEuNzMgTDQuNTQsMSBMMjMsMSBMMjMsMjMgTDEsMjMgTDEsNC4yNyBaPC9zdHJpbmc+CiAgICA8c3RyaW5nIG5hbWU9InBhdGhfcGFzc3dvcmRfZXllX21hc2tfdmlzaWJsZSI+TTIsNC4yNyBMMiw0LjI3IEw0LjU0LDEuNzMgTDQuNTQsMS43MyBMNC41NCwxIEwyMywxIEwyMywyMyBMMSwyMyBMMSw0LjI3IFo8L3N0cmluZz4KICAgIDxzdHJpbmcgbmFtZT0icGF0aF9wYXNzd29yZF9zdHJpa2VfdGhyb3VnaCI+TTMuMjcsNC4yNyBMMTkuNzQsMjAuNzQ8L3N0cmluZz4KICAgIDxzdHJpbmcgbmFtZT0icGxheV9idXR0b24iPlBMQVk8L3N0cmluZz4K');  
+                                            });
+                                            </script>
+                                            </div><div id="strings_xml295pass">Code @ line 295<pre data-start="292" data-line="295" data-src="strings.xml" class="code line-numbers"><code>    &lt;string name="password_toggle_content_description"&gt;Show password&lt;/string&gt;
+    &lt;string name="path_password_eye"&gt;M12,4.5C7,4.5 2.73,7.61 1,12c1.73,4.39 6,7.5 11,7.5s9.27,-3.11 11,-7.5c-1.73,-4.39 -6,-7.5 -11,-7.5zM12,17c-2.76,0 -5,-2.24 -5,-5s2.24,-5 5,-5 5,2.24 5,5 -2.24,5 -5,5zM12,9c-1.66,0 -3,1.34 -3,3s1.34,3 3,3 3,-1.34 3,-3 -1.34,-3 -3,-3z&lt;/string&gt;
+    &lt;string name="path_password_eye_mask_strike_through"&gt;M2,4.27 L19.73,22 L22.27,19.46 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z&lt;/string&gt;
+    &lt;string name="path_password_eye_mask_visible"&gt;M2,4.27 L2,4.27 L4.54,1.73 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z&lt;/string&gt;
+    &lt;string name="path_password_strike_through"&gt;M3.27,4.27 L19.74,20.74&lt;/string&gt;
+    &lt;string name="play_button"&gt;PLAY&lt;/string&gt;
+    &lt;string name="player_channel_error_message"&gt;This stream has failed to load.\nPlease wait while the connection is retried.&lt;/string&gt;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL3Jlcy92YWx1ZXMvc3RyaW5ncy54bWx8fHxsaW5lOiAyOTUgOiBwYXNzdyhkfG9yZCk/fHx8MTB8fHxwYXNzdyhkfG9yZCk/fHx8Mjk1fHx8Mjky">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL3Jlcy92YWx1ZXMvc3RyaW5ncy54bWx8fHxsaW5lOiAyOTUgOiBwYXNzdyhkfG9yZCk/fHx8MTB8fHxwYXNzdyhkfG9yZCk/fHx8Mjk1fHx8Mjky')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL3Jlcy92YWx1ZXMvc3RyaW5ncy54bWx8fHxsaW5lOiAyOTUgOiBwYXNzdyhkfG9yZCk/fHx8MTB8fHxwYXNzdyhkfG9yZCk/fHx8Mjk1fHx8Mjky').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL3Jlcy92YWx1ZXMvc3RyaW5ncy54bWx8fHxsaW5lOiAyOTUgOiBwYXNzdyhkfG9yZCk/fHx8MTB8fHxwYXNzdyhkfG9yZCk/fHx8Mjk1fHx8Mjky" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL3Jlcy92YWx1ZXMvc3RyaW5ncy54bWx8fHxsaW5lOiAyOTUgOiBwYXNzdyhkfG9yZCk/fHx8MTB8fHxwYXNzdyhkfG9yZCk/fHx8Mjk1fHx8Mjky' , 'ICAgIDxzdHJpbmcgbmFtZT0icGFzc3dvcmRfdG9nZ2xlX2NvbnRlbnRfZGVzY3JpcHRpb24iPlNob3cgcGFzc3dvcmQ8L3N0cmluZz4KICAgIDxzdHJpbmcgbmFtZT0icGF0aF9wYXNzd29yZF9leWUiPk0xMiw0LjVDNyw0LjUgMi43Myw3LjYxIDEsMTJjMS43Myw0LjM5IDYsNy41IDExLDcuNXM5LjI3LC0zLjExIDExLC03LjVjLTEuNzMsLTQuMzkgLTYsLTcuNSAtMTEsLTcuNXpNMTIsMTdjLTIuNzYsMCAtNSwtMi4yNCAtNSwtNXMyLjI0LC01IDUsLTUgNSwyLjI0IDUsNSAtMi4yNCw1IC01LDV6TTEyLDljLTEuNjYsMCAtMywxLjM0IC0zLDNzMS4zNCwzIDMsMyAzLC0xLjM0IDMsLTMgLTEuMzQsLTMgLTMsLTN6PC9zdHJpbmc+CiAgICA8c3RyaW5nIG5hbWU9InBhdGhfcGFzc3dvcmRfZXllX21hc2tfc3RyaWtlX3Rocm91Z2giPk0yLDQuMjcgTDE5LjczLDIyIEwyMi4yNywxOS40NiBMNC41NCwxLjczIEw0LjU0LDEgTDIzLDEgTDIzLDIzIEwxLDIzIEwxLDQuMjcgWjwvc3RyaW5nPgogICAgPHN0cmluZyBuYW1lPSJwYXRoX3Bhc3N3b3JkX2V5ZV9tYXNrX3Zpc2libGUiPk0yLDQuMjcgTDIsNC4yNyBMNC41NCwxLjczIEw0LjU0LDEuNzMgTDQuNTQsMSBMMjMsMSBMMjMsMjMgTDEsMjMgTDEsNC4yNyBaPC9zdHJpbmc+CiAgICA8c3RyaW5nIG5hbWU9InBhdGhfcGFzc3dvcmRfc3RyaWtlX3Rocm91Z2giPk0zLjI3LDQuMjcgTDE5Ljc0LDIwLjc0PC9zdHJpbmc+CiAgICA8c3RyaW5nIG5hbWU9InBsYXlfYnV0dG9uIj5QTEFZPC9zdHJpbmc+CiAgICA8c3RyaW5nIG5hbWU9InBsYXllcl9jaGFubmVsX2Vycm9yX21lc3NhZ2UiPlRoaXMgc3RyZWFtIGhhcyBmYWlsZWQgdG8gbG9hZC5cblBsZWFzZSB3YWl0IHdoaWxlIHRoZSBjb25uZWN0aW9uIGlzIHJldHJpZWQuPC9zdHJpbmc+Cg==');  
+                                            });
+                                            </script>
+                                            </div><div id="strings_xml296pass">Code @ line 296<pre data-start="293" data-line="296" data-src="strings.xml" class="code line-numbers"><code>    &lt;string name="path_password_eye"&gt;M12,4.5C7,4.5 2.73,7.61 1,12c1.73,4.39 6,7.5 11,7.5s9.27,-3.11 11,-7.5c-1.73,-4.39 -6,-7.5 -11,-7.5zM12,17c-2.76,0 -5,-2.24 -5,-5s2.24,-5 5,-5 5,2.24 5,5 -2.24,5 -5,5zM12,9c-1.66,0 -3,1.34 -3,3s1.34,3 3,3 3,-1.34 3,-3 -1.34,-3 -3,-3z&lt;/string&gt;
+    &lt;string name="path_password_eye_mask_strike_through"&gt;M2,4.27 L19.73,22 L22.27,19.46 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z&lt;/string&gt;
+    &lt;string name="path_password_eye_mask_visible"&gt;M2,4.27 L2,4.27 L4.54,1.73 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z&lt;/string&gt;
+    &lt;string name="path_password_strike_through"&gt;M3.27,4.27 L19.74,20.74&lt;/string&gt;
+    &lt;string name="play_button"&gt;PLAY&lt;/string&gt;
+    &lt;string name="player_channel_error_message"&gt;This stream has failed to load.\nPlease wait while the connection is retried.&lt;/string&gt;
+    &lt;string name="player_video_error_message"&gt;The video you are trying to play has encountered an error.&lt;/string&gt;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL3Jlcy92YWx1ZXMvc3RyaW5ncy54bWx8fHxsaW5lOiAyOTYgOiBwYXNzdyhkfG9yZCk/fHx8MTB8fHxwYXNzdyhkfG9yZCk/fHx8Mjk2fHx8Mjkz">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL3Jlcy92YWx1ZXMvc3RyaW5ncy54bWx8fHxsaW5lOiAyOTYgOiBwYXNzdyhkfG9yZCk/fHx8MTB8fHxwYXNzdyhkfG9yZCk/fHx8Mjk2fHx8Mjkz')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL3Jlcy92YWx1ZXMvc3RyaW5ncy54bWx8fHxsaW5lOiAyOTYgOiBwYXNzdyhkfG9yZCk/fHx8MTB8fHxwYXNzdyhkfG9yZCk/fHx8Mjk2fHx8Mjkz').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL3Jlcy92YWx1ZXMvc3RyaW5ncy54bWx8fHxsaW5lOiAyOTYgOiBwYXNzdyhkfG9yZCk/fHx8MTB8fHxwYXNzdyhkfG9yZCk/fHx8Mjk2fHx8Mjkz" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL3Jlcy92YWx1ZXMvc3RyaW5ncy54bWx8fHxsaW5lOiAyOTYgOiBwYXNzdyhkfG9yZCk/fHx8MTB8fHxwYXNzdyhkfG9yZCk/fHx8Mjk2fHx8Mjkz' , 'ICAgIDxzdHJpbmcgbmFtZT0icGF0aF9wYXNzd29yZF9leWUiPk0xMiw0LjVDNyw0LjUgMi43Myw3LjYxIDEsMTJjMS43Myw0LjM5IDYsNy41IDExLDcuNXM5LjI3LC0zLjExIDExLC03LjVjLTEuNzMsLTQuMzkgLTYsLTcuNSAtMTEsLTcuNXpNMTIsMTdjLTIuNzYsMCAtNSwtMi4yNCAtNSwtNXMyLjI0LC01IDUsLTUgNSwyLjI0IDUsNSAtMi4yNCw1IC01LDV6TTEyLDljLTEuNjYsMCAtMywxLjM0IC0zLDNzMS4zNCwzIDMsMyAzLC0xLjM0IDMsLTMgLTEuMzQsLTMgLTMsLTN6PC9zdHJpbmc+CiAgICA8c3RyaW5nIG5hbWU9InBhdGhfcGFzc3dvcmRfZXllX21hc2tfc3RyaWtlX3Rocm91Z2giPk0yLDQuMjcgTDE5LjczLDIyIEwyMi4yNywxOS40NiBMNC41NCwxLjczIEw0LjU0LDEgTDIzLDEgTDIzLDIzIEwxLDIzIEwxLDQuMjcgWjwvc3RyaW5nPgogICAgPHN0cmluZyBuYW1lPSJwYXRoX3Bhc3N3b3JkX2V5ZV9tYXNrX3Zpc2libGUiPk0yLDQuMjcgTDIsNC4yNyBMNC41NCwxLjczIEw0LjU0LDEuNzMgTDQuNTQsMSBMMjMsMSBMMjMsMjMgTDEsMjMgTDEsNC4yNyBaPC9zdHJpbmc+CiAgICA8c3RyaW5nIG5hbWU9InBhdGhfcGFzc3dvcmRfc3RyaWtlX3Rocm91Z2giPk0zLjI3LDQuMjcgTDE5Ljc0LDIwLjc0PC9zdHJpbmc+CiAgICA8c3RyaW5nIG5hbWU9InBsYXlfYnV0dG9uIj5QTEFZPC9zdHJpbmc+CiAgICA8c3RyaW5nIG5hbWU9InBsYXllcl9jaGFubmVsX2Vycm9yX21lc3NhZ2UiPlRoaXMgc3RyZWFtIGhhcyBmYWlsZWQgdG8gbG9hZC5cblBsZWFzZSB3YWl0IHdoaWxlIHRoZSBjb25uZWN0aW9uIGlzIHJldHJpZWQuPC9zdHJpbmc+CiAgICA8c3RyaW5nIG5hbWU9InBsYXllcl92aWRlb19lcnJvcl9tZXNzYWdlIj5UaGUgdmlkZW8geW91IGFyZSB0cnlpbmcgdG8gcGxheSBoYXMgZW5jb3VudGVyZWQgYW4gZXJyb3IuPC9zdHJpbmc+Cg==');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="strings.xml" data-line="239,243,245,292,293,294,295,296," class="code line-numbers"><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;resources&gt;
+    &lt;string name="abc_action_bar_home_description"&gt;Navigate home&lt;/string&gt;
+    &lt;string name="abc_action_bar_up_description"&gt;Navigate up&lt;/string&gt;
+    &lt;string name="abc_action_menu_overflow_description"&gt;More options&lt;/string&gt;
+    &lt;string name="abc_action_mode_done"&gt;Done&lt;/string&gt;
+    &lt;string name="abc_activity_chooser_view_see_all"&gt;See all&lt;/string&gt;
+    &lt;string name="abc_activitychooserview_choose_application"&gt;Choose an app&lt;/string&gt;
+    &lt;string name="abc_capital_off"&gt;OFF&lt;/string&gt;
+    &lt;string name="abc_capital_on"&gt;ON&lt;/string&gt;
+    &lt;string name="abc_font_family_body_1_material"&gt;sans-serif&lt;/string&gt;
+    &lt;string name="abc_font_family_body_2_material"&gt;sans-serif-medium&lt;/string&gt;
+    &lt;string name="abc_font_family_button_material"&gt;sans-serif-medium&lt;/string&gt;
+    &lt;string name="abc_font_family_caption_material"&gt;sans-serif&lt;/string&gt;
+    &lt;string name="abc_font_family_display_1_material"&gt;sans-serif&lt;/string&gt;
+    &lt;string name="abc_font_family_display_2_material"&gt;sans-serif&lt;/string&gt;
+    &lt;string name="abc_font_family_display_3_material"&gt;sans-serif&lt;/string&gt;
+    &lt;string name="abc_font_family_display_4_material"&gt;sans-serif-light&lt;/string&gt;
+    &lt;string name="abc_font_family_headline_material"&gt;sans-serif&lt;/string&gt;
+    &lt;string name="abc_font_family_menu_material"&gt;sans-serif&lt;/string&gt;
+    &lt;string name="abc_font_family_subhead_material"&gt;sans-serif&lt;/string&gt;
+    &lt;string name="abc_font_family_title_material"&gt;sans-serif-medium&lt;/string&gt;
+    &lt;string name="abc_menu_alt_shortcut_label"&gt;Alt+&lt;/string&gt;
+    &lt;string name="abc_menu_ctrl_shortcut_label"&gt;Ctrl+&lt;/string&gt;
+    &lt;string name="abc_menu_delete_shortcut_label"&gt;delete&lt;/string&gt;
+    &lt;string name="abc_menu_enter_shortcut_label"&gt;enter&lt;/string&gt;
+    &lt;string name="abc_menu_function_shortcut_label"&gt;Function+&lt;/string&gt;
+    &lt;string name="abc_menu_meta_shortcut_label"&gt;Meta+&lt;/string&gt;
+    &lt;string name="abc_menu_shift_shortcut_label"&gt;Shift+&lt;/string&gt;
+    &lt;string name="abc_menu_space_shortcut_label"&gt;space&lt;/string&gt;
+    &lt;string name="abc_menu_sym_shortcut_label"&gt;Sym+&lt;/string&gt;
+    &lt;string name="abc_prepend_shortcut_label"&gt;Menu+&lt;/string&gt;
+    &lt;string name="abc_search_hint"&gt;Search…&lt;/string&gt;
+    &lt;string name="abc_searchview_description_clear"&gt;Clear query&lt;/string&gt;
+    &lt;string name="abc_searchview_description_query"&gt;Search query&lt;/string&gt;
+    &lt;string name="abc_searchview_description_search"&gt;Search&lt;/string&gt;
+    &lt;string name="abc_searchview_description_submit"&gt;Submit query&lt;/string&gt;
+    &lt;string name="abc_searchview_description_voice"&gt;Voice search&lt;/string&gt;
+    &lt;string name="abc_shareactionprovider_share_with"&gt;Share with&lt;/string&gt;
+    &lt;string name="abc_shareactionprovider_share_with_application"&gt;Share with %s&lt;/string&gt;
+    &lt;string name="abc_toolbar_collapse_description"&gt;Collapse&lt;/string&gt;
+    &lt;string name="all_channels"&gt;ON DEMAND&lt;/string&gt;
+    &lt;string name="all_channels_logo"&gt;ON DEMAND |&lt;/string&gt;
+    &lt;string name="app_name"&gt;Xumo&lt;/string&gt;
+    &lt;string name="appbar_scrolling_view_behavior"&gt;com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior&lt;/string&gt;
+    &lt;string name="back"&gt;Back&lt;/string&gt;
+    &lt;string name="back_to_movies"&gt;BACK TO MOVIES&lt;/string&gt;
+    &lt;string name="bottom_sheet_behavior"&gt;com.google.android.material.bottomsheet.BottomSheetBehavior&lt;/string&gt;
+    &lt;string name="cast_ad_label"&gt;Ad&lt;/string&gt;
+    &lt;string name="cast_casting_to_device"&gt;Casting to %1$s&lt;/string&gt;
+    &lt;string name="cast_closed_captions"&gt;Closed captions&lt;/string&gt;
+    &lt;string name="cast_closed_captions_unavailable"&gt;Closed captions unavailable&lt;/string&gt;
+    &lt;string name="cast_connecting_to_device"&gt;Connecting to %1$s&lt;/string&gt;
+    &lt;string name="cast_disconnect"&gt;Disconnect&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_ad_image_description"&gt;Image displayed while the cast receiver is playing an ad&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_ad_in_progress"&gt;Ad in progress…&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_background_image"&gt;Album art&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_live_stream_indicator"&gt;Live stream&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_loading"&gt;Loading…&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_skip_ad_label"&gt;Skip Ad&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_skip_ad_text"&gt;You can skip ad in %1$d…&lt;/string&gt;
+    &lt;string name="cast_forward"&gt;Forward&lt;/string&gt;
+    &lt;string name="cast_forward_10"&gt;Forward ten seconds&lt;/string&gt;
+    &lt;string name="cast_forward_30"&gt;Forward thirty seconds&lt;/string&gt;
+    &lt;string name="cast_intro_overlay_button_text"&gt;?unknown_ref: 104000a&lt;/string&gt;
+    &lt;string name="cast_invalid_stream_duration_text"&gt;--:--&lt;/string&gt;
+    &lt;string name="cast_invalid_stream_position_text"&gt;--:--&lt;/string&gt;
+    &lt;string name="cast_mute"&gt;Mute&lt;/string&gt;
+    &lt;string name="cast_notification_connected_message"&gt;Connected to %1$s&lt;/string&gt;
+    &lt;string name="cast_notification_connecting_message"&gt;Connecting to %1$s&lt;/string&gt;
+    &lt;string name="cast_notification_default_channel_name"&gt;Cast&lt;/string&gt;
+    &lt;string name="cast_notification_disconnect"&gt;Disconnect&lt;/string&gt;
+    &lt;string name="cast_pause"&gt;Pause&lt;/string&gt;
+    &lt;string name="cast_play"&gt;Play&lt;/string&gt;
+    &lt;string name="cast_rewind"&gt;Rewind&lt;/string&gt;
+    &lt;string name="cast_rewind_10"&gt;Rewind ten seconds&lt;/string&gt;
+    &lt;string name="cast_rewind_30"&gt;Rewind thirty seconds&lt;/string&gt;
+    &lt;string name="cast_seek_bar"&gt;Playback seek control&lt;/string&gt;
+    &lt;string name="cast_skip_next"&gt;Skip to next item&lt;/string&gt;
+    &lt;string name="cast_skip_prev"&gt;Skip to previous item&lt;/string&gt;
+    &lt;string name="cast_stop"&gt;Stop&lt;/string&gt;
+    &lt;string name="cast_stop_live_stream"&gt;Stop live stream&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_audio"&gt;Audio&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_cancel"&gt;Cancel&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_closed_captions"&gt;Closed Captions&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_default_track_name"&gt;Track %1$d&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_none"&gt;None&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_ok"&gt;OK&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_subtitles"&gt;Subtitles&lt;/string&gt;
+    &lt;string name="cast_unmute"&gt;Unmute&lt;/string&gt;
+    &lt;string name="ccl_ad_message"&gt;Back in 15 seconds&lt;/string&gt;
+    &lt;string name="ccl_cancel"&gt;Cancel&lt;/string&gt;
+    &lt;string name="ccl_caption"&gt;Caption&lt;/string&gt;
+    &lt;string name="ccl_caption_audio"&gt;Audio&lt;/string&gt;
+    &lt;string name="ccl_caption_no_audio_tracks"&gt;No Audio Tracks Available&lt;/string&gt;
+    &lt;string name="ccl_caption_no_text_tracks"&gt;No Text Tracks Available&lt;/string&gt;
+    &lt;string name="ccl_caption_no_tracks_available"&gt;No tracks available&lt;/string&gt;
+    &lt;string name="ccl_caption_subtitles"&gt;Subtitles&lt;/string&gt;
+    &lt;string name="ccl_casting_to_device"&gt;Casting to %1$s&lt;/string&gt;
+    &lt;string name="ccl_disconnect"&gt;Disconnect&lt;/string&gt;
+    &lt;string name="ccl_error"&gt;Error&lt;/string&gt;
+    &lt;string name="ccl_failed_app_launch_timeout"&gt;The request to launch the application has timed out!&lt;/string&gt;
+    &lt;string name="ccl_failed_authorization_timeout"&gt;Authorization timed out&lt;/string&gt;
+    &lt;string name="ccl_failed_no_connection"&gt;No connection to the cast device is present&lt;/string&gt;
+    &lt;string name="ccl_failed_no_connection_short"&gt;No connection&lt;/string&gt;
+    &lt;string name="ccl_failed_no_connection_trans"&gt;Connection to the cast device has been lost. Application is trying to re-establish the connection, if possible. Please wait for a few seconds and try again.&lt;/string&gt;
+    &lt;string name="ccl_failed_perform_action"&gt;Failed to perform the action&lt;/string&gt;
+    &lt;string name="ccl_failed_receiver_player_error"&gt;Receiver player has encountered a severe error&lt;/string&gt;
+    &lt;string name="ccl_failed_seek"&gt;Failed to seek to the new position on the cast device&lt;/string&gt;
+    &lt;string name="ccl_failed_setting_volume"&gt;Failed to set the volume&lt;/string&gt;
+    &lt;string name="ccl_failed_status_request"&gt;Failed to sync up with the cast device&lt;/string&gt;
+    &lt;string name="ccl_failed_to_connect"&gt;Could not connect to the device&lt;/string&gt;
+    &lt;string name="ccl_failed_to_find_app"&gt;The application you are trying to launch is not available on your Cast device&lt;/string&gt;
+    &lt;string name="ccl_failed_to_launch_app"&gt;Failed to launch application&lt;/string&gt;
+    &lt;string name="ccl_failed_to_load_media"&gt;Failed to load the media&lt;/string&gt;
+    &lt;string name="ccl_failed_to_pause"&gt;Failed to pause the playback of media&lt;/string&gt;
+    &lt;string name="ccl_failed_to_play"&gt;Failed to start the playback of media&lt;/string&gt;
+    &lt;string name="ccl_failed_to_set_track_style"&gt;Failed to update the captions style.&lt;/string&gt;
+    &lt;string name="ccl_failed_to_stop"&gt;Failed to stop the playback of media&lt;/string&gt;
+    &lt;string name="ccl_forward"&gt;Forward&lt;/string&gt;
+    &lt;string name="ccl_info_na"&gt;Information Not Available&lt;/string&gt;
+    &lt;string name="ccl_intro_overlay_button_text"&gt;?unknown_ref: 104000a&lt;/string&gt;
+    &lt;string name="ccl_key_caption_background_color"&gt;ccl_caption_background_color&lt;/string&gt;
+    &lt;string name="ccl_key_caption_background_opacity"&gt;ccl_caption_font_background_opacity&lt;/string&gt;
+    &lt;string name="ccl_key_caption_edge_type"&gt;ccl_caption_edge_type&lt;/string&gt;
+    &lt;string name="ccl_key_caption_enabled"&gt;ccl_caption_enabled&lt;/string&gt;
+    &lt;string name="ccl_key_caption_font_family"&gt;ccl_caption_font_family&lt;/string&gt;
+    &lt;string name="ccl_key_caption_font_scale"&gt;ccl_caption_font_scale&lt;/string&gt;
+    &lt;string name="ccl_key_caption_text_color"&gt;ccl_caption_text_color&lt;/string&gt;
+    &lt;string name="ccl_key_caption_text_opacity"&gt;ccl_caption_text_opacity&lt;/string&gt;
+    &lt;string name="ccl_live"&gt;Live&lt;/string&gt;
+    &lt;string name="ccl_loading"&gt;Loading…&lt;/string&gt;
+    &lt;string name="ccl_media_route_menu_title"&gt;Play on…&lt;/string&gt;
+    &lt;string name="ccl_mini_upnext"&gt;Up Next&lt;/string&gt;
+    &lt;string name="ccl_no_media_info"&gt;No media information available&lt;/string&gt;
+    &lt;string name="ccl_none"&gt;None&lt;/string&gt;
+    &lt;string name="ccl_off"&gt;Off&lt;/string&gt;
+    &lt;string name="ccl_ok"&gt;OK&lt;/string&gt;
+    &lt;string name="ccl_on"&gt;On&lt;/string&gt;
+    &lt;string name="ccl_pause"&gt;Pause&lt;/string&gt;
+    &lt;string name="ccl_pick_tracks"&gt;Tracks&lt;/string&gt;
+    &lt;string name="ccl_play"&gt;Play&lt;/string&gt;
+    &lt;string name="ccl_prefs_caption_background_color_title"&gt;Background Color&lt;/string&gt;
+    &lt;string name="ccl_prefs_caption_background_color_value_default"&gt;#000000&lt;/string&gt;
+    &lt;string name="ccl_prefs_caption_background_opacity_title"&gt;Background Opacity&lt;/string&gt;
+    &lt;string name="ccl_prefs_caption_background_opacity_value_default"&gt;FF&lt;/string&gt;
+    &lt;string name="ccl_prefs_caption_disabled"&gt;Disabled&lt;/string&gt;
+    &lt;string name="ccl_prefs_caption_edge_color_title"&gt;Edge Color&lt;/string&gt;
+    &lt;string name="ccl_prefs_caption_edge_type_title"&gt;Edge Type&lt;/string&gt;
+    &lt;string name="ccl_prefs_caption_edge_type_value_default"&gt;EDGE_TYPE_NONE&lt;/string&gt;
+    &lt;string name="ccl_prefs_caption_enabled"&gt;Enabled&lt;/string&gt;
+    &lt;string name="ccl_prefs_caption_enabled_title"&gt;Caption Availability&lt;/string&gt;
+    &lt;string name="ccl_prefs_caption_font_family_title"&gt;Font Family&lt;/string&gt;
+    &lt;string name="ccl_prefs_caption_font_family_value_default"&gt;FONT_FAMILY_SERIF&lt;/string&gt;
+    &lt;string name="ccl_prefs_caption_font_scale_title"&gt;Text Size&lt;/string&gt;
+    &lt;string name="ccl_prefs_caption_font_scale_value_default"&gt;1.0&lt;/string&gt;
+    &lt;string name="ccl_prefs_caption_text_color_title"&gt;Text Color&lt;/string&gt;
+    &lt;string name="ccl_prefs_caption_text_color_value_default"&gt;#FFFFFF&lt;/string&gt;
+    &lt;string name="ccl_prefs_caption_text_opacity_title"&gt;Text Opacity&lt;/string&gt;
+    &lt;string name="ccl_prefs_caption_text_opacity_value_default"&gt;FF&lt;/string&gt;
+    &lt;string name="ccl_rewind"&gt;Rewind&lt;/string&gt;
+    &lt;string name="ccl_skip_next"&gt;Skip Next&lt;/string&gt;
+    &lt;string name="ccl_skip_previous"&gt;Skip Previous&lt;/string&gt;
+    &lt;string name="ccl_version"&gt;2.8.4&lt;/string&gt;
+    &lt;string name="channel_error_message"&gt;This content is temporarily unavailable,\nplease try again later&lt;/string&gt;
+    &lt;string name="channel_logo_description"&gt;channel logo&lt;/string&gt;
+    &lt;string name="channels"&gt;CHANNELS&lt;/string&gt;
+    &lt;string name="character_counter_content_description"&gt;Character limit exceeded %1$d of %2$d&lt;/string&gt;
+    &lt;string name="character_counter_pattern"&gt;%1$d / %2$d&lt;/string&gt;
+    &lt;string name="chrome_cast_app_id"&gt;ACC0614D&lt;/string&gt;
+    &lt;string name="com.crashlytics.android.build_id"&gt;1bfe29b1-5027-4879-a20a-8ce3b1472bf7&lt;/string&gt;
+    &lt;string name="common_google_play_services_enable_button"&gt;Enable&lt;/string&gt;
+    &lt;string name="common_google_play_services_enable_text"&gt;%1$s won\'t work unless you enable Google Play services.&lt;/string&gt;
+    &lt;string name="common_google_play_services_enable_title"&gt;Enable Google Play services&lt;/string&gt;
+    &lt;string name="common_google_play_services_install_button"&gt;Install&lt;/string&gt;
+    &lt;string name="common_google_play_services_install_text"&gt;%1$s won\'t run without Google Play services, which are missing from your device.&lt;/string&gt;
+    &lt;string name="common_google_play_services_install_title"&gt;Get Google Play services&lt;/string&gt;
+    &lt;string name="common_google_play_services_notification_channel_name"&gt;Google Play services availability&lt;/string&gt;
+    &lt;string name="common_google_play_services_notification_ticker"&gt;Google Play services error&lt;/string&gt;
+    &lt;string name="common_google_play_services_unknown_issue"&gt;%1$s is having trouble with Google Play services. Please try again.&lt;/string&gt;
+    &lt;string name="common_google_play_services_unsupported_text"&gt;%1$s won\'t run without Google Play services, which are not supported by your device.&lt;/string&gt;
+    &lt;string name="common_google_play_services_update_button"&gt;Update&lt;/string&gt;
+    &lt;string name="common_google_play_services_update_text"&gt;%1$s won\'t run unless you update Google Play services.&lt;/string&gt;
+    &lt;string name="common_google_play_services_update_title"&gt;Update Google Play services&lt;/string&gt;
+    &lt;string name="common_google_play_services_updating_text"&gt;%1$s won\'t run without Google Play services, which are currently updating.&lt;/string&gt;
+    &lt;string name="common_google_play_services_wear_update_text"&gt;New version of Google Play services needed. It will update itself shortly.&lt;/string&gt;
+    &lt;string name="common_open_on_phone"&gt;Open on phone&lt;/string&gt;
+    &lt;string name="common_signin_button_text"&gt;Sign in&lt;/string&gt;
+    &lt;string name="common_signin_button_text_long"&gt;Sign in with Google&lt;/string&gt;
+    &lt;string name="control_guide_favorite"&gt;Favorite Channel&lt;/string&gt;
+    &lt;string name="control_guide_ok"&gt;OK&lt;/string&gt;
+    &lt;string name="control_guide_select_genre"&gt;Select Genre&lt;/string&gt;
+    &lt;string name="control_guide_unfavorite"&gt;Remove&lt;/string&gt;
+    &lt;string name="control_guide_watch_now"&gt;Watch Now&lt;/string&gt;
+    &lt;string name="default_notification_channel_id"&gt;Xumo_channel&lt;/string&gt;
+    &lt;string name="default_web_client_id"&gt;195802334108-jert9kdht2s7ri0v5sn03q1bhctb4r0h.apps.googleusercontent.com&lt;/string&gt;
+    &lt;string name="empty_favorites_text_line1_part1"&gt;Selecting&lt;/string&gt;
+    &lt;string name="empty_favorites_text_line1_part2"&gt;will add channels to your favorites list.&lt;/string&gt;
+    &lt;string name="empty_favorites_text_line2"&gt;You can conveniently access your favorites here at anytime.&lt;/string&gt;
+    &lt;string name="exit"&gt;EXIT&lt;/string&gt;
+    &lt;string name="exo_controls_fastforward_description"&gt;Fast forward&lt;/string&gt;
+    &lt;string name="exo_controls_fullscreen_description"&gt;Fullscreen mode&lt;/string&gt;
+    &lt;string name="exo_controls_next_description"&gt;Next track&lt;/string&gt;
+    &lt;string name="exo_controls_pause_description"&gt;Pause&lt;/string&gt;
+    &lt;string name="exo_controls_play_description"&gt;Play&lt;/string&gt;
+    &lt;string name="exo_controls_previous_description"&gt;Previous track&lt;/string&gt;
+    &lt;string name="exo_controls_repeat_all_description"&gt;Repeat all&lt;/string&gt;
+    &lt;string name="exo_controls_repeat_off_description"&gt;Repeat none&lt;/string&gt;
+    &lt;string name="exo_controls_repeat_one_description"&gt;Repeat one&lt;/string&gt;
+    &lt;string name="exo_controls_rewind_description"&gt;Rewind&lt;/string&gt;
+    &lt;string name="exo_controls_shuffle_description"&gt;Shuffle&lt;/string&gt;
+    &lt;string name="exo_controls_stop_description"&gt;Stop&lt;/string&gt;
+    &lt;string name="exo_download_completed"&gt;Download completed&lt;/string&gt;
+    &lt;string name="exo_download_description"&gt;Download&lt;/string&gt;
+    &lt;string name="exo_download_downloading"&gt;Downloading&lt;/string&gt;
+    &lt;string name="exo_download_failed"&gt;Download failed&lt;/string&gt;
+    &lt;string name="exo_download_notification_channel_name"&gt;Downloads&lt;/string&gt;
+    &lt;string name="exo_download_removing"&gt;Removing downloads&lt;/string&gt;
+    &lt;string name="exo_item_list"&gt;%1$s, %2$s&lt;/string&gt;
+    &lt;string name="exo_track_bitrate"&gt;%1$.2f Mbps&lt;/string&gt;
+    &lt;string name="exo_track_mono"&gt;Mono&lt;/string&gt;
+    &lt;string name="exo_track_resolution"&gt;%1$d × %2$d&lt;/string&gt;
+    &lt;string name="exo_track_selection_auto"&gt;Auto&lt;/string&gt;
+    &lt;string name="exo_track_selection_none"&gt;None&lt;/string&gt;
+    &lt;string name="exo_track_selection_title_audio"&gt;Audio&lt;/string&gt;
+    &lt;string name="exo_track_selection_title_text"&gt;Text&lt;/string&gt;
+    &lt;string name="exo_track_selection_title_video"&gt;Video&lt;/string&gt;
+    &lt;string name="exo_track_stereo"&gt;Stereo&lt;/string&gt;
+    &lt;string name="exo_track_surround"&gt;Surround sound&lt;/string&gt;
+    &lt;string name="exo_track_surround_5_point_1"&gt;5.1 surround sound&lt;/string&gt;
+    &lt;string name="exo_track_surround_7_point_1"&gt;7.1 surround sound&lt;/string&gt;
+    &lt;string name="exo_track_unknown"&gt;Unknown&lt;/string&gt;
+    &lt;string name="expand_button_title"&gt;Advanced&lt;/string&gt;
+    &lt;string name="expand_description"&gt;expand icon&lt;/string&gt;
+    &lt;string name="fab_transformation_scrim_behavior"&gt;com.google.android.material.transformation.FabTransformationScrimBehavior&lt;/string&gt;
+    &lt;string name="fab_transformation_sheet_behavior"&gt;com.google.android.material.transformation.FabTransformationSheetBehavior&lt;/string&gt;
+    &lt;string name="facebook_video_instream_placement_id"&gt;207855416416243_450405515494564&lt;/string&gt;
+    &lt;string name="fcm_fallback_notification_channel_label"&gt;Miscellaneous&lt;/string&gt;
+    &lt;string name="firebase_database_url"&gt;https://luminous-inferno-9466.firebaseio.com&lt;/string&gt;
+    &lt;string name="for_channel_info"&gt; FOR CHANNEL INFO&lt;/string&gt;
+    &lt;string name="for_info"&gt; FOR INFO&lt;/string&gt;
+    &lt;string name="gcm_defaultSenderId"&gt;195802334108&lt;/string&gt;
+    &lt;string name="google_api_key"&gt;AIzaSyA4tLi8dfUekh6_OrtpPTONb_DEmKNVq-I&lt;/string&gt;
+    &lt;string name="google_app_id"&gt;1:195802334108:android:30aa87e9f5fdf480&lt;/string&gt;
+    &lt;string name="google_crash_reporting_api_key"&gt;AIzaSyA4tLi8dfUekh6_OrtpPTONb_DEmKNVq-I&lt;/string&gt;
+    &lt;string name="google_storage_bucket"&gt;luminous-inferno-9466.appspot.com&lt;/string&gt;
+    &lt;string name="guide"&gt;GUIDE&lt;/string&gt;
+    &lt;string name="guide_logo"&gt;GUIDE |&lt;/string&gt;
+    &lt;string name="hide_bottom_view_on_scroll_behavior"&gt;com.google.android.material.behavior.HideBottomViewOnScrollBehavior&lt;/string&gt;
+    &lt;string name="is_new"&gt;New&lt;/string&gt;
+    &lt;string name="load_more_videos"&gt;LOAD MORE\nVIDEOS&lt;/string&gt;
+    &lt;string name="loading_more"&gt;Load More&lt;/string&gt;
+    &lt;string name="loading_more_movies"&gt;LOAD MORE\nMOVIES&lt;/string&gt;
+    &lt;string name="loading_now"&gt;LOADING...\n&lt;/string&gt;
+    &lt;string name="logo_description"&gt;xumo logo&lt;/string&gt;
+    &lt;string name="most_popular"&gt;MOST POPULAR&lt;/string&gt;
+    &lt;string name="movies"&gt;MOVIES&lt;/string&gt;
+    &lt;string name="movies_logo"&gt;MOVIES |&lt;/string&gt;
+    &lt;string name="mr_button_content_description"&gt;Cast button&lt;/string&gt;
+    &lt;string name="mr_cast_button_connected"&gt;Cast button. Connected&lt;/string&gt;
+    &lt;string name="mr_cast_button_connecting"&gt;Cast button. Connecting&lt;/string&gt;
+    &lt;string name="mr_cast_button_disconnected"&gt;Cast button. Disconnected&lt;/string&gt;
+    &lt;string name="mr_cast_dialog_title_view_placeholder"&gt;No info available&lt;/string&gt;
+    &lt;string name="mr_chooser_searching"&gt;Finding devices&lt;/string&gt;
+    &lt;string name="mr_chooser_title"&gt;Cast to&lt;/string&gt;
+    &lt;string name="mr_controller_album_art"&gt;Album art&lt;/string&gt;
+    &lt;string name="mr_controller_casting_screen"&gt;Casting screen&lt;/string&gt;
+    &lt;string name="mr_controller_close_description"&gt;Close&lt;/string&gt;
+    &lt;string name="mr_controller_collapse_group"&gt;Collapse&lt;/string&gt;
+    &lt;string name="mr_controller_disconnect"&gt;Disconnect&lt;/string&gt;
+    &lt;string name="mr_controller_expand_group"&gt;Expand&lt;/string&gt;
+    &lt;string name="mr_controller_no_info_available"&gt;No info available&lt;/string&gt;
+    &lt;string name="mr_controller_no_media_selected"&gt;No media selected&lt;/string&gt;
+    &lt;string name="mr_controller_pause"&gt;Pause&lt;/string&gt;
+    &lt;string name="mr_controller_play"&gt;Play&lt;/string&gt;
+    &lt;string name="mr_controller_stop"&gt;Stop&lt;/string&gt;
+    &lt;string name="mr_controller_stop_casting"&gt;Stop casting&lt;/string&gt;
+    &lt;string name="mr_controller_volume_slider"&gt;Volume slider&lt;/string&gt;
+    &lt;string name="mr_dialog_device_header"&gt;Cast to a device&lt;/string&gt;
+    &lt;string name="mr_dialog_route_header"&gt;Play on a group&lt;/string&gt;
+    &lt;string name="mr_system_route_name"&gt;System&lt;/string&gt;
+    &lt;string name="mr_user_route_category_name"&gt;Devices&lt;/string&gt;
+    &lt;string name="mtrl_chip_close_icon_content_description"&gt;Remove %1$s&lt;/string&gt;
+    &lt;string name="mute_description"&gt;mute icon&lt;/string&gt;
+    &lt;string name="net_work_error_message"&gt;The video format is not supported on this device.&lt;/string&gt;
+    &lt;string name="not_find_anything"&gt;We couldn\'t find anything for&lt;/string&gt;
+    &lt;string name="on_now"&gt;ON NOW&lt;/string&gt;
+    &lt;string name="on_now_less_than"&gt;Less Than 1 Min Left&lt;/string&gt;
+    &lt;string name="on_now_playing"&gt;Now Playing&lt;/string&gt;
+    &lt;string name="on_now_time_min_left"&gt;%s Min Left&lt;/string&gt;
+    &lt;string name="open_guide"&gt;Open Guide&lt;/string&gt;
+    &lt;string name="password_toggle_content_description"&gt;Show password&lt;/string&gt;
+    &lt;string name="path_password_eye"&gt;M12,4.5C7,4.5 2.73,7.61 1,12c1.73,4.39 6,7.5 11,7.5s9.27,-3.11 11,-7.5c-1.73,-4.39 -6,-7.5 -11,-7.5zM12,17c-2.76,0 -5,-2.24 -5,-5s2.24,-5 5,-5 5,2.24 5,5 -2.24,5 -5,5zM12,9c-1.66,0 -3,1.34 -3,3s1.34,3 3,3 3,-1.34 3,-3 -1.34,-3 -3,-3z&lt;/string&gt;
+    &lt;string name="path_password_eye_mask_strike_through"&gt;M2,4.27 L19.73,22 L22.27,19.46 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z&lt;/string&gt;
+    &lt;string name="path_password_eye_mask_visible"&gt;M2,4.27 L2,4.27 L4.54,1.73 L4.54,1.73 L4.54,1 L23,1 L23,23 L1,23 L1,4.27 Z&lt;/string&gt;
+    &lt;string name="path_password_strike_through"&gt;M3.27,4.27 L19.74,20.74&lt;/string&gt;
+    &lt;string name="play_button"&gt;PLAY&lt;/string&gt;
+    &lt;string name="player_channel_error_message"&gt;This stream has failed to load.\nPlease wait while the connection is retried.&lt;/string&gt;
+    &lt;string name="player_video_error_message"&gt;The video you are trying to play has encountered an error.&lt;/string&gt;
+    &lt;string name="player_video_error_message_next"&gt;The video you are trying to play has encountered an error.\nThe next video will begin in %d seconds.&lt;/string&gt;
+    &lt;string name="project_id"&gt;luminous-inferno-9466&lt;/string&gt;
+    &lt;string name="recent_searches"&gt;Recent Searches&lt;/string&gt;
+    &lt;string name="search"&gt;SEARCH&lt;/string&gt;
+    &lt;string name="search_logo"&gt;SEARCH |&lt;/string&gt;
+    &lt;string name="search_menu_title"&gt;Search&lt;/string&gt;
+    &lt;string name="setting_logo"&gt;SETTING |&lt;/string&gt;
+    &lt;string name="settings"&gt;SETTINGS&lt;/string&gt;
+    &lt;string name="settings_client_id"&gt;Xumo Client ID for Customer Service&lt;/string&gt;
+    &lt;string name="settings_debug_mode_asterisk"&gt;★&lt;/string&gt;
+    &lt;string name="settings_debug_mode_separator"&gt; - &lt;/string&gt;
+    &lt;string name="settings_licences"&gt;Licences&lt;/string&gt;
+    &lt;string name="settings_privacy_policy"&gt;Privacy Policy&lt;/string&gt;
+    &lt;string name="settings_support_for_the_app"&gt;Support for the App&lt;/string&gt;
+    &lt;string name="settings_terms_and_policy"&gt;Terms and Policy&lt;/string&gt;
+    &lt;string name="settings_version_name"&gt;Version %1$s&lt;/string&gt;
+    &lt;string name="settings_video_privacy_policy"&gt;Video Privacy Policy&lt;/string&gt;
+    &lt;string name="share_description"&gt;share icon&lt;/string&gt;
+    &lt;string name="shrink_description"&gt;shrink icon&lt;/string&gt;
+    &lt;string name="splash_description"&gt;splash image&lt;/string&gt;
+    &lt;string name="status_bar_notification_info_overflow"&gt;999+&lt;/string&gt;
+    &lt;string name="summary_collapsed_preference_list"&gt;%1$s, %2$s&lt;/string&gt;
+    &lt;string name="tab_icon_description"&gt;tab icon&lt;/string&gt;
+    &lt;string name="to_launch_guide"&gt;TO LAUNCH GUIDE&lt;/string&gt;
+    &lt;string name="up_next"&gt;UP NEXT&lt;/string&gt;
+    &lt;string name="up_next_starting_shortly"&gt;Starting Shortly&lt;/string&gt;
+    &lt;string name="v7_preference_off"&gt;OFF&lt;/string&gt;
+    &lt;string name="v7_preference_on"&gt;ON&lt;/string&gt;
+    &lt;string name="video_asset_age_1_hour_ago"&gt;1 Hour Ago&lt;/string&gt;
+    &lt;string name="video_asset_age_1_min_ago"&gt;1 Minute Ago&lt;/string&gt;
+    &lt;string name="video_asset_age_days_ago"&gt;%d Days Ago&lt;/string&gt;
+    &lt;string name="video_asset_age_hours_ago"&gt;%d Hours Ago&lt;/string&gt;
+    &lt;string name="video_asset_age_mins_ago"&gt;%d Minutes Ago&lt;/string&gt;
+    &lt;string name="video_asset_age_now"&gt;Now&lt;/string&gt;
+    &lt;string name="video_asset_age_today"&gt;Today&lt;/string&gt;
+    &lt;string name="video_asset_age_yesterday"&gt;Yesterday&lt;/string&gt;
+    &lt;string name="volume_on_description"&gt;volume on icon&lt;/string&gt;
+&lt;/resources&gt;
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:2 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

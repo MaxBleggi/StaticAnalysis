@@ -1,0 +1,149 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/firebase/components/zzd.java" target="_blank">/xumo_apk/jadx_source_code/com/google/firebase/components/zzd.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="zzd.java" data-line="" class="code line-numbers"><code>package com.google.firebase.components;
+
+import android.content.Context;
+import android.util.Log;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+/* compiled from: com.google.firebase:firebase-common@@16.0.2 */
+final class zzd implements zze&lt;Context&gt; {
+    private zzd() {
+    }
+
+    public final /* synthetic */ List zza(Object obj) {
+        obj = zza((Context) obj);
+        if (obj == null) {
+            Log.w("ComponentDiscovery", "Could not retrieve metadata, returning empty list of registrars.");
+            return Collections.emptyList();
+        }
+        List arrayList = new ArrayList();
+        for (String str : obj.keySet()) {
+            if ("com.google.firebase.components.ComponentRegistrar".equals(obj.get(str)) &amp;&amp; str.startsWith("com.google.firebase.components:")) {
+                arrayList.add(str.substring(31));
+            }
+        }
+        return arrayList;
+    }
+
+    private static android.os.Bundle zza(android.content.Context r4) {
+        /* JADX: method processing error */
+/*
+Error: java.lang.NullPointerException
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.searchTryCatchDominators(ProcessTryCatchRegions.java:75)
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.process(ProcessTryCatchRegions.java:45)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.postProcessRegions(RegionMakerVisitor.java:63)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.visit(RegionMakerVisitor.java:58)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:31)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:17)
+	at jadx.core.ProcessClass.process(ProcessClass.java:37)
+	at jadx.api.JadxDecompiler.processClass(JadxDecompiler.java:306)
+	at jadx.api.JavaClass.decompile(JavaClass.java:62)
+	at jadx.api.JadxDecompiler$1.run(JadxDecompiler.java:199)
+*/
+        /*
+        r0 = 0;
+        r1 = r4.getPackageManager();	 Catch:{ NameNotFoundException -&gt; 0x0029 }
+        if (r1 != 0) goto L_0x000f;	 Catch:{ NameNotFoundException -&gt; 0x0029 }
+    L_0x0007:
+        r4 = "ComponentDiscovery";	 Catch:{ NameNotFoundException -&gt; 0x0029 }
+        r1 = "Context has no PackageManager.";	 Catch:{ NameNotFoundException -&gt; 0x0029 }
+        android.util.Log.w(r4, r1);	 Catch:{ NameNotFoundException -&gt; 0x0029 }
+        return r0;	 Catch:{ NameNotFoundException -&gt; 0x0029 }
+    L_0x000f:
+        r2 = new android.content.ComponentName;	 Catch:{ NameNotFoundException -&gt; 0x0029 }
+        r3 = com.google.firebase.components.ComponentDiscoveryService.class;	 Catch:{ NameNotFoundException -&gt; 0x0029 }
+        r2.&lt;init&gt;(r4, r3);	 Catch:{ NameNotFoundException -&gt; 0x0029 }
+        r4 = 128; // 0x80 float:1.794E-43 double:6.32E-322;	 Catch:{ NameNotFoundException -&gt; 0x0029 }
+        r4 = r1.getServiceInfo(r2, r4);	 Catch:{ NameNotFoundException -&gt; 0x0029 }
+        if (r4 != 0) goto L_0x0026;	 Catch:{ NameNotFoundException -&gt; 0x0029 }
+    L_0x001e:
+        r4 = "ComponentDiscovery";	 Catch:{ NameNotFoundException -&gt; 0x0029 }
+        r1 = "ComponentDiscoveryService has no service info.";	 Catch:{ NameNotFoundException -&gt; 0x0029 }
+        android.util.Log.w(r4, r1);	 Catch:{ NameNotFoundException -&gt; 0x0029 }
+        return r0;	 Catch:{ NameNotFoundException -&gt; 0x0029 }
+    L_0x0026:
+        r4 = r4.metaData;	 Catch:{ NameNotFoundException -&gt; 0x0029 }
+        return r4;
+    L_0x0029:
+        r4 = "ComponentDiscovery";
+        r1 = "Application info not found.";
+        android.util.Log.w(r4, r1);
+        return r0;
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.google.firebase.components.zzd.zza(android.content.Context):android.os.Bundle");
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:7 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

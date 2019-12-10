@@ -1,0 +1,417 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9"><div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/androidx/core/view/accessibility/AccessibilityRecordCompat.java" target="_blank">/xumo_apk/jadx_source_code/androidx/core/view/accessibility/AccessibilityRecordCompat.java</a></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-10">report</i><h5>passw(d|ord)?</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>Sensitive parameters which can contain hardcoded credentials. The score is quite low because this query is often a false-positive.</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#AccessibilityRecordCompat_java80pass" class="active">line 80</a></li><li class="tab"><a style="color: #d82c2b;" href="#AccessibilityRecordCompat_java81pass">line 81</a></li><li class="tab"><a style="color: #d82c2b;" href="#AccessibilityRecordCompat_java85pass">line 85</a></li><li class="tab"><a style="color: #d82c2b;" href="#AccessibilityRecordCompat_java86pass">line 86</a></li></ul></div><div class="card-content"><div id="AccessibilityRecordCompat_java80pass">Code @ line 80<pre data-start="77" data-line="80" data-src="AccessibilityRecordCompat.java" class="code line-numbers"><code>    }
+
+    @Deprecated
+    public boolean isPassword() {
+        return this.mRecord.isPassword();
+    }
+
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9hY2Nlc3NpYmlsaXR5L0FjY2Vzc2liaWxpdHlSZWNvcmRDb21wYXQuamF2YXx8fGxpbmU6IDgwIDogcGFzc3coZHxvcmQpP3x8fDEwfHx8cGFzc3coZHxvcmQpP3x8fDgwfHx8Nzc">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9hY2Nlc3NpYmlsaXR5L0FjY2Vzc2liaWxpdHlSZWNvcmRDb21wYXQuamF2YXx8fGxpbmU6IDgwIDogcGFzc3coZHxvcmQpP3x8fDEwfHx8cGFzc3coZHxvcmQpP3x8fDgwfHx8Nzc')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9hY2Nlc3NpYmlsaXR5L0FjY2Vzc2liaWxpdHlSZWNvcmRDb21wYXQuamF2YXx8fGxpbmU6IDgwIDogcGFzc3coZHxvcmQpP3x8fDEwfHx8cGFzc3coZHxvcmQpP3x8fDgwfHx8Nzc').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9hY2Nlc3NpYmlsaXR5L0FjY2Vzc2liaWxpdHlSZWNvcmRDb21wYXQuamF2YXx8fGxpbmU6IDgwIDogcGFzc3coZHxvcmQpP3x8fDEwfHx8cGFzc3coZHxvcmQpP3x8fDgwfHx8Nzc" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9hY2Nlc3NpYmlsaXR5L0FjY2Vzc2liaWxpdHlSZWNvcmRDb21wYXQuamF2YXx8fGxpbmU6IDgwIDogcGFzc3coZHxvcmQpP3x8fDEwfHx8cGFzc3coZHxvcmQpP3x8fDgwfHx8Nzc' , 'ICAgIH0KCiAgICBARGVwcmVjYXRlZAogICAgcHVibGljIGJvb2xlYW4gaXNQYXNzd29yZCgpIHsKICAgICAgICByZXR1cm4gdGhpcy5tUmVjb3JkLmlzUGFzc3dvcmQoKTsKICAgIH0KCg==');  
+                                            });
+                                            </script>
+                                            </div><div id="AccessibilityRecordCompat_java81pass">Code @ line 81<pre data-start="78" data-line="81" data-src="AccessibilityRecordCompat.java" class="code line-numbers"><code>
+    @Deprecated
+    public boolean isPassword() {
+        return this.mRecord.isPassword();
+    }
+
+    @Deprecated
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9hY2Nlc3NpYmlsaXR5L0FjY2Vzc2liaWxpdHlSZWNvcmRDb21wYXQuamF2YXx8fGxpbmU6IDgxIDogcGFzc3coZHxvcmQpP3x8fDEwfHx8cGFzc3coZHxvcmQpP3x8fDgxfHx8Nzg">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9hY2Nlc3NpYmlsaXR5L0FjY2Vzc2liaWxpdHlSZWNvcmRDb21wYXQuamF2YXx8fGxpbmU6IDgxIDogcGFzc3coZHxvcmQpP3x8fDEwfHx8cGFzc3coZHxvcmQpP3x8fDgxfHx8Nzg')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9hY2Nlc3NpYmlsaXR5L0FjY2Vzc2liaWxpdHlSZWNvcmRDb21wYXQuamF2YXx8fGxpbmU6IDgxIDogcGFzc3coZHxvcmQpP3x8fDEwfHx8cGFzc3coZHxvcmQpP3x8fDgxfHx8Nzg').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9hY2Nlc3NpYmlsaXR5L0FjY2Vzc2liaWxpdHlSZWNvcmRDb21wYXQuamF2YXx8fGxpbmU6IDgxIDogcGFzc3coZHxvcmQpP3x8fDEwfHx8cGFzc3coZHxvcmQpP3x8fDgxfHx8Nzg" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9hY2Nlc3NpYmlsaXR5L0FjY2Vzc2liaWxpdHlSZWNvcmRDb21wYXQuamF2YXx8fGxpbmU6IDgxIDogcGFzc3coZHxvcmQpP3x8fDEwfHx8cGFzc3coZHxvcmQpP3x8fDgxfHx8Nzg' , 'CiAgICBARGVwcmVjYXRlZAogICAgcHVibGljIGJvb2xlYW4gaXNQYXNzd29yZCgpIHsKICAgICAgICByZXR1cm4gdGhpcy5tUmVjb3JkLmlzUGFzc3dvcmQoKTsKICAgIH0KCiAgICBARGVwcmVjYXRlZAo=');  
+                                            });
+                                            </script>
+                                            </div><div id="AccessibilityRecordCompat_java85pass">Code @ line 85<pre data-start="82" data-line="85" data-src="AccessibilityRecordCompat.java" class="code line-numbers"><code>    }
+
+    @Deprecated
+    public void setPassword(boolean z) {
+        this.mRecord.setPassword(z);
+    }
+
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9hY2Nlc3NpYmlsaXR5L0FjY2Vzc2liaWxpdHlSZWNvcmRDb21wYXQuamF2YXx8fGxpbmU6IDg1IDogcGFzc3coZHxvcmQpP3x8fDEwfHx8cGFzc3coZHxvcmQpP3x8fDg1fHx8ODI">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9hY2Nlc3NpYmlsaXR5L0FjY2Vzc2liaWxpdHlSZWNvcmRDb21wYXQuamF2YXx8fGxpbmU6IDg1IDogcGFzc3coZHxvcmQpP3x8fDEwfHx8cGFzc3coZHxvcmQpP3x8fDg1fHx8ODI')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9hY2Nlc3NpYmlsaXR5L0FjY2Vzc2liaWxpdHlSZWNvcmRDb21wYXQuamF2YXx8fGxpbmU6IDg1IDogcGFzc3coZHxvcmQpP3x8fDEwfHx8cGFzc3coZHxvcmQpP3x8fDg1fHx8ODI').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9hY2Nlc3NpYmlsaXR5L0FjY2Vzc2liaWxpdHlSZWNvcmRDb21wYXQuamF2YXx8fGxpbmU6IDg1IDogcGFzc3coZHxvcmQpP3x8fDEwfHx8cGFzc3coZHxvcmQpP3x8fDg1fHx8ODI" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9hY2Nlc3NpYmlsaXR5L0FjY2Vzc2liaWxpdHlSZWNvcmRDb21wYXQuamF2YXx8fGxpbmU6IDg1IDogcGFzc3coZHxvcmQpP3x8fDEwfHx8cGFzc3coZHxvcmQpP3x8fDg1fHx8ODI' , 'ICAgIH0KCiAgICBARGVwcmVjYXRlZAogICAgcHVibGljIHZvaWQgc2V0UGFzc3dvcmQoYm9vbGVhbiB6KSB7CiAgICAgICAgdGhpcy5tUmVjb3JkLnNldFBhc3N3b3JkKHopOwogICAgfQoK');  
+                                            });
+                                            </script>
+                                            </div><div id="AccessibilityRecordCompat_java86pass">Code @ line 86<pre data-start="83" data-line="86" data-src="AccessibilityRecordCompat.java" class="code line-numbers"><code>
+    @Deprecated
+    public void setPassword(boolean z) {
+        this.mRecord.setPassword(z);
+    }
+
+    @Deprecated
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9hY2Nlc3NpYmlsaXR5L0FjY2Vzc2liaWxpdHlSZWNvcmRDb21wYXQuamF2YXx8fGxpbmU6IDg2IDogcGFzc3coZHxvcmQpP3x8fDEwfHx8cGFzc3coZHxvcmQpP3x8fDg2fHx8ODM">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9hY2Nlc3NpYmlsaXR5L0FjY2Vzc2liaWxpdHlSZWNvcmRDb21wYXQuamF2YXx8fGxpbmU6IDg2IDogcGFzc3coZHxvcmQpP3x8fDEwfHx8cGFzc3coZHxvcmQpP3x8fDg2fHx8ODM')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9hY2Nlc3NpYmlsaXR5L0FjY2Vzc2liaWxpdHlSZWNvcmRDb21wYXQuamF2YXx8fGxpbmU6IDg2IDogcGFzc3coZHxvcmQpP3x8fDEwfHx8cGFzc3coZHxvcmQpP3x8fDg2fHx8ODM').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9hY2Nlc3NpYmlsaXR5L0FjY2Vzc2liaWxpdHlSZWNvcmRDb21wYXQuamF2YXx8fGxpbmU6IDg2IDogcGFzc3coZHxvcmQpP3x8fDEwfHx8cGFzc3coZHxvcmQpP3x8fDg2fHx8ODM" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9hY2Nlc3NpYmlsaXR5L0FjY2Vzc2liaWxpdHlSZWNvcmRDb21wYXQuamF2YXx8fGxpbmU6IDg2IDogcGFzc3coZHxvcmQpP3x8fDEwfHx8cGFzc3coZHxvcmQpP3x8fDg2fHx8ODM' , 'CiAgICBARGVwcmVjYXRlZAogICAgcHVibGljIHZvaWQgc2V0UGFzc3dvcmQoYm9vbGVhbiB6KSB7CiAgICAgICAgdGhpcy5tUmVjb3JkLnNldFBhc3N3b3JkKHopOwogICAgfQoKICAgIEBEZXByZWNhdGVkCg==');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="AccessibilityRecordCompat.java" data-line="80,81,85,86," class="code line-numbers"><code>package androidx.core.view.accessibility;
+
+import android.os.Build.VERSION;
+import android.os.Parcelable;
+import android.view.View;
+import android.view.accessibility.AccessibilityRecord;
+import androidx.annotation.NonNull;
+import java.util.List;
+
+public class AccessibilityRecordCompat {
+    private final AccessibilityRecord mRecord;
+
+    @Deprecated
+    public AccessibilityRecordCompat(Object obj) {
+        this.mRecord = (AccessibilityRecord) obj;
+    }
+
+    @Deprecated
+    public Object getImpl() {
+        return this.mRecord;
+    }
+
+    @Deprecated
+    public static AccessibilityRecordCompat obtain(AccessibilityRecordCompat accessibilityRecordCompat) {
+        return new AccessibilityRecordCompat(AccessibilityRecord.obtain(accessibilityRecordCompat.mRecord));
+    }
+
+    @Deprecated
+    public static AccessibilityRecordCompat obtain() {
+        return new AccessibilityRecordCompat(AccessibilityRecord.obtain());
+    }
+
+    @Deprecated
+    public void setSource(View view) {
+        this.mRecord.setSource(view);
+    }
+
+    @Deprecated
+    public void setSource(View view, int i) {
+        setSource(this.mRecord, view, i);
+    }
+
+    public static void setSource(@NonNull AccessibilityRecord accessibilityRecord, View view, int i) {
+        if (VERSION.SDK_INT &gt;= 16) {
+            accessibilityRecord.setSource(view, i);
+        }
+    }
+
+    @Deprecated
+    public AccessibilityNodeInfoCompat getSource() {
+        return AccessibilityNodeInfoCompat.wrapNonNullInstance(this.mRecord.getSource());
+    }
+
+    @Deprecated
+    public int getWindowId() {
+        return this.mRecord.getWindowId();
+    }
+
+    @Deprecated
+    public boolean isChecked() {
+        return this.mRecord.isChecked();
+    }
+
+    @Deprecated
+    public void setChecked(boolean z) {
+        this.mRecord.setChecked(z);
+    }
+
+    @Deprecated
+    public boolean isEnabled() {
+        return this.mRecord.isEnabled();
+    }
+
+    @Deprecated
+    public void setEnabled(boolean z) {
+        this.mRecord.setEnabled(z);
+    }
+
+    @Deprecated
+    public boolean isPassword() {
+        return this.mRecord.isPassword();
+    }
+
+    @Deprecated
+    public void setPassword(boolean z) {
+        this.mRecord.setPassword(z);
+    }
+
+    @Deprecated
+    public boolean isFullScreen() {
+        return this.mRecord.isFullScreen();
+    }
+
+    @Deprecated
+    public void setFullScreen(boolean z) {
+        this.mRecord.setFullScreen(z);
+    }
+
+    @Deprecated
+    public boolean isScrollable() {
+        return this.mRecord.isScrollable();
+    }
+
+    @Deprecated
+    public void setScrollable(boolean z) {
+        this.mRecord.setScrollable(z);
+    }
+
+    @Deprecated
+    public int getItemCount() {
+        return this.mRecord.getItemCount();
+    }
+
+    @Deprecated
+    public void setItemCount(int i) {
+        this.mRecord.setItemCount(i);
+    }
+
+    @Deprecated
+    public int getCurrentItemIndex() {
+        return this.mRecord.getCurrentItemIndex();
+    }
+
+    @Deprecated
+    public void setCurrentItemIndex(int i) {
+        this.mRecord.setCurrentItemIndex(i);
+    }
+
+    @Deprecated
+    public int getFromIndex() {
+        return this.mRecord.getFromIndex();
+    }
+
+    @Deprecated
+    public void setFromIndex(int i) {
+        this.mRecord.setFromIndex(i);
+    }
+
+    @Deprecated
+    public int getToIndex() {
+        return this.mRecord.getToIndex();
+    }
+
+    @Deprecated
+    public void setToIndex(int i) {
+        this.mRecord.setToIndex(i);
+    }
+
+    @Deprecated
+    public int getScrollX() {
+        return this.mRecord.getScrollX();
+    }
+
+    @Deprecated
+    public void setScrollX(int i) {
+        this.mRecord.setScrollX(i);
+    }
+
+    @Deprecated
+    public int getScrollY() {
+        return this.mRecord.getScrollY();
+    }
+
+    @Deprecated
+    public void setScrollY(int i) {
+        this.mRecord.setScrollY(i);
+    }
+
+    @Deprecated
+    public int getMaxScrollX() {
+        return getMaxScrollX(this.mRecord);
+    }
+
+    public static int getMaxScrollX(AccessibilityRecord accessibilityRecord) {
+        return VERSION.SDK_INT &gt;= 15 ? accessibilityRecord.getMaxScrollX() : null;
+    }
+
+    @Deprecated
+    public void setMaxScrollX(int i) {
+        setMaxScrollX(this.mRecord, i);
+    }
+
+    public static void setMaxScrollX(AccessibilityRecord accessibilityRecord, int i) {
+        if (VERSION.SDK_INT &gt;= 15) {
+            accessibilityRecord.setMaxScrollX(i);
+        }
+    }
+
+    @Deprecated
+    public int getMaxScrollY() {
+        return getMaxScrollY(this.mRecord);
+    }
+
+    public static int getMaxScrollY(AccessibilityRecord accessibilityRecord) {
+        return VERSION.SDK_INT &gt;= 15 ? accessibilityRecord.getMaxScrollY() : null;
+    }
+
+    @Deprecated
+    public void setMaxScrollY(int i) {
+        setMaxScrollY(this.mRecord, i);
+    }
+
+    public static void setMaxScrollY(AccessibilityRecord accessibilityRecord, int i) {
+        if (VERSION.SDK_INT &gt;= 15) {
+            accessibilityRecord.setMaxScrollY(i);
+        }
+    }
+
+    @Deprecated
+    public int getAddedCount() {
+        return this.mRecord.getAddedCount();
+    }
+
+    @Deprecated
+    public void setAddedCount(int i) {
+        this.mRecord.setAddedCount(i);
+    }
+
+    @Deprecated
+    public int getRemovedCount() {
+        return this.mRecord.getRemovedCount();
+    }
+
+    @Deprecated
+    public void setRemovedCount(int i) {
+        this.mRecord.setRemovedCount(i);
+    }
+
+    @Deprecated
+    public CharSequence getClassName() {
+        return this.mRecord.getClassName();
+    }
+
+    @Deprecated
+    public void setClassName(CharSequence charSequence) {
+        this.mRecord.setClassName(charSequence);
+    }
+
+    @Deprecated
+    public List&lt;CharSequence&gt; getText() {
+        return this.mRecord.getText();
+    }
+
+    @Deprecated
+    public CharSequence getBeforeText() {
+        return this.mRecord.getBeforeText();
+    }
+
+    @Deprecated
+    public void setBeforeText(CharSequence charSequence) {
+        this.mRecord.setBeforeText(charSequence);
+    }
+
+    @Deprecated
+    public CharSequence getContentDescription() {
+        return this.mRecord.getContentDescription();
+    }
+
+    @Deprecated
+    public void setContentDescription(CharSequence charSequence) {
+        this.mRecord.setContentDescription(charSequence);
+    }
+
+    @Deprecated
+    public Parcelable getParcelableData() {
+        return this.mRecord.getParcelableData();
+    }
+
+    @Deprecated
+    public void setParcelableData(Parcelable parcelable) {
+        this.mRecord.setParcelableData(parcelable);
+    }
+
+    @Deprecated
+    public void recycle() {
+        this.mRecord.recycle();
+    }
+
+    @Deprecated
+    public int hashCode() {
+        return this.mRecord == null ? 0 : this.mRecord.hashCode();
+    }
+
+    @Deprecated
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        AccessibilityRecordCompat accessibilityRecordCompat = (AccessibilityRecordCompat) obj;
+        if (this.mRecord == null) {
+            if (accessibilityRecordCompat.mRecord != null) {
+                return false;
+            }
+        } else if (this.mRecord.equals(accessibilityRecordCompat.mRecord) == null) {
+            return false;
+        }
+        return true;
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:3 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

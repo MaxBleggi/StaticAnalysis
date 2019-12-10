@@ -1,0 +1,1345 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9"><div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/exoplayer2/text/ttml/TtmlDecoder.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/exoplayer2/text/ttml/TtmlDecoder.java</a></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-7">report</i><h5>https?:</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>An URL was found, this might be an API endpoint or just a link to documentation. Hopefully the first one.</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#TtmlDecoder_java34http" class="active">line 34</a></li><li class="tab"><a style="color: #d82c2b;" href="#TtmlDecoder_java177http">line 177</a></li></ul></div><div class="card-content"><div id="TtmlDecoder_java34http">Code @ line 34<pre data-start="31" data-line="34" data-src="TtmlDecoder.java" class="code line-numbers"><code>    private static final Pattern OFFSET_TIME = Pattern.compile("^([0-9]+(?:\\.[0-9]+)?)(h|m|s|ms|f|t)$");
+    private static final Pattern PERCENTAGE_COORDINATES = Pattern.compile("^(\\d+\\.?\\d*?)% (\\d+\\.?\\d*?)%$");
+    private static final String TAG = "TtmlDecoder";
+    private static final String TTP = "http://www.w3.org/ns/ttml#parameter";
+    private final XmlPullParserFactory xmlParserFactory;
+
+    private static final class CellResolution {
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3RleHQvdHRtbC9UdG1sRGVjb2Rlci5qYXZhfHx8bGluZTogMzQgOiBodHRwcz86fHx8N3x8fGh0dHBzPzp8fHwzNHx8fDMx">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3RleHQvdHRtbC9UdG1sRGVjb2Rlci5qYXZhfHx8bGluZTogMzQgOiBodHRwcz86fHx8N3x8fGh0dHBzPzp8fHwzNHx8fDMx')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3RleHQvdHRtbC9UdG1sRGVjb2Rlci5qYXZhfHx8bGluZTogMzQgOiBodHRwcz86fHx8N3x8fGh0dHBzPzp8fHwzNHx8fDMx').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3RleHQvdHRtbC9UdG1sRGVjb2Rlci5qYXZhfHx8bGluZTogMzQgOiBodHRwcz86fHx8N3x8fGh0dHBzPzp8fHwzNHx8fDMx" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3RleHQvdHRtbC9UdG1sRGVjb2Rlci5qYXZhfHx8bGluZTogMzQgOiBodHRwcz86fHx8N3x8fGh0dHBzPzp8fHwzNHx8fDMx' , 'ICAgIHByaXZhdGUgc3RhdGljIGZpbmFsIFBhdHRlcm4gT0ZGU0VUX1RJTUUgPSBQYXR0ZXJuLmNvbXBpbGUoIl4oWzAtOV0rKD86XFwuWzAtOV0rKT8pKGh8bXxzfG1zfGZ8dCkkIik7CiAgICBwcml2YXRlIHN0YXRpYyBmaW5hbCBQYXR0ZXJuIFBFUkNFTlRBR0VfQ09PUkRJTkFURVMgPSBQYXR0ZXJuLmNvbXBpbGUoIl4oXFxkK1xcLj9cXGQqPyklIChcXGQrXFwuP1xcZCo/KSUkIik7CiAgICBwcml2YXRlIHN0YXRpYyBmaW5hbCBTdHJpbmcgVEFHID0gIlR0bWxEZWNvZGVyIjsKICAgIHByaXZhdGUgc3RhdGljIGZpbmFsIFN0cmluZyBUVFAgPSAiaHR0cDovL3d3dy53My5vcmcvbnMvdHRtbCNwYXJhbWV0ZXIiOwogICAgcHJpdmF0ZSBmaW5hbCBYbWxQdWxsUGFyc2VyRmFjdG9yeSB4bWxQYXJzZXJGYWN0b3J5OwoKICAgIHByaXZhdGUgc3RhdGljIGZpbmFsIGNsYXNzIENlbGxSZXNvbHV0aW9uIHsK');  
+                                            });
+                                            </script>
+                                            </div><div id="TtmlDecoder_java177http">Code @ line 177<pre data-start="174" data-line="177" data-src="TtmlDecoder.java" class="code line-numbers"><code>*/
+        /*
+        r5 = this;
+        r0 = "http://www.w3.org/ns/ttml#parameter";
+        r1 = "cellResolution";
+        r6 = r6.getAttributeValue(r0, r1);
+        if (r6 != 0) goto L_0x000b;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3RleHQvdHRtbC9UdG1sRGVjb2Rlci5qYXZhfHx8bGluZTogMTc3IDogaHR0cHM/Onx8fDd8fHxodHRwcz86fHx8MTc3fHx8MTc0">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3RleHQvdHRtbC9UdG1sRGVjb2Rlci5qYXZhfHx8bGluZTogMTc3IDogaHR0cHM/Onx8fDd8fHxodHRwcz86fHx8MTc3fHx8MTc0')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3RleHQvdHRtbC9UdG1sRGVjb2Rlci5qYXZhfHx8bGluZTogMTc3IDogaHR0cHM/Onx8fDd8fHxodHRwcz86fHx8MTc3fHx8MTc0').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3RleHQvdHRtbC9UdG1sRGVjb2Rlci5qYXZhfHx8bGluZTogMTc3IDogaHR0cHM/Onx8fDd8fHxodHRwcz86fHx8MTc3fHx8MTc0" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3RleHQvdHRtbC9UdG1sRGVjb2Rlci5qYXZhfHx8bGluZTogMTc3IDogaHR0cHM/Onx8fDd8fHxodHRwcz86fHx8MTc3fHx8MTc0' , 'Ki8KICAgICAgICAvKgogICAgICAgIHI1ID0gdGhpczsKICAgICAgICByMCA9ICJodHRwOi8vd3d3LnczLm9yZy9ucy90dG1sI3BhcmFtZXRlciI7CiAgICAgICAgcjEgPSAiY2VsbFJlc29sdXRpb24iOwogICAgICAgIHI2ID0gcjYuZ2V0QXR0cmlidXRlVmFsdWUocjAsIHIxKTsKICAgICAgICBpZiAocjYgIT0gMCkgZ290byBMXzB4MDAwYjsK');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="TtmlDecoder.java" data-line="34,177," class="code line-numbers"><code>package com.google.android.exoplayer2.text.ttml;
+
+import com.google.android.exoplayer2.text.SimpleSubtitleDecoder;
+import com.google.android.exoplayer2.text.SubtitleDecoderException;
+import com.google.android.exoplayer2.util.Log;
+import com.google.android.exoplayer2.util.Util;
+import com.google.android.exoplayer2.util.XmlPullParserUtil;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.util.ArrayDeque;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
+
+public final class TtmlDecoder extends SimpleSubtitleDecoder {
+    private static final String ATTR_BEGIN = "begin";
+    private static final String ATTR_DURATION = "dur";
+    private static final String ATTR_END = "end";
+    private static final String ATTR_REGION = "region";
+    private static final String ATTR_STYLE = "style";
+    private static final Pattern CELL_RESOLUTION = Pattern.compile("^(\\d+) (\\d+)$");
+    private static final Pattern CLOCK_TIME = Pattern.compile("^([0-9][0-9]+):([0-9][0-9]):([0-9][0-9])(?:(\\.[0-9]+)|:([0-9][0-9])(?:\\.([0-9]+))?)?$");
+    private static final CellResolution DEFAULT_CELL_RESOLUTION = new CellResolution(32, 15);
+    private static final FrameAndTickRate DEFAULT_FRAME_AND_TICK_RATE = new FrameAndTickRate(30.0f, 1, 1);
+    private static final int DEFAULT_FRAME_RATE = 30;
+    private static final Pattern FONT_SIZE = Pattern.compile("^(([0-9]*.)?[0-9]+)(px|em|%)$");
+    private static final Pattern OFFSET_TIME = Pattern.compile("^([0-9]+(?:\\.[0-9]+)?)(h|m|s|ms|f|t)$");
+    private static final Pattern PERCENTAGE_COORDINATES = Pattern.compile("^(\\d+\\.?\\d*?)% (\\d+\\.?\\d*?)%$");
+    private static final String TAG = "TtmlDecoder";
+    private static final String TTP = "http://www.w3.org/ns/ttml#parameter";
+    private final XmlPullParserFactory xmlParserFactory;
+
+    private static final class CellResolution {
+        final int columns;
+        final int rows;
+
+        CellResolution(int i, int i2) {
+            this.columns = i;
+            this.rows = i2;
+        }
+    }
+
+    private static final class FrameAndTickRate {
+        final float effectiveFrameRate;
+        final int subFrameRate;
+        final int tickRate;
+
+        FrameAndTickRate(float f, int i, int i2) {
+            this.effectiveFrameRate = f;
+            this.subFrameRate = i;
+            this.tickRate = i2;
+        }
+    }
+
+    public TtmlDecoder() {
+        super(TAG);
+        try {
+            this.xmlParserFactory = XmlPullParserFactory.newInstance();
+            this.xmlParserFactory.setNamespaceAware(true);
+        } catch (Throwable e) {
+            throw new RuntimeException("Couldn't create XmlPullParserFactory instance", e);
+        }
+    }
+
+    protected TtmlSubtitle decode(byte[] bArr, int i, boolean z) throws SubtitleDecoderException {
+        try {
+            z = this.xmlParserFactory.newPullParser();
+            Map hashMap = new HashMap();
+            Map hashMap2 = new HashMap();
+            TtmlSubtitle ttmlSubtitle = null;
+            hashMap2.put("", new TtmlRegion(null));
+            int i2 = 0;
+            z.setInput(new ByteArrayInputStream(bArr, 0, i), null);
+            bArr = new ArrayDeque();
+            FrameAndTickRate frameAndTickRate = DEFAULT_FRAME_AND_TICK_RATE;
+            CellResolution cellResolution = DEFAULT_CELL_RESOLUTION;
+            for (i = z.getEventType(); i != 1; i = z.getEventType()) {
+                TtmlNode ttmlNode = (TtmlNode) bArr.peek();
+                if (i2 == 0) {
+                    String name = z.getName();
+                    if (i == 2) {
+                        if (TtmlNode.TAG_TT.equals(name) != 0) {
+                            frameAndTickRate = parseFrameAndTickRates(z);
+                            cellResolution = parseCellResolution(z, DEFAULT_CELL_RESOLUTION);
+                        }
+                        if (isSupportedTag(name) == 0) {
+                            i = TAG;
+                            StringBuilder stringBuilder = new StringBuilder();
+                            stringBuilder.append("Ignoring unsupported tag: ");
+                            stringBuilder.append(z.getName());
+                            Log.i(i, stringBuilder.toString());
+                            i2++;
+                        } else if (TtmlNode.TAG_HEAD.equals(name) != 0) {
+                            parseHeader(z, hashMap, hashMap2, cellResolution);
+                        } else {
+                            try {
+                                i = parseNode(z, ttmlNode, hashMap2, frameAndTickRate);
+                                bArr.push(i);
+                                if (ttmlNode != null) {
+                                    ttmlNode.addChild(i);
+                                }
+                            } catch (int i3) {
+                                Log.w(TAG, "Suppressing parser error", i3);
+                                i2++;
+                            }
+                        }
+                    } else if (i3 == 4) {
+                        ttmlNode.addChild(TtmlNode.buildTextNode(z.getText()));
+                    } else if (i3 == 3) {
+                        if (z.getName().equals(TtmlNode.TAG_TT) != 0) {
+                            ttmlSubtitle = new TtmlSubtitle((TtmlNode) bArr.peek(), hashMap, hashMap2);
+                        }
+                        bArr.pop();
+                    }
+                } else if (i3 == 2) {
+                    i2++;
+                } else if (i3 == 3) {
+                    i2--;
+                }
+                z.next();
+            }
+            return ttmlSubtitle;
+        } catch (byte[] bArr2) {
+            throw new SubtitleDecoderException("Unable to decode source", bArr2);
+        } catch (byte[] bArr22) {
+            throw new IllegalStateException("Unexpected error when reading input.", bArr22);
+        }
+    }
+
+    private FrameAndTickRate parseFrameAndTickRates(XmlPullParser xmlPullParser) throws SubtitleDecoderException {
+        String attributeValue = xmlPullParser.getAttributeValue(TTP, "frameRate");
+        int parseInt = attributeValue != null ? Integer.parseInt(attributeValue) : 30;
+        float f = 1.0f;
+        String attributeValue2 = xmlPullParser.getAttributeValue(TTP, "frameRateMultiplier");
+        if (attributeValue2 != null) {
+            String[] split = Util.split(attributeValue2, " ");
+            if (split.length == 2) {
+                f = ((float) Integer.parseInt(split[0])) / ((float) Integer.parseInt(split[1]));
+            } else {
+                throw new SubtitleDecoderException("frameRateMultiplier doesn't have 2 parts");
+            }
+        }
+        int i = DEFAULT_FRAME_AND_TICK_RATE.subFrameRate;
+        String attributeValue3 = xmlPullParser.getAttributeValue(TTP, "subFrameRate");
+        if (attributeValue3 != null) {
+            i = Integer.parseInt(attributeValue3);
+        }
+        int i2 = DEFAULT_FRAME_AND_TICK_RATE.tickRate;
+        xmlPullParser = xmlPullParser.getAttributeValue(TTP, "tickRate");
+        if (xmlPullParser != null) {
+            i2 = Integer.parseInt(xmlPullParser);
+        }
+        return new FrameAndTickRate(((float) parseInt) * f, i, i2);
+    }
+
+    private com.google.android.exoplayer2.text.ttml.TtmlDecoder.CellResolution parseCellResolution(org.xmlpull.v1.XmlPullParser r6, com.google.android.exoplayer2.text.ttml.TtmlDecoder.CellResolution r7) throws com.google.android.exoplayer2.text.SubtitleDecoderException {
+        /* JADX: method processing error */
+/*
+Error: java.lang.NullPointerException
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.searchTryCatchDominators(ProcessTryCatchRegions.java:75)
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.process(ProcessTryCatchRegions.java:45)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.postProcessRegions(RegionMakerVisitor.java:63)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.visit(RegionMakerVisitor.java:58)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:31)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:17)
+	at jadx.core.ProcessClass.process(ProcessClass.java:37)
+	at jadx.api.JadxDecompiler.processClass(JadxDecompiler.java:306)
+	at jadx.api.JavaClass.decompile(JavaClass.java:62)
+	at jadx.api.JadxDecompiler$1.run(JadxDecompiler.java:199)
+*/
+        /*
+        r5 = this;
+        r0 = "http://www.w3.org/ns/ttml#parameter";
+        r1 = "cellResolution";
+        r6 = r6.getAttributeValue(r0, r1);
+        if (r6 != 0) goto L_0x000b;
+    L_0x000a:
+        return r7;
+    L_0x000b:
+        r0 = CELL_RESOLUTION;
+        r0 = r0.matcher(r6);
+        r1 = r0.matches();
+        if (r1 != 0) goto L_0x002e;
+    L_0x0017:
+        r0 = "TtmlDecoder";
+        r1 = new java.lang.StringBuilder;
+        r1.&lt;init&gt;();
+        r2 = "Ignoring malformed cell resolution: ";
+        r1.append(r2);
+        r1.append(r6);
+        r6 = r1.toString();
+        com.google.android.exoplayer2.util.Log.w(r0, r6);
+        return r7;
+    L_0x002e:
+        r1 = 1;
+        r1 = r0.group(r1);	 Catch:{ NumberFormatException -&gt; 0x0069 }
+        r1 = java.lang.Integer.parseInt(r1);	 Catch:{ NumberFormatException -&gt; 0x0069 }
+        r2 = 2;	 Catch:{ NumberFormatException -&gt; 0x0069 }
+        r0 = r0.group(r2);	 Catch:{ NumberFormatException -&gt; 0x0069 }
+        r0 = java.lang.Integer.parseInt(r0);	 Catch:{ NumberFormatException -&gt; 0x0069 }
+        if (r1 == 0) goto L_0x004a;	 Catch:{ NumberFormatException -&gt; 0x0069 }
+    L_0x0042:
+        if (r0 == 0) goto L_0x004a;	 Catch:{ NumberFormatException -&gt; 0x0069 }
+    L_0x0044:
+        r2 = new com.google.android.exoplayer2.text.ttml.TtmlDecoder$CellResolution;	 Catch:{ NumberFormatException -&gt; 0x0069 }
+        r2.&lt;init&gt;(r1, r0);	 Catch:{ NumberFormatException -&gt; 0x0069 }
+        return r2;	 Catch:{ NumberFormatException -&gt; 0x0069 }
+    L_0x004a:
+        r2 = new com.google.android.exoplayer2.text.SubtitleDecoderException;	 Catch:{ NumberFormatException -&gt; 0x0069 }
+        r3 = new java.lang.StringBuilder;	 Catch:{ NumberFormatException -&gt; 0x0069 }
+        r3.&lt;init&gt;();	 Catch:{ NumberFormatException -&gt; 0x0069 }
+        r4 = "Invalid cell resolution ";	 Catch:{ NumberFormatException -&gt; 0x0069 }
+        r3.append(r4);	 Catch:{ NumberFormatException -&gt; 0x0069 }
+        r3.append(r1);	 Catch:{ NumberFormatException -&gt; 0x0069 }
+        r1 = " ";	 Catch:{ NumberFormatException -&gt; 0x0069 }
+        r3.append(r1);	 Catch:{ NumberFormatException -&gt; 0x0069 }
+        r3.append(r0);	 Catch:{ NumberFormatException -&gt; 0x0069 }
+        r0 = r3.toString();	 Catch:{ NumberFormatException -&gt; 0x0069 }
+        r2.&lt;init&gt;(r0);	 Catch:{ NumberFormatException -&gt; 0x0069 }
+        throw r2;	 Catch:{ NumberFormatException -&gt; 0x0069 }
+    L_0x0069:
+        r0 = "TtmlDecoder";
+        r1 = new java.lang.StringBuilder;
+        r1.&lt;init&gt;();
+        r2 = "Ignoring malformed cell resolution: ";
+        r1.append(r2);
+        r1.append(r6);
+        r6 = r1.toString();
+        com.google.android.exoplayer2.util.Log.w(r0, r6);
+        return r7;
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.google.android.exoplayer2.text.ttml.TtmlDecoder.parseCellResolution(org.xmlpull.v1.XmlPullParser, com.google.android.exoplayer2.text.ttml.TtmlDecoder$CellResolution):com.google.android.exoplayer2.text.ttml.TtmlDecoder$CellResolution");
+    }
+
+    private Map&lt;String, TtmlStyle&gt; parseHeader(XmlPullParser xmlPullParser, Map&lt;String, TtmlStyle&gt; map, Map&lt;String, TtmlRegion&gt; map2, CellResolution cellResolution) throws IOException, XmlPullParserException {
+        do {
+            xmlPullParser.next();
+            if (XmlPullParserUtil.isStartTag(xmlPullParser, "style")) {
+                String attributeValue = XmlPullParserUtil.getAttributeValue(xmlPullParser, "style");
+                TtmlStyle parseStyleAttributes = parseStyleAttributes(xmlPullParser, new TtmlStyle());
+                if (attributeValue != null) {
+                    for (Object obj : parseStyleIds(attributeValue)) {
+                        parseStyleAttributes.chain((TtmlStyle) map.get(obj));
+                    }
+                }
+                if (parseStyleAttributes.getId() != null) {
+                    map.put(parseStyleAttributes.getId(), parseStyleAttributes);
+                }
+            } else if (XmlPullParserUtil.isStartTag(xmlPullParser, "region")) {
+                TtmlRegion parseRegionAttributes = parseRegionAttributes(xmlPullParser, cellResolution);
+                if (parseRegionAttributes != null) {
+                    map2.put(parseRegionAttributes.id, parseRegionAttributes);
+                }
+            }
+        } while (!XmlPullParserUtil.isEndTag(xmlPullParser, TtmlNode.TAG_HEAD));
+        return map;
+    }
+
+    private com.google.android.exoplayer2.text.ttml.TtmlRegion parseRegionAttributes(org.xmlpull.v1.XmlPullParser r12, com.google.android.exoplayer2.text.ttml.TtmlDecoder.CellResolution r13) {
+        /* JADX: method processing error */
+/*
+Error: java.lang.NullPointerException
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.searchTryCatchDominators(ProcessTryCatchRegions.java:75)
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.process(ProcessTryCatchRegions.java:45)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.postProcessRegions(RegionMakerVisitor.java:63)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.visit(RegionMakerVisitor.java:58)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:31)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:17)
+	at jadx.core.ProcessClass.process(ProcessClass.java:37)
+	at jadx.api.JadxDecompiler.processClass(JadxDecompiler.java:306)
+	at jadx.api.JavaClass.decompile(JavaClass.java:62)
+	at jadx.api.JadxDecompiler$1.run(JadxDecompiler.java:199)
+*/
+        /*
+        r11 = this;
+        r0 = "id";
+        r2 = com.google.android.exoplayer2.util.XmlPullParserUtil.getAttributeValue(r12, r0);
+        r0 = 0;
+        if (r2 != 0) goto L_0x000a;
+    L_0x0009:
+        return r0;
+    L_0x000a:
+        r1 = "origin";
+        r1 = com.google.android.exoplayer2.util.XmlPullParserUtil.getAttributeValue(r12, r1);
+        if (r1 == 0) goto L_0x0112;
+    L_0x0012:
+        r3 = PERCENTAGE_COORDINATES;
+        r3 = r3.matcher(r1);
+        r4 = r3.matches();
+        if (r4 == 0) goto L_0x00fb;
+    L_0x001e:
+        r4 = 1;
+        r5 = r3.group(r4);	 Catch:{ NumberFormatException -&gt; 0x00e4 }
+        r5 = java.lang.Float.parseFloat(r5);	 Catch:{ NumberFormatException -&gt; 0x00e4 }
+        r6 = 1120403456; // 0x42c80000 float:100.0 double:5.53552857E-315;	 Catch:{ NumberFormatException -&gt; 0x00e4 }
+        r5 = r5 / r6;	 Catch:{ NumberFormatException -&gt; 0x00e4 }
+        r7 = 2;	 Catch:{ NumberFormatException -&gt; 0x00e4 }
+        r3 = r3.group(r7);	 Catch:{ NumberFormatException -&gt; 0x00e4 }
+        r3 = java.lang.Float.parseFloat(r3);	 Catch:{ NumberFormatException -&gt; 0x00e4 }
+        r3 = r3 / r6;
+        r8 = "extent";
+        r8 = com.google.android.exoplayer2.util.XmlPullParserUtil.getAttributeValue(r12, r8);
+        if (r8 == 0) goto L_0x00dc;
+    L_0x003c:
+        r9 = PERCENTAGE_COORDINATES;
+        r8 = r9.matcher(r8);
+        r9 = r8.matches();
+        if (r9 == 0) goto L_0x00c5;
+    L_0x0048:
+        r9 = r8.group(r4);	 Catch:{ NumberFormatException -&gt; 0x00ae }
+        r9 = java.lang.Float.parseFloat(r9);	 Catch:{ NumberFormatException -&gt; 0x00ae }
+        r9 = r9 / r6;	 Catch:{ NumberFormatException -&gt; 0x00ae }
+        r8 = r8.group(r7);	 Catch:{ NumberFormatException -&gt; 0x00ae }
+        r8 = java.lang.Float.parseFloat(r8);	 Catch:{ NumberFormatException -&gt; 0x00ae }
+        r8 = r8 / r6;
+        r0 = "displayAlign";
+        r12 = com.google.android.exoplayer2.util.XmlPullParserUtil.getAttributeValue(r12, r0);
+        r0 = 0;
+        if (r12 == 0) goto L_0x0099;
+    L_0x0063:
+        r12 = com.google.android.exoplayer2.util.Util.toLowerInvariant(r12);
+        r1 = -1;
+        r6 = r12.hashCode();
+        r10 = -1364013995; // 0xffffffffaeb2cc55 float:-8.1307995E-11 double:NaN;
+        if (r6 == r10) goto L_0x0081;
+    L_0x0071:
+        r10 = 92734940; // 0x58705dc float:1.2697491E-35 double:4.5817148E-316;
+        if (r6 == r10) goto L_0x0077;
+    L_0x0076:
+        goto L_0x008a;
+    L_0x0077:
+        r6 = "after";
+        r12 = r12.equals(r6);
+        if (r12 == 0) goto L_0x008a;
+    L_0x007f:
+        r1 = 1;
+        goto L_0x008a;
+    L_0x0081:
+        r6 = "center";
+        r12 = r12.equals(r6);
+        if (r12 == 0) goto L_0x008a;
+    L_0x0089:
+        r1 = 0;
+    L_0x008a:
+        switch(r1) {
+            case 0: goto L_0x0092;
+            case 1: goto L_0x008e;
+            default: goto L_0x008d;
+        };
+    L_0x008d:
+        goto L_0x0099;
+    L_0x008e:
+        r3 = r3 + r8;
+        r4 = r3;
+        r6 = 2;
+        goto L_0x009b;
+    L_0x0092:
+        r12 = 1073741824; // 0x40000000 float:2.0 double:5.304989477E-315;
+        r8 = r8 / r12;
+        r3 = r3 + r8;
+        r4 = r3;
+        r6 = 1;
+        goto L_0x009b;
+    L_0x0099:
+        r4 = r3;
+        r6 = 0;
+    L_0x009b:
+        r12 = 1065353216; // 0x3f800000 float:1.0 double:5.263544247E-315;
+        r13 = r13.rows;
+        r13 = (float) r13;
+        r12 = r12 / r13;
+        r13 = new com.google.android.exoplayer2.text.ttml.TtmlRegion;
+        r0 = 0;
+        r8 = 1;
+        r1 = r13;
+        r3 = r5;
+        r5 = r0;
+        r7 = r9;
+        r9 = r12;
+        r1.&lt;init&gt;(r2, r3, r4, r5, r6, r7, r8, r9);
+        return r13;
+    L_0x00ae:
+        r12 = "TtmlDecoder";
+        r13 = new java.lang.StringBuilder;
+        r13.&lt;init&gt;();
+        r2 = "Ignoring region with malformed extent: ";
+        r13.append(r2);
+        r13.append(r1);
+        r13 = r13.toString();
+        com.google.android.exoplayer2.util.Log.w(r12, r13);
+        return r0;
+    L_0x00c5:
+        r12 = "TtmlDecoder";
+        r13 = new java.lang.StringBuilder;
+        r13.&lt;init&gt;();
+        r2 = "Ignoring region with unsupported extent: ";
+        r13.append(r2);
+        r13.append(r1);
+        r13 = r13.toString();
+        com.google.android.exoplayer2.util.Log.w(r12, r13);
+        return r0;
+    L_0x00dc:
+        r12 = "TtmlDecoder";
+        r13 = "Ignoring region without an extent";
+        com.google.android.exoplayer2.util.Log.w(r12, r13);
+        return r0;
+    L_0x00e4:
+        r12 = "TtmlDecoder";
+        r13 = new java.lang.StringBuilder;
+        r13.&lt;init&gt;();
+        r2 = "Ignoring region with malformed origin: ";
+        r13.append(r2);
+        r13.append(r1);
+        r13 = r13.toString();
+        com.google.android.exoplayer2.util.Log.w(r12, r13);
+        return r0;
+    L_0x00fb:
+        r12 = "TtmlDecoder";
+        r13 = new java.lang.StringBuilder;
+        r13.&lt;init&gt;();
+        r2 = "Ignoring region with unsupported origin: ";
+        r13.append(r2);
+        r13.append(r1);
+        r13 = r13.toString();
+        com.google.android.exoplayer2.util.Log.w(r12, r13);
+        return r0;
+    L_0x0112:
+        r12 = "TtmlDecoder";
+        r13 = "Ignoring region without an origin";
+        com.google.android.exoplayer2.util.Log.w(r12, r13);
+        return r0;
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.google.android.exoplayer2.text.ttml.TtmlDecoder.parseRegionAttributes(org.xmlpull.v1.XmlPullParser, com.google.android.exoplayer2.text.ttml.TtmlDecoder$CellResolution):com.google.android.exoplayer2.text.ttml.TtmlRegion");
+    }
+
+    private String[] parseStyleIds(String str) {
+        str = str.trim();
+        return str.isEmpty() ? new String[null] : Util.split(str, "\\s+");
+    }
+
+    /* JADX WARNING: inconsistent code. */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private com.google.android.exoplayer2.text.ttml.TtmlStyle parseStyleAttributes(org.xmlpull.v1.XmlPullParser r12, com.google.android.exoplayer2.text.ttml.TtmlStyle r13) {
+        /* JADX: method processing error */
+/*
+Error: java.lang.NullPointerException
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.searchTryCatchDominators(ProcessTryCatchRegions.java:75)
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.process(ProcessTryCatchRegions.java:45)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.postProcessRegions(RegionMakerVisitor.java:63)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.visit(RegionMakerVisitor.java:58)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:31)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:17)
+	at jadx.core.ProcessClass.process(ProcessClass.java:37)
+	at jadx.api.JadxDecompiler.processClass(JadxDecompiler.java:306)
+	at jadx.api.JavaClass.decompile(JavaClass.java:62)
+	at jadx.api.JadxDecompiler$1.run(JadxDecompiler.java:199)
+*/
+        /*
+        r11 = this;
+        r0 = r12.getAttributeCount();
+        r1 = 0;
+        r2 = r13;
+        r13 = 0;
+    L_0x0007:
+        if (r13 &gt;= r0) goto L_0x0219;
+    L_0x0009:
+        r3 = r12.getAttributeValue(r13);
+        r4 = r12.getAttributeName(r13);
+        r5 = r4.hashCode();
+        r6 = 4;
+        r7 = 2;
+        r8 = 3;
+        r9 = -1;
+        r10 = 1;
+        switch(r5) {
+            case -1550943582: goto L_0x006f;
+            case -1224696685: goto L_0x0065;
+            case -1065511464: goto L_0x005b;
+            case -879295043: goto L_0x0050;
+            case -734428249: goto L_0x0046;
+            case 3355: goto L_0x003c;
+            case 94842723: goto L_0x0032;
+            case 365601008: goto L_0x0028;
+            case 1287124693: goto L_0x001e;
+            default: goto L_0x001d;
+        };
+    L_0x001d:
+        goto L_0x0079;
+    L_0x001e:
+        r5 = "backgroundColor";
+        r4 = r4.equals(r5);
+        if (r4 == 0) goto L_0x0079;
+    L_0x0026:
+        r4 = 1;
+        goto L_0x007a;
+    L_0x0028:
+        r5 = "fontSize";
+        r4 = r4.equals(r5);
+        if (r4 == 0) goto L_0x0079;
+    L_0x0030:
+        r4 = 4;
+        goto L_0x007a;
+    L_0x0032:
+        r5 = "color";
+        r4 = r4.equals(r5);
+        if (r4 == 0) goto L_0x0079;
+    L_0x003a:
+        r4 = 2;
+        goto L_0x007a;
+    L_0x003c:
+        r5 = "id";
+        r4 = r4.equals(r5);
+        if (r4 == 0) goto L_0x0079;
+    L_0x0044:
+        r4 = 0;
+        goto L_0x007a;
+    L_0x0046:
+        r5 = "fontWeight";
+        r4 = r4.equals(r5);
+        if (r4 == 0) goto L_0x0079;
+    L_0x004e:
+        r4 = 5;
+        goto L_0x007a;
+    L_0x0050:
+        r5 = "textDecoration";
+        r4 = r4.equals(r5);
+        if (r4 == 0) goto L_0x0079;
+    L_0x0058:
+        r4 = 8;
+        goto L_0x007a;
+    L_0x005b:
+        r5 = "textAlign";
+        r4 = r4.equals(r5);
+        if (r4 == 0) goto L_0x0079;
+    L_0x0063:
+        r4 = 7;
+        goto L_0x007a;
+    L_0x0065:
+        r5 = "fontFamily";
+        r4 = r4.equals(r5);
+        if (r4 == 0) goto L_0x0079;
+    L_0x006d:
+        r4 = 3;
+        goto L_0x007a;
+    L_0x006f:
+        r5 = "fontStyle";
+        r4 = r4.equals(r5);
+        if (r4 == 0) goto L_0x0079;
+    L_0x0077:
+        r4 = 6;
+        goto L_0x007a;
+    L_0x0079:
+        r4 = -1;
+    L_0x007a:
+        switch(r4) {
+            case 0: goto L_0x0201;
+            case 1: goto L_0x01de;
+            case 2: goto L_0x01bb;
+            case 3: goto L_0x01b2;
+            case 4: goto L_0x0190;
+            case 5: goto L_0x0180;
+            case 6: goto L_0x0170;
+            case 7: goto L_0x00f1;
+            case 8: goto L_0x007f;
+            default: goto L_0x007d;
+        };
+    L_0x007d:
+        goto L_0x0215;
+    L_0x007f:
+        r3 = com.google.android.exoplayer2.util.Util.toLowerInvariant(r3);
+        r4 = r3.hashCode();
+        r5 = -1461280213; // 0xffffffffa8e6a22b float:-2.5605459E-14 double:NaN;
+        if (r4 == r5) goto L_0x00b9;
+    L_0x008c:
+        r5 = -1026963764; // 0xffffffffc2c9c6cc float:-100.888275 double:NaN;
+        if (r4 == r5) goto L_0x00b0;
+    L_0x0091:
+        r5 = 913457136; // 0x36723ff0 float:3.6098027E-6 double:4.5130779E-315;
+        if (r4 == r5) goto L_0x00a6;
+    L_0x0096:
+        r5 = 1679736913; // 0x641ec051 float:1.1713774E22 double:8.29900303E-315;
+        if (r4 == r5) goto L_0x009c;
+    L_0x009b:
+        goto L_0x00c3;
+    L_0x009c:
+        r4 = "linethrough";
+        r3 = r3.equals(r4);
+        if (r3 == 0) goto L_0x00c3;
+    L_0x00a4:
+        r7 = 0;
+        goto L_0x00c4;
+    L_0x00a6:
+        r4 = "nolinethrough";
+        r3 = r3.equals(r4);
+        if (r3 == 0) goto L_0x00c3;
+    L_0x00ae:
+        r7 = 1;
+        goto L_0x00c4;
+    L_0x00b0:
+        r4 = "underline";
+        r3 = r3.equals(r4);
+        if (r3 == 0) goto L_0x00c3;
+    L_0x00b8:
+        goto L_0x00c4;
+    L_0x00b9:
+        r4 = "nounderline";
+        r3 = r3.equals(r4);
+        if (r3 == 0) goto L_0x00c3;
+    L_0x00c1:
+        r7 = 3;
+        goto L_0x00c4;
+    L_0x00c3:
+        r7 = -1;
+    L_0x00c4:
+        switch(r7) {
+            case 0: goto L_0x00e7;
+            case 1: goto L_0x00dd;
+            case 2: goto L_0x00d3;
+            case 3: goto L_0x00c9;
+            default: goto L_0x00c7;
+        };
+    L_0x00c7:
+        goto L_0x0215;
+    L_0x00c9:
+        r2 = r11.createIfNull(r2);
+        r2 = r2.setUnderline(r1);
+        goto L_0x0215;
+    L_0x00d3:
+        r2 = r11.createIfNull(r2);
+        r2 = r2.setUnderline(r10);
+        goto L_0x0215;
+    L_0x00dd:
+        r2 = r11.createIfNull(r2);
+        r2 = r2.setLinethrough(r1);
+        goto L_0x0215;
+    L_0x00e7:
+        r2 = r11.createIfNull(r2);
+        r2 = r2.setLinethrough(r10);
+        goto L_0x0215;
+    L_0x00f1:
+        r3 = com.google.android.exoplayer2.util.Util.toLowerInvariant(r3);
+        r4 = r3.hashCode();
+        switch(r4) {
+            case -1364013995: goto L_0x0125;
+            case 100571: goto L_0x011b;
+            case 3317767: goto L_0x0111;
+            case 108511772: goto L_0x0107;
+            case 109757538: goto L_0x00fd;
+            default: goto L_0x00fc;
+        };
+    L_0x00fc:
+        goto L_0x012e;
+    L_0x00fd:
+        r4 = "start";
+        r3 = r3.equals(r4);
+        if (r3 == 0) goto L_0x012e;
+    L_0x0105:
+        r6 = 1;
+        goto L_0x012f;
+    L_0x0107:
+        r4 = "right";
+        r3 = r3.equals(r4);
+        if (r3 == 0) goto L_0x012e;
+    L_0x010f:
+        r6 = 2;
+        goto L_0x012f;
+    L_0x0111:
+        r4 = "left";
+        r3 = r3.equals(r4);
+        if (r3 == 0) goto L_0x012e;
+    L_0x0119:
+        r6 = 0;
+        goto L_0x012f;
+    L_0x011b:
+        r4 = "end";
+        r3 = r3.equals(r4);
+        if (r3 == 0) goto L_0x012e;
+    L_0x0123:
+        r6 = 3;
+        goto L_0x012f;
+    L_0x0125:
+        r4 = "center";
+        r3 = r3.equals(r4);
+        if (r3 == 0) goto L_0x012e;
+    L_0x012d:
+        goto L_0x012f;
+    L_0x012e:
+        r6 = -1;
+    L_0x012f:
+        switch(r6) {
+            case 0: goto L_0x0164;
+            case 1: goto L_0x0158;
+            case 2: goto L_0x014c;
+            case 3: goto L_0x0140;
+            case 4: goto L_0x0134;
+            default: goto L_0x0132;
+        };
+    L_0x0132:
+        goto L_0x0215;
+    L_0x0134:
+        r2 = r11.createIfNull(r2);
+        r3 = android.text.Layout.Alignment.ALIGN_CENTER;
+        r2 = r2.setTextAlign(r3);
+        goto L_0x0215;
+    L_0x0140:
+        r2 = r11.createIfNull(r2);
+        r3 = android.text.Layout.Alignment.ALIGN_OPPOSITE;
+        r2 = r2.setTextAlign(r3);
+        goto L_0x0215;
+    L_0x014c:
+        r2 = r11.createIfNull(r2);
+        r3 = android.text.Layout.Alignment.ALIGN_OPPOSITE;
+        r2 = r2.setTextAlign(r3);
+        goto L_0x0215;
+    L_0x0158:
+        r2 = r11.createIfNull(r2);
+        r3 = android.text.Layout.Alignment.ALIGN_NORMAL;
+        r2 = r2.setTextAlign(r3);
+        goto L_0x0215;
+    L_0x0164:
+        r2 = r11.createIfNull(r2);
+        r3 = android.text.Layout.Alignment.ALIGN_NORMAL;
+        r2 = r2.setTextAlign(r3);
+        goto L_0x0215;
+    L_0x0170:
+        r2 = r11.createIfNull(r2);
+        r4 = "italic";
+        r3 = r4.equalsIgnoreCase(r3);
+        r2 = r2.setItalic(r3);
+        goto L_0x0215;
+    L_0x0180:
+        r2 = r11.createIfNull(r2);
+        r4 = "bold";
+        r3 = r4.equalsIgnoreCase(r3);
+        r2 = r2.setBold(r3);
+        goto L_0x0215;
+    L_0x0190:
+        r4 = r11.createIfNull(r2);	 Catch:{ SubtitleDecoderException -&gt; 0x019b }
+        parseFontSize(r3, r4);	 Catch:{ SubtitleDecoderException -&gt; 0x019a }
+        r2 = r4;
+        goto L_0x0215;
+    L_0x019a:
+        r2 = r4;
+    L_0x019b:
+        r4 = "TtmlDecoder";
+        r5 = new java.lang.StringBuilder;
+        r5.&lt;init&gt;();
+        r6 = "Failed parsing fontSize value: ";
+        r5.append(r6);
+        r5.append(r3);
+        r3 = r5.toString();
+        com.google.android.exoplayer2.util.Log.w(r4, r3);
+        goto L_0x0215;
+    L_0x01b2:
+        r2 = r11.createIfNull(r2);
+        r2 = r2.setFontFamily(r3);
+        goto L_0x0215;
+    L_0x01bb:
+        r2 = r11.createIfNull(r2);
+        r4 = com.google.android.exoplayer2.util.ColorParser.parseTtmlColor(r3);	 Catch:{ IllegalArgumentException -&gt; 0x01c7 }
+        r2.setFontColor(r4);	 Catch:{ IllegalArgumentException -&gt; 0x01c7 }
+        goto L_0x0215;
+    L_0x01c7:
+        r4 = "TtmlDecoder";
+        r5 = new java.lang.StringBuilder;
+        r5.&lt;init&gt;();
+        r6 = "Failed parsing color value: ";
+        r5.append(r6);
+        r5.append(r3);
+        r3 = r5.toString();
+        com.google.android.exoplayer2.util.Log.w(r4, r3);
+        goto L_0x0215;
+    L_0x01de:
+        r2 = r11.createIfNull(r2);
+        r4 = com.google.android.exoplayer2.util.ColorParser.parseTtmlColor(r3);	 Catch:{ IllegalArgumentException -&gt; 0x01ea }
+        r2.setBackgroundColor(r4);	 Catch:{ IllegalArgumentException -&gt; 0x01ea }
+        goto L_0x0215;
+    L_0x01ea:
+        r4 = "TtmlDecoder";
+        r5 = new java.lang.StringBuilder;
+        r5.&lt;init&gt;();
+        r6 = "Failed parsing background value: ";
+        r5.append(r6);
+        r5.append(r3);
+        r3 = r5.toString();
+        com.google.android.exoplayer2.util.Log.w(r4, r3);
+        goto L_0x0215;
+    L_0x0201:
+        r4 = "style";
+        r5 = r12.getName();
+        r4 = r4.equals(r5);
+        if (r4 == 0) goto L_0x0215;
+    L_0x020d:
+        r2 = r11.createIfNull(r2);
+        r2 = r2.setId(r3);
+    L_0x0215:
+        r13 = r13 + 1;
+        goto L_0x0007;
+    L_0x0219:
+        return r2;
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.google.android.exoplayer2.text.ttml.TtmlDecoder.parseStyleAttributes(org.xmlpull.v1.XmlPullParser, com.google.android.exoplayer2.text.ttml.TtmlStyle):com.google.android.exoplayer2.text.ttml.TtmlStyle");
+    }
+
+    private TtmlStyle createIfNull(TtmlStyle ttmlStyle) {
+        return ttmlStyle == null ? new TtmlStyle() : ttmlStyle;
+    }
+
+    /* JADX WARNING: inconsistent code. */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private com.google.android.exoplayer2.text.ttml.TtmlNode parseNode(org.xmlpull.v1.XmlPullParser r20, com.google.android.exoplayer2.text.ttml.TtmlNode r21, java.util.Map&lt;java.lang.String, com.google.android.exoplayer2.text.ttml.TtmlRegion&gt; r22, com.google.android.exoplayer2.text.ttml.TtmlDecoder.FrameAndTickRate r23) throws com.google.android.exoplayer2.text.SubtitleDecoderException {
+        /*
+        r19 = this;
+        r0 = r19;
+        r1 = r20;
+        r2 = r21;
+        r3 = r23;
+        r4 = "";
+        r5 = r20.getAttributeCount();
+        r6 = 0;
+        r12 = r0.parseStyleAttributes(r1, r6);
+        r17 = r6;
+        r10 = -9223372036854775807; // 0x8000000000000001 float:1.4E-45 double:-4.9E-324;
+        r13 = -9223372036854775807; // 0x8000000000000001 float:1.4E-45 double:-4.9E-324;
+        r15 = -9223372036854775807; // 0x8000000000000001 float:1.4E-45 double:-4.9E-324;
+        r6 = r4;
+        r4 = 0;
+    L_0x0026:
+        if (r4 &gt;= r5) goto L_0x00a1;
+    L_0x0028:
+        r7 = r1.getAttributeName(r4);
+        r8 = r1.getAttributeValue(r4);
+        r18 = r7.hashCode();
+        switch(r18) {
+            case -934795532: goto L_0x0060;
+            case 99841: goto L_0x0056;
+            case 100571: goto L_0x004c;
+            case 93616297: goto L_0x0042;
+            case 109780401: goto L_0x0038;
+            default: goto L_0x0037;
+        };
+    L_0x0037:
+        goto L_0x006a;
+    L_0x0038:
+        r9 = "style";
+        r7 = r7.equals(r9);
+        if (r7 == 0) goto L_0x006a;
+    L_0x0040:
+        r7 = 3;
+        goto L_0x006b;
+    L_0x0042:
+        r9 = "begin";
+        r7 = r7.equals(r9);
+        if (r7 == 0) goto L_0x006a;
+    L_0x004a:
+        r7 = 0;
+        goto L_0x006b;
+    L_0x004c:
+        r9 = "end";
+        r7 = r7.equals(r9);
+        if (r7 == 0) goto L_0x006a;
+    L_0x0054:
+        r7 = 1;
+        goto L_0x006b;
+    L_0x0056:
+        r9 = "dur";
+        r7 = r7.equals(r9);
+        if (r7 == 0) goto L_0x006a;
+    L_0x005e:
+        r7 = 2;
+        goto L_0x006b;
+    L_0x0060:
+        r9 = "region";
+        r7 = r7.equals(r9);
+        if (r7 == 0) goto L_0x006a;
+    L_0x0068:
+        r7 = 4;
+        goto L_0x006b;
+    L_0x006a:
+        r7 = -1;
+    L_0x006b:
+        switch(r7) {
+            case 0: goto L_0x0097;
+            case 1: goto L_0x008f;
+            case 2: goto L_0x0087;
+            case 3: goto L_0x007b;
+            case 4: goto L_0x0071;
+            default: goto L_0x006e;
+        };
+    L_0x006e:
+        r7 = r22;
+        goto L_0x009e;
+    L_0x0071:
+        r7 = r22;
+        r9 = r7.containsKey(r8);
+        if (r9 == 0) goto L_0x009e;
+    L_0x0079:
+        r6 = r8;
+        goto L_0x009e;
+    L_0x007b:
+        r7 = r22;
+        r8 = r0.parseStyleIds(r8);
+        r9 = r8.length;
+        if (r9 &lt;= 0) goto L_0x009e;
+    L_0x0084:
+        r17 = r8;
+        goto L_0x009e;
+    L_0x0087:
+        r7 = r22;
+        r8 = parseTimeExpression(r8, r3);
+        r15 = r8;
+        goto L_0x009e;
+    L_0x008f:
+        r7 = r22;
+        r8 = parseTimeExpression(r8, r3);
+        r13 = r8;
+        goto L_0x009e;
+    L_0x0097:
+        r7 = r22;
+        r8 = parseTimeExpression(r8, r3);
+        r10 = r8;
+    L_0x009e:
+        r4 = r4 + 1;
+        goto L_0x0026;
+    L_0x00a1:
+        if (r2 == 0) goto L_0x00bd;
+    L_0x00a3:
+        r3 = r2.startTimeUs;
+        r7 = -9223372036854775807; // 0x8000000000000001 float:1.4E-45 double:-4.9E-324;
+        r5 = (r3 &gt; r7 ? 1 : (r3 == r7 ? 0 : -1));
+        if (r5 == 0) goto L_0x00c2;
+    L_0x00ae:
+        r3 = (r10 &gt; r7 ? 1 : (r10 == r7 ? 0 : -1));
+        if (r3 == 0) goto L_0x00b5;
+    L_0x00b2:
+        r3 = r2.startTimeUs;
+        r10 = r10 + r3;
+    L_0x00b5:
+        r3 = (r13 &gt; r7 ? 1 : (r13 == r7 ? 0 : -1));
+        if (r3 == 0) goto L_0x00c2;
+    L_0x00b9:
+        r3 = r2.startTimeUs;
+        r13 = r13 + r3;
+        goto L_0x00c2;
+    L_0x00bd:
+        r7 = -9223372036854775807; // 0x8000000000000001 float:1.4E-45 double:-4.9E-324;
+    L_0x00c2:
+        r3 = (r13 &gt; r7 ? 1 : (r13 == r7 ? 0 : -1));
+        if (r3 != 0) goto L_0x00d8;
+    L_0x00c6:
+        r3 = (r15 &gt; r7 ? 1 : (r15 == r7 ? 0 : -1));
+        if (r3 == 0) goto L_0x00cd;
+    L_0x00ca:
+        r15 = r15 + r10;
+        r13 = r15;
+        goto L_0x00d8;
+    L_0x00cd:
+        if (r2 == 0) goto L_0x00d8;
+    L_0x00cf:
+        r3 = r2.endTimeUs;
+        r5 = (r3 &gt; r7 ? 1 : (r3 == r7 ? 0 : -1));
+        if (r5 == 0) goto L_0x00d8;
+    L_0x00d5:
+        r2 = r2.endTimeUs;
+        r13 = r2;
+    L_0x00d8:
+        r7 = r20.getName();
+        r8 = r10;
+        r10 = r13;
+        r13 = r17;
+        r14 = r6;
+        r1 = com.google.android.exoplayer2.text.ttml.TtmlNode.buildNode(r7, r8, r10, r12, r13, r14);
+        return r1;
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.google.android.exoplayer2.text.ttml.TtmlDecoder.parseNode(org.xmlpull.v1.XmlPullParser, com.google.android.exoplayer2.text.ttml.TtmlNode, java.util.Map, com.google.android.exoplayer2.text.ttml.TtmlDecoder$FrameAndTickRate):com.google.android.exoplayer2.text.ttml.TtmlNode");
+    }
+
+    private static boolean isSupportedTag(String str) {
+        if (!(str.equals(TtmlNode.TAG_TT) || str.equals(TtmlNode.TAG_HEAD) || str.equals(TtmlNode.TAG_BODY) || str.equals(TtmlNode.TAG_DIV) || str.equals(TtmlNode.TAG_P) || str.equals(TtmlNode.TAG_SPAN) || str.equals(TtmlNode.TAG_BR) || str.equals("style") || str.equals(TtmlNode.TAG_STYLING) || str.equals(TtmlNode.TAG_LAYOUT) || str.equals("region") || str.equals(TtmlNode.TAG_METADATA) || str.equals(TtmlNode.TAG_SMPTE_IMAGE) || str.equals(TtmlNode.TAG_SMPTE_DATA))) {
+            if (str.equals(TtmlNode.TAG_SMPTE_INFORMATION) == null) {
+                return null;
+            }
+        }
+        return true;
+    }
+
+    private static void parseFontSize(String str, TtmlStyle ttmlStyle) throws SubtitleDecoderException {
+        Matcher matcher;
+        String[] split = Util.split(str, "\\s+");
+        if (split.length == 1) {
+            matcher = FONT_SIZE.matcher(str);
+        } else if (split.length == 2) {
+            matcher = FONT_SIZE.matcher(split[1]);
+            Log.w(TAG, "Multiple values in fontSize attribute. Picking the second value for vertical font size and ignoring the first.");
+        } else {
+            ttmlStyle = new StringBuilder();
+            ttmlStyle.append("Invalid number of entries for fontSize: ");
+            ttmlStyle.append(split.length);
+            ttmlStyle.append(".");
+            throw new SubtitleDecoderException(ttmlStyle.toString());
+        }
+        if (matcher.matches()) {
+            String group = matcher.group(3);
+            Object obj = -1;
+            int hashCode = group.hashCode();
+            if (hashCode != 37) {
+                if (hashCode != 3240) {
+                    if (hashCode == 3592) {
+                        if (group.equals("px")) {
+                            obj = null;
+                        }
+                    }
+                } else if (group.equals("em")) {
+                    obj = 1;
+                }
+            } else if (group.equals("%")) {
+                obj = 2;
+            }
+            switch (obj) {
+                case null:
+                    ttmlStyle.setFontSizeUnit(1);
+                    break;
+                case 1:
+                    ttmlStyle.setFontSizeUnit(2);
+                    break;
+                case 2:
+                    ttmlStyle.setFontSizeUnit(3);
+                    break;
+                default:
+                    ttmlStyle = new StringBuilder();
+                    ttmlStyle.append("Invalid unit for fontSize: '");
+                    ttmlStyle.append(group);
+                    ttmlStyle.append("'.");
+                    throw new SubtitleDecoderException(ttmlStyle.toString());
+            }
+            ttmlStyle.setFontSize(Float.valueOf(matcher.group(1)).floatValue());
+            return;
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Invalid expression for fontSize: '");
+        stringBuilder.append(str);
+        stringBuilder.append("'.");
+        throw new SubtitleDecoderException(stringBuilder.toString());
+    }
+
+    /* JADX WARNING: inconsistent code. */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private static long parseTimeExpression(java.lang.String r14, com.google.android.exoplayer2.text.ttml.TtmlDecoder.FrameAndTickRate r15) throws com.google.android.exoplayer2.text.SubtitleDecoderException {
+        /*
+        r0 = CLOCK_TIME;
+        r0 = r0.matcher(r14);
+        r1 = r0.matches();
+        r2 = 4696837146684686336; // 0x412e848000000000 float:0.0 double:1000000.0;
+        r4 = 5;
+        r5 = 4;
+        r6 = 3;
+        r7 = 2;
+        r8 = 1;
+        if (r1 == 0) goto L_0x008b;
+    L_0x0016:
+        r14 = r0.group(r8);
+        r8 = java.lang.Long.parseLong(r14);
+        r10 = 3600; // 0xe10 float:5.045E-42 double:1.7786E-320;
+        r8 = r8 * r10;
+        r8 = (double) r8;
+        r14 = r0.group(r7);
+        r10 = java.lang.Long.parseLong(r14);
+        r12 = 60;
+        r10 = r10 * r12;
+        r10 = (double) r10;
+        java.lang.Double.isNaN(r8);
+        java.lang.Double.isNaN(r10);
+        r8 = r8 + r10;
+        r14 = r0.group(r6);
+        r6 = java.lang.Long.parseLong(r14);
+        r6 = (double) r6;
+        java.lang.Double.isNaN(r6);
+        r8 = r8 + r6;
+        r14 = r0.group(r5);
+        r5 = 0;
+        if (r14 == 0) goto L_0x0051;
+    L_0x004c:
+        r10 = java.lang.Double.parseDouble(r14);
+        goto L_0x0052;
+    L_0x0051:
+        r10 = r5;
+    L_0x0052:
+        r14 = 0;
+        r8 = r8 + r10;
+        r14 = r0.group(r4);
+        if (r14 == 0) goto L_0x0064;
+    L_0x005a:
+        r10 = java.lang.Long.parseLong(r14);
+        r14 = (float) r10;
+        r1 = r15.effectiveFrameRate;
+        r14 = r14 / r1;
+        r10 = (double) r14;
+        goto L_0x0065;
+    L_0x0064:
+        r10 = r5;
+    L_0x0065:
+        r14 = 0;
+        r8 = r8 + r10;
+        r14 = 6;
+        r14 = r0.group(r14);
+        if (r14 == 0) goto L_0x0085;
+    L_0x006e:
+        r0 = java.lang.Long.parseLong(r14);
+        r0 = (double) r0;
+        r14 = r15.subFrameRate;
+        r4 = (double) r14;
+        java.lang.Double.isNaN(r0);
+        java.lang.Double.isNaN(r4);
+        r0 = r0 / r4;
+        r14 = r15.effectiveFrameRate;
+        r14 = (double) r14;
+        java.lang.Double.isNaN(r14);
+        r5 = r0 / r14;
+    L_0x0085:
+        r14 = 0;
+        r8 = r8 + r5;
+        r8 = r8 * r2;
+        r14 = (long) r8;
+        return r14;
+    L_0x008b:
+        r0 = OFFSET_TIME;
+        r0 = r0.matcher(r14);
+        r1 = r0.matches();
+        if (r1 == 0) goto L_0x0123;
+    L_0x0097:
+        r14 = r0.group(r8);
+        r9 = java.lang.Double.parseDouble(r14);
+        r14 = r0.group(r7);
+        r0 = -1;
+        r1 = r14.hashCode();
+        r11 = 102; // 0x66 float:1.43E-43 double:5.04E-322;
+        if (r1 == r11) goto L_0x00ed;
+    L_0x00ac:
+        r5 = 104; // 0x68 float:1.46E-43 double:5.14E-322;
+        if (r1 == r5) goto L_0x00e3;
+    L_0x00b0:
+        r5 = 109; // 0x6d float:1.53E-43 double:5.4E-322;
+        if (r1 == r5) goto L_0x00d9;
+    L_0x00b4:
+        r5 = 3494; // 0xda6 float:4.896E-42 double:1.7263E-320;
+        if (r1 == r5) goto L_0x00cf;
+    L_0x00b8:
+        switch(r1) {
+            case 115: goto L_0x00c5;
+            case 116: goto L_0x00bc;
+            default: goto L_0x00bb;
+        };
+    L_0x00bb:
+        goto L_0x00f7;
+    L_0x00bc:
+        r1 = "t";
+        r14 = r14.equals(r1);
+        if (r14 == 0) goto L_0x00f7;
+    L_0x00c4:
+        goto L_0x00f8;
+    L_0x00c5:
+        r1 = "s";
+        r14 = r14.equals(r1);
+        if (r14 == 0) goto L_0x00f7;
+    L_0x00cd:
+        r4 = 2;
+        goto L_0x00f8;
+    L_0x00cf:
+        r1 = "ms";
+        r14 = r14.equals(r1);
+        if (r14 == 0) goto L_0x00f7;
+    L_0x00d7:
+        r4 = 3;
+        goto L_0x00f8;
+    L_0x00d9:
+        r1 = "m";
+        r14 = r14.equals(r1);
+        if (r14 == 0) goto L_0x00f7;
+    L_0x00e1:
+        r4 = 1;
+        goto L_0x00f8;
+    L_0x00e3:
+        r1 = "h";
+        r14 = r14.equals(r1);
+        if (r14 == 0) goto L_0x00f7;
+    L_0x00eb:
+        r4 = 0;
+        goto L_0x00f8;
+    L_0x00ed:
+        r1 = "f";
+        r14 = r14.equals(r1);
+        if (r14 == 0) goto L_0x00f7;
+    L_0x00f5:
+        r4 = 4;
+        goto L_0x00f8;
+    L_0x00f7:
+        r4 = -1;
+    L_0x00f8:
+        switch(r4) {
+            case 0: goto L_0x0118;
+            case 1: goto L_0x0113;
+            case 2: goto L_0x011f;
+            case 3: goto L_0x010c;
+            case 4: goto L_0x0104;
+            case 5: goto L_0x00fc;
+            default: goto L_0x00fb;
+        };
+    L_0x00fb:
+        goto L_0x011f;
+    L_0x00fc:
+        r14 = r15.tickRate;
+        r14 = (double) r14;
+        java.lang.Double.isNaN(r14);
+        r9 = r9 / r14;
+        goto L_0x011f;
+    L_0x0104:
+        r14 = r15.effectiveFrameRate;
+        r14 = (double) r14;
+        java.lang.Double.isNaN(r14);
+        r9 = r9 / r14;
+        goto L_0x011f;
+    L_0x010c:
+        r14 = 4652007308841189376; // 0x408f400000000000 float:0.0 double:1000.0;
+        r9 = r9 / r14;
+        goto L_0x011f;
+    L_0x0113:
+        r14 = 4633641066610819072; // 0x404e000000000000 float:0.0 double:60.0;
+        r9 = r9 * r14;
+        goto L_0x011f;
+    L_0x0118:
+        r14 = 4660134898793709568; // 0x40ac200000000000 float:0.0 double:3600.0;
+        r9 = r9 * r14;
+    L_0x011f:
+        r9 = r9 * r2;
+        r14 = (long) r9;
+        return r14;
+    L_0x0123:
+        r15 = new com.google.android.exoplayer2.text.SubtitleDecoderException;
+        r0 = new java.lang.StringBuilder;
+        r0.&lt;init&gt;();
+        r1 = "Malformed time expression: ";
+        r0.append(r1);
+        r0.append(r14);
+        r14 = r0.toString();
+        r15.&lt;init&gt;(r14);
+        throw r15;
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.google.android.exoplayer2.text.ttml.TtmlDecoder.parseTimeExpression(java.lang.String, com.google.android.exoplayer2.text.ttml.TtmlDecoder$FrameAndTickRate):long");
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:9 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

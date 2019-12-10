@@ -1,0 +1,288 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/exoplayer2/source/smoothstreaming/SsMediaPeriod.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/exoplayer2/source/smoothstreaming/SsMediaPeriod.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="SsMediaPeriod.java" data-line="" class="code line-numbers"><code>package com.google.android.exoplayer2.source.smoothstreaming;
+
+import android.util.Base64;
+import androidx.annotation.Nullable;
+import com.google.android.exoplayer2.C;
+import com.google.android.exoplayer2.SeekParameters;
+import com.google.android.exoplayer2.extractor.mp4.TrackEncryptionBox;
+import com.google.android.exoplayer2.source.CompositeSequenceableLoaderFactory;
+import com.google.android.exoplayer2.source.MediaPeriod;
+import com.google.android.exoplayer2.source.MediaSourceEventListener.EventDispatcher;
+import com.google.android.exoplayer2.source.SampleStream;
+import com.google.android.exoplayer2.source.SequenceableLoader;
+import com.google.android.exoplayer2.source.SequenceableLoader.Callback;
+import com.google.android.exoplayer2.source.TrackGroup;
+import com.google.android.exoplayer2.source.TrackGroupArray;
+import com.google.android.exoplayer2.source.chunk.ChunkSampleStream;
+import com.google.android.exoplayer2.source.smoothstreaming.SsChunkSource.Factory;
+import com.google.android.exoplayer2.source.smoothstreaming.manifest.SsManifest;
+import com.google.android.exoplayer2.source.smoothstreaming.manifest.SsManifest.ProtectionElement;
+import com.google.android.exoplayer2.trackselection.TrackSelection;
+import com.google.android.exoplayer2.upstream.Allocator;
+import com.google.android.exoplayer2.upstream.LoadErrorHandlingPolicy;
+import com.google.android.exoplayer2.upstream.LoaderErrorThrower;
+import com.google.android.exoplayer2.upstream.TransferListener;
+import java.io.IOException;
+import java.util.ArrayList;
+
+final class SsMediaPeriod implements MediaPeriod, Callback&lt;ChunkSampleStream&lt;SsChunkSource&gt;&gt; {
+    private static final int INITIALIZATION_VECTOR_SIZE = 8;
+    private final Allocator allocator;
+    @Nullable
+    private MediaPeriod.Callback callback;
+    private final Factory chunkSourceFactory;
+    private SequenceableLoader compositeSequenceableLoader;
+    private final CompositeSequenceableLoaderFactory compositeSequenceableLoaderFactory;
+    private final EventDispatcher eventDispatcher;
+    private final LoadErrorHandlingPolicy loadErrorHandlingPolicy;
+    private SsManifest manifest;
+    private final LoaderErrorThrower manifestLoaderErrorThrower;
+    private boolean notifiedReadingStarted;
+    private ChunkSampleStream&lt;SsChunkSource&gt;[] sampleStreams;
+    private final TrackEncryptionBox[] trackEncryptionBoxes;
+    private final TrackGroupArray trackGroups;
+    @Nullable
+    private final TransferListener transferListener;
+
+    public SsMediaPeriod(SsManifest ssManifest, Factory factory, @Nullable TransferListener transferListener, CompositeSequenceableLoaderFactory compositeSequenceableLoaderFactory, LoadErrorHandlingPolicy loadErrorHandlingPolicy, EventDispatcher eventDispatcher, LoaderErrorThrower loaderErrorThrower, Allocator allocator) {
+        SsManifest ssManifest2 = ssManifest;
+        CompositeSequenceableLoaderFactory compositeSequenceableLoaderFactory2 = compositeSequenceableLoaderFactory;
+        this.chunkSourceFactory = factory;
+        this.transferListener = transferListener;
+        this.manifestLoaderErrorThrower = loaderErrorThrower;
+        this.loadErrorHandlingPolicy = loadErrorHandlingPolicy;
+        this.eventDispatcher = eventDispatcher;
+        this.allocator = allocator;
+        this.compositeSequenceableLoaderFactory = compositeSequenceableLoaderFactory2;
+        this.trackGroups = buildTrackGroups(ssManifest);
+        ProtectionElement protectionElement = ssManifest2.protectionElement;
+        if (protectionElement != null) {
+            byte[] protectionElementKeyId = getProtectionElementKeyId(protectionElement.data);
+            r0.trackEncryptionBoxes = new TrackEncryptionBox[]{new TrackEncryptionBox(true, null, 8, protectionElementKeyId, 0, 0, null)};
+        } else {
+            r0.trackEncryptionBoxes = null;
+        }
+        r0.manifest = ssManifest2;
+        r0.sampleStreams = newSampleStreamArray(0);
+        r0.compositeSequenceableLoader = compositeSequenceableLoaderFactory2.createCompositeSequenceableLoader(r0.sampleStreams);
+        eventDispatcher.mediaPeriodCreated();
+    }
+
+    public void updateManifest(SsManifest ssManifest) {
+        this.manifest = ssManifest;
+        for (ChunkSampleStream chunkSource : this.sampleStreams) {
+            ((SsChunkSource) chunkSource.getChunkSource()).updateManifest(ssManifest);
+        }
+        this.callback.onContinueLoadingRequested(this);
+    }
+
+    public void release() {
+        for (ChunkSampleStream release : this.sampleStreams) {
+            release.release();
+        }
+        this.callback = null;
+        this.eventDispatcher.mediaPeriodReleased();
+    }
+
+    public void prepare(MediaPeriod.Callback callback, long j) {
+        this.callback = callback;
+        callback.onPrepared(this);
+    }
+
+    public void maybeThrowPrepareError() throws IOException {
+        this.manifestLoaderErrorThrower.maybeThrowError();
+    }
+
+    public TrackGroupArray getTrackGroups() {
+        return this.trackGroups;
+    }
+
+    public long selectTracks(TrackSelection[] trackSelectionArr, boolean[] zArr, SampleStream[] sampleStreamArr, boolean[] zArr2, long j) {
+        ArrayList arrayList = new ArrayList();
+        int i = 0;
+        while (i &lt; trackSelectionArr.length) {
+            ChunkSampleStream chunkSampleStream;
+            if (sampleStreamArr[i] != null) {
+                chunkSampleStream = (ChunkSampleStream) sampleStreamArr[i];
+                if (trackSelectionArr[i] != null) {
+                    if (zArr[i]) {
+                        arrayList.add(chunkSampleStream);
+                    }
+                }
+                chunkSampleStream.release();
+                sampleStreamArr[i] = null;
+            }
+            if (sampleStreamArr[i] == null &amp;&amp; trackSelectionArr[i] != null) {
+                chunkSampleStream = buildSampleStream(trackSelectionArr[i], j);
+                arrayList.add(chunkSampleStream);
+                sampleStreamArr[i] = chunkSampleStream;
+                zArr2[i] = true;
+            }
+            i++;
+        }
+        this.sampleStreams = newSampleStreamArray(arrayList.size());
+        arrayList.toArray(this.sampleStreams);
+        this.compositeSequenceableLoader = this.compositeSequenceableLoaderFactory.createCompositeSequenceableLoader(this.sampleStreams);
+        return j;
+    }
+
+    public void discardBuffer(long j, boolean z) {
+        for (ChunkSampleStream discardBuffer : this.sampleStreams) {
+            discardBuffer.discardBuffer(j, z);
+        }
+    }
+
+    public void reevaluateBuffer(long j) {
+        this.compositeSequenceableLoader.reevaluateBuffer(j);
+    }
+
+    public boolean continueLoading(long j) {
+        return this.compositeSequenceableLoader.continueLoading(j);
+    }
+
+    public long getNextLoadPositionUs() {
+        return this.compositeSequenceableLoader.getNextLoadPositionUs();
+    }
+
+    public long readDiscontinuity() {
+        if (!this.notifiedReadingStarted) {
+            this.eventDispatcher.readingStarted();
+            this.notifiedReadingStarted = true;
+        }
+        return C.TIME_UNSET;
+    }
+
+    public long getBufferedPositionUs() {
+        return this.compositeSequenceableLoader.getBufferedPositionUs();
+    }
+
+    public long seekToUs(long j) {
+        for (ChunkSampleStream seekToUs : this.sampleStreams) {
+            seekToUs.seekToUs(j);
+        }
+        return j;
+    }
+
+    public long getAdjustedSeekPositionUs(long j, SeekParameters seekParameters) {
+        for (ChunkSampleStream chunkSampleStream : this.sampleStreams) {
+            if (chunkSampleStream.primaryTrackType == 2) {
+                return chunkSampleStream.getAdjustedSeekPositionUs(j, seekParameters);
+            }
+        }
+        return j;
+    }
+
+    public void onContinueLoadingRequested(ChunkSampleStream&lt;SsChunkSource&gt; chunkSampleStream) {
+        this.callback.onContinueLoadingRequested(this);
+    }
+
+    private ChunkSampleStream&lt;SsChunkSource&gt; buildSampleStream(TrackSelection trackSelection, long j) {
+        int indexOf = this.trackGroups.indexOf(trackSelection.getTrackGroup());
+        return new ChunkSampleStream(this.manifest.streamElements[indexOf].type, null, null, this.chunkSourceFactory.createChunkSource(this.manifestLoaderErrorThrower, this.manifest, indexOf, trackSelection, this.trackEncryptionBoxes, this.transferListener), (Callback) this, this.allocator, j, this.loadErrorHandlingPolicy, this.eventDispatcher);
+    }
+
+    private static TrackGroupArray buildTrackGroups(SsManifest ssManifest) {
+        TrackGroup[] trackGroupArr = new TrackGroup[ssManifest.streamElements.length];
+        for (int i = 0; i &lt; ssManifest.streamElements.length; i++) {
+            trackGroupArr[i] = new TrackGroup(ssManifest.streamElements[i].formats);
+        }
+        return new TrackGroupArray(trackGroupArr);
+    }
+
+    private static ChunkSampleStream&lt;SsChunkSource&gt;[] newSampleStreamArray(int i) {
+        return new ChunkSampleStream[i];
+    }
+
+    private static byte[] getProtectionElementKeyId(byte[] bArr) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i &lt; bArr.length; i += 2) {
+            stringBuilder.append((char) bArr[i]);
+        }
+        bArr = stringBuilder.toString();
+        bArr = Base64.decode(bArr.substring(bArr.indexOf("&lt;KID&gt;") + 5, bArr.indexOf("&lt;/KID&gt;")), 0);
+        swap(bArr, 0, 3);
+        swap(bArr, 1, 2);
+        swap(bArr, 4, 5);
+        swap(bArr, 6, 7);
+        return bArr;
+    }
+
+    private static void swap(byte[] bArr, int i, int i2) {
+        byte b = bArr[i];
+        bArr[i] = bArr[i2];
+        bArr[i2] = b;
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:8 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

@@ -1,0 +1,368 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/androidx/preference/PreferenceInflater.java" target="_blank">/xumo_apk/jadx_source_code/androidx/preference/PreferenceInflater.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="PreferenceInflater.java" data-line="" class="code line-numbers"><code>package androidx.preference;
+
+import android.content.Context;
+import android.content.Intent;
+import android.util.AttributeSet;
+import android.util.Xml;
+import android.view.InflateException;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.util.HashMap;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+
+class PreferenceInflater {
+    private static final HashMap&lt;String, Constructor&gt; CONSTRUCTOR_MAP = new HashMap();
+    private static final Class&lt;?&gt;[] CONSTRUCTOR_SIGNATURE = new Class[]{Context.class, AttributeSet.class};
+    private static final String EXTRA_TAG_NAME = "extra";
+    private static final String INTENT_TAG_NAME = "intent";
+    private static final String TAG = "PreferenceInflater";
+    private final Object[] mConstructorArgs = new Object[2];
+    private final Context mContext;
+    private String[] mDefaultPackages;
+    private PreferenceManager mPreferenceManager;
+
+    public PreferenceInflater(Context context, PreferenceManager preferenceManager) {
+        this.mContext = context;
+        init(preferenceManager);
+    }
+
+    private void init(PreferenceManager preferenceManager) {
+        this.mPreferenceManager = preferenceManager;
+        preferenceManager = new String[2];
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(Preference.class.getPackage().getName());
+        stringBuilder.append(".");
+        preferenceManager[0] = stringBuilder.toString();
+        stringBuilder = new StringBuilder();
+        stringBuilder.append(SwitchPreference.class.getPackage().getName());
+        stringBuilder.append(".");
+        preferenceManager[1] = stringBuilder.toString();
+        setDefaultPackages(preferenceManager);
+    }
+
+    public void setDefaultPackages(String[] strArr) {
+        this.mDefaultPackages = strArr;
+    }
+
+    public String[] getDefaultPackages() {
+        return this.mDefaultPackages;
+    }
+
+    public Context getContext() {
+        return this.mContext;
+    }
+
+    public Preference inflate(int i, @Nullable PreferenceGroup preferenceGroup) {
+        XmlPullParser xml = getContext().getResources().getXml(i);
+        try {
+            preferenceGroup = inflate(xml, preferenceGroup);
+            return preferenceGroup;
+        } finally {
+            xml.close();
+        }
+    }
+
+    public Preference inflate(XmlPullParser xmlPullParser, @Nullable PreferenceGroup preferenceGroup) {
+        synchronized (this.mConstructorArgs) {
+            AttributeSet asAttributeSet = Xml.asAttributeSet(xmlPullParser);
+            this.mConstructorArgs[0] = this.mContext;
+            int next;
+            do {
+                try {
+                    next = xmlPullParser.next();
+                    if (next == 2) {
+                        break;
+                    }
+                } catch (XmlPullParser xmlPullParser2) {
+                    throw xmlPullParser2;
+                } catch (XmlPullParser xmlPullParser22) {
+                    preferenceGroup = new InflateException(xmlPullParser22.getMessage());
+                    preferenceGroup.initCause(xmlPullParser22);
+                    throw preferenceGroup;
+                } catch (PreferenceGroup preferenceGroup2) {
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.append(xmlPullParser22.getPositionDescription());
+                    stringBuilder.append(": ");
+                    stringBuilder.append(preferenceGroup2.getMessage());
+                    InflateException inflateException = new InflateException(stringBuilder.toString());
+                    inflateException.initCause(preferenceGroup2);
+                    throw inflateException;
+                }
+            } while (next != 1);
+            if (next == 2) {
+                preferenceGroup2 = onMergeRoots(preferenceGroup2, (PreferenceGroup) createItemFromTag(xmlPullParser22.getName(), asAttributeSet));
+                rInflate(xmlPullParser22, preferenceGroup2, asAttributeSet);
+            } else {
+                StringBuilder stringBuilder2 = new StringBuilder();
+                stringBuilder2.append(xmlPullParser22.getPositionDescription());
+                stringBuilder2.append(": No start tag found!");
+                throw new InflateException(stringBuilder2.toString());
+            }
+        }
+        return preferenceGroup2;
+    }
+
+    @NonNull
+    private PreferenceGroup onMergeRoots(PreferenceGroup preferenceGroup, @NonNull PreferenceGroup preferenceGroup2) {
+        if (preferenceGroup != null) {
+            return preferenceGroup;
+        }
+        preferenceGroup2.onAttachedToHierarchy(this.mPreferenceManager);
+        return preferenceGroup2;
+    }
+
+    /* JADX WARNING: inconsistent code. */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    private androidx.preference.Preference createItem(@androidx.annotation.NonNull java.lang.String r9, @androidx.annotation.Nullable java.lang.String[] r10, android.util.AttributeSet r11) throws java.lang.ClassNotFoundException, android.view.InflateException {
+        /*
+        r8 = this;
+        r0 = CONSTRUCTOR_MAP;
+        r0 = r0.get(r9);
+        r0 = (java.lang.reflect.Constructor) r0;
+        r1 = 1;
+        if (r0 != 0) goto L_0x0072;
+    L_0x000b:
+        r0 = r8.mContext;	 Catch:{ ClassNotFoundException -&gt; 0x0070, Exception -&gt; 0x006e }
+        r0 = r0.getClassLoader();	 Catch:{ ClassNotFoundException -&gt; 0x0070, Exception -&gt; 0x006e }
+        if (r10 == 0) goto L_0x005b;
+    L_0x0013:
+        r2 = r10.length;	 Catch:{ ClassNotFoundException -&gt; 0x0070, Exception -&gt; 0x006e }
+        if (r2 != 0) goto L_0x0017;
+    L_0x0016:
+        goto L_0x005b;
+    L_0x0017:
+        r2 = r10.length;	 Catch:{ ClassNotFoundException -&gt; 0x0070, Exception -&gt; 0x006e }
+        r3 = 0;
+        r4 = 0;
+        r5 = r4;
+    L_0x001b:
+        if (r3 &gt;= r2) goto L_0x0038;
+    L_0x001d:
+        r6 = r10[r3];	 Catch:{ ClassNotFoundException -&gt; 0x0070, Exception -&gt; 0x006e }
+        r7 = new java.lang.StringBuilder;	 Catch:{ ClassNotFoundException -&gt; 0x0034, Exception -&gt; 0x006e }
+        r7.&lt;init&gt;();	 Catch:{ ClassNotFoundException -&gt; 0x0034, Exception -&gt; 0x006e }
+        r7.append(r6);	 Catch:{ ClassNotFoundException -&gt; 0x0034, Exception -&gt; 0x006e }
+        r7.append(r9);	 Catch:{ ClassNotFoundException -&gt; 0x0034, Exception -&gt; 0x006e }
+        r6 = r7.toString();	 Catch:{ ClassNotFoundException -&gt; 0x0034, Exception -&gt; 0x006e }
+        r6 = r0.loadClass(r6);	 Catch:{ ClassNotFoundException -&gt; 0x0034, Exception -&gt; 0x006e }
+        r4 = r6;
+        goto L_0x0038;
+    L_0x0034:
+        r5 = move-exception;
+        r3 = r3 + 1;
+        goto L_0x001b;
+    L_0x0038:
+        if (r4 != 0) goto L_0x005f;
+    L_0x003a:
+        if (r5 != 0) goto L_0x005a;
+    L_0x003c:
+        r10 = new android.view.InflateException;	 Catch:{ ClassNotFoundException -&gt; 0x0070, Exception -&gt; 0x006e }
+        r0 = new java.lang.StringBuilder;	 Catch:{ ClassNotFoundException -&gt; 0x0070, Exception -&gt; 0x006e }
+        r0.&lt;init&gt;();	 Catch:{ ClassNotFoundException -&gt; 0x0070, Exception -&gt; 0x006e }
+        r1 = r11.getPositionDescription();	 Catch:{ ClassNotFoundException -&gt; 0x0070, Exception -&gt; 0x006e }
+        r0.append(r1);	 Catch:{ ClassNotFoundException -&gt; 0x0070, Exception -&gt; 0x006e }
+        r1 = ": Error inflating class ";
+        r0.append(r1);	 Catch:{ ClassNotFoundException -&gt; 0x0070, Exception -&gt; 0x006e }
+        r0.append(r9);	 Catch:{ ClassNotFoundException -&gt; 0x0070, Exception -&gt; 0x006e }
+        r0 = r0.toString();	 Catch:{ ClassNotFoundException -&gt; 0x0070, Exception -&gt; 0x006e }
+        r10.&lt;init&gt;(r0);	 Catch:{ ClassNotFoundException -&gt; 0x0070, Exception -&gt; 0x006e }
+        throw r10;	 Catch:{ ClassNotFoundException -&gt; 0x0070, Exception -&gt; 0x006e }
+    L_0x005a:
+        throw r5;	 Catch:{ ClassNotFoundException -&gt; 0x0070, Exception -&gt; 0x006e }
+    L_0x005b:
+        r4 = r0.loadClass(r9);	 Catch:{ ClassNotFoundException -&gt; 0x0070, Exception -&gt; 0x006e }
+    L_0x005f:
+        r10 = CONSTRUCTOR_SIGNATURE;	 Catch:{ ClassNotFoundException -&gt; 0x0070, Exception -&gt; 0x006e }
+        r0 = r4.getConstructor(r10);	 Catch:{ ClassNotFoundException -&gt; 0x0070, Exception -&gt; 0x006e }
+        r0.setAccessible(r1);	 Catch:{ ClassNotFoundException -&gt; 0x0070, Exception -&gt; 0x006e }
+        r10 = CONSTRUCTOR_MAP;	 Catch:{ ClassNotFoundException -&gt; 0x0070, Exception -&gt; 0x006e }
+        r10.put(r9, r0);	 Catch:{ ClassNotFoundException -&gt; 0x0070, Exception -&gt; 0x006e }
+        goto L_0x0072;
+    L_0x006e:
+        r10 = move-exception;
+        goto L_0x007d;
+    L_0x0070:
+        r9 = move-exception;
+        goto L_0x009e;
+    L_0x0072:
+        r10 = r8.mConstructorArgs;	 Catch:{ ClassNotFoundException -&gt; 0x0070, Exception -&gt; 0x006e }
+        r10[r1] = r11;	 Catch:{ ClassNotFoundException -&gt; 0x0070, Exception -&gt; 0x006e }
+        r10 = r0.newInstance(r10);	 Catch:{ ClassNotFoundException -&gt; 0x0070, Exception -&gt; 0x006e }
+        r10 = (androidx.preference.Preference) r10;	 Catch:{ ClassNotFoundException -&gt; 0x0070, Exception -&gt; 0x006e }
+        return r10;
+    L_0x007d:
+        r0 = new android.view.InflateException;
+        r1 = new java.lang.StringBuilder;
+        r1.&lt;init&gt;();
+        r11 = r11.getPositionDescription();
+        r1.append(r11);
+        r11 = ": Error inflating class ";
+        r1.append(r11);
+        r1.append(r9);
+        r9 = r1.toString();
+        r0.&lt;init&gt;(r9);
+        r0.initCause(r10);
+        throw r0;
+    L_0x009e:
+        throw r9;
+        */
+        throw new UnsupportedOperationException("Method not decompiled: androidx.preference.PreferenceInflater.createItem(java.lang.String, java.lang.String[], android.util.AttributeSet):androidx.preference.Preference");
+    }
+
+    protected Preference onCreateItem(String str, AttributeSet attributeSet) throws ClassNotFoundException {
+        return createItem(str, this.mDefaultPackages, attributeSet);
+    }
+
+    private Preference createItemFromTag(String str, AttributeSet attributeSet) {
+        StringBuilder stringBuilder;
+        InflateException inflateException;
+        try {
+            if (-1 == str.indexOf(46)) {
+                return onCreateItem(str, attributeSet);
+            }
+            return createItem(str, null, attributeSet);
+        } catch (String str2) {
+            throw str2;
+        } catch (Throwable e) {
+            stringBuilder = new StringBuilder();
+            stringBuilder.append(attributeSet.getPositionDescription());
+            stringBuilder.append(": Error inflating class (not found)");
+            stringBuilder.append(str2);
+            inflateException = new InflateException(stringBuilder.toString());
+            inflateException.initCause(e);
+            throw inflateException;
+        } catch (Throwable e2) {
+            stringBuilder = new StringBuilder();
+            stringBuilder.append(attributeSet.getPositionDescription());
+            stringBuilder.append(": Error inflating class ");
+            stringBuilder.append(str2);
+            inflateException = new InflateException(stringBuilder.toString());
+            inflateException.initCause(e2);
+            throw inflateException;
+        }
+    }
+
+    private void rInflate(XmlPullParser xmlPullParser, Preference preference, AttributeSet attributeSet) throws XmlPullParserException, IOException {
+        int depth = xmlPullParser.getDepth();
+        while (true) {
+            int next = xmlPullParser.next();
+            if ((next == 3 &amp;&amp; xmlPullParser.getDepth() &lt;= depth) || next == 1) {
+                return;
+            }
+            if (next == 2) {
+                String name = xmlPullParser.getName();
+                if (INTENT_TAG_NAME.equals(name)) {
+                    try {
+                        preference.setIntent(Intent.parseIntent(getContext().getResources(), xmlPullParser, attributeSet));
+                    } catch (XmlPullParser xmlPullParser2) {
+                        preference = new XmlPullParserException("Error parsing preference");
+                        preference.initCause(xmlPullParser2);
+                        throw preference;
+                    }
+                } else if (EXTRA_TAG_NAME.equals(name)) {
+                    getContext().getResources().parseBundleExtra(EXTRA_TAG_NAME, attributeSet, preference.getExtras());
+                    try {
+                        skipCurrentTag(xmlPullParser2);
+                    } catch (XmlPullParser xmlPullParser22) {
+                        preference = new XmlPullParserException("Error parsing preference");
+                        preference.initCause(xmlPullParser22);
+                        throw preference;
+                    }
+                } else {
+                    Preference createItemFromTag = createItemFromTag(name, attributeSet);
+                    ((PreferenceGroup) preference).addItemFromInflater(createItemFromTag);
+                    rInflate(xmlPullParser22, createItemFromTag, attributeSet);
+                }
+            }
+        }
+    }
+
+    private static void skipCurrentTag(XmlPullParser xmlPullParser) throws XmlPullParserException, IOException {
+        int depth = xmlPullParser.getDepth();
+        while (true) {
+            int next = xmlPullParser.next();
+            if (next == 1) {
+                return;
+            }
+            if (next == 3 &amp;&amp; xmlPullParser.getDepth() &lt;= depth) {
+                return;
+            }
+        }
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:4 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

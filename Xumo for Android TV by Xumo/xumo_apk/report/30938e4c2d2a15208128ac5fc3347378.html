@@ -1,0 +1,298 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/material/appbar/HeaderBehavior.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/material/appbar/HeaderBehavior.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="HeaderBehavior.java" data-line="" class="code line-numbers"><code>package com.google.android.material.appbar;
+
+import android.content.Context;
+import android.util.AttributeSet;
+import android.view.MotionEvent;
+import android.view.VelocityTracker;
+import android.view.View;
+import android.view.ViewConfiguration;
+import android.widget.OverScroller;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.math.MathUtils;
+import androidx.core.view.ViewCompat;
+
+abstract class HeaderBehavior&lt;V extends View&gt; extends ViewOffsetBehavior&lt;V&gt; {
+    private static final int INVALID_POINTER = -1;
+    private int activePointerId = -1;
+    private Runnable flingRunnable;
+    private boolean isBeingDragged;
+    private int lastMotionY;
+    OverScroller scroller;
+    private int touchSlop = -1;
+    private VelocityTracker velocityTracker;
+
+    private class FlingRunnable implements Runnable {
+        private final V layout;
+        private final CoordinatorLayout parent;
+
+        FlingRunnable(CoordinatorLayout coordinatorLayout, V v) {
+            this.parent = coordinatorLayout;
+            this.layout = v;
+        }
+
+        public void run() {
+            if (this.layout != null &amp;&amp; HeaderBehavior.this.scroller != null) {
+                if (HeaderBehavior.this.scroller.computeScrollOffset()) {
+                    HeaderBehavior.this.setHeaderTopBottomOffset(this.parent, this.layout, HeaderBehavior.this.scroller.getCurrY());
+                    ViewCompat.postOnAnimation(this.layout, this);
+                    return;
+                }
+                HeaderBehavior.this.onFlingFinished(this.parent, this.layout);
+            }
+        }
+    }
+
+    boolean canDragView(V v) {
+        return false;
+    }
+
+    void onFlingFinished(CoordinatorLayout coordinatorLayout, V v) {
+    }
+
+    public HeaderBehavior(Context context, AttributeSet attributeSet) {
+        super(context, attributeSet);
+    }
+
+    public boolean onInterceptTouchEvent(CoordinatorLayout coordinatorLayout, V v, MotionEvent motionEvent) {
+        if (this.touchSlop &lt; 0) {
+            this.touchSlop = ViewConfiguration.get(coordinatorLayout.getContext()).getScaledTouchSlop();
+        }
+        if (motionEvent.getAction() == 2 &amp;&amp; this.isBeingDragged) {
+            return true;
+        }
+        switch (motionEvent.getActionMasked()) {
+            case 0:
+                this.isBeingDragged = false;
+                int x = (int) motionEvent.getX();
+                int y = (int) motionEvent.getY();
+                if (canDragView(v) &amp;&amp; coordinatorLayout.isPointInChildBounds(v, x, y) != null) {
+                    this.lastMotionY = y;
+                    this.activePointerId = motionEvent.getPointerId(0);
+                    ensureVelocityTracker();
+                    break;
+                }
+            case 1:
+            case 3:
+                this.isBeingDragged = false;
+                this.activePointerId = -1;
+                if (this.velocityTracker != null) {
+                    this.velocityTracker.recycle();
+                    this.velocityTracker = null;
+                    break;
+                }
+                break;
+            case 2:
+                coordinatorLayout = this.activePointerId;
+                if (coordinatorLayout != -1) {
+                    coordinatorLayout = motionEvent.findPointerIndex(coordinatorLayout);
+                    if (coordinatorLayout != -1) {
+                        coordinatorLayout = (int) motionEvent.getY(coordinatorLayout);
+                        if (Math.abs(coordinatorLayout - this.lastMotionY) &gt; this.touchSlop) {
+                            this.isBeingDragged = true;
+                            this.lastMotionY = coordinatorLayout;
+                            break;
+                        }
+                    }
+                    break;
+                }
+                break;
+                break;
+            default:
+                break;
+        }
+        if (this.velocityTracker != null) {
+            this.velocityTracker.addMovement(motionEvent);
+        }
+        return this.isBeingDragged;
+    }
+
+    public boolean onTouchEvent(CoordinatorLayout coordinatorLayout, V v, MotionEvent motionEvent) {
+        if (this.touchSlop &lt; 0) {
+            this.touchSlop = ViewConfiguration.get(coordinatorLayout.getContext()).getScaledTouchSlop();
+        }
+        int y;
+        switch (motionEvent.getActionMasked()) {
+            case 0:
+                y = (int) motionEvent.getY();
+                if (coordinatorLayout.isPointInChildBounds(v, (int) motionEvent.getX(), y) != null &amp;&amp; canDragView(v) != null) {
+                    this.lastMotionY = y;
+                    this.activePointerId = motionEvent.getPointerId(0);
+                    ensureVelocityTracker();
+                    break;
+                }
+                return false;
+            case 1:
+                if (this.velocityTracker != null) {
+                    this.velocityTracker.addMovement(motionEvent);
+                    this.velocityTracker.computeCurrentVelocity(1000);
+                    fling(coordinatorLayout, v, -getScrollRangeForDragFling(v), 0, this.velocityTracker.getYVelocity(this.activePointerId));
+                    break;
+                }
+                break;
+            case 2:
+                int findPointerIndex = motionEvent.findPointerIndex(this.activePointerId);
+                if (findPointerIndex != -1) {
+                    findPointerIndex = (int) motionEvent.getY(findPointerIndex);
+                    y = this.lastMotionY - findPointerIndex;
+                    if (!this.isBeingDragged &amp;&amp; Math.abs(y) &gt; this.touchSlop) {
+                        this.isBeingDragged = true;
+                        y = y &gt; 0 ? y - this.touchSlop : y + this.touchSlop;
+                    }
+                    int i = y;
+                    if (this.isBeingDragged) {
+                        this.lastMotionY = findPointerIndex;
+                        scroll(coordinatorLayout, v, i, getMaxDragOffset(v), 0);
+                        break;
+                    }
+                }
+                return false;
+                break;
+            case 3:
+                break;
+            default:
+                break;
+        }
+        this.isBeingDragged = false;
+        this.activePointerId = -1;
+        if (this.velocityTracker != null) {
+            this.velocityTracker.recycle();
+            this.velocityTracker = null;
+        }
+        if (this.velocityTracker != null) {
+            this.velocityTracker.addMovement(motionEvent);
+        }
+        return true;
+    }
+
+    int setHeaderTopBottomOffset(CoordinatorLayout coordinatorLayout, V v, int i) {
+        return setHeaderTopBottomOffset(coordinatorLayout, v, i, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+
+    int setHeaderTopBottomOffset(CoordinatorLayout coordinatorLayout, V v, int i, int i2, int i3) {
+        V topAndBottomOffset = getTopAndBottomOffset();
+        if (i2 != 0 &amp;&amp; topAndBottomOffset &gt;= i2 &amp;&amp; topAndBottomOffset &lt;= i3) {
+            v = MathUtils.clamp(i, i2, i3);
+            if (topAndBottomOffset != v) {
+                setTopAndBottomOffset(v);
+                return topAndBottomOffset - v;
+            }
+        }
+        return null;
+    }
+
+    int getTopBottomOffsetForScrollingSibling() {
+        return getTopAndBottomOffset();
+    }
+
+    final int scroll(CoordinatorLayout coordinatorLayout, V v, int i, int i2, int i3) {
+        return setHeaderTopBottomOffset(coordinatorLayout, v, getTopBottomOffsetForScrollingSibling() - i, i2, i3);
+    }
+
+    final boolean fling(CoordinatorLayout coordinatorLayout, V v, int i, int i2, float f) {
+        V v2 = v;
+        if (this.flingRunnable != null) {
+            v.removeCallbacks(r0.flingRunnable);
+            r0.flingRunnable = null;
+        }
+        if (r0.scroller == null) {
+            r0.scroller = new OverScroller(v.getContext());
+        }
+        r0.scroller.fling(0, getTopAndBottomOffset(), 0, Math.round(f), 0, 0, i, i2);
+        if (r0.scroller.computeScrollOffset()) {
+            CoordinatorLayout coordinatorLayout2 = coordinatorLayout;
+            r0.flingRunnable = new FlingRunnable(coordinatorLayout, v);
+            ViewCompat.postOnAnimation(v, r0.flingRunnable);
+            return true;
+        }
+        coordinatorLayout2 = coordinatorLayout;
+        onFlingFinished(coordinatorLayout, v);
+        return false;
+    }
+
+    int getMaxDragOffset(V v) {
+        return -v.getHeight();
+    }
+
+    int getScrollRangeForDragFling(V v) {
+        return v.getHeight();
+    }
+
+    private void ensureVelocityTracker() {
+        if (this.velocityTracker == null) {
+            this.velocityTracker = VelocityTracker.obtain();
+        }
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:13 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

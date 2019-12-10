@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:background="@color/main_menu_background_color" android:layout_width="match_parent" android:layout_height="match_parent">
+    <RelativeLayout android:id="@+id/on_now_details_rl" android:visibility="visible" android:layout_width="match_parent" android:layout_height="UNKNOWN_DATA_0x1" android:layout_weight="4.0">
+        <ImageView android:id="@+id/on_now_details_image" android:layout_width="UNKNOWN_DATA_0x8201" android:layout_height="UNKNOWN_DATA_0x6401" android:layout_marginTop="50dp" android:scaleType="centerCrop" android:layout_marginStart="40dp" />
+        <TextView android:textSize="12.5sp" android:textColor="@color/text_gray" android:id="@+id/on_now_details_numbner" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@+id/on_now_details_image" android:fontFamily="@font/open_sans_semi_bold" android:layout_marginStart="50dp" />
+        <TextView android:textSize="15sp" android:textColor="@color/text_white" android:id="@+id/on_now_details_title" android:layout_width="UNKNOWN_DATA_0x14f01" android:layout_height="wrap_content" android:layout_marginTop="3dp" android:layout_below="@+id/on_now_details_numbner" android:fontFamily="@font/open_sans_semi_bold" android:layout_marginStart="50dp" />
+        <TextView android:textSize="12.5sp" android:textColor="@color/text_gray" android:id="@+id/on_now_details_description" android:layout_width="UNKNOWN_DATA_0x14f01" android:layout_height="wrap_content" android:layout_marginTop="3dp" android:maxLines="4" android:layout_below="@+id/on_now_details_title" android:layout_marginStart="50dp" />
+        <LinearLayout android:orientation="vertical" android:id="@+id/on_now_details_prompt" android:visibility="gone" android:layout_width="match_parent" android:layout_height="match_parent"
+            <LinearLayout android:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end" android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="40dp">
+                <TextView android:textColor="@color/xumoWhite" android:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end" android:id="@+id/on_now_prompt_text_up" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="  OR  " android:drawableStart="@drawable/hinting_icon_up" android:drawableEnd="@drawable/hinting_icon_down" />
+                <TextView android:textColor="@color/xumoWhite" android:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10dp" android:text="@string/to_launch_guide" android:layout_below="@+id/on_now_prompt_text_up" />
+            </LinearLayout>
+            <LinearLayout android:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginBottom="40dp">
+                <TextView android:textColor="@color/xumoWhite" android:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/for_channel_info" android:drawableStart="@drawable/hinting_icon_ok" />
+            </LinearLayout>
+        </LinearLayout>
+        <RelativeLayout android:id="@+id/on_now_details_info" android:layout_width="match_parent" android:layout_height="match_parent">
+            <LinearLayout android:gravity="top|bottom|center_vertical|fill_vertical|center|fill" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="50dp" android:layout_alignParentBottom="true" android:layout_marginStart="50dp">
+                <TextView android:textSize="12sp" android:textColor="@color/text_white" android:id="@+id/on_now_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/on_now" android:fontFamily="@font/open_sans_bold" android:layout_marginEnd="2.5dp" />
+                <ImageView android:layout_width="UNKNOWN_DATA_0x501" android:layout_height="UNKNOWN_DATA_0x501" android:src="@drawable/shape_oval_red" />
+            </LinearLayout>
+            <View android:id="@+id/on_now_line" android:background="@color/on_now_details" android:layout_width="match_parent" android:layout_height="UNKNOWN_DATA_0x501" android:layout_marginBottom="40dp" android:layout_alignParentBottom="true" android:layout_marginStart="50dp" android:layout_marginEnd="50dp" />
+            <LinearLayout android:gravity="left|right|center_horizontal|fill_horizontal|center|fill|start|end" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true" android:layout_marginEnd="50dp">
+                <ImageView android:id="@+id/on_now_cc_id" android:visibility="visible" android:layout_width="UNKNOWN_DATA_0x2801" android:layout_height="UNKNOWN_DATA_0x1901" android:src="@drawable/player_btn_cc_off_hover" android:scaleType="fitCenter" />
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+    <LinearLayout android:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end" android:orientation="vertical" android:id="@+id/more_from_ly" android:visibility="visible" android:layout_width="match_parent" android:layout_height="UNKNOWN_DATA_0x1" android:layout_weight="1.0">
+        <TextView android:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end" android:id="@+id/back_to_channel_info_tv" android:padding="60dp" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="BACK TO CHANNEL INFO" android:drawablePadding="5dp" android:drawableStart="@drawable/hinting_icon_up" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="match_parent"
+            <LinearLayout android:orientation="vertical" android:layout_width="UNKNOWN_DATA_0xa401" android:layout_height="wrap_content" android:layout_marginStart="50dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="UNKNOWN_DATA_0x1401" android:layout_marginBottom="20dp" android:text="MORE FROM " android:fontFamily="@font/open_sans_bold" />
+                <LinearLayout android:orientation="vertical" android:id="@+id/more_from_select_ly" android:padding="2dp" android:layout_width="match_parent" android:layout_height="match_parent">
+                    <ImageView android:id="@+id/more_from_select_iv" android:background="@color/channelsBackgroundColor" android:layout_width="UNKNOWN_DATA_0xa001" android:layout_height="UNKNOWN_DATA_0x5a01" android:scaleType="fitXY" />
+                    <LinearLayout android:orientation="vertical" android:id="@+id/more_from_bottom_ly" android:padding="5dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+                        <TextView android:textSize="8sp" android:ellipsize="end" android:id="@+id/more_from_select_title_tv" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="NO GENRE" android:lines="1" android:textAllCaps="true" android:fontFamily="@font/open_sans_bold" />
+                        <TextView android:textSize="12.5sp" android:ellipsize="end" android:id="@+id/more_from_select_content_tv" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:text="NO DESCRIPTIONS" android:lines="3" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout android:orientation="vertical" android:layout_width="UNKNOWN_DATA_0xa401" android:layout_height="wrap_content" android:layout_marginStart="15dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="UNKNOWN_DATA_0x1401" android:layout_marginBottom="20dp" android:text="MAIN MENU" android:fontFamily="@font/open_sans_bold" />
+                <LinearLayout android:orientation="vertical" android:id="@+id/main_menu_select_ly" android:padding="2dp" android:layout_width="match_parent" android:layout_height="match_parent">
+                    <ImageView android:id="@+id/main_menu_select_iv" android:background="@color/channelsBackgroundColor" android:layout_width="UNKNOWN_DATA_0xa001" android:layout_height="UNKNOWN_DATA_0x5a01" android:src="@drawable/morefrom_guide" android:scaleType="fitXY" />
+                    <LinearLayout android:orientation="vertical" android:id="@+id/main_menu_bottom_ly" android:padding="5dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+                        <TextView android:textSize="8sp" android:ellipsize="end" android:id="@+id/main_menu_select_title_tv" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="GUIDE" android:lines="1" android:textAllCaps="true" android:fontFamily="@font/open_sans_bold" />
+                        <TextView android:textSize="12.5sp" android:ellipsize="end" android:id="@+id/main_menu_select_content_tv" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:text="Explore the Top Channels and Best Videos" android:lines="3" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

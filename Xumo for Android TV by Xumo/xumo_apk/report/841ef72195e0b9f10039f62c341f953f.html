@@ -1,0 +1,581 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/androidx/loader/app/LoaderManagerImpl.java" target="_blank">/xumo_apk/jadx_source_code/androidx/loader/app/LoaderManagerImpl.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="LoaderManagerImpl.java" data-line="" class="code line-numbers"><code>package androidx.loader.app;
+
+import android.os.Bundle;
+import android.os.Looper;
+import android.util.Log;
+import androidx.annotation.MainThread;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.collection.SparseArrayCompat;
+import androidx.core.util.DebugUtils;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProvider.Factory;
+import androidx.lifecycle.ViewModelStore;
+import androidx.loader.app.LoaderManager.LoaderCallbacks;
+import androidx.loader.content.Loader;
+import androidx.loader.content.Loader.OnLoadCompleteListener;
+import java.io.FileDescriptor;
+import java.io.PrintWriter;
+import java.lang.reflect.Modifier;
+
+class LoaderManagerImpl extends LoaderManager {
+    static boolean DEBUG = false;
+    static final String TAG = "LoaderManager";
+    @NonNull
+    private final LifecycleOwner mLifecycleOwner;
+    @NonNull
+    private final LoaderViewModel mLoaderViewModel;
+
+    static class LoaderObserver&lt;D&gt; implements Observer&lt;D&gt; {
+        @NonNull
+        private final LoaderCallbacks&lt;D&gt; mCallback;
+        private boolean mDeliveredData = false;
+        @NonNull
+        private final Loader&lt;D&gt; mLoader;
+
+        LoaderObserver(@NonNull Loader&lt;D&gt; loader, @NonNull LoaderCallbacks&lt;D&gt; loaderCallbacks) {
+            this.mLoader = loader;
+            this.mCallback = loaderCallbacks;
+        }
+
+        public void onChanged(@Nullable D d) {
+            if (LoaderManagerImpl.DEBUG) {
+                String str = LoaderManagerImpl.TAG;
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("  onLoadFinished in ");
+                stringBuilder.append(this.mLoader);
+                stringBuilder.append(": ");
+                stringBuilder.append(this.mLoader.dataToString(d));
+                Log.v(str, stringBuilder.toString());
+            }
+            this.mCallback.onLoadFinished(this.mLoader, d);
+            this.mDeliveredData = true;
+        }
+
+        boolean hasDeliveredData() {
+            return this.mDeliveredData;
+        }
+
+        @MainThread
+        void reset() {
+            if (this.mDeliveredData) {
+                if (LoaderManagerImpl.DEBUG) {
+                    String str = LoaderManagerImpl.TAG;
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.append("  Resetting: ");
+                    stringBuilder.append(this.mLoader);
+                    Log.v(str, stringBuilder.toString());
+                }
+                this.mCallback.onLoaderReset(this.mLoader);
+            }
+        }
+
+        public String toString() {
+            return this.mCallback.toString();
+        }
+
+        public void dump(String str, PrintWriter printWriter) {
+            printWriter.print(str);
+            printWriter.print("mDeliveredData=");
+            printWriter.println(this.mDeliveredData);
+        }
+    }
+
+    static class LoaderViewModel extends ViewModel {
+        private static final Factory FACTORY = new Factory() {
+            @NonNull
+            public &lt;T extends ViewModel&gt; T create(@NonNull Class&lt;T&gt; cls) {
+                return new LoaderViewModel();
+            }
+        };
+        private boolean mCreatingLoader = false;
+        private SparseArrayCompat&lt;LoaderInfo&gt; mLoaders = new SparseArrayCompat();
+
+        LoaderViewModel() {
+        }
+
+        @NonNull
+        static LoaderViewModel getInstance(ViewModelStore viewModelStore) {
+            return (LoaderViewModel) new ViewModelProvider(viewModelStore, FACTORY).get(LoaderViewModel.class);
+        }
+
+        void startCreatingLoader() {
+            this.mCreatingLoader = true;
+        }
+
+        boolean isCreatingLoader() {
+            return this.mCreatingLoader;
+        }
+
+        void finishCreatingLoader() {
+            this.mCreatingLoader = false;
+        }
+
+        void putLoader(int i, @NonNull LoaderInfo loaderInfo) {
+            this.mLoaders.put(i, loaderInfo);
+        }
+
+        &lt;D&gt; LoaderInfo&lt;D&gt; getLoader(int i) {
+            return (LoaderInfo) this.mLoaders.get(i);
+        }
+
+        void removeLoader(int i) {
+            this.mLoaders.remove(i);
+        }
+
+        boolean hasRunningLoaders() {
+            int size = this.mLoaders.size();
+            for (int i = 0; i &lt; size; i++) {
+                if (((LoaderInfo) this.mLoaders.valueAt(i)).isCallbackWaitingForData()) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        void markForRedelivery() {
+            int size = this.mLoaders.size();
+            for (int i = 0; i &lt; size; i++) {
+                ((LoaderInfo) this.mLoaders.valueAt(i)).markForRedelivery();
+            }
+        }
+
+        protected void onCleared() {
+            super.onCleared();
+            int size = this.mLoaders.size();
+            for (int i = 0; i &lt; size; i++) {
+                ((LoaderInfo) this.mLoaders.valueAt(i)).destroy(true);
+            }
+            this.mLoaders.clear();
+        }
+
+        public void dump(String str, FileDescriptor fileDescriptor, PrintWriter printWriter, String[] strArr) {
+            if (this.mLoaders.size() &gt; 0) {
+                printWriter.print(str);
+                printWriter.println("Loaders:");
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append(str);
+                stringBuilder.append("    ");
+                String stringBuilder2 = stringBuilder.toString();
+                for (int i = 0; i &lt; this.mLoaders.size(); i++) {
+                    LoaderInfo loaderInfo = (LoaderInfo) this.mLoaders.valueAt(i);
+                    printWriter.print(str);
+                    printWriter.print("  #");
+                    printWriter.print(this.mLoaders.keyAt(i));
+                    printWriter.print(": ");
+                    printWriter.println(loaderInfo.toString());
+                    loaderInfo.dump(stringBuilder2, fileDescriptor, printWriter, strArr);
+                }
+            }
+        }
+    }
+
+    public static class LoaderInfo&lt;D&gt; extends MutableLiveData&lt;D&gt; implements OnLoadCompleteListener&lt;D&gt; {
+        @Nullable
+        private final Bundle mArgs;
+        private final int mId;
+        private LifecycleOwner mLifecycleOwner;
+        @NonNull
+        private final Loader&lt;D&gt; mLoader;
+        private LoaderObserver&lt;D&gt; mObserver;
+        private Loader&lt;D&gt; mPriorLoader;
+
+        LoaderInfo(int i, @Nullable Bundle bundle, @NonNull Loader&lt;D&gt; loader, @Nullable Loader&lt;D&gt; loader2) {
+            this.mId = i;
+            this.mArgs = bundle;
+            this.mLoader = loader;
+            this.mPriorLoader = loader2;
+            this.mLoader.registerListener(i, this);
+        }
+
+        @NonNull
+        Loader&lt;D&gt; getLoader() {
+            return this.mLoader;
+        }
+
+        protected void onActive() {
+            if (LoaderManagerImpl.DEBUG) {
+                String str = LoaderManagerImpl.TAG;
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("  Starting: ");
+                stringBuilder.append(this);
+                Log.v(str, stringBuilder.toString());
+            }
+            this.mLoader.startLoading();
+        }
+
+        protected void onInactive() {
+            if (LoaderManagerImpl.DEBUG) {
+                String str = LoaderManagerImpl.TAG;
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("  Stopping: ");
+                stringBuilder.append(this);
+                Log.v(str, stringBuilder.toString());
+            }
+            this.mLoader.stopLoading();
+        }
+
+        @MainThread
+        @NonNull
+        Loader&lt;D&gt; setCallback(@NonNull LifecycleOwner lifecycleOwner, @NonNull LoaderCallbacks&lt;D&gt; loaderCallbacks) {
+            Object loaderObserver = new LoaderObserver(this.mLoader, loaderCallbacks);
+            observe(lifecycleOwner, loaderObserver);
+            if (this.mObserver != null) {
+                removeObserver(this.mObserver);
+            }
+            this.mLifecycleOwner = lifecycleOwner;
+            this.mObserver = loaderObserver;
+            return this.mLoader;
+        }
+
+        void markForRedelivery() {
+            LifecycleOwner lifecycleOwner = this.mLifecycleOwner;
+            Observer observer = this.mObserver;
+            if (lifecycleOwner != null &amp;&amp; observer != null) {
+                super.removeObserver(observer);
+                observe(lifecycleOwner, observer);
+            }
+        }
+
+        boolean isCallbackWaitingForData() {
+            boolean z = false;
+            if (!hasActiveObservers()) {
+                return false;
+            }
+            if (!(this.mObserver == null || this.mObserver.hasDeliveredData())) {
+                z = true;
+            }
+            return z;
+        }
+
+        public void removeObserver(@NonNull Observer&lt;? super D&gt; observer) {
+            super.removeObserver(observer);
+            this.mLifecycleOwner = null;
+            this.mObserver = null;
+        }
+
+        @MainThread
+        Loader&lt;D&gt; destroy(boolean z) {
+            if (LoaderManagerImpl.DEBUG) {
+                String str = LoaderManagerImpl.TAG;
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("  Destroying: ");
+                stringBuilder.append(this);
+                Log.v(str, stringBuilder.toString());
+            }
+            this.mLoader.cancelLoad();
+            this.mLoader.abandon();
+            LoaderObserver loaderObserver = this.mObserver;
+            if (loaderObserver != null) {
+                removeObserver(loaderObserver);
+                if (z) {
+                    loaderObserver.reset();
+                }
+            }
+            this.mLoader.unregisterListener(this);
+            if ((loaderObserver == null || loaderObserver.hasDeliveredData()) &amp;&amp; !z) {
+                return this.mLoader;
+            }
+            this.mLoader.reset();
+            return this.mPriorLoader;
+        }
+
+        public void onLoadComplete(@NonNull Loader&lt;D&gt; loader, @Nullable D d) {
+            if (LoaderManagerImpl.DEBUG != null) {
+                loader = LoaderManagerImpl.TAG;
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("onLoadComplete: ");
+                stringBuilder.append(this);
+                Log.v(loader, stringBuilder.toString());
+            }
+            if (Looper.myLooper() == Looper.getMainLooper()) {
+                setValue(d);
+                return;
+            }
+            if (LoaderManagerImpl.DEBUG != null) {
+                Log.w(LoaderManagerImpl.TAG, "onLoadComplete was incorrectly called on a background thread");
+            }
+            postValue(d);
+        }
+
+        public void setValue(D d) {
+            super.setValue(d);
+            if (this.mPriorLoader != null) {
+                this.mPriorLoader.reset();
+                this.mPriorLoader = null;
+            }
+        }
+
+        public String toString() {
+            StringBuilder stringBuilder = new StringBuilder(64);
+            stringBuilder.append("LoaderInfo{");
+            stringBuilder.append(Integer.toHexString(System.identityHashCode(this)));
+            stringBuilder.append(" #");
+            stringBuilder.append(this.mId);
+            stringBuilder.append(" : ");
+            DebugUtils.buildShortClassTag(this.mLoader, stringBuilder);
+            stringBuilder.append("}}");
+            return stringBuilder.toString();
+        }
+
+        public void dump(String str, FileDescriptor fileDescriptor, PrintWriter printWriter, String[] strArr) {
+            printWriter.print(str);
+            printWriter.print("mId=");
+            printWriter.print(this.mId);
+            printWriter.print(" mArgs=");
+            printWriter.println(this.mArgs);
+            printWriter.print(str);
+            printWriter.print("mLoader=");
+            printWriter.println(this.mLoader);
+            Loader loader = this.mLoader;
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(str);
+            stringBuilder.append("  ");
+            loader.dump(stringBuilder.toString(), fileDescriptor, printWriter, strArr);
+            if (this.mObserver != null) {
+                printWriter.print(str);
+                printWriter.print("mCallbacks=");
+                printWriter.println(this.mObserver);
+                fileDescriptor = this.mObserver;
+                strArr = new StringBuilder();
+                strArr.append(str);
+                strArr.append("  ");
+                fileDescriptor.dump(strArr.toString(), printWriter);
+            }
+            printWriter.print(str);
+            printWriter.print("mData=");
+            printWriter.println(getLoader().dataToString(getValue()));
+            printWriter.print(str);
+            printWriter.print("mStarted=");
+            printWriter.println(hasActiveObservers());
+        }
+    }
+
+    LoaderManagerImpl(@NonNull LifecycleOwner lifecycleOwner, @NonNull ViewModelStore viewModelStore) {
+        this.mLifecycleOwner = lifecycleOwner;
+        this.mLoaderViewModel = LoaderViewModel.getInstance(viewModelStore);
+    }
+
+    @MainThread
+    @NonNull
+    private &lt;D&gt; Loader&lt;D&gt; createAndInstallLoader(int i, @Nullable Bundle bundle, @NonNull LoaderCallbacks&lt;D&gt; loaderCallbacks, @Nullable Loader&lt;D&gt; loader) {
+        try {
+            this.mLoaderViewModel.startCreatingLoader();
+            Loader onCreateLoader = loaderCallbacks.onCreateLoader(i, bundle);
+            if (onCreateLoader != null) {
+                if (onCreateLoader.getClass().isMemberClass()) {
+                    if (!Modifier.isStatic(onCreateLoader.getClass().getModifiers())) {
+                        bundle = new StringBuilder();
+                        bundle.append("Object returned from onCreateLoader must not be a non-static inner member class: ");
+                        bundle.append(onCreateLoader);
+                        throw new IllegalArgumentException(bundle.toString());
+                    }
+                }
+                LoaderInfo loaderInfo = new LoaderInfo(i, bundle, onCreateLoader, loader);
+                if (DEBUG != null) {
+                    bundle = TAG;
+                    loader = new StringBuilder();
+                    loader.append("  Created new loader ");
+                    loader.append(loaderInfo);
+                    Log.v(bundle, loader.toString());
+                }
+                this.mLoaderViewModel.putLoader(i, loaderInfo);
+                return loaderInfo.setCallback(this.mLifecycleOwner, loaderCallbacks);
+            }
+            throw new IllegalArgumentException("Object returned from onCreateLoader must not be null");
+        } finally {
+            this.mLoaderViewModel.finishCreatingLoader();
+        }
+    }
+
+    @MainThread
+    @NonNull
+    public &lt;D&gt; Loader&lt;D&gt; initLoader(int i, @Nullable Bundle bundle, @NonNull LoaderCallbacks&lt;D&gt; loaderCallbacks) {
+        if (this.mLoaderViewModel.isCreatingLoader()) {
+            throw new IllegalStateException("Called while creating a loader");
+        } else if (Looper.getMainLooper() == Looper.myLooper()) {
+            LoaderInfo loader = this.mLoaderViewModel.getLoader(i);
+            if (DEBUG) {
+                String str = TAG;
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("initLoader in ");
+                stringBuilder.append(this);
+                stringBuilder.append(": args=");
+                stringBuilder.append(bundle);
+                Log.v(str, stringBuilder.toString());
+            }
+            if (loader == null) {
+                return createAndInstallLoader(i, bundle, loaderCallbacks, null);
+            }
+            if (DEBUG != 0) {
+                i = TAG;
+                bundle = new StringBuilder();
+                bundle.append("  Re-using existing loader ");
+                bundle.append(loader);
+                Log.v(i, bundle.toString());
+            }
+            return loader.setCallback(this.mLifecycleOwner, loaderCallbacks);
+        } else {
+            throw new IllegalStateException("initLoader must be called on the main thread");
+        }
+    }
+
+    @MainThread
+    @NonNull
+    public &lt;D&gt; Loader&lt;D&gt; restartLoader(int i, @Nullable Bundle bundle, @NonNull LoaderCallbacks&lt;D&gt; loaderCallbacks) {
+        if (this.mLoaderViewModel.isCreatingLoader()) {
+            throw new IllegalStateException("Called while creating a loader");
+        } else if (Looper.getMainLooper() == Looper.myLooper()) {
+            if (DEBUG) {
+                String str = TAG;
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("restartLoader in ");
+                stringBuilder.append(this);
+                stringBuilder.append(": args=");
+                stringBuilder.append(bundle);
+                Log.v(str, stringBuilder.toString());
+            }
+            LoaderInfo loader = this.mLoaderViewModel.getLoader(i);
+            Loader loader2 = null;
+            if (loader != null) {
+                loader2 = loader.destroy(false);
+            }
+            return createAndInstallLoader(i, bundle, loaderCallbacks, loader2);
+        } else {
+            throw new IllegalStateException("restartLoader must be called on the main thread");
+        }
+    }
+
+    @MainThread
+    public void destroyLoader(int i) {
+        if (this.mLoaderViewModel.isCreatingLoader()) {
+            throw new IllegalStateException("Called while creating a loader");
+        } else if (Looper.getMainLooper() == Looper.myLooper()) {
+            if (DEBUG) {
+                String str = TAG;
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("destroyLoader in ");
+                stringBuilder.append(this);
+                stringBuilder.append(" of ");
+                stringBuilder.append(i);
+                Log.v(str, stringBuilder.toString());
+            }
+            LoaderInfo loader = this.mLoaderViewModel.getLoader(i);
+            if (loader != null) {
+                loader.destroy(true);
+                this.mLoaderViewModel.removeLoader(i);
+            }
+        } else {
+            throw new IllegalStateException("destroyLoader must be called on the main thread");
+        }
+    }
+
+    @Nullable
+    public &lt;D&gt; Loader&lt;D&gt; getLoader(int i) {
+        if (this.mLoaderViewModel.isCreatingLoader()) {
+            throw new IllegalStateException("Called while creating a loader");
+        }
+        i = this.mLoaderViewModel.getLoader(i);
+        return i != 0 ? i.getLoader() : 0;
+    }
+
+    public void markForRedelivery() {
+        this.mLoaderViewModel.markForRedelivery();
+    }
+
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder(128);
+        stringBuilder.append("LoaderManager{");
+        stringBuilder.append(Integer.toHexString(System.identityHashCode(this)));
+        stringBuilder.append(" in ");
+        DebugUtils.buildShortClassTag(this.mLifecycleOwner, stringBuilder);
+        stringBuilder.append("}}");
+        return stringBuilder.toString();
+    }
+
+    @Deprecated
+    public void dump(String str, FileDescriptor fileDescriptor, PrintWriter printWriter, String[] strArr) {
+        this.mLoaderViewModel.dump(str, fileDescriptor, printWriter, strArr);
+    }
+
+    public boolean hasRunningLoaders() {
+        return this.mLoaderViewModel.hasRunningLoaders();
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:4 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

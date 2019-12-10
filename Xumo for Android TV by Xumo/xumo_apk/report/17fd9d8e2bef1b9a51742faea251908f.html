@@ -1,0 +1,221 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/res/values-te/strings.xml" target="_blank">/xumo_apk/jadx_source_code/res/values-te/strings.xml</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="strings.xml" data-line="" class="code line-numbers"><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;resources&gt;
+    &lt;string name="abc_action_bar_home_description"&gt;హోమ్‌కు నావిగేట్ చేయండి&lt;/string&gt;
+    &lt;string name="abc_action_bar_up_description"&gt;పైకి నావిగేట్ చేయండి&lt;/string&gt;
+    &lt;string name="abc_action_menu_overflow_description"&gt;మరిన్ని ఎంపికలు&lt;/string&gt;
+    &lt;string name="abc_action_mode_done"&gt;పూర్తయింది&lt;/string&gt;
+    &lt;string name="abc_activity_chooser_view_see_all"&gt;అన్నీ చూడండి&lt;/string&gt;
+    &lt;string name="abc_activitychooserview_choose_application"&gt;అనువర్తనాన్ని ఎంచుకోండి&lt;/string&gt;
+    &lt;string name="abc_capital_off"&gt;ఆఫ్ చేయి&lt;/string&gt;
+    &lt;string name="abc_capital_on"&gt;ఆన్ చేయి&lt;/string&gt;
+    &lt;string name="abc_menu_alt_shortcut_label"&gt;Alt+&lt;/string&gt;
+    &lt;string name="abc_menu_ctrl_shortcut_label"&gt;Ctrl+&lt;/string&gt;
+    &lt;string name="abc_menu_delete_shortcut_label"&gt;delete&lt;/string&gt;
+    &lt;string name="abc_menu_enter_shortcut_label"&gt;enter&lt;/string&gt;
+    &lt;string name="abc_menu_function_shortcut_label"&gt;Function+&lt;/string&gt;
+    &lt;string name="abc_menu_meta_shortcut_label"&gt;Meta+&lt;/string&gt;
+    &lt;string name="abc_menu_shift_shortcut_label"&gt;Shift+&lt;/string&gt;
+    &lt;string name="abc_menu_space_shortcut_label"&gt;స్పేస్&lt;/string&gt;
+    &lt;string name="abc_menu_sym_shortcut_label"&gt;Sym+&lt;/string&gt;
+    &lt;string name="abc_prepend_shortcut_label"&gt;Menu+&lt;/string&gt;
+    &lt;string name="abc_search_hint"&gt;వెతుకు...&lt;/string&gt;
+    &lt;string name="abc_searchview_description_clear"&gt;ప్రశ్నను క్లియర్ చేయి&lt;/string&gt;
+    &lt;string name="abc_searchview_description_query"&gt;ప్రశ్న శోధించండి&lt;/string&gt;
+    &lt;string name="abc_searchview_description_search"&gt;వెతుకు&lt;/string&gt;
+    &lt;string name="abc_searchview_description_submit"&gt;ప్రశ్నని సమర్పించు&lt;/string&gt;
+    &lt;string name="abc_searchview_description_voice"&gt;వాయిస్ శోధన&lt;/string&gt;
+    &lt;string name="abc_shareactionprovider_share_with"&gt;వీరితో భాగస్వామ్యం చేయి&lt;/string&gt;
+    &lt;string name="abc_shareactionprovider_share_with_application"&gt;%sతో భాగస్వామ్యం చేయండి&lt;/string&gt;
+    &lt;string name="abc_toolbar_collapse_description"&gt;కుదించండి&lt;/string&gt;
+    &lt;string name="cast_ad_label"&gt;ప్రకటన&lt;/string&gt;
+    &lt;string name="cast_casting_to_device"&gt;%1$sకి ప్రసారం చేస్తోంది&lt;/string&gt;
+    &lt;string name="cast_closed_captions"&gt;సంవృత శీర్షికలు&lt;/string&gt;
+    &lt;string name="cast_closed_captions_unavailable"&gt;సంవృత ఉపశీర్షికలు అందుబాటులో లేవు&lt;/string&gt;
+    &lt;string name="cast_connecting_to_device"&gt;%1$sకు కనెక్ట్ చేస్తోంది&lt;/string&gt;
+    &lt;string name="cast_disconnect"&gt;డిస్‌కనెక్ట్ చేయి&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_ad_image_description"&gt;ప్రసార స్వీకర్త ప్రకటనను ప్లే చేస్తున్నప్పుడు ప్రదర్శించబడే చిత్రం&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_ad_in_progress"&gt;ప్రకటన ప్ర్రోగ్రెస్‌లో ఉంది…&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_background_image"&gt;ఆల్బమ్ ఆర్ట్&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_live_stream_indicator"&gt;ప్రత్యక్ష ప్రసారం&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_loading"&gt;లోడ్ చేస్తోంది…&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_skip_ad_label"&gt;ప్రకటనను దాటవేయండి&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_skip_ad_text"&gt;మీరు %1$d తర్వాత ప్రకటనను దాటవేయవచ్చు…&lt;/string&gt;
+    &lt;string name="cast_forward"&gt;ఫార్వార్డ్ చేయి&lt;/string&gt;
+    &lt;string name="cast_forward_10"&gt;పది సెకన్లు ఫార్వార్డ్ చేయి&lt;/string&gt;
+    &lt;string name="cast_forward_30"&gt;ముప్పై సెకన్లు ఫార్వార్డ్ చేయి&lt;/string&gt;
+    &lt;string name="cast_intro_overlay_button_text"&gt;@android:string/ok&lt;/string&gt;
+    &lt;string name="cast_mute"&gt;మ్యూట్ చేయి&lt;/string&gt;
+    &lt;string name="cast_notification_connected_message"&gt;%1$sకు కనెక్ట్ చేయబడింది&lt;/string&gt;
+    &lt;string name="cast_notification_connecting_message"&gt;%1$sకు కనెక్ట్ చేస్తోంది&lt;/string&gt;
+    &lt;string name="cast_notification_default_channel_name"&gt;ప్రసారం&lt;/string&gt;
+    &lt;string name="cast_notification_disconnect"&gt;డిస్‌కనెక్ట్ చేయి&lt;/string&gt;
+    &lt;string name="cast_pause"&gt;పాజ్ చేయి&lt;/string&gt;
+    &lt;string name="cast_play"&gt;ప్లే చేయి&lt;/string&gt;
+    &lt;string name="cast_rewind"&gt;రివైండ్ చేయి&lt;/string&gt;
+    &lt;string name="cast_rewind_10"&gt;పది సెకన్లు రివైండ్ చేయి&lt;/string&gt;
+    &lt;string name="cast_rewind_30"&gt;ముప్పై సెకన్లు రివైండ్ చేయి&lt;/string&gt;
+    &lt;string name="cast_seek_bar"&gt;ప్లేబ్యాక్ సీక్ నియంత్రణ&lt;/string&gt;
+    &lt;string name="cast_skip_next"&gt;తర్వాత అంశానికి దాటవేయి&lt;/string&gt;
+    &lt;string name="cast_skip_prev"&gt;మునుపటి అంశానికి దాటవేయి&lt;/string&gt;
+    &lt;string name="cast_stop"&gt;ఆపివేయి&lt;/string&gt;
+    &lt;string name="cast_stop_live_stream"&gt;ప్రత్యక్ష ప్రసారాన్ని ఆపివేయి&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_audio"&gt;ఆడియో&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_cancel"&gt;రద్దు చేయి&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_closed_captions"&gt;మూసివేసిన శీర్షికలు&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_default_track_name"&gt;%1$dని ట్రాక్ చేయి&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_none"&gt;ఏవీ వద్దు&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_ok"&gt;సరే&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_subtitles"&gt;ఉపశీర్షికలు&lt;/string&gt;
+    &lt;string name="cast_unmute"&gt;అన్‌మ్యూట్ చేయి&lt;/string&gt;
+    &lt;string name="common_google_play_services_enable_button"&gt;ప్రారంభించు&lt;/string&gt;
+    &lt;string name="common_google_play_services_enable_text"&gt;మీరు Google Play సేవలను ప్రారంభిస్తే మినహా %1$s పని చేయదు.&lt;/string&gt;
+    &lt;string name="common_google_play_services_enable_title"&gt;Google Play సేవలను ప్రారంభించండి&lt;/string&gt;
+    &lt;string name="common_google_play_services_install_button"&gt;ఇన్‌స్టాల్ చేయి&lt;/string&gt;
+    &lt;string name="common_google_play_services_install_text"&gt;%1$s Google Play సేవలు లేకుండా అమలు కాదు, ఆ సేవలు మీ పరికరంలో లేవు.&lt;/string&gt;
+    &lt;string name="common_google_play_services_install_title"&gt;Google Play సేవలను పొందండి&lt;/string&gt;
+    &lt;string name="common_google_play_services_notification_channel_name"&gt;Google Play సేవల లభ్యత&lt;/string&gt;
+    &lt;string name="common_google_play_services_notification_ticker"&gt;Google Play సేవల ఎర్రర్&lt;/string&gt;
+    &lt;string name="common_google_play_services_unknown_issue"&gt;%1$s Google Play సేవలతో సమస్య కలిగి ఉంది. దయచేసి మళ్లీ ప్రయత్నించండి.&lt;/string&gt;
+    &lt;string name="common_google_play_services_unsupported_text"&gt;%1$s Google Play సేవలు లేకుండా అమలు కాదు, ఈ సేవలకు మీ పరికరంలో మద్దతు లేదు.&lt;/string&gt;
+    &lt;string name="common_google_play_services_update_button"&gt;అప్‌డేట్ చేయి&lt;/string&gt;
+    &lt;string name="common_google_play_services_update_text"&gt;మీరు Google Play సేవలను నవీకరిస్తే మినహా %1$s అమలు కాదు.&lt;/string&gt;
+    &lt;string name="common_google_play_services_update_title"&gt;Google Play సేవలను నవీకరించండి&lt;/string&gt;
+    &lt;string name="common_google_play_services_updating_text"&gt;%1$s Google Play సేవలు లేకుండా అమలు కాదు, ఆ సేవలు ప్రస్తుతం నవీకరించబడుతున్నాయి.&lt;/string&gt;
+    &lt;string name="common_google_play_services_wear_update_text"&gt;కొత్త Google Play సేవల వెర్షన్ అవసరం. అది కొద్ది సేపట్లో దానంతట అదే అప్‌డేట్ చేయబడుతుంది.&lt;/string&gt;
+    &lt;string name="common_open_on_phone"&gt;ఫోన్‌లో తెరువు&lt;/string&gt;
+    &lt;string name="common_signin_button_text"&gt;సైన్ ఇన్ చేయండి&lt;/string&gt;
+    &lt;string name="common_signin_button_text_long"&gt;Googleతో సైన్ ఇన్ చేయి&lt;/string&gt;
+    &lt;string name="exo_controls_fastforward_description"&gt;వేగంగా ఫార్వార్డ్ చేయండి&lt;/string&gt;
+    &lt;string name="exo_controls_fullscreen_description"&gt;పూర్తి స్క్రీన్ మోడ్&lt;/string&gt;
+    &lt;string name="exo_controls_next_description"&gt;తదుపరి ట్రాక్&lt;/string&gt;
+    &lt;string name="exo_controls_pause_description"&gt;పాజ్ చేయండి&lt;/string&gt;
+    &lt;string name="exo_controls_play_description"&gt;ప్లే చేయండి&lt;/string&gt;
+    &lt;string name="exo_controls_previous_description"&gt;మునుపటి ట్రాక్&lt;/string&gt;
+    &lt;string name="exo_controls_repeat_all_description"&gt;అన్నింటినీ పునరావృతం చేయండి&lt;/string&gt;
+    &lt;string name="exo_controls_repeat_off_description"&gt;దేన్నీ పునరావృతం చేయకండి&lt;/string&gt;
+    &lt;string name="exo_controls_repeat_one_description"&gt;ఒకదాన్ని పునరావృతం చేయండి&lt;/string&gt;
+    &lt;string name="exo_controls_rewind_description"&gt;రివైండ్ చేయండి&lt;/string&gt;
+    &lt;string name="exo_controls_shuffle_description"&gt;షఫుల్ చేయండి&lt;/string&gt;
+    &lt;string name="exo_controls_stop_description"&gt;ఆపండి&lt;/string&gt;
+    &lt;string name="exo_download_completed"&gt;డౌన్‌లోడ్ పూర్తయింది&lt;/string&gt;
+    &lt;string name="exo_download_description"&gt;డౌన్‌లోడ్ చేయి&lt;/string&gt;
+    &lt;string name="exo_download_downloading"&gt;డౌన్‌లోడ్ చేస్తోంది&lt;/string&gt;
+    &lt;string name="exo_download_failed"&gt;డౌన్‌లోడ్ విఫలమైంది&lt;/string&gt;
+    &lt;string name="exo_download_notification_channel_name"&gt;డౌన్‌లోడ్‌లు&lt;/string&gt;
+    &lt;string name="exo_download_removing"&gt;డౌన్‌లోడ్‌లను తీసివేస్తోంది&lt;/string&gt;
+    &lt;string name="exo_item_list"&gt;%1$s, %2$s&lt;/string&gt;
+    &lt;string name="exo_track_bitrate"&gt;%1$.2f Mbps&lt;/string&gt;
+    &lt;string name="exo_track_mono"&gt;మోనో&lt;/string&gt;
+    &lt;string name="exo_track_resolution"&gt;%1$d × %2$d&lt;/string&gt;
+    &lt;string name="exo_track_selection_auto"&gt;స్వీయ&lt;/string&gt;
+    &lt;string name="exo_track_selection_none"&gt;ఏదీ కాదు&lt;/string&gt;
+    &lt;string name="exo_track_selection_title_audio"&gt;ఆడియో&lt;/string&gt;
+    &lt;string name="exo_track_selection_title_text"&gt;వచనం&lt;/string&gt;
+    &lt;string name="exo_track_selection_title_video"&gt;వీడియో&lt;/string&gt;
+    &lt;string name="exo_track_stereo"&gt;స్టీరియో&lt;/string&gt;
+    &lt;string name="exo_track_surround"&gt;సరౌండ్ ధ్వని&lt;/string&gt;
+    &lt;string name="exo_track_surround_5_point_1"&gt;5.1 సరౌండ్ ధ్వని&lt;/string&gt;
+    &lt;string name="exo_track_surround_7_point_1"&gt;7.1 సరౌండ్ ధ్వని&lt;/string&gt;
+    &lt;string name="exo_track_unknown"&gt;తెలియదు&lt;/string&gt;
+    &lt;string name="expand_button_title"&gt;అధునాతన&lt;/string&gt;
+    &lt;string name="fcm_fallback_notification_channel_label"&gt;ఇతరాలు&lt;/string&gt;
+    &lt;string name="mr_button_content_description"&gt;Cast బటన్&lt;/string&gt;
+    &lt;string name="mr_cast_button_connected"&gt;Cast బటన్. కనెక్ట్ చేయబడింది&lt;/string&gt;
+    &lt;string name="mr_cast_button_connecting"&gt;Cast బటన్. కనెక్ట్ చేస్తోంది&lt;/string&gt;
+    &lt;string name="mr_cast_button_disconnected"&gt;Cast బటన్. డిస్‌కనెక్ట్ చేయబడింది&lt;/string&gt;
+    &lt;string name="mr_chooser_searching"&gt;పరికరాలను కనుగొంటోంది&lt;/string&gt;
+    &lt;string name="mr_chooser_title"&gt;దీనికి ప్రసారం చేయండి&lt;/string&gt;
+    &lt;string name="mr_controller_album_art"&gt;ఆల్బమ్ ఆర్ట్&lt;/string&gt;
+    &lt;string name="mr_controller_casting_screen"&gt;స్క్రీన్‌ను ప్రసారం చేస్తోంది&lt;/string&gt;
+    &lt;string name="mr_controller_close_description"&gt;మూసివేయి&lt;/string&gt;
+    &lt;string name="mr_controller_collapse_group"&gt;కుదించు&lt;/string&gt;
+    &lt;string name="mr_controller_disconnect"&gt;డిస్‌కనెక్ట్ చేయి&lt;/string&gt;
+    &lt;string name="mr_controller_expand_group"&gt;విస్తరించు&lt;/string&gt;
+    &lt;string name="mr_controller_no_info_available"&gt;సమాచారం అందుబాటులో లేదు&lt;/string&gt;
+    &lt;string name="mr_controller_no_media_selected"&gt;మీడియా ఏదీ ఎంచుకోలేదు&lt;/string&gt;
+    &lt;string name="mr_controller_pause"&gt;పాజ్ చేయి&lt;/string&gt;
+    &lt;string name="mr_controller_play"&gt;ఆడండి&lt;/string&gt;
+    &lt;string name="mr_controller_stop"&gt;ఆపు&lt;/string&gt;
+    &lt;string name="mr_controller_stop_casting"&gt;ప్రసారాన్ని ఆపివేయి&lt;/string&gt;
+    &lt;string name="mr_controller_volume_slider"&gt;వాల్యూమ్ స్లయిడర్&lt;/string&gt;
+    &lt;string name="mr_system_route_name"&gt;సిస్టమ్&lt;/string&gt;
+    &lt;string name="mr_user_route_category_name"&gt;పరికరాలు&lt;/string&gt;
+    &lt;string name="search_menu_title"&gt;వెతుకు&lt;/string&gt;
+    &lt;string name="status_bar_notification_info_overflow"&gt;999+&lt;/string&gt;
+    &lt;string name="summary_collapsed_preference_list"&gt;%1$s, %2$s&lt;/string&gt;
+    &lt;string name="v7_preference_off"&gt;ఆఫ్ చేయండి&lt;/string&gt;
+    &lt;string name="v7_preference_on"&gt;ఆన్ చేయండి&lt;/string&gt;
+&lt;/resources&gt;
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:1 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

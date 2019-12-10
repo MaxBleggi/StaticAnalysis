@@ -1,0 +1,591 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/gms/cast/framework/media/uicontroller/UIMediaController.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/gms/cast/framework/media/uicontroller/UIMediaController.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="UIMediaController.java" data-line="" class="code line-numbers"><code>package com.google.android.gms.cast.framework.media.uicontroller;
+
+import android.app.Activity;
+import android.content.ComponentName;
+import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.SeekBar;
+import android.widget.TextView;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
+import com.google.android.gms.cast.framework.CastContext;
+import com.google.android.gms.cast.framework.CastSession;
+import com.google.android.gms.cast.framework.R;
+import com.google.android.gms.cast.framework.Session;
+import com.google.android.gms.cast.framework.SessionManager;
+import com.google.android.gms.cast.framework.SessionManagerListener;
+import com.google.android.gms.cast.framework.media.ImageHints;
+import com.google.android.gms.cast.framework.media.RemoteMediaClient;
+import com.google.android.gms.cast.framework.media.RemoteMediaClient.Listener;
+import com.google.android.gms.cast.framework.media.TracksChooserDialogFragment;
+import com.google.android.gms.common.internal.Preconditions;
+import com.google.android.gms.internal.cast.zzao;
+import com.google.android.gms.internal.cast.zzap;
+import com.google.android.gms.internal.cast.zzar;
+import com.google.android.gms.internal.cast.zzat;
+import com.google.android.gms.internal.cast.zzaw;
+import com.google.android.gms.internal.cast.zzax;
+import com.google.android.gms.internal.cast.zzay;
+import com.google.android.gms.internal.cast.zzaz;
+import com.google.android.gms.internal.cast.zzbb;
+import com.google.android.gms.internal.cast.zzbc;
+import com.google.android.gms.internal.cast.zzbd;
+import com.google.android.gms.internal.cast.zzbe;
+import com.google.android.gms.internal.cast.zzbf;
+import com.google.android.gms.internal.cast.zzbg;
+import com.google.android.gms.internal.cast.zzbh;
+import com.google.android.gms.internal.cast.zzbi;
+import com.google.android.gms.internal.cast.zzbj;
+import com.google.android.gms.internal.cast.zzbk;
+import com.google.android.gms.internal.cast.zzbl;
+import com.google.android.gms.internal.cast.zzdh;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+public class UIMediaController implements SessionManagerListener&lt;CastSession&gt;, Listener {
+    private static final zzdh zzbe = new zzdh("UIMediaController");
+    private final SessionManager zzhj;
+    private RemoteMediaClient zzig;
+    private final Activity zzim;
+    private final Map&lt;View, List&lt;UIController&gt;&gt; zzrd = new HashMap();
+    private final Set&lt;zzbj&gt; zzre = new HashSet();
+    private Listener zzrf;
+
+    public UIMediaController(Activity activity) {
+        this.zzim = activity;
+        CastContext zzb = CastContext.zzb(activity);
+        this.zzhj = zzb != null ? zzb.getSessionManager() : null;
+        if (this.zzhj != null) {
+            activity = CastContext.getSharedInstance(activity).getSessionManager();
+            activity.addSessionManagerListener(this, CastSession.class);
+            zza(activity.getCurrentCastSession());
+        }
+    }
+
+    public void onSessionEnding(CastSession castSession) {
+    }
+
+    public void onSessionResuming(CastSession castSession, String str) {
+    }
+
+    public void onSessionStarting(CastSession castSession) {
+    }
+
+    public void onSessionSuspended(CastSession castSession, int i) {
+    }
+
+    public boolean isActive() {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        return this.zzig != null;
+    }
+
+    public RemoteMediaClient getRemoteMediaClient() {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        return this.zzig;
+    }
+
+    public void setPostRemoteMediaClientListener(Listener listener) {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        this.zzrf = listener;
+    }
+
+    public void dispose() {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        zzcn();
+        this.zzrd.clear();
+        if (this.zzhj != null) {
+            this.zzhj.removeSessionManagerListener(this, CastSession.class);
+        }
+        this.zzrf = null;
+    }
+
+    public void bindImageViewToPlayPauseToggle(@NonNull ImageView imageView, @NonNull Drawable drawable, @NonNull Drawable drawable2, Drawable drawable3, View view, boolean z) {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        imageView.setOnClickListener(new zza(this));
+        zza(imageView, new zzbb(imageView, this.zzim, drawable, drawable2, drawable3, view, z));
+    }
+
+    public void bindViewToSkipNext(View view, int i) {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        view.setOnClickListener(new zzb(this));
+        zza(view, new zzbf(view, i));
+    }
+
+    public void bindViewToSkipPrev(View view, int i) {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        view.setOnClickListener(new zzc(this));
+        zza(view, new zzbg(view, i));
+    }
+
+    public void bindViewToForward(View view, long j) {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        view.setOnClickListener(new zzd(this, j));
+        zza(view, new zzbe(view));
+    }
+
+    public void bindViewToRewind(View view, long j) {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        view.setOnClickListener(new zze(this, j));
+        zza(view, new zzbe(view));
+    }
+
+    public void bindViewToLoadingIndicator(View view) {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        zza(view, new zzaw(view));
+    }
+
+    public void bindProgressBar(ProgressBar progressBar) {
+        bindProgressBar(progressBar, 1000);
+    }
+
+    public void bindProgressBar(ProgressBar progressBar, long j) {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        zza(progressBar, new zzbc(progressBar, j));
+    }
+
+    public void bindSeekBar(SeekBar seekBar) {
+        bindSeekBar(seekBar, 1000);
+    }
+
+    public void bindSeekBar(SeekBar seekBar, long j) {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        seekBar.setOnSeekBarChangeListener(new zzf(this));
+        zza(seekBar, new zzbd(seekBar, j));
+    }
+
+    public void bindTextViewToStreamPosition(TextView textView, boolean z) {
+        bindTextViewToStreamPosition(textView, z, 1000);
+    }
+
+    public void bindTextViewToStreamPosition(TextView textView, boolean z, long j) {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        UIController com_google_android_gms_internal_cast_zzbj = new zzbj(textView, j, this.zzim.getString(R.string.cast_invalid_stream_position_text));
+        if (z) {
+            this.zzre.add(com_google_android_gms_internal_cast_zzbj);
+        }
+        zza(textView, com_google_android_gms_internal_cast_zzbj);
+    }
+
+    public void bindTextViewToStreamDuration(TextView textView) {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        zza(textView, new zzbi(textView, this.zzim.getString(R.string.cast_invalid_stream_duration_text), null));
+    }
+
+    public void bindTextViewToStreamDuration(TextView textView, View view) {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        zza(textView, new zzbi(textView, this.zzim.getString(R.string.cast_invalid_stream_duration_text), view));
+    }
+
+    public void bindViewToLaunchExpandedController(View view) {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        view.setOnClickListener(new zzg(this));
+        zza(view, new zzat(view));
+    }
+
+    public void bindViewToClosedCaption(View view) {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        view.setOnClickListener(new zzh(this));
+        zza(view, new zzao(view, this.zzim));
+    }
+
+    public void bindImageViewToMuteToggle(ImageView imageView) {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        imageView.setOnClickListener(new zzi(this));
+        zza(imageView, new zzaz(imageView, this.zzim));
+    }
+
+    public void bindTextViewToMetadataOfCurrentItem(TextView textView, String str) {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        bindTextViewToMetadataOfCurrentItem(textView, Collections.singletonList(str));
+    }
+
+    public void bindTextViewToMetadataOfCurrentItem(TextView textView, List&lt;String&gt; list) {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        zza(textView, new zzay(textView, list));
+    }
+
+    @Deprecated
+    public void bindImageViewToImageOfCurrentItem(ImageView imageView, int i, @DrawableRes int i2) {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        zza(imageView, new zzar(imageView, this.zzim, new ImageHints(i, 0, 0), i2, null));
+    }
+
+    @Deprecated
+    public void bindImageViewToImageOfCurrentItem(ImageView imageView, int i, View view) {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        zza(imageView, new zzar(imageView, this.zzim, new ImageHints(i, 0, 0), 0, view));
+    }
+
+    public void bindImageViewToImageOfCurrentItem(ImageView imageView, @NonNull ImageHints imageHints, @DrawableRes int i) {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        zza(imageView, new zzar(imageView, this.zzim, imageHints, i, null));
+    }
+
+    public void bindImageViewToImageOfCurrentItem(ImageView imageView, @NonNull ImageHints imageHints, View view) {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        zza(imageView, new zzar(imageView, this.zzim, imageHints, 0, view));
+    }
+
+    public void bindViewVisibilityToMediaSession(View view, int i) {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        zza(view, new zzbl(view, i));
+    }
+
+    public void bindTextViewToMetadataOfPreloadedItem(TextView textView, String str) {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        bindTextViewToMetadataOfPreloadedItem(textView, Collections.singletonList(str));
+    }
+
+    public void bindTextViewToMetadataOfPreloadedItem(TextView textView, List&lt;String&gt; list) {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        zza(textView, new zzax(textView, list));
+    }
+
+    @Deprecated
+    public void bindImageViewToImageOfPreloadedItem(ImageView imageView, int i, @DrawableRes int i2) {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        zza(imageView, new zzap(imageView, this.zzim, new ImageHints(i, 0, 0), i2));
+    }
+
+    public void bindImageViewToImageOfPreloadedItem(ImageView imageView, @NonNull ImageHints imageHints, @DrawableRes int i) {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        zza(imageView, new zzap(imageView, this.zzim, imageHints, i));
+    }
+
+    public void bindViewVisibilityToPreloadingEvent(View view, int i) {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        zza(view, new zzbk(view, i));
+    }
+
+    public void bindViewToUIController(View view, UIController uIController) {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        zza(view, uIController);
+    }
+
+    public void bindTextViewToSmartSubtitle(TextView textView) {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        zza(textView, new zzbh(textView));
+    }
+
+    protected void onMuteToggleClicked(ImageView imageView) {
+        imageView = CastContext.getSharedInstance(this.zzim.getApplicationContext()).getSessionManager().getCurrentCastSession();
+        if (imageView != null) {
+            if (imageView.isConnected()) {
+                try {
+                    imageView.setMute(imageView.isMute() ^ true);
+                } catch (ImageView imageView2) {
+                    zzbe.e("Unable to call CastSession.setMute(boolean).", imageView2);
+                }
+            }
+        }
+    }
+
+    protected void onPlayPauseToggleClicked(ImageView imageView) {
+        imageView = getRemoteMediaClient();
+        if (imageView != null &amp;&amp; imageView.hasMediaSession()) {
+            imageView.togglePlayback();
+        }
+    }
+
+    protected void onSeekBarStopTrackingTouch(SeekBar seekBar) {
+        if (this.zzrd.containsKey(seekBar)) {
+            for (UIController uIController : (List) this.zzrd.get(seekBar)) {
+                if (uIController instanceof zzbd) {
+                    ((zzbd) uIController).zzk(true);
+                }
+            }
+        }
+        for (zzbj zzk : this.zzre) {
+            zzk.zzk(true);
+        }
+        RemoteMediaClient remoteMediaClient = getRemoteMediaClient();
+        if (remoteMediaClient != null &amp;&amp; remoteMediaClient.hasMediaSession()) {
+            remoteMediaClient.seek((long) seekBar.getProgress());
+        }
+    }
+
+    protected void onSeekBarStartTrackingTouch(SeekBar seekBar) {
+        if (this.zzrd.containsKey(seekBar)) {
+            for (UIController uIController : (List) this.zzrd.get(seekBar)) {
+                if (uIController instanceof zzbd) {
+                    ((zzbd) uIController).zzk(false);
+                }
+            }
+        }
+        for (zzbj zzk : this.zzre) {
+            zzk.zzk(false);
+        }
+    }
+
+    protected void onSeekBarProgressChanged(SeekBar seekBar, int i, boolean z) {
+        if (z) {
+            for (zzbj zzc : this.zzre) {
+                zzc.zzc((long) i);
+            }
+        }
+    }
+
+    protected void onClosedCaptionClicked(View view) {
+        view = getRemoteMediaClient();
+        if (view != null) {
+            if (view.hasMediaSession()) {
+                if (this.zzim instanceof FragmentActivity) {
+                    TracksChooserDialogFragment newInstance = TracksChooserDialogFragment.newInstance();
+                    FragmentActivity fragmentActivity = (FragmentActivity) this.zzim;
+                    FragmentTransaction beginTransaction = fragmentActivity.getSupportFragmentManager().beginTransaction();
+                    Fragment findFragmentByTag = fragmentActivity.getSupportFragmentManager().findFragmentByTag("TRACKS_CHOOSER_DIALOG_TAG");
+                    if (findFragmentByTag != null) {
+                        beginTransaction.remove(findFragmentByTag);
+                    }
+                    view.getMediaInfo();
+                    view.getMediaStatus().getActiveTrackIds();
+                    newInstance.show(beginTransaction, "TRACKS_CHOOSER_DIALOG_TAG");
+                }
+            }
+        }
+    }
+
+    protected void onForwardClicked(View view, long j) {
+        view = getRemoteMediaClient();
+        if (view != null &amp;&amp; view.hasMediaSession()) {
+            view.seek(view.getApproximateStreamPosition() + j);
+        }
+    }
+
+    protected void onLaunchExpandedControllerClicked(View view) {
+        view = CastContext.getSharedInstance(this.zzim).getCastOptions().getCastMediaOptions();
+        if (view != null) {
+            if (!TextUtils.isEmpty(view.getExpandedControllerActivityClassName())) {
+                ComponentName componentName = new ComponentName(this.zzim.getApplicationContext(), view.getExpandedControllerActivityClassName());
+                view = new Intent();
+                view.setComponent(componentName);
+                this.zzim.startActivity(view);
+            }
+        }
+    }
+
+    protected void onRewindClicked(View view, long j) {
+        view = getRemoteMediaClient();
+        if (view != null &amp;&amp; view.hasMediaSession()) {
+            view.seek(view.getApproximateStreamPosition() - j);
+        }
+    }
+
+    protected void onSkipNextClicked(View view) {
+        view = getRemoteMediaClient();
+        if (view != null &amp;&amp; view.hasMediaSession()) {
+            view.queueNext(null);
+        }
+    }
+
+    protected void onSkipPrevClicked(View view) {
+        view = getRemoteMediaClient();
+        if (view != null &amp;&amp; view.hasMediaSession()) {
+            view.queuePrev(null);
+        }
+    }
+
+    public void onSessionStarted(CastSession castSession, String str) {
+        zza(castSession);
+    }
+
+    public void onSessionResumed(CastSession castSession, boolean z) {
+        zza(castSession);
+    }
+
+    public void onSessionStartFailed(CastSession castSession, int i) {
+        zzcn();
+    }
+
+    public void onSessionEnded(CastSession castSession, int i) {
+        zzcn();
+    }
+
+    public void onSessionResumeFailed(CastSession castSession, int i) {
+        zzcn();
+    }
+
+    public void onStatusUpdated() {
+        zzco();
+        if (this.zzrf != null) {
+            this.zzrf.onStatusUpdated();
+        }
+    }
+
+    public void onMetadataUpdated() {
+        zzco();
+        if (this.zzrf != null) {
+            this.zzrf.onMetadataUpdated();
+        }
+    }
+
+    public void onQueueStatusUpdated() {
+        zzco();
+        if (this.zzrf != null) {
+            this.zzrf.onQueueStatusUpdated();
+        }
+    }
+
+    public void onPreloadStatusUpdated() {
+        zzco();
+        if (this.zzrf != null) {
+            this.zzrf.onPreloadStatusUpdated();
+        }
+    }
+
+    public void onAdBreakStatusUpdated() {
+        zzco();
+        if (this.zzrf != null) {
+            this.zzrf.onAdBreakStatusUpdated();
+        }
+    }
+
+    public void onSendingRemoteMediaRequest() {
+        for (List&lt;UIController&gt; it : this.zzrd.values()) {
+            for (UIController onSendingRemoteMediaRequest : it) {
+                onSendingRemoteMediaRequest.onSendingRemoteMediaRequest();
+            }
+        }
+        if (this.zzrf != null) {
+            this.zzrf.onSendingRemoteMediaRequest();
+        }
+    }
+
+    private final void zza(Session session) {
+        if (!isActive() &amp;&amp; (session instanceof CastSession)) {
+            if (session.isConnected()) {
+                CastSession castSession = (CastSession) session;
+                this.zzig = castSession.getRemoteMediaClient();
+                if (this.zzig != null) {
+                    this.zzig.addListener(this);
+                    for (List&lt;UIController&gt; it : this.zzrd.values()) {
+                        for (UIController onSessionConnected : it) {
+                            onSessionConnected.onSessionConnected(castSession);
+                        }
+                    }
+                    zzco();
+                }
+            }
+        }
+    }
+
+    private final void zzcn() {
+        if (isActive()) {
+            for (List&lt;UIController&gt; it : this.zzrd.values()) {
+                for (UIController onSessionEnded : it) {
+                    onSessionEnded.onSessionEnded();
+                }
+            }
+            this.zzig.removeListener(this);
+            this.zzig = null;
+        }
+    }
+
+    private final void zza(View view, UIController uIController) {
+        if (this.zzhj != null) {
+            List list = (List) this.zzrd.get(view);
+            if (list == null) {
+                list = new ArrayList();
+                this.zzrd.put(view, list);
+            }
+            list.add(uIController);
+            if (isActive() != null) {
+                uIController.onSessionConnected(this.zzhj.getCurrentCastSession());
+                zzco();
+            }
+        }
+    }
+
+    private final void zzco() {
+        for (List&lt;UIController&gt; it : this.zzrd.values()) {
+            for (UIController onMediaStatusUpdated : it) {
+                onMediaStatusUpdated.onMediaStatusUpdated();
+            }
+        }
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:11 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

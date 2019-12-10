@@ -1,0 +1,369 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9"><div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/gms/measurement/internal/zzag.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/gms/measurement/internal/zzag.java</a></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-7">report</i><h5>https?:</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>An URL was found, this might be an API endpoint or just a link to documentation. Hopefully the first one.</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#zzag_java285http" class="active">line 285</a></li></ul></div><div class="card-content"><div id="zzag_java285http">Code @ line 285<pre data-start="282" data-line="285" data-src="zzag.java" class="code line-numbers"><code>        zzajk = zza.zzd("measurement.config.url_scheme", str, str);
+        str = "app-measurement.com";
+        zzajl = zza.zzd("measurement.config.url_authority", str, str);
+        str = "https://app-measurement.com/a";
+        zzajw = zza.zzd("measurement.upload.url", str, str);
+        String str2 = "---";
+        zzako = zza.zzd("measurement.test.string_flag", str2, str2);
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvbWVhc3VyZW1lbnQvaW50ZXJuYWwvenphZy5qYXZhfHx8bGluZTogMjg1IDogaHR0cHM/Onx8fDd8fHxodHRwcz86fHx8Mjg1fHx8Mjgy">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvbWVhc3VyZW1lbnQvaW50ZXJuYWwvenphZy5qYXZhfHx8bGluZTogMjg1IDogaHR0cHM/Onx8fDd8fHxodHRwcz86fHx8Mjg1fHx8Mjgy')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvbWVhc3VyZW1lbnQvaW50ZXJuYWwvenphZy5qYXZhfHx8bGluZTogMjg1IDogaHR0cHM/Onx8fDd8fHxodHRwcz86fHx8Mjg1fHx8Mjgy').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvbWVhc3VyZW1lbnQvaW50ZXJuYWwvenphZy5qYXZhfHx8bGluZTogMjg1IDogaHR0cHM/Onx8fDd8fHxodHRwcz86fHx8Mjg1fHx8Mjgy" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvbWVhc3VyZW1lbnQvaW50ZXJuYWwvenphZy5qYXZhfHx8bGluZTogMjg1IDogaHR0cHM/Onx8fDd8fHxodHRwcz86fHx8Mjg1fHx8Mjgy' , 'ICAgICAgICB6emFqayA9IHp6YS56emQoIm1lYXN1cmVtZW50LmNvbmZpZy51cmxfc2NoZW1lIiwgc3RyLCBzdHIpOwogICAgICAgIHN0ciA9ICJhcHAtbWVhc3VyZW1lbnQuY29tIjsKICAgICAgICB6emFqbCA9IHp6YS56emQoIm1lYXN1cmVtZW50LmNvbmZpZy51cmxfYXV0aG9yaXR5Iiwgc3RyLCBzdHIpOwogICAgICAgIHN0ciA9ICJodHRwczovL2FwcC1tZWFzdXJlbWVudC5jb20vYSI7CiAgICAgICAgenphancgPSB6emEuenpkKCJtZWFzdXJlbWVudC51cGxvYWQudXJsIiwgc3RyLCBzdHIpOwogICAgICAgIFN0cmluZyBzdHIyID0gIi0tLSI7CiAgICAgICAgenpha28gPSB6emEuenpkKCJtZWFzdXJlbWVudC50ZXN0LnN0cmluZ19mbGFnIiwgc3RyMiwgc3RyMik7Cg==');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="zzag.java" data-line="285," class="code line-numbers"><code>package com.google.android.gms.measurement.internal;
+
+import android.content.Context;
+import androidx.annotation.WorkerThread;
+import androidx.recyclerview.widget.ItemTouchHelper.Callback;
+import com.google.android.exoplayer2.DefaultLoadControl;
+import com.google.android.exoplayer2.upstream.DefaultLoadErrorHandlingPolicy;
+import com.google.android.gms.cast.framework.media.NotificationOptions;
+import com.google.android.gms.common.GoogleApiAvailabilityLight;
+import com.google.android.gms.common.GooglePlayServicesUtilLight;
+import com.google.android.gms.common.util.VisibleForTesting;
+import com.google.android.gms.internal.measurement.zzsm;
+import com.google.android.gms.internal.measurement.zzsw;
+import com.google.android.gms.internal.measurement.zzsx;
+import com.google.android.gms.internal.measurement.zztd;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+@VisibleForTesting
+public final class zzag {
+    private static volatile zzbu zzadp;
+    static zzl zzait;
+    static List&lt;zza&lt;Integer&gt;&gt; zzaiu = new ArrayList();
+    static List&lt;zza&lt;Long&gt;&gt; zzaiv = new ArrayList();
+    static List&lt;zza&lt;Boolean&gt;&gt; zzaiw = new ArrayList();
+    static List&lt;zza&lt;String&gt;&gt; zzaix = new ArrayList();
+    static List&lt;zza&lt;Double&gt;&gt; zzaiy = new ArrayList();
+    private static final zztd zzaiz = new zztd(zzsw.zzfs("com.google.android.gms.measurement"));
+    @VisibleForTesting
+    private static Boolean zzaja;
+    private static zza&lt;Boolean&gt; zzajb = zza.zzb("measurement.log_third_party_store_events_enabled", false, false);
+    private static zza&lt;Boolean&gt; zzajc = zza.zzb("measurement.log_installs_enabled", false, false);
+    private static zza&lt;Boolean&gt; zzajd = zza.zzb("measurement.log_upgrades_enabled", false, false);
+    public static zza&lt;Boolean&gt; zzaje = zza.zzb("measurement.log_androidId_enabled", false, false);
+    public static zza&lt;Boolean&gt; zzajf = zza.zzb("measurement.upload_dsid_enabled", false, false);
+    public static zza&lt;String&gt; zzajg = zza.zzd("measurement.log_tag", "FA", "FA-SVC");
+    public static zza&lt;Long&gt; zzajh = zza.zzb("measurement.ad_id_cache_time", (long) NotificationOptions.SKIP_STEP_TEN_SECONDS_IN_MS, (long) NotificationOptions.SKIP_STEP_TEN_SECONDS_IN_MS);
+    public static zza&lt;Long&gt; zzaji = zza.zzb("measurement.monitoring.sample_period_millis", 86400000, 86400000);
+    public static zza&lt;Long&gt; zzajj = zza.zzb("measurement.config.cache_time", 86400000, 3600000);
+    public static zza&lt;String&gt; zzajk;
+    public static zza&lt;String&gt; zzajl;
+    public static zza&lt;Integer&gt; zzajm = zza.zzc("measurement.upload.max_bundles", 100, 100);
+    public static zza&lt;Integer&gt; zzajn = zza.zzc("measurement.upload.max_batch_size", 65536, 65536);
+    public static zza&lt;Integer&gt; zzajo = zza.zzc("measurement.upload.max_bundle_size", 65536, 65536);
+    public static zza&lt;Integer&gt; zzajp = zza.zzc("measurement.upload.max_events_per_bundle", 1000, 1000);
+    public static zza&lt;Integer&gt; zzajq = zza.zzc("measurement.upload.max_events_per_day", DefaultOggSeeker.MATCH_BYTE_RANGE, DefaultOggSeeker.MATCH_BYTE_RANGE);
+    public static zza&lt;Integer&gt; zzajr = zza.zzc("measurement.upload.max_error_events_per_day", 1000, 1000);
+    public static zza&lt;Integer&gt; zzajs = zza.zzc("measurement.upload.max_public_events_per_day", DefaultLoadControl.DEFAULT_MAX_BUFFER_MS, DefaultLoadControl.DEFAULT_MAX_BUFFER_MS);
+    public static zza&lt;Integer&gt; zzajt = zza.zzc("measurement.upload.max_conversions_per_day", 500, 500);
+    public static zza&lt;Integer&gt; zzaju = zza.zzc("measurement.upload.max_realtime_events_per_day", 10, 10);
+    public static zza&lt;Integer&gt; zzajv = zza.zzc("measurement.store.max_stored_events_per_app", DefaultOggSeeker.MATCH_BYTE_RANGE, DefaultOggSeeker.MATCH_BYTE_RANGE);
+    public static zza&lt;String&gt; zzajw;
+    public static zza&lt;Long&gt; zzajx = zza.zzb("measurement.upload.backoff_period", 43200000, 43200000);
+    public static zza&lt;Long&gt; zzajy = zza.zzb("measurement.upload.window_interval", 3600000, 3600000);
+    public static zza&lt;Long&gt; zzajz = zza.zzb("measurement.upload.interval", 3600000, 3600000);
+    public static zza&lt;Long&gt; zzaka = zza.zzb("measurement.upload.realtime_upload_interval", (long) NotificationOptions.SKIP_STEP_TEN_SECONDS_IN_MS, (long) NotificationOptions.SKIP_STEP_TEN_SECONDS_IN_MS);
+    public static zza&lt;Long&gt; zzakb = zza.zzb("measurement.upload.debug_upload_interval", 1000, 1000);
+    public static zza&lt;Long&gt; zzakc = zza.zzb("measurement.upload.minimum_delay", 500, 500);
+    public static zza&lt;Long&gt; zzakd = zza.zzb("measurement.alarm_manager.minimum_interval", (long) DefaultLoadErrorHandlingPolicy.DEFAULT_TRACK_BLACKLIST_MS, (long) DefaultLoadErrorHandlingPolicy.DEFAULT_TRACK_BLACKLIST_MS);
+    public static zza&lt;Long&gt; zzake = zza.zzb("measurement.upload.stale_data_deletion_interval", 86400000, 86400000);
+    public static zza&lt;Long&gt; zzakf = zza.zzb("measurement.upload.refresh_blacklisted_config_interval", 604800000, 604800000);
+    public static zza&lt;Long&gt; zzakg = zza.zzb("measurement.upload.initial_upload_delay_time", 15000, 15000);
+    public static zza&lt;Long&gt; zzakh = zza.zzb("measurement.upload.retry_time", 1800000, 1800000);
+    public static zza&lt;Integer&gt; zzaki = zza.zzc("measurement.upload.retry_count", 6, 6);
+    public static zza&lt;Long&gt; zzakj = zza.zzb("measurement.upload.max_queue_time", 2419200000L, 2419200000L);
+    public static zza&lt;Integer&gt; zzakk = zza.zzc("measurement.lifetimevalue.max_currency_tracked", 4, 4);
+    public static zza&lt;Integer&gt; zzakl = zza.zzc("measurement.audience.filter_result_max_count", Callback.DEFAULT_DRAG_ANIMATION_DURATION, Callback.DEFAULT_DRAG_ANIMATION_DURATION);
+    public static zza&lt;Long&gt; zzakm = zza.zzb("measurement.service_client.idle_disconnect_millis", 5000, 5000);
+    public static zza&lt;Boolean&gt; zzakn = zza.zzb("measurement.test.boolean_flag", false, false);
+    public static zza&lt;String&gt; zzako;
+    public static zza&lt;Long&gt; zzakp = zza.zzb("measurement.test.long_flag", -1, -1);
+    public static zza&lt;Integer&gt; zzakq = zza.zzc("measurement.test.int_flag", -2, -2);
+    public static zza&lt;Double&gt; zzakr = zza.zza("measurement.test.double_flag", -3.0d, -3.0d);
+    public static zza&lt;Integer&gt; zzaks = zza.zzc("measurement.experiment.max_ids", 50, 50);
+    public static zza&lt;Boolean&gt; zzakt = zza.zzb("measurement.lifetimevalue.user_engagement_tracking_enabled", true, true);
+    public static zza&lt;Boolean&gt; zzaku = zza.zzb("measurement.audience.complex_param_evaluation", true, true);
+    public static zza&lt;Boolean&gt; zzakv = zza.zzb("measurement.validation.internal_limits_internal_event_params", false, false);
+    public static zza&lt;Boolean&gt; zzakw = zza.zzb("measurement.quality.unsuccessful_update_retry_counter", true, true);
+    public static zza&lt;Boolean&gt; zzakx = zza.zzb("measurement.iid.disable_on_collection_disabled", true, true);
+    public static zza&lt;Boolean&gt; zzaky = zza.zzb("measurement.app_launch.call_only_when_enabled", true, true);
+    public static zza&lt;Boolean&gt; zzakz = zza.zzb("measurement.run_on_worker_inline", true, false);
+    public static zza&lt;Boolean&gt; zzala = zza.zzb("measurement.audience.dynamic_filters", false, false);
+    public static zza&lt;Boolean&gt; zzalb = zza.zzb("measurement.reset_analytics.persist_time", false, false);
+    public static zza&lt;Boolean&gt; zzalc = zza.zzb("measurement.validation.value_and_currency_params", false, false);
+    public static zza&lt;Boolean&gt; zzald = zza.zzb("measurement.sampling.time_zone_offset_enabled", false, false);
+    public static zza&lt;Boolean&gt; zzale = zza.zzb("measurement.referrer.enable_logging_install_referrer_cmp_from_apk", false, false);
+    public static zza&lt;Boolean&gt; zzalf = zza.zzb("measurement.fetch_config_with_admob_app_id", false, false);
+    public static zza&lt;Boolean&gt; zzalg = zza.zzb("measurement.sessions.session_id_enabled", false, false);
+    public static zza&lt;Boolean&gt; zzalh = zza.zzb("measurement.sessions.session_number_enabled", false, false);
+    public static zza&lt;Boolean&gt; zzali = zza.zzb("measurement.sessions.immediate_start_enabled", false, false);
+    public static zza&lt;Boolean&gt; zzalj = zza.zzb("measurement.sessions.background_sessions_enabled", false, false);
+    public static zza&lt;Boolean&gt; zzalk = zza.zzb("measurement.collection.firebase_global_collection_flag_enabled", true, true);
+    public static zza&lt;Boolean&gt; zzall = zza.zzb("measurement.collection.efficient_engagement_reporting_enabled", false, false);
+    public static zza&lt;Boolean&gt; zzalm = zza.zzb("measurement.collection.redundant_engagement_removal_enabled", false, false);
+    public static zza&lt;Boolean&gt; zzaln = zza.zzb("measurement.remove_app_instance_id_cache_enabled", true, true);
+    public static zza&lt;Boolean&gt; zzalo = zza.zzb("measurement.collection.init_params_control_enabled", true, true);
+    public static zza&lt;Boolean&gt; zzalp = zza.zzb("measurement.upload.disable_is_uploader", false, false);
+    public static zza&lt;Boolean&gt; zzalq = zza.zzb("measurement.experiment.enable_experiment_reporting", false, false);
+    public static zza&lt;Boolean&gt; zzalr = zza.zzb("measurement.collection.log_event_and_bundle_v2", true, true);
+
+    @VisibleForTesting
+    public static final class zza&lt;V&gt; {
+        private final V zzaan;
+        private zzsx&lt;V&gt; zzals;
+        private final V zzalt;
+        private volatile V zzalu;
+        private final String zzoj;
+
+        private zza(String str, V v, V v2) {
+            this.zzoj = str;
+            this.zzaan = v;
+            this.zzalt = v2;
+        }
+
+        static zza&lt;Boolean&gt; zzb(String str, boolean z, boolean z2) {
+            zza&lt;Boolean&gt; com_google_android_gms_measurement_internal_zzag_zza = new zza(str, Boolean.valueOf(z), Boolean.valueOf(z2));
+            zzag.zzaiw.add(com_google_android_gms_measurement_internal_zzag_zza);
+            return com_google_android_gms_measurement_internal_zzag_zza;
+        }
+
+        static zza&lt;String&gt; zzd(String str, String str2, String str3) {
+            zza&lt;String&gt; com_google_android_gms_measurement_internal_zzag_zza = new zza(str, str2, str3);
+            zzag.zzaix.add(com_google_android_gms_measurement_internal_zzag_zza);
+            return com_google_android_gms_measurement_internal_zzag_zza;
+        }
+
+        static zza&lt;Long&gt; zzb(String str, long j, long j2) {
+            zza&lt;Long&gt; com_google_android_gms_measurement_internal_zzag_zza = new zza(str, Long.valueOf(j), Long.valueOf(j2));
+            zzag.zzaiv.add(com_google_android_gms_measurement_internal_zzag_zza);
+            return com_google_android_gms_measurement_internal_zzag_zza;
+        }
+
+        static zza&lt;Integer&gt; zzc(String str, int i, int i2) {
+            zza&lt;Integer&gt; com_google_android_gms_measurement_internal_zzag_zza = new zza(str, Integer.valueOf(i), Integer.valueOf(i2));
+            zzag.zzaiu.add(com_google_android_gms_measurement_internal_zzag_zza);
+            return com_google_android_gms_measurement_internal_zzag_zza;
+        }
+
+        static zza&lt;Double&gt; zza(String str, double d, double d2) {
+            d = new zza(str, Double.valueOf(-3.0d), Double.valueOf(-3.0d));
+            zzag.zzaiy.add(d);
+            return d;
+        }
+
+        public final String getKey() {
+            return this.zzoj;
+        }
+
+        private static void zzq() {
+            synchronized (zza.class) {
+                for (zza com_google_android_gms_measurement_internal_zzag_zza : zzag.zzaiw) {
+                    zztd zziz = zzag.zzaiz;
+                    String str = com_google_android_gms_measurement_internal_zzag_zza.zzoj;
+                    zzl com_google_android_gms_measurement_internal_zzl = zzag.zzait;
+                    com_google_android_gms_measurement_internal_zzag_zza.zzals = zziz.zzd(str, ((Boolean) com_google_android_gms_measurement_internal_zzag_zza.zzaan).booleanValue());
+                }
+                for (zza com_google_android_gms_measurement_internal_zzag_zza2 : zzag.zzaix) {
+                    zziz = zzag.zzaiz;
+                    str = com_google_android_gms_measurement_internal_zzag_zza2.zzoj;
+                    com_google_android_gms_measurement_internal_zzl = zzag.zzait;
+                    com_google_android_gms_measurement_internal_zzag_zza2.zzals = zziz.zzy(str, (String) com_google_android_gms_measurement_internal_zzag_zza2.zzaan);
+                }
+                for (zza com_google_android_gms_measurement_internal_zzag_zza22 : zzag.zzaiv) {
+                    zziz = zzag.zzaiz;
+                    str = com_google_android_gms_measurement_internal_zzag_zza22.zzoj;
+                    com_google_android_gms_measurement_internal_zzl = zzag.zzait;
+                    com_google_android_gms_measurement_internal_zzag_zza22.zzals = zziz.zze(str, ((Long) com_google_android_gms_measurement_internal_zzag_zza22.zzaan).longValue());
+                }
+                for (zza com_google_android_gms_measurement_internal_zzag_zza222 : zzag.zzaiu) {
+                    zziz = zzag.zzaiz;
+                    str = com_google_android_gms_measurement_internal_zzag_zza222.zzoj;
+                    com_google_android_gms_measurement_internal_zzl = zzag.zzait;
+                    com_google_android_gms_measurement_internal_zzag_zza222.zzals = zziz.zzd(str, ((Integer) com_google_android_gms_measurement_internal_zzag_zza222.zzaan).intValue());
+                }
+                for (zza com_google_android_gms_measurement_internal_zzag_zza2222 : zzag.zzaiy) {
+                    zziz = zzag.zzaiz;
+                    str = com_google_android_gms_measurement_internal_zzag_zza2222.zzoj;
+                    com_google_android_gms_measurement_internal_zzl = zzag.zzait;
+                    com_google_android_gms_measurement_internal_zzag_zza2222.zzals = zziz.zzb(str, ((Double) com_google_android_gms_measurement_internal_zzag_zza2222.zzaan).doubleValue());
+                }
+            }
+        }
+
+        @WorkerThread
+        private static void zzja() {
+            synchronized (zza.class) {
+                if (zzl.isMainThread()) {
+                    throw new IllegalStateException("Tried to refresh flag cache on main thread or on package side.");
+                }
+                zzl com_google_android_gms_measurement_internal_zzl = zzag.zzait;
+                try {
+                    for (zza com_google_android_gms_measurement_internal_zzag_zza : zzag.zzaiw) {
+                        com_google_android_gms_measurement_internal_zzag_zza.zzalu = com_google_android_gms_measurement_internal_zzag_zza.zzals.get();
+                    }
+                    for (zza com_google_android_gms_measurement_internal_zzag_zza2 : zzag.zzaix) {
+                        com_google_android_gms_measurement_internal_zzag_zza2.zzalu = com_google_android_gms_measurement_internal_zzag_zza2.zzals.get();
+                    }
+                    for (zza com_google_android_gms_measurement_internal_zzag_zza22 : zzag.zzaiv) {
+                        com_google_android_gms_measurement_internal_zzag_zza22.zzalu = com_google_android_gms_measurement_internal_zzag_zza22.zzals.get();
+                    }
+                    for (zza com_google_android_gms_measurement_internal_zzag_zza222 : zzag.zzaiu) {
+                        com_google_android_gms_measurement_internal_zzag_zza222.zzalu = com_google_android_gms_measurement_internal_zzag_zza222.zzals.get();
+                    }
+                    for (zza com_google_android_gms_measurement_internal_zzag_zza2222 : zzag.zzaiy) {
+                        com_google_android_gms_measurement_internal_zzag_zza2222.zzalu = com_google_android_gms_measurement_internal_zzag_zza2222.zzals.get();
+                    }
+                } catch (Exception e) {
+                    zzag.zza(e);
+                }
+            }
+        }
+
+        public final V get() {
+            if (zzag.zzait == null) {
+                return this.zzaan;
+            }
+            zzl com_google_android_gms_measurement_internal_zzl = zzag.zzait;
+            if (zzl.isMainThread()) {
+                return this.zzalu == null ? this.zzaan : this.zzalu;
+            } else {
+                zzja();
+                try {
+                    return this.zzals.get();
+                } catch (Exception e) {
+                    zzag.zza(e);
+                    return this.zzals.getDefaultValue();
+                }
+            }
+        }
+
+        public final V get(V v) {
+            if (v != null) {
+                return v;
+            }
+            if (zzag.zzait == null) {
+                return this.zzaan;
+            }
+            v = zzag.zzait;
+            if (zzl.isMainThread() != null) {
+                return this.zzalu == null ? this.zzaan : this.zzalu;
+            } else {
+                zzja();
+                try {
+                    return this.zzals.get();
+                } catch (Exception e) {
+                    zzag.zza(e);
+                    return this.zzals.getDefaultValue();
+                }
+            }
+        }
+    }
+
+    public static Map&lt;String, String&gt; zzm(Context context) {
+        return zzsm.zza(context.getContentResolver(), zzsw.zzfs("com.google.android.gms.measurement")).zztk();
+    }
+
+    static void zza(zzbu com_google_android_gms_measurement_internal_zzbu) {
+        zzadp = com_google_android_gms_measurement_internal_zzbu;
+    }
+
+    @VisibleForTesting
+    static void zza(Exception exception) {
+        if (zzadp != null) {
+            Context context = zzadp.getContext();
+            if (zzaja == null) {
+                zzaja = Boolean.valueOf(GoogleApiAvailabilityLight.getInstance().isGooglePlayServicesAvailable(context, GooglePlayServicesUtilLight.GOOGLE_PLAY_SERVICES_VERSION_CODE) == 0);
+            }
+            if (zzaja.booleanValue()) {
+                zzadp.zzgt().zzjg().zzg("Got Exception on PhenotypeFlag.get on Play device", exception);
+            }
+        }
+    }
+
+    static void zza(zzl com_google_android_gms_measurement_internal_zzl) {
+        zzait = com_google_android_gms_measurement_internal_zzl;
+        zza.zzq();
+    }
+
+    static {
+        String str = "https";
+        zzajk = zza.zzd("measurement.config.url_scheme", str, str);
+        str = "app-measurement.com";
+        zzajl = zza.zzd("measurement.config.url_authority", str, str);
+        str = "https://app-measurement.com/a";
+        zzajw = zza.zzd("measurement.upload.url", str, str);
+        String str2 = "---";
+        zzako = zza.zzd("measurement.test.string_flag", str2, str2);
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:9 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

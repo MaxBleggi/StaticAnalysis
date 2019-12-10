@@ -1,0 +1,299 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/exoplayer2/MediaPeriodHolder.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/exoplayer2/MediaPeriodHolder.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="MediaPeriodHolder.java" data-line="" class="code line-numbers"><code>package com.google.android.exoplayer2;
+
+import com.google.android.exoplayer2.source.ClippingMediaPeriod;
+import com.google.android.exoplayer2.source.EmptySampleStream;
+import com.google.android.exoplayer2.source.MediaPeriod;
+import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.source.SampleStream;
+import com.google.android.exoplayer2.source.TrackGroupArray;
+import com.google.android.exoplayer2.trackselection.TrackSelection;
+import com.google.android.exoplayer2.trackselection.TrackSelector;
+import com.google.android.exoplayer2.trackselection.TrackSelectorResult;
+import com.google.android.exoplayer2.upstream.Allocator;
+import com.google.android.exoplayer2.util.Assertions;
+import com.google.android.exoplayer2.util.Log;
+
+final class MediaPeriodHolder {
+    private static final String TAG = "MediaPeriodHolder";
+    public boolean hasEnabledTracks;
+    public MediaPeriodInfo info;
+    public final boolean[] mayRetainStreamFlags;
+    public final MediaPeriod mediaPeriod;
+    private final MediaSource mediaSource;
+    public MediaPeriodHolder next;
+    private TrackSelectorResult periodTrackSelectorResult;
+    public boolean prepared;
+    private final RendererCapabilities[] rendererCapabilities;
+    private long rendererPositionOffsetUs;
+    public final SampleStream[] sampleStreams;
+    public TrackGroupArray trackGroups;
+    private final TrackSelector trackSelector;
+    public TrackSelectorResult trackSelectorResult;
+    public final Object uid;
+
+    public MediaPeriodHolder(RendererCapabilities[] rendererCapabilitiesArr, long j, TrackSelector trackSelector, Allocator allocator, MediaSource mediaSource, MediaPeriodInfo mediaPeriodInfo) {
+        this.rendererCapabilities = rendererCapabilitiesArr;
+        this.rendererPositionOffsetUs = j - mediaPeriodInfo.startPositionUs;
+        this.trackSelector = trackSelector;
+        this.mediaSource = mediaSource;
+        this.uid = Assertions.checkNotNull(mediaPeriodInfo.id.periodUid);
+        this.info = mediaPeriodInfo;
+        this.sampleStreams = new SampleStream[rendererCapabilitiesArr.length];
+        this.mayRetainStreamFlags = new boolean[rendererCapabilitiesArr.length];
+        MediaPeriod createPeriod = mediaSource.createPeriod(mediaPeriodInfo.id, allocator);
+        if (mediaPeriodInfo.id.endPositionUs != Long.MIN_VALUE) {
+            ClippingMediaPeriod clippingMediaPeriod = new ClippingMediaPeriod(createPeriod, true, 0, mediaPeriodInfo.id.endPositionUs);
+        } else {
+            rendererCapabilitiesArr = createPeriod;
+        }
+        this.mediaPeriod = rendererCapabilitiesArr;
+    }
+
+    public long toRendererTime(long j) {
+        return j + getRendererOffset();
+    }
+
+    public long toPeriodTime(long j) {
+        return j - getRendererOffset();
+    }
+
+    public long getRendererOffset() {
+        return this.rendererPositionOffsetUs;
+    }
+
+    public long getStartPositionRendererTime() {
+        return this.info.startPositionUs + this.rendererPositionOffsetUs;
+    }
+
+    public boolean isFullyBuffered() {
+        return this.prepared &amp;&amp; (!this.hasEnabledTracks || this.mediaPeriod.getBufferedPositionUs() == Long.MIN_VALUE);
+    }
+
+    public long getDurationUs() {
+        return this.info.durationUs;
+    }
+
+    public long getBufferedPositionUs(boolean z) {
+        if (!this.prepared) {
+            return this.info.startPositionUs;
+        }
+        long bufferedPositionUs = this.hasEnabledTracks ? this.mediaPeriod.getBufferedPositionUs() : Long.MIN_VALUE;
+        if (bufferedPositionUs == Long.MIN_VALUE &amp;&amp; z) {
+            bufferedPositionUs = this.info.durationUs;
+        }
+        return bufferedPositionUs;
+    }
+
+    public long getNextLoadPositionUs() {
+        return !this.prepared ? 0 : this.mediaPeriod.getNextLoadPositionUs();
+    }
+
+    public void handlePrepared(float f) throws ExoPlaybackException {
+        this.prepared = true;
+        this.trackGroups = this.mediaPeriod.getTrackGroups();
+        selectTracks(f);
+        long applyTrackSelection = applyTrackSelection(this.info.startPositionUs, 0.0f);
+        this.rendererPositionOffsetUs += this.info.startPositionUs - applyTrackSelection;
+        this.info = this.info.copyWithStartPositionUs(applyTrackSelection);
+    }
+
+    public void reevaluateBuffer(long j) {
+        if (this.prepared) {
+            this.mediaPeriod.reevaluateBuffer(toPeriodTime(j));
+        }
+    }
+
+    public void continueLoading(long j) {
+        this.mediaPeriod.continueLoading(toPeriodTime(j));
+    }
+
+    public boolean selectTracks(float f) throws ExoPlaybackException {
+        TrackSelectorResult selectTracks = this.trackSelector.selectTracks(this.rendererCapabilities, this.trackGroups);
+        int i = 0;
+        if (selectTracks.isEquivalent(this.periodTrackSelectorResult)) {
+            return false;
+        }
+        this.trackSelectorResult = selectTracks;
+        TrackSelection[] all = this.trackSelectorResult.selections.getAll();
+        int length = all.length;
+        while (i &lt; length) {
+            TrackSelection trackSelection = all[i];
+            if (trackSelection != null) {
+                trackSelection.onPlaybackSpeed(f);
+            }
+            i++;
+        }
+        return true;
+    }
+
+    public long applyTrackSelection(long j, boolean z) {
+        return applyTrackSelection(j, z, new boolean[this.rendererCapabilities.length]);
+    }
+
+    public long applyTrackSelection(long j, boolean z, boolean[] zArr) {
+        int i = 0;
+        while (true) {
+            boolean z2 = true;
+            if (i &gt;= this.trackSelectorResult.length) {
+                break;
+            }
+            boolean[] zArr2 = this.mayRetainStreamFlags;
+            if (z || !this.trackSelectorResult.isEquivalent(this.periodTrackSelectorResult, i)) {
+                z2 = false;
+            }
+            zArr2[i] = z2;
+            i++;
+        }
+        disassociateNoSampleRenderersWithEmptySampleStream(this.sampleStreams);
+        updatePeriodTrackSelectorResult(this.trackSelectorResult);
+        z = this.trackSelectorResult.selections;
+        j = this.mediaPeriod.selectTracks(z.getAll(), this.mayRetainStreamFlags, this.sampleStreams, zArr, j);
+        associateNoSampleRenderersWithEmptySampleStream(this.sampleStreams);
+        this.hasEnabledTracks = false;
+        for (zArr = null; zArr &lt; this.sampleStreams.length; zArr++) {
+            if (this.sampleStreams[zArr] != null) {
+                Assertions.checkState(this.trackSelectorResult.isRendererEnabled(zArr));
+                if (this.rendererCapabilities[zArr].getTrackType() != 6) {
+                    this.hasEnabledTracks = true;
+                }
+            } else {
+                Assertions.checkState(z.get(zArr) == null);
+            }
+        }
+        return j;
+    }
+
+    public void release() {
+        updatePeriodTrackSelectorResult(null);
+        try {
+            if (this.info.id.endPositionUs != Long.MIN_VALUE) {
+                this.mediaSource.releasePeriod(((ClippingMediaPeriod) this.mediaPeriod).mediaPeriod);
+            } else {
+                this.mediaSource.releasePeriod(this.mediaPeriod);
+            }
+        } catch (Throwable e) {
+            Log.e(TAG, "Period release failed.", e);
+        }
+    }
+
+    private void updatePeriodTrackSelectorResult(TrackSelectorResult trackSelectorResult) {
+        if (this.periodTrackSelectorResult != null) {
+            disableTrackSelectionsInResult(this.periodTrackSelectorResult);
+        }
+        this.periodTrackSelectorResult = trackSelectorResult;
+        if (this.periodTrackSelectorResult != null) {
+            enableTrackSelectionsInResult(this.periodTrackSelectorResult);
+        }
+    }
+
+    private void enableTrackSelectionsInResult(TrackSelectorResult trackSelectorResult) {
+        for (int i = 0; i &lt; trackSelectorResult.length; i++) {
+            boolean isRendererEnabled = trackSelectorResult.isRendererEnabled(i);
+            TrackSelection trackSelection = trackSelectorResult.selections.get(i);
+            if (isRendererEnabled &amp;&amp; trackSelection != null) {
+                trackSelection.enable();
+            }
+        }
+    }
+
+    private void disableTrackSelectionsInResult(TrackSelectorResult trackSelectorResult) {
+        for (int i = 0; i &lt; trackSelectorResult.length; i++) {
+            boolean isRendererEnabled = trackSelectorResult.isRendererEnabled(i);
+            TrackSelection trackSelection = trackSelectorResult.selections.get(i);
+            if (isRendererEnabled &amp;&amp; trackSelection != null) {
+                trackSelection.disable();
+            }
+        }
+    }
+
+    private void disassociateNoSampleRenderersWithEmptySampleStream(SampleStream[] sampleStreamArr) {
+        for (int i = 0; i &lt; this.rendererCapabilities.length; i++) {
+            if (this.rendererCapabilities[i].getTrackType() == 6) {
+                sampleStreamArr[i] = null;
+            }
+        }
+    }
+
+    private void associateNoSampleRenderersWithEmptySampleStream(SampleStream[] sampleStreamArr) {
+        int i = 0;
+        while (i &lt; this.rendererCapabilities.length) {
+            if (this.rendererCapabilities[i].getTrackType() == 6 &amp;&amp; this.trackSelectorResult.isRendererEnabled(i)) {
+                sampleStreamArr[i] = new EmptySampleStream();
+            }
+            i++;
+        }
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:7 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

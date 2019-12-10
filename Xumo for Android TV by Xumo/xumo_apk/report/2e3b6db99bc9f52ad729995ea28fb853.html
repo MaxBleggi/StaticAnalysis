@@ -1,0 +1,303 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/xumo/xumo/widget/XumoToolbar.java" target="_blank">/xumo_apk/jadx_source_code/com/xumo/xumo/widget/XumoToolbar.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="XumoToolbar.java" data-line="" class="code line-numbers"><code>package com.xumo.xumo.widget;
+
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.AttributeSet;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
+import com.xumo.xumo.tv.R;
+import com.xumo.xumo.util.XumoImageUtil;
+
+public class XumoToolbar extends Toolbar {
+    private TextView mActionMenuButton;
+    private RelativeLayout mBarLayout;
+    private ImageView mCenterLogoView;
+    private TextView mCenterTitleView;
+    private ImageButton mLeftImageButton;
+    private ViewGroup mSearchBar;
+    private ImageView mSearchClearView;
+    private EditText mSearchInputView;
+    private SearchKeywordListener mSearchKeywordListener;
+    private View mXumoBar;
+
+    public interface SearchKeywordListener {
+        void requestSearchVideo(String str);
+    }
+
+    public XumoToolbar(Context context) {
+        super(context);
+    }
+
+    public XumoToolbar(Context context, @Nullable AttributeSet attributeSet) {
+        super(context, attributeSet);
+    }
+
+    public XumoToolbar(Context context, @Nullable AttributeSet attributeSet, int i) {
+        super(context, attributeSet, i);
+    }
+
+    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        super.onLayout(z, i, i2, i3, i4);
+    }
+
+    public XumoToolbar setLogoInCenter(int i) {
+        ensureApplicableView();
+        this.mCenterLogoView.setImageResource(i);
+        return this;
+    }
+
+    public XumoToolbar setLogoInCenter(Bitmap bitmap) {
+        ensureApplicableView();
+        this.mCenterLogoView.setImageBitmap(bitmap);
+        return this;
+    }
+
+    public XumoToolbar setChannelLogoInCenter(String str) {
+        ensureApplicableView();
+        XumoImageUtil.setChannelImage(getContext(), str, this.mCenterLogoView, new int[0]);
+        return this;
+    }
+
+    public XumoToolbar setTitleInCenter(int i) {
+        return setTitleInCenter(i, -1);
+    }
+
+    public XumoToolbar setTitleInCenter(int i, int i2) {
+        ensureApplicableView();
+        this.mCenterTitleView.setText(i);
+        if (i2 != -1) {
+            this.mCenterTitleView.setTextColor(i2);
+        }
+        return this;
+    }
+
+    public XumoToolbar setTitleInCenter(String str, int i) {
+        ensureApplicableView();
+        this.mCenterTitleView.setText(str);
+        if (i != -1) {
+            this.mCenterTitleView.setTextColor(i);
+        }
+        return this;
+    }
+
+    public XumoToolbar setLeftImageButton(int i, OnClickListener onClickListener) {
+        ensureApplicableView();
+        this.mLeftImageButton.setImageResource(i);
+        this.mLeftImageButton.setOnClickListener(onClickListener);
+        if (onClickListener == null) {
+            this.mLeftImageButton.setClickable(null);
+        } else {
+            this.mLeftImageButton.setClickable(true);
+        }
+        return this;
+    }
+
+    public XumoToolbar setLeftImageButton(Drawable drawable, OnClickListener onClickListener) {
+        ensureApplicableView();
+        this.mLeftImageButton.setImageDrawable(drawable);
+        this.mLeftImageButton.setOnClickListener(onClickListener);
+        if (onClickListener == null) {
+            this.mLeftImageButton.setClickable(null);
+        } else {
+            this.mLeftImageButton.setClickable(true);
+        }
+        return this;
+    }
+
+    public void setLeftImageButtonVisibility(int i) {
+        ensureApplicableView();
+        this.mLeftImageButton.setVisibility(i);
+    }
+
+    public XumoToolbar setActionMenuButton(int i, OnClickListener onClickListener) {
+        ensureApplicableView();
+        this.mActionMenuButton.setText(i);
+        this.mActionMenuButton.setOnClickListener(onClickListener);
+        return this;
+    }
+
+    public void showSearchBar(SearchKeywordListener searchKeywordListener) {
+        ensureApplicableView();
+        this.mSearchBar.setVisibility(0);
+        this.mSearchKeywordListener = searchKeywordListener;
+    }
+
+    public void clear() {
+        this.mCenterLogoView.setImageDrawable(null);
+        this.mCenterTitleView.setText("");
+        this.mLeftImageButton.setImageDrawable(null);
+        this.mLeftImageButton.setOnClickListener(null);
+        this.mActionMenuButton.setText("");
+        this.mActionMenuButton.setOnClickListener(null);
+        this.mSearchBar.setVisibility(8);
+        hideSoftKeyboard();
+        this.mSearchInputView.clearFocus();
+        this.mSearchKeywordListener = null;
+    }
+
+    private void hideSoftKeyboard() {
+        if (getContext() != null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getContext().getSystemService("input_method");
+            if (inputMethodManager != null) {
+                inputMethodManager.hideSoftInputFromWindow(getWindowToken(), 0);
+            }
+        }
+    }
+
+    private void ensureApplicableView() {
+        if (this.mXumoBar == null) {
+            this.mXumoBar = LayoutInflater.from(getContext()).inflate(R.layout.widget_xumo_toolbar, this, true);
+            this.mBarLayout = (RelativeLayout) this.mXumoBar.findViewById(R.id.toolbar_parent_layout);
+            this.mCenterLogoView = (ImageView) this.mXumoBar.findViewById(R.id.toolbar_center_logo);
+            this.mCenterTitleView = (TextView) this.mXumoBar.findViewById(R.id.toolbar_center_title);
+            this.mLeftImageButton = (ImageButton) this.mXumoBar.findViewById(R.id.toolbar_left_button);
+            this.mActionMenuButton = (TextView) this.mXumoBar.findViewById(R.id.toolbar_action_button);
+            ensureSearchBar();
+        }
+    }
+
+    private void ensureSearchBar() {
+        if (this.mSearchBar == null) {
+            this.mSearchBar = (ViewGroup) this.mXumoBar.findViewById(R.id.toolbar_search_bar);
+            this.mSearchInputView = (EditText) this.mSearchBar.findViewById(R.id.search_keyword_input);
+            this.mSearchClearView = (ImageView) this.mSearchBar.findViewById(R.id.search_keyword_clear);
+            this.mSearchBar.findViewById(R.id.search_logo).setOnClickListener(new OnClickListener() {
+                public void onClick(View view) {
+                    XumoToolbar.this.mSearchInputView.requestFocus();
+                }
+            });
+            this.mSearchClearView.setOnClickListener(new OnClickListener() {
+                public void onClick(View view) {
+                    XumoToolbar.this.mSearchInputView.setText("");
+                }
+            });
+            this.mSearchInputView.addTextChangedListener(new TextWatcher() {
+                public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                }
+
+                public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                }
+
+                public void afterTextChanged(Editable editable) {
+                    if (editable != null) {
+                        if (editable.length() &gt; null) {
+                            XumoToolbar.this.mSearchClearView.setVisibility(0);
+                            return;
+                        }
+                    }
+                    XumoToolbar.this.mSearchClearView.setVisibility(8);
+                }
+            });
+            this.mSearchInputView.setOnEditorActionListener(new OnEditorActionListener() {
+                public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                    textView = textView.getText().toString();
+                    if (textView.length() &gt; 0) {
+                        if (i != 3) {
+                            if (keyEvent == null || keyEvent.getAction() != 0 || keyEvent.getKeyCode() != 66) {
+                                i = 0;
+                                if (!(i == 0 || XumoToolbar.this.mSearchKeywordListener == 0)) {
+                                    XumoToolbar.this.hideSoftKeyboard();
+                                    XumoToolbar.this.mSearchKeywordListener.requestSearchVideo(textView);
+                                    return true;
+                                }
+                            }
+                        }
+                        i = 1;
+                        XumoToolbar.this.hideSoftKeyboard();
+                        XumoToolbar.this.mSearchKeywordListener.requestSearchVideo(textView);
+                        return true;
+                    }
+                    return false;
+                }
+            });
+        }
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:13 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

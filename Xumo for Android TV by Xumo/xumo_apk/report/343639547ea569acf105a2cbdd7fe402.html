@@ -1,0 +1,324 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9"><div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/crashlytics/android/Crashlytics.java" target="_blank">/xumo_apk/jadx_source_code/com/crashlytics/android/Crashlytics.java</a></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-55">report</i><h5>net.URL|openStream</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>Insecure Communication: the app URL can connect to http/https/ftp/jar</span></div></li></ul><ul class="collapsible"><li><div class="collapsible-header"><img data-position="top" data-tooltip="OWASP item" src="html/owasp_logo.png" height="20em" style="margin-right: 1rem;margin-left: 5px;" class="tooltipped"></img> OWASP Item</div><div class="collapsible-body"><span>For more information, have a look at: https://www.owasp.org/index.php/OWASP_Mobile_Security_Testing_Guide</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#Crashlytics_java11netU" class="active">line 11</a></li></ul></div><div class="card-content"><div id="Crashlytics_java11netU">Code @ line 11<pre data-start="8" data-line="11" data-src="Crashlytics.java" class="code line-numbers"><code>import io.fabric.sdk.android.Fabric;
+import io.fabric.sdk.android.Kit;
+import io.fabric.sdk.android.KitGroup;
+import java.net.URL;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL0NyYXNobHl0aWNzLmphdmF8fHxsaW5lOiAxMSA6IG5ldC5VUkx8b3BlblN0cmVhbXx8fDU1fHx8bmV0LlVSTHxvcGVuU3RyZWFtfHx8MTF8fHw4">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL0NyYXNobHl0aWNzLmphdmF8fHxsaW5lOiAxMSA6IG5ldC5VUkx8b3BlblN0cmVhbXx8fDU1fHx8bmV0LlVSTHxvcGVuU3RyZWFtfHx8MTF8fHw4')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL0NyYXNobHl0aWNzLmphdmF8fHxsaW5lOiAxMSA6IG5ldC5VUkx8b3BlblN0cmVhbXx8fDU1fHx8bmV0LlVSTHxvcGVuU3RyZWFtfHx8MTF8fHw4').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL0NyYXNobHl0aWNzLmphdmF8fHxsaW5lOiAxMSA6IG5ldC5VUkx8b3BlblN0cmVhbXx8fDU1fHx8bmV0LlVSTHxvcGVuU3RyZWFtfHx8MTF8fHw4" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL0NyYXNobHl0aWNzLmphdmF8fHxsaW5lOiAxMSA6IG5ldC5VUkx8b3BlblN0cmVhbXx8fDU1fHx8bmV0LlVSTHxvcGVuU3RyZWFtfHx8MTF8fHw4' , 'aW1wb3J0IGlvLmZhYnJpYy5zZGsuYW5kcm9pZC5GYWJyaWM7CmltcG9ydCBpby5mYWJyaWMuc2RrLmFuZHJvaWQuS2l0OwppbXBvcnQgaW8uZmFicmljLnNkay5hbmRyb2lkLktpdEdyb3VwOwppbXBvcnQgamF2YS5uZXQuVVJMOwppbXBvcnQgamF2YS51dGlsLkFycmF5czsKaW1wb3J0IGphdmEudXRpbC5Db2xsZWN0aW9uOwppbXBvcnQgamF2YS51dGlsLkNvbGxlY3Rpb25zOwo=');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="Crashlytics.java" data-line="11," class="code line-numbers"><code>package com.crashlytics.android;
+
+import com.crashlytics.android.answers.Answers;
+import com.crashlytics.android.beta.Beta;
+import com.crashlytics.android.core.CrashlyticsCore;
+import com.crashlytics.android.core.CrashlyticsListener;
+import com.crashlytics.android.core.PinningInfoProvider;
+import io.fabric.sdk.android.Fabric;
+import io.fabric.sdk.android.Kit;
+import io.fabric.sdk.android.KitGroup;
+import java.net.URL;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+
+public class Crashlytics extends Kit&lt;Void&gt; implements KitGroup {
+    public static final String TAG = "Crashlytics";
+    public final Answers answers;
+    public final Beta beta;
+    public final CrashlyticsCore core;
+    public final Collection&lt;? extends Kit&gt; kits;
+
+    public static class Builder {
+        private Answers answers;
+        private Beta beta;
+        private CrashlyticsCore core;
+        private com.crashlytics.android.core.CrashlyticsCore.Builder coreBuilder;
+
+        @Deprecated
+        public Builder delay(float f) {
+            getCoreBuilder().delay(f);
+            return this;
+        }
+
+        @Deprecated
+        public Builder listener(CrashlyticsListener crashlyticsListener) {
+            getCoreBuilder().listener(crashlyticsListener);
+            return this;
+        }
+
+        @Deprecated
+        public Builder pinningInfo(PinningInfoProvider pinningInfoProvider) {
+            getCoreBuilder().pinningInfo(pinningInfoProvider);
+            return this;
+        }
+
+        @Deprecated
+        public Builder disabled(boolean z) {
+            getCoreBuilder().disabled(z);
+            return this;
+        }
+
+        public Builder answers(Answers answers) {
+            if (answers == null) {
+                throw new NullPointerException("Answers Kit must not be null.");
+            } else if (this.answers == null) {
+                this.answers = answers;
+                return this;
+            } else {
+                throw new IllegalStateException("Answers Kit already set.");
+            }
+        }
+
+        public Builder beta(Beta beta) {
+            if (beta == null) {
+                throw new NullPointerException("Beta Kit must not be null.");
+            } else if (this.beta == null) {
+                this.beta = beta;
+                return this;
+            } else {
+                throw new IllegalStateException("Beta Kit already set.");
+            }
+        }
+
+        public Builder core(CrashlyticsCore crashlyticsCore) {
+            if (crashlyticsCore == null) {
+                throw new NullPointerException("CrashlyticsCore Kit must not be null.");
+            } else if (this.core == null) {
+                this.core = crashlyticsCore;
+                return this;
+            } else {
+                throw new IllegalStateException("CrashlyticsCore Kit already set.");
+            }
+        }
+
+        public Crashlytics build() {
+            if (this.coreBuilder != null) {
+                if (this.core == null) {
+                    this.core = this.coreBuilder.build();
+                } else {
+                    throw new IllegalStateException("Must not use Deprecated methods delay(), disabled(), listener(), pinningInfoProvider() with core()");
+                }
+            }
+            if (this.answers == null) {
+                this.answers = new Answers();
+            }
+            if (this.beta == null) {
+                this.beta = new Beta();
+            }
+            if (this.core == null) {
+                this.core = new CrashlyticsCore();
+            }
+            return new Crashlytics(this.answers, this.beta, this.core);
+        }
+
+        private synchronized com.crashlytics.android.core.CrashlyticsCore.Builder getCoreBuilder() {
+            if (this.coreBuilder == null) {
+                this.coreBuilder = new com.crashlytics.android.core.CrashlyticsCore.Builder();
+            }
+            return this.coreBuilder;
+        }
+    }
+
+    protected Void doInBackground() {
+        return null;
+    }
+
+    public String getIdentifier() {
+        return "com.crashlytics.sdk.android:crashlytics";
+    }
+
+    public String getVersion() {
+        return "2.9.6.28";
+    }
+
+    public Crashlytics() {
+        this(new Answers(), new Beta(), new CrashlyticsCore());
+    }
+
+    Crashlytics(Answers answers, Beta beta, CrashlyticsCore crashlyticsCore) {
+        this.answers = answers;
+        this.beta = beta;
+        this.core = crashlyticsCore;
+        this.kits = Collections.unmodifiableCollection(Arrays.asList(new Kit[]{answers, beta, crashlyticsCore}));
+    }
+
+    public Collection&lt;? extends Kit&gt; getKits() {
+        return this.kits;
+    }
+
+    public static Crashlytics getInstance() {
+        return (Crashlytics) Fabric.getKit(Crashlytics.class);
+    }
+
+    public static PinningInfoProvider getPinningInfoProvider() {
+        checkInitialized();
+        return getInstance().core.getPinningInfoProvider();
+    }
+
+    public static void logException(Throwable th) {
+        checkInitialized();
+        getInstance().core.logException(th);
+    }
+
+    public static void log(String str) {
+        checkInitialized();
+        getInstance().core.log(str);
+    }
+
+    public static void log(int i, String str, String str2) {
+        checkInitialized();
+        getInstance().core.log(i, str, str2);
+    }
+
+    public static void setUserIdentifier(String str) {
+        checkInitialized();
+        getInstance().core.setUserIdentifier(str);
+    }
+
+    public static void setUserName(String str) {
+        checkInitialized();
+        getInstance().core.setUserName(str);
+    }
+
+    public static void setUserEmail(String str) {
+        checkInitialized();
+        getInstance().core.setUserEmail(str);
+    }
+
+    public static void setString(String str, String str2) {
+        checkInitialized();
+        getInstance().core.setString(str, str2);
+    }
+
+    public static void setBool(String str, boolean z) {
+        checkInitialized();
+        getInstance().core.setBool(str, z);
+    }
+
+    public static void setDouble(String str, double d) {
+        checkInitialized();
+        getInstance().core.setDouble(str, d);
+    }
+
+    public static void setFloat(String str, float f) {
+        checkInitialized();
+        getInstance().core.setFloat(str, f);
+    }
+
+    public static void setInt(String str, int i) {
+        checkInitialized();
+        getInstance().core.setInt(str, i);
+    }
+
+    public static void setLong(String str, long j) {
+        checkInitialized();
+        getInstance().core.setLong(str, j);
+    }
+
+    public void crash() {
+        this.core.crash();
+    }
+
+    public boolean verifyPinning(URL url) {
+        return this.core.verifyPinning(url);
+    }
+
+    @Deprecated
+    public synchronized void setListener(CrashlyticsListener crashlyticsListener) {
+        this.core.setListener(crashlyticsListener);
+    }
+
+    @Deprecated
+    public void setDebugMode(boolean z) {
+        Fabric.getLogger().w(TAG, "Use of Crashlytics.setDebugMode is deprecated.");
+    }
+
+    @Deprecated
+    public boolean getDebugMode() {
+        Fabric.getLogger().w(TAG, "Use of Crashlytics.getDebugMode is deprecated.");
+        getFabric();
+        return Fabric.isDebuggable();
+    }
+
+    @Deprecated
+    public static void setPinningInfoProvider(PinningInfoProvider pinningInfoProvider) {
+        Fabric.getLogger().w(TAG, "Use of Crashlytics.setPinningInfoProvider is deprecated");
+    }
+
+    private static void checkInitialized() {
+        if (getInstance() == null) {
+            throw new IllegalStateException("Crashlytics must be initialized by calling Fabric.with(Context) prior to calling Crashlytics.getInstance()");
+        }
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:5 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

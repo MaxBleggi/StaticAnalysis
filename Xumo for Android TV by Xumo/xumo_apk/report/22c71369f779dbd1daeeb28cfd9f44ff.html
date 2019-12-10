@@ -1,0 +1,363 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/exoplayer2/text/webvtt/CssParser.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/exoplayer2/text/webvtt/CssParser.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="CssParser.java" data-line="" class="code line-numbers"><code>package com.google.android.exoplayer2.text.webvtt;
+
+import android.text.TextUtils;
+import com.google.android.exoplayer2.util.ColorParser;
+import com.google.android.exoplayer2.util.ParsableByteArray;
+import com.google.android.exoplayer2.util.Util;
+import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+final class CssParser {
+    private static final String BLOCK_END = "}";
+    private static final String BLOCK_START = "{";
+    private static final String PROPERTY_BGCOLOR = "background-color";
+    private static final String PROPERTY_FONT_FAMILY = "font-family";
+    private static final String PROPERTY_FONT_STYLE = "font-style";
+    private static final String PROPERTY_FONT_WEIGHT = "font-weight";
+    private static final String PROPERTY_TEXT_DECORATION = "text-decoration";
+    private static final String VALUE_BOLD = "bold";
+    private static final String VALUE_ITALIC = "italic";
+    private static final String VALUE_UNDERLINE = "underline";
+    private static final Pattern VOICE_NAME_PATTERN = Pattern.compile("\\[voice=\"([^\"]*)\"\\]");
+    private final StringBuilder stringBuilder = new StringBuilder();
+    private final ParsableByteArray styleInput = new ParsableByteArray();
+
+    public WebvttCssStyle parseBlock(ParsableByteArray parsableByteArray) {
+        this.stringBuilder.setLength(0);
+        int position = parsableByteArray.getPosition();
+        skipStyleBlock(parsableByteArray);
+        this.styleInput.reset(parsableByteArray.data, parsableByteArray.getPosition());
+        this.styleInput.setPosition(position);
+        parsableByteArray = parseSelector(this.styleInput, this.stringBuilder);
+        WebvttCssStyle webvttCssStyle = null;
+        if (parsableByteArray != null) {
+            if (BLOCK_START.equals(parseNextToken(this.styleInput, this.stringBuilder))) {
+                WebvttCssStyle webvttCssStyle2 = new WebvttCssStyle();
+                applySelectorToStyle(webvttCssStyle2, parsableByteArray);
+                Object obj = null;
+                parsableByteArray = null;
+                while (parsableByteArray == null) {
+                    ParsableByteArray parsableByteArray2;
+                    parsableByteArray = this.styleInput.getPosition();
+                    obj = parseNextToken(this.styleInput, this.stringBuilder);
+                    if (obj != null) {
+                        if (!BLOCK_END.equals(obj)) {
+                            parsableByteArray2 = null;
+                            if (parsableByteArray2 == null) {
+                                this.styleInput.setPosition(parsableByteArray);
+                                parseStyleDeclaration(this.styleInput, webvttCssStyle2, this.stringBuilder);
+                            }
+                            parsableByteArray = parsableByteArray2;
+                        }
+                    }
+                    parsableByteArray2 = true;
+                    if (parsableByteArray2 == null) {
+                        this.styleInput.setPosition(parsableByteArray);
+                        parseStyleDeclaration(this.styleInput, webvttCssStyle2, this.stringBuilder);
+                    }
+                    parsableByteArray = parsableByteArray2;
+                }
+                if (BLOCK_END.equals(obj) != null) {
+                    webvttCssStyle = webvttCssStyle2;
+                }
+                return webvttCssStyle;
+            }
+        }
+        return null;
+    }
+
+    private static String parseSelector(ParsableByteArray parsableByteArray, StringBuilder stringBuilder) {
+        skipWhitespaceAndComments(parsableByteArray);
+        if (parsableByteArray.bytesLeft() &lt; 5) {
+            return null;
+        }
+        if (!"::cue".equals(parsableByteArray.readString(5))) {
+            return null;
+        }
+        int position = parsableByteArray.getPosition();
+        String parseNextToken = parseNextToken(parsableByteArray, stringBuilder);
+        if (parseNextToken == null) {
+            return null;
+        }
+        if (BLOCK_START.equals(parseNextToken)) {
+            parsableByteArray.setPosition(position);
+            return "";
+        }
+        String readCueTarget = "(".equals(parseNextToken) ? readCueTarget(parsableByteArray) : null;
+        parsableByteArray = parseNextToken(parsableByteArray, stringBuilder);
+        if (")".equals(parsableByteArray) != null) {
+            if (parsableByteArray != null) {
+                return readCueTarget;
+            }
+        }
+        return null;
+    }
+
+    private static String readCueTarget(ParsableByteArray parsableByteArray) {
+        int position = parsableByteArray.getPosition();
+        int limit = parsableByteArray.limit();
+        Object obj = null;
+        while (position &lt; limit &amp;&amp; r3 == null) {
+            int i = position + 1;
+            obj = ((char) parsableByteArray.data[position]) == ')' ? 1 : null;
+            position = i;
+        }
+        return parsableByteArray.readString((position - 1) - parsableByteArray.getPosition()).trim();
+    }
+
+    private static void parseStyleDeclaration(ParsableByteArray parsableByteArray, WebvttCssStyle webvttCssStyle, StringBuilder stringBuilder) {
+        skipWhitespaceAndComments(parsableByteArray);
+        String parseIdentifier = parseIdentifier(parsableByteArray, stringBuilder);
+        if (!"".equals(parseIdentifier) &amp;&amp; ":".equals(parseNextToken(parsableByteArray, stringBuilder))) {
+            skipWhitespaceAndComments(parsableByteArray);
+            String parsePropertyValue = parsePropertyValue(parsableByteArray, stringBuilder);
+            if (parsePropertyValue != null) {
+                if (!"".equals(parsePropertyValue)) {
+                    int position = parsableByteArray.getPosition();
+                    stringBuilder = parseNextToken(parsableByteArray, stringBuilder);
+                    if (!";".equals(stringBuilder)) {
+                        if (BLOCK_END.equals(stringBuilder) != null) {
+                            parsableByteArray.setPosition(position);
+                        } else {
+                            return;
+                        }
+                    }
+                    if (TtmlNode.ATTR_TTS_COLOR.equals(parseIdentifier) != null) {
+                        webvttCssStyle.setFontColor(ColorParser.parseCssColor(parsePropertyValue));
+                    } else if (PROPERTY_BGCOLOR.equals(parseIdentifier) != null) {
+                        webvttCssStyle.setBackgroundColor(ColorParser.parseCssColor(parsePropertyValue));
+                    } else if (PROPERTY_TEXT_DECORATION.equals(parseIdentifier) != null) {
+                        if ("underline".equals(parsePropertyValue) != null) {
+                            webvttCssStyle.setUnderline(true);
+                        }
+                    } else if (PROPERTY_FONT_FAMILY.equals(parseIdentifier) != null) {
+                        webvttCssStyle.setFontFamily(parsePropertyValue);
+                    } else if (PROPERTY_FONT_WEIGHT.equals(parseIdentifier) != null) {
+                        if ("bold".equals(parsePropertyValue) != null) {
+                            webvttCssStyle.setBold(true);
+                        }
+                    } else if (!(PROPERTY_FONT_STYLE.equals(parseIdentifier) == null || "italic".equals(parsePropertyValue) == null)) {
+                        webvttCssStyle.setItalic(true);
+                    }
+                }
+            }
+        }
+    }
+
+    static void skipWhitespaceAndComments(ParsableByteArray parsableByteArray) {
+        while (true) {
+            Object obj = 1;
+            while (parsableByteArray.bytesLeft() &gt; 0 &amp;&amp; r1 != null) {
+                if (!maybeSkipWhitespace(parsableByteArray)) {
+                    if (!maybeSkipComment(parsableByteArray)) {
+                        obj = null;
+                    }
+                }
+            }
+            return;
+        }
+    }
+
+    static String parseNextToken(ParsableByteArray parsableByteArray, StringBuilder stringBuilder) {
+        skipWhitespaceAndComments(parsableByteArray);
+        if (parsableByteArray.bytesLeft() == 0) {
+            return null;
+        }
+        stringBuilder = parseIdentifier(parsableByteArray, stringBuilder);
+        if (!"".equals(stringBuilder)) {
+            return stringBuilder;
+        }
+        stringBuilder = new StringBuilder();
+        stringBuilder.append("");
+        stringBuilder.append((char) parsableByteArray.readUnsignedByte());
+        return stringBuilder.toString();
+    }
+
+    private static boolean maybeSkipWhitespace(ParsableByteArray parsableByteArray) {
+        switch (peekCharAtPosition(parsableByteArray, parsableByteArray.getPosition())) {
+            case '\t':
+            case '\n':
+            case '\f':
+            case '\r':
+            case ' ':
+                parsableByteArray.skipBytes(1);
+                return true;
+            default:
+                return null;
+        }
+    }
+
+    static void skipStyleBlock(ParsableByteArray parsableByteArray) {
+        do {
+        } while (!TextUtils.isEmpty(parsableByteArray.readLine()));
+    }
+
+    private static char peekCharAtPosition(ParsableByteArray parsableByteArray, int i) {
+        return (char) parsableByteArray.data[i];
+    }
+
+    private static String parsePropertyValue(ParsableByteArray parsableByteArray, StringBuilder stringBuilder) {
+        StringBuilder stringBuilder2 = new StringBuilder();
+        Object obj = null;
+        while (obj == null) {
+            int position = parsableByteArray.getPosition();
+            String parseNextToken = parseNextToken(parsableByteArray, stringBuilder);
+            if (parseNextToken == null) {
+                return null;
+            }
+            if (!BLOCK_END.equals(parseNextToken)) {
+                if (!";".equals(parseNextToken)) {
+                    stringBuilder2.append(parseNextToken);
+                }
+            }
+            parsableByteArray.setPosition(position);
+            obj = 1;
+        }
+        return stringBuilder2.toString();
+    }
+
+    private static boolean maybeSkipComment(ParsableByteArray parsableByteArray) {
+        int position = parsableByteArray.getPosition();
+        int limit = parsableByteArray.limit();
+        byte[] bArr = parsableByteArray.data;
+        if (position + 2 &lt;= limit) {
+            int i = position + 1;
+            if (bArr[position] == (byte) 47) {
+                position = i + 1;
+                if (bArr[i] == (byte) 42) {
+                    while (true) {
+                        i = position + 1;
+                        if (i &gt;= limit) {
+                            parsableByteArray.skipBytes(limit - parsableByteArray.getPosition());
+                            return true;
+                        } else if (((char) bArr[position]) == '*' &amp;&amp; ((char) bArr[i]) == '/') {
+                            position = i + 1;
+                            limit = position;
+                        } else {
+                            position = i;
+                        }
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    private static String parseIdentifier(ParsableByteArray parsableByteArray, StringBuilder stringBuilder) {
+        int i = 0;
+        stringBuilder.setLength(0);
+        int position = parsableByteArray.getPosition();
+        int limit = parsableByteArray.limit();
+        while (position &lt; limit &amp;&amp; r0 == 0) {
+            char c = (char) parsableByteArray.data[position];
+            if ((c &lt; 'A' || c &gt; 'Z') &amp;&amp; ((c &lt; 'a' || c &gt; 'z') &amp;&amp; !((c &gt;= '0' &amp;&amp; c &lt;= '9') || c == '#' || c == '-' || c == '.'))) {
+                if (c != '_') {
+                    i = 1;
+                }
+            }
+            position++;
+            stringBuilder.append(c);
+        }
+        parsableByteArray.skipBytes(position - parsableByteArray.getPosition());
+        return stringBuilder.toString();
+    }
+
+    private void applySelectorToStyle(WebvttCssStyle webvttCssStyle, String str) {
+        if (!"".equals(str)) {
+            int indexOf = str.indexOf(91);
+            if (indexOf != -1) {
+                Matcher matcher = VOICE_NAME_PATTERN.matcher(str.substring(indexOf));
+                if (matcher.matches()) {
+                    webvttCssStyle.setTargetVoice(matcher.group(1));
+                }
+                str = str.substring(0, indexOf);
+            }
+            str = Util.split(str, "\\.");
+            String str2 = str[0];
+            int indexOf2 = str2.indexOf(35);
+            if (indexOf2 != -1) {
+                webvttCssStyle.setTargetTagName(str2.substring(0, indexOf2));
+                webvttCssStyle.setTargetId(str2.substring(indexOf2 + 1));
+            } else {
+                webvttCssStyle.setTargetTagName(str2);
+            }
+            if (str.length &gt; 1) {
+                webvttCssStyle.setTargetClasses((String[]) Arrays.copyOfRange(str, 1, str.length));
+            }
+        }
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:9 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

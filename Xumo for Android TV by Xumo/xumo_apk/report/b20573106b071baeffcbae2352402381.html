@@ -1,0 +1,340 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9"><div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/androidx/core/app/Person.java" target="_blank">/xumo_apk/jadx_source_code/androidx/core/app/Person.java</a></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-83">report</i><h5>password =|secret =|username =|key =</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>the app contain hardcoded sensitive informations like usernames, passwords, keys etc: Hard coded sensitive information in Application Code (including Crypto)</span></div></li></ul><ul class="collapsible"><li><div class="collapsible-header"><img data-position="top" data-tooltip="OWASP item" src="html/owasp_logo.png" height="20em" style="margin-right: 1rem;margin-left: 5px;" class="tooltipped"></img> OWASP Item</div><div class="collapsible-body"><span>For more information, have a look at: https://www.owasp.org/index.php/OWASP_Mobile_Security_Testing_Guide</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#Person_java12pass" class="active">line 12</a></li><li class="tab"><a style="color: #d82c2b;" href="#Person_java13pass">line 13</a></li><li class="tab"><a style="color: #d82c2b;" href="#Person_java14pass">line 14</a></li><li class="tab"><a style="color: #d82c2b;" href="#Person_java15pass">line 15</a></li><li class="tab"><a style="color: #d82c2b;" href="#Person_java16pass">line 16</a></li><li class="tab"><a style="color: #d82c2b;" href="#Person_java17pass">line 17</a></li><li class="tab"><a style="color: #d82c2b;" href="#Person_java45pass">line 45</a></li><li class="tab"><a style="color: #d82c2b;" href="#Person_java70pass">line 70</a></li><li class="tab"><a style="color: #d82c2b;" href="#Person_java109pass">line 109</a></li></ul></div><div class="card-content"><div id="Person_java12pass">Code @ line 12<pre data-start="9" data-line="12" data-src="Person.java" class="code line-numbers"><code>import androidx.core.graphics.drawable.IconCompat;
+
+public class Person {
+    private static final String ICON_KEY = "icon";
+    private static final String IS_BOT_KEY = "isBot";
+    private static final String IS_IMPORTANT_KEY = "isImportant";
+    private static final String KEY_KEY = "key";
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogMTIgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDEyfHx8OQ">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogMTIgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDEyfHx8OQ')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogMTIgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDEyfHx8OQ').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogMTIgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDEyfHx8OQ" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogMTIgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDEyfHx8OQ' , 'aW1wb3J0IGFuZHJvaWR4LmNvcmUuZ3JhcGhpY3MuZHJhd2FibGUuSWNvbkNvbXBhdDsKCnB1YmxpYyBjbGFzcyBQZXJzb24gewogICAgcHJpdmF0ZSBzdGF0aWMgZmluYWwgU3RyaW5nIElDT05fS0VZID0gImljb24iOwogICAgcHJpdmF0ZSBzdGF0aWMgZmluYWwgU3RyaW5nIElTX0JPVF9LRVkgPSAiaXNCb3QiOwogICAgcHJpdmF0ZSBzdGF0aWMgZmluYWwgU3RyaW5nIElTX0lNUE9SVEFOVF9LRVkgPSAiaXNJbXBvcnRhbnQiOwogICAgcHJpdmF0ZSBzdGF0aWMgZmluYWwgU3RyaW5nIEtFWV9LRVkgPSAia2V5IjsK');  
+                                            });
+                                            </script>
+                                            </div><div id="Person_java13pass">Code @ line 13<pre data-start="10" data-line="13" data-src="Person.java" class="code line-numbers"><code>
+public class Person {
+    private static final String ICON_KEY = "icon";
+    private static final String IS_BOT_KEY = "isBot";
+    private static final String IS_IMPORTANT_KEY = "isImportant";
+    private static final String KEY_KEY = "key";
+    private static final String NAME_KEY = "name";
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogMTMgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDEzfHx8MTA">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogMTMgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDEzfHx8MTA')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogMTMgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDEzfHx8MTA').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogMTMgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDEzfHx8MTA" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogMTMgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDEzfHx8MTA' , 'CnB1YmxpYyBjbGFzcyBQZXJzb24gewogICAgcHJpdmF0ZSBzdGF0aWMgZmluYWwgU3RyaW5nIElDT05fS0VZID0gImljb24iOwogICAgcHJpdmF0ZSBzdGF0aWMgZmluYWwgU3RyaW5nIElTX0JPVF9LRVkgPSAiaXNCb3QiOwogICAgcHJpdmF0ZSBzdGF0aWMgZmluYWwgU3RyaW5nIElTX0lNUE9SVEFOVF9LRVkgPSAiaXNJbXBvcnRhbnQiOwogICAgcHJpdmF0ZSBzdGF0aWMgZmluYWwgU3RyaW5nIEtFWV9LRVkgPSAia2V5IjsKICAgIHByaXZhdGUgc3RhdGljIGZpbmFsIFN0cmluZyBOQU1FX0tFWSA9ICJuYW1lIjsK');  
+                                            });
+                                            </script>
+                                            </div><div id="Person_java14pass">Code @ line 14<pre data-start="11" data-line="14" data-src="Person.java" class="code line-numbers"><code>public class Person {
+    private static final String ICON_KEY = "icon";
+    private static final String IS_BOT_KEY = "isBot";
+    private static final String IS_IMPORTANT_KEY = "isImportant";
+    private static final String KEY_KEY = "key";
+    private static final String NAME_KEY = "name";
+    private static final String URI_KEY = "uri";
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogMTQgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE0fHx8MTE">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogMTQgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE0fHx8MTE')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogMTQgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE0fHx8MTE').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogMTQgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE0fHx8MTE" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogMTQgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE0fHx8MTE' , 'cHVibGljIGNsYXNzIFBlcnNvbiB7CiAgICBwcml2YXRlIHN0YXRpYyBmaW5hbCBTdHJpbmcgSUNPTl9LRVkgPSAiaWNvbiI7CiAgICBwcml2YXRlIHN0YXRpYyBmaW5hbCBTdHJpbmcgSVNfQk9UX0tFWSA9ICJpc0JvdCI7CiAgICBwcml2YXRlIHN0YXRpYyBmaW5hbCBTdHJpbmcgSVNfSU1QT1JUQU5UX0tFWSA9ICJpc0ltcG9ydGFudCI7CiAgICBwcml2YXRlIHN0YXRpYyBmaW5hbCBTdHJpbmcgS0VZX0tFWSA9ICJrZXkiOwogICAgcHJpdmF0ZSBzdGF0aWMgZmluYWwgU3RyaW5nIE5BTUVfS0VZID0gIm5hbWUiOwogICAgcHJpdmF0ZSBzdGF0aWMgZmluYWwgU3RyaW5nIFVSSV9LRVkgPSAidXJpIjsK');  
+                                            });
+                                            </script>
+                                            </div><div id="Person_java15pass">Code @ line 15<pre data-start="12" data-line="15" data-src="Person.java" class="code line-numbers"><code>    private static final String ICON_KEY = "icon";
+    private static final String IS_BOT_KEY = "isBot";
+    private static final String IS_IMPORTANT_KEY = "isImportant";
+    private static final String KEY_KEY = "key";
+    private static final String NAME_KEY = "name";
+    private static final String URI_KEY = "uri";
+    @Nullable
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogMTUgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE1fHx8MTI">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogMTUgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE1fHx8MTI')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogMTUgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE1fHx8MTI').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogMTUgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE1fHx8MTI" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogMTUgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE1fHx8MTI' , 'ICAgIHByaXZhdGUgc3RhdGljIGZpbmFsIFN0cmluZyBJQ09OX0tFWSA9ICJpY29uIjsKICAgIHByaXZhdGUgc3RhdGljIGZpbmFsIFN0cmluZyBJU19CT1RfS0VZID0gImlzQm90IjsKICAgIHByaXZhdGUgc3RhdGljIGZpbmFsIFN0cmluZyBJU19JTVBPUlRBTlRfS0VZID0gImlzSW1wb3J0YW50IjsKICAgIHByaXZhdGUgc3RhdGljIGZpbmFsIFN0cmluZyBLRVlfS0VZID0gImtleSI7CiAgICBwcml2YXRlIHN0YXRpYyBmaW5hbCBTdHJpbmcgTkFNRV9LRVkgPSAibmFtZSI7CiAgICBwcml2YXRlIHN0YXRpYyBmaW5hbCBTdHJpbmcgVVJJX0tFWSA9ICJ1cmkiOwogICAgQE51bGxhYmxlCg==');  
+                                            });
+                                            </script>
+                                            </div><div id="Person_java16pass">Code @ line 16<pre data-start="13" data-line="16" data-src="Person.java" class="code line-numbers"><code>    private static final String IS_BOT_KEY = "isBot";
+    private static final String IS_IMPORTANT_KEY = "isImportant";
+    private static final String KEY_KEY = "key";
+    private static final String NAME_KEY = "name";
+    private static final String URI_KEY = "uri";
+    @Nullable
+    IconCompat mIcon;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogMTYgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE2fHx8MTM">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogMTYgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE2fHx8MTM')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogMTYgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE2fHx8MTM').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogMTYgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE2fHx8MTM" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogMTYgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE2fHx8MTM' , 'ICAgIHByaXZhdGUgc3RhdGljIGZpbmFsIFN0cmluZyBJU19CT1RfS0VZID0gImlzQm90IjsKICAgIHByaXZhdGUgc3RhdGljIGZpbmFsIFN0cmluZyBJU19JTVBPUlRBTlRfS0VZID0gImlzSW1wb3J0YW50IjsKICAgIHByaXZhdGUgc3RhdGljIGZpbmFsIFN0cmluZyBLRVlfS0VZID0gImtleSI7CiAgICBwcml2YXRlIHN0YXRpYyBmaW5hbCBTdHJpbmcgTkFNRV9LRVkgPSAibmFtZSI7CiAgICBwcml2YXRlIHN0YXRpYyBmaW5hbCBTdHJpbmcgVVJJX0tFWSA9ICJ1cmkiOwogICAgQE51bGxhYmxlCiAgICBJY29uQ29tcGF0IG1JY29uOwo=');  
+                                            });
+                                            </script>
+                                            </div><div id="Person_java17pass">Code @ line 17<pre data-start="14" data-line="17" data-src="Person.java" class="code line-numbers"><code>    private static final String IS_IMPORTANT_KEY = "isImportant";
+    private static final String KEY_KEY = "key";
+    private static final String NAME_KEY = "name";
+    private static final String URI_KEY = "uri";
+    @Nullable
+    IconCompat mIcon;
+    boolean mIsBot;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogMTcgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE3fHx8MTQ">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogMTcgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE3fHx8MTQ')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogMTcgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE3fHx8MTQ').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogMTcgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE3fHx8MTQ" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogMTcgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE3fHx8MTQ' , 'ICAgIHByaXZhdGUgc3RhdGljIGZpbmFsIFN0cmluZyBJU19JTVBPUlRBTlRfS0VZID0gImlzSW1wb3J0YW50IjsKICAgIHByaXZhdGUgc3RhdGljIGZpbmFsIFN0cmluZyBLRVlfS0VZID0gImtleSI7CiAgICBwcml2YXRlIHN0YXRpYyBmaW5hbCBTdHJpbmcgTkFNRV9LRVkgPSAibmFtZSI7CiAgICBwcml2YXRlIHN0YXRpYyBmaW5hbCBTdHJpbmcgVVJJX0tFWSA9ICJ1cmkiOwogICAgQE51bGxhYmxlCiAgICBJY29uQ29tcGF0IG1JY29uOwogICAgYm9vbGVhbiBtSXNCb3Q7Cg==');  
+                                            });
+                                            </script>
+                                            </div><div id="Person_java45pass">Code @ line 45<pre data-start="42" data-line="45" data-src="Person.java" class="code line-numbers"><code>            this.mName = person.mName;
+            this.mIcon = person.mIcon;
+            this.mUri = person.mUri;
+            this.mKey = person.mKey;
+            this.mIsBot = person.mIsBot;
+            this.mIsImportant = person.mIsImportant;
+        }
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogNDUgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDQ1fHx8NDI">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogNDUgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDQ1fHx8NDI')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogNDUgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDQ1fHx8NDI').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogNDUgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDQ1fHx8NDI" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogNDUgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDQ1fHx8NDI' , 'ICAgICAgICAgICAgdGhpcy5tTmFtZSA9IHBlcnNvbi5tTmFtZTsKICAgICAgICAgICAgdGhpcy5tSWNvbiA9IHBlcnNvbi5tSWNvbjsKICAgICAgICAgICAgdGhpcy5tVXJpID0gcGVyc29uLm1Vcmk7CiAgICAgICAgICAgIHRoaXMubUtleSA9IHBlcnNvbi5tS2V5OwogICAgICAgICAgICB0aGlzLm1Jc0JvdCA9IHBlcnNvbi5tSXNCb3Q7CiAgICAgICAgICAgIHRoaXMubUlzSW1wb3J0YW50ID0gcGVyc29uLm1Jc0ltcG9ydGFudDsKICAgICAgICB9Cg==');  
+                                            });
+                                            </script>
+                                            </div><div id="Person_java70pass">Code @ line 70<pre data-start="67" data-line="70" data-src="Person.java" class="code line-numbers"><code>
+        @NonNull
+        public Builder setKey(@Nullable String str) {
+            this.mKey = str;
+            return this;
+        }
+
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogNzAgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDcwfHx8Njc">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogNzAgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDcwfHx8Njc')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogNzAgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDcwfHx8Njc').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogNzAgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDcwfHx8Njc" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogNzAgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDcwfHx8Njc' , 'CiAgICAgICAgQE5vbk51bGwKICAgICAgICBwdWJsaWMgQnVpbGRlciBzZXRLZXkoQE51bGxhYmxlIFN0cmluZyBzdHIpIHsKICAgICAgICAgICAgdGhpcy5tS2V5ID0gc3RyOwogICAgICAgICAgICByZXR1cm4gdGhpczsKICAgICAgICB9Cgo=');  
+                                            });
+                                            </script>
+                                            </div><div id="Person_java109pass">Code @ line 109<pre data-start="106" data-line="109" data-src="Person.java" class="code line-numbers"><code>        this.mName = builder.mName;
+        this.mIcon = builder.mIcon;
+        this.mUri = builder.mUri;
+        this.mKey = builder.mKey;
+        this.mIsBot = builder.mIsBot;
+        this.mIsImportant = builder.mIsImportant;
+    }
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogMTA5IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwxMDl8fHwxMDY">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogMTA5IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwxMDl8fHwxMDY')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogMTA5IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwxMDl8fHwxMDY').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogMTA5IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwxMDl8fHwxMDY" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvYXBwL1BlcnNvbi5qYXZhfHx8bGluZTogMTA5IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwxMDl8fHwxMDY' , 'ICAgICAgICB0aGlzLm1OYW1lID0gYnVpbGRlci5tTmFtZTsKICAgICAgICB0aGlzLm1JY29uID0gYnVpbGRlci5tSWNvbjsKICAgICAgICB0aGlzLm1VcmkgPSBidWlsZGVyLm1Vcmk7CiAgICAgICAgdGhpcy5tS2V5ID0gYnVpbGRlci5tS2V5OwogICAgICAgIHRoaXMubUlzQm90ID0gYnVpbGRlci5tSXNCb3Q7CiAgICAgICAgdGhpcy5tSXNJbXBvcnRhbnQgPSBidWlsZGVyLm1Jc0ltcG9ydGFudDsKICAgIH0K');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="Person.java" data-line="12,13,14,15,16,17,45,70,109," class="code line-numbers"><code>package androidx.core.app;
+
+import android.os.Bundle;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo.Scope;
+import androidx.core.graphics.drawable.IconCompat;
+
+public class Person {
+    private static final String ICON_KEY = "icon";
+    private static final String IS_BOT_KEY = "isBot";
+    private static final String IS_IMPORTANT_KEY = "isImportant";
+    private static final String KEY_KEY = "key";
+    private static final String NAME_KEY = "name";
+    private static final String URI_KEY = "uri";
+    @Nullable
+    IconCompat mIcon;
+    boolean mIsBot;
+    boolean mIsImportant;
+    @Nullable
+    String mKey;
+    @Nullable
+    CharSequence mName;
+    @Nullable
+    String mUri;
+
+    public static class Builder {
+        @Nullable
+        IconCompat mIcon;
+        boolean mIsBot;
+        boolean mIsImportant;
+        @Nullable
+        String mKey;
+        @Nullable
+        CharSequence mName;
+        @Nullable
+        String mUri;
+
+        Builder(Person person) {
+            this.mName = person.mName;
+            this.mIcon = person.mIcon;
+            this.mUri = person.mUri;
+            this.mKey = person.mKey;
+            this.mIsBot = person.mIsBot;
+            this.mIsImportant = person.mIsImportant;
+        }
+
+        @NonNull
+        public Builder setName(@Nullable CharSequence charSequence) {
+            this.mName = charSequence;
+            return this;
+        }
+
+        @NonNull
+        public Builder setIcon(@Nullable IconCompat iconCompat) {
+            this.mIcon = iconCompat;
+            return this;
+        }
+
+        @NonNull
+        public Builder setUri(@Nullable String str) {
+            this.mUri = str;
+            return this;
+        }
+
+        @NonNull
+        public Builder setKey(@Nullable String str) {
+            this.mKey = str;
+            return this;
+        }
+
+        @NonNull
+        public Builder setBot(boolean z) {
+            this.mIsBot = z;
+            return this;
+        }
+
+        @NonNull
+        public Builder setImportant(boolean z) {
+            this.mIsImportant = z;
+            return this;
+        }
+
+        @NonNull
+        public Person build() {
+            return new Person(this);
+        }
+    }
+
+    @NonNull
+    public static Person fromBundle(@NonNull Bundle bundle) {
+        Bundle bundle2 = bundle.getBundle("icon");
+        return new Builder().setName(bundle.getCharSequence("name")).setIcon(bundle2 != null ? IconCompat.createFromBundle(bundle2) : null).setUri(bundle.getString("uri")).setKey(bundle.getString(KEY_KEY)).setBot(bundle.getBoolean(IS_BOT_KEY)).setImportant(bundle.getBoolean(IS_IMPORTANT_KEY)).build();
+    }
+
+    @RequiresApi(28)
+    @NonNull
+    @RestrictTo({Scope.LIBRARY_GROUP})
+    public static Person fromAndroidPerson(@NonNull android.app.Person person) {
+        return new Builder().setName(person.getName()).setIcon(person.getIcon() != null ? IconCompat.createFromIcon(person.getIcon()) : null).setUri(person.getUri()).setKey(person.getKey()).setBot(person.isBot()).setImportant(person.isImportant()).build();
+    }
+
+    Person(Builder builder) {
+        this.mName = builder.mName;
+        this.mIcon = builder.mIcon;
+        this.mUri = builder.mUri;
+        this.mKey = builder.mKey;
+        this.mIsBot = builder.mIsBot;
+        this.mIsImportant = builder.mIsImportant;
+    }
+
+    @NonNull
+    public Bundle toBundle() {
+        Bundle bundle = new Bundle();
+        bundle.putCharSequence("name", this.mName);
+        bundle.putBundle("icon", this.mIcon != null ? this.mIcon.toBundle() : null);
+        bundle.putString("uri", this.mUri);
+        bundle.putString(KEY_KEY, this.mKey);
+        bundle.putBoolean(IS_BOT_KEY, this.mIsBot);
+        bundle.putBoolean(IS_IMPORTANT_KEY, this.mIsImportant);
+        return bundle;
+    }
+
+    @NonNull
+    public Builder toBuilder() {
+        return new Builder(this);
+    }
+
+    @RequiresApi(28)
+    @NonNull
+    @RestrictTo({Scope.LIBRARY_GROUP})
+    public android.app.Person toAndroidPerson() {
+        return new android.app.Person.Builder().setName(getName()).setIcon(getIcon() != null ? getIcon().toIcon() : null).setUri(getUri()).setKey(getKey()).setBot(isBot()).setImportant(isImportant()).build();
+    }
+
+    @Nullable
+    public CharSequence getName() {
+        return this.mName;
+    }
+
+    @Nullable
+    public IconCompat getIcon() {
+        return this.mIcon;
+    }
+
+    @Nullable
+    public String getUri() {
+        return this.mUri;
+    }
+
+    @Nullable
+    public String getKey() {
+        return this.mKey;
+    }
+
+    public boolean isBot() {
+        return this.mIsBot;
+    }
+
+    public boolean isImportant() {
+        return this.mIsImportant;
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:3 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

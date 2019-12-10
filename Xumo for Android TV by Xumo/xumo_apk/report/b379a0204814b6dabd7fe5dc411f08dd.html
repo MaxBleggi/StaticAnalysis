@@ -1,0 +1,375 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/gms/internal/measurement/zzvx.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/gms/internal/measurement/zzvx.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="zzvx.java" data-line="" class="code line-numbers"><code>package com.google.android.gms.internal.measurement;
+
+import java.io.IOException;
+import java.lang.reflect.Method;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+public abstract class zzvx&lt;MessageType extends zzvx&lt;MessageType, BuilderType&gt;, BuilderType extends zza&lt;MessageType, BuilderType&gt;&gt; extends zzug&lt;MessageType, BuilderType&gt; {
+    private static Map&lt;Object, zzvx&lt;?, ?&gt;&gt; zzbzj = new ConcurrentHashMap();
+    protected zzyn zzbzh = zzyn.zzys();
+    private int zzbzi = -1;
+
+    public enum zze {
+        public static final int zzbzo = 1;
+        public static final int zzbzp = 2;
+        public static final int zzbzq = 3;
+        public static final int zzbzr = 4;
+        public static final int zzbzs = 5;
+        public static final int zzbzt = 6;
+        public static final int zzbzu = 7;
+        private static final /* synthetic */ int[] zzbzv = new int[]{zzbzo, zzbzp, zzbzq, zzbzr, zzbzs, zzbzt, zzbzu};
+        public static final int zzbzw = 1;
+        public static final int zzbzx = 2;
+        private static final /* synthetic */ int[] zzbzy = new int[]{zzbzw, zzbzx};
+        public static final int zzbzz = 1;
+        public static final int zzcaa = 2;
+        private static final /* synthetic */ int[] zzcab = new int[]{zzbzz, zzcaa};
+
+        public static int[] zzww() {
+            return (int[]) zzbzv.clone();
+        }
+    }
+
+    public static class zzd&lt;ContainingType extends zzxe, Type&gt; extends zzvi&lt;ContainingType, Type&gt; {
+    }
+
+    public static class zzb&lt;T extends zzvx&lt;T, ?&gt;&gt; extends zzui&lt;T&gt; {
+        private final T zzbzk;
+
+        public zzb(T t) {
+            this.zzbzk = t;
+        }
+
+        public final /* synthetic */ Object zza(zzuz com_google_android_gms_internal_measurement_zzuz, zzvk com_google_android_gms_internal_measurement_zzvk) throws zzwe {
+            return zzvx.zza(this.zzbzk, com_google_android_gms_internal_measurement_zzuz, com_google_android_gms_internal_measurement_zzvk);
+        }
+    }
+
+    public static abstract class zza&lt;MessageType extends zzvx&lt;MessageType, BuilderType&gt;, BuilderType extends zza&lt;MessageType, BuilderType&gt;&gt; extends zzuh&lt;MessageType, BuilderType&gt; {
+        private final MessageType zzbzk;
+        protected MessageType zzbzl;
+        private boolean zzbzm = null;
+
+        protected zza(MessageType messageType) {
+            this.zzbzk = messageType;
+            this.zzbzl = (zzvx) messageType.zza(zze.zzbzr, null, null);
+        }
+
+        protected final void zzwr() {
+            if (this.zzbzm) {
+                zzvx com_google_android_gms_internal_measurement_zzvx = (zzvx) this.zzbzl.zza(zze.zzbzr, null, null);
+                zza(com_google_android_gms_internal_measurement_zzvx, this.zzbzl);
+                this.zzbzl = com_google_android_gms_internal_measurement_zzvx;
+                this.zzbzm = false;
+            }
+        }
+
+        public final boolean isInitialized() {
+            return zzvx.zza(this.zzbzl, false);
+        }
+
+        public MessageType zzws() {
+            if (this.zzbzm) {
+                return this.zzbzl;
+            }
+            zzvx com_google_android_gms_internal_measurement_zzvx = this.zzbzl;
+            zzxq.zzya().zzak(com_google_android_gms_internal_measurement_zzvx).zzy(com_google_android_gms_internal_measurement_zzvx);
+            this.zzbzm = true;
+            return this.zzbzl;
+        }
+
+        public final MessageType zzwt() {
+            zzvx com_google_android_gms_internal_measurement_zzvx = (zzvx) zzwu();
+            boolean booleanValue = Boolean.TRUE.booleanValue();
+            byte byteValue = ((Byte) com_google_android_gms_internal_measurement_zzvx.zza(zze.zzbzo, null, null)).byteValue();
+            boolean z = true;
+            if (byteValue != (byte) 1) {
+                if (byteValue == (byte) 0) {
+                    z = false;
+                } else {
+                    z = zzxq.zzya().zzak(com_google_android_gms_internal_measurement_zzvx).zzaj(com_google_android_gms_internal_measurement_zzvx);
+                    if (booleanValue) {
+                        com_google_android_gms_internal_measurement_zzvx.zza(zze.zzbzp, z ? com_google_android_gms_internal_measurement_zzvx : null, null);
+                    }
+                }
+            }
+            if (z) {
+                return com_google_android_gms_internal_measurement_zzvx;
+            }
+            throw new zzyl(com_google_android_gms_internal_measurement_zzvx);
+        }
+
+        public final BuilderType zza(MessageType messageType) {
+            zzwr();
+            zza(this.zzbzl, messageType);
+            return this;
+        }
+
+        private static void zza(MessageType messageType, MessageType messageType2) {
+            zzxq.zzya().zzak(messageType).zzd(messageType, messageType2);
+        }
+
+        protected final /* synthetic */ zzuh zza(zzug com_google_android_gms_internal_measurement_zzug) {
+            return zza((zzvx) com_google_android_gms_internal_measurement_zzug);
+        }
+
+        public final /* synthetic */ zzuh zzuf() {
+            return (zza) clone();
+        }
+
+        public /* synthetic */ zzxe zzwu() {
+            return zzws();
+        }
+
+        public /* synthetic */ zzxe zzwv() {
+            return zzwt();
+        }
+
+        public final /* synthetic */ zzxe zzwq() {
+            return this.zzbzk;
+        }
+
+        public /* synthetic */ Object clone() throws CloneNotSupportedException {
+            zza com_google_android_gms_internal_measurement_zzvx_zza = (zza) this.zzbzk.zza(zze.zzbzs, null, null);
+            com_google_android_gms_internal_measurement_zzvx_zza.zza((zzvx) zzwu());
+            return com_google_android_gms_internal_measurement_zzvx_zza;
+        }
+    }
+
+    public static abstract class zzc&lt;MessageType extends zzc&lt;MessageType, BuilderType&gt;, BuilderType&gt; extends zzvx&lt;MessageType, BuilderType&gt; implements zzxg {
+        protected zzvo&lt;Object&gt; zzbzn = zzvo.zzwd();
+    }
+
+    protected abstract Object zza(int i, Object obj, Object obj2);
+
+    public String toString() {
+        return zzxh.zza(this, super.toString());
+    }
+
+    public int hashCode() {
+        if (this.zzbum != 0) {
+            return this.zzbum;
+        }
+        this.zzbum = zzxq.zzya().zzak(this).hashCode(this);
+        return this.zzbum;
+    }
+
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (((zzvx) zza(zze.zzbzt, null, null)).getClass().isInstance(obj)) {
+            return zzxq.zzya().zzak(this).equals(this, (zzvx) obj);
+        }
+        return null;
+    }
+
+    public final boolean isInitialized() {
+        boolean booleanValue = Boolean.TRUE.booleanValue();
+        byte byteValue = ((Byte) zza(zze.zzbzo, null, null)).byteValue();
+        if (byteValue == (byte) 1) {
+            return true;
+        }
+        if (byteValue == (byte) 0) {
+            return false;
+        }
+        boolean zzaj = zzxq.zzya().zzak(this).zzaj(this);
+        if (booleanValue) {
+            zza(zze.zzbzp, zzaj ? this : null, null);
+        }
+        return zzaj;
+    }
+
+    public final BuilderType zzwm() {
+        zza com_google_android_gms_internal_measurement_zzvx_zza = (zza) zza(zze.zzbzs, null, null);
+        com_google_android_gms_internal_measurement_zzvx_zza.zza(this);
+        return com_google_android_gms_internal_measurement_zzvx_zza;
+    }
+
+    final int zzue() {
+        return this.zzbzi;
+    }
+
+    final void zzah(int i) {
+        this.zzbzi = i;
+    }
+
+    public final void zzb(zzve com_google_android_gms_internal_measurement_zzve) throws IOException {
+        zzxq.zzya().zzi(getClass()).zza(this, zzvg.zza(com_google_android_gms_internal_measurement_zzve));
+    }
+
+    public final int zzwe() {
+        if (this.zzbzi == -1) {
+            this.zzbzi = zzxq.zzya().zzak(this).zzai(this);
+        }
+        return this.zzbzi;
+    }
+
+    static &lt;T extends zzvx&lt;?, ?&gt;&gt; T zzg(Class&lt;T&gt; cls) {
+        T t = (zzvx) zzbzj.get(cls);
+        if (t == null) {
+            try {
+                Class.forName(cls.getName(), true, cls.getClassLoader());
+                t = (zzvx) zzbzj.get(cls);
+            } catch (Class&lt;T&gt; cls2) {
+                throw new IllegalStateException("Class initialization cannot fail.", cls2);
+            }
+        }
+        if (t == null) {
+            t = (zzvx) ((zzvx) zzys.zzk(cls2)).zza(zze.zzbzt, null, null);
+            if (t != null) {
+                zzbzj.put(cls2, t);
+            } else {
+                throw new IllegalStateException();
+            }
+        }
+        return t;
+    }
+
+    protected static &lt;T extends zzvx&lt;?, ?&gt;&gt; void zza(Class&lt;T&gt; cls, T t) {
+        zzbzj.put(cls, t);
+    }
+
+    protected static Object zza(zzxe com_google_android_gms_internal_measurement_zzxe, String str, Object[] objArr) {
+        return new zzxs(com_google_android_gms_internal_measurement_zzxe, str, objArr);
+    }
+
+    static Object zza(Method method, Object obj, Object... objArr) {
+        try {
+            return method.invoke(obj, objArr);
+        } catch (Method method2) {
+            throw new RuntimeException("Couldn't use Java reflection to implement protocol message reflection.", method2);
+        } catch (Method method22) {
+            method22 = method22.getCause();
+            if ((method22 instanceof RuntimeException) != null) {
+                throw ((RuntimeException) method22);
+            } else if ((method22 instanceof Error) != null) {
+                throw ((Error) method22);
+            } else {
+                throw new RuntimeException("Unexpected exception thrown by generated accessor method.", method22);
+            }
+        }
+    }
+
+    protected static final &lt;T extends zzvx&lt;T, ?&gt;&gt; boolean zza(T t, boolean z) {
+        z = ((Byte) t.zza(zze.zzbzo, null, null)).byteValue();
+        if (z) {
+            return true;
+        }
+        if (z) {
+            return zzxq.zzya().zzak(t).zzaj(t);
+        }
+        return null;
+    }
+
+    protected static &lt;E&gt; zzwd&lt;E&gt; zzwn() {
+        return zzxr.zzyb();
+    }
+
+    static &lt;T extends zzvx&lt;T, ?&gt;&gt; T zza(T t, zzuz com_google_android_gms_internal_measurement_zzuz, zzvk com_google_android_gms_internal_measurement_zzvk) throws zzwe {
+        zzvx com_google_android_gms_internal_measurement_zzvx = (zzvx) t.zza(zze.zzbzr, null, null);
+        try {
+            zzxq.zzya().zzak(com_google_android_gms_internal_measurement_zzvx).zza(com_google_android_gms_internal_measurement_zzvx, zzvc.zza(com_google_android_gms_internal_measurement_zzuz), com_google_android_gms_internal_measurement_zzvk);
+            zzxq.zzya().zzak(com_google_android_gms_internal_measurement_zzvx).zzy(com_google_android_gms_internal_measurement_zzvx);
+            return com_google_android_gms_internal_measurement_zzvx;
+        } catch (zzuz com_google_android_gms_internal_measurement_zzuz2) {
+            if ((com_google_android_gms_internal_measurement_zzuz2.getCause() instanceof zzwe) != null) {
+                throw ((zzwe) com_google_android_gms_internal_measurement_zzuz2.getCause());
+            }
+            throw new zzwe(com_google_android_gms_internal_measurement_zzuz2.getMessage()).zzg(com_google_android_gms_internal_measurement_zzvx);
+        } catch (T t2) {
+            if ((t2.getCause() instanceof zzwe) != null) {
+                throw ((zzwe) t2.getCause());
+            }
+            throw t2;
+        }
+    }
+
+    public final /* synthetic */ zzxf zzwo() {
+        zza com_google_android_gms_internal_measurement_zzvx_zza = (zza) zza(zze.zzbzs, null, null);
+        com_google_android_gms_internal_measurement_zzvx_zza.zza(this);
+        return com_google_android_gms_internal_measurement_zzvx_zza;
+    }
+
+    public final /* synthetic */ zzxf zzwp() {
+        return (zza) zza(zze.zzbzs, null, null);
+    }
+
+    public final /* synthetic */ zzxe zzwq() {
+        return (zzvx) zza(zze.zzbzt, null, null);
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:11 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

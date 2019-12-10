@@ -1,0 +1,295 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/gms/internal/measurement/zzyx.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/gms/internal/measurement/zzyx.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="zzyx.java" data-line="" class="code line-numbers"><code>package com.google.android.gms.internal.measurement;
+
+import com.google.android.exoplayer2.extractor.ts.PsExtractor;
+import java.nio.ByteBuffer;
+
+final class zzyx extends zzyw {
+    zzyx() {
+    }
+
+    final int zzb(int i, byte[] bArr, int i2, int i3) {
+        while (i2 &lt; i3 &amp;&amp; bArr[i2] &gt;= 0) {
+            i2++;
+        }
+        if (i2 &gt;= i3) {
+            return 0;
+        }
+        while (i2 &lt; i3) {
+            int i4 = i2 + 1;
+            i2 = bArr[i2];
+            if (i2 &lt; 0) {
+                if (i2 &lt; -32) {
+                    if (i4 &gt;= i3) {
+                        return i2;
+                    }
+                    if (i2 &gt;= -62) {
+                        i2 = i4 + 1;
+                        if (bArr[i4] &gt; (byte) -65) {
+                        }
+                    }
+                    return -1;
+                } else if (i2 &lt; -16) {
+                    if (i4 &gt;= i3 - 1) {
+                        return zzyu.zzg(bArr, i4, i3);
+                    }
+                    int i5 = i4 + 1;
+                    r0 = bArr[i4];
+                    if (r0 &lt;= (byte) -65 &amp;&amp; ((i2 != -32 || r0 &gt;= (byte) -96) &amp;&amp; (i2 != -19 || r0 &lt; (byte) -96))) {
+                        i2 = i5 + 1;
+                        if (bArr[i5] &gt; (byte) -65) {
+                        }
+                    }
+                    return -1;
+                } else if (i4 &gt;= i3 - 2) {
+                    return zzyu.zzg(bArr, i4, i3);
+                } else {
+                    int i6 = i4 + 1;
+                    r0 = bArr[i4];
+                    if (r0 &lt;= (byte) -65 &amp;&amp; (((i2 &lt;&lt; 28) + (r0 + 112)) &gt;&gt; 30) == 0) {
+                        i2 = i6 + 1;
+                        if (bArr[i6] &lt;= (byte) -65) {
+                            i4 = i2 + 1;
+                            if (bArr[i2] &gt; -65) {
+                            }
+                        }
+                    }
+                    return -1;
+                }
+            }
+            i2 = i4;
+        }
+        return 0;
+    }
+
+    final String zzh(byte[] bArr, int i, int i2) throws zzwe {
+        if (((i | i2) | ((bArr.length - i) - i2)) &gt;= 0) {
+            int i3;
+            int i4 = i + i2;
+            i2 = new char[i2];
+            int i5 = 0;
+            while (i &lt; i4) {
+                byte b = bArr[i];
+                if (!zzyv.zzd(b)) {
+                    break;
+                }
+                i++;
+                i3 = i5 + 1;
+                zzyv.zza(b, i2, i5);
+                i5 = i3;
+            }
+            int i6 = i5;
+            while (i &lt; i4) {
+                i5 = i + 1;
+                byte b2 = bArr[i];
+                int i7;
+                if (zzyv.zzd(b2)) {
+                    i7 = i6 + 1;
+                    zzyv.zza(b2, i2, i6);
+                    while (i5 &lt; i4) {
+                        i = bArr[i5];
+                        if (!zzyv.zzd(i)) {
+                            break;
+                        }
+                        i5++;
+                        i3 = i7 + 1;
+                        zzyv.zza(i, i2, i7);
+                        i7 = i3;
+                    }
+                    i = i5;
+                    i6 = i7;
+                } else if (zzyv.zze(b2)) {
+                    if (i5 &lt; i4) {
+                        i7 = i5 + 1;
+                        i3 = i6 + 1;
+                        zzyv.zza(b2, bArr[i5], i2, i6);
+                        i = i7;
+                        i6 = i3;
+                    } else {
+                        throw zzwe.zzxe();
+                    }
+                } else if (zzyv.zzf(b2)) {
+                    if (i5 &lt; i4 - 1) {
+                        i7 = i5 + 1;
+                        i3 = i7 + 1;
+                        int i8 = i6 + 1;
+                        zzyv.zza(b2, bArr[i5], bArr[i7], i2, i6);
+                        i = i3;
+                        i6 = i8;
+                    } else {
+                        throw zzwe.zzxe();
+                    }
+                } else if (i5 &lt; i4 - 2) {
+                    i7 = i5 + 1;
+                    byte b3 = bArr[i5];
+                    i5 = i7 + 1;
+                    int i9 = i5 + 1;
+                    int i10 = i6 + 1;
+                    zzyv.zza(b2, b3, bArr[i7], bArr[i5], i2, i6);
+                    i = i9;
+                    i6 = i10 + 1;
+                } else {
+                    throw zzwe.zzxe();
+                }
+            }
+            return new String(i2, 0, i6);
+        }
+        throw new ArrayIndexOutOfBoundsException(String.format("buffer length=%d, index=%d, size=%d", new Object[]{Integer.valueOf(bArr.length), Integer.valueOf(i), Integer.valueOf(i2)}));
+    }
+
+    final int zzb(CharSequence charSequence, byte[] bArr, int i, int i2) {
+        int length = charSequence.length();
+        i2 += i;
+        int i3 = 0;
+        while (i3 &lt; length) {
+            int i4 = i3 + i;
+            if (i4 &gt;= i2) {
+                break;
+            }
+            char charAt = charSequence.charAt(i3);
+            if (charAt &gt;= '') {
+                break;
+            }
+            bArr[i4] = (byte) charAt;
+            i3++;
+        }
+        if (i3 == length) {
+            return i + length;
+        }
+        i += i3;
+        while (i3 &lt; length) {
+            int i5;
+            char charAt2 = charSequence.charAt(i3);
+            if (charAt2 &lt; '' &amp;&amp; i &lt; i2) {
+                i5 = i + 1;
+                bArr[i] = (byte) charAt2;
+            } else if (charAt2 &lt; 'ࠀ' &amp;&amp; i &lt;= i2 - 2) {
+                i5 = i + 1;
+                bArr[i] = (byte) ((charAt2 &gt;&gt;&gt; 6) | 960);
+                i = i5 + 1;
+                bArr[i5] = (byte) ((charAt2 &amp; 63) | 128);
+                i3++;
+            } else if ((charAt2 &lt; '?' || '?' &lt; charAt2) &amp;&amp; i &lt;= i2 - 3) {
+                i5 = i + 1;
+                bArr[i] = (byte) ((charAt2 &gt;&gt;&gt; 12) | 480);
+                i = i5 + 1;
+                bArr[i5] = (byte) (((charAt2 &gt;&gt;&gt; 6) &amp; 63) | 128);
+                i5 = i + 1;
+                bArr[i] = (byte) ((charAt2 &amp; 63) | 128);
+            } else if (i &lt;= i2 - 4) {
+                i5 = i3 + 1;
+                if (i5 != charSequence.length()) {
+                    char charAt3 = charSequence.charAt(i5);
+                    if (Character.isSurrogatePair(charAt2, charAt3)) {
+                        i3 = Character.toCodePoint(charAt2, charAt3);
+                        i4 = i + 1;
+                        bArr[i] = (byte) ((i3 &gt;&gt;&gt; 18) | PsExtractor.VIDEO_STREAM_MASK);
+                        i = i4 + 1;
+                        bArr[i4] = (byte) (((i3 &gt;&gt;&gt; 12) &amp; 63) | 128);
+                        i4 = i + 1;
+                        bArr[i] = (byte) (((i3 &gt;&gt;&gt; 6) &amp; 63) | 128);
+                        i = i4 + 1;
+                        bArr[i4] = (byte) ((i3 &amp; 63) | 128);
+                        i3 = i5;
+                        i3++;
+                    } else {
+                        i3 = i5;
+                    }
+                }
+                throw new zzyy(i3 - 1, length);
+            } else {
+                if ('?' &lt;= charAt2 &amp;&amp; charAt2 &lt;= '?') {
+                    bArr = i3 + 1;
+                    if (bArr == charSequence.length() || Character.isSurrogatePair(charAt2, charSequence.charAt(bArr)) == null) {
+                        throw new zzyy(i3, length);
+                    }
+                }
+                i2 = new StringBuilder(37);
+                i2.append("Failed writing ");
+                i2.append(charAt2);
+                i2.append(" at index ");
+                i2.append(i);
+                throw new ArrayIndexOutOfBoundsException(i2.toString());
+            }
+            i = i5;
+            i3++;
+        }
+        return i;
+    }
+
+    final void zzb(CharSequence charSequence, ByteBuffer byteBuffer) {
+        zzyw.zzc(charSequence, byteBuffer);
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:11 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

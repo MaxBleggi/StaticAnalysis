@@ -1,0 +1,276 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9"><div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/exoplayer2/drm/HttpMediaDrmCallback.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/exoplayer2/drm/HttpMediaDrmCallback.java</a></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-7">report</i><h5>https?:</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>An URL was found, this might be an API endpoint or just a link to documentation. Hopefully the first one.</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#HttpMediaDrmCallback_java179http" class="active">line 179</a></li></ul></div><div class="card-content"><div id="HttpMediaDrmCallback_java179http">Code @ line 179<pre data-start="176" data-line="179" data-src="HttpMediaDrmCallback.java" class="code line-numbers"><code>        Object obj = C.PLAYREADY_UUID.equals(uuid) ? "text/xml" : C.CLEARKEY_UUID.equals(uuid) ? "application/json" : "application/octet-stream";
+        hashMap.put(HttpRequest.HEADER_CONTENT_TYPE, obj);
+        if (C.PLAYREADY_UUID.equals(uuid) != null) {
+            hashMap.put("SOAPAction", "http://schemas.microsoft.com/DRM/2007/03/protocols/AcquireLicense");
+        }
+        synchronized (this.keyRequestProperties) {
+            hashMap.putAll(this.keyRequestProperties);
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL2RybS9IdHRwTWVkaWFEcm1DYWxsYmFjay5qYXZhfHx8bGluZTogMTc5IDogaHR0cHM/Onx8fDd8fHxodHRwcz86fHx8MTc5fHx8MTc2">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL2RybS9IdHRwTWVkaWFEcm1DYWxsYmFjay5qYXZhfHx8bGluZTogMTc5IDogaHR0cHM/Onx8fDd8fHxodHRwcz86fHx8MTc5fHx8MTc2')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL2RybS9IdHRwTWVkaWFEcm1DYWxsYmFjay5qYXZhfHx8bGluZTogMTc5IDogaHR0cHM/Onx8fDd8fHxodHRwcz86fHx8MTc5fHx8MTc2').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL2RybS9IdHRwTWVkaWFEcm1DYWxsYmFjay5qYXZhfHx8bGluZTogMTc5IDogaHR0cHM/Onx8fDd8fHxodHRwcz86fHx8MTc5fHx8MTc2" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL2RybS9IdHRwTWVkaWFEcm1DYWxsYmFjay5qYXZhfHx8bGluZTogMTc5IDogaHR0cHM/Onx8fDd8fHxodHRwcz86fHx8MTc5fHx8MTc2' , 'ICAgICAgICBPYmplY3Qgb2JqID0gQy5QTEFZUkVBRFlfVVVJRC5lcXVhbHModXVpZCkgPyAidGV4dC94bWwiIDogQy5DTEVBUktFWV9VVUlELmVxdWFscyh1dWlkKSA/ICJhcHBsaWNhdGlvbi9qc29uIiA6ICJhcHBsaWNhdGlvbi9vY3RldC1zdHJlYW0iOwogICAgICAgIGhhc2hNYXAucHV0KEh0dHBSZXF1ZXN0LkhFQURFUl9DT05URU5UX1RZUEUsIG9iaik7CiAgICAgICAgaWYgKEMuUExBWVJFQURZX1VVSUQuZXF1YWxzKHV1aWQpICE9IG51bGwpIHsKICAgICAgICAgICAgaGFzaE1hcC5wdXQoIlNPQVBBY3Rpb24iLCAiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS9EUk0vMjAwNy8wMy9wcm90b2NvbHMvQWNxdWlyZUxpY2Vuc2UiKTsKICAgICAgICB9CiAgICAgICAgc3luY2hyb25pemVkICh0aGlzLmtleVJlcXVlc3RQcm9wZXJ0aWVzKSB7CiAgICAgICAgICAgIGhhc2hNYXAucHV0QWxsKHRoaXMua2V5UmVxdWVzdFByb3BlcnRpZXMpOwo=');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="HttpMediaDrmCallback.java" data-line="179," class="code line-numbers"><code>package com.google.android.exoplayer2.drm;
+
+import android.annotation.TargetApi;
+import android.text.TextUtils;
+import com.google.android.exoplayer2.C;
+import com.google.android.exoplayer2.drm.ExoMediaDrm.KeyRequest;
+import com.google.android.exoplayer2.drm.ExoMediaDrm.ProvisionRequest;
+import com.google.android.exoplayer2.upstream.HttpDataSource.Factory;
+import com.google.android.exoplayer2.upstream.HttpDataSource.InvalidResponseCodeException;
+import com.google.android.exoplayer2.util.Assertions;
+import com.google.android.exoplayer2.util.Util;
+import io.fabric.sdk.android.services.network.HttpRequest;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+@TargetApi(18)
+public final class HttpMediaDrmCallback implements MediaDrmCallback {
+    private static final int MAX_MANUAL_REDIRECTS = 5;
+    private final Factory dataSourceFactory;
+    private final String defaultLicenseUrl;
+    private final boolean forceDefaultLicenseUrl;
+    private final Map&lt;String, String&gt; keyRequestProperties;
+
+    private static byte[] executePost(com.google.android.exoplayer2.upstream.HttpDataSource.Factory r17, java.lang.String r18, byte[] r19, java.util.Map&lt;java.lang.String, java.lang.String&gt; r20) throws java.io.IOException {
+        /* JADX: method processing error */
+/*
+Error: java.lang.NullPointerException
+	at jadx.core.dex.visitors.ssa.SSATransform.placePhi(SSATransform.java:82)
+	at jadx.core.dex.visitors.ssa.SSATransform.process(SSATransform.java:50)
+	at jadx.core.dex.visitors.ssa.SSATransform.visit(SSATransform.java:42)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:31)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:17)
+	at jadx.core.ProcessClass.process(ProcessClass.java:37)
+	at jadx.api.JadxDecompiler.processClass(JadxDecompiler.java:306)
+	at jadx.api.JavaClass.decompile(JavaClass.java:62)
+	at jadx.api.JadxDecompiler$1.run(JadxDecompiler.java:199)
+*/
+        /*
+        r1 = r17.createDataSource();
+        if (r20 == 0) goto L_0x002a;
+    L_0x0006:
+        r0 = r20.entrySet();
+        r0 = r0.iterator();
+    L_0x000e:
+        r2 = r0.hasNext();
+        if (r2 == 0) goto L_0x002a;
+    L_0x0014:
+        r2 = r0.next();
+        r2 = (java.util.Map.Entry) r2;
+        r3 = r2.getKey();
+        r3 = (java.lang.String) r3;
+        r2 = r2.getValue();
+        r2 = (java.lang.String) r2;
+        r1.setRequestProperty(r3, r2);
+        goto L_0x000e;
+    L_0x002a:
+        r2 = 0;
+        r0 = r18;
+        r3 = 0;
+    L_0x002e:
+        r15 = new com.google.android.exoplayer2.upstream.DataSpec;
+        r5 = android.net.Uri.parse(r0);
+        r7 = 0;
+        r9 = 0;
+        r11 = -1;
+        r13 = 0;
+        r14 = 1;
+        r4 = r15;
+        r6 = r19;
+        r4.&lt;init&gt;(r5, r6, r7, r9, r11, r13, r14);
+        r4 = new com.google.android.exoplayer2.upstream.DataSourceInputStream;
+        r4.&lt;init&gt;(r1, r15);
+        r0 = com.google.android.exoplayer2.util.Util.toByteArray(r4);	 Catch:{ InvalidResponseCodeException -&gt; 0x0051, all -&gt; 0x004f }
+        com.google.android.exoplayer2.util.Util.closeQuietly(r4);
+        return r0;
+    L_0x004f:
+        r0 = move-exception;
+        goto L_0x007e;
+    L_0x0051:
+        r0 = move-exception;
+        r5 = r0;
+        r0 = r5.responseCode;	 Catch:{ InvalidResponseCodeException -&gt; 0x0051, all -&gt; 0x004f }
+        r6 = 307; // 0x133 float:4.3E-43 double:1.517E-321;	 Catch:{ InvalidResponseCodeException -&gt; 0x0051, all -&gt; 0x004f }
+        if (r0 == r6) goto L_0x0062;	 Catch:{ InvalidResponseCodeException -&gt; 0x0051, all -&gt; 0x004f }
+    L_0x0059:
+        r0 = r5.responseCode;	 Catch:{ InvalidResponseCodeException -&gt; 0x0051, all -&gt; 0x004f }
+        r6 = 308; // 0x134 float:4.32E-43 double:1.52E-321;	 Catch:{ InvalidResponseCodeException -&gt; 0x0051, all -&gt; 0x004f }
+        if (r0 != r6) goto L_0x0060;	 Catch:{ InvalidResponseCodeException -&gt; 0x0051, all -&gt; 0x004f }
+    L_0x005f:
+        goto L_0x0062;	 Catch:{ InvalidResponseCodeException -&gt; 0x0051, all -&gt; 0x004f }
+    L_0x0060:
+        r0 = r3;	 Catch:{ InvalidResponseCodeException -&gt; 0x0051, all -&gt; 0x004f }
+        goto L_0x0069;	 Catch:{ InvalidResponseCodeException -&gt; 0x0051, all -&gt; 0x004f }
+    L_0x0062:
+        r0 = r3 + 1;	 Catch:{ InvalidResponseCodeException -&gt; 0x0051, all -&gt; 0x004f }
+        r6 = 5;	 Catch:{ InvalidResponseCodeException -&gt; 0x0051, all -&gt; 0x004f }
+        if (r3 &gt;= r6) goto L_0x0069;	 Catch:{ InvalidResponseCodeException -&gt; 0x0051, all -&gt; 0x004f }
+    L_0x0067:
+        r3 = 1;	 Catch:{ InvalidResponseCodeException -&gt; 0x0051, all -&gt; 0x004f }
+        goto L_0x006a;	 Catch:{ InvalidResponseCodeException -&gt; 0x0051, all -&gt; 0x004f }
+    L_0x0069:
+        r3 = 0;	 Catch:{ InvalidResponseCodeException -&gt; 0x0051, all -&gt; 0x004f }
+    L_0x006a:
+        if (r3 == 0) goto L_0x0071;	 Catch:{ InvalidResponseCodeException -&gt; 0x0051, all -&gt; 0x004f }
+    L_0x006c:
+        r3 = getRedirectUrl(r5);	 Catch:{ InvalidResponseCodeException -&gt; 0x0051, all -&gt; 0x004f }
+        goto L_0x0072;
+    L_0x0071:
+        r3 = 0;
+    L_0x0072:
+        if (r3 == 0) goto L_0x007d;
+    L_0x0074:
+        com.google.android.exoplayer2.util.Util.closeQuietly(r4);
+        r16 = r3;
+        r3 = r0;
+        r0 = r16;
+        goto L_0x002e;
+    L_0x007d:
+        throw r5;	 Catch:{ InvalidResponseCodeException -&gt; 0x0051, all -&gt; 0x004f }
+    L_0x007e:
+        com.google.android.exoplayer2.util.Util.closeQuietly(r4);
+        throw r0;
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.google.android.exoplayer2.drm.HttpMediaDrmCallback.executePost(com.google.android.exoplayer2.upstream.HttpDataSource$Factory, java.lang.String, byte[], java.util.Map):byte[]");
+    }
+
+    public HttpMediaDrmCallback(String str, Factory factory) {
+        this(str, false, factory);
+    }
+
+    public HttpMediaDrmCallback(String str, boolean z, Factory factory) {
+        this.dataSourceFactory = factory;
+        this.defaultLicenseUrl = str;
+        this.forceDefaultLicenseUrl = z;
+        this.keyRequestProperties = new HashMap();
+    }
+
+    public void setKeyRequestProperty(String str, String str2) {
+        Assertions.checkNotNull(str);
+        Assertions.checkNotNull(str2);
+        synchronized (this.keyRequestProperties) {
+            this.keyRequestProperties.put(str, str2);
+        }
+    }
+
+    public void clearKeyRequestProperty(String str) {
+        Assertions.checkNotNull(str);
+        synchronized (this.keyRequestProperties) {
+            this.keyRequestProperties.remove(str);
+        }
+    }
+
+    public void clearAllKeyRequestProperties() {
+        synchronized (this.keyRequestProperties) {
+            this.keyRequestProperties.clear();
+        }
+    }
+
+    public byte[] executeProvisionRequest(UUID uuid, ProvisionRequest provisionRequest) throws IOException {
+        uuid = new StringBuilder();
+        uuid.append(provisionRequest.getDefaultUrl());
+        uuid.append("&amp;signedRequest=");
+        uuid.append(Util.fromUtf8Bytes(provisionRequest.getData()));
+        return executePost(this.dataSourceFactory, uuid.toString(), Util.EMPTY_BYTE_ARRAY, null);
+    }
+
+    public byte[] executeKeyRequest(UUID uuid, KeyRequest keyRequest) throws Exception {
+        String licenseServerUrl = keyRequest.getLicenseServerUrl();
+        if (this.forceDefaultLicenseUrl || TextUtils.isEmpty(licenseServerUrl)) {
+            licenseServerUrl = this.defaultLicenseUrl;
+        }
+        Map hashMap = new HashMap();
+        Object obj = C.PLAYREADY_UUID.equals(uuid) ? "text/xml" : C.CLEARKEY_UUID.equals(uuid) ? "application/json" : "application/octet-stream";
+        hashMap.put(HttpRequest.HEADER_CONTENT_TYPE, obj);
+        if (C.PLAYREADY_UUID.equals(uuid) != null) {
+            hashMap.put("SOAPAction", "http://schemas.microsoft.com/DRM/2007/03/protocols/AcquireLicense");
+        }
+        synchronized (this.keyRequestProperties) {
+            hashMap.putAll(this.keyRequestProperties);
+        }
+        return executePost(this.dataSourceFactory, licenseServerUrl, keyRequest.getData(), hashMap);
+    }
+
+    private static String getRedirectUrl(InvalidResponseCodeException invalidResponseCodeException) {
+        invalidResponseCodeException = invalidResponseCodeException.headerFields;
+        if (invalidResponseCodeException != null) {
+            List list = (List) invalidResponseCodeException.get(HttpRequest.HEADER_LOCATION);
+            if (!(list == null || list.isEmpty())) {
+                return (String) list.get(0);
+            }
+        }
+        return null;
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:7 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

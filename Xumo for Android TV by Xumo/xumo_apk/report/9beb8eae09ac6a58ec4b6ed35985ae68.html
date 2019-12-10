@@ -1,0 +1,229 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/gms/cast/framework/media/zzq.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/gms/cast/framework/media/zzq.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="zzq.java" data-line="" class="code line-numbers"><code>package com.google.android.gms.cast.framework.media;
+
+import android.os.IBinder;
+import android.os.Parcel;
+import android.os.Parcelable.Creator;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelReader;
+import java.util.List;
+
+public final class zzq implements Creator&lt;NotificationOptions&gt; {
+    public final /* synthetic */ Object[] newArray(int i) {
+        return new NotificationOptions[i];
+    }
+
+    public final /* synthetic */ Object createFromParcel(Parcel parcel) {
+        Parcel parcel2 = parcel;
+        int validateObjectHeader = SafeParcelReader.validateObjectHeader(parcel);
+        List list = null;
+        int[] iArr = list;
+        String str = iArr;
+        IBinder iBinder = str;
+        long j = 0;
+        int i = 0;
+        int i2 = 0;
+        int i3 = 0;
+        int i4 = 0;
+        int i5 = 0;
+        int i6 = 0;
+        int i7 = 0;
+        int i8 = 0;
+        int i9 = 0;
+        int i10 = 0;
+        int i11 = 0;
+        int i12 = 0;
+        int i13 = 0;
+        int i14 = 0;
+        int i15 = 0;
+        int i16 = 0;
+        int i17 = 0;
+        int i18 = 0;
+        int i19 = 0;
+        int i20 = 0;
+        int i21 = 0;
+        int i22 = 0;
+        int i23 = 0;
+        int i24 = 0;
+        int i25 = 0;
+        int i26 = 0;
+        int i27 = 0;
+        while (parcel.dataPosition() &lt; validateObjectHeader) {
+            int readHeader = SafeParcelReader.readHeader(parcel);
+            switch (SafeParcelReader.getFieldId(readHeader)) {
+                case 2:
+                    list = SafeParcelReader.createStringList(parcel2, readHeader);
+                    break;
+                case 3:
+                    iArr = SafeParcelReader.createIntArray(parcel2, readHeader);
+                    break;
+                case 4:
+                    j = SafeParcelReader.readLong(parcel2, readHeader);
+                    break;
+                case 5:
+                    str = SafeParcelReader.createString(parcel2, readHeader);
+                    break;
+                case 6:
+                    i = SafeParcelReader.readInt(parcel2, readHeader);
+                    break;
+                case 7:
+                    i2 = SafeParcelReader.readInt(parcel2, readHeader);
+                    break;
+                case 8:
+                    i3 = SafeParcelReader.readInt(parcel2, readHeader);
+                    break;
+                case 9:
+                    i4 = SafeParcelReader.readInt(parcel2, readHeader);
+                    break;
+                case 10:
+                    i5 = SafeParcelReader.readInt(parcel2, readHeader);
+                    break;
+                case 11:
+                    i6 = SafeParcelReader.readInt(parcel2, readHeader);
+                    break;
+                case 12:
+                    i7 = SafeParcelReader.readInt(parcel2, readHeader);
+                    break;
+                case 13:
+                    i8 = SafeParcelReader.readInt(parcel2, readHeader);
+                    break;
+                case 14:
+                    i9 = SafeParcelReader.readInt(parcel2, readHeader);
+                    break;
+                case 15:
+                    i10 = SafeParcelReader.readInt(parcel2, readHeader);
+                    break;
+                case 16:
+                    i11 = SafeParcelReader.readInt(parcel2, readHeader);
+                    break;
+                case 17:
+                    i12 = SafeParcelReader.readInt(parcel2, readHeader);
+                    break;
+                case 18:
+                    i13 = SafeParcelReader.readInt(parcel2, readHeader);
+                    break;
+                case 19:
+                    i14 = SafeParcelReader.readInt(parcel2, readHeader);
+                    break;
+                case 20:
+                    i15 = SafeParcelReader.readInt(parcel2, readHeader);
+                    break;
+                case 21:
+                    i16 = SafeParcelReader.readInt(parcel2, readHeader);
+                    break;
+                case 22:
+                    i17 = SafeParcelReader.readInt(parcel2, readHeader);
+                    break;
+                case 23:
+                    i18 = SafeParcelReader.readInt(parcel2, readHeader);
+                    break;
+                case 24:
+                    i19 = SafeParcelReader.readInt(parcel2, readHeader);
+                    break;
+                case 25:
+                    i20 = SafeParcelReader.readInt(parcel2, readHeader);
+                    break;
+                case 26:
+                    i21 = SafeParcelReader.readInt(parcel2, readHeader);
+                    break;
+                case 27:
+                    i22 = SafeParcelReader.readInt(parcel2, readHeader);
+                    break;
+                case 28:
+                    i23 = SafeParcelReader.readInt(parcel2, readHeader);
+                    break;
+                case 29:
+                    i24 = SafeParcelReader.readInt(parcel2, readHeader);
+                    break;
+                case 30:
+                    i25 = SafeParcelReader.readInt(parcel2, readHeader);
+                    break;
+                case 31:
+                    i26 = SafeParcelReader.readInt(parcel2, readHeader);
+                    break;
+                case 32:
+                    i27 = SafeParcelReader.readInt(parcel2, readHeader);
+                    break;
+                case 33:
+                    iBinder = SafeParcelReader.readIBinder(parcel2, readHeader);
+                    break;
+                default:
+                    SafeParcelReader.skipUnknownField(parcel2, readHeader);
+                    break;
+            }
+        }
+        SafeParcelReader.ensureAtEnd(parcel2, validateObjectHeader);
+        return new NotificationOptions(list, iArr, j, str, i, i2, i3, i4, i5, i6, i7, i8, i9, i10, i11, i12, i13, i14, i15, i16, i17, i18, i19, i20, i21, i22, i23, i24, i25, i26, i27, iBinder);
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:11 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

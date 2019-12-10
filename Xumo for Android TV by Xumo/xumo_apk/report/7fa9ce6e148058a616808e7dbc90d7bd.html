@@ -1,0 +1,221 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/exoplayer2/extractor/ts/DefaultTsPayloadReaderFactory.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/exoplayer2/extractor/ts/DefaultTsPayloadReaderFactory.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="DefaultTsPayloadReaderFactory.java" data-line="" class="code line-numbers"><code>package com.google.android.exoplayer2.extractor.ts;
+
+import android.util.SparseArray;
+import com.google.android.exoplayer2.Format;
+import com.google.android.exoplayer2.extractor.ts.TsPayloadReader.EsInfo;
+import com.google.android.exoplayer2.extractor.ts.TsPayloadReader.Factory;
+import com.google.android.exoplayer2.text.cea.Cea708InitializationData;
+import com.google.android.exoplayer2.util.MimeTypes;
+import com.google.android.exoplayer2.util.ParsableByteArray;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public final class DefaultTsPayloadReaderFactory implements Factory {
+    private static final int DESCRIPTOR_TAG_CAPTION_SERVICE = 134;
+    public static final int FLAG_ALLOW_NON_IDR_KEYFRAMES = 1;
+    public static final int FLAG_DETECT_ACCESS_UNITS = 8;
+    public static final int FLAG_IGNORE_AAC_STREAM = 2;
+    public static final int FLAG_IGNORE_H264_STREAM = 4;
+    public static final int FLAG_IGNORE_SPLICE_INFO_STREAM = 16;
+    public static final int FLAG_OVERRIDE_CAPTION_DESCRIPTORS = 32;
+    private final List&lt;Format&gt; closedCaptionFormats;
+    private final int flags;
+
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface Flags {
+    }
+
+    public DefaultTsPayloadReaderFactory() {
+        this(0);
+    }
+
+    public DefaultTsPayloadReaderFactory(int i) {
+        this(i, Collections.singletonList(Format.createTextSampleFormat(null, MimeTypes.APPLICATION_CEA608, 0, null)));
+    }
+
+    public DefaultTsPayloadReaderFactory(int i, List&lt;Format&gt; list) {
+        this.flags = i;
+        this.closedCaptionFormats = list;
+    }
+
+    public SparseArray&lt;TsPayloadReader&gt; createInitialPayloadReaders() {
+        return new SparseArray();
+    }
+
+    public TsPayloadReader createPayloadReader(int i, EsInfo esInfo) {
+        TsPayloadReader tsPayloadReader = null;
+        switch (i) {
+            case 2:
+                return new PesReader(new H262Reader(buildUserDataReader(esInfo)));
+            case 3:
+            case 4:
+                return new PesReader(new MpegAudioReader(esInfo.language));
+            case 15:
+                if (isSet(2) == 0) {
+                    tsPayloadReader = new PesReader(new AdtsReader(false, esInfo.language));
+                }
+                return tsPayloadReader;
+            case 17:
+                if (isSet(2) == 0) {
+                    tsPayloadReader = new PesReader(new LatmReader(esInfo.language));
+                }
+                return tsPayloadReader;
+            case 21:
+                return new PesReader(new Id3Reader());
+            case 27:
+                if (isSet(4) == 0) {
+                    tsPayloadReader = new PesReader(new H264Reader(buildSeiReader(esInfo), isSet(1), isSet(8)));
+                }
+                return tsPayloadReader;
+            case 36:
+                return new PesReader(new H265Reader(buildSeiReader(esInfo)));
+            case 89:
+                return new PesReader(new DvbSubtitleReader(esInfo.dvbSubtitleInfos));
+            case TsExtractor.TS_STREAM_TYPE_AC3 /*129*/:
+            case TsExtractor.TS_STREAM_TYPE_E_AC3 /*135*/:
+                return new PesReader(new Ac3Reader(esInfo.language));
+            case TsExtractor.TS_STREAM_TYPE_HDMV_DTS /*130*/:
+            case TsExtractor.TS_STREAM_TYPE_DTS /*138*/:
+                return new PesReader(new DtsReader(esInfo.language));
+            case 134:
+                if (isSet(16) == 0) {
+                    tsPayloadReader = new SectionReader(new SpliceInfoSectionReader());
+                }
+                return tsPayloadReader;
+            default:
+                return null;
+        }
+    }
+
+    private SeiReader buildSeiReader(EsInfo esInfo) {
+        return new SeiReader(getClosedCaptionFormats(esInfo));
+    }
+
+    private UserDataReader buildUserDataReader(EsInfo esInfo) {
+        return new UserDataReader(getClosedCaptionFormats(esInfo));
+    }
+
+    private List&lt;Format&gt; getClosedCaptionFormats(EsInfo esInfo) {
+        if (isSet(32)) {
+            return r0.closedCaptionFormats;
+        }
+        ParsableByteArray parsableByteArray = new ParsableByteArray(esInfo.descriptorBytes);
+        List&lt;Format&gt; list = r0.closedCaptionFormats;
+        while (parsableByteArray.bytesLeft() &gt; 0) {
+            int position = parsableByteArray.getPosition() + parsableByteArray.readUnsignedByte();
+            if (parsableByteArray.readUnsignedByte() == 134) {
+                list = new ArrayList();
+                int readUnsignedByte = parsableByteArray.readUnsignedByte() &amp; 31;
+                for (int i = 0; i &lt; readUnsignedByte; i++) {
+                    int i2;
+                    String str;
+                    List buildData;
+                    String readString = parsableByteArray.readString(3);
+                    int readUnsignedByte2 = parsableByteArray.readUnsignedByte();
+                    boolean z = true;
+                    Object obj = (readUnsignedByte2 &amp; 128) != 0 ? 1 : null;
+                    if (obj != null) {
+                        i2 = readUnsignedByte2 &amp; 63;
+                        str = MimeTypes.APPLICATION_CEA708;
+                    } else {
+                        str = MimeTypes.APPLICATION_CEA608;
+                        i2 = 1;
+                    }
+                    byte readUnsignedByte3 = (byte) parsableByteArray.readUnsignedByte();
+                    parsableByteArray.skipBytes(1);
+                    if (obj != null) {
+                        if ((readUnsignedByte3 &amp; 64) == 0) {
+                            z = false;
+                        }
+                        buildData = Cea708InitializationData.buildData(z);
+                    } else {
+                        buildData = null;
+                    }
+                    list.add(Format.createTextSampleFormat(null, str, null, -1, 0, readString, i2, null, Long.MAX_VALUE, buildData));
+                }
+            }
+            parsableByteArray.setPosition(position);
+        }
+        return list;
+    }
+
+    private boolean isSet(int i) {
+        return (i &amp; this.flags) != 0;
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:8 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

@@ -1,0 +1,253 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/gms/cast/framework/CastOptions.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/gms/cast/framework/CastOptions.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="CastOptions.java" data-line="" class="code line-numbers"><code>package com.google.android.gms.cast.framework;
+
+import android.os.Parcel;
+import android.os.Parcelable.Creator;
+import android.text.TextUtils;
+import com.google.android.gms.cast.LaunchOptions;
+import com.google.android.gms.cast.MediaLoadOptions;
+import com.google.android.gms.cast.framework.media.CastMediaOptions;
+import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelWriter;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable.Class;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable.Constructor;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable.Field;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable.Param;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable.Reserved;
+import com.google.android.gms.common.util.VisibleForTesting;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+@Class(creator = "CastOptionsCreator")
+@Reserved({1})
+public class CastOptions extends AbstractSafeParcelable {
+    public static final Creator&lt;CastOptions&gt; CREATOR = new zzb();
+    @Field(getter = "getLaunchOptions", id = 5)
+    private final LaunchOptions zzdc;
+    @Field(getter = "getReceiverApplicationId", id = 2)
+    private String zzhr;
+    @Field(getter = "getSupportedNamespaces", id = 3)
+    private final List&lt;String&gt; zzhs;
+    @Field(getter = "getStopReceiverApplicationWhenEndingSession", id = 4)
+    private final boolean zzht;
+    @Field(getter = "getResumeSavedSession", id = 6)
+    private final boolean zzhu;
+    @Field(getter = "getCastMediaOptions", id = 7)
+    private final CastMediaOptions zzhv;
+    @Field(getter = "getEnableReconnectionService", id = 8)
+    private final boolean zzhw;
+    @Field(getter = "getVolumeDeltaBeforeIceCreamSandwich", id = 9)
+    private final double zzhx;
+    @Field(getter = "getEnableIpv6Support", id = 10)
+    private final boolean zzhy;
+
+    @VisibleForTesting
+    public static final class Builder {
+        private LaunchOptions zzdc = new LaunchOptions();
+        private String zzhr;
+        private List&lt;String&gt; zzhs = new ArrayList();
+        private boolean zzht;
+        private boolean zzhu = true;
+        private CastMediaOptions zzhv = new com.google.android.gms.cast.framework.media.CastMediaOptions.Builder().build();
+        private boolean zzhw = true;
+        private double zzhx = 0.05000000074505806d;
+        private boolean zzhz = false;
+
+        public final Builder setReceiverApplicationId(String str) {
+            this.zzhr = str;
+            return this;
+        }
+
+        public final Builder setSupportedNamespaces(List&lt;String&gt; list) {
+            this.zzhs = list;
+            return this;
+        }
+
+        public final Builder setStopReceiverApplicationWhenEndingSession(boolean z) {
+            this.zzht = z;
+            return this;
+        }
+
+        public final Builder setLaunchOptions(LaunchOptions launchOptions) {
+            this.zzdc = launchOptions;
+            return this;
+        }
+
+        public final Builder setResumeSavedSession(boolean z) {
+            this.zzhu = z;
+            return this;
+        }
+
+        public final Builder setCastMediaOptions(CastMediaOptions castMediaOptions) {
+            this.zzhv = castMediaOptions;
+            return this;
+        }
+
+        public final Builder setEnableReconnectionService(boolean z) {
+            this.zzhw = z;
+            return this;
+        }
+
+        public final Builder setVolumeDeltaBeforeIceCreamSandwich(double d) throws IllegalArgumentException {
+            if (d &lt;= 0.0d || d &gt; MediaLoadOptions.PLAYBACK_RATE_MIN) {
+                throw new IllegalArgumentException("volumeDelta must be greater than 0 and less or equal to 0.5");
+            }
+            this.zzhx = d;
+            return this;
+        }
+
+        public final CastOptions build() {
+            return new CastOptions(this.zzhr, this.zzhs, this.zzht, this.zzdc, this.zzhu, this.zzhv, this.zzhw, this.zzhx, false);
+        }
+    }
+
+    @Constructor
+    CastOptions(@Param(id = 2) String str, @Param(id = 3) List&lt;String&gt; list, @Param(id = 4) boolean z, @Param(id = 5) LaunchOptions launchOptions, @Param(id = 6) boolean z2, @Param(id = 7) CastMediaOptions castMediaOptions, @Param(id = 8) boolean z3, @Param(id = 9) double d, @Param(id = 10) boolean z4) {
+        if (TextUtils.isEmpty(str)) {
+            str = "";
+        }
+        this.zzhr = str;
+        if (list == null) {
+            str = null;
+        } else {
+            str = list.size();
+        }
+        this.zzhs = new ArrayList(str);
+        if (str &gt; null) {
+            this.zzhs.addAll(list);
+        }
+        this.zzht = z;
+        if (launchOptions == null) {
+            launchOptions = new LaunchOptions();
+        }
+        this.zzdc = launchOptions;
+        this.zzhu = z2;
+        this.zzhv = castMediaOptions;
+        this.zzhw = z3;
+        this.zzhx = d;
+        this.zzhy = z4;
+    }
+
+    public String getReceiverApplicationId() {
+        return this.zzhr;
+    }
+
+    public final void setReceiverApplicationId(String str) {
+        this.zzhr = str;
+    }
+
+    public List&lt;String&gt; getSupportedNamespaces() {
+        return Collections.unmodifiableList(this.zzhs);
+    }
+
+    public boolean getStopReceiverApplicationWhenEndingSession() {
+        return this.zzht;
+    }
+
+    public LaunchOptions getLaunchOptions() {
+        return this.zzdc;
+    }
+
+    public boolean getResumeSavedSession() {
+        return this.zzhu;
+    }
+
+    public CastMediaOptions getCastMediaOptions() {
+        return this.zzhv;
+    }
+
+    public boolean getEnableReconnectionService() {
+        return this.zzhw;
+    }
+
+    public double getVolumeDeltaBeforeIceCreamSandwich() {
+        return this.zzhx;
+    }
+
+    public void writeToParcel(Parcel parcel, int i) {
+        int beginObjectHeader = SafeParcelWriter.beginObjectHeader(parcel);
+        SafeParcelWriter.writeString(parcel, 2, getReceiverApplicationId(), false);
+        SafeParcelWriter.writeStringList(parcel, 3, getSupportedNamespaces(), false);
+        SafeParcelWriter.writeBoolean(parcel, 4, getStopReceiverApplicationWhenEndingSession());
+        SafeParcelWriter.writeParcelable(parcel, 5, getLaunchOptions(), i, false);
+        SafeParcelWriter.writeBoolean(parcel, 6, getResumeSavedSession());
+        SafeParcelWriter.writeParcelable(parcel, 7, getCastMediaOptions(), i, false);
+        SafeParcelWriter.writeBoolean(parcel, 8, getEnableReconnectionService());
+        SafeParcelWriter.writeDouble(parcel, 9, getVolumeDeltaBeforeIceCreamSandwich());
+        SafeParcelWriter.writeBoolean(parcel, 10, this.zzhy);
+        SafeParcelWriter.finishObjectHeader(parcel, beginObjectHeader);
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:10 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

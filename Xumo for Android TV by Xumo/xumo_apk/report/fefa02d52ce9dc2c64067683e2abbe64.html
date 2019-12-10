@@ -1,0 +1,464 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/exoplayer2/mediacodec/MediaCodecInfo.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/exoplayer2/mediacodec/MediaCodecInfo.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="MediaCodecInfo.java" data-line="" class="code line-numbers"><code>package com.google.android.exoplayer2.mediacodec;
+
+import android.annotation.TargetApi;
+import android.graphics.Point;
+import android.media.MediaCodecInfo.AudioCapabilities;
+import android.media.MediaCodecInfo.CodecCapabilities;
+import android.media.MediaCodecInfo.CodecProfileLevel;
+import android.media.MediaCodecInfo.VideoCapabilities;
+import android.util.Pair;
+import androidx.annotation.Nullable;
+import com.google.android.exoplayer2.Format;
+import com.google.android.exoplayer2.mediacodec.MediaCodecUtil.DecoderQueryException;
+import com.google.android.exoplayer2.util.Assertions;
+import com.google.android.exoplayer2.util.Log;
+import com.google.android.exoplayer2.util.MimeTypes;
+import com.google.android.exoplayer2.util.Util;
+
+@TargetApi(16)
+public final class MediaCodecInfo {
+    public static final int MAX_SUPPORTED_INSTANCES_UNKNOWN = -1;
+    public static final String TAG = "MediaCodecInfo";
+    public final boolean adaptive;
+    @Nullable
+    public final CodecCapabilities capabilities;
+    private final boolean isVideo;
+    @Nullable
+    public final String mimeType;
+    public final String name;
+    public final boolean passthrough;
+    public final boolean secure;
+    public final boolean tunneling;
+
+    public static MediaCodecInfo newPassthroughInstance(String str) {
+        return new MediaCodecInfo(str, null, null, true, false, false);
+    }
+
+    public static MediaCodecInfo newInstance(String str, String str2, CodecCapabilities codecCapabilities) {
+        return new MediaCodecInfo(str, str2, codecCapabilities, false, false, false);
+    }
+
+    public static MediaCodecInfo newInstance(String str, String str2, CodecCapabilities codecCapabilities, boolean z, boolean z2) {
+        return new MediaCodecInfo(str, str2, codecCapabilities, false, z, z2);
+    }
+
+    private MediaCodecInfo(String str, @Nullable String str2, @Nullable CodecCapabilities codecCapabilities, boolean z, boolean z2, boolean z3) {
+        this.name = (String) Assertions.checkNotNull(str);
+        this.mimeType = str2;
+        this.capabilities = codecCapabilities;
+        this.passthrough = z;
+        str = true;
+        z2 = (z2 || codecCapabilities == null || !isAdaptive(codecCapabilities)) ? false : true;
+        this.adaptive = z2;
+        z2 = codecCapabilities != null &amp;&amp; isTunneling(codecCapabilities);
+        this.tunneling = z2;
+        if (!z3) {
+            if (codecCapabilities == null || isSecure(codecCapabilities) == null) {
+                str = null;
+            }
+        }
+        this.secure = str;
+        this.isVideo = MimeTypes.isVideo(str2);
+    }
+
+    public String toString() {
+        return this.name;
+    }
+
+    public CodecProfileLevel[] getProfileLevels() {
+        if (this.capabilities != null) {
+            if (this.capabilities.profileLevels != null) {
+                return this.capabilities.profileLevels;
+            }
+        }
+        return new CodecProfileLevel[0];
+    }
+
+    public int getMaxSupportedInstances() {
+        if (Util.SDK_INT &gt;= 23) {
+            if (this.capabilities != null) {
+                return getMaxSupportedInstancesV23(this.capabilities);
+            }
+        }
+        return -1;
+    }
+
+    public boolean isFormatSupported(Format format) throws DecoderQueryException {
+        boolean z = false;
+        if (!isCodecSupported(format.codecs)) {
+            return false;
+        }
+        if (this.isVideo) {
+            if (format.width &gt; 0) {
+                if (format.height &gt; 0) {
+                    if (Util.SDK_INT &gt;= 21) {
+                        return isVideoSizeAndRateSupportedV21(format.width, format.height, (double) format.frameRate);
+                    }
+                    if (format.width * format.height &lt;= MediaCodecUtil.maxH264DecodableFrameSize()) {
+                        z = true;
+                    }
+                    if (!z) {
+                        StringBuilder stringBuilder = new StringBuilder();
+                        stringBuilder.append("legacyFrameSize, ");
+                        stringBuilder.append(format.width);
+                        stringBuilder.append("x");
+                        stringBuilder.append(format.height);
+                        logNoSupport(stringBuilder.toString());
+                    }
+                    return z;
+                }
+            }
+            return true;
+        }
+        if (Util.SDK_INT &lt; 21 || ((format.sampleRate == -1 || isAudioSampleRateSupportedV21(format.sampleRate)) &amp;&amp; (format.channelCount == -1 || isAudioChannelCountSupportedV21(format.channelCount) != null))) {
+            z = true;
+        }
+        return z;
+    }
+
+    public boolean isCodecSupported(String str) {
+        if (str != null) {
+            if (this.mimeType != null) {
+                String mediaMimeType = MimeTypes.getMediaMimeType(str);
+                if (mediaMimeType == null) {
+                    return true;
+                }
+                StringBuilder stringBuilder;
+                if (this.mimeType.equals(mediaMimeType)) {
+                    Pair codecProfileAndLevel = MediaCodecUtil.getCodecProfileAndLevel(str);
+                    if (codecProfileAndLevel == null) {
+                        return true;
+                    }
+                    for (CodecProfileLevel codecProfileLevel : getProfileLevels()) {
+                        if (codecProfileLevel.profile == ((Integer) codecProfileAndLevel.first).intValue() &amp;&amp; codecProfileLevel.level &gt;= ((Integer) codecProfileAndLevel.second).intValue()) {
+                            return true;
+                        }
+                    }
+                    stringBuilder = new StringBuilder();
+                    stringBuilder.append("codec.profileLevel, ");
+                    stringBuilder.append(str);
+                    stringBuilder.append(", ");
+                    stringBuilder.append(mediaMimeType);
+                    logNoSupport(stringBuilder.toString());
+                    return false;
+                }
+                stringBuilder = new StringBuilder();
+                stringBuilder.append("codec.mime ");
+                stringBuilder.append(str);
+                stringBuilder.append(", ");
+                stringBuilder.append(mediaMimeType);
+                logNoSupport(stringBuilder.toString());
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isSeamlessAdaptationSupported(Format format) {
+        if (this.isVideo) {
+            return this.adaptive;
+        }
+        format = MediaCodecUtil.getCodecProfileAndLevel(format.codecs);
+        format = (format == null || ((Integer) format.first).intValue() != 42) ? null : true;
+        return format;
+    }
+
+    public boolean isSeamlessAdaptationSupported(Format format, Format format2, boolean z) {
+        boolean z2 = true;
+        if (this.isVideo) {
+            if (format.sampleMimeType.equals(format2.sampleMimeType) &amp;&amp; format.rotationDegrees == format2.rotationDegrees &amp;&amp; (this.adaptive || (format.width == format2.width &amp;&amp; format.height == format2.height))) {
+                if (z || format2.colorInfo) {
+                    if (Util.areEqual(format.colorInfo, format2.colorInfo) != null) {
+                    }
+                }
+                return z2;
+            }
+            z2 = false;
+            return z2;
+        }
+        if (MimeTypes.AUDIO_AAC.equals(this.mimeType) &amp;&amp; format.sampleMimeType.equals(format2.sampleMimeType) &amp;&amp; format.channelCount == format2.channelCount) {
+            if (format.sampleRate == format2.sampleRate) {
+                format = MediaCodecUtil.getCodecProfileAndLevel(format.codecs);
+                format2 = MediaCodecUtil.getCodecProfileAndLevel(format2.codecs);
+                if (format != null) {
+                    if (format2 != null) {
+                        format = ((Integer) format.first).intValue();
+                        format2 = ((Integer) format2.first).intValue();
+                        if (format != 42 || format2 != 42) {
+                            z2 = false;
+                        }
+                        return z2;
+                    }
+                }
+                return false;
+            }
+        }
+        return false;
+    }
+
+    @TargetApi(21)
+    public boolean isVideoSizeAndRateSupportedV21(int i, int i2, double d) {
+        if (this.capabilities == null) {
+            logNoSupport("sizeAndRate.caps");
+            return false;
+        }
+        VideoCapabilities videoCapabilities = this.capabilities.getVideoCapabilities();
+        if (videoCapabilities == null) {
+            logNoSupport("sizeAndRate.vCaps");
+            return false;
+        }
+        if (!areSizeAndRateSupportedV21(videoCapabilities, i, i2, d)) {
+            StringBuilder stringBuilder;
+            if (i &lt; i2) {
+                if (areSizeAndRateSupportedV21(videoCapabilities, i2, i, d)) {
+                    stringBuilder = new StringBuilder();
+                    stringBuilder.append("sizeAndRate.rotated, ");
+                    stringBuilder.append(i);
+                    stringBuilder.append("x");
+                    stringBuilder.append(i2);
+                    stringBuilder.append("x");
+                    stringBuilder.append(d);
+                    logAssumedSupport(stringBuilder.toString());
+                }
+            }
+            stringBuilder = new StringBuilder();
+            stringBuilder.append("sizeAndRate.support, ");
+            stringBuilder.append(i);
+            stringBuilder.append("x");
+            stringBuilder.append(i2);
+            stringBuilder.append("x");
+            stringBuilder.append(d);
+            logNoSupport(stringBuilder.toString());
+            return false;
+        }
+        return true;
+    }
+
+    @TargetApi(21)
+    public Point alignVideoSizeV21(int i, int i2) {
+        if (this.capabilities == null) {
+            logNoSupport("align.caps");
+            return null;
+        }
+        VideoCapabilities videoCapabilities = this.capabilities.getVideoCapabilities();
+        if (videoCapabilities == null) {
+            logNoSupport("align.vCaps");
+            return null;
+        }
+        int widthAlignment = videoCapabilities.getWidthAlignment();
+        int heightAlignment = videoCapabilities.getHeightAlignment();
+        return new Point(Util.ceilDivide(i, widthAlignment) * widthAlignment, Util.ceilDivide(i2, heightAlignment) * heightAlignment);
+    }
+
+    @TargetApi(21)
+    public boolean isAudioSampleRateSupportedV21(int i) {
+        if (this.capabilities == null) {
+            logNoSupport("sampleRate.caps");
+            return false;
+        }
+        AudioCapabilities audioCapabilities = this.capabilities.getAudioCapabilities();
+        if (audioCapabilities == null) {
+            logNoSupport("sampleRate.aCaps");
+            return false;
+        } else if (audioCapabilities.isSampleRateSupported(i)) {
+            return true;
+        } else {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("sampleRate.support, ");
+            stringBuilder.append(i);
+            logNoSupport(stringBuilder.toString());
+            return false;
+        }
+    }
+
+    @TargetApi(21)
+    public boolean isAudioChannelCountSupportedV21(int i) {
+        if (this.capabilities == null) {
+            logNoSupport("channelCount.caps");
+            return false;
+        }
+        AudioCapabilities audioCapabilities = this.capabilities.getAudioCapabilities();
+        if (audioCapabilities == null) {
+            logNoSupport("channelCount.aCaps");
+            return false;
+        } else if (adjustMaxInputChannelCount(this.name, this.mimeType, audioCapabilities.getMaxInputChannelCount()) &gt;= i) {
+            return true;
+        } else {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("channelCount.support, ");
+            stringBuilder.append(i);
+            logNoSupport(stringBuilder.toString());
+            return false;
+        }
+    }
+
+    private void logNoSupport(String str) {
+        String str2 = TAG;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("NoSupport [");
+        stringBuilder.append(str);
+        stringBuilder.append("] [");
+        stringBuilder.append(this.name);
+        stringBuilder.append(", ");
+        stringBuilder.append(this.mimeType);
+        stringBuilder.append("] [");
+        stringBuilder.append(Util.DEVICE_DEBUG_INFO);
+        stringBuilder.append("]");
+        Log.d(str2, stringBuilder.toString());
+    }
+
+    private void logAssumedSupport(String str) {
+        String str2 = TAG;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("AssumedSupport [");
+        stringBuilder.append(str);
+        stringBuilder.append("] [");
+        stringBuilder.append(this.name);
+        stringBuilder.append(", ");
+        stringBuilder.append(this.mimeType);
+        stringBuilder.append("] [");
+        stringBuilder.append(Util.DEVICE_DEBUG_INFO);
+        stringBuilder.append("]");
+        Log.d(str2, stringBuilder.toString());
+    }
+
+    private static int adjustMaxInputChannelCount(String str, String str2, int i) {
+        if (i &lt;= 1) {
+            if (Util.SDK_INT &lt; 26 || i &lt;= 0) {
+                if (!(MimeTypes.AUDIO_MPEG.equals(str2) || MimeTypes.AUDIO_AMR_NB.equals(str2) || MimeTypes.AUDIO_AMR_WB.equals(str2) || MimeTypes.AUDIO_AAC.equals(str2) || MimeTypes.AUDIO_VORBIS.equals(str2) || MimeTypes.AUDIO_OPUS.equals(str2) || MimeTypes.AUDIO_RAW.equals(str2) || MimeTypes.AUDIO_FLAC.equals(str2) || MimeTypes.AUDIO_ALAW.equals(str2) || MimeTypes.AUDIO_MLAW.equals(str2))) {
+                    if (!MimeTypes.AUDIO_MSGSM.equals(str2)) {
+                        str2 = MimeTypes.AUDIO_AC3.equals(str2) ? 6 : MimeTypes.AUDIO_E_AC3.equals(str2) != null ? 16 : 30;
+                        String str3 = TAG;
+                        StringBuilder stringBuilder = new StringBuilder();
+                        stringBuilder.append("AssumedMaxChannelAdjustment: ");
+                        stringBuilder.append(str);
+                        stringBuilder.append(", [");
+                        stringBuilder.append(i);
+                        stringBuilder.append(" to ");
+                        stringBuilder.append(str2);
+                        stringBuilder.append("]");
+                        Log.w(str3, stringBuilder.toString());
+                        return str2;
+                    }
+                }
+                return i;
+            }
+        }
+        return i;
+    }
+
+    private static boolean isAdaptive(CodecCapabilities codecCapabilities) {
+        return (Util.SDK_INT &lt; 19 || isAdaptiveV19(codecCapabilities) == null) ? null : true;
+    }
+
+    @TargetApi(19)
+    private static boolean isAdaptiveV19(CodecCapabilities codecCapabilities) {
+        return codecCapabilities.isFeatureSupported("adaptive-playback");
+    }
+
+    private static boolean isTunneling(CodecCapabilities codecCapabilities) {
+        return (Util.SDK_INT &lt; 21 || isTunnelingV21(codecCapabilities) == null) ? null : true;
+    }
+
+    @TargetApi(21)
+    private static boolean isTunnelingV21(CodecCapabilities codecCapabilities) {
+        return codecCapabilities.isFeatureSupported("tunneled-playback");
+    }
+
+    private static boolean isSecure(CodecCapabilities codecCapabilities) {
+        return (Util.SDK_INT &lt; 21 || isSecureV21(codecCapabilities) == null) ? null : true;
+    }
+
+    @TargetApi(21)
+    private static boolean isSecureV21(CodecCapabilities codecCapabilities) {
+        return codecCapabilities.isFeatureSupported("secure-playback");
+    }
+
+    @TargetApi(21)
+    private static boolean areSizeAndRateSupportedV21(VideoCapabilities videoCapabilities, int i, int i2, double d) {
+        if (d != -1.0d) {
+            if (d &gt; 0.0d) {
+                return videoCapabilities.areSizeAndRateSupported(i, i2, d);
+            }
+        }
+        return videoCapabilities.isSizeSupported(i, i2);
+    }
+
+    @TargetApi(23)
+    private static int getMaxSupportedInstancesV23(CodecCapabilities codecCapabilities) {
+        return codecCapabilities.getMaxSupportedInstances();
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:8 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

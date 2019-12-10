@@ -1,0 +1,911 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9"><div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/exoplayer2/mediacodec/MediaCodecUtil.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/exoplayer2/mediacodec/MediaCodecUtil.java</a></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-83">report</i><h5>password =|secret =|username =|key =</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>the app contain hardcoded sensitive informations like usernames, passwords, keys etc: Hard coded sensitive information in Application Code (including Crypto)</span></div></li></ul><ul class="collapsible"><li><div class="collapsible-header"><img data-position="top" data-tooltip="OWASP item" src="html/owasp_logo.png" height="20em" style="margin-right: 1rem;margin-left: 5px;" class="tooltipped"></img> OWASP Item</div><div class="collapsible-body"><span>For more information, have a look at: https://www.owasp.org/index.php/OWASP_Mobile_Security_Testing_Guide</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#MediaCodecUtil_java63pass" class="active">line 63</a></li><li class="tab"><a style="color: #d82c2b;" href="#MediaCodecUtil_java289pass">line 289</a></li></ul></div><div class="card-content"><div id="MediaCodecUtil_java63pass">Code @ line 63<pre data-start="60" data-line="63" data-src="MediaCodecUtil.java" class="code line-numbers"><code>            }
+            if (obj != null) {
+                if (obj.getClass() == CodecKey.class) {
+                    CodecKey codecKey = (CodecKey) obj;
+                    if (!TextUtils.equals(this.mimeType, codecKey.mimeType) || this.secure != codecKey.secure) {
+                        z = false;
+                    }
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL21lZGlhY29kZWMvTWVkaWFDb2RlY1V0aWwuamF2YXx8fGxpbmU6IDYzIDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw2M3x8fDYw">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL21lZGlhY29kZWMvTWVkaWFDb2RlY1V0aWwuamF2YXx8fGxpbmU6IDYzIDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw2M3x8fDYw')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL21lZGlhY29kZWMvTWVkaWFDb2RlY1V0aWwuamF2YXx8fGxpbmU6IDYzIDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw2M3x8fDYw').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL21lZGlhY29kZWMvTWVkaWFDb2RlY1V0aWwuamF2YXx8fGxpbmU6IDYzIDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw2M3x8fDYw" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL21lZGlhY29kZWMvTWVkaWFDb2RlY1V0aWwuamF2YXx8fGxpbmU6IDYzIDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw2M3x8fDYw' , 'ICAgICAgICAgICAgfQogICAgICAgICAgICBpZiAob2JqICE9IG51bGwpIHsKICAgICAgICAgICAgICAgIGlmIChvYmouZ2V0Q2xhc3MoKSA9PSBDb2RlY0tleS5jbGFzcykgewogICAgICAgICAgICAgICAgICAgIENvZGVjS2V5IGNvZGVjS2V5ID0gKENvZGVjS2V5KSBvYmo7CiAgICAgICAgICAgICAgICAgICAgaWYgKCFUZXh0VXRpbHMuZXF1YWxzKHRoaXMubWltZVR5cGUsIGNvZGVjS2V5Lm1pbWVUeXBlKSB8fCB0aGlzLnNlY3VyZSAhPSBjb2RlY0tleS5zZWN1cmUpIHsKICAgICAgICAgICAgICAgICAgICAgICAgeiA9IGZhbHNlOwogICAgICAgICAgICAgICAgICAgIH0K');  
+                                            });
+                                            </script>
+                                            </div><div id="MediaCodecUtil_java289pass">Code @ line 289<pre data-start="286" data-line="289" data-src="MediaCodecUtil.java" class="code line-numbers"><code>
+    public static synchronized List&lt;MediaCodecInfo&gt; getDecoderInfos(String str, boolean z) throws DecoderQueryException {
+        synchronized (MediaCodecUtil.class) {
+            CodecKey codecKey = new CodecKey(str, z);
+            List&lt;MediaCodecInfo&gt; list = (List) decoderInfosCache.get(codecKey);
+            if (list != null) {
+                return list;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL21lZGlhY29kZWMvTWVkaWFDb2RlY1V0aWwuamF2YXx8fGxpbmU6IDI4OSA6IHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDgzfHx8cGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8Mjg5fHx8Mjg2">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL21lZGlhY29kZWMvTWVkaWFDb2RlY1V0aWwuamF2YXx8fGxpbmU6IDI4OSA6IHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDgzfHx8cGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8Mjg5fHx8Mjg2')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL21lZGlhY29kZWMvTWVkaWFDb2RlY1V0aWwuamF2YXx8fGxpbmU6IDI4OSA6IHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDgzfHx8cGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8Mjg5fHx8Mjg2').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL21lZGlhY29kZWMvTWVkaWFDb2RlY1V0aWwuamF2YXx8fGxpbmU6IDI4OSA6IHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDgzfHx8cGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8Mjg5fHx8Mjg2" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL21lZGlhY29kZWMvTWVkaWFDb2RlY1V0aWwuamF2YXx8fGxpbmU6IDI4OSA6IHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDgzfHx8cGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8Mjg5fHx8Mjg2' , 'CiAgICBwdWJsaWMgc3RhdGljIHN5bmNocm9uaXplZCBMaXN0PE1lZGlhQ29kZWNJbmZvPiBnZXREZWNvZGVySW5mb3MoU3RyaW5nIHN0ciwgYm9vbGVhbiB6KSB0aHJvd3MgRGVjb2RlclF1ZXJ5RXhjZXB0aW9uIHsKICAgICAgICBzeW5jaHJvbml6ZWQgKE1lZGlhQ29kZWNVdGlsLmNsYXNzKSB7CiAgICAgICAgICAgIENvZGVjS2V5IGNvZGVjS2V5ID0gbmV3IENvZGVjS2V5KHN0ciwgeik7CiAgICAgICAgICAgIExpc3Q8TWVkaWFDb2RlY0luZm8+IGxpc3QgPSAoTGlzdCkgZGVjb2RlckluZm9zQ2FjaGUuZ2V0KGNvZGVjS2V5KTsKICAgICAgICAgICAgaWYgKGxpc3QgIT0gbnVsbCkgewogICAgICAgICAgICAgICAgcmV0dXJuIGxpc3Q7Cg==');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="MediaCodecUtil.java" data-line="63,289," class="code line-numbers"><code>package com.google.android.exoplayer2.mediacodec;
+
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
+import android.media.MediaCodecInfo;
+import android.media.MediaCodecInfo.CodecCapabilities;
+import android.media.MediaCodecInfo.CodecProfileLevel;
+import android.media.MediaCodecList;
+import android.text.TextUtils;
+import android.util.Pair;
+import android.util.SparseIntArray;
+import androidx.annotation.Nullable;
+import com.google.android.exoplayer2.util.Log;
+import com.google.android.exoplayer2.util.MimeTypes;
+import com.google.android.exoplayer2.util.Util;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+@SuppressLint({"InlinedApi"})
+@TargetApi(16)
+public final class MediaCodecUtil {
+    private static final SparseIntArray AVC_LEVEL_NUMBER_TO_CONST = new SparseIntArray();
+    private static final SparseIntArray AVC_PROFILE_NUMBER_TO_CONST = new SparseIntArray();
+    private static final String CODEC_ID_AVC1 = "avc1";
+    private static final String CODEC_ID_AVC2 = "avc2";
+    private static final String CODEC_ID_HEV1 = "hev1";
+    private static final String CODEC_ID_HVC1 = "hvc1";
+    private static final String CODEC_ID_MP4A = "mp4a";
+    private static final Map&lt;String, Integer&gt; HEVC_CODEC_STRING_TO_PROFILE_LEVEL = new HashMap();
+    private static final SparseIntArray MP4A_AUDIO_OBJECT_TYPE_TO_PROFILE = new SparseIntArray();
+    private static final Pattern PROFILE_PATTERN = Pattern.compile("^\\D?(\\d+)$");
+    private static final RawAudioCodecComparator RAW_AUDIO_CODEC_COMPARATOR = new RawAudioCodecComparator();
+    private static final String TAG = "MediaCodecUtil";
+    private static final HashMap&lt;CodecKey, List&lt;MediaCodecInfo&gt;&gt; decoderInfosCache = new HashMap();
+    private static int maxH264DecodableFrameSize = -1;
+
+    private static final class CodecKey {
+        public final String mimeType;
+        public final boolean secure;
+
+        public CodecKey(String str, boolean z) {
+            this.mimeType = str;
+            this.secure = z;
+        }
+
+        public int hashCode() {
+            return (((this.mimeType == null ? 0 : this.mimeType.hashCode()) + 31) * 31) + (this.secure ? 1231 : 1237);
+        }
+
+        public boolean equals(@Nullable Object obj) {
+            boolean z = true;
+            if (this == obj) {
+                return true;
+            }
+            if (obj != null) {
+                if (obj.getClass() == CodecKey.class) {
+                    CodecKey codecKey = (CodecKey) obj;
+                    if (!TextUtils.equals(this.mimeType, codecKey.mimeType) || this.secure != codecKey.secure) {
+                        z = false;
+                    }
+                    return z;
+                }
+            }
+            return false;
+        }
+    }
+
+    public static class DecoderQueryException extends Exception {
+        private DecoderQueryException(Throwable th) {
+            super("Failed to query underlying media codecs", th);
+        }
+    }
+
+    private interface MediaCodecListCompat {
+        int getCodecCount();
+
+        MediaCodecInfo getCodecInfoAt(int i);
+
+        boolean isSecurePlaybackSupported(String str, CodecCapabilities codecCapabilities);
+
+        boolean secureDecodersExplicit();
+    }
+
+    private static final class RawAudioCodecComparator implements Comparator&lt;MediaCodecInfo&gt; {
+        private RawAudioCodecComparator() {
+        }
+
+        public int compare(MediaCodecInfo mediaCodecInfo, MediaCodecInfo mediaCodecInfo2) {
+            return scoreMediaCodecInfo(mediaCodecInfo) - scoreMediaCodecInfo(mediaCodecInfo2);
+        }
+
+        private static int scoreMediaCodecInfo(MediaCodecInfo mediaCodecInfo) {
+            mediaCodecInfo = mediaCodecInfo.name;
+            if (!mediaCodecInfo.startsWith("OMX.google")) {
+                if (!mediaCodecInfo.startsWith("c2.android")) {
+                    return (Util.SDK_INT &gt;= 26 || mediaCodecInfo.equals("OMX.MTK.AUDIO.DECODER.RAW") == null) ? null : 1;
+                }
+            }
+            return -1;
+        }
+    }
+
+    private static final class MediaCodecListCompatV16 implements MediaCodecListCompat {
+        public boolean secureDecodersExplicit() {
+            return false;
+        }
+
+        private MediaCodecListCompatV16() {
+        }
+
+        public int getCodecCount() {
+            return MediaCodecList.getCodecCount();
+        }
+
+        public MediaCodecInfo getCodecInfoAt(int i) {
+            return MediaCodecList.getCodecInfoAt(i);
+        }
+
+        public boolean isSecurePlaybackSupported(String str, CodecCapabilities codecCapabilities) {
+            return MimeTypes.VIDEO_H264.equals(str);
+        }
+    }
+
+    @TargetApi(21)
+    private static final class MediaCodecListCompatV21 implements MediaCodecListCompat {
+        private final int codecKind;
+        private MediaCodecInfo[] mediaCodecInfos;
+
+        public boolean secureDecodersExplicit() {
+            return true;
+        }
+
+        public MediaCodecListCompatV21(boolean z) {
+            this.codecKind = z;
+        }
+
+        public int getCodecCount() {
+            ensureMediaCodecInfosInitialized();
+            return this.mediaCodecInfos.length;
+        }
+
+        public MediaCodecInfo getCodecInfoAt(int i) {
+            ensureMediaCodecInfosInitialized();
+            return this.mediaCodecInfos[i];
+        }
+
+        public boolean isSecurePlaybackSupported(String str, CodecCapabilities codecCapabilities) {
+            return codecCapabilities.isFeatureSupported("secure-playback");
+        }
+
+        private void ensureMediaCodecInfosInitialized() {
+            if (this.mediaCodecInfos == null) {
+                this.mediaCodecInfos = new MediaCodecList(this.codecKind).getCodecInfos();
+            }
+        }
+    }
+
+    private static int avcLevelToMaxFrameSize(int i) {
+        switch (i) {
+            case 1:
+            case 2:
+                return 25344;
+            case 8:
+            case 16:
+            case 32:
+                return 101376;
+            case 64:
+                return 202752;
+            case 128:
+            case 256:
+                return 414720;
+            case 512:
+                return 921600;
+            case 1024:
+                return 1310720;
+            case 2048:
+            case 4096:
+                return 2097152;
+            case 8192:
+                return 2228224;
+            case 16384:
+                return 5652480;
+            case 32768:
+            case 65536:
+                return 9437184;
+            default:
+                return -1;
+        }
+    }
+
+    static {
+        AVC_PROFILE_NUMBER_TO_CONST.put(66, 1);
+        AVC_PROFILE_NUMBER_TO_CONST.put(77, 2);
+        AVC_PROFILE_NUMBER_TO_CONST.put(88, 4);
+        AVC_PROFILE_NUMBER_TO_CONST.put(100, 8);
+        AVC_PROFILE_NUMBER_TO_CONST.put(110, 16);
+        AVC_PROFILE_NUMBER_TO_CONST.put(122, 32);
+        AVC_PROFILE_NUMBER_TO_CONST.put(244, 64);
+        AVC_LEVEL_NUMBER_TO_CONST.put(10, 1);
+        AVC_LEVEL_NUMBER_TO_CONST.put(11, 4);
+        AVC_LEVEL_NUMBER_TO_CONST.put(12, 8);
+        AVC_LEVEL_NUMBER_TO_CONST.put(13, 16);
+        AVC_LEVEL_NUMBER_TO_CONST.put(20, 32);
+        AVC_LEVEL_NUMBER_TO_CONST.put(21, 64);
+        AVC_LEVEL_NUMBER_TO_CONST.put(22, 128);
+        AVC_LEVEL_NUMBER_TO_CONST.put(30, 256);
+        AVC_LEVEL_NUMBER_TO_CONST.put(31, 512);
+        AVC_LEVEL_NUMBER_TO_CONST.put(32, 1024);
+        AVC_LEVEL_NUMBER_TO_CONST.put(40, 2048);
+        AVC_LEVEL_NUMBER_TO_CONST.put(41, 4096);
+        AVC_LEVEL_NUMBER_TO_CONST.put(42, 8192);
+        AVC_LEVEL_NUMBER_TO_CONST.put(50, 16384);
+        AVC_LEVEL_NUMBER_TO_CONST.put(51, 32768);
+        AVC_LEVEL_NUMBER_TO_CONST.put(52, 65536);
+        HEVC_CODEC_STRING_TO_PROFILE_LEVEL.put("L30", Integer.valueOf(1));
+        HEVC_CODEC_STRING_TO_PROFILE_LEVEL.put("L60", Integer.valueOf(4));
+        HEVC_CODEC_STRING_TO_PROFILE_LEVEL.put("L63", Integer.valueOf(16));
+        HEVC_CODEC_STRING_TO_PROFILE_LEVEL.put("L90", Integer.valueOf(64));
+        HEVC_CODEC_STRING_TO_PROFILE_LEVEL.put("L93", Integer.valueOf(256));
+        HEVC_CODEC_STRING_TO_PROFILE_LEVEL.put("L120", Integer.valueOf(1024));
+        HEVC_CODEC_STRING_TO_PROFILE_LEVEL.put("L123", Integer.valueOf(4096));
+        HEVC_CODEC_STRING_TO_PROFILE_LEVEL.put("L150", Integer.valueOf(16384));
+        HEVC_CODEC_STRING_TO_PROFILE_LEVEL.put("L153", Integer.valueOf(65536));
+        HEVC_CODEC_STRING_TO_PROFILE_LEVEL.put("L156", Integer.valueOf(262144));
+        HEVC_CODEC_STRING_TO_PROFILE_LEVEL.put("L180", Integer.valueOf(1048576));
+        HEVC_CODEC_STRING_TO_PROFILE_LEVEL.put("L183", Integer.valueOf(4194304));
+        HEVC_CODEC_STRING_TO_PROFILE_LEVEL.put("L186", Integer.valueOf(16777216));
+        HEVC_CODEC_STRING_TO_PROFILE_LEVEL.put("H30", Integer.valueOf(2));
+        HEVC_CODEC_STRING_TO_PROFILE_LEVEL.put("H60", Integer.valueOf(8));
+        HEVC_CODEC_STRING_TO_PROFILE_LEVEL.put("H63", Integer.valueOf(32));
+        HEVC_CODEC_STRING_TO_PROFILE_LEVEL.put("H90", Integer.valueOf(128));
+        HEVC_CODEC_STRING_TO_PROFILE_LEVEL.put("H93", Integer.valueOf(512));
+        HEVC_CODEC_STRING_TO_PROFILE_LEVEL.put("H120", Integer.valueOf(2048));
+        HEVC_CODEC_STRING_TO_PROFILE_LEVEL.put("H123", Integer.valueOf(8192));
+        HEVC_CODEC_STRING_TO_PROFILE_LEVEL.put("H150", Integer.valueOf(32768));
+        HEVC_CODEC_STRING_TO_PROFILE_LEVEL.put("H153", Integer.valueOf(131072));
+        HEVC_CODEC_STRING_TO_PROFILE_LEVEL.put("H156", Integer.valueOf(524288));
+        HEVC_CODEC_STRING_TO_PROFILE_LEVEL.put("H180", Integer.valueOf(2097152));
+        HEVC_CODEC_STRING_TO_PROFILE_LEVEL.put("H183", Integer.valueOf(8388608));
+        HEVC_CODEC_STRING_TO_PROFILE_LEVEL.put("H186", Integer.valueOf(33554432));
+        MP4A_AUDIO_OBJECT_TYPE_TO_PROFILE.put(1, 1);
+        MP4A_AUDIO_OBJECT_TYPE_TO_PROFILE.put(2, 2);
+        MP4A_AUDIO_OBJECT_TYPE_TO_PROFILE.put(3, 3);
+        MP4A_AUDIO_OBJECT_TYPE_TO_PROFILE.put(4, 4);
+        MP4A_AUDIO_OBJECT_TYPE_TO_PROFILE.put(5, 5);
+        MP4A_AUDIO_OBJECT_TYPE_TO_PROFILE.put(6, 6);
+        MP4A_AUDIO_OBJECT_TYPE_TO_PROFILE.put(17, 17);
+        MP4A_AUDIO_OBJECT_TYPE_TO_PROFILE.put(20, 20);
+        MP4A_AUDIO_OBJECT_TYPE_TO_PROFILE.put(23, 23);
+        MP4A_AUDIO_OBJECT_TYPE_TO_PROFILE.put(29, 29);
+        MP4A_AUDIO_OBJECT_TYPE_TO_PROFILE.put(39, 39);
+        MP4A_AUDIO_OBJECT_TYPE_TO_PROFILE.put(42, 42);
+    }
+
+    private MediaCodecUtil() {
+    }
+
+    public static void warmDecoderInfoCache(String str, boolean z) {
+        try {
+            getDecoderInfos(str, z);
+        } catch (String str2) {
+            Log.e(TAG, "Codec warming failed", str2);
+        }
+    }
+
+    @Nullable
+    public static MediaCodecInfo getPassthroughDecoderInfo() throws DecoderQueryException {
+        MediaCodecInfo decoderInfo = getDecoderInfo(MimeTypes.AUDIO_RAW, false);
+        if (decoderInfo == null) {
+            return null;
+        }
+        return MediaCodecInfo.newPassthroughInstance(decoderInfo.name);
+    }
+
+    @Nullable
+    public static MediaCodecInfo getDecoderInfo(String str, boolean z) throws DecoderQueryException {
+        str = getDecoderInfos(str, z);
+        return str.isEmpty() ? null : (MediaCodecInfo) str.get(false);
+    }
+
+    public static synchronized List&lt;MediaCodecInfo&gt; getDecoderInfos(String str, boolean z) throws DecoderQueryException {
+        synchronized (MediaCodecUtil.class) {
+            CodecKey codecKey = new CodecKey(str, z);
+            List&lt;MediaCodecInfo&gt; list = (List) decoderInfosCache.get(codecKey);
+            if (list != null) {
+                return list;
+            }
+            MediaCodecListCompat mediaCodecListCompatV21 = Util.SDK_INT &gt;= 21 ? new MediaCodecListCompatV21(z) : new MediaCodecListCompatV16();
+            List decoderInfosInternal = getDecoderInfosInternal(codecKey, mediaCodecListCompatV21, str);
+            if (z &amp;&amp; decoderInfosInternal.isEmpty() &amp;&amp; true &lt;= Util.SDK_INT &amp;&amp; Util.SDK_INT &lt;= true) {
+                mediaCodecListCompatV21 = new MediaCodecListCompatV16();
+                decoderInfosInternal = getDecoderInfosInternal(codecKey, mediaCodecListCompatV21, str);
+                if (!decoderInfosInternal.isEmpty()) {
+                    z = TAG;
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.append("MediaCodecList API didn't list secure decoder for: ");
+                    stringBuilder.append(str);
+                    stringBuilder.append(". Assuming: ");
+                    stringBuilder.append(((MediaCodecInfo) decoderInfosInternal.get(0)).name);
+                    Log.w(z, stringBuilder.toString());
+                }
+            }
+            if (MimeTypes.AUDIO_E_AC3_JOC.equals(str)) {
+                decoderInfosInternal.addAll(getDecoderInfosInternal(new CodecKey(MimeTypes.AUDIO_E_AC3, codecKey.secure), mediaCodecListCompatV21, str));
+            }
+            applyWorkarounds(str, decoderInfosInternal);
+            str = Collections.unmodifiableList(decoderInfosInternal);
+            decoderInfosCache.put(codecKey, str);
+            return str;
+        }
+    }
+
+    public static int maxH264DecodableFrameSize() throws DecoderQueryException {
+        if (maxH264DecodableFrameSize == -1) {
+            int i = 0;
+            MediaCodecInfo decoderInfo = getDecoderInfo(MimeTypes.VIDEO_H264, false);
+            if (decoderInfo != null) {
+                CodecProfileLevel[] profileLevels = decoderInfo.getProfileLevels();
+                int length = profileLevels.length;
+                int i2 = 0;
+                while (i &lt; length) {
+                    i2 = Math.max(avcLevelToMaxFrameSize(profileLevels[i].level), i2);
+                    i++;
+                }
+                i = Math.max(i2, Util.SDK_INT &gt;= 21 ? 345600 : 172800);
+            }
+            maxH264DecodableFrameSize = i;
+        }
+        return maxH264DecodableFrameSize;
+    }
+
+    /* JADX WARNING: inconsistent code. */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    @androidx.annotation.Nullable
+    public static android.util.Pair&lt;java.lang.Integer, java.lang.Integer&gt; getCodecProfileAndLevel(java.lang.String r6) {
+        /*
+        r0 = 0;
+        if (r6 != 0) goto L_0x0004;
+    L_0x0003:
+        return r0;
+    L_0x0004:
+        r1 = "\\.";
+        r1 = r6.split(r1);
+        r2 = 0;
+        r3 = r1[r2];
+        r4 = -1;
+        r5 = r3.hashCode();
+        switch(r5) {
+            case 3006243: goto L_0x003d;
+            case 3006244: goto L_0x0033;
+            case 3199032: goto L_0x002a;
+            case 3214780: goto L_0x0020;
+            case 3356560: goto L_0x0016;
+            default: goto L_0x0015;
+        };
+    L_0x0015:
+        goto L_0x0047;
+    L_0x0016:
+        r2 = "mp4a";
+        r2 = r3.equals(r2);
+        if (r2 == 0) goto L_0x0047;
+    L_0x001e:
+        r2 = 4;
+        goto L_0x0048;
+    L_0x0020:
+        r2 = "hvc1";
+        r2 = r3.equals(r2);
+        if (r2 == 0) goto L_0x0047;
+    L_0x0028:
+        r2 = 1;
+        goto L_0x0048;
+    L_0x002a:
+        r5 = "hev1";
+        r3 = r3.equals(r5);
+        if (r3 == 0) goto L_0x0047;
+    L_0x0032:
+        goto L_0x0048;
+    L_0x0033:
+        r2 = "avc2";
+        r2 = r3.equals(r2);
+        if (r2 == 0) goto L_0x0047;
+    L_0x003b:
+        r2 = 3;
+        goto L_0x0048;
+    L_0x003d:
+        r2 = "avc1";
+        r2 = r3.equals(r2);
+        if (r2 == 0) goto L_0x0047;
+    L_0x0045:
+        r2 = 2;
+        goto L_0x0048;
+    L_0x0047:
+        r2 = -1;
+    L_0x0048:
+        switch(r2) {
+            case 0: goto L_0x0056;
+            case 1: goto L_0x0056;
+            case 2: goto L_0x0051;
+            case 3: goto L_0x0051;
+            case 4: goto L_0x004c;
+            default: goto L_0x004b;
+        };
+    L_0x004b:
+        return r0;
+    L_0x004c:
+        r6 = getAacCodecProfileAndLevel(r6, r1);
+        return r6;
+    L_0x0051:
+        r6 = getAvcProfileAndLevel(r6, r1);
+        return r6;
+    L_0x0056:
+        r6 = getHevcProfileAndLevel(r6, r1);
+        return r6;
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.google.android.exoplayer2.mediacodec.MediaCodecUtil.getCodecProfileAndLevel(java.lang.String):android.util.Pair&lt;java.lang.Integer, java.lang.Integer&gt;");
+    }
+
+    private static ArrayList&lt;MediaCodecInfo&gt; getDecoderInfosInternal(CodecKey codecKey, MediaCodecListCompat mediaCodecListCompat, String str) throws DecoderQueryException {
+        Exception e;
+        String str2;
+        StringBuilder stringBuilder;
+        CodecKey codecKey2 = codecKey;
+        MediaCodecListCompat mediaCodecListCompat2 = mediaCodecListCompat;
+        try {
+            ArrayList&lt;MediaCodecInfo&gt; arrayList = new ArrayList();
+            String str3 = codecKey2.mimeType;
+            int codecCount = mediaCodecListCompat.getCodecCount();
+            boolean secureDecodersExplicit = mediaCodecListCompat.secureDecodersExplicit();
+            int i = 0;
+            while (i &lt; codecCount) {
+                MediaCodecInfo codecInfoAt = mediaCodecListCompat2.getCodecInfoAt(i);
+                String name = codecInfoAt.getName();
+                if (isCodecUsableDecoder(codecInfoAt, name, secureDecodersExplicit, str)) {
+                    String[] supportedTypes = codecInfoAt.getSupportedTypes();
+                    int length = supportedTypes.length;
+                    int i2 = 0;
+                    while (i2 &lt; length) {
+                        int i3;
+                        String str4 = supportedTypes[i2];
+                        if (str4.equalsIgnoreCase(str3)) {
+                            try {
+                                CodecCapabilities capabilitiesForType = codecInfoAt.getCapabilitiesForType(str4);
+                                boolean isSecurePlaybackSupported = mediaCodecListCompat2.isSecurePlaybackSupported(str3, capabilitiesForType);
+                                boolean codecNeedsDisableAdaptationWorkaround = codecNeedsDisableAdaptationWorkaround(name);
+                                StringBuilder stringBuilder2;
+                                if (secureDecodersExplicit) {
+                                    i3 = codecCount;
+                                    try {
+                                        if (codecKey2.secure != isSecurePlaybackSupported) {
+                                            if (!secureDecodersExplicit || codecKey2.secure) {
+                                                if (!secureDecodersExplicit &amp;&amp; isSecurePlaybackSupported) {
+                                                    stringBuilder2 = new StringBuilder();
+                                                    stringBuilder2.append(name);
+                                                    stringBuilder2.append(".secure");
+                                                    arrayList.add(MediaCodecInfo.newInstance(stringBuilder2.toString(), str3, capabilitiesForType, codecNeedsDisableAdaptationWorkaround, true));
+                                                    return arrayList;
+                                                }
+                                            }
+                                        }
+                                    } catch (Exception e2) {
+                                        e = e2;
+                                        if (Util.SDK_INT &lt;= 23) {
+                                        }
+                                        str2 = TAG;
+                                        stringBuilder = new StringBuilder();
+                                        stringBuilder.append("Failed to query codec ");
+                                        stringBuilder.append(name);
+                                        stringBuilder.append(" (");
+                                        stringBuilder.append(str4);
+                                        stringBuilder.append(")");
+                                        Log.e(str2, stringBuilder.toString());
+                                        throw e;
+                                    }
+                                }
+                                i3 = codecCount;
+                                if (secureDecodersExplicit) {
+                                }
+                                stringBuilder2 = new StringBuilder();
+                                stringBuilder2.append(name);
+                                stringBuilder2.append(".secure");
+                                arrayList.add(MediaCodecInfo.newInstance(stringBuilder2.toString(), str3, capabilitiesForType, codecNeedsDisableAdaptationWorkaround, true));
+                                return arrayList;
+                                arrayList.add(MediaCodecInfo.newInstance(name, str3, capabilitiesForType, codecNeedsDisableAdaptationWorkaround, false));
+                            } catch (Exception e3) {
+                                e = e3;
+                                i3 = codecCount;
+                                if (Util.SDK_INT &lt;= 23 || arrayList.isEmpty()) {
+                                    str2 = TAG;
+                                    stringBuilder = new StringBuilder();
+                                    stringBuilder.append("Failed to query codec ");
+                                    stringBuilder.append(name);
+                                    stringBuilder.append(" (");
+                                    stringBuilder.append(str4);
+                                    stringBuilder.append(")");
+                                    Log.e(str2, stringBuilder.toString());
+                                    throw e;
+                                }
+                                String str5 = TAG;
+                                stringBuilder = new StringBuilder();
+                                stringBuilder.append("Skipping codec ");
+                                stringBuilder.append(name);
+                                stringBuilder.append(" (failed to query capabilities)");
+                                Log.e(str5, stringBuilder.toString());
+                                i2++;
+                                codecCount = i3;
+                                mediaCodecListCompat2 = mediaCodecListCompat;
+                            }
+                        } else {
+                            i3 = codecCount;
+                        }
+                        i2++;
+                        codecCount = i3;
+                        mediaCodecListCompat2 = mediaCodecListCompat;
+                    }
+                    continue;
+                }
+                i++;
+                codecCount = codecCount;
+                mediaCodecListCompat2 = mediaCodecListCompat;
+            }
+            return arrayList;
+        } catch (Throwable e4) {
+            throw new DecoderQueryException(e4);
+        }
+    }
+
+    private static boolean isCodecUsableDecoder(MediaCodecInfo mediaCodecInfo, String str, boolean z, String str2) {
+        if (mediaCodecInfo.isEncoder() == null) {
+            if (z || str.endsWith(".secure") == null) {
+                if (Util.SDK_INT &lt; true &amp;&amp; ("CIPAACDecoder".equals(str) != null || "CIPMP3Decoder".equals(str) != null || "CIPVorbisDecoder".equals(str) != null || "CIPAMRNBDecoder".equals(str) != null || "AACDecoder".equals(str) != null || "MP3Decoder".equals(str) != null)) {
+                    return false;
+                }
+                if (Util.SDK_INT &lt; 18 &amp;&amp; "OMX.SEC.MP3.Decoder".equals(str) != null) {
+                    return false;
+                }
+                if ("OMX.SEC.mp3.dec".equals(str) != null &amp;&amp; "SM-T530".equals(Util.MODEL) != null) {
+                    return false;
+                }
+                if (Util.SDK_INT &lt; 18 &amp;&amp; "OMX.MTK.AUDIO.DECODER.AAC".equals(str) != null &amp;&amp; ("a70".equals(Util.DEVICE) != null || ("Xiaomi".equals(Util.MANUFACTURER) != null &amp;&amp; Util.DEVICE.startsWith("HM") != null))) {
+                    return false;
+                }
+                if (Util.SDK_INT == 16 &amp;&amp; "OMX.qcom.audio.decoder.mp3".equals(str) != null &amp;&amp; ("dlxu".equals(Util.DEVICE) != null || "protou".equals(Util.DEVICE) != null || "ville".equals(Util.DEVICE) != null || "villeplus".equals(Util.DEVICE) != null || "villec2".equals(Util.DEVICE) != null || Util.DEVICE.startsWith("gee") != null || "C6602".equals(Util.DEVICE) != null || "C6603".equals(Util.DEVICE) != null || "C6606".equals(Util.DEVICE) != null || "C6616".equals(Util.DEVICE) != null || "L36h".equals(Util.DEVICE) != null || "SO-02E".equals(Util.DEVICE) != null)) {
+                    return false;
+                }
+                if (Util.SDK_INT == 16 &amp;&amp; "OMX.qcom.audio.decoder.aac".equals(str) != null &amp;&amp; ("C1504".equals(Util.DEVICE) != null || "C1505".equals(Util.DEVICE) != null || "C1604".equals(Util.DEVICE) != null || "C1605".equals(Util.DEVICE) != null)) {
+                    return false;
+                }
+                if (Util.SDK_INT &lt; true &amp;&amp; (("OMX.SEC.aac.dec".equals(str) != null || "OMX.Exynos.AAC.Decoder".equals(str) != null) &amp;&amp; "samsung".equals(Util.MANUFACTURER) != null &amp;&amp; (Util.DEVICE.startsWith("zeroflte") != null || Util.DEVICE.startsWith("zerolte") != null || Util.DEVICE.startsWith("zenlte") != null || "SC-05G".equals(Util.DEVICE) != null || "marinelteatt".equals(Util.DEVICE) != null || "404SC".equals(Util.DEVICE) != null || "SC-04G".equals(Util.DEVICE) != null || "SCV31".equals(Util.DEVICE) != null))) {
+                    return false;
+                }
+                if (Util.SDK_INT &lt;= 19 &amp;&amp; "OMX.SEC.vp8.dec".equals(str) != null &amp;&amp; "samsung".equals(Util.MANUFACTURER) != null &amp;&amp; (Util.DEVICE.startsWith("d2") != null || Util.DEVICE.startsWith("serrano") != null || Util.DEVICE.startsWith("jflte") != null || Util.DEVICE.startsWith("santos") != null || Util.DEVICE.startsWith("t0") != null)) {
+                    return false;
+                }
+                if (Util.SDK_INT &lt;= 19 &amp;&amp; Util.DEVICE.startsWith("jflte") != null &amp;&amp; "OMX.qcom.video.decoder.vp8".equals(str) != null) {
+                    return false;
+                }
+                if (MimeTypes.AUDIO_E_AC3_JOC.equals(str2) == null || "OMX.MTK.AUDIO.DECODER.DSPAC3".equals(str) == null) {
+                    return true;
+                }
+                return false;
+            }
+        }
+        return false;
+    }
+
+    private static void applyWorkarounds(String str, List&lt;MediaCodecInfo&gt; list) {
+        if (MimeTypes.AUDIO_RAW.equals(str) != null) {
+            Collections.sort(list, RAW_AUDIO_CODEC_COMPARATOR);
+        }
+    }
+
+    private static boolean codecNeedsDisableAdaptationWorkaround(String str) {
+        return (Util.SDK_INT &gt; 22 || (!("ODROID-XU3".equals(Util.MODEL) || "Nexus 10".equals(Util.MODEL)) || (!"OMX.Exynos.AVC.Decoder".equals(str) &amp;&amp; "OMX.Exynos.AVC.Decoder.secure".equals(str) == null))) ? null : true;
+    }
+
+    private static Pair&lt;Integer, Integer&gt; getHevcProfileAndLevel(String str, String[] strArr) {
+        if (strArr.length &lt; 4) {
+            strArr = TAG;
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("Ignoring malformed HEVC codec string: ");
+            stringBuilder.append(str);
+            Log.w(strArr, stringBuilder.toString());
+            return null;
+        }
+        Matcher matcher = PROFILE_PATTERN.matcher(strArr[1]);
+        if (matcher.matches()) {
+            str = matcher.group(1);
+            if ("1".equals(str)) {
+                str = true;
+            } else if ("2".equals(str)) {
+                str = 2;
+            } else {
+                strArr = TAG;
+                stringBuilder = new StringBuilder();
+                stringBuilder.append("Unknown HEVC profile string: ");
+                stringBuilder.append(str);
+                Log.w(strArr, stringBuilder.toString());
+                return null;
+            }
+            Integer num = (Integer) HEVC_CODEC_STRING_TO_PROFILE_LEVEL.get(strArr[3]);
+            if (num != null) {
+                return new Pair(Integer.valueOf(str), num);
+            }
+            str = TAG;
+            strArr = new StringBuilder();
+            strArr.append("Unknown HEVC level string: ");
+            strArr.append(matcher.group(1));
+            Log.w(str, strArr.toString());
+            return null;
+        }
+        strArr = TAG;
+        stringBuilder = new StringBuilder();
+        stringBuilder.append("Ignoring malformed HEVC codec string: ");
+        stringBuilder.append(str);
+        Log.w(strArr, stringBuilder.toString());
+        return null;
+    }
+
+    private static android.util.Pair&lt;java.lang.Integer, java.lang.Integer&gt; getAvcProfileAndLevel(java.lang.String r5, java.lang.String[] r6) {
+        /* JADX: method processing error */
+/*
+Error: java.lang.NullPointerException
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.searchTryCatchDominators(ProcessTryCatchRegions.java:75)
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.process(ProcessTryCatchRegions.java:45)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.postProcessRegions(RegionMakerVisitor.java:63)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.visit(RegionMakerVisitor.java:58)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:31)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:17)
+	at jadx.core.ProcessClass.process(ProcessClass.java:37)
+	at jadx.core.ProcessClass.processDependencies(ProcessClass.java:59)
+	at jadx.core.ProcessClass.process(ProcessClass.java:42)
+	at jadx.api.JadxDecompiler.processClass(JadxDecompiler.java:306)
+	at jadx.api.JavaClass.decompile(JavaClass.java:62)
+	at jadx.api.JadxDecompiler$1.run(JadxDecompiler.java:199)
+*/
+        /*
+        r0 = r6.length;
+        r1 = 2;
+        r2 = 0;
+        if (r0 &gt;= r1) goto L_0x001c;
+    L_0x0005:
+        r6 = "MediaCodecUtil";
+        r0 = new java.lang.StringBuilder;
+        r0.&lt;init&gt;();
+        r1 = "Ignoring malformed AVC codec string: ";
+        r0.append(r1);
+        r0.append(r5);
+        r5 = r0.toString();
+        com.google.android.exoplayer2.util.Log.w(r6, r5);
+        return r2;
+    L_0x001c:
+        r0 = 1;
+        r3 = r6[r0];	 Catch:{ NumberFormatException -&gt; 0x00cc }
+        r3 = r3.length();	 Catch:{ NumberFormatException -&gt; 0x00cc }
+        r4 = 6;	 Catch:{ NumberFormatException -&gt; 0x00cc }
+        if (r3 != r4) goto L_0x0048;	 Catch:{ NumberFormatException -&gt; 0x00cc }
+    L_0x0026:
+        r3 = r6[r0];	 Catch:{ NumberFormatException -&gt; 0x00cc }
+        r4 = 0;	 Catch:{ NumberFormatException -&gt; 0x00cc }
+        r1 = r3.substring(r4, r1);	 Catch:{ NumberFormatException -&gt; 0x00cc }
+        r3 = 16;	 Catch:{ NumberFormatException -&gt; 0x00cc }
+        r1 = java.lang.Integer.parseInt(r1, r3);	 Catch:{ NumberFormatException -&gt; 0x00cc }
+        r1 = java.lang.Integer.valueOf(r1);	 Catch:{ NumberFormatException -&gt; 0x00cc }
+        r6 = r6[r0];	 Catch:{ NumberFormatException -&gt; 0x00cc }
+        r0 = 4;	 Catch:{ NumberFormatException -&gt; 0x00cc }
+        r6 = r6.substring(r0);	 Catch:{ NumberFormatException -&gt; 0x00cc }
+        r6 = java.lang.Integer.parseInt(r6, r3);	 Catch:{ NumberFormatException -&gt; 0x00cc }
+        r6 = java.lang.Integer.valueOf(r6);	 Catch:{ NumberFormatException -&gt; 0x00cc }
+        r0 = r1;	 Catch:{ NumberFormatException -&gt; 0x00cc }
+        goto L_0x0060;	 Catch:{ NumberFormatException -&gt; 0x00cc }
+    L_0x0048:
+        r3 = r6.length;	 Catch:{ NumberFormatException -&gt; 0x00cc }
+        r4 = 3;	 Catch:{ NumberFormatException -&gt; 0x00cc }
+        if (r3 &lt; r4) goto L_0x00b5;	 Catch:{ NumberFormatException -&gt; 0x00cc }
+    L_0x004c:
+        r0 = r6[r0];	 Catch:{ NumberFormatException -&gt; 0x00cc }
+        r0 = java.lang.Integer.parseInt(r0);	 Catch:{ NumberFormatException -&gt; 0x00cc }
+        r0 = java.lang.Integer.valueOf(r0);	 Catch:{ NumberFormatException -&gt; 0x00cc }
+        r6 = r6[r1];	 Catch:{ NumberFormatException -&gt; 0x00cc }
+        r6 = java.lang.Integer.parseInt(r6);	 Catch:{ NumberFormatException -&gt; 0x00cc }
+        r6 = java.lang.Integer.valueOf(r6);	 Catch:{ NumberFormatException -&gt; 0x00cc }
+    L_0x0060:
+        r5 = AVC_PROFILE_NUMBER_TO_CONST;
+        r1 = r0.intValue();
+        r3 = -1;
+        r5 = r5.get(r1, r3);
+        if (r5 != r3) goto L_0x0084;
+    L_0x006d:
+        r5 = "MediaCodecUtil";
+        r6 = new java.lang.StringBuilder;
+        r6.&lt;init&gt;();
+        r1 = "Unknown AVC profile: ";
+        r6.append(r1);
+        r6.append(r0);
+        r6 = r6.toString();
+        com.google.android.exoplayer2.util.Log.w(r5, r6);
+        return r2;
+    L_0x0084:
+        r0 = AVC_LEVEL_NUMBER_TO_CONST;
+        r1 = r6.intValue();
+        r0 = r0.get(r1, r3);
+        if (r0 != r3) goto L_0x00a7;
+    L_0x0090:
+        r5 = "MediaCodecUtil";
+        r0 = new java.lang.StringBuilder;
+        r0.&lt;init&gt;();
+        r1 = "Unknown AVC level: ";
+        r0.append(r1);
+        r0.append(r6);
+        r6 = r0.toString();
+        com.google.android.exoplayer2.util.Log.w(r5, r6);
+        return r2;
+    L_0x00a7:
+        r6 = new android.util.Pair;
+        r5 = java.lang.Integer.valueOf(r5);
+        r0 = java.lang.Integer.valueOf(r0);
+        r6.&lt;init&gt;(r5, r0);
+        return r6;
+    L_0x00b5:
+        r6 = "MediaCodecUtil";	 Catch:{ NumberFormatException -&gt; 0x00cc }
+        r0 = new java.lang.StringBuilder;	 Catch:{ NumberFormatException -&gt; 0x00cc }
+        r0.&lt;init&gt;();	 Catch:{ NumberFormatException -&gt; 0x00cc }
+        r1 = "Ignoring malformed AVC codec string: ";	 Catch:{ NumberFormatException -&gt; 0x00cc }
+        r0.append(r1);	 Catch:{ NumberFormatException -&gt; 0x00cc }
+        r0.append(r5);	 Catch:{ NumberFormatException -&gt; 0x00cc }
+        r0 = r0.toString();	 Catch:{ NumberFormatException -&gt; 0x00cc }
+        com.google.android.exoplayer2.util.Log.w(r6, r0);	 Catch:{ NumberFormatException -&gt; 0x00cc }
+        return r2;
+    L_0x00cc:
+        r6 = "MediaCodecUtil";
+        r0 = new java.lang.StringBuilder;
+        r0.&lt;init&gt;();
+        r1 = "Ignoring malformed AVC codec string: ";
+        r0.append(r1);
+        r0.append(r5);
+        r5 = r0.toString();
+        com.google.android.exoplayer2.util.Log.w(r6, r5);
+        return r2;
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.google.android.exoplayer2.mediacodec.MediaCodecUtil.getAvcProfileAndLevel(java.lang.String, java.lang.String[]):android.util.Pair&lt;java.lang.Integer, java.lang.Integer&gt;");
+    }
+
+    @androidx.annotation.Nullable
+    private static android.util.Pair&lt;java.lang.Integer, java.lang.Integer&gt; getAacCodecProfileAndLevel(java.lang.String r3, java.lang.String[] r4) {
+        /* JADX: method processing error */
+/*
+Error: java.lang.NullPointerException
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.searchTryCatchDominators(ProcessTryCatchRegions.java:75)
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.process(ProcessTryCatchRegions.java:45)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.postProcessRegions(RegionMakerVisitor.java:63)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.visit(RegionMakerVisitor.java:58)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:31)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:17)
+	at jadx.core.ProcessClass.process(ProcessClass.java:37)
+	at jadx.core.ProcessClass.processDependencies(ProcessClass.java:59)
+	at jadx.core.ProcessClass.process(ProcessClass.java:42)
+	at jadx.api.JadxDecompiler.processClass(JadxDecompiler.java:306)
+	at jadx.api.JavaClass.decompile(JavaClass.java:62)
+	at jadx.api.JadxDecompiler$1.run(JadxDecompiler.java:199)
+*/
+        /*
+        r0 = r4.length;
+        r1 = 0;
+        r2 = 3;
+        if (r0 == r2) goto L_0x001c;
+    L_0x0005:
+        r4 = "MediaCodecUtil";
+        r0 = new java.lang.StringBuilder;
+        r0.&lt;init&gt;();
+        r2 = "Ignoring malformed MP4A codec string: ";
+        r0.append(r2);
+        r0.append(r3);
+        r3 = r0.toString();
+        com.google.android.exoplayer2.util.Log.w(r4, r3);
+        return r1;
+    L_0x001c:
+        r0 = 1;
+        r0 = r4[r0];	 Catch:{ NumberFormatException -&gt; 0x0050 }
+        r2 = 16;	 Catch:{ NumberFormatException -&gt; 0x0050 }
+        r0 = java.lang.Integer.parseInt(r0, r2);	 Catch:{ NumberFormatException -&gt; 0x0050 }
+        r0 = com.google.android.exoplayer2.util.MimeTypes.getMimeTypeFromMp4ObjectType(r0);	 Catch:{ NumberFormatException -&gt; 0x0050 }
+        r2 = "audio/mp4a-latm";	 Catch:{ NumberFormatException -&gt; 0x0050 }
+        r0 = r2.equals(r0);	 Catch:{ NumberFormatException -&gt; 0x0050 }
+        if (r0 == 0) goto L_0x0066;	 Catch:{ NumberFormatException -&gt; 0x0050 }
+    L_0x0031:
+        r0 = 2;	 Catch:{ NumberFormatException -&gt; 0x0050 }
+        r4 = r4[r0];	 Catch:{ NumberFormatException -&gt; 0x0050 }
+        r4 = java.lang.Integer.parseInt(r4);	 Catch:{ NumberFormatException -&gt; 0x0050 }
+        r0 = MP4A_AUDIO_OBJECT_TYPE_TO_PROFILE;	 Catch:{ NumberFormatException -&gt; 0x0050 }
+        r2 = -1;	 Catch:{ NumberFormatException -&gt; 0x0050 }
+        r4 = r0.get(r4, r2);	 Catch:{ NumberFormatException -&gt; 0x0050 }
+        if (r4 == r2) goto L_0x0066;	 Catch:{ NumberFormatException -&gt; 0x0050 }
+    L_0x0041:
+        r0 = new android.util.Pair;	 Catch:{ NumberFormatException -&gt; 0x0050 }
+        r4 = java.lang.Integer.valueOf(r4);	 Catch:{ NumberFormatException -&gt; 0x0050 }
+        r2 = 0;	 Catch:{ NumberFormatException -&gt; 0x0050 }
+        r2 = java.lang.Integer.valueOf(r2);	 Catch:{ NumberFormatException -&gt; 0x0050 }
+        r0.&lt;init&gt;(r4, r2);	 Catch:{ NumberFormatException -&gt; 0x0050 }
+        return r0;
+    L_0x0050:
+        r4 = "MediaCodecUtil";
+        r0 = new java.lang.StringBuilder;
+        r0.&lt;init&gt;();
+        r2 = "Ignoring malformed MP4A codec string: ";
+        r0.append(r2);
+        r0.append(r3);
+        r3 = r0.toString();
+        com.google.android.exoplayer2.util.Log.w(r4, r3);
+    L_0x0066:
+        return r1;
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.google.android.exoplayer2.mediacodec.MediaCodecUtil.getAacCodecProfileAndLevel(java.lang.String, java.lang.String[]):android.util.Pair&lt;java.lang.Integer, java.lang.Integer&gt;");
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:8 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

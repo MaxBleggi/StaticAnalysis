@@ -1,0 +1,221 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/res/values-km/strings.xml" target="_blank">/xumo_apk/jadx_source_code/res/values-km/strings.xml</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="strings.xml" data-line="" class="code line-numbers"><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;resources&gt;
+    &lt;string name="abc_action_bar_home_description"&gt;រកមើល​ទៅ​ដើម&lt;/string&gt;
+    &lt;string name="abc_action_bar_up_description"&gt;រកមើល​ឡើងលើ&lt;/string&gt;
+    &lt;string name="abc_action_menu_overflow_description"&gt;ជម្រើស​ច្រើន​ទៀត&lt;/string&gt;
+    &lt;string name="abc_action_mode_done"&gt;រួចរាល់&lt;/string&gt;
+    &lt;string name="abc_activity_chooser_view_see_all"&gt;មើល​ទាំងអស់&lt;/string&gt;
+    &lt;string name="abc_activitychooserview_choose_application"&gt;ជ្រើស​កម្មវិធី​​&lt;/string&gt;
+    &lt;string name="abc_capital_off"&gt;បិទ&lt;/string&gt;
+    &lt;string name="abc_capital_on"&gt;បើក&lt;/string&gt;
+    &lt;string name="abc_menu_alt_shortcut_label"&gt;Alt+&lt;/string&gt;
+    &lt;string name="abc_menu_ctrl_shortcut_label"&gt;Ctrl+&lt;/string&gt;
+    &lt;string name="abc_menu_delete_shortcut_label"&gt;delete&lt;/string&gt;
+    &lt;string name="abc_menu_enter_shortcut_label"&gt;enter&lt;/string&gt;
+    &lt;string name="abc_menu_function_shortcut_label"&gt;Function+&lt;/string&gt;
+    &lt;string name="abc_menu_meta_shortcut_label"&gt;Meta+&lt;/string&gt;
+    &lt;string name="abc_menu_shift_shortcut_label"&gt;Shift+&lt;/string&gt;
+    &lt;string name="abc_menu_space_shortcut_label"&gt;space&lt;/string&gt;
+    &lt;string name="abc_menu_sym_shortcut_label"&gt;Sym+&lt;/string&gt;
+    &lt;string name="abc_prepend_shortcut_label"&gt;Menu+&lt;/string&gt;
+    &lt;string name="abc_search_hint"&gt;ស្វែងរក…&lt;/string&gt;
+    &lt;string name="abc_searchview_description_clear"&gt;សម្អាត​សំណួរ&lt;/string&gt;
+    &lt;string name="abc_searchview_description_query"&gt;ស្វែងរក​សំណួរ&lt;/string&gt;
+    &lt;string name="abc_searchview_description_search"&gt;ស្វែងរក&lt;/string&gt;
+    &lt;string name="abc_searchview_description_submit"&gt;ដាក់​​​ស្នើ​សំណួរ&lt;/string&gt;
+    &lt;string name="abc_searchview_description_voice"&gt;ការស្វែងរក​សំឡេង&lt;/string&gt;
+    &lt;string name="abc_shareactionprovider_share_with"&gt;ចែករំលែក​ជាមួយ&lt;/string&gt;
+    &lt;string name="abc_shareactionprovider_share_with_application"&gt;ចែក​រំលែក​ជា​មួយ %s&lt;/string&gt;
+    &lt;string name="abc_toolbar_collapse_description"&gt;បង្រួម&lt;/string&gt;
+    &lt;string name="cast_ad_label"&gt;ពាណិជ្ជកម្ម&lt;/string&gt;
+    &lt;string name="cast_casting_to_device"&gt;កំពុងខាសទៅ %1$s&lt;/string&gt;
+    &lt;string name="cast_closed_captions"&gt;បាន​បិទ​ចំណងជើង&lt;/string&gt;
+    &lt;string name="cast_closed_captions_unavailable"&gt;មិនមានចំណងជើងភា្ជប់ទេ&lt;/string&gt;
+    &lt;string name="cast_connecting_to_device"&gt;កំពុងភ្ជាប់ជាមួយ %1$s&lt;/string&gt;
+    &lt;string name="cast_disconnect"&gt;ផ្ដាច់&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_ad_image_description"&gt;រូបភាពបង្ហាញខណៈពេលកម្មវិធីទទួលការខាសនេះចាក់ការផ្សាយពាណិជ្ជកម្ម&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_ad_in_progress"&gt;ពាណិជ្ជកម្មស្ថិតក្នុងដំណើរការ…&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_background_image"&gt;ស្នាដៃសិល្បៈអាល់ប៊ុម&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_live_stream_indicator"&gt;ស្ទ្រីមបន្តផ្ទាល់&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_loading"&gt;កំពុងដំណើរការ...&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_skip_ad_label"&gt;រំលង​​ពាណិជ្ជកម្ម&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_skip_ad_text"&gt;អ្នក​អាច​រំលង​​ពាណិជ្ជកម្ម​ក្នុង​រយៈពេល %1$d…&lt;/string&gt;
+    &lt;string name="cast_forward"&gt;ខាទៅមុខ&lt;/string&gt;
+    &lt;string name="cast_forward_10"&gt;ខាទៅមុខដប់វិនាទី&lt;/string&gt;
+    &lt;string name="cast_forward_30"&gt;ខាទៅមុខសាមសិបវិនាទី&lt;/string&gt;
+    &lt;string name="cast_intro_overlay_button_text"&gt;@android:string/ok&lt;/string&gt;
+    &lt;string name="cast_mute"&gt;បិទសំឡេង&lt;/string&gt;
+    &lt;string name="cast_notification_connected_message"&gt;ភ្ជាប់​ទៅ​​ %1$s&lt;/string&gt;
+    &lt;string name="cast_notification_connecting_message"&gt;កំពុងភ្ជាប់ទៅ %1$s&lt;/string&gt;
+    &lt;string name="cast_notification_default_channel_name"&gt;ភ្ជាប់&lt;/string&gt;
+    &lt;string name="cast_notification_disconnect"&gt;ផ្ដាច់&lt;/string&gt;
+    &lt;string name="cast_pause"&gt;ផ្អាក&lt;/string&gt;
+    &lt;string name="cast_play"&gt;ចាក់&lt;/string&gt;
+    &lt;string name="cast_rewind"&gt;ខាថយក្រោយ&lt;/string&gt;
+    &lt;string name="cast_rewind_10"&gt;ខាថយក្រោយដប់វិនាទី&lt;/string&gt;
+    &lt;string name="cast_rewind_30"&gt;ខាថយក្រោយសាមសិបវិនាទី&lt;/string&gt;
+    &lt;string name="cast_seek_bar"&gt;អង្គគ្រប់គ្រងការរកមើលការចាក់&lt;/string&gt;
+    &lt;string name="cast_skip_next"&gt;រំលងទៅធាតុបន្ទាប់&lt;/string&gt;
+    &lt;string name="cast_skip_prev"&gt;រំលងទៅធាតុពីមុន&lt;/string&gt;
+    &lt;string name="cast_stop"&gt;បញ្ឈប់&lt;/string&gt;
+    &lt;string name="cast_stop_live_stream"&gt;បញ្ឈប់ការស្ទ្រីមបន្តផ្ទាល់&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_audio"&gt;សំឡេង&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_cancel"&gt;បោះបង់&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_closed_captions"&gt;ចំណងជើងពិពណ៌នាបិទ&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_default_track_name"&gt;បទទី %1$d&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_none"&gt;គ្មាន&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_ok"&gt;យល់ព្រម&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_subtitles"&gt;ចំណងជើងរង&lt;/string&gt;
+    &lt;string name="cast_unmute"&gt;បើកសំឡេង&lt;/string&gt;
+    &lt;string name="common_google_play_services_enable_button"&gt;បើក&lt;/string&gt;
+    &lt;string name="common_google_play_services_enable_text"&gt;%1$s នឹងមិនដំណើរការទេ លុះត្រាតែអ្នកបើកសេវាកម្ម Google Play។&lt;/string&gt;
+    &lt;string name="common_google_play_services_enable_title"&gt;បើកសេវាកម្ម Google Play&lt;/string&gt;
+    &lt;string name="common_google_play_services_install_button"&gt;ដំឡើង&lt;/string&gt;
+    &lt;string name="common_google_play_services_install_text"&gt;%1$s នឹងមិនដំណើរការទេ ប្រសិនបើមិនមានសេវាកម្មនានារបស់ Google Play ដែលបានបាត់ពីឧបករណ៍របស់អ្នក។&lt;/string&gt;
+    &lt;string name="common_google_play_services_install_title"&gt;ទាញយកសេវាកម្ម Google Play&lt;/string&gt;
+    &lt;string name="common_google_play_services_notification_channel_name"&gt;លទ្ធភាព​ប្រើប្រាស់សេវាកម្ម Google Play&lt;/string&gt;
+    &lt;string name="common_google_play_services_notification_ticker"&gt;កំហុស​​សេវាកម្ម​ Google កម្សាន្ត&lt;/string&gt;
+    &lt;string name="common_google_play_services_unknown_issue"&gt;%1$s កំពុងមានបញ្ហាជាមួយសេវាកម្មរបស់ Google Play ។ សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ។&lt;/string&gt;
+    &lt;string name="common_google_play_services_unsupported_text"&gt;%1$s នឹងមិនដំណើរការដោយគ្មានសេវាកម្មរបស់ Google Play ដែលឧបករណ៍របស់អ្នកមិនគាំទ្រនោះទេ។&lt;/string&gt;
+    &lt;string name="common_google_play_services_update_button"&gt;អាប់ដេត&lt;/string&gt;
+    &lt;string name="common_google_play_services_update_text"&gt;%1$s នឹងមិនដំណើរការទេ លុះត្រាតែអ្នកធ្វើបច្ចុប្បន្នភាពសេវាកម្ម Google Play។&lt;/string&gt;
+    &lt;string name="common_google_play_services_update_title"&gt;អាប់ដេតសេវាកម្ម Google Play&lt;/string&gt;
+    &lt;string name="common_google_play_services_updating_text"&gt;%1$s នឹងមិនដំណើរការទេ បើមិនមានសេវាកម្ម Google Play ដោយសារតែវាកំពុងអាប់ដេត។&lt;/string&gt;
+    &lt;string name="common_google_play_services_wear_update_text"&gt;តម្រូវឲ្យមានកំណែថ្មីនៃសេវាកម្ម Google Play។ វានឹងអាប់ដេតដោយខ្លួនវានៅពេលបន្តិចទៀតនេះ។&lt;/string&gt;
+    &lt;string name="common_open_on_phone"&gt;បើកតាមទូរស័ព្ទ&lt;/string&gt;
+    &lt;string name="common_signin_button_text"&gt;ចូល&lt;/string&gt;
+    &lt;string name="common_signin_button_text_long"&gt;ចូលដោយប្រើ Google&lt;/string&gt;
+    &lt;string name="exo_controls_fastforward_description"&gt;ទៅ​មុខ​​​រហ័ស&lt;/string&gt;
+    &lt;string name="exo_controls_fullscreen_description"&gt;មុខងារពេញ​អេក្រង់&lt;/string&gt;
+    &lt;string name="exo_controls_next_description"&gt;សំនៀង​បន្ទាប់&lt;/string&gt;
+    &lt;string name="exo_controls_pause_description"&gt;ផ្អាក&lt;/string&gt;
+    &lt;string name="exo_controls_play_description"&gt;លេង&lt;/string&gt;
+    &lt;string name="exo_controls_previous_description"&gt;សំនៀង​​មុន&lt;/string&gt;
+    &lt;string name="exo_controls_repeat_all_description"&gt;លេង​ឡើងវិញ​ទាំងអស់&lt;/string&gt;
+    &lt;string name="exo_controls_repeat_off_description"&gt;មិន​លេង​ឡើងវិញ&lt;/string&gt;
+    &lt;string name="exo_controls_repeat_one_description"&gt;លេង​ឡើង​វិញ​ម្ដង&lt;/string&gt;
+    &lt;string name="exo_controls_rewind_description"&gt;ខា​ថយ​ក្រោយ&lt;/string&gt;
+    &lt;string name="exo_controls_shuffle_description"&gt;ច្របល់&lt;/string&gt;
+    &lt;string name="exo_controls_stop_description"&gt;ឈប់&lt;/string&gt;
+    &lt;string name="exo_download_completed"&gt;បាន​បញ្ចប់​ការទាញយក&lt;/string&gt;
+    &lt;string name="exo_download_description"&gt;ទាញយក&lt;/string&gt;
+    &lt;string name="exo_download_downloading"&gt;កំពុង​ទាញ​យក&lt;/string&gt;
+    &lt;string name="exo_download_failed"&gt;មិន​អាច​ទាញយក​បាន​ទេ&lt;/string&gt;
+    &lt;string name="exo_download_notification_channel_name"&gt;ទាញយក&lt;/string&gt;
+    &lt;string name="exo_download_removing"&gt;កំពុង​លុប​ការទាញយក&lt;/string&gt;
+    &lt;string name="exo_item_list"&gt;%1$s, %2$s&lt;/string&gt;
+    &lt;string name="exo_track_bitrate"&gt;%1$.2f Mbps&lt;/string&gt;
+    &lt;string name="exo_track_mono"&gt;ម៉ូ​ណូ&lt;/string&gt;
+    &lt;string name="exo_track_resolution"&gt;%1$d × %2$d&lt;/string&gt;
+    &lt;string name="exo_track_selection_auto"&gt;ស្វ័យប្រវត្តិ&lt;/string&gt;
+    &lt;string name="exo_track_selection_none"&gt;គ្មាន&lt;/string&gt;
+    &lt;string name="exo_track_selection_title_audio"&gt;សំឡេង&lt;/string&gt;
+    &lt;string name="exo_track_selection_title_text"&gt;អក្សរ&lt;/string&gt;
+    &lt;string name="exo_track_selection_title_video"&gt;វីដេអូ&lt;/string&gt;
+    &lt;string name="exo_track_stereo"&gt;ស្តេរ៉េអូ&lt;/string&gt;
+    &lt;string name="exo_track_surround"&gt;សំឡេង​រងំ&lt;/string&gt;
+    &lt;string name="exo_track_surround_5_point_1"&gt;សំឡេង​រងំ​ខ្នាត 5.1&lt;/string&gt;
+    &lt;string name="exo_track_surround_7_point_1"&gt;សំឡេង​រងំ​ខ្នាត 7.1&lt;/string&gt;
+    &lt;string name="exo_track_unknown"&gt;មិនស្គាល់&lt;/string&gt;
+    &lt;string name="expand_button_title"&gt;កម្រិតខ្ពស់&lt;/string&gt;
+    &lt;string name="fcm_fallback_notification_channel_label"&gt;ផ្សេងៗ&lt;/string&gt;
+    &lt;string name="mr_button_content_description"&gt;ប៊ូតុង​បញ្ជូន&lt;/string&gt;
+    &lt;string name="mr_cast_button_connected"&gt;ប៊ូតុង​បញ្ជូន។ បាន​ភ្ជាប់​ហើយ&lt;/string&gt;
+    &lt;string name="mr_cast_button_connecting"&gt;ប៊ូតុង​បញ្ជូន។ កំពុង​ភ្ជាប់&lt;/string&gt;
+    &lt;string name="mr_cast_button_disconnected"&gt;ប៊ូតុង​បញ្ជូន។ បាន​ផ្តាច់&lt;/string&gt;
+    &lt;string name="mr_chooser_searching"&gt;កំពុង​ស្វែងរក​ឧបករណ៍&lt;/string&gt;
+    &lt;string name="mr_chooser_title"&gt;បញ្ជូន​ទៅ&lt;/string&gt;
+    &lt;string name="mr_controller_album_art"&gt;រូបភាព​សិល្បៈ​ក្រប​អាល់ប៊ុម&lt;/string&gt;
+    &lt;string name="mr_controller_casting_screen"&gt;កំពុង​បញ្ជូន​អេក្រង់&lt;/string&gt;
+    &lt;string name="mr_controller_close_description"&gt;បិទ&lt;/string&gt;
+    &lt;string name="mr_controller_collapse_group"&gt;បង្រួម&lt;/string&gt;
+    &lt;string name="mr_controller_disconnect"&gt;ផ្ដាច់&lt;/string&gt;
+    &lt;string name="mr_controller_expand_group"&gt;ពង្រីក&lt;/string&gt;
+    &lt;string name="mr_controller_no_info_available"&gt;មិនមានព័ត៌មានទេ&lt;/string&gt;
+    &lt;string name="mr_controller_no_media_selected"&gt;មិនបាន​ជ្រើសរើស​មេឌៀ​ទេ&lt;/string&gt;
+    &lt;string name="mr_controller_pause"&gt;ផ្អាក&lt;/string&gt;
+    &lt;string name="mr_controller_play"&gt;លេង&lt;/string&gt;
+    &lt;string name="mr_controller_stop"&gt;ឈប់&lt;/string&gt;
+    &lt;string name="mr_controller_stop_casting"&gt;ឈប់ភ្ជាប់&lt;/string&gt;
+    &lt;string name="mr_controller_volume_slider"&gt;របារកម្រិតសំឡេង&lt;/string&gt;
+    &lt;string name="mr_system_route_name"&gt;ប្រព័ន្ធ&lt;/string&gt;
+    &lt;string name="mr_user_route_category_name"&gt;ឧបករណ៍&lt;/string&gt;
+    &lt;string name="search_menu_title"&gt;ស្វែងរក&lt;/string&gt;
+    &lt;string name="status_bar_notification_info_overflow"&gt;999+&lt;/string&gt;
+    &lt;string name="summary_collapsed_preference_list"&gt;%1$s, %2$s&lt;/string&gt;
+    &lt;string name="v7_preference_off"&gt;បិទ&lt;/string&gt;
+    &lt;string name="v7_preference_on"&gt;បើក&lt;/string&gt;
+&lt;/resources&gt;
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:2 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

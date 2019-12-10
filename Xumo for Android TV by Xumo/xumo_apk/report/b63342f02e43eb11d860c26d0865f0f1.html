@@ -1,0 +1,299 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/xumo/xumo/model/XumoOnNowScheduler.java" target="_blank">/xumo_apk/jadx_source_code/com/xumo/xumo/model/XumoOnNowScheduler.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="XumoOnNowScheduler.java" data-line="" class="code line-numbers"><code>package com.xumo.xumo.model;
+
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import com.xumo.xumo.service.XumoWebService;
+import com.xumo.xumo.service.XumoWebService.Listener;
+import com.xumo.xumo.util.LogUtil;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
+
+public class XumoOnNowScheduler {
+    private static final int UPDATE_INTERVAL = 6000;
+    private static final int UPDATE_ON_NOW = 1;
+    private static final int UPDATE_RETRY_COUNT = 3;
+    private static XumoOnNowScheduler sInstance;
+    private ArrayList&lt;OnNowLive&gt; mOnNowLives;
+    private int mRetryCount = 0;
+    private Handler mUpdateOnNowHandler = new Handler(Looper.getMainLooper()) {
+        public void handleMessage(Message message) {
+            if (message.what == 1) {
+                XumoOnNowScheduler.this.onUpdate();
+            }
+        }
+    };
+
+    public static synchronized XumoOnNowScheduler getInstance() {
+        XumoOnNowScheduler xumoOnNowScheduler;
+        synchronized (XumoOnNowScheduler.class) {
+            if (sInstance == null) {
+                sInstance = new XumoOnNowScheduler();
+            }
+            xumoOnNowScheduler = sInstance;
+        }
+        return xumoOnNowScheduler;
+    }
+
+    private XumoOnNowScheduler() {
+    }
+
+    public void getAllOnNow(final Listener listener) {
+        if (this.mOnNowLives != null) {
+            listener.onCompletion(this.mOnNowLives);
+        } else {
+            initializeOnNowLives(new Listener() {
+                public void onCompletion(Object obj) {
+                    listener.onCompletion(obj);
+                }
+
+                public void onError() {
+                    listener.onError();
+                }
+            });
+        }
+    }
+
+    public void getOnNow(final String str, final Listener listener) {
+        if (str != null) {
+            if (!str.isEmpty()) {
+                if (this.mOnNowLives != null) {
+                    Iterator it = this.mOnNowLives.iterator();
+                    while (it.hasNext()) {
+                        OnNowLive onNowLive = (OnNowLive) it.next();
+                        if (str.equals(onNowLive.getChannelId())) {
+                            listener.onCompletion(onNowLive);
+                            return;
+                        }
+                    }
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.append("not found onnow channelId=");
+                    stringBuilder.append(str);
+                    LogUtil.d(stringBuilder.toString());
+                    listener.onError();
+                    return;
+                }
+                initializeOnNowLives(new Listener() {
+                    public void onCompletion(Object obj) {
+                        obj = ((ArrayList) obj).iterator();
+                        while (obj.hasNext()) {
+                            OnNowLive onNowLive = (OnNowLive) obj.next();
+                            if (str.equals(onNowLive.getChannelId())) {
+                                listener.onCompletion(onNowLive);
+                                return;
+                            }
+                        }
+                        listener.onError();
+                    }
+
+                    public void onError() {
+                        listener.onError();
+                    }
+                });
+                return;
+            }
+        }
+        listener.onError();
+    }
+
+    public void stopScheduler() {
+        if (this.mUpdateOnNowHandler != null) {
+            this.mUpdateOnNowHandler.removeMessages(1);
+            if (this.mOnNowLives != null) {
+                this.mOnNowLives.clear();
+                this.mOnNowLives = null;
+            }
+        }
+    }
+
+    private void onUpdate() {
+        updateOnNowLives(new Listener() {
+            public void onCompletion(Object obj) {
+                XumoOnNowScheduler.this.mRetryCount = 0;
+                XumoOnNowScheduler.this.mOnNowLives = (ArrayList) obj;
+                XumoOnNowScheduler.this.updateSchedule();
+            }
+
+            public void onError() {
+                if (XumoOnNowScheduler.this.mRetryCount &lt; 3) {
+                    XumoOnNowScheduler.this.mRetryCount = XumoOnNowScheduler.this.mRetryCount + 1;
+                    XumoOnNowScheduler.this.onUpdate();
+                    return;
+                }
+                XumoOnNowScheduler.this.mRetryCount = 0;
+                XumoOnNowScheduler.this.updateSchedule();
+            }
+        });
+    }
+
+    private void initializeOnNowLives(final Listener listener) {
+        this.mUpdateOnNowHandler.removeMessages(1);
+        updateOnNowLives(new Listener() {
+            public void onCompletion(Object obj) {
+                XumoOnNowScheduler.this.mOnNowLives = (ArrayList) obj;
+                XumoOnNowScheduler.this.updateSchedule();
+                listener.onCompletion(XumoOnNowScheduler.this.mOnNowLives);
+            }
+
+            public void onError() {
+                listener.onError();
+            }
+        });
+    }
+
+    private void updateOnNowLives(final Listener listener) {
+        XumoDataSync.getInstance().getAllChannels(new Listener() {
+            public void onCompletion(Object obj) {
+                final ArrayList arrayList = (ArrayList) obj;
+                XumoWebService.getInstance().getOnNowLives(new Listener() {
+                    public void onCompletion(Object obj) {
+                        ArrayList arrayList = (ArrayList) obj;
+                        List arrayList2 = new ArrayList();
+                        Iterator it = arrayList.iterator();
+                        int i = 0;
+                        while (it.hasNext()) {
+                            Channel channel = (Channel) it.next();
+                            if (channel.isLive()) {
+                                OnNowLive onNowLive = new OnNowLive();
+                                onNowLive.setChannelId(channel.getChannelId());
+                                onNowLive.setChannelNumber(channel.getChannelNumber());
+                                onNowLive.setChannelGenreName(channel.getGenreName());
+                                onNowLive.setChannelTitle(channel.getChannelTitle());
+                                onNowLive.setChannelDescription(channel.getDescriptionText());
+                                onNowLive.setNew(channel.isNew());
+                                onNowLive.setHasVod(channel.isHasVod());
+                                if (i &lt; 12) {
+                                    onNowLive.setChannelIndex(i);
+                                    onNowLive.setIsPopular(true);
+                                } else {
+                                    onNowLive.setIsPopular(false);
+                                }
+                                Iterator it2 = arrayList.iterator();
+                                while (it2.hasNext()) {
+                                    OnNowLive onNowLive2 = (OnNowLive) it2.next();
+                                    if (channel.getChannelId().equals(onNowLive2.getChannelId())) {
+                                        onNowLive.setId(onNowLive2.getId());
+                                        onNowLive.setTitle(onNowLive2.getTitle());
+                                        onNowLive.setStart(onNowLive2.getStart());
+                                        onNowLive.setEnd(onNowLive2.getEnd());
+                                        onNowLive.setDescriptionText(onNowLive2.getDescriptionText());
+                                        onNowLive.setNextId(onNowLive2.getNextId());
+                                        onNowLive.setNextTitle(onNowLive2.getNextTitle());
+                                        onNowLive.setNextDescriptionText(onNowLive2.getNextDescriptionText());
+                                        onNowLive.setNextStart(onNowLive2.getNextStart());
+                                        onNowLive.setNextEnd(onNowLive2.getNextEnd());
+                                        break;
+                                    }
+                                }
+                                onNowLive.setGenre(channel.getGenreName());
+                                onNowLive.setGenreId(channel.getGenreId());
+                                arrayList2.add(onNowLive);
+                            }
+                            i++;
+                        }
+                        Collections.sort(arrayList2, new Comparator&lt;OnNowLive&gt;() {
+                            public int compare(OnNowLive onNowLive, OnNowLive onNowLive2) {
+                                if (onNowLive != null) {
+                                    if (onNowLive2 != null) {
+                                        return onNowLive.getChannelNumber() - onNowLive2.getChannelNumber();
+                                    }
+                                }
+                                return null;
+                            }
+                        });
+                        listener.onCompletion(arrayList2);
+                    }
+
+                    public void onError() {
+                        listener.onError();
+                    }
+                });
+            }
+
+            public void onError() {
+                listener.onError();
+            }
+        });
+    }
+
+    private void updateSchedule() {
+        this.mUpdateOnNowHandler.removeMessages(1);
+        this.mUpdateOnNowHandler.sendEmptyMessageDelayed(1, 6000);
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:14 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

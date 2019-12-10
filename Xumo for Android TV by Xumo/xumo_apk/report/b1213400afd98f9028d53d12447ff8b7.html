@@ -1,0 +1,217 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/androidx/appcompat/widget/AppCompatSeekBarHelper.java" target="_blank">/xumo_apk/jadx_source_code/androidx/appcompat/widget/AppCompatSeekBarHelper.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="AppCompatSeekBarHelper.java" data-line="" class="code line-numbers"><code>package androidx.appcompat.widget;
+
+import android.content.res.ColorStateList;
+import android.graphics.Canvas;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.drawable.Drawable;
+import android.util.AttributeSet;
+import android.widget.SeekBar;
+import androidx.annotation.Nullable;
+import androidx.appcompat.R;
+import androidx.core.graphics.drawable.DrawableCompat;
+import androidx.core.view.ViewCompat;
+
+class AppCompatSeekBarHelper extends AppCompatProgressBarHelper {
+    private boolean mHasTickMarkTint = false;
+    private boolean mHasTickMarkTintMode = false;
+    private Drawable mTickMark;
+    private ColorStateList mTickMarkTintList = null;
+    private Mode mTickMarkTintMode = null;
+    private final SeekBar mView;
+
+    AppCompatSeekBarHelper(SeekBar seekBar) {
+        super(seekBar);
+        this.mView = seekBar;
+    }
+
+    void loadFromAttributes(AttributeSet attributeSet, int i) {
+        super.loadFromAttributes(attributeSet, i);
+        attributeSet = TintTypedArray.obtainStyledAttributes(this.mView.getContext(), attributeSet, R.styleable.AppCompatSeekBar, i, 0);
+        i = attributeSet.getDrawableIfKnown(R.styleable.AppCompatSeekBar_android_thumb);
+        if (i != 0) {
+            this.mView.setThumb(i);
+        }
+        setTickMark(attributeSet.getDrawable(R.styleable.AppCompatSeekBar_tickMark));
+        if (attributeSet.hasValue(R.styleable.AppCompatSeekBar_tickMarkTintMode) != 0) {
+            this.mTickMarkTintMode = DrawableUtils.parseTintMode(attributeSet.getInt(R.styleable.AppCompatSeekBar_tickMarkTintMode, -1), this.mTickMarkTintMode);
+            this.mHasTickMarkTintMode = true;
+        }
+        if (attributeSet.hasValue(R.styleable.AppCompatSeekBar_tickMarkTint) != 0) {
+            this.mTickMarkTintList = attributeSet.getColorStateList(R.styleable.AppCompatSeekBar_tickMarkTint);
+            this.mHasTickMarkTint = true;
+        }
+        attributeSet.recycle();
+        applyTickMarkTint();
+    }
+
+    void setTickMark(@Nullable Drawable drawable) {
+        if (this.mTickMark != null) {
+            this.mTickMark.setCallback(null);
+        }
+        this.mTickMark = drawable;
+        if (drawable != null) {
+            drawable.setCallback(this.mView);
+            DrawableCompat.setLayoutDirection(drawable, ViewCompat.getLayoutDirection(this.mView));
+            if (drawable.isStateful()) {
+                drawable.setState(this.mView.getDrawableState());
+            }
+            applyTickMarkTint();
+        }
+        this.mView.invalidate();
+    }
+
+    @Nullable
+    Drawable getTickMark() {
+        return this.mTickMark;
+    }
+
+    void setTickMarkTintList(@Nullable ColorStateList colorStateList) {
+        this.mTickMarkTintList = colorStateList;
+        this.mHasTickMarkTint = true;
+        applyTickMarkTint();
+    }
+
+    @Nullable
+    ColorStateList getTickMarkTintList() {
+        return this.mTickMarkTintList;
+    }
+
+    void setTickMarkTintMode(@Nullable Mode mode) {
+        this.mTickMarkTintMode = mode;
+        this.mHasTickMarkTintMode = true;
+        applyTickMarkTint();
+    }
+
+    @Nullable
+    Mode getTickMarkTintMode() {
+        return this.mTickMarkTintMode;
+    }
+
+    private void applyTickMarkTint() {
+        if (this.mTickMark == null) {
+            return;
+        }
+        if (this.mHasTickMarkTint || this.mHasTickMarkTintMode) {
+            this.mTickMark = DrawableCompat.wrap(this.mTickMark.mutate());
+            if (this.mHasTickMarkTint) {
+                DrawableCompat.setTintList(this.mTickMark, this.mTickMarkTintList);
+            }
+            if (this.mHasTickMarkTintMode) {
+                DrawableCompat.setTintMode(this.mTickMark, this.mTickMarkTintMode);
+            }
+            if (this.mTickMark.isStateful()) {
+                this.mTickMark.setState(this.mView.getDrawableState());
+            }
+        }
+    }
+
+    void jumpDrawablesToCurrentState() {
+        if (this.mTickMark != null) {
+            this.mTickMark.jumpToCurrentState();
+        }
+    }
+
+    void drawableStateChanged() {
+        Drawable drawable = this.mTickMark;
+        if (drawable != null &amp;&amp; drawable.isStateful() &amp;&amp; drawable.setState(this.mView.getDrawableState())) {
+            this.mView.invalidateDrawable(drawable);
+        }
+    }
+
+    void drawTickMarks(Canvas canvas) {
+        if (this.mTickMark != null) {
+            int max = this.mView.getMax();
+            int i = 1;
+            if (max &gt; 1) {
+                int intrinsicWidth = this.mTickMark.getIntrinsicWidth();
+                int intrinsicHeight = this.mTickMark.getIntrinsicHeight();
+                intrinsicWidth = intrinsicWidth &gt;= 0 ? intrinsicWidth / 2 : 1;
+                if (intrinsicHeight &gt;= 0) {
+                    i = intrinsicHeight / 2;
+                }
+                this.mTickMark.setBounds(-intrinsicWidth, -i, intrinsicWidth, i);
+                float width = ((float) ((this.mView.getWidth() - this.mView.getPaddingLeft()) - this.mView.getPaddingRight())) / ((float) max);
+                intrinsicWidth = canvas.save();
+                canvas.translate((float) this.mView.getPaddingLeft(), (float) (this.mView.getHeight() / 2));
+                for (intrinsicHeight = 0; intrinsicHeight &lt;= max; intrinsicHeight++) {
+                    this.mTickMark.draw(canvas);
+                    canvas.translate(width, 0.0f);
+                }
+                canvas.restoreToCount(intrinsicWidth);
+            }
+        }
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:4 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

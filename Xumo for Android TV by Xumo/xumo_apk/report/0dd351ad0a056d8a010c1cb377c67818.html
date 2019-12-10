@@ -1,0 +1,212 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/androidx/core/app/SharedElementCallback.java" target="_blank">/xumo_apk/jadx_source_code/androidx/core/app/SharedElementCallback.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="SharedElementCallback.java" data-line="" class="code line-numbers"><code>package androidx.core.app;
+
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.os.Parcelable;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
+import java.util.List;
+import java.util.Map;
+
+public abstract class SharedElementCallback {
+    private static final String BUNDLE_SNAPSHOT_BITMAP = "sharedElement:snapshot:bitmap";
+    private static final String BUNDLE_SNAPSHOT_IMAGE_MATRIX = "sharedElement:snapshot:imageMatrix";
+    private static final String BUNDLE_SNAPSHOT_IMAGE_SCALETYPE = "sharedElement:snapshot:imageScaleType";
+    private static final int MAX_IMAGE_SIZE = 1048576;
+    private Matrix mTempMatrix;
+
+    public interface OnSharedElementsReadyListener {
+        void onSharedElementsReady();
+    }
+
+    public void onMapSharedElements(List&lt;String&gt; list, Map&lt;String, View&gt; map) {
+    }
+
+    public void onRejectSharedElements(List&lt;View&gt; list) {
+    }
+
+    public void onSharedElementEnd(List&lt;String&gt; list, List&lt;View&gt; list2, List&lt;View&gt; list3) {
+    }
+
+    public void onSharedElementStart(List&lt;String&gt; list, List&lt;View&gt; list2, List&lt;View&gt; list3) {
+    }
+
+    public Parcelable onCaptureSharedElementSnapshot(View view, Matrix matrix, RectF rectF) {
+        if (view instanceof ImageView) {
+            ImageView imageView = (ImageView) view;
+            Drawable drawable = imageView.getDrawable();
+            Drawable background = imageView.getBackground();
+            if (drawable != null &amp;&amp; background == null) {
+                Parcelable createDrawableBitmap = createDrawableBitmap(drawable);
+                if (createDrawableBitmap != null) {
+                    view = new Bundle();
+                    view.putParcelable(BUNDLE_SNAPSHOT_BITMAP, createDrawableBitmap);
+                    view.putString(BUNDLE_SNAPSHOT_IMAGE_SCALETYPE, imageView.getScaleType().toString());
+                    if (imageView.getScaleType() == ScaleType.MATRIX) {
+                        rectF = new float[9];
+                        imageView.getImageMatrix().getValues(rectF);
+                        view.putFloatArray(BUNDLE_SNAPSHOT_IMAGE_MATRIX, rectF);
+                    }
+                    return view;
+                }
+            }
+        }
+        int round = Math.round(rectF.width());
+        int round2 = Math.round(rectF.height());
+        Parcelable parcelable = null;
+        if (round &gt; 0 &amp;&amp; round2 &gt; 0) {
+            float min = Math.min(1.0f, 1048576.0f / ((float) (round * round2)));
+            round = (int) (((float) round) * min);
+            round2 = (int) (((float) round2) * min);
+            if (this.mTempMatrix == null) {
+                this.mTempMatrix = new Matrix();
+            }
+            this.mTempMatrix.set(matrix);
+            this.mTempMatrix.postTranslate(-rectF.left, -rectF.top);
+            this.mTempMatrix.postScale(min, min);
+            parcelable = Bitmap.createBitmap(round, round2, Config.ARGB_8888);
+            matrix = new Canvas(parcelable);
+            matrix.concat(this.mTempMatrix);
+            view.draw(matrix);
+        }
+        return parcelable;
+    }
+
+    private static Bitmap createDrawableBitmap(Drawable drawable) {
+        int intrinsicWidth = drawable.getIntrinsicWidth();
+        int intrinsicHeight = drawable.getIntrinsicHeight();
+        if (intrinsicWidth &gt; 0) {
+            if (intrinsicHeight &gt; 0) {
+                float min = Math.min(1.0f, 1048576.0f / ((float) (intrinsicWidth * intrinsicHeight)));
+                if ((drawable instanceof BitmapDrawable) &amp;&amp; min == 1.0f) {
+                    return ((BitmapDrawable) drawable).getBitmap();
+                }
+                intrinsicWidth = (int) (((float) intrinsicWidth) * min);
+                intrinsicHeight = (int) (((float) intrinsicHeight) * min);
+                Bitmap createBitmap = Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, Config.ARGB_8888);
+                Canvas canvas = new Canvas(createBitmap);
+                Rect bounds = drawable.getBounds();
+                int i = bounds.left;
+                int i2 = bounds.top;
+                int i3 = bounds.right;
+                int i4 = bounds.bottom;
+                drawable.setBounds(0, 0, intrinsicWidth, intrinsicHeight);
+                drawable.draw(canvas);
+                drawable.setBounds(i, i2, i3, i4);
+                return createBitmap;
+            }
+        }
+        return null;
+    }
+
+    public View onCreateSnapshotView(Context context, Parcelable parcelable) {
+        View view = null;
+        if (parcelable instanceof Bundle) {
+            Bundle bundle = (Bundle) parcelable;
+            Bitmap bitmap = (Bitmap) bundle.getParcelable(BUNDLE_SNAPSHOT_BITMAP);
+            if (bitmap == null) {
+                return null;
+            }
+            view = new ImageView(context);
+            view.setImageBitmap(bitmap);
+            view.setScaleType(ScaleType.valueOf(bundle.getString(BUNDLE_SNAPSHOT_IMAGE_SCALETYPE)));
+            if (view.getScaleType() == ScaleType.MATRIX) {
+                context = bundle.getFloatArray(BUNDLE_SNAPSHOT_IMAGE_MATRIX);
+                parcelable = new Matrix();
+                parcelable.setValues(context);
+                view.setImageMatrix(parcelable);
+            }
+        } else if (parcelable instanceof Bitmap) {
+            Bitmap bitmap2 = (Bitmap) parcelable;
+            view = new ImageView(context);
+            view.setImageBitmap(bitmap2);
+        }
+        return view;
+    }
+
+    public void onSharedElementsArrived(List&lt;String&gt; list, List&lt;View&gt; list2, OnSharedElementsReadyListener onSharedElementsReadyListener) {
+        onSharedElementsReadyListener.onSharedElementsReady();
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:3 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

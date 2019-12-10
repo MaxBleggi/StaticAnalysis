@@ -1,0 +1,261 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/gms/internal/measurement/zzvp.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/gms/internal/measurement/zzvp.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="zzvp.java" data-line="" class="code line-numbers"><code>package com.google.android.gms.internal.measurement;
+
+final /* synthetic */ class zzvp {
+    static final /* synthetic */ int[] zzbvp = new int[zzzb.values().length];
+    static final /* synthetic */ int[] zzbwo = new int[zzzg.values().length];
+
+    static {
+        /* JADX: method processing error */
+/*
+Error: java.lang.NullPointerException
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.searchTryCatchDominators(ProcessTryCatchRegions.java:75)
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.process(ProcessTryCatchRegions.java:45)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.postProcessRegions(RegionMakerVisitor.java:63)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.visit(RegionMakerVisitor.java:58)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:31)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:17)
+	at jadx.core.ProcessClass.process(ProcessClass.java:37)
+	at jadx.api.JadxDecompiler.processClass(JadxDecompiler.java:306)
+	at jadx.api.JavaClass.decompile(JavaClass.java:62)
+	at jadx.api.JadxDecompiler$1.run(JadxDecompiler.java:199)
+*/
+        /*
+        r0 = com.google.android.gms.internal.measurement.zzzb.values();
+        r0 = r0.length;
+        r0 = new int[r0];
+        zzbvp = r0;
+        r0 = 1;
+        r1 = zzbvp;	 Catch:{ NoSuchFieldError -&gt; 0x0014 }
+        r2 = com.google.android.gms.internal.measurement.zzzb.zzcel;	 Catch:{ NoSuchFieldError -&gt; 0x0014 }
+        r2 = r2.ordinal();	 Catch:{ NoSuchFieldError -&gt; 0x0014 }
+        r1[r2] = r0;	 Catch:{ NoSuchFieldError -&gt; 0x0014 }
+    L_0x0014:
+        r1 = 2;
+        r2 = zzbvp;	 Catch:{ NoSuchFieldError -&gt; 0x001f }
+        r3 = com.google.android.gms.internal.measurement.zzzb.zzcem;	 Catch:{ NoSuchFieldError -&gt; 0x001f }
+        r3 = r3.ordinal();	 Catch:{ NoSuchFieldError -&gt; 0x001f }
+        r2[r3] = r1;	 Catch:{ NoSuchFieldError -&gt; 0x001f }
+    L_0x001f:
+        r2 = 3;
+        r3 = zzbvp;	 Catch:{ NoSuchFieldError -&gt; 0x002a }
+        r4 = com.google.android.gms.internal.measurement.zzzb.zzcen;	 Catch:{ NoSuchFieldError -&gt; 0x002a }
+        r4 = r4.ordinal();	 Catch:{ NoSuchFieldError -&gt; 0x002a }
+        r3[r4] = r2;	 Catch:{ NoSuchFieldError -&gt; 0x002a }
+    L_0x002a:
+        r3 = 4;
+        r4 = zzbvp;	 Catch:{ NoSuchFieldError -&gt; 0x0035 }
+        r5 = com.google.android.gms.internal.measurement.zzzb.zzceo;	 Catch:{ NoSuchFieldError -&gt; 0x0035 }
+        r5 = r5.ordinal();	 Catch:{ NoSuchFieldError -&gt; 0x0035 }
+        r4[r5] = r3;	 Catch:{ NoSuchFieldError -&gt; 0x0035 }
+    L_0x0035:
+        r4 = 5;
+        r5 = zzbvp;	 Catch:{ NoSuchFieldError -&gt; 0x0040 }
+        r6 = com.google.android.gms.internal.measurement.zzzb.zzcep;	 Catch:{ NoSuchFieldError -&gt; 0x0040 }
+        r6 = r6.ordinal();	 Catch:{ NoSuchFieldError -&gt; 0x0040 }
+        r5[r6] = r4;	 Catch:{ NoSuchFieldError -&gt; 0x0040 }
+    L_0x0040:
+        r5 = 6;
+        r6 = zzbvp;	 Catch:{ NoSuchFieldError -&gt; 0x004b }
+        r7 = com.google.android.gms.internal.measurement.zzzb.zzceq;	 Catch:{ NoSuchFieldError -&gt; 0x004b }
+        r7 = r7.ordinal();	 Catch:{ NoSuchFieldError -&gt; 0x004b }
+        r6[r7] = r5;	 Catch:{ NoSuchFieldError -&gt; 0x004b }
+    L_0x004b:
+        r6 = 7;
+        r7 = zzbvp;	 Catch:{ NoSuchFieldError -&gt; 0x0056 }
+        r8 = com.google.android.gms.internal.measurement.zzzb.zzcer;	 Catch:{ NoSuchFieldError -&gt; 0x0056 }
+        r8 = r8.ordinal();	 Catch:{ NoSuchFieldError -&gt; 0x0056 }
+        r7[r8] = r6;	 Catch:{ NoSuchFieldError -&gt; 0x0056 }
+    L_0x0056:
+        r7 = 8;
+        r8 = zzbvp;	 Catch:{ NoSuchFieldError -&gt; 0x0062 }
+        r9 = com.google.android.gms.internal.measurement.zzzb.zzces;	 Catch:{ NoSuchFieldError -&gt; 0x0062 }
+        r9 = r9.ordinal();	 Catch:{ NoSuchFieldError -&gt; 0x0062 }
+        r8[r9] = r7;	 Catch:{ NoSuchFieldError -&gt; 0x0062 }
+    L_0x0062:
+        r8 = 9;
+        r9 = zzbvp;	 Catch:{ NoSuchFieldError -&gt; 0x006e }
+        r10 = com.google.android.gms.internal.measurement.zzzb.zzceu;	 Catch:{ NoSuchFieldError -&gt; 0x006e }
+        r10 = r10.ordinal();	 Catch:{ NoSuchFieldError -&gt; 0x006e }
+        r9[r10] = r8;	 Catch:{ NoSuchFieldError -&gt; 0x006e }
+    L_0x006e:
+        r9 = zzbvp;	 Catch:{ NoSuchFieldError -&gt; 0x007a }
+        r10 = com.google.android.gms.internal.measurement.zzzb.zzcev;	 Catch:{ NoSuchFieldError -&gt; 0x007a }
+        r10 = r10.ordinal();	 Catch:{ NoSuchFieldError -&gt; 0x007a }
+        r11 = 10;	 Catch:{ NoSuchFieldError -&gt; 0x007a }
+        r9[r10] = r11;	 Catch:{ NoSuchFieldError -&gt; 0x007a }
+    L_0x007a:
+        r9 = zzbvp;	 Catch:{ NoSuchFieldError -&gt; 0x0086 }
+        r10 = com.google.android.gms.internal.measurement.zzzb.zzcet;	 Catch:{ NoSuchFieldError -&gt; 0x0086 }
+        r10 = r10.ordinal();	 Catch:{ NoSuchFieldError -&gt; 0x0086 }
+        r11 = 11;	 Catch:{ NoSuchFieldError -&gt; 0x0086 }
+        r9[r10] = r11;	 Catch:{ NoSuchFieldError -&gt; 0x0086 }
+    L_0x0086:
+        r9 = zzbvp;	 Catch:{ NoSuchFieldError -&gt; 0x0092 }
+        r10 = com.google.android.gms.internal.measurement.zzzb.zzcew;	 Catch:{ NoSuchFieldError -&gt; 0x0092 }
+        r10 = r10.ordinal();	 Catch:{ NoSuchFieldError -&gt; 0x0092 }
+        r11 = 12;	 Catch:{ NoSuchFieldError -&gt; 0x0092 }
+        r9[r10] = r11;	 Catch:{ NoSuchFieldError -&gt; 0x0092 }
+    L_0x0092:
+        r9 = zzbvp;	 Catch:{ NoSuchFieldError -&gt; 0x009e }
+        r10 = com.google.android.gms.internal.measurement.zzzb.zzcex;	 Catch:{ NoSuchFieldError -&gt; 0x009e }
+        r10 = r10.ordinal();	 Catch:{ NoSuchFieldError -&gt; 0x009e }
+        r11 = 13;	 Catch:{ NoSuchFieldError -&gt; 0x009e }
+        r9[r10] = r11;	 Catch:{ NoSuchFieldError -&gt; 0x009e }
+    L_0x009e:
+        r9 = zzbvp;	 Catch:{ NoSuchFieldError -&gt; 0x00aa }
+        r10 = com.google.android.gms.internal.measurement.zzzb.zzcez;	 Catch:{ NoSuchFieldError -&gt; 0x00aa }
+        r10 = r10.ordinal();	 Catch:{ NoSuchFieldError -&gt; 0x00aa }
+        r11 = 14;	 Catch:{ NoSuchFieldError -&gt; 0x00aa }
+        r9[r10] = r11;	 Catch:{ NoSuchFieldError -&gt; 0x00aa }
+    L_0x00aa:
+        r9 = zzbvp;	 Catch:{ NoSuchFieldError -&gt; 0x00b6 }
+        r10 = com.google.android.gms.internal.measurement.zzzb.zzcfa;	 Catch:{ NoSuchFieldError -&gt; 0x00b6 }
+        r10 = r10.ordinal();	 Catch:{ NoSuchFieldError -&gt; 0x00b6 }
+        r11 = 15;	 Catch:{ NoSuchFieldError -&gt; 0x00b6 }
+        r9[r10] = r11;	 Catch:{ NoSuchFieldError -&gt; 0x00b6 }
+    L_0x00b6:
+        r9 = zzbvp;	 Catch:{ NoSuchFieldError -&gt; 0x00c2 }
+        r10 = com.google.android.gms.internal.measurement.zzzb.zzcfb;	 Catch:{ NoSuchFieldError -&gt; 0x00c2 }
+        r10 = r10.ordinal();	 Catch:{ NoSuchFieldError -&gt; 0x00c2 }
+        r11 = 16;	 Catch:{ NoSuchFieldError -&gt; 0x00c2 }
+        r9[r10] = r11;	 Catch:{ NoSuchFieldError -&gt; 0x00c2 }
+    L_0x00c2:
+        r9 = zzbvp;	 Catch:{ NoSuchFieldError -&gt; 0x00ce }
+        r10 = com.google.android.gms.internal.measurement.zzzb.zzcfc;	 Catch:{ NoSuchFieldError -&gt; 0x00ce }
+        r10 = r10.ordinal();	 Catch:{ NoSuchFieldError -&gt; 0x00ce }
+        r11 = 17;	 Catch:{ NoSuchFieldError -&gt; 0x00ce }
+        r9[r10] = r11;	 Catch:{ NoSuchFieldError -&gt; 0x00ce }
+    L_0x00ce:
+        r9 = zzbvp;	 Catch:{ NoSuchFieldError -&gt; 0x00da }
+        r10 = com.google.android.gms.internal.measurement.zzzb.zzcey;	 Catch:{ NoSuchFieldError -&gt; 0x00da }
+        r10 = r10.ordinal();	 Catch:{ NoSuchFieldError -&gt; 0x00da }
+        r11 = 18;	 Catch:{ NoSuchFieldError -&gt; 0x00da }
+        r9[r10] = r11;	 Catch:{ NoSuchFieldError -&gt; 0x00da }
+    L_0x00da:
+        r9 = com.google.android.gms.internal.measurement.zzzg.values();
+        r9 = r9.length;
+        r9 = new int[r9];
+        zzbwo = r9;
+        r9 = zzbwo;	 Catch:{ NoSuchFieldError -&gt; 0x00ed }
+        r10 = com.google.android.gms.internal.measurement.zzzg.zzcfg;	 Catch:{ NoSuchFieldError -&gt; 0x00ed }
+        r10 = r10.ordinal();	 Catch:{ NoSuchFieldError -&gt; 0x00ed }
+        r9[r10] = r0;	 Catch:{ NoSuchFieldError -&gt; 0x00ed }
+    L_0x00ed:
+        r0 = zzbwo;	 Catch:{ NoSuchFieldError -&gt; 0x00f7 }
+        r9 = com.google.android.gms.internal.measurement.zzzg.zzcfh;	 Catch:{ NoSuchFieldError -&gt; 0x00f7 }
+        r9 = r9.ordinal();	 Catch:{ NoSuchFieldError -&gt; 0x00f7 }
+        r0[r9] = r1;	 Catch:{ NoSuchFieldError -&gt; 0x00f7 }
+    L_0x00f7:
+        r0 = zzbwo;	 Catch:{ NoSuchFieldError -&gt; 0x0101 }
+        r1 = com.google.android.gms.internal.measurement.zzzg.zzcfi;	 Catch:{ NoSuchFieldError -&gt; 0x0101 }
+        r1 = r1.ordinal();	 Catch:{ NoSuchFieldError -&gt; 0x0101 }
+        r0[r1] = r2;	 Catch:{ NoSuchFieldError -&gt; 0x0101 }
+    L_0x0101:
+        r0 = zzbwo;	 Catch:{ NoSuchFieldError -&gt; 0x010b }
+        r1 = com.google.android.gms.internal.measurement.zzzg.zzcfj;	 Catch:{ NoSuchFieldError -&gt; 0x010b }
+        r1 = r1.ordinal();	 Catch:{ NoSuchFieldError -&gt; 0x010b }
+        r0[r1] = r3;	 Catch:{ NoSuchFieldError -&gt; 0x010b }
+    L_0x010b:
+        r0 = zzbwo;	 Catch:{ NoSuchFieldError -&gt; 0x0115 }
+        r1 = com.google.android.gms.internal.measurement.zzzg.zzcfk;	 Catch:{ NoSuchFieldError -&gt; 0x0115 }
+        r1 = r1.ordinal();	 Catch:{ NoSuchFieldError -&gt; 0x0115 }
+        r0[r1] = r4;	 Catch:{ NoSuchFieldError -&gt; 0x0115 }
+    L_0x0115:
+        r0 = zzbwo;	 Catch:{ NoSuchFieldError -&gt; 0x011f }
+        r1 = com.google.android.gms.internal.measurement.zzzg.zzcfl;	 Catch:{ NoSuchFieldError -&gt; 0x011f }
+        r1 = r1.ordinal();	 Catch:{ NoSuchFieldError -&gt; 0x011f }
+        r0[r1] = r5;	 Catch:{ NoSuchFieldError -&gt; 0x011f }
+    L_0x011f:
+        r0 = zzbwo;	 Catch:{ NoSuchFieldError -&gt; 0x0129 }
+        r1 = com.google.android.gms.internal.measurement.zzzg.zzcfm;	 Catch:{ NoSuchFieldError -&gt; 0x0129 }
+        r1 = r1.ordinal();	 Catch:{ NoSuchFieldError -&gt; 0x0129 }
+        r0[r1] = r6;	 Catch:{ NoSuchFieldError -&gt; 0x0129 }
+    L_0x0129:
+        r0 = zzbwo;	 Catch:{ NoSuchFieldError -&gt; 0x0133 }
+        r1 = com.google.android.gms.internal.measurement.zzzg.zzcfn;	 Catch:{ NoSuchFieldError -&gt; 0x0133 }
+        r1 = r1.ordinal();	 Catch:{ NoSuchFieldError -&gt; 0x0133 }
+        r0[r1] = r7;	 Catch:{ NoSuchFieldError -&gt; 0x0133 }
+    L_0x0133:
+        r0 = zzbwo;	 Catch:{ NoSuchFieldError -&gt; 0x013d }
+        r1 = com.google.android.gms.internal.measurement.zzzg.zzcfo;	 Catch:{ NoSuchFieldError -&gt; 0x013d }
+        r1 = r1.ordinal();	 Catch:{ NoSuchFieldError -&gt; 0x013d }
+        r0[r1] = r8;	 Catch:{ NoSuchFieldError -&gt; 0x013d }
+    L_0x013d:
+        return;
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.google.android.gms.internal.measurement.zzvp.&lt;clinit&gt;():void");
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:11 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

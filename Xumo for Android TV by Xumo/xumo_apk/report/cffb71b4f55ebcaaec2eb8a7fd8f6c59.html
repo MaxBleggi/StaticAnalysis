@@ -1,0 +1,259 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/firebase/analytics/connector/AnalyticsConnectorImpl.java" target="_blank">/xumo_apk/jadx_source_code/com/google/firebase/analytics/connector/AnalyticsConnectorImpl.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="AnalyticsConnectorImpl.java" data-line="" class="code line-numbers"><code>package com.google.firebase.analytics.connector;
+
+import android.content.Context;
+import android.os.Bundle;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresPermission;
+import androidx.annotation.Size;
+import androidx.annotation.WorkerThread;
+import com.google.android.gms.common.annotation.KeepForSdk;
+import com.google.android.gms.common.internal.Preconditions;
+import com.google.android.gms.common.util.VisibleForTesting;
+import com.google.android.gms.measurement.AppMeasurement;
+import com.google.android.gms.measurement.internal.zzal;
+import com.google.android.gms.measurement.internal.zzbu;
+import com.google.firebase.DataCollectionDefaultChange;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.analytics.connector.AnalyticsConnector.AnalyticsConnectorHandle;
+import com.google.firebase.analytics.connector.AnalyticsConnector.AnalyticsConnectorListener;
+import com.google.firebase.analytics.connector.AnalyticsConnector.ConditionalUserProperty;
+import com.google.firebase.analytics.connector.internal.zza;
+import com.google.firebase.analytics.connector.internal.zzc;
+import com.google.firebase.analytics.connector.internal.zzd;
+import com.google.firebase.analytics.connector.internal.zzf;
+import com.google.firebase.events.Event;
+import com.google.firebase.events.Subscriber;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+
+public class AnalyticsConnectorImpl implements AnalyticsConnector {
+    private static volatile AnalyticsConnector zzbta;
+    @VisibleForTesting
+    private final AppMeasurement zzbtb;
+    @VisibleForTesting
+    final Map&lt;String, zza&gt; zzbtc = new ConcurrentHashMap();
+
+    private AnalyticsConnectorImpl(AppMeasurement appMeasurement) {
+        Preconditions.checkNotNull(appMeasurement);
+        this.zzbtb = appMeasurement;
+    }
+
+    @RequiresPermission(allOf = {"android.permission.INTERNET", "android.permission.ACCESS_NETWORK_STATE", "android.permission.WAKE_LOCK"})
+    @KeepForSdk
+    public static AnalyticsConnector getInstance(FirebaseApp firebaseApp, Context context, Subscriber subscriber) {
+        Preconditions.checkNotNull(firebaseApp);
+        Preconditions.checkNotNull(context);
+        Preconditions.checkNotNull(subscriber);
+        Preconditions.checkNotNull(context.getApplicationContext());
+        if (zzbta == null) {
+            synchronized (AnalyticsConnectorImpl.class) {
+                if (zzbta == null) {
+                    Bundle bundle = new Bundle(1);
+                    if (firebaseApp.isDefaultApp()) {
+                        subscriber.subscribe(DataCollectionDefaultChange.class, zza.zzbtd, zzb.zzbte);
+                        bundle.putBoolean("dataCollectionDefaultEnabled", firebaseApp.isDataCollectionDefaultEnabled());
+                    }
+                    zzbta = new AnalyticsConnectorImpl(zzbu.zza(context, zzal.zzc(bundle)).zzkm());
+                }
+            }
+        }
+        return zzbta;
+    }
+
+    @KeepForSdk
+    public static AnalyticsConnector getInstance() {
+        return getInstance(FirebaseApp.getInstance());
+    }
+
+    @KeepForSdk
+    public static AnalyticsConnector getInstance(FirebaseApp firebaseApp) {
+        return (AnalyticsConnector) firebaseApp.get(AnalyticsConnector.class);
+    }
+
+    @KeepForSdk
+    public void logEvent(@NonNull String str, @NonNull String str2, Bundle bundle) {
+        if (bundle == null) {
+            bundle = new Bundle();
+        }
+        if (zzc.zzfv(str) &amp;&amp; zzc.zza(str2, bundle) &amp;&amp; zzc.zzb(str, str2, bundle)) {
+            this.zzbtb.logEventInternal(str, str2, bundle);
+        }
+    }
+
+    @KeepForSdk
+    public void setUserProperty(@NonNull String str, @NonNull String str2, Object obj) {
+        if (zzc.zzfv(str) &amp;&amp; zzc.zzz(str, str2)) {
+            this.zzbtb.setUserPropertyInternal(str, str2, obj);
+        }
+    }
+
+    @WorkerThread
+    @KeepForSdk
+    public Map&lt;String, Object&gt; getUserProperties(boolean z) {
+        return this.zzbtb.getUserProperties(z);
+    }
+
+    @WorkerThread
+    @KeepForSdk
+    public AnalyticsConnectorHandle registerAnalyticsConnectorListener(@NonNull final String str, AnalyticsConnectorListener analyticsConnectorListener) {
+        Preconditions.checkNotNull(analyticsConnectorListener);
+        if (!zzc.zzfv(str) || zzfu(str)) {
+            return null;
+        }
+        AppMeasurement appMeasurement = this.zzbtb;
+        Object com_google_firebase_analytics_connector_internal_zzd = AppMeasurement.FIAM_ORIGIN.equals(str) ? new zzd(appMeasurement, analyticsConnectorListener) : AppMeasurement.CRASH_ORIGIN.equals(str) ? new zzf(appMeasurement, analyticsConnectorListener) : null;
+        if (com_google_firebase_analytics_connector_internal_zzd == null) {
+            return null;
+        }
+        this.zzbtc.put(str, com_google_firebase_analytics_connector_internal_zzd);
+        return new AnalyticsConnectorHandle(this) {
+            private final /* synthetic */ AnalyticsConnectorImpl zzbtf;
+
+            public void unregister() {
+                if (this.zzbtf.zzfu(str)) {
+                    AnalyticsConnectorListener zztv = ((zza) this.zzbtf.zzbtc.get(str)).zztv();
+                    if (zztv != null) {
+                        zztv.onMessageTriggered(0, null);
+                    }
+                    this.zzbtf.zzbtc.remove(str);
+                }
+            }
+
+            @KeepForSdk
+            public void registerEventNames(Set&lt;String&gt; set) {
+                if (this.zzbtf.zzfu(str) &amp;&amp; str.equals(AppMeasurement.FIAM_ORIGIN) &amp;&amp; set != null) {
+                    if (!set.isEmpty()) {
+                        ((zza) this.zzbtf.zzbtc.get(str)).registerEventNames(set);
+                    }
+                }
+            }
+
+            @KeepForSdk
+            public void unregisterEventNames() {
+                if (this.zzbtf.zzfu(str)) {
+                    if (str.equals(AppMeasurement.FIAM_ORIGIN)) {
+                        ((zza) this.zzbtf.zzbtc.get(str)).unregisterEventNames();
+                    }
+                }
+            }
+        };
+    }
+
+    @KeepForSdk
+    public void setConditionalUserProperty(@NonNull ConditionalUserProperty conditionalUserProperty) {
+        if (zzc.zza(conditionalUserProperty)) {
+            this.zzbtb.setConditionalUserProperty(zzc.zzb(conditionalUserProperty));
+        }
+    }
+
+    @KeepForSdk
+    public void clearConditionalUserProperty(@Size(max = 24, min = 1) @NonNull String str, @Nullable String str2, @Nullable Bundle bundle) {
+        if (str2 == null || zzc.zza(str2, bundle)) {
+            this.zzbtb.clearConditionalUserProperty(str, str2, bundle);
+        }
+    }
+
+    @WorkerThread
+    @KeepForSdk
+    public List&lt;ConditionalUserProperty&gt; getConditionalUserProperties(@NonNull String str, @Size(max = 23, min = 1) @Nullable String str2) {
+        List&lt;ConditionalUserProperty&gt; arrayList = new ArrayList();
+        for (AppMeasurement.ConditionalUserProperty zzd : this.zzbtb.getConditionalUserProperties(str, str2)) {
+            arrayList.add(zzc.zzd(zzd));
+        }
+        return arrayList;
+    }
+
+    @WorkerThread
+    @KeepForSdk
+    public int getMaxUserProperties(@Size(min = 1) @NonNull String str) {
+        return this.zzbtb.getMaxUserProperties(str);
+    }
+
+    private final boolean zzfu(@NonNull String str) {
+        return (str.isEmpty() || !this.zzbtc.containsKey(str) || this.zzbtc.get(str) == null) ? null : true;
+    }
+
+    static final /* synthetic */ void zza(Event event) {
+        event = ((DataCollectionDefaultChange) event.getPayload()).enabled;
+        synchronized (AnalyticsConnectorImpl.class) {
+            ((AnalyticsConnectorImpl) zzbta).zzbtb.zzd(event);
+        }
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:7 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

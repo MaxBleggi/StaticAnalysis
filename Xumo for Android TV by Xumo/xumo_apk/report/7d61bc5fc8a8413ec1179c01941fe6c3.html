@@ -1,0 +1,207 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/androidx/appcompat/widget/TooltipPopup.java" target="_blank">/xumo_apk/jadx_source_code/androidx/appcompat/widget/TooltipPopup.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="TooltipPopup.java" data-line="" class="code line-numbers"><code>package androidx.appcompat.widget;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.ContextWrapper;
+import android.content.res.Resources;
+import android.graphics.Rect;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.MeasureSpec;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.WindowManager.LayoutParams;
+import android.widget.TextView;
+import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo.Scope;
+import androidx.appcompat.R;
+import androidx.core.view.PointerIconCompat;
+
+@RestrictTo({Scope.LIBRARY_GROUP})
+class TooltipPopup {
+    private static final String TAG = "TooltipPopup";
+    private final View mContentView;
+    private final Context mContext;
+    private final LayoutParams mLayoutParams = new LayoutParams();
+    private final TextView mMessageView;
+    private final int[] mTmpAnchorPos = new int[2];
+    private final int[] mTmpAppPos = new int[2];
+    private final Rect mTmpDisplayFrame = new Rect();
+
+    TooltipPopup(Context context) {
+        this.mContext = context;
+        this.mContentView = LayoutInflater.from(this.mContext).inflate(R.layout.abc_tooltip, null);
+        this.mMessageView = (TextView) this.mContentView.findViewById(R.id.message);
+        this.mLayoutParams.setTitle(getClass().getSimpleName());
+        this.mLayoutParams.packageName = this.mContext.getPackageName();
+        this.mLayoutParams.type = PointerIconCompat.TYPE_HAND;
+        this.mLayoutParams.width = -2;
+        this.mLayoutParams.height = -2;
+        this.mLayoutParams.format = -3;
+        this.mLayoutParams.windowAnimations = R.style.Animation_AppCompat_Tooltip;
+        this.mLayoutParams.flags = 24;
+    }
+
+    void show(View view, int i, int i2, boolean z, CharSequence charSequence) {
+        if (isShowing()) {
+            hide();
+        }
+        this.mMessageView.setText(charSequence);
+        computePosition(view, i, i2, z, this.mLayoutParams);
+        ((WindowManager) this.mContext.getSystemService("window")).addView(this.mContentView, this.mLayoutParams);
+    }
+
+    void hide() {
+        if (isShowing()) {
+            ((WindowManager) this.mContext.getSystemService("window")).removeView(this.mContentView);
+        }
+    }
+
+    boolean isShowing() {
+        return this.mContentView.getParent() != null;
+    }
+
+    private void computePosition(View view, int i, int i2, boolean z, LayoutParams layoutParams) {
+        int i3;
+        layoutParams.token = view.getApplicationWindowToken();
+        int dimensionPixelOffset = this.mContext.getResources().getDimensionPixelOffset(R.dimen.tooltip_precise_anchor_threshold);
+        if (view.getWidth() &lt; dimensionPixelOffset) {
+            i = view.getWidth() / 2;
+        }
+        if (view.getHeight() &gt;= dimensionPixelOffset) {
+            dimensionPixelOffset = this.mContext.getResources().getDimensionPixelOffset(R.dimen.tooltip_precise_anchor_extra_offset);
+            i3 = i2 + dimensionPixelOffset;
+            i2 -= dimensionPixelOffset;
+        } else {
+            i3 = view.getHeight();
+            i2 = 0;
+        }
+        layoutParams.gravity = 49;
+        dimensionPixelOffset = this.mContext.getResources().getDimensionPixelOffset(z ? R.dimen.tooltip_y_offset_touch : R.dimen.tooltip_y_offset_non_touch);
+        View appRootView = getAppRootView(view);
+        if (appRootView == null) {
+            Log.e(TAG, "Cannot find app view");
+            return;
+        }
+        appRootView.getWindowVisibleDisplayFrame(this.mTmpDisplayFrame);
+        if (this.mTmpDisplayFrame.left &lt; 0 &amp;&amp; this.mTmpDisplayFrame.top &lt; 0) {
+            Resources resources = this.mContext.getResources();
+            int identifier = resources.getIdentifier("status_bar_height", "dimen", "android");
+            identifier = identifier != 0 ? resources.getDimensionPixelSize(identifier) : 0;
+            DisplayMetrics displayMetrics = resources.getDisplayMetrics();
+            this.mTmpDisplayFrame.set(0, identifier, displayMetrics.widthPixels, displayMetrics.heightPixels);
+        }
+        appRootView.getLocationOnScreen(this.mTmpAppPos);
+        view.getLocationOnScreen(this.mTmpAnchorPos);
+        view = this.mTmpAnchorPos;
+        view[0] = view[0] - this.mTmpAppPos[0];
+        view = this.mTmpAnchorPos;
+        view[1] = view[1] - this.mTmpAppPos[1];
+        layoutParams.x = (this.mTmpAnchorPos[0] + i) - (appRootView.getWidth() / 2);
+        view = MeasureSpec.makeMeasureSpec(0, 0);
+        this.mContentView.measure(view, view);
+        view = this.mContentView.getMeasuredHeight();
+        i = ((this.mTmpAnchorPos[1] + i2) - dimensionPixelOffset) - view;
+        i2 = (this.mTmpAnchorPos[1] + i3) + dimensionPixelOffset;
+        if (z) {
+            if (i &gt;= 0) {
+                layoutParams.y = i;
+            } else {
+                layoutParams.y = i2;
+            }
+        } else if (view + i2 &lt;= this.mTmpDisplayFrame.height()) {
+            layoutParams.y = i2;
+        } else {
+            layoutParams.y = i;
+        }
+    }
+
+    private static View getAppRootView(View view) {
+        View rootView = view.getRootView();
+        ViewGroup.LayoutParams layoutParams = rootView.getLayoutParams();
+        if ((layoutParams instanceof LayoutParams) &amp;&amp; ((LayoutParams) layoutParams).type == 2) {
+            return rootView;
+        }
+        for (view = view.getContext(); view instanceof ContextWrapper; view = ((ContextWrapper) view).getBaseContext()) {
+            if (view instanceof Activity) {
+                return ((Activity) view).getWindow().getDecorView();
+            }
+        }
+        return rootView;
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:4 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

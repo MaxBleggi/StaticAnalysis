@@ -1,0 +1,242 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9"><div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/exoplayer2/upstream/cache/CachedContent.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/exoplayer2/upstream/cache/CachedContent.java</a></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-83">report</i><h5>password =|secret =|username =|key =</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>the app contain hardcoded sensitive informations like usernames, passwords, keys etc: Hard coded sensitive information in Application Code (including Crypto)</span></div></li></ul><ul class="collapsible"><li><div class="collapsible-header"><img data-position="top" data-tooltip="OWASP item" src="html/owasp_logo.png" height="20em" style="margin-right: 1rem;margin-left: 5px;" class="tooltipped"></img> OWASP Item</div><div class="collapsible-body"><span>For more information, have a look at: https://www.owasp.org/index.php/OWASP_Mobile_Security_Testing_Guide</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#CachedContent_java35pass" class="active">line 35</a></li></ul></div><div class="card-content"><div id="CachedContent_java35pass">Code @ line 35<pre data-start="32" data-line="35" data-src="CachedContent.java" class="code line-numbers"><code>
+    public CachedContent(int i, String str) {
+        this.id = i;
+        this.key = str;
+    }
+
+    public void writeToStream(DataOutputStream dataOutputStream) throws IOException {
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlZENvbnRlbnQuamF2YXx8fGxpbmU6IDM1IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwzNXx8fDMy">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlZENvbnRlbnQuamF2YXx8fGxpbmU6IDM1IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwzNXx8fDMy')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlZENvbnRlbnQuamF2YXx8fGxpbmU6IDM1IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwzNXx8fDMy').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlZENvbnRlbnQuamF2YXx8fGxpbmU6IDM1IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwzNXx8fDMy" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlZENvbnRlbnQuamF2YXx8fGxpbmU6IDM1IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwzNXx8fDMy' , 'CiAgICBwdWJsaWMgQ2FjaGVkQ29udGVudChpbnQgaSwgU3RyaW5nIHN0cikgewogICAgICAgIHRoaXMuaWQgPSBpOwogICAgICAgIHRoaXMua2V5ID0gc3RyOwogICAgfQoKICAgIHB1YmxpYyB2b2lkIHdyaXRlVG9TdHJlYW0oRGF0YU91dHB1dFN0cmVhbSBkYXRhT3V0cHV0U3RyZWFtKSB0aHJvd3MgSU9FeGNlcHRpb24gewo=');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="CachedContent.java" data-line="35," class="code line-numbers"><code>package com.google.android.exoplayer2.upstream.cache;
+
+import androidx.annotation.Nullable;
+import com.google.android.exoplayer2.upstream.cache.Cache.CacheException;
+import com.google.android.exoplayer2.util.Assertions;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.util.TreeSet;
+
+final class CachedContent {
+    private static final int VERSION_MAX = Integer.MAX_VALUE;
+    private static final int VERSION_METADATA_INTRODUCED = 2;
+    private final TreeSet&lt;SimpleCacheSpan&gt; cachedSpans = new TreeSet();
+    public final int id;
+    public final String key;
+    private boolean locked;
+    private DefaultContentMetadata metadata = DefaultContentMetadata.EMPTY;
+
+    public static CachedContent readFromStream(int i, DataInputStream dataInputStream) throws IOException {
+        CachedContent cachedContent = new CachedContent(dataInputStream.readInt(), dataInputStream.readUTF());
+        if (i &lt; 2) {
+            i = dataInputStream.readLong();
+            ContentMetadataMutations contentMetadataMutations = new ContentMetadataMutations();
+            ContentMetadataInternal.setContentLength(contentMetadataMutations, i);
+            cachedContent.applyMetadataMutations(contentMetadataMutations);
+        } else {
+            cachedContent.metadata = DefaultContentMetadata.readFromStream(dataInputStream);
+        }
+        return cachedContent;
+    }
+
+    public CachedContent(int i, String str) {
+        this.id = i;
+        this.key = str;
+    }
+
+    public void writeToStream(DataOutputStream dataOutputStream) throws IOException {
+        dataOutputStream.writeInt(this.id);
+        dataOutputStream.writeUTF(this.key);
+        this.metadata.writeToStream(dataOutputStream);
+    }
+
+    public ContentMetadata getMetadata() {
+        return this.metadata;
+    }
+
+    public boolean applyMetadataMutations(ContentMetadataMutations contentMetadataMutations) {
+        DefaultContentMetadata defaultContentMetadata = this.metadata;
+        this.metadata = this.metadata.copyWithMutationsApplied(contentMetadataMutations);
+        return this.metadata.equals(defaultContentMetadata) ^ 1;
+    }
+
+    public boolean isLocked() {
+        return this.locked;
+    }
+
+    public void setLocked(boolean z) {
+        this.locked = z;
+    }
+
+    public void addSpan(SimpleCacheSpan simpleCacheSpan) {
+        this.cachedSpans.add(simpleCacheSpan);
+    }
+
+    public TreeSet&lt;SimpleCacheSpan&gt; getSpans() {
+        return this.cachedSpans;
+    }
+
+    public SimpleCacheSpan getSpan(long j) {
+        SimpleCacheSpan createLookup = SimpleCacheSpan.createLookup(this.key, j);
+        SimpleCacheSpan simpleCacheSpan = (SimpleCacheSpan) this.cachedSpans.floor(createLookup);
+        if (simpleCacheSpan != null &amp;&amp; simpleCacheSpan.position + simpleCacheSpan.length &gt; j) {
+            return simpleCacheSpan;
+        }
+        createLookup = (SimpleCacheSpan) this.cachedSpans.ceiling(createLookup);
+        if (createLookup == null) {
+            j = SimpleCacheSpan.createOpenHole(this.key, j);
+        } else {
+            j = SimpleCacheSpan.createClosedHole(this.key, j, createLookup.position - j);
+        }
+        return j;
+    }
+
+    public long getCachedBytesLength(long j, long j2) {
+        SimpleCacheSpan span = getSpan(j);
+        if (span.isHoleSpan()) {
+            return -Math.min(span.isOpenEnded() != null ? Long.MAX_VALUE : span.length, j2);
+        }
+        long j3 = j + j2;
+        long j4 = span.position + span.length;
+        if (j4 &lt; j3) {
+            for (SimpleCacheSpan simpleCacheSpan : this.cachedSpans.tailSet(span, false)) {
+                if (simpleCacheSpan.position &lt;= j4) {
+                    j4 = Math.max(j4, simpleCacheSpan.position + simpleCacheSpan.length);
+                    if (j4 &gt;= j3) {
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+        return Math.min(j4 - j, j2);
+    }
+
+    public SimpleCacheSpan touch(SimpleCacheSpan simpleCacheSpan) throws CacheException {
+        SimpleCacheSpan copyWithUpdatedLastAccessTime = simpleCacheSpan.copyWithUpdatedLastAccessTime(this.id);
+        if (simpleCacheSpan.file.renameTo(copyWithUpdatedLastAccessTime.file)) {
+            Assertions.checkState(this.cachedSpans.remove(simpleCacheSpan));
+            this.cachedSpans.add(copyWithUpdatedLastAccessTime);
+            return copyWithUpdatedLastAccessTime;
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Renaming of ");
+        stringBuilder.append(simpleCacheSpan.file);
+        stringBuilder.append(" to ");
+        stringBuilder.append(copyWithUpdatedLastAccessTime.file);
+        stringBuilder.append(" failed.");
+        throw new CacheException(stringBuilder.toString());
+    }
+
+    public boolean isEmpty() {
+        return this.cachedSpans.isEmpty();
+    }
+
+    public boolean removeSpan(CacheSpan cacheSpan) {
+        if (!this.cachedSpans.remove(cacheSpan)) {
+            return null;
+        }
+        cacheSpan.file.delete();
+        return true;
+    }
+
+    public int headerHashCode(int i) {
+        int hashCode = (this.id * 31) + this.key.hashCode();
+        if (i &gt;= 2) {
+            return (hashCode * 31) + this.metadata.hashCode();
+        }
+        long contentLength = ContentMetadataInternal.getContentLength(this.metadata);
+        return (hashCode * 31) + ((int) (contentLength ^ (contentLength &gt;&gt;&gt; 32)));
+    }
+
+    public int hashCode() {
+        return (headerHashCode(Integer.MAX_VALUE) * 31) + this.cachedSpans.hashCode();
+    }
+
+    public boolean equals(@Nullable Object obj) {
+        boolean z = true;
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null) {
+            if (getClass() == obj.getClass()) {
+                CachedContent cachedContent = (CachedContent) obj;
+                if (this.id != cachedContent.id || !this.key.equals(cachedContent.key) || !this.cachedSpans.equals(cachedContent.cachedSpans) || this.metadata.equals(cachedContent.metadata) == null) {
+                    z = false;
+                }
+                return z;
+            }
+        }
+        return false;
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:9 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

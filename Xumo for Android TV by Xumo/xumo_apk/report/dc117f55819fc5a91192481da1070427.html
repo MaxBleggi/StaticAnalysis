@@ -1,0 +1,643 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/exoplayer2/util/ParsableByteArray.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/exoplayer2/util/ParsableByteArray.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="ParsableByteArray.java" data-line="" class="code line-numbers"><code>package com.google.android.exoplayer2.util;
+
+import androidx.annotation.Nullable;
+import java.nio.ByteBuffer;
+import java.nio.charset.Charset;
+
+public final class ParsableByteArray {
+    public byte[] data;
+    private int limit;
+    private int position;
+
+    public ParsableByteArray() {
+        this.data = Util.EMPTY_BYTE_ARRAY;
+    }
+
+    public ParsableByteArray(int i) {
+        this.data = new byte[i];
+        this.limit = i;
+    }
+
+    public ParsableByteArray(byte[] bArr) {
+        this.data = bArr;
+        this.limit = bArr.length;
+    }
+
+    public ParsableByteArray(byte[] bArr, int i) {
+        this.data = bArr;
+        this.limit = i;
+    }
+
+    public void reset(int i) {
+        reset(capacity() &lt; i ? new byte[i] : this.data, i);
+    }
+
+    public void reset(byte[] bArr, int i) {
+        this.data = bArr;
+        this.limit = i;
+        this.position = null;
+    }
+
+    public void reset() {
+        this.position = 0;
+        this.limit = 0;
+    }
+
+    public int bytesLeft() {
+        return this.limit - this.position;
+    }
+
+    public int limit() {
+        return this.limit;
+    }
+
+    public void setLimit(int i) {
+        boolean z = i &gt;= 0 &amp;&amp; i &lt;= this.data.length;
+        Assertions.checkArgument(z);
+        this.limit = i;
+    }
+
+    public int getPosition() {
+        return this.position;
+    }
+
+    public int capacity() {
+        return this.data.length;
+    }
+
+    public void setPosition(int i) {
+        boolean z = i &gt;= 0 &amp;&amp; i &lt;= this.limit;
+        Assertions.checkArgument(z);
+        this.position = i;
+    }
+
+    public void skipBytes(int i) {
+        setPosition(this.position + i);
+    }
+
+    public void readBytes(ParsableBitArray parsableBitArray, int i) {
+        readBytes(parsableBitArray.data, 0, i);
+        parsableBitArray.setPosition(0);
+    }
+
+    public void readBytes(byte[] bArr, int i, int i2) {
+        System.arraycopy(this.data, this.position, bArr, i, i2);
+        this.position += i2;
+    }
+
+    public void readBytes(ByteBuffer byteBuffer, int i) {
+        byteBuffer.put(this.data, this.position, i);
+        this.position += i;
+    }
+
+    public int peekUnsignedByte() {
+        return this.data[this.position] &amp; 255;
+    }
+
+    public char peekChar() {
+        return (char) (((this.data[this.position] &amp; 255) &lt;&lt; 8) | (this.data[this.position + 1] &amp; 255));
+    }
+
+    public int readUnsignedByte() {
+        byte[] bArr = this.data;
+        int i = this.position;
+        this.position = i + 1;
+        return bArr[i] &amp; 255;
+    }
+
+    public int readUnsignedShort() {
+        byte[] bArr = this.data;
+        int i = this.position;
+        this.position = i + 1;
+        int i2 = (bArr[i] &amp; 255) &lt;&lt; 8;
+        byte[] bArr2 = this.data;
+        int i3 = this.position;
+        this.position = i3 + 1;
+        return i2 | (bArr2[i3] &amp; 255);
+    }
+
+    public int readLittleEndianUnsignedShort() {
+        byte[] bArr = this.data;
+        int i = this.position;
+        this.position = i + 1;
+        int i2 = bArr[i] &amp; 255;
+        byte[] bArr2 = this.data;
+        int i3 = this.position;
+        this.position = i3 + 1;
+        return i2 | ((bArr2[i3] &amp; 255) &lt;&lt; 8);
+    }
+
+    public short readShort() {
+        byte[] bArr = this.data;
+        int i = this.position;
+        this.position = i + 1;
+        int i2 = (bArr[i] &amp; 255) &lt;&lt; 8;
+        byte[] bArr2 = this.data;
+        int i3 = this.position;
+        this.position = i3 + 1;
+        return (short) (i2 | (bArr2[i3] &amp; 255));
+    }
+
+    public short readLittleEndianShort() {
+        byte[] bArr = this.data;
+        int i = this.position;
+        this.position = i + 1;
+        int i2 = bArr[i] &amp; 255;
+        byte[] bArr2 = this.data;
+        int i3 = this.position;
+        this.position = i3 + 1;
+        return (short) (i2 | ((bArr2[i3] &amp; 255) &lt;&lt; 8));
+    }
+
+    public int readUnsignedInt24() {
+        byte[] bArr = this.data;
+        int i = this.position;
+        this.position = i + 1;
+        int i2 = (bArr[i] &amp; 255) &lt;&lt; 16;
+        byte[] bArr2 = this.data;
+        int i3 = this.position;
+        this.position = i3 + 1;
+        i2 |= (bArr2[i3] &amp; 255) &lt;&lt; 8;
+        bArr2 = this.data;
+        i3 = this.position;
+        this.position = i3 + 1;
+        return i2 | (bArr2[i3] &amp; 255);
+    }
+
+    public int readInt24() {
+        byte[] bArr = this.data;
+        int i = this.position;
+        this.position = i + 1;
+        int i2 = ((bArr[i] &amp; 255) &lt;&lt; 24) &gt;&gt; 8;
+        byte[] bArr2 = this.data;
+        int i3 = this.position;
+        this.position = i3 + 1;
+        i2 |= (bArr2[i3] &amp; 255) &lt;&lt; 8;
+        bArr2 = this.data;
+        i3 = this.position;
+        this.position = i3 + 1;
+        return i2 | (bArr2[i3] &amp; 255);
+    }
+
+    public int readLittleEndianInt24() {
+        byte[] bArr = this.data;
+        int i = this.position;
+        this.position = i + 1;
+        int i2 = bArr[i] &amp; 255;
+        byte[] bArr2 = this.data;
+        int i3 = this.position;
+        this.position = i3 + 1;
+        i2 |= (bArr2[i3] &amp; 255) &lt;&lt; 8;
+        bArr2 = this.data;
+        i3 = this.position;
+        this.position = i3 + 1;
+        return i2 | ((bArr2[i3] &amp; 255) &lt;&lt; 16);
+    }
+
+    public int readLittleEndianUnsignedInt24() {
+        byte[] bArr = this.data;
+        int i = this.position;
+        this.position = i + 1;
+        int i2 = bArr[i] &amp; 255;
+        byte[] bArr2 = this.data;
+        int i3 = this.position;
+        this.position = i3 + 1;
+        i2 |= (bArr2[i3] &amp; 255) &lt;&lt; 8;
+        bArr2 = this.data;
+        i3 = this.position;
+        this.position = i3 + 1;
+        return i2 | ((bArr2[i3] &amp; 255) &lt;&lt; 16);
+    }
+
+    public long readUnsignedInt() {
+        byte[] bArr = this.data;
+        int i = this.position;
+        this.position = i + 1;
+        long j = (((long) bArr[i]) &amp; 255) &lt;&lt; 24;
+        byte[] bArr2 = this.data;
+        int i2 = this.position;
+        this.position = i2 + 1;
+        j |= (((long) bArr2[i2]) &amp; 255) &lt;&lt; 16;
+        bArr2 = this.data;
+        i2 = this.position;
+        this.position = i2 + 1;
+        j |= (((long) bArr2[i2]) &amp; 255) &lt;&lt; 8;
+        bArr2 = this.data;
+        i2 = this.position;
+        this.position = i2 + 1;
+        return j | (255 &amp; ((long) bArr2[i2]));
+    }
+
+    public long readLittleEndianUnsignedInt() {
+        byte[] bArr = this.data;
+        int i = this.position;
+        this.position = i + 1;
+        long j = ((long) bArr[i]) &amp; 255;
+        byte[] bArr2 = this.data;
+        int i2 = this.position;
+        this.position = i2 + 1;
+        j |= (((long) bArr2[i2]) &amp; 255) &lt;&lt; 8;
+        bArr2 = this.data;
+        i2 = this.position;
+        this.position = i2 + 1;
+        j |= (((long) bArr2[i2]) &amp; 255) &lt;&lt; 16;
+        bArr2 = this.data;
+        i2 = this.position;
+        this.position = i2 + 1;
+        return j | ((255 &amp; ((long) bArr2[i2])) &lt;&lt; 24);
+    }
+
+    public int readInt() {
+        byte[] bArr = this.data;
+        int i = this.position;
+        this.position = i + 1;
+        int i2 = (bArr[i] &amp; 255) &lt;&lt; 24;
+        byte[] bArr2 = this.data;
+        int i3 = this.position;
+        this.position = i3 + 1;
+        i2 |= (bArr2[i3] &amp; 255) &lt;&lt; 16;
+        bArr2 = this.data;
+        i3 = this.position;
+        this.position = i3 + 1;
+        i2 |= (bArr2[i3] &amp; 255) &lt;&lt; 8;
+        bArr2 = this.data;
+        i3 = this.position;
+        this.position = i3 + 1;
+        return i2 | (bArr2[i3] &amp; 255);
+    }
+
+    public int readLittleEndianInt() {
+        byte[] bArr = this.data;
+        int i = this.position;
+        this.position = i + 1;
+        int i2 = bArr[i] &amp; 255;
+        byte[] bArr2 = this.data;
+        int i3 = this.position;
+        this.position = i3 + 1;
+        i2 |= (bArr2[i3] &amp; 255) &lt;&lt; 8;
+        bArr2 = this.data;
+        i3 = this.position;
+        this.position = i3 + 1;
+        i2 |= (bArr2[i3] &amp; 255) &lt;&lt; 16;
+        bArr2 = this.data;
+        i3 = this.position;
+        this.position = i3 + 1;
+        return i2 | ((bArr2[i3] &amp; 255) &lt;&lt; 24);
+    }
+
+    public long readLong() {
+        byte[] bArr = this.data;
+        int i = this.position;
+        this.position = i + 1;
+        long j = (((long) bArr[i]) &amp; 255) &lt;&lt; 56;
+        byte[] bArr2 = this.data;
+        int i2 = this.position;
+        this.position = i2 + 1;
+        j |= (((long) bArr2[i2]) &amp; 255) &lt;&lt; 48;
+        bArr2 = this.data;
+        i2 = this.position;
+        this.position = i2 + 1;
+        j |= (((long) bArr2[i2]) &amp; 255) &lt;&lt; 40;
+        bArr2 = this.data;
+        i2 = this.position;
+        this.position = i2 + 1;
+        j |= (((long) bArr2[i2]) &amp; 255) &lt;&lt; 32;
+        bArr2 = this.data;
+        i2 = this.position;
+        this.position = i2 + 1;
+        j |= (((long) bArr2[i2]) &amp; 255) &lt;&lt; 24;
+        bArr2 = this.data;
+        i2 = this.position;
+        this.position = i2 + 1;
+        j |= (((long) bArr2[i2]) &amp; 255) &lt;&lt; 16;
+        bArr2 = this.data;
+        i2 = this.position;
+        this.position = i2 + 1;
+        j |= (((long) bArr2[i2]) &amp; 255) &lt;&lt; 8;
+        bArr2 = this.data;
+        i2 = this.position;
+        this.position = i2 + 1;
+        return j | (255 &amp; ((long) bArr2[i2]));
+    }
+
+    public long readLittleEndianLong() {
+        byte[] bArr = this.data;
+        int i = this.position;
+        this.position = i + 1;
+        long j = ((long) bArr[i]) &amp; 255;
+        byte[] bArr2 = this.data;
+        int i2 = this.position;
+        this.position = i2 + 1;
+        j |= (((long) bArr2[i2]) &amp; 255) &lt;&lt; 8;
+        bArr2 = this.data;
+        i2 = this.position;
+        this.position = i2 + 1;
+        j |= (((long) bArr2[i2]) &amp; 255) &lt;&lt; 16;
+        bArr2 = this.data;
+        i2 = this.position;
+        this.position = i2 + 1;
+        j |= (((long) bArr2[i2]) &amp; 255) &lt;&lt; 24;
+        bArr2 = this.data;
+        i2 = this.position;
+        this.position = i2 + 1;
+        j |= (((long) bArr2[i2]) &amp; 255) &lt;&lt; 32;
+        bArr2 = this.data;
+        i2 = this.position;
+        this.position = i2 + 1;
+        j |= (((long) bArr2[i2]) &amp; 255) &lt;&lt; 40;
+        bArr2 = this.data;
+        i2 = this.position;
+        this.position = i2 + 1;
+        j |= (((long) bArr2[i2]) &amp; 255) &lt;&lt; 48;
+        bArr2 = this.data;
+        i2 = this.position;
+        this.position = i2 + 1;
+        return j | ((255 &amp; ((long) bArr2[i2])) &lt;&lt; 56);
+    }
+
+    public int readUnsignedFixedPoint1616() {
+        byte[] bArr = this.data;
+        int i = this.position;
+        this.position = i + 1;
+        int i2 = (bArr[i] &amp; 255) &lt;&lt; 8;
+        byte[] bArr2 = this.data;
+        int i3 = this.position;
+        this.position = i3 + 1;
+        i2 |= bArr2[i3] &amp; 255;
+        this.position += 2;
+        return i2;
+    }
+
+    public int readSynchSafeInt() {
+        return (((readUnsignedByte() &lt;&lt; 21) | (readUnsignedByte() &lt;&lt; 14)) | (readUnsignedByte() &lt;&lt; 7)) | readUnsignedByte();
+    }
+
+    public int readUnsignedIntToInt() {
+        int readInt = readInt();
+        if (readInt &gt;= 0) {
+            return readInt;
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Top bit not zero: ");
+        stringBuilder.append(readInt);
+        throw new IllegalStateException(stringBuilder.toString());
+    }
+
+    public int readLittleEndianUnsignedIntToInt() {
+        int readLittleEndianInt = readLittleEndianInt();
+        if (readLittleEndianInt &gt;= 0) {
+            return readLittleEndianInt;
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Top bit not zero: ");
+        stringBuilder.append(readLittleEndianInt);
+        throw new IllegalStateException(stringBuilder.toString());
+    }
+
+    public long readUnsignedLongToLong() {
+        long readLong = readLong();
+        if (readLong &gt;= 0) {
+            return readLong;
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Top bit not zero: ");
+        stringBuilder.append(readLong);
+        throw new IllegalStateException(stringBuilder.toString());
+    }
+
+    public float readFloat() {
+        return Float.intBitsToFloat(readInt());
+    }
+
+    public double readDouble() {
+        return Double.longBitsToDouble(readLong());
+    }
+
+    public String readString(int i) {
+        return readString(i, Charset.forName("UTF-8"));
+    }
+
+    public String readString(int i, Charset charset) {
+        String str = new String(this.data, this.position, i, charset);
+        this.position += i;
+        return str;
+    }
+
+    public String readNullTerminatedString(int i) {
+        if (i == 0) {
+            return "";
+        }
+        int i2 = (this.position + i) - 1;
+        i2 = (i2 &gt;= this.limit || this.data[i2] != (byte) 0) ? i : i - 1;
+        String fromUtf8Bytes = Util.fromUtf8Bytes(this.data, this.position, i2);
+        this.position += i;
+        return fromUtf8Bytes;
+    }
+
+    @Nullable
+    public String readNullTerminatedString() {
+        if (bytesLeft() == 0) {
+            return null;
+        }
+        int i = this.position;
+        while (i &lt; this.limit &amp;&amp; this.data[i] != (byte) 0) {
+            i++;
+        }
+        String fromUtf8Bytes = Util.fromUtf8Bytes(this.data, this.position, i - this.position);
+        this.position = i;
+        if (this.position &lt; this.limit) {
+            this.position++;
+        }
+        return fromUtf8Bytes;
+    }
+
+    @Nullable
+    public String readLine() {
+        if (bytesLeft() == 0) {
+            return null;
+        }
+        int i = this.position;
+        while (i &lt; this.limit &amp;&amp; !Util.isLinebreak(this.data[i])) {
+            i++;
+        }
+        if (i - this.position &gt;= 3 &amp;&amp; this.data[this.position] == (byte) -17 &amp;&amp; this.data[this.position + 1] == (byte) -69 &amp;&amp; this.data[this.position + 2] == (byte) -65) {
+            this.position += 3;
+        }
+        String fromUtf8Bytes = Util.fromUtf8Bytes(this.data, this.position, i - this.position);
+        this.position = i;
+        if (this.position == this.limit) {
+            return fromUtf8Bytes;
+        }
+        if (this.data[this.position] == (byte) 13) {
+            this.position++;
+            if (this.position == this.limit) {
+                return fromUtf8Bytes;
+            }
+        }
+        if (this.data[this.position] == (byte) 10) {
+            this.position++;
+        }
+        return fromUtf8Bytes;
+    }
+
+    /* JADX WARNING: inconsistent code. */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public long readUtf8EncodedLong() {
+        /*
+        r12 = this;
+        r0 = r12.data;
+        r1 = r12.position;
+        r0 = r0[r1];
+        r0 = (long) r0;
+        r2 = 7;
+        r3 = 7;
+    L_0x0009:
+        r4 = 6;
+        r5 = 1;
+        if (r3 &lt; 0) goto L_0x0025;
+    L_0x000d:
+        r6 = r5 &lt;&lt; r3;
+        r7 = (long) r6;
+        r7 = r7 &amp; r0;
+        r9 = 0;
+        r11 = (r7 &gt; r9 ? 1 : (r7 == r9 ? 0 : -1));
+        if (r11 != 0) goto L_0x0022;
+    L_0x0017:
+        if (r3 &gt;= r4) goto L_0x001e;
+    L_0x0019:
+        r6 = r6 - r5;
+        r6 = (long) r6;
+        r0 = r0 &amp; r6;
+        r2 = r2 - r3;
+        goto L_0x0026;
+    L_0x001e:
+        if (r3 != r2) goto L_0x0025;
+    L_0x0020:
+        r2 = 1;
+        goto L_0x0026;
+    L_0x0022:
+        r3 = r3 + -1;
+        goto L_0x0009;
+    L_0x0025:
+        r2 = 0;
+    L_0x0026:
+        if (r2 == 0) goto L_0x005c;
+    L_0x0028:
+        if (r5 &gt;= r2) goto L_0x0056;
+    L_0x002a:
+        r3 = r12.data;
+        r6 = r12.position;
+        r6 = r6 + r5;
+        r3 = r3[r6];
+        r6 = r3 &amp; 192;
+        r7 = 128; // 0x80 float:1.794E-43 double:6.32E-322;
+        if (r6 != r7) goto L_0x003f;
+    L_0x0037:
+        r0 = r0 &lt;&lt; r4;
+        r3 = r3 &amp; 63;
+        r6 = (long) r3;
+        r0 = r0 | r6;
+        r5 = r5 + 1;
+        goto L_0x0028;
+    L_0x003f:
+        r2 = new java.lang.NumberFormatException;
+        r3 = new java.lang.StringBuilder;
+        r3.&lt;init&gt;();
+        r4 = "Invalid UTF-8 sequence continuation byte: ";
+        r3.append(r4);
+        r3.append(r0);
+        r0 = r3.toString();
+        r2.&lt;init&gt;(r0);
+        throw r2;
+    L_0x0056:
+        r3 = r12.position;
+        r3 = r3 + r2;
+        r12.position = r3;
+        return r0;
+    L_0x005c:
+        r2 = new java.lang.NumberFormatException;
+        r3 = new java.lang.StringBuilder;
+        r3.&lt;init&gt;();
+        r4 = "Invalid UTF-8 sequence first byte: ";
+        r3.append(r4);
+        r3.append(r0);
+        r0 = r3.toString();
+        r2.&lt;init&gt;(r0);
+        throw r2;
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.google.android.exoplayer2.util.ParsableByteArray.readUtf8EncodedLong():long");
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:8 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

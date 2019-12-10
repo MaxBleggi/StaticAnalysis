@@ -1,0 +1,611 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/ads/interactivemedia/v3/internal/fz.java" target="_blank">/xumo_apk/jadx_source_code/com/google/ads/interactivemedia/v3/internal/fz.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="fz.java" data-line="" class="code line-numbers"><code>package com.google.ads.interactivemedia.v3.internal;
+
+import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.io.Writer;
+import java.lang.reflect.Type;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.atomic.AtomicLongArray;
+
+/* compiled from: IMASDK */
+public final class fz {
+    private static final hw&lt;?&gt; a = new hw&lt;Object&gt;() {
+    };
+    private final ThreadLocal&lt;Map&lt;hw&lt;?&gt;, a&lt;?&gt;&gt;&gt; b;
+    private final Map&lt;hw&lt;?&gt;, gp&lt;?&gt;&gt; c;
+    private final List&lt;gq&gt; d;
+    private final gy e;
+    private final gz f;
+    private final fy g;
+    private final boolean h;
+    private final boolean i;
+    private final boolean j;
+    private final boolean k;
+    private final boolean l;
+    private final hk m;
+
+    /* compiled from: IMASDK */
+    static class a&lt;T&gt; extends gp&lt;T&gt; {
+        private gp&lt;T&gt; a;
+
+        a() {
+        }
+
+        public void a(gp&lt;T&gt; gpVar) {
+            if (this.a == null) {
+                this.a = gpVar;
+                return;
+            }
+            throw new AssertionError();
+        }
+
+        public T read(hx hxVar) throws IOException {
+            if (this.a != null) {
+                return this.a.read(hxVar);
+            }
+            throw new IllegalStateException();
+        }
+
+        public void write(hz hzVar, T t) throws IOException {
+            if (this.a != null) {
+                this.a.write(hzVar, t);
+                return;
+            }
+            throw new IllegalStateException();
+        }
+    }
+
+    public fz() {
+        this(gz.a, fx.IDENTITY, Collections.emptyMap(), false, false, false, true, false, false, false, go.DEFAULT, Collections.emptyList());
+    }
+
+    fz(gz gzVar, fy fyVar, Map&lt;Type, gb&lt;?&gt;&gt; map, boolean z, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, boolean z7, go goVar, List&lt;gq&gt; list) {
+        this.b = new ThreadLocal();
+        this.c = new ConcurrentHashMap();
+        this.e = new gy(map);
+        this.f = gzVar;
+        this.g = fyVar;
+        this.h = z;
+        this.j = z3;
+        this.i = z4;
+        this.k = z5;
+        this.l = z6;
+        map = new ArrayList();
+        map.add(hu.Y);
+        map.add(ho.a);
+        map.add(gzVar);
+        map.addAll(list);
+        map.add(hu.D);
+        map.add(hu.m);
+        map.add(hu.g);
+        map.add(hu.i);
+        map.add(hu.k);
+        gp a = a(goVar);
+        map.add(hu.a(Long.TYPE, Long.class, a));
+        map.add(hu.a(Double.TYPE, Double.class, a(z7)));
+        map.add(hu.a(Float.TYPE, Float.class, b(z7)));
+        map.add(hu.x);
+        map.add(hu.o);
+        map.add(hu.q);
+        map.add(hu.a(AtomicLong.class, a(a)));
+        map.add(hu.a(AtomicLongArray.class, b(a)));
+        map.add(hu.s);
+        map.add(hu.z);
+        map.add(hu.F);
+        map.add(hu.H);
+        map.add(hu.a(BigDecimal.class, hu.B));
+        map.add(hu.a(BigInteger.class, hu.C));
+        map.add(hu.J);
+        map.add(hu.L);
+        map.add(hu.P);
+        map.add(hu.R);
+        map.add(hu.W);
+        map.add(hu.N);
+        map.add(hu.d);
+        map.add(hj.a);
+        map.add(hu.U);
+        map.add(hr.a);
+        map.add(hq.a);
+        map.add(hu.S);
+        map.add(hh.a);
+        map.add(hu.b);
+        map.add(new hi(this.e));
+        map.add(new hn(this.e, z2));
+        this.m = new hk(this.e);
+        map.add(this.m);
+        map.add(hu.Z);
+        map.add(new hp(this.e, fyVar, gzVar, this.m));
+        this.d = Collections.unmodifiableList(map);
+    }
+
+    private gp&lt;Number&gt; a(boolean z) {
+        if (z) {
+            return hu.v;
+        }
+        return new gp&lt;Number&gt;(this) {
+            final /* synthetic */ fz a;
+
+            {
+                this.a = r1;
+            }
+
+            public Double a(hx hxVar) throws IOException {
+                if (hxVar.f() != hy.NULL) {
+                    return Double.valueOf(hxVar.k());
+                }
+                hxVar.j();
+                return null;
+            }
+
+            public void a(hz hzVar, Number number) throws IOException {
+                if (number == null) {
+                    hzVar.f();
+                    return;
+                }
+                fz.a(number.doubleValue());
+                hzVar.a(number);
+            }
+
+            public /* synthetic */ Object read(hx hxVar) throws IOException {
+                return a(hxVar);
+            }
+
+            public /* synthetic */ void write(hz hzVar, Object obj) throws IOException {
+                a(hzVar, (Number) obj);
+            }
+        };
+    }
+
+    private gp&lt;Number&gt; b(boolean z) {
+        if (z) {
+            return hu.u;
+        }
+        return new gp&lt;Number&gt;(this) {
+            final /* synthetic */ fz a;
+
+            {
+                this.a = r1;
+            }
+
+            public Float a(hx hxVar) throws IOException {
+                if (hxVar.f() != hy.NULL) {
+                    return Float.valueOf((float) hxVar.k());
+                }
+                hxVar.j();
+                return null;
+            }
+
+            public void a(hz hzVar, Number number) throws IOException {
+                if (number == null) {
+                    hzVar.f();
+                    return;
+                }
+                fz.a((double) number.floatValue());
+                hzVar.a(number);
+            }
+
+            public /* synthetic */ Object read(hx hxVar) throws IOException {
+                return a(hxVar);
+            }
+
+            public /* synthetic */ void write(hz hzVar, Object obj) throws IOException {
+                a(hzVar, (Number) obj);
+            }
+        };
+    }
+
+    static void a(double d) {
+        if (Double.isNaN(d) || Double.isInfinite(d)) {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(d);
+            stringBuilder.append(" is not a valid double value as per JSON specification. To override this");
+            stringBuilder.append(" behavior, use GsonBuilder.serializeSpecialFloatingPointValues() method.");
+            throw new IllegalArgumentException(stringBuilder.toString());
+        }
+    }
+
+    private static gp&lt;Number&gt; a(go goVar) {
+        if (goVar == go.DEFAULT) {
+            return hu.t;
+        }
+        return new gp&lt;Number&gt;() {
+            public Number a(hx hxVar) throws IOException {
+                if (hxVar.f() != hy.NULL) {
+                    return Long.valueOf(hxVar.l());
+                }
+                hxVar.j();
+                return null;
+            }
+
+            public void a(hz hzVar, Number number) throws IOException {
+                if (number == null) {
+                    hzVar.f();
+                } else {
+                    hzVar.b(number.toString());
+                }
+            }
+
+            public /* synthetic */ Object read(hx hxVar) throws IOException {
+                return a(hxVar);
+            }
+
+            public /* synthetic */ void write(hz hzVar, Object obj) throws IOException {
+                a(hzVar, (Number) obj);
+            }
+        };
+    }
+
+    private static gp&lt;AtomicLong&gt; a(final gp&lt;Number&gt; gpVar) {
+        return new gp&lt;AtomicLong&gt;() {
+            public void a(hz hzVar, AtomicLong atomicLong) throws IOException {
+                gpVar.write(hzVar, Long.valueOf(atomicLong.get()));
+            }
+
+            public AtomicLong a(hx hxVar) throws IOException {
+                return new AtomicLong(((Number) gpVar.read(hxVar)).longValue());
+            }
+
+            public /* synthetic */ Object read(hx hxVar) throws IOException {
+                return a(hxVar);
+            }
+
+            public /* synthetic */ void write(hz hzVar, Object obj) throws IOException {
+                a(hzVar, (AtomicLong) obj);
+            }
+        }.nullSafe();
+    }
+
+    private static gp&lt;AtomicLongArray&gt; b(final gp&lt;Number&gt; gpVar) {
+        return new gp&lt;AtomicLongArray&gt;() {
+            public void a(hz hzVar, AtomicLongArray atomicLongArray) throws IOException {
+                hzVar.b();
+                int length = atomicLongArray.length();
+                for (int i = 0; i &lt; length; i++) {
+                    gpVar.write(hzVar, Long.valueOf(atomicLongArray.get(i)));
+                }
+                hzVar.c();
+            }
+
+            public AtomicLongArray a(hx hxVar) throws IOException {
+                List arrayList = new ArrayList();
+                hxVar.a();
+                while (hxVar.e()) {
+                    arrayList.add(Long.valueOf(((Number) gpVar.read(hxVar)).longValue()));
+                }
+                hxVar.b();
+                hxVar = arrayList.size();
+                AtomicLongArray atomicLongArray = new AtomicLongArray(hxVar);
+                for (int i = 0; i &lt; hxVar; i++) {
+                    atomicLongArray.set(i, ((Long) arrayList.get(i)).longValue());
+                }
+                return atomicLongArray;
+            }
+
+            public /* synthetic */ Object read(hx hxVar) throws IOException {
+                return a(hxVar);
+            }
+
+            public /* synthetic */ void write(hz hzVar, Object obj) throws IOException {
+                a(hzVar, (AtomicLongArray) obj);
+            }
+        }.nullSafe();
+    }
+
+    public &lt;T&gt; gp&lt;T&gt; a(hw&lt;T&gt; hwVar) {
+        gp&lt;T&gt; gpVar = (gp) this.c.get(hwVar == null ? a : hwVar);
+        if (gpVar != null) {
+            return gpVar;
+        }
+        Map map = (Map) this.b.get();
+        Object obj = null;
+        if (map == null) {
+            map = new HashMap();
+            this.b.set(map);
+            obj = 1;
+        }
+        a aVar = (a) map.get(hwVar);
+        if (aVar != null) {
+            return aVar;
+        }
+        try {
+            gp&lt;T&gt; hasNext;
+            aVar = new a();
+            map.put(hwVar, aVar);
+            Iterator it = this.d.iterator();
+            while (true) {
+                hasNext = it.hasNext();
+                if (hasNext != null) {
+                    hasNext = ((gq) it.next()).a(this, hwVar);
+                    if (hasNext != null) {
+                        break;
+                    }
+                }
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("GSON cannot handle ");
+                stringBuilder.append(hwVar);
+                throw new IllegalArgumentException(stringBuilder.toString());
+            }
+            aVar.a(hasNext);
+            this.c.put(hwVar, hasNext);
+            return hasNext;
+        } finally {
+            map.remove(hwVar);
+            if (obj != null) {
+                this.b.remove();
+            }
+        }
+    }
+
+    public &lt;T&gt; gp&lt;T&gt; a(gq gqVar, hw&lt;T&gt; hwVar) {
+        if (!this.d.contains(gqVar)) {
+            gqVar = this.m;
+        }
+        Object obj = null;
+        for (gq gqVar2 : this.d) {
+            if (obj != null) {
+                gp&lt;T&gt; a = gqVar2.a(this, hwVar);
+                if (a != null) {
+                    return a;
+                }
+            } else if (gqVar2 == gqVar) {
+                obj = 1;
+            }
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("GSON cannot serialize ");
+        stringBuilder.append(hwVar);
+        throw new IllegalArgumentException(stringBuilder.toString());
+    }
+
+    public &lt;T&gt; gp&lt;T&gt; a(Class&lt;T&gt; cls) {
+        return a(hw.b(cls));
+    }
+
+    public String a(Object obj) {
+        if (obj == null) {
+            return a(gh.a);
+        }
+        return a(obj, obj.getClass());
+    }
+
+    public String a(Object obj, Type type) {
+        Appendable stringWriter = new StringWriter();
+        a(obj, type, stringWriter);
+        return stringWriter.toString();
+    }
+
+    public void a(Object obj, Type type, Appendable appendable) throws gg {
+        try {
+            a(obj, type, a(hf.a(appendable)));
+        } catch (Throwable e) {
+            throw new gg(e);
+        }
+    }
+
+    public void a(Object obj, Type type, hz hzVar) throws gg {
+        type = a(hw.a(type));
+        boolean g = hzVar.g();
+        hzVar.b(true);
+        boolean h = hzVar.h();
+        hzVar.c(this.i);
+        boolean i = hzVar.i();
+        hzVar.d(this.h);
+        try {
+            type.write(hzVar, obj);
+            hzVar.b(g);
+            hzVar.c(h);
+            hzVar.d(i);
+        } catch (Throwable e) {
+            throw new gg(e);
+        } catch (Throwable th) {
+            hzVar.b(g);
+            hzVar.c(h);
+            hzVar.d(i);
+        }
+    }
+
+    public String a(gf gfVar) {
+        Appendable stringWriter = new StringWriter();
+        a(gfVar, stringWriter);
+        return stringWriter.toString();
+    }
+
+    public void a(gf gfVar, Appendable appendable) throws gg {
+        try {
+            a(gfVar, a(hf.a(appendable)));
+        } catch (Throwable e) {
+            throw new gg(e);
+        }
+    }
+
+    public hz a(Writer writer) throws IOException {
+        if (this.j) {
+            writer.write(")]}'\n");
+        }
+        hz hzVar = new hz(writer);
+        if (this.k != null) {
+            hzVar.c("  ");
+        }
+        hzVar.d(this.h);
+        return hzVar;
+    }
+
+    public hx a(Reader reader) {
+        hx hxVar = new hx(reader);
+        hxVar.a(this.l);
+        return hxVar;
+    }
+
+    public void a(gf gfVar, hz hzVar) throws gg {
+        boolean g = hzVar.g();
+        hzVar.b(true);
+        boolean h = hzVar.h();
+        hzVar.c(this.i);
+        boolean i = hzVar.i();
+        hzVar.d(this.h);
+        try {
+            hf.a(gfVar, hzVar);
+            hzVar.b(g);
+            hzVar.c(h);
+            hzVar.d(i);
+        } catch (Throwable e) {
+            throw new gg(e);
+        } catch (Throwable th) {
+            hzVar.b(g);
+            hzVar.c(h);
+            hzVar.d(i);
+        }
+    }
+
+    public &lt;T&gt; T a(String str, Class&lt;T&gt; cls) throws gn {
+        return he.a((Class) cls).cast(a(str, (Type) cls));
+    }
+
+    public &lt;T&gt; T a(String str, Type type) throws gn {
+        if (str == null) {
+            return null;
+        }
+        return a(new StringReader(str), type);
+    }
+
+    public &lt;T&gt; T a(Reader reader, Type type) throws gg, gn {
+        hx a = a(reader);
+        Object a2 = a(a, type);
+        a(a2, a);
+        return a2;
+    }
+
+    private static void a(Object obj, hx hxVar) {
+        if (obj != null) {
+            try {
+                if (hxVar.f() != hy.END_DOCUMENT) {
+                    throw new gg("JSON document was not fully consumed.");
+                }
+            } catch (Throwable e) {
+                throw new gn(e);
+            } catch (Throwable e2) {
+                throw new gg(e2);
+            }
+        }
+    }
+
+    public &lt;T&gt; T a(hx hxVar, Type type) throws gg, gn {
+        boolean q = hxVar.q();
+        boolean z = true;
+        hxVar.a(true);
+        try {
+            hxVar.f();
+            z = false;
+            type = a(hw.a(type)).read(hxVar);
+            hxVar.a(q);
+            return type;
+        } catch (Throwable e) {
+            if (z) {
+                hxVar.a(q);
+                return null;
+            }
+            throw new gn(e);
+        } catch (Throwable e2) {
+            throw new gn(e2);
+        } catch (Throwable e22) {
+            throw new gn(e22);
+        } catch (Throwable th) {
+            hxVar.a(q);
+        }
+    }
+
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder("{serializeNulls:");
+        stringBuilder.append(this.h);
+        stringBuilder.append("factories:");
+        stringBuilder.append(this.d);
+        stringBuilder.append(",instanceCreators:");
+        stringBuilder.append(this.e);
+        stringBuilder.append("}");
+        return stringBuilder.toString();
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:6 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

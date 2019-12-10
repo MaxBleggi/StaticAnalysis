@@ -1,0 +1,439 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9"><div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/xumo/xumo/util/XumoImageUtil.java" target="_blank">/xumo_apk/jadx_source_code/com/xumo/xumo/util/XumoImageUtil.java</a></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-7">report</i><h5>https?:</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>An URL was found, this might be an API endpoint or just a link to documentation. Hopefully the first one.</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#XumoImageUtil_java17http" class="active">line 17</a></li><li class="tab"><a style="color: #d82c2b;" href="#XumoImageUtil_java18http">line 18</a></li><li class="tab"><a style="color: #d82c2b;" href="#XumoImageUtil_java19http">line 19</a></li><li class="tab"><a style="color: #d82c2b;" href="#XumoImageUtil_java27http">line 27</a></li><li class="tab"><a style="color: #d82c2b;" href="#XumoImageUtil_java28http">line 28</a></li></ul></div><div class="card-content"><div id="XumoImageUtil_java17http">Code @ line 17<pre data-start="14" data-line="17" data-src="XumoImageUtil.java" class="code line-numbers"><code>import java.util.Locale;
+
+public class XumoImageUtil {
+    private static final String BASE_IMAGE_URL = "https://image.xumo.com/v1/";
+    private static final String CHANNEL_IMAGE_URL = "https://image.xumo.com/v1/channels/channel/%s/%dx%d.png?type=color_onBlack";
+    private static final String CHANNEL_TITLE_URL = "https://image.xumo.com/v1/channels/channel/%s/%dx%d.png?type=%s";
+    private static final int DEFAULT_ASSET_THUMBNAIL_HEIGHT = 144;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAxNyA6IGh0dHBzPzp8fHw3fHx8aHR0cHM/Onx8fDE3fHx8MTQ">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAxNyA6IGh0dHBzPzp8fHw3fHx8aHR0cHM/Onx8fDE3fHx8MTQ')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAxNyA6IGh0dHBzPzp8fHw3fHx8aHR0cHM/Onx8fDE3fHx8MTQ').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAxNyA6IGh0dHBzPzp8fHw3fHx8aHR0cHM/Onx8fDE3fHx8MTQ" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAxNyA6IGh0dHBzPzp8fHw3fHx8aHR0cHM/Onx8fDE3fHx8MTQ' , 'aW1wb3J0IGphdmEudXRpbC5Mb2NhbGU7CgpwdWJsaWMgY2xhc3MgWHVtb0ltYWdlVXRpbCB7CiAgICBwcml2YXRlIHN0YXRpYyBmaW5hbCBTdHJpbmcgQkFTRV9JTUFHRV9VUkwgPSAiaHR0cHM6Ly9pbWFnZS54dW1vLmNvbS92MS8iOwogICAgcHJpdmF0ZSBzdGF0aWMgZmluYWwgU3RyaW5nIENIQU5ORUxfSU1BR0VfVVJMID0gImh0dHBzOi8vaW1hZ2UueHVtby5jb20vdjEvY2hhbm5lbHMvY2hhbm5lbC8lcy8lZHglZC5wbmc/dHlwZT1jb2xvcl9vbkJsYWNrIjsKICAgIHByaXZhdGUgc3RhdGljIGZpbmFsIFN0cmluZyBDSEFOTkVMX1RJVExFX1VSTCA9ICJodHRwczovL2ltYWdlLnh1bW8uY29tL3YxL2NoYW5uZWxzL2NoYW5uZWwvJXMvJWR4JWQucG5nP3R5cGU9JXMiOwogICAgcHJpdmF0ZSBzdGF0aWMgZmluYWwgaW50IERFRkFVTFRfQVNTRVRfVEhVTUJOQUlMX0hFSUdIVCA9IDE0NDsK');  
+                                            });
+                                            </script>
+                                            </div><div id="XumoImageUtil_java18http">Code @ line 18<pre data-start="15" data-line="18" data-src="XumoImageUtil.java" class="code line-numbers"><code>
+public class XumoImageUtil {
+    private static final String BASE_IMAGE_URL = "https://image.xumo.com/v1/";
+    private static final String CHANNEL_IMAGE_URL = "https://image.xumo.com/v1/channels/channel/%s/%dx%d.png?type=color_onBlack";
+    private static final String CHANNEL_TITLE_URL = "https://image.xumo.com/v1/channels/channel/%s/%dx%d.png?type=%s";
+    private static final int DEFAULT_ASSET_THUMBNAIL_HEIGHT = 144;
+    private static final int DEFAULT_ASSET_THUMBNAIL_WIDTH = 256;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAxOCA6IGh0dHBzPzp8fHw3fHx8aHR0cHM/Onx8fDE4fHx8MTU">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAxOCA6IGh0dHBzPzp8fHw3fHx8aHR0cHM/Onx8fDE4fHx8MTU')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAxOCA6IGh0dHBzPzp8fHw3fHx8aHR0cHM/Onx8fDE4fHx8MTU').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAxOCA6IGh0dHBzPzp8fHw3fHx8aHR0cHM/Onx8fDE4fHx8MTU" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAxOCA6IGh0dHBzPzp8fHw3fHx8aHR0cHM/Onx8fDE4fHx8MTU' , 'CnB1YmxpYyBjbGFzcyBYdW1vSW1hZ2VVdGlsIHsKICAgIHByaXZhdGUgc3RhdGljIGZpbmFsIFN0cmluZyBCQVNFX0lNQUdFX1VSTCA9ICJodHRwczovL2ltYWdlLnh1bW8uY29tL3YxLyI7CiAgICBwcml2YXRlIHN0YXRpYyBmaW5hbCBTdHJpbmcgQ0hBTk5FTF9JTUFHRV9VUkwgPSAiaHR0cHM6Ly9pbWFnZS54dW1vLmNvbS92MS9jaGFubmVscy9jaGFubmVsLyVzLyVkeCVkLnBuZz90eXBlPWNvbG9yX29uQmxhY2siOwogICAgcHJpdmF0ZSBzdGF0aWMgZmluYWwgU3RyaW5nIENIQU5ORUxfVElUTEVfVVJMID0gImh0dHBzOi8vaW1hZ2UueHVtby5jb20vdjEvY2hhbm5lbHMvY2hhbm5lbC8lcy8lZHglZC5wbmc/dHlwZT0lcyI7CiAgICBwcml2YXRlIHN0YXRpYyBmaW5hbCBpbnQgREVGQVVMVF9BU1NFVF9USFVNQk5BSUxfSEVJR0hUID0gMTQ0OwogICAgcHJpdmF0ZSBzdGF0aWMgZmluYWwgaW50IERFRkFVTFRfQVNTRVRfVEhVTUJOQUlMX1dJRFRIID0gMjU2Owo=');  
+                                            });
+                                            </script>
+                                            </div><div id="XumoImageUtil_java19http">Code @ line 19<pre data-start="16" data-line="19" data-src="XumoImageUtil.java" class="code line-numbers"><code>public class XumoImageUtil {
+    private static final String BASE_IMAGE_URL = "https://image.xumo.com/v1/";
+    private static final String CHANNEL_IMAGE_URL = "https://image.xumo.com/v1/channels/channel/%s/%dx%d.png?type=color_onBlack";
+    private static final String CHANNEL_TITLE_URL = "https://image.xumo.com/v1/channels/channel/%s/%dx%d.png?type=%s";
+    private static final int DEFAULT_ASSET_THUMBNAIL_HEIGHT = 144;
+    private static final int DEFAULT_ASSET_THUMBNAIL_WIDTH = 256;
+    private static final int DEFAULT_CHANNEL_IMAGE_HEIGHT = 90;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAxOSA6IGh0dHBzPzp8fHw3fHx8aHR0cHM/Onx8fDE5fHx8MTY">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAxOSA6IGh0dHBzPzp8fHw3fHx8aHR0cHM/Onx8fDE5fHx8MTY')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAxOSA6IGh0dHBzPzp8fHw3fHx8aHR0cHM/Onx8fDE5fHx8MTY').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAxOSA6IGh0dHBzPzp8fHw3fHx8aHR0cHM/Onx8fDE5fHx8MTY" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAxOSA6IGh0dHBzPzp8fHw3fHx8aHR0cHM/Onx8fDE5fHx8MTY' , 'cHVibGljIGNsYXNzIFh1bW9JbWFnZVV0aWwgewogICAgcHJpdmF0ZSBzdGF0aWMgZmluYWwgU3RyaW5nIEJBU0VfSU1BR0VfVVJMID0gImh0dHBzOi8vaW1hZ2UueHVtby5jb20vdjEvIjsKICAgIHByaXZhdGUgc3RhdGljIGZpbmFsIFN0cmluZyBDSEFOTkVMX0lNQUdFX1VSTCA9ICJodHRwczovL2ltYWdlLnh1bW8uY29tL3YxL2NoYW5uZWxzL2NoYW5uZWwvJXMvJWR4JWQucG5nP3R5cGU9Y29sb3Jfb25CbGFjayI7CiAgICBwcml2YXRlIHN0YXRpYyBmaW5hbCBTdHJpbmcgQ0hBTk5FTF9USVRMRV9VUkwgPSAiaHR0cHM6Ly9pbWFnZS54dW1vLmNvbS92MS9jaGFubmVscy9jaGFubmVsLyVzLyVkeCVkLnBuZz90eXBlPSVzIjsKICAgIHByaXZhdGUgc3RhdGljIGZpbmFsIGludCBERUZBVUxUX0FTU0VUX1RIVU1CTkFJTF9IRUlHSFQgPSAxNDQ7CiAgICBwcml2YXRlIHN0YXRpYyBmaW5hbCBpbnQgREVGQVVMVF9BU1NFVF9USFVNQk5BSUxfV0lEVEggPSAyNTY7CiAgICBwcml2YXRlIHN0YXRpYyBmaW5hbCBpbnQgREVGQVVMVF9DSEFOTkVMX0lNQUdFX0hFSUdIVCA9IDkwOwo=');  
+                                            });
+                                            </script>
+                                            </div><div id="XumoImageUtil_java27http">Code @ line 27<pre data-start="24" data-line="27" data-src="XumoImageUtil.java" class="code line-numbers"><code>    private static final int DEFAULT_CHANNEL_TITLE_HEIGHT = 204;
+    private static final int DEFAULT_CHANNEL_TITLE_WIDTH = 204;
+    private static final String PREFIX_CHANNEL_TITLE_IMAGE_KEY = "channelTitle_";
+    private static final String PROVIDER_IMAGE_URL = "https://image.xumo.com/v1/providers/provider/%s/120x90.png?type=color_onBlack";
+    private static final String VIDEO_IMAGE_URL = "https://image.xumo.com/v1/assets/asset/%s/%dx%d.png";
+
+    public interface ResponseCallback {
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAyNyA6IGh0dHBzPzp8fHw3fHx8aHR0cHM/Onx8fDI3fHx8MjQ">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAyNyA6IGh0dHBzPzp8fHw3fHx8aHR0cHM/Onx8fDI3fHx8MjQ')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAyNyA6IGh0dHBzPzp8fHw3fHx8aHR0cHM/Onx8fDI3fHx8MjQ').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAyNyA6IGh0dHBzPzp8fHw3fHx8aHR0cHM/Onx8fDI3fHx8MjQ" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAyNyA6IGh0dHBzPzp8fHw3fHx8aHR0cHM/Onx8fDI3fHx8MjQ' , 'ICAgIHByaXZhdGUgc3RhdGljIGZpbmFsIGludCBERUZBVUxUX0NIQU5ORUxfVElUTEVfSEVJR0hUID0gMjA0OwogICAgcHJpdmF0ZSBzdGF0aWMgZmluYWwgaW50IERFRkFVTFRfQ0hBTk5FTF9USVRMRV9XSURUSCA9IDIwNDsKICAgIHByaXZhdGUgc3RhdGljIGZpbmFsIFN0cmluZyBQUkVGSVhfQ0hBTk5FTF9USVRMRV9JTUFHRV9LRVkgPSAiY2hhbm5lbFRpdGxlXyI7CiAgICBwcml2YXRlIHN0YXRpYyBmaW5hbCBTdHJpbmcgUFJPVklERVJfSU1BR0VfVVJMID0gImh0dHBzOi8vaW1hZ2UueHVtby5jb20vdjEvcHJvdmlkZXJzL3Byb3ZpZGVyLyVzLzEyMHg5MC5wbmc/dHlwZT1jb2xvcl9vbkJsYWNrIjsKICAgIHByaXZhdGUgc3RhdGljIGZpbmFsIFN0cmluZyBWSURFT19JTUFHRV9VUkwgPSAiaHR0cHM6Ly9pbWFnZS54dW1vLmNvbS92MS9hc3NldHMvYXNzZXQvJXMvJWR4JWQucG5nIjsKCiAgICBwdWJsaWMgaW50ZXJmYWNlIFJlc3BvbnNlQ2FsbGJhY2sgewo=');  
+                                            });
+                                            </script>
+                                            </div><div id="XumoImageUtil_java28http">Code @ line 28<pre data-start="25" data-line="28" data-src="XumoImageUtil.java" class="code line-numbers"><code>    private static final int DEFAULT_CHANNEL_TITLE_WIDTH = 204;
+    private static final String PREFIX_CHANNEL_TITLE_IMAGE_KEY = "channelTitle_";
+    private static final String PROVIDER_IMAGE_URL = "https://image.xumo.com/v1/providers/provider/%s/120x90.png?type=color_onBlack";
+    private static final String VIDEO_IMAGE_URL = "https://image.xumo.com/v1/assets/asset/%s/%dx%d.png";
+
+    public interface ResponseCallback {
+        void onCompletion(Bitmap bitmap);
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAyOCA6IGh0dHBzPzp8fHw3fHx8aHR0cHM/Onx8fDI4fHx8MjU">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAyOCA6IGh0dHBzPzp8fHw3fHx8aHR0cHM/Onx8fDI4fHx8MjU')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAyOCA6IGh0dHBzPzp8fHw3fHx8aHR0cHM/Onx8fDI4fHx8MjU').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAyOCA6IGh0dHBzPzp8fHw3fHx8aHR0cHM/Onx8fDI4fHx8MjU" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAyOCA6IGh0dHBzPzp8fHw3fHx8aHR0cHM/Onx8fDI4fHx8MjU' , 'ICAgIHByaXZhdGUgc3RhdGljIGZpbmFsIGludCBERUZBVUxUX0NIQU5ORUxfVElUTEVfV0lEVEggPSAyMDQ7CiAgICBwcml2YXRlIHN0YXRpYyBmaW5hbCBTdHJpbmcgUFJFRklYX0NIQU5ORUxfVElUTEVfSU1BR0VfS0VZID0gImNoYW5uZWxUaXRsZV8iOwogICAgcHJpdmF0ZSBzdGF0aWMgZmluYWwgU3RyaW5nIFBST1ZJREVSX0lNQUdFX1VSTCA9ICJodHRwczovL2ltYWdlLnh1bW8uY29tL3YxL3Byb3ZpZGVycy9wcm92aWRlci8lcy8xMjB4OTAucG5nP3R5cGU9Y29sb3Jfb25CbGFjayI7CiAgICBwcml2YXRlIHN0YXRpYyBmaW5hbCBTdHJpbmcgVklERU9fSU1BR0VfVVJMID0gImh0dHBzOi8vaW1hZ2UueHVtby5jb20vdjEvYXNzZXRzL2Fzc2V0LyVzLyVkeCVkLnBuZyI7CgogICAgcHVibGljIGludGVyZmFjZSBSZXNwb25zZUNhbGxiYWNrIHsKICAgICAgICB2b2lkIG9uQ29tcGxldGlvbihCaXRtYXAgYml0bWFwKTsK');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-83">report</i><h5>password =|secret =|username =|key =</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>the app contain hardcoded sensitive informations like usernames, passwords, keys etc: Hard coded sensitive information in Application Code (including Crypto)</span></div></li></ul><ul class="collapsible"><li><div class="collapsible-header"><img data-position="top" data-tooltip="OWASP item" src="html/owasp_logo.png" height="20em" style="margin-right: 1rem;margin-left: 5px;" class="tooltipped"></img> OWASP Item</div><div class="collapsible-body"><span>For more information, have a look at: https://www.owasp.org/index.php/OWASP_Mobile_Security_Testing_Guide</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#XumoImageUtil_java26pass" class="active">line 26</a></li><li class="tab"><a style="color: #d82c2b;" href="#XumoImageUtil_java143pass">line 143</a></li><li class="tab"><a style="color: #d82c2b;" href="#XumoImageUtil_java175pass">line 175</a></li><li class="tab"><a style="color: #d82c2b;" href="#XumoImageUtil_java237pass">line 237</a></li></ul></div><div class="card-content"><div id="XumoImageUtil_java26pass">Code @ line 26<pre data-start="23" data-line="26" data-src="XumoImageUtil.java" class="code line-numbers"><code>    private static final int DEFAULT_CHANNEL_IMAGE_WIDTH = 120;
+    private static final int DEFAULT_CHANNEL_TITLE_HEIGHT = 204;
+    private static final int DEFAULT_CHANNEL_TITLE_WIDTH = 204;
+    private static final String PREFIX_CHANNEL_TITLE_IMAGE_KEY = "channelTitle_";
+    private static final String PROVIDER_IMAGE_URL = "https://image.xumo.com/v1/providers/provider/%s/120x90.png?type=color_onBlack";
+    private static final String VIDEO_IMAGE_URL = "https://image.xumo.com/v1/assets/asset/%s/%dx%d.png";
+
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAyNiA6IHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDgzfHx8cGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8MjZ8fHwyMw">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAyNiA6IHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDgzfHx8cGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8MjZ8fHwyMw')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAyNiA6IHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDgzfHx8cGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8MjZ8fHwyMw').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAyNiA6IHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDgzfHx8cGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8MjZ8fHwyMw" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAyNiA6IHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDgzfHx8cGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8MjZ8fHwyMw' , 'ICAgIHByaXZhdGUgc3RhdGljIGZpbmFsIGludCBERUZBVUxUX0NIQU5ORUxfSU1BR0VfV0lEVEggPSAxMjA7CiAgICBwcml2YXRlIHN0YXRpYyBmaW5hbCBpbnQgREVGQVVMVF9DSEFOTkVMX1RJVExFX0hFSUdIVCA9IDIwNDsKICAgIHByaXZhdGUgc3RhdGljIGZpbmFsIGludCBERUZBVUxUX0NIQU5ORUxfVElUTEVfV0lEVEggPSAyMDQ7CiAgICBwcml2YXRlIHN0YXRpYyBmaW5hbCBTdHJpbmcgUFJFRklYX0NIQU5ORUxfVElUTEVfSU1BR0VfS0VZID0gImNoYW5uZWxUaXRsZV8iOwogICAgcHJpdmF0ZSBzdGF0aWMgZmluYWwgU3RyaW5nIFBST1ZJREVSX0lNQUdFX1VSTCA9ICJodHRwczovL2ltYWdlLnh1bW8uY29tL3YxL3Byb3ZpZGVycy9wcm92aWRlci8lcy8xMjB4OTAucG5nP3R5cGU9Y29sb3Jfb25CbGFjayI7CiAgICBwcml2YXRlIHN0YXRpYyBmaW5hbCBTdHJpbmcgVklERU9fSU1BR0VfVVJMID0gImh0dHBzOi8vaW1hZ2UueHVtby5jb20vdjEvYXNzZXRzL2Fzc2V0LyVzLyVkeCVkLnBuZyI7Cgo=');  
+                                            });
+                                            </script>
+                                            </div><div id="XumoImageUtil_java143pass">Code @ line 143<pre data-start="140" data-line="143" data-src="XumoImageUtil.java" class="code line-numbers"><code>        if (iArr.length &gt;= 2 &amp;&amp; iArr[1] &gt; 0) {
+            i2 = iArr[1];
+        }
+        final String imageCacheKey = getImageCacheKey(str, i, i2);
+        Bitmap bitmap = ImageCache.getInstance().get(imageCacheKey);
+        if (bitmap == null) {
+            getChannelImageURL(context, str, imageView, new ResponseCallback() {
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAxNDMgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE0M3x8fDE0MA">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAxNDMgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE0M3x8fDE0MA')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAxNDMgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE0M3x8fDE0MA').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAxNDMgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE0M3x8fDE0MA" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAxNDMgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE0M3x8fDE0MA' , 'ICAgICAgICBpZiAoaUFyci5sZW5ndGggPj0gMiAmJiBpQXJyWzFdID4gMCkgewogICAgICAgICAgICBpMiA9IGlBcnJbMV07CiAgICAgICAgfQogICAgICAgIGZpbmFsIFN0cmluZyBpbWFnZUNhY2hlS2V5ID0gZ2V0SW1hZ2VDYWNoZUtleShzdHIsIGksIGkyKTsKICAgICAgICBCaXRtYXAgYml0bWFwID0gSW1hZ2VDYWNoZS5nZXRJbnN0YW5jZSgpLmdldChpbWFnZUNhY2hlS2V5KTsKICAgICAgICBpZiAoYml0bWFwID09IG51bGwpIHsKICAgICAgICAgICAgZ2V0Q2hhbm5lbEltYWdlVVJMKGNvbnRleHQsIHN0ciwgaW1hZ2VWaWV3LCBuZXcgUmVzcG9uc2VDYWxsYmFjaygpIHsK');  
+                                            });
+                                            </script>
+                                            </div><div id="XumoImageUtil_java175pass">Code @ line 175<pre data-start="172" data-line="175" data-src="XumoImageUtil.java" class="code line-numbers"><code>        if (iArr.length &gt;= 2 &amp;&amp; iArr[1] &gt; 0) {
+            i2 = iArr[1];
+        }
+        final String imageCacheKey = getImageCacheKey(str, i, i2);
+        Bitmap bitmap = ImageCache.getInstance().get(imageCacheKey);
+        if (bitmap == null) {
+            final ImageView imageView2 = imageView;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAxNzUgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE3NXx8fDE3Mg">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAxNzUgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE3NXx8fDE3Mg')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAxNzUgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE3NXx8fDE3Mg').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAxNzUgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE3NXx8fDE3Mg" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAxNzUgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE3NXx8fDE3Mg' , 'ICAgICAgICBpZiAoaUFyci5sZW5ndGggPj0gMiAmJiBpQXJyWzFdID4gMCkgewogICAgICAgICAgICBpMiA9IGlBcnJbMV07CiAgICAgICAgfQogICAgICAgIGZpbmFsIFN0cmluZyBpbWFnZUNhY2hlS2V5ID0gZ2V0SW1hZ2VDYWNoZUtleShzdHIsIGksIGkyKTsKICAgICAgICBCaXRtYXAgYml0bWFwID0gSW1hZ2VDYWNoZS5nZXRJbnN0YW5jZSgpLmdldChpbWFnZUNhY2hlS2V5KTsKICAgICAgICBpZiAoYml0bWFwID09IG51bGwpIHsKICAgICAgICAgICAgZmluYWwgSW1hZ2VWaWV3IGltYWdlVmlldzIgPSBpbWFnZVZpZXc7Cg==');  
+                                            });
+                                            </script>
+                                            </div><div id="XumoImageUtil_java237pass">Code @ line 237<pre data-start="234" data-line="237" data-src="XumoImageUtil.java" class="code line-numbers"><code>        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(PREFIX_CHANNEL_TITLE_IMAGE_KEY);
+        stringBuilder.append(str);
+        final String imageCacheKey = getImageCacheKey(stringBuilder.toString(), i2, i);
+        Bitmap bitmap = ImageCache.getInstance().get(imageCacheKey);
+        if (bitmap == null) {
+            getChannelTitltURL(context, str, imageView, new ResponseCallback() {
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAyMzcgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDIzN3x8fDIzNA">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAyMzcgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDIzN3x8fDIzNA')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAyMzcgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDIzN3x8fDIzNA').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAyMzcgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDIzN3x8fDIzNA" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9YdW1vSW1hZ2VVdGlsLmphdmF8fHxsaW5lOiAyMzcgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDIzN3x8fDIzNA' , 'ICAgICAgICBTdHJpbmdCdWlsZGVyIHN0cmluZ0J1aWxkZXIgPSBuZXcgU3RyaW5nQnVpbGRlcigpOwogICAgICAgIHN0cmluZ0J1aWxkZXIuYXBwZW5kKFBSRUZJWF9DSEFOTkVMX1RJVExFX0lNQUdFX0tFWSk7CiAgICAgICAgc3RyaW5nQnVpbGRlci5hcHBlbmQoc3RyKTsKICAgICAgICBmaW5hbCBTdHJpbmcgaW1hZ2VDYWNoZUtleSA9IGdldEltYWdlQ2FjaGVLZXkoc3RyaW5nQnVpbGRlci50b1N0cmluZygpLCBpMiwgaSk7CiAgICAgICAgQml0bWFwIGJpdG1hcCA9IEltYWdlQ2FjaGUuZ2V0SW5zdGFuY2UoKS5nZXQoaW1hZ2VDYWNoZUtleSk7CiAgICAgICAgaWYgKGJpdG1hcCA9PSBudWxsKSB7CiAgICAgICAgICAgIGdldENoYW5uZWxUaXRsdFVSTChjb250ZXh0LCBzdHIsIGltYWdlVmlldywgbmV3IFJlc3BvbnNlQ2FsbGJhY2soKSB7Cg==');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="XumoImageUtil.java" data-line="17,18,19,27,28,26,143,175,237," class="code line-numbers"><code>package com.xumo.xumo.util;
+
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.text.TextUtils;
+import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageLoader.ImageContainer;
+import com.android.volley.toolbox.ImageLoader.ImageListener;
+import com.xumo.xumo.application.XumoApplication;
+import com.xumo.xumo.tv.R;
+import io.fabric.sdk.android.services.events.EventsFilesManager;
+import java.util.Locale;
+
+public class XumoImageUtil {
+    private static final String BASE_IMAGE_URL = "https://image.xumo.com/v1/";
+    private static final String CHANNEL_IMAGE_URL = "https://image.xumo.com/v1/channels/channel/%s/%dx%d.png?type=color_onBlack";
+    private static final String CHANNEL_TITLE_URL = "https://image.xumo.com/v1/channels/channel/%s/%dx%d.png?type=%s";
+    private static final int DEFAULT_ASSET_THUMBNAIL_HEIGHT = 144;
+    private static final int DEFAULT_ASSET_THUMBNAIL_WIDTH = 256;
+    private static final int DEFAULT_CHANNEL_IMAGE_HEIGHT = 90;
+    private static final int DEFAULT_CHANNEL_IMAGE_WIDTH = 120;
+    private static final int DEFAULT_CHANNEL_TITLE_HEIGHT = 204;
+    private static final int DEFAULT_CHANNEL_TITLE_WIDTH = 204;
+    private static final String PREFIX_CHANNEL_TITLE_IMAGE_KEY = "channelTitle_";
+    private static final String PROVIDER_IMAGE_URL = "https://image.xumo.com/v1/providers/provider/%s/120x90.png?type=color_onBlack";
+    private static final String VIDEO_IMAGE_URL = "https://image.xumo.com/v1/assets/asset/%s/%dx%d.png";
+
+    public interface ResponseCallback {
+        void onCompletion(Bitmap bitmap);
+    }
+
+    public static void getProviderImageURL(Context context, String str, ImageView imageView, ResponseCallback responseCallback) {
+        if (!TextUtils.isEmpty(str)) {
+            getImageWithURLString(context, String.format(PROVIDER_IMAGE_URL, new Object[]{str}), imageView, responseCallback);
+        }
+    }
+
+    public static void getChannelImageURL(Context context, String str, ImageView imageView, ResponseCallback responseCallback, int... iArr) {
+        if (!TextUtils.isEmpty(str)) {
+            int i = 120;
+            int i2 = 90;
+            if (iArr.length &gt;= 1 &amp;&amp; iArr[0] &gt; 0) {
+                i = iArr[0];
+            }
+            if (iArr.length &gt;= 2 &amp;&amp; iArr[1] &gt; 0) {
+                i2 = iArr[1];
+            }
+            getImageWithURLString(context, String.format(CHANNEL_IMAGE_URL, new Object[]{str, Integer.valueOf(i), Integer.valueOf(i2)}), imageView, responseCallback);
+        }
+    }
+
+    public static void getChannelTitltURL(Context context, String str, ImageView imageView, ResponseCallback responseCallback, int... iArr) {
+        if (!TextUtils.isEmpty(str)) {
+            int i = 204;
+            int i2 = (iArr.length &lt; 1 || iArr[0] &lt;= 0) ? 204 : iArr[0];
+            if (iArr.length &gt;= 2 &amp;&amp; iArr[1] &gt; 0) {
+                i = iArr[1];
+            }
+            iArr = "channelTile";
+            if (i2 == i) {
+                iArr = "smartCast_channelTile";
+            }
+            if (i2 == 1280 &amp;&amp; i == 720) {
+                iArr = "ident";
+            }
+            getImageWithURLString(context, String.format(CHANNEL_TITLE_URL, new Object[]{str, Integer.valueOf(i2), Integer.valueOf(i), iArr}), imageView, responseCallback);
+        }
+    }
+
+    public static void getAssetThumbnailURL(Context context, String str, ImageView imageView, ResponseCallback responseCallback, int... iArr) {
+        if (!TextUtils.isEmpty(str)) {
+            int i = 256;
+            int i2 = DEFAULT_ASSET_THUMBNAIL_HEIGHT;
+            if (iArr.length &gt;= 1 &amp;&amp; iArr[0] &gt; 0) {
+                i = iArr[0];
+            }
+            if (iArr.length &gt;= 2 &amp;&amp; iArr[1] &gt; 0) {
+                i2 = iArr[1];
+            }
+            getImageWithURLString(context, String.format(Locale.US, VIDEO_IMAGE_URL, new Object[]{str, Integer.valueOf(i), Integer.valueOf(i2)}), imageView, responseCallback);
+        }
+    }
+
+    public static void getImageWithURLString(Context context, final String str, ImageView imageView, final ResponseCallback responseCallback) {
+        XumoApplication xumoApplication = (XumoApplication) context.getApplicationContext();
+        String str2 = str;
+        imageView.setTag(xumoApplication.getImageLoader().get(str2, new ImageListener() {
+            public void onResponse(ImageContainer imageContainer, boolean z) {
+                if (imageContainer.getBitmap()) {
+                    responseCallback.onCompletion(imageContainer.getBitmap());
+                }
+            }
+
+            public void onErrorResponse(VolleyError volleyError) {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("onErrorResponse error=");
+                stringBuilder.append(volleyError.getMessage());
+                stringBuilder.append(" urlString=");
+                stringBuilder.append(str);
+                LogUtil.d("debug", stringBuilder.toString());
+                responseCallback.onCompletion(null);
+            }
+        }, imageView.getMeasuredWidth(), imageView.getMeasuredHeight(), ScaleType.FIT_CENTER));
+    }
+
+    public static void setProviderImage(Context context, final String str, final ImageView imageView) {
+        ImageContainer imageContainer = (ImageContainer) imageView.getTag();
+        if (imageContainer != null) {
+            imageContainer.cancelRequest();
+        }
+        imageView.setImageDrawable(null);
+        Bitmap bitmap = ImageCache.getInstance().get(str);
+        if (bitmap == null) {
+            getProviderImageURL(context, str, imageView, new ResponseCallback() {
+                public void onCompletion(Bitmap bitmap) {
+                    imageView.setImageBitmap(bitmap);
+                    if (bitmap != null) {
+                        ImageCache.getInstance().put(str, bitmap);
+                    }
+                }
+            });
+        } else {
+            imageView.setImageBitmap(bitmap);
+        }
+    }
+
+    public static void setChannelImage(Context context, String str, final ImageView imageView, int... iArr) {
+        ImageContainer imageContainer = (ImageContainer) imageView.getTag();
+        if (imageContainer != null) {
+            imageContainer.cancelRequest();
+        }
+        imageView.setImageDrawable(null);
+        int i = 120;
+        int i2 = 90;
+        if (iArr.length &gt;= 1 &amp;&amp; iArr[0] &gt; 0) {
+            i = iArr[0];
+        }
+        if (iArr.length &gt;= 2 &amp;&amp; iArr[1] &gt; 0) {
+            i2 = iArr[1];
+        }
+        final String imageCacheKey = getImageCacheKey(str, i, i2);
+        Bitmap bitmap = ImageCache.getInstance().get(imageCacheKey);
+        if (bitmap == null) {
+            getChannelImageURL(context, str, imageView, new ResponseCallback() {
+                public void onCompletion(Bitmap bitmap) {
+                    imageView.setImageBitmap(bitmap);
+                    if (bitmap != null) {
+                        ImageCache.getInstance().put(imageCacheKey, bitmap);
+                    }
+                }
+            }, iArr);
+        } else {
+            imageView.setImageBitmap(bitmap);
+        }
+    }
+
+    public static void setAssetThumbnailImage(Context context, String str, String str2, ImageView imageView, int... iArr) {
+        ImageContainer imageContainer = (ImageContainer) imageView.getTag();
+        if (imageContainer != null) {
+            imageContainer.cancelRequest();
+        }
+        if (str2 != null) {
+            imageView.setImageDrawable(null);
+        }
+        int i = 256;
+        int i2 = DEFAULT_ASSET_THUMBNAIL_HEIGHT;
+        if (iArr.length &gt;= 1 &amp;&amp; iArr[0] &gt; 0) {
+            i = iArr[0];
+        }
+        if (iArr.length &gt;= 2 &amp;&amp; iArr[1] &gt; 0) {
+            i2 = iArr[1];
+        }
+        final String imageCacheKey = getImageCacheKey(str, i, i2);
+        Bitmap bitmap = ImageCache.getInstance().get(imageCacheKey);
+        if (bitmap == null) {
+            final ImageView imageView2 = imageView;
+            final String str3 = str2;
+            final int[] iArr2 = iArr;
+            final Context context2 = context;
+            getAssetThumbnailURL(context, str, imageView, new ResponseCallback() {
+                public void onCompletion(Bitmap bitmap) {
+                    if (bitmap != null) {
+                        imageView2.setImageBitmap(bitmap);
+                        ImageCache.getInstance().put(imageCacheKey, bitmap);
+                    } else if (str3 != null) {
+                        bitmap = 256;
+                        int i = XumoImageUtil.DEFAULT_ASSET_THUMBNAIL_HEIGHT;
+                        if (iArr2.length &gt;= 1 &amp;&amp; iArr2[0] &gt; 0) {
+                            bitmap = iArr2[0];
+                        }
+                        if (iArr2.length &gt;= 2 &amp;&amp; iArr2[1] &gt; 0) {
+                            i = iArr2[1];
+                        }
+                        StringBuilder stringBuilder = new StringBuilder();
+                        stringBuilder.append(XumoImageUtil.PREFIX_CHANNEL_TITLE_IMAGE_KEY);
+                        stringBuilder.append(str3);
+                        bitmap = ImageCache.getInstance().get(XumoImageUtil.getImageCacheKey(stringBuilder.toString(), bitmap, i));
+                        if (bitmap == null) {
+                            XumoImageUtil.getChannelTitltURL(context2, str3, imageView2, new ResponseCallback() {
+                                public void onCompletion(Bitmap bitmap) {
+                                    if (bitmap != null) {
+                                        imageView2.setImageBitmap(bitmap);
+                                        ImageCache.getInstance().put(imageCacheKey, bitmap);
+                                        return;
+                                    }
+                                    imageView2.setImageResource(R.drawable.no_thumbnail_image);
+                                }
+                            }, iArr2);
+                            return;
+                        }
+                        imageView2.setImageBitmap(bitmap);
+                        ImageCache.getInstance().put(imageCacheKey, bitmap);
+                    }
+                }
+            }, iArr);
+            return;
+        }
+        imageView.setImageBitmap(bitmap);
+    }
+
+    public static void setChannelTitleImage(Context context, String str, final ImageView imageView, int... iArr) {
+        ImageContainer imageContainer = (ImageContainer) imageView.getTag();
+        if (imageContainer != null) {
+            imageContainer.cancelRequest();
+        }
+        imageView.setImageDrawable(null);
+        int i = 204;
+        int i2 = (iArr.length &lt; 1 || iArr[0] &lt;= 0) ? 204 : iArr[0];
+        if (iArr.length &gt;= 2 &amp;&amp; iArr[1] &gt; 0) {
+            i = iArr[1];
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(PREFIX_CHANNEL_TITLE_IMAGE_KEY);
+        stringBuilder.append(str);
+        final String imageCacheKey = getImageCacheKey(stringBuilder.toString(), i2, i);
+        Bitmap bitmap = ImageCache.getInstance().get(imageCacheKey);
+        if (bitmap == null) {
+            getChannelTitltURL(context, str, imageView, new ResponseCallback() {
+                public void onCompletion(Bitmap bitmap) {
+                    imageView.setImageBitmap(bitmap);
+                    if (bitmap != null) {
+                        ImageCache.getInstance().put(imageCacheKey, bitmap);
+                    } else {
+                        imageView.setImageResource(R.drawable.no_thumbnail_image);
+                    }
+                }
+            }, iArr);
+        } else {
+            imageView.setImageBitmap(bitmap);
+        }
+    }
+
+    private static String getImageCacheKey(String str, int i, int i2) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(str);
+        stringBuilder.append(EventsFilesManager.ROLL_OVER_FILE_NAME_SEPARATOR);
+        stringBuilder.append(i);
+        stringBuilder.append("x");
+        stringBuilder.append(i2);
+        return stringBuilder.toString();
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:13 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

@@ -1,0 +1,203 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9"><div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/exoplayer2/source/dash/manifest/DashManifest.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/exoplayer2/source/dash/manifest/DashManifest.java</a></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-83">report</i><h5>password =|secret =|username =|key =</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>the app contain hardcoded sensitive informations like usernames, passwords, keys etc: Hard coded sensitive information in Application Code (including Crypto)</span></div></li></ul><ul class="collapsible"><li><div class="collapsible-header"><img data-position="top" data-tooltip="OWASP item" src="html/owasp_logo.png" height="20em" style="margin-right: 1rem;margin-left: 5px;" class="tooltipped"></img> OWASP Item</div><div class="collapsible-body"><span>For more information, have a look at: https://www.owasp.org/index.php/OWASP_Mobile_Security_Testing_Guide</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#DashManifest_java92pass" class="active">line 92</a></li><li class="tab"><a style="color: #d82c2b;" href="#DashManifest_java102pass">line 102</a></li></ul></div><div class="card-content"><div id="DashManifest_java92pass">Code @ line 92<pre data-start="89" data-line="92" data-src="DashManifest.java" class="code line-numbers"><code>    }
+
+    private static ArrayList&lt;AdaptationSet&gt; copyAdaptationSets(List&lt;AdaptationSet&gt; list, LinkedList&lt;StreamKey&gt; linkedList) {
+        StreamKey streamKey = (StreamKey) linkedList.poll();
+        int i = streamKey.periodIndex;
+        ArrayList&lt;AdaptationSet&gt; arrayList = new ArrayList();
+        do {
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3NvdXJjZS9kYXNoL21hbmlmZXN0L0Rhc2hNYW5pZmVzdC5qYXZhfHx8bGluZTogOTIgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDkyfHx8ODk">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3NvdXJjZS9kYXNoL21hbmlmZXN0L0Rhc2hNYW5pZmVzdC5qYXZhfHx8bGluZTogOTIgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDkyfHx8ODk')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3NvdXJjZS9kYXNoL21hbmlmZXN0L0Rhc2hNYW5pZmVzdC5qYXZhfHx8bGluZTogOTIgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDkyfHx8ODk').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3NvdXJjZS9kYXNoL21hbmlmZXN0L0Rhc2hNYW5pZmVzdC5qYXZhfHx8bGluZTogOTIgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDkyfHx8ODk" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3NvdXJjZS9kYXNoL21hbmlmZXN0L0Rhc2hNYW5pZmVzdC5qYXZhfHx8bGluZTogOTIgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDkyfHx8ODk' , 'ICAgIH0KCiAgICBwcml2YXRlIHN0YXRpYyBBcnJheUxpc3Q8QWRhcHRhdGlvblNldD4gY29weUFkYXB0YXRpb25TZXRzKExpc3Q8QWRhcHRhdGlvblNldD4gbGlzdCwgTGlua2VkTGlzdDxTdHJlYW1LZXk+IGxpbmtlZExpc3QpIHsKICAgICAgICBTdHJlYW1LZXkgc3RyZWFtS2V5ID0gKFN0cmVhbUtleSkgbGlua2VkTGlzdC5wb2xsKCk7CiAgICAgICAgaW50IGkgPSBzdHJlYW1LZXkucGVyaW9kSW5kZXg7CiAgICAgICAgQXJyYXlMaXN0PEFkYXB0YXRpb25TZXQ+IGFycmF5TGlzdCA9IG5ldyBBcnJheUxpc3QoKTsKICAgICAgICBkbyB7Cg==');  
+                                            });
+                                            </script>
+                                            </div><div id="DashManifest_java102pass">Code @ line 102<pre data-start="99" data-line="102" data-src="DashManifest.java" class="code line-numbers"><code>            List arrayList2 = new ArrayList();
+            do {
+                arrayList2.add((Representation) list2.get(streamKey.trackIndex));
+                streamKey = (StreamKey) linkedList.poll();
+                if (streamKey.periodIndex != i) {
+                    break;
+                }
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3NvdXJjZS9kYXNoL21hbmlmZXN0L0Rhc2hNYW5pZmVzdC5qYXZhfHx8bGluZTogMTAyIDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwxMDJ8fHw5OQ">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3NvdXJjZS9kYXNoL21hbmlmZXN0L0Rhc2hNYW5pZmVzdC5qYXZhfHx8bGluZTogMTAyIDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwxMDJ8fHw5OQ')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3NvdXJjZS9kYXNoL21hbmlmZXN0L0Rhc2hNYW5pZmVzdC5qYXZhfHx8bGluZTogMTAyIDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwxMDJ8fHw5OQ').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3NvdXJjZS9kYXNoL21hbmlmZXN0L0Rhc2hNYW5pZmVzdC5qYXZhfHx8bGluZTogMTAyIDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwxMDJ8fHw5OQ" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3NvdXJjZS9kYXNoL21hbmlmZXN0L0Rhc2hNYW5pZmVzdC5qYXZhfHx8bGluZTogMTAyIDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwxMDJ8fHw5OQ' , 'ICAgICAgICAgICAgTGlzdCBhcnJheUxpc3QyID0gbmV3IEFycmF5TGlzdCgpOwogICAgICAgICAgICBkbyB7CiAgICAgICAgICAgICAgICBhcnJheUxpc3QyLmFkZCgoUmVwcmVzZW50YXRpb24pIGxpc3QyLmdldChzdHJlYW1LZXkudHJhY2tJbmRleCkpOwogICAgICAgICAgICAgICAgc3RyZWFtS2V5ID0gKFN0cmVhbUtleSkgbGlua2VkTGlzdC5wb2xsKCk7CiAgICAgICAgICAgICAgICBpZiAoc3RyZWFtS2V5LnBlcmlvZEluZGV4ICE9IGkpIHsKICAgICAgICAgICAgICAgICAgICBicmVhazsKICAgICAgICAgICAgICAgIH0K');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="DashManifest.java" data-line="92,102," class="code line-numbers"><code>package com.google.android.exoplayer2.source.dash.manifest;
+
+import android.net.Uri;
+import com.google.android.exoplayer2.C;
+import com.google.android.exoplayer2.offline.FilterableManifest;
+import com.google.android.exoplayer2.offline.StreamKey;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+
+public class DashManifest implements FilterableManifest&lt;DashManifest&gt; {
+    public final long availabilityStartTimeMs;
+    public final long durationMs;
+    public final boolean dynamic;
+    public final Uri location;
+    public final long minBufferTimeMs;
+    public final long minUpdatePeriodMs;
+    private final List&lt;Period&gt; periods;
+    public final long publishTimeMs;
+    public final long suggestedPresentationDelayMs;
+    public final long timeShiftBufferDepthMs;
+    public final UtcTimingElement utcTiming;
+
+    public DashManifest(long j, long j2, long j3, boolean z, long j4, long j5, long j6, long j7, UtcTimingElement utcTimingElement, Uri uri, List&lt;Period&gt; list) {
+        this.availabilityStartTimeMs = j;
+        this.durationMs = j2;
+        this.minBufferTimeMs = j3;
+        this.dynamic = z;
+        this.minUpdatePeriodMs = j4;
+        this.timeShiftBufferDepthMs = j5;
+        this.suggestedPresentationDelayMs = j6;
+        this.publishTimeMs = j7;
+        this.utcTiming = utcTimingElement;
+        this.location = uri;
+        r0.periods = list == null ? Collections.emptyList() : list;
+    }
+
+    public final int getPeriodCount() {
+        return this.periods.size();
+    }
+
+    public final Period getPeriod(int i) {
+        return (Period) this.periods.get(i);
+    }
+
+    public final long getPeriodDurationMs(int i) {
+        if (i == this.periods.size() - 1) {
+            return this.durationMs == C.TIME_UNSET ? C.TIME_UNSET : this.durationMs - ((Period) this.periods.get(i)).startMs;
+        } else {
+            return ((Period) this.periods.get(i + 1)).startMs - ((Period) this.periods.get(i)).startMs;
+        }
+    }
+
+    public final long getPeriodDurationUs(int i) {
+        return C.msToUs(getPeriodDurationMs(i));
+    }
+
+    public final DashManifest copy(List&lt;StreamKey&gt; list) {
+        long j;
+        DashManifest dashManifest = this;
+        LinkedList linkedList = new LinkedList(list);
+        Collections.sort(linkedList);
+        linkedList.add(new StreamKey(-1, -1, -1));
+        ArrayList arrayList = new ArrayList();
+        long j2 = 0;
+        int i = 0;
+        while (true) {
+            int periodCount = getPeriodCount();
+            j = C.TIME_UNSET;
+            if (i &gt;= periodCount) {
+                break;
+            }
+            if (((StreamKey) linkedList.peek()).periodIndex != i) {
+                long periodDurationMs = getPeriodDurationMs(i);
+                if (periodDurationMs != C.TIME_UNSET) {
+                    j2 += periodDurationMs;
+                }
+            } else {
+                Period period = getPeriod(i);
+                arrayList.add(new Period(period.id, period.startMs - j2, copyAdaptationSets(period.adaptationSets, linkedList), period.eventStreams));
+            }
+            i++;
+        }
+        if (dashManifest.durationMs != C.TIME_UNSET) {
+            j = dashManifest.durationMs - j2;
+        }
+        return new DashManifest(dashManifest.availabilityStartTimeMs, j, dashManifest.minBufferTimeMs, dashManifest.dynamic, dashManifest.minUpdatePeriodMs, dashManifest.timeShiftBufferDepthMs, dashManifest.suggestedPresentationDelayMs, dashManifest.publishTimeMs, dashManifest.utcTiming, dashManifest.location, arrayList);
+    }
+
+    private static ArrayList&lt;AdaptationSet&gt; copyAdaptationSets(List&lt;AdaptationSet&gt; list, LinkedList&lt;StreamKey&gt; linkedList) {
+        StreamKey streamKey = (StreamKey) linkedList.poll();
+        int i = streamKey.periodIndex;
+        ArrayList&lt;AdaptationSet&gt; arrayList = new ArrayList();
+        do {
+            int i2 = streamKey.groupIndex;
+            AdaptationSet adaptationSet = (AdaptationSet) list.get(i2);
+            List list2 = adaptationSet.representations;
+            List arrayList2 = new ArrayList();
+            do {
+                arrayList2.add((Representation) list2.get(streamKey.trackIndex));
+                streamKey = (StreamKey) linkedList.poll();
+                if (streamKey.periodIndex != i) {
+                    break;
+                }
+            } while (streamKey.groupIndex == i2);
+            arrayList.add(new AdaptationSet(adaptationSet.id, adaptationSet.type, arrayList2, adaptationSet.accessibilityDescriptors, adaptationSet.supplementalProperties));
+        } while (streamKey.periodIndex == i);
+        linkedList.addFirst(streamKey);
+        return arrayList;
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:8 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

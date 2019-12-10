@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.xumo.xumo.widget.XumoToolbar xmlns:android="http://schemas.android.com/apk/res-auto" app:id="@id/toolbar" app:background="@color/actionBarBackgroundColor" app:layout_width="match_parent" app:layout_height="UNKNOWN_DATA_0x7f040004" app:contentInsetEnd="16dp" app:contentInsetStart="16dp" />

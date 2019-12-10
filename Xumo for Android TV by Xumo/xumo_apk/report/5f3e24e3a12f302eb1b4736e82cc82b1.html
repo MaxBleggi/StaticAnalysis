@@ -1,0 +1,200 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/exoplayer2/ui/DefaultTrackNameProvider.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/exoplayer2/ui/DefaultTrackNameProvider.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="DefaultTrackNameProvider.java" data-line="" class="code line-numbers"><code>package com.google.android.exoplayer2.ui;
+
+import android.content.res.Resources;
+import android.text.TextUtils;
+import com.google.android.exoplayer2.C;
+import com.google.android.exoplayer2.Format;
+import com.google.android.exoplayer2.util.Assertions;
+import com.google.android.exoplayer2.util.MimeTypes;
+import com.google.android.exoplayer2.util.Util;
+import java.util.Locale;
+
+public class DefaultTrackNameProvider implements TrackNameProvider {
+    private final Resources resources;
+
+    public DefaultTrackNameProvider(Resources resources) {
+        this.resources = (Resources) Assertions.checkNotNull(resources);
+    }
+
+    public String getTrackName(Format format) {
+        int inferPrimaryTrackType = inferPrimaryTrackType(format);
+        if (inferPrimaryTrackType == 2) {
+            format = joinWithSeparator(buildResolutionString(format), buildBitrateString(format));
+        } else if (inferPrimaryTrackType == 1) {
+            format = joinWithSeparator(buildLabelString(format), buildAudioChannelString(format), buildBitrateString(format));
+        } else {
+            format = buildLabelString(format);
+        }
+        return format.length() == 0 ? this.resources.getString(R.string.exo_track_unknown) : format;
+    }
+
+    private String buildResolutionString(Format format) {
+        int i = format.width;
+        format = format.height;
+        if (i != -1) {
+            if (format != -1) {
+                return this.resources.getString(R.string.exo_track_resolution, new Object[]{Integer.valueOf(i), Integer.valueOf(format)});
+            }
+        }
+        return "";
+    }
+
+    private String buildBitrateString(Format format) {
+        if (format.bitrate == -1) {
+            return "";
+        }
+        return this.resources.getString(R.string.exo_track_bitrate, new Object[]{Float.valueOf(((float) format) / 1000000.0f)});
+    }
+
+    private String buildAudioChannelString(Format format) {
+        format = format.channelCount;
+        if (format != -1) {
+            if (format &gt;= 1) {
+                switch (format) {
+                    case 1:
+                        return this.resources.getString(R.string.exo_track_mono);
+                    case 2:
+                        return this.resources.getString(R.string.exo_track_stereo);
+                    case 6:
+                    case 7:
+                        return this.resources.getString(R.string.exo_track_surround_5_point_1);
+                    case 8:
+                        return this.resources.getString(R.string.exo_track_surround_7_point_1);
+                    default:
+                        return this.resources.getString(R.string.exo_track_surround);
+                }
+            }
+        }
+        return "";
+    }
+
+    private String buildLabelString(Format format) {
+        if (!TextUtils.isEmpty(format.label)) {
+            return format.label;
+        }
+        format = format.language;
+        if (!TextUtils.isEmpty(format)) {
+            if (!C.LANGUAGE_UNDETERMINED.equals(format)) {
+                format = buildLanguageString(format);
+                return format;
+            }
+        }
+        format = "";
+        return format;
+    }
+
+    private String buildLanguageString(String str) {
+        return (Util.SDK_INT &gt;= 21 ? Locale.forLanguageTag(str) : new Locale(str)).getDisplayLanguage();
+    }
+
+    private String joinWithSeparator(String... strArr) {
+        Object obj = "";
+        for (String str : strArr) {
+            if (str.length() &gt; 0) {
+                if (TextUtils.isEmpty(obj)) {
+                    obj = str;
+                } else {
+                    obj = this.resources.getString(R.string.exo_item_list, new Object[]{obj, str});
+                }
+            }
+        }
+        return obj;
+    }
+
+    private static int inferPrimaryTrackType(Format format) {
+        int trackType = MimeTypes.getTrackType(format.sampleMimeType);
+        if (trackType != -1) {
+            return trackType;
+        }
+        if (MimeTypes.getVideoMediaMimeType(format.codecs) != null) {
+            return 2;
+        }
+        if (MimeTypes.getAudioMediaMimeType(format.codecs) != null) {
+            return 1;
+        }
+        if (format.width == -1) {
+            if (format.height == -1) {
+                if (format.channelCount == -1) {
+                    if (format.sampleRate == -1) {
+                        return -1;
+                    }
+                }
+                return 1;
+            }
+        }
+        return 2;
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:7 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

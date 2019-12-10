@@ -1,0 +1,298 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/gms/measurement/internal/zzao.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/gms/measurement/internal/zzao.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="zzao.java" data-line="" class="code line-numbers"><code>package com.google.android.gms.measurement.internal;
+
+import android.content.Context;
+import android.os.Bundle;
+import androidx.annotation.Nullable;
+import com.google.android.gms.common.internal.Preconditions;
+import com.google.android.gms.common.util.Clock;
+import java.util.concurrent.atomic.AtomicReference;
+
+public final class zzao extends zzcq {
+    private static final AtomicReference&lt;String[]&gt; zzama = new AtomicReference();
+    private static final AtomicReference&lt;String[]&gt; zzamb = new AtomicReference();
+    private static final AtomicReference&lt;String[]&gt; zzamc = new AtomicReference();
+
+    zzao(zzbu com_google_android_gms_measurement_internal_zzbu) {
+        super(com_google_android_gms_measurement_internal_zzbu);
+    }
+
+    protected final boolean zzgy() {
+        return false;
+    }
+
+    private final boolean zzjf() {
+        zzgw();
+        return this.zzadp.zzkn() &amp;&amp; this.zzadp.zzgt().isLoggable(3);
+    }
+
+    @Nullable
+    protected final String zzbv(String str) {
+        if (str == null) {
+            return null;
+        }
+        if (zzjf()) {
+            return zza(str, zzcs.zzare, zzcs.zzard, zzama);
+        }
+        return str;
+    }
+
+    @Nullable
+    protected final String zzbw(String str) {
+        if (str == null) {
+            return null;
+        }
+        if (zzjf()) {
+            return zza(str, zzct.zzarg, zzct.zzarf, zzamb);
+        }
+        return str;
+    }
+
+    @Nullable
+    protected final String zzbx(String str) {
+        if (str == null) {
+            return null;
+        }
+        if (!zzjf()) {
+            return str;
+        }
+        if (!str.startsWith("_exp_")) {
+            return zza(str, zzcu.zzari, zzcu.zzarh, zzamc);
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("experiment_id");
+        stringBuilder.append("(");
+        stringBuilder.append(str);
+        stringBuilder.append(")");
+        return stringBuilder.toString();
+    }
+
+    @Nullable
+    private static String zza(String str, String[] strArr, String[] strArr2, AtomicReference&lt;String[]&gt; atomicReference) {
+        Preconditions.checkNotNull(strArr);
+        Preconditions.checkNotNull(strArr2);
+        Preconditions.checkNotNull(atomicReference);
+        Preconditions.checkArgument(strArr.length == strArr2.length);
+        for (int i = 0; i &lt; strArr.length; i++) {
+            if (zzfu.zzv(str, strArr[i])) {
+                synchronized (atomicReference) {
+                    str = (String[]) atomicReference.get();
+                    if (str == null) {
+                        str = new String[strArr2.length];
+                        atomicReference.set(str);
+                    }
+                    if (str[i] == null) {
+                        StringBuilder stringBuilder = new StringBuilder();
+                        stringBuilder.append(strArr2[i]);
+                        stringBuilder.append("(");
+                        stringBuilder.append(strArr[i]);
+                        stringBuilder.append(")");
+                        str[i] = stringBuilder.toString();
+                    }
+                    str = str[i];
+                }
+                return str;
+            }
+        }
+        return str;
+    }
+
+    @Nullable
+    protected final String zzb(zzae com_google_android_gms_measurement_internal_zzae) {
+        if (com_google_android_gms_measurement_internal_zzae == null) {
+            return null;
+        }
+        if (!zzjf()) {
+            return com_google_android_gms_measurement_internal_zzae.toString();
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("origin=");
+        stringBuilder.append(com_google_android_gms_measurement_internal_zzae.origin);
+        stringBuilder.append(",name=");
+        stringBuilder.append(zzbv(com_google_android_gms_measurement_internal_zzae.name));
+        stringBuilder.append(",params=");
+        stringBuilder.append(zzb(com_google_android_gms_measurement_internal_zzae.zzaig));
+        return stringBuilder.toString();
+    }
+
+    @Nullable
+    protected final String zza(zzz com_google_android_gms_measurement_internal_zzz) {
+        if (com_google_android_gms_measurement_internal_zzz == null) {
+            return null;
+        }
+        if (!zzjf()) {
+            return com_google_android_gms_measurement_internal_zzz.toString();
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Event{appId='");
+        stringBuilder.append(com_google_android_gms_measurement_internal_zzz.zztt);
+        stringBuilder.append("', name='");
+        stringBuilder.append(zzbv(com_google_android_gms_measurement_internal_zzz.name));
+        stringBuilder.append("', params=");
+        stringBuilder.append(zzb(com_google_android_gms_measurement_internal_zzz.zzaig));
+        stringBuilder.append("}");
+        return stringBuilder.toString();
+    }
+
+    @Nullable
+    private final String zzb(zzab com_google_android_gms_measurement_internal_zzab) {
+        if (com_google_android_gms_measurement_internal_zzab == null) {
+            return null;
+        }
+        if (zzjf()) {
+            return zzd(com_google_android_gms_measurement_internal_zzab.zziy());
+        }
+        return com_google_android_gms_measurement_internal_zzab.toString();
+    }
+
+    @Nullable
+    protected final String zzd(Bundle bundle) {
+        if (bundle == null) {
+            return null;
+        }
+        if (!zzjf()) {
+            return bundle.toString();
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String str : bundle.keySet()) {
+            if (stringBuilder.length() != 0) {
+                stringBuilder.append(", ");
+            } else {
+                stringBuilder.append("Bundle[{");
+            }
+            stringBuilder.append(zzbw(str));
+            stringBuilder.append("=");
+            stringBuilder.append(bundle.get(str));
+        }
+        stringBuilder.append("}]");
+        return stringBuilder.toString();
+    }
+
+    public final /* bridge */ /* synthetic */ void zzgf() {
+        super.zzgf();
+    }
+
+    public final /* bridge */ /* synthetic */ void zzgg() {
+        super.zzgg();
+    }
+
+    public final /* bridge */ /* synthetic */ void zzgh() {
+        super.zzgh();
+    }
+
+    public final /* bridge */ /* synthetic */ void zzaf() {
+        super.zzaf();
+    }
+
+    public final /* bridge */ /* synthetic */ zzy zzgp() {
+        return super.zzgp();
+    }
+
+    public final /* bridge */ /* synthetic */ Clock zzbx() {
+        return super.zzbx();
+    }
+
+    public final /* bridge */ /* synthetic */ Context getContext() {
+        return super.getContext();
+    }
+
+    public final /* bridge */ /* synthetic */ zzao zzgq() {
+        return super.zzgq();
+    }
+
+    public final /* bridge */ /* synthetic */ zzfu zzgr() {
+        return super.zzgr();
+    }
+
+    public final /* bridge */ /* synthetic */ zzbp zzgs() {
+        return super.zzgs();
+    }
+
+    public final /* bridge */ /* synthetic */ zzaq zzgt() {
+        return super.zzgt();
+    }
+
+    public final /* bridge */ /* synthetic */ zzbb zzgu() {
+        return super.zzgu();
+    }
+
+    public final /* bridge */ /* synthetic */ zzo zzgv() {
+        return super.zzgv();
+    }
+
+    public final /* bridge */ /* synthetic */ zzl zzgw() {
+        return super.zzgw();
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:10 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

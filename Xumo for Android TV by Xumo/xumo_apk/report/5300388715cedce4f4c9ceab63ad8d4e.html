@@ -1,0 +1,248 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/gms/internal/measurement/zzvv.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/gms/internal/measurement/zzvv.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="zzvv.java" data-line="" class="code line-numbers"><code>package com.google.android.gms.internal.measurement;
+
+import java.util.logging.Logger;
+
+abstract class zzvv&lt;T extends zzvk&gt; {
+    private static final Logger logger = Logger.getLogger(zzve.class.getName());
+    private static String zzbzf = "com.google.protobuf.BlazeGeneratedExtensionRegistryLiteLoader";
+
+    zzvv() {
+    }
+
+    protected abstract T zzwk();
+
+    static &lt;T extends com.google.android.gms.internal.measurement.zzvk&gt; T zzd(java.lang.Class&lt;T&gt; r12) {
+        /* JADX: method processing error */
+/*
+Error: java.lang.NullPointerException
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.searchTryCatchDominators(ProcessTryCatchRegions.java:75)
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.process(ProcessTryCatchRegions.java:45)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.postProcessRegions(RegionMakerVisitor.java:63)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.visit(RegionMakerVisitor.java:58)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:31)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:17)
+	at jadx.core.ProcessClass.process(ProcessClass.java:37)
+	at jadx.core.ProcessClass.processDependencies(ProcessClass.java:59)
+	at jadx.core.ProcessClass.process(ProcessClass.java:42)
+	at jadx.api.JadxDecompiler.processClass(JadxDecompiler.java:306)
+	at jadx.api.JavaClass.decompile(JavaClass.java:62)
+	at jadx.api.JadxDecompiler$1.run(JadxDecompiler.java:199)
+*/
+        /*
+        r0 = com.google.android.gms.internal.measurement.zzvv.class;
+        r0 = r0.getClassLoader();
+        r1 = com.google.android.gms.internal.measurement.zzvk.class;
+        r1 = r12.equals(r1);
+        r2 = 1;
+        r3 = 0;
+        if (r1 == 0) goto L_0x0013;
+    L_0x0010:
+        r1 = zzbzf;
+        goto L_0x003c;
+    L_0x0013:
+        r1 = r12.getPackage();
+        r4 = com.google.android.gms.internal.measurement.zzvv.class;
+        r4 = r4.getPackage();
+        r1 = r1.equals(r4);
+        if (r1 == 0) goto L_0x0108;
+    L_0x0023:
+        r1 = "%s.BlazeGenerated%sLoader";
+        r4 = 2;
+        r4 = new java.lang.Object[r4];
+        r5 = r12.getPackage();
+        r5 = r5.getName();
+        r4[r3] = r5;
+        r5 = r12.getSimpleName();
+        r4[r2] = r5;
+        r1 = java.lang.String.format(r1, r4);
+    L_0x003c:
+        r1 = java.lang.Class.forName(r1, r2, r0);	 Catch:{ ClassNotFoundException -&gt; 0x0075 }
+        r4 = new java.lang.Class[r3];	 Catch:{ NoSuchMethodException -&gt; 0x006e, InstantiationException -&gt; 0x0067, IllegalAccessException -&gt; 0x0060, InvocationTargetException -&gt; 0x0059 }
+        r1 = r1.getConstructor(r4);	 Catch:{ NoSuchMethodException -&gt; 0x006e, InstantiationException -&gt; 0x0067, IllegalAccessException -&gt; 0x0060, InvocationTargetException -&gt; 0x0059 }
+        r4 = new java.lang.Object[r3];	 Catch:{ NoSuchMethodException -&gt; 0x006e, InstantiationException -&gt; 0x0067, IllegalAccessException -&gt; 0x0060, InvocationTargetException -&gt; 0x0059 }
+        r1 = r1.newInstance(r4);	 Catch:{ NoSuchMethodException -&gt; 0x006e, InstantiationException -&gt; 0x0067, IllegalAccessException -&gt; 0x0060, InvocationTargetException -&gt; 0x0059 }
+        r1 = (com.google.android.gms.internal.measurement.zzvv) r1;	 Catch:{ NoSuchMethodException -&gt; 0x006e, InstantiationException -&gt; 0x0067, IllegalAccessException -&gt; 0x0060, InvocationTargetException -&gt; 0x0059 }
+        r1 = r1.zzwk();	 Catch:{ ClassNotFoundException -&gt; 0x0075 }
+        r1 = r12.cast(r1);	 Catch:{ ClassNotFoundException -&gt; 0x0075 }
+        r1 = (com.google.android.gms.internal.measurement.zzvk) r1;	 Catch:{ ClassNotFoundException -&gt; 0x0075 }
+        return r1;	 Catch:{ ClassNotFoundException -&gt; 0x0075 }
+    L_0x0059:
+        r1 = move-exception;	 Catch:{ ClassNotFoundException -&gt; 0x0075 }
+        r4 = new java.lang.IllegalStateException;	 Catch:{ ClassNotFoundException -&gt; 0x0075 }
+        r4.&lt;init&gt;(r1);	 Catch:{ ClassNotFoundException -&gt; 0x0075 }
+        throw r4;	 Catch:{ ClassNotFoundException -&gt; 0x0075 }
+    L_0x0060:
+        r1 = move-exception;	 Catch:{ ClassNotFoundException -&gt; 0x0075 }
+        r4 = new java.lang.IllegalStateException;	 Catch:{ ClassNotFoundException -&gt; 0x0075 }
+        r4.&lt;init&gt;(r1);	 Catch:{ ClassNotFoundException -&gt; 0x0075 }
+        throw r4;	 Catch:{ ClassNotFoundException -&gt; 0x0075 }
+    L_0x0067:
+        r1 = move-exception;	 Catch:{ ClassNotFoundException -&gt; 0x0075 }
+        r4 = new java.lang.IllegalStateException;	 Catch:{ ClassNotFoundException -&gt; 0x0075 }
+        r4.&lt;init&gt;(r1);	 Catch:{ ClassNotFoundException -&gt; 0x0075 }
+        throw r4;	 Catch:{ ClassNotFoundException -&gt; 0x0075 }
+    L_0x006e:
+        r1 = move-exception;	 Catch:{ ClassNotFoundException -&gt; 0x0075 }
+        r4 = new java.lang.IllegalStateException;	 Catch:{ ClassNotFoundException -&gt; 0x0075 }
+        r4.&lt;init&gt;(r1);	 Catch:{ ClassNotFoundException -&gt; 0x0075 }
+        throw r4;	 Catch:{ ClassNotFoundException -&gt; 0x0075 }
+    L_0x0075:
+        r1 = com.google.android.gms.internal.measurement.zzvv.class;
+        r0 = java.util.ServiceLoader.load(r1, r0);
+        r0 = r0.iterator();
+        r1 = new java.util.ArrayList;
+        r1.&lt;init&gt;();
+    L_0x0084:
+        r4 = r0.hasNext();
+        if (r4 == 0) goto L_0x00c7;
+    L_0x008a:
+        r4 = r0.next();	 Catch:{ ServiceConfigurationError -&gt; 0x009e }
+        r4 = (com.google.android.gms.internal.measurement.zzvv) r4;	 Catch:{ ServiceConfigurationError -&gt; 0x009e }
+        r4 = r4.zzwk();	 Catch:{ ServiceConfigurationError -&gt; 0x009e }
+        r4 = r12.cast(r4);	 Catch:{ ServiceConfigurationError -&gt; 0x009e }
+        r4 = (com.google.android.gms.internal.measurement.zzvk) r4;	 Catch:{ ServiceConfigurationError -&gt; 0x009e }
+        r1.add(r4);	 Catch:{ ServiceConfigurationError -&gt; 0x009e }
+        goto L_0x0084;
+    L_0x009e:
+        r4 = move-exception;
+        r10 = r4;
+        r5 = logger;
+        r6 = java.util.logging.Level.SEVERE;
+        r7 = "com.google.protobuf.GeneratedExtensionRegistryLoader";
+        r8 = "load";
+        r4 = "Unable to load ";
+        r9 = r12.getSimpleName();
+        r9 = java.lang.String.valueOf(r9);
+        r11 = r9.length();
+        if (r11 == 0) goto L_0x00be;
+    L_0x00b8:
+        r4 = r4.concat(r9);
+        r9 = r4;
+        goto L_0x00c3;
+    L_0x00be:
+        r9 = new java.lang.String;
+        r9.&lt;init&gt;(r4);
+    L_0x00c3:
+        r5.logp(r6, r7, r8, r9, r10);
+        goto L_0x0084;
+    L_0x00c7:
+        r0 = r1.size();
+        if (r0 != r2) goto L_0x00d4;
+    L_0x00cd:
+        r12 = r1.get(r3);
+        r12 = (com.google.android.gms.internal.measurement.zzvk) r12;
+        return r12;
+    L_0x00d4:
+        r0 = r1.size();
+        r4 = 0;
+        if (r0 != 0) goto L_0x00dc;
+    L_0x00db:
+        return r4;
+    L_0x00dc:
+        r0 = "combine";	 Catch:{ NoSuchMethodException -&gt; 0x0101, IllegalAccessException -&gt; 0x00fa, InvocationTargetException -&gt; 0x00f3 }
+        r5 = new java.lang.Class[r2];	 Catch:{ NoSuchMethodException -&gt; 0x0101, IllegalAccessException -&gt; 0x00fa, InvocationTargetException -&gt; 0x00f3 }
+        r6 = java.util.Collection.class;	 Catch:{ NoSuchMethodException -&gt; 0x0101, IllegalAccessException -&gt; 0x00fa, InvocationTargetException -&gt; 0x00f3 }
+        r5[r3] = r6;	 Catch:{ NoSuchMethodException -&gt; 0x0101, IllegalAccessException -&gt; 0x00fa, InvocationTargetException -&gt; 0x00f3 }
+        r12 = r12.getMethod(r0, r5);	 Catch:{ NoSuchMethodException -&gt; 0x0101, IllegalAccessException -&gt; 0x00fa, InvocationTargetException -&gt; 0x00f3 }
+        r0 = new java.lang.Object[r2];	 Catch:{ NoSuchMethodException -&gt; 0x0101, IllegalAccessException -&gt; 0x00fa, InvocationTargetException -&gt; 0x00f3 }
+        r0[r3] = r1;	 Catch:{ NoSuchMethodException -&gt; 0x0101, IllegalAccessException -&gt; 0x00fa, InvocationTargetException -&gt; 0x00f3 }
+        r12 = r12.invoke(r4, r0);	 Catch:{ NoSuchMethodException -&gt; 0x0101, IllegalAccessException -&gt; 0x00fa, InvocationTargetException -&gt; 0x00f3 }
+        r12 = (com.google.android.gms.internal.measurement.zzvk) r12;	 Catch:{ NoSuchMethodException -&gt; 0x0101, IllegalAccessException -&gt; 0x00fa, InvocationTargetException -&gt; 0x00f3 }
+        return r12;
+    L_0x00f3:
+        r12 = move-exception;
+        r0 = new java.lang.IllegalStateException;
+        r0.&lt;init&gt;(r12);
+        throw r0;
+    L_0x00fa:
+        r12 = move-exception;
+        r0 = new java.lang.IllegalStateException;
+        r0.&lt;init&gt;(r12);
+        throw r0;
+    L_0x0101:
+        r12 = move-exception;
+        r0 = new java.lang.IllegalStateException;
+        r0.&lt;init&gt;(r12);
+        throw r0;
+    L_0x0108:
+        r0 = new java.lang.IllegalArgumentException;
+        r12 = r12.getName();
+        r0.&lt;init&gt;(r12);
+        throw r0;
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.google.android.gms.internal.measurement.zzvv.zzd(java.lang.Class):T");
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:11 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

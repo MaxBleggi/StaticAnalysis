@@ -1,0 +1,444 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9"><div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/crashlytics/android/core/ReportUploader.java" target="_blank">/xumo_apk/jadx_source_code/com/crashlytics/android/core/ReportUploader.java</a></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-50">report</i><h5>(private|secret|api|aws)[_-]?key</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>Sensitive parameters which can contain hardcoded credentials. The score is quite low because this query is often a false-positive.</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#ReportUploader_java16priv" class="active">line 16</a></li><li class="tab"><a style="color: #d82c2b;" href="#ReportUploader_java230priv">line 230</a></li><li class="tab"><a style="color: #d82c2b;" href="#ReportUploader_java256priv">line 256</a></li></ul></div><div class="card-content"><div id="ReportUploader_java16priv">Code @ line 16<pre data-start="13" data-line="16" data-src="ReportUploader.java" class="code line-numbers"><code>class ReportUploader {
+    static final Map&lt;String, String&gt; HEADER_INVALID_CLS_FILE = Collections.singletonMap("X-CRASHLYTICS-INVALID-SESSION", "1");
+    private static final short[] RETRY_INTERVALS = new short[]{(short) 10, (short) 20, (short) 30, (short) 60, (short) 120, (short) 300};
+    private final String apiKey;
+    private final CreateReportSpiCall createReportCall;
+    private final Object fileAccessLock = new Object();
+    private final HandlingExceptionCheck handlingExceptionCheck;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvUmVwb3J0VXBsb2FkZXIuamF2YXx8fGxpbmU6IDE2IDogKHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHw1MHx8fChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8MTZ8fHwxMw">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvUmVwb3J0VXBsb2FkZXIuamF2YXx8fGxpbmU6IDE2IDogKHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHw1MHx8fChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8MTZ8fHwxMw')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvUmVwb3J0VXBsb2FkZXIuamF2YXx8fGxpbmU6IDE2IDogKHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHw1MHx8fChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8MTZ8fHwxMw').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvUmVwb3J0VXBsb2FkZXIuamF2YXx8fGxpbmU6IDE2IDogKHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHw1MHx8fChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8MTZ8fHwxMw" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvUmVwb3J0VXBsb2FkZXIuamF2YXx8fGxpbmU6IDE2IDogKHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHw1MHx8fChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8MTZ8fHwxMw' , 'Y2xhc3MgUmVwb3J0VXBsb2FkZXIgewogICAgc3RhdGljIGZpbmFsIE1hcDxTdHJpbmcsIFN0cmluZz4gSEVBREVSX0lOVkFMSURfQ0xTX0ZJTEUgPSBDb2xsZWN0aW9ucy5zaW5nbGV0b25NYXAoIlgtQ1JBU0hMWVRJQ1MtSU5WQUxJRC1TRVNTSU9OIiwgIjEiKTsKICAgIHByaXZhdGUgc3RhdGljIGZpbmFsIHNob3J0W10gUkVUUllfSU5URVJWQUxTID0gbmV3IHNob3J0W117KHNob3J0KSAxMCwgKHNob3J0KSAyMCwgKHNob3J0KSAzMCwgKHNob3J0KSA2MCwgKHNob3J0KSAxMjAsIChzaG9ydCkgMzAwfTsKICAgIHByaXZhdGUgZmluYWwgU3RyaW5nIGFwaUtleTsKICAgIHByaXZhdGUgZmluYWwgQ3JlYXRlUmVwb3J0U3BpQ2FsbCBjcmVhdGVSZXBvcnRDYWxsOwogICAgcHJpdmF0ZSBmaW5hbCBPYmplY3QgZmlsZUFjY2Vzc0xvY2sgPSBuZXcgT2JqZWN0KCk7CiAgICBwcml2YXRlIGZpbmFsIEhhbmRsaW5nRXhjZXB0aW9uQ2hlY2sgaGFuZGxpbmdFeGNlcHRpb25DaGVjazsK');  
+                                            });
+                                            </script>
+                                            </div><div id="ReportUploader_java230priv">Code @ line 230<pre data-start="227" data-line="230" data-src="ReportUploader.java" class="code line-numbers"><code>    public ReportUploader(String str, CreateReportSpiCall createReportSpiCall, ReportFilesProvider reportFilesProvider, HandlingExceptionCheck handlingExceptionCheck) {
+        if (createReportSpiCall != null) {
+            this.createReportCall = createReportSpiCall;
+            this.apiKey = str;
+            this.reportFilesProvider = reportFilesProvider;
+            this.handlingExceptionCheck = handlingExceptionCheck;
+            return;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvUmVwb3J0VXBsb2FkZXIuamF2YXx8fGxpbmU6IDIzMCA6IChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8NTB8fHwocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDIzMHx8fDIyNw">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvUmVwb3J0VXBsb2FkZXIuamF2YXx8fGxpbmU6IDIzMCA6IChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8NTB8fHwocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDIzMHx8fDIyNw')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvUmVwb3J0VXBsb2FkZXIuamF2YXx8fGxpbmU6IDIzMCA6IChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8NTB8fHwocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDIzMHx8fDIyNw').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvUmVwb3J0VXBsb2FkZXIuamF2YXx8fGxpbmU6IDIzMCA6IChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8NTB8fHwocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDIzMHx8fDIyNw" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvUmVwb3J0VXBsb2FkZXIuamF2YXx8fGxpbmU6IDIzMCA6IChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8NTB8fHwocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDIzMHx8fDIyNw' , 'ICAgIHB1YmxpYyBSZXBvcnRVcGxvYWRlcihTdHJpbmcgc3RyLCBDcmVhdGVSZXBvcnRTcGlDYWxsIGNyZWF0ZVJlcG9ydFNwaUNhbGwsIFJlcG9ydEZpbGVzUHJvdmlkZXIgcmVwb3J0RmlsZXNQcm92aWRlciwgSGFuZGxpbmdFeGNlcHRpb25DaGVjayBoYW5kbGluZ0V4Y2VwdGlvbkNoZWNrKSB7CiAgICAgICAgaWYgKGNyZWF0ZVJlcG9ydFNwaUNhbGwgIT0gbnVsbCkgewogICAgICAgICAgICB0aGlzLmNyZWF0ZVJlcG9ydENhbGwgPSBjcmVhdGVSZXBvcnRTcGlDYWxsOwogICAgICAgICAgICB0aGlzLmFwaUtleSA9IHN0cjsKICAgICAgICAgICAgdGhpcy5yZXBvcnRGaWxlc1Byb3ZpZGVyID0gcmVwb3J0RmlsZXNQcm92aWRlcjsKICAgICAgICAgICAgdGhpcy5oYW5kbGluZ0V4Y2VwdGlvbkNoZWNrID0gaGFuZGxpbmdFeGNlcHRpb25DaGVjazsKICAgICAgICAgICAgcmV0dXJuOwo=');  
+                                            });
+                                            </script>
+                                            </div><div id="ReportUploader_java256priv">Code @ line 256<pre data-start="253" data-line="256" data-src="ReportUploader.java" class="code line-numbers"><code>        synchronized (this.fileAccessLock) {
+            z = false;
+            try {
+                boolean invoke = this.createReportCall.invoke(new CreateReportRequest(this.apiKey, report));
+                Logger logger = Fabric.getLogger();
+                String str = CrashlyticsCore.TAG;
+                StringBuilder stringBuilder = new StringBuilder();
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvUmVwb3J0VXBsb2FkZXIuamF2YXx8fGxpbmU6IDI1NiA6IChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8NTB8fHwocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDI1Nnx8fDI1Mw">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvUmVwb3J0VXBsb2FkZXIuamF2YXx8fGxpbmU6IDI1NiA6IChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8NTB8fHwocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDI1Nnx8fDI1Mw')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvUmVwb3J0VXBsb2FkZXIuamF2YXx8fGxpbmU6IDI1NiA6IChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8NTB8fHwocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDI1Nnx8fDI1Mw').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvUmVwb3J0VXBsb2FkZXIuamF2YXx8fGxpbmU6IDI1NiA6IChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8NTB8fHwocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDI1Nnx8fDI1Mw" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvUmVwb3J0VXBsb2FkZXIuamF2YXx8fGxpbmU6IDI1NiA6IChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8NTB8fHwocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDI1Nnx8fDI1Mw' , 'ICAgICAgICBzeW5jaHJvbml6ZWQgKHRoaXMuZmlsZUFjY2Vzc0xvY2spIHsKICAgICAgICAgICAgeiA9IGZhbHNlOwogICAgICAgICAgICB0cnkgewogICAgICAgICAgICAgICAgYm9vbGVhbiBpbnZva2UgPSB0aGlzLmNyZWF0ZVJlcG9ydENhbGwuaW52b2tlKG5ldyBDcmVhdGVSZXBvcnRSZXF1ZXN0KHRoaXMuYXBpS2V5LCByZXBvcnQpKTsKICAgICAgICAgICAgICAgIExvZ2dlciBsb2dnZXIgPSBGYWJyaWMuZ2V0TG9nZ2VyKCk7CiAgICAgICAgICAgICAgICBTdHJpbmcgc3RyID0gQ3Jhc2hseXRpY3NDb3JlLlRBRzsKICAgICAgICAgICAgICAgIFN0cmluZ0J1aWxkZXIgc3RyaW5nQnVpbGRlciA9IG5ldyBTdHJpbmdCdWlsZGVyKCk7Cg==');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-83">report</i><h5>password =|secret =|username =|key =</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>the app contain hardcoded sensitive informations like usernames, passwords, keys etc: Hard coded sensitive information in Application Code (including Crypto)</span></div></li></ul><ul class="collapsible"><li><div class="collapsible-header"><img data-position="top" data-tooltip="OWASP item" src="html/owasp_logo.png" height="20em" style="margin-right: 1rem;margin-left: 5px;" class="tooltipped"></img> OWASP Item</div><div class="collapsible-body"><span>For more information, have a look at: https://www.owasp.org/index.php/OWASP_Mobile_Security_Testing_Guide</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#ReportUploader_java230pass" class="active">line 230</a></li></ul></div><div class="card-content"><div id="ReportUploader_java230pass">Code @ line 230<pre data-start="227" data-line="230" data-src="ReportUploader.java" class="code line-numbers"><code>    public ReportUploader(String str, CreateReportSpiCall createReportSpiCall, ReportFilesProvider reportFilesProvider, HandlingExceptionCheck handlingExceptionCheck) {
+        if (createReportSpiCall != null) {
+            this.createReportCall = createReportSpiCall;
+            this.apiKey = str;
+            this.reportFilesProvider = reportFilesProvider;
+            this.handlingExceptionCheck = handlingExceptionCheck;
+            return;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvUmVwb3J0VXBsb2FkZXIuamF2YXx8fGxpbmU6IDIzMCA6IHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDgzfHx8cGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8MjMwfHx8MjI3">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvUmVwb3J0VXBsb2FkZXIuamF2YXx8fGxpbmU6IDIzMCA6IHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDgzfHx8cGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8MjMwfHx8MjI3')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvUmVwb3J0VXBsb2FkZXIuamF2YXx8fGxpbmU6IDIzMCA6IHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDgzfHx8cGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8MjMwfHx8MjI3').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvUmVwb3J0VXBsb2FkZXIuamF2YXx8fGxpbmU6IDIzMCA6IHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDgzfHx8cGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8MjMwfHx8MjI3" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvUmVwb3J0VXBsb2FkZXIuamF2YXx8fGxpbmU6IDIzMCA6IHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDgzfHx8cGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8MjMwfHx8MjI3' , 'ICAgIHB1YmxpYyBSZXBvcnRVcGxvYWRlcihTdHJpbmcgc3RyLCBDcmVhdGVSZXBvcnRTcGlDYWxsIGNyZWF0ZVJlcG9ydFNwaUNhbGwsIFJlcG9ydEZpbGVzUHJvdmlkZXIgcmVwb3J0RmlsZXNQcm92aWRlciwgSGFuZGxpbmdFeGNlcHRpb25DaGVjayBoYW5kbGluZ0V4Y2VwdGlvbkNoZWNrKSB7CiAgICAgICAgaWYgKGNyZWF0ZVJlcG9ydFNwaUNhbGwgIT0gbnVsbCkgewogICAgICAgICAgICB0aGlzLmNyZWF0ZVJlcG9ydENhbGwgPSBjcmVhdGVSZXBvcnRTcGlDYWxsOwogICAgICAgICAgICB0aGlzLmFwaUtleSA9IHN0cjsKICAgICAgICAgICAgdGhpcy5yZXBvcnRGaWxlc1Byb3ZpZGVyID0gcmVwb3J0RmlsZXNQcm92aWRlcjsKICAgICAgICAgICAgdGhpcy5oYW5kbGluZ0V4Y2VwdGlvbkNoZWNrID0gaGFuZGxpbmdFeGNlcHRpb25DaGVjazsKICAgICAgICAgICAgcmV0dXJuOwo=');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="ReportUploader.java" data-line="16,230,256,230," class="code line-numbers"><code>package com.crashlytics.android.core;
+
+import io.fabric.sdk.android.Fabric;
+import io.fabric.sdk.android.Logger;
+import io.fabric.sdk.android.services.common.BackgroundPriorityRunnable;
+import java.io.File;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
+class ReportUploader {
+    static final Map&lt;String, String&gt; HEADER_INVALID_CLS_FILE = Collections.singletonMap("X-CRASHLYTICS-INVALID-SESSION", "1");
+    private static final short[] RETRY_INTERVALS = new short[]{(short) 10, (short) 20, (short) 30, (short) 60, (short) 120, (short) 300};
+    private final String apiKey;
+    private final CreateReportSpiCall createReportCall;
+    private final Object fileAccessLock = new Object();
+    private final HandlingExceptionCheck handlingExceptionCheck;
+    private final ReportFilesProvider reportFilesProvider;
+    private Thread uploadThread;
+
+    interface HandlingExceptionCheck {
+        boolean isHandlingException();
+    }
+
+    interface ReportFilesProvider {
+        File[] getCompleteSessionFiles();
+
+        File[] getInvalidSessionFiles();
+
+        File[] getNativeReportFiles();
+    }
+
+    interface SendCheck {
+        boolean canSendReports();
+    }
+
+    static final class AlwaysSendCheck implements SendCheck {
+        public boolean canSendReports() {
+            return true;
+        }
+
+        AlwaysSendCheck() {
+        }
+    }
+
+    private class Worker extends BackgroundPriorityRunnable {
+        private final float delay;
+        private final SendCheck sendCheck;
+
+        Worker(float f, SendCheck sendCheck) {
+            this.delay = f;
+            this.sendCheck = sendCheck;
+        }
+
+        public void onRun() {
+            try {
+                attemptUploadWithRetry();
+            } catch (Throwable e) {
+                Fabric.getLogger().e(CrashlyticsCore.TAG, "An unexpected error occurred while attempting to upload crash reports.", e);
+            }
+            ReportUploader.this.uploadThread = null;
+        }
+
+        private void attemptUploadWithRetry() {
+            /* JADX: method processing error */
+/*
+Error: java.lang.NullPointerException
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.searchTryCatchDominators(ProcessTryCatchRegions.java:75)
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.process(ProcessTryCatchRegions.java:45)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.postProcessRegions(RegionMakerVisitor.java:63)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.visit(RegionMakerVisitor.java:58)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:31)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:17)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:14)
+	at jadx.core.ProcessClass.process(ProcessClass.java:37)
+	at jadx.api.JadxDecompiler.processClass(JadxDecompiler.java:306)
+	at jadx.api.JavaClass.decompile(JavaClass.java:62)
+	at jadx.api.JadxDecompiler$1.run(JadxDecompiler.java:199)
+*/
+            /*
+            r8 = this;
+            r0 = io.fabric.sdk.android.Fabric.getLogger();
+            r1 = "CrashlyticsCore";
+            r2 = new java.lang.StringBuilder;
+            r2.&lt;init&gt;();
+            r3 = "Starting report processing in ";
+            r2.append(r3);
+            r3 = r8.delay;
+            r2.append(r3);
+            r3 = " second(s)...";
+            r2.append(r3);
+            r2 = r2.toString();
+            r0.d(r1, r2);
+            r0 = r8.delay;
+            r1 = 0;
+            r0 = (r0 &gt; r1 ? 1 : (r0 == r1 ? 0 : -1));
+            if (r0 &lt;= 0) goto L_0x003b;
+        L_0x0028:
+            r0 = r8.delay;	 Catch:{ InterruptedException -&gt; 0x0033 }
+            r1 = 1148846080; // 0x447a0000 float:1000.0 double:5.676053805E-315;	 Catch:{ InterruptedException -&gt; 0x0033 }
+            r0 = r0 * r1;	 Catch:{ InterruptedException -&gt; 0x0033 }
+            r0 = (long) r0;	 Catch:{ InterruptedException -&gt; 0x0033 }
+            java.lang.Thread.sleep(r0);	 Catch:{ InterruptedException -&gt; 0x0033 }
+            goto L_0x003b;
+        L_0x0033:
+            r0 = java.lang.Thread.currentThread();
+            r0.interrupt();
+            return;
+        L_0x003b:
+            r0 = com.crashlytics.android.core.ReportUploader.this;
+            r0 = r0.findReports();
+            r1 = com.crashlytics.android.core.ReportUploader.this;
+            r1 = r1.handlingExceptionCheck;
+            r1 = r1.isHandlingException();
+            if (r1 == 0) goto L_0x004e;
+        L_0x004d:
+            return;
+        L_0x004e:
+            r1 = r0.isEmpty();
+            if (r1 != 0) goto L_0x0094;
+        L_0x0054:
+            r1 = r8.sendCheck;
+            r1 = r1.canSendReports();
+            if (r1 != 0) goto L_0x0094;
+        L_0x005c:
+            r1 = io.fabric.sdk.android.Fabric.getLogger();
+            r2 = "CrashlyticsCore";
+            r3 = new java.lang.StringBuilder;
+            r3.&lt;init&gt;();
+            r4 = "User declined to send. Removing ";
+            r3.append(r4);
+            r4 = r0.size();
+            r3.append(r4);
+            r4 = " Report(s).";
+            r3.append(r4);
+            r3 = r3.toString();
+            r1.d(r2, r3);
+            r0 = r0.iterator();
+        L_0x0083:
+            r1 = r0.hasNext();
+            if (r1 == 0) goto L_0x0093;
+        L_0x0089:
+            r1 = r0.next();
+            r1 = (com.crashlytics.android.core.Report) r1;
+            r1.remove();
+            goto L_0x0083;
+        L_0x0093:
+            return;
+        L_0x0094:
+            r1 = 0;
+        L_0x0095:
+            r2 = r0.isEmpty();
+            if (r2 != 0) goto L_0x0132;
+        L_0x009b:
+            r2 = com.crashlytics.android.core.ReportUploader.this;
+            r2 = r2.handlingExceptionCheck;
+            r2 = r2.isHandlingException();
+            if (r2 == 0) goto L_0x00a8;
+        L_0x00a7:
+            return;
+        L_0x00a8:
+            r2 = io.fabric.sdk.android.Fabric.getLogger();
+            r3 = "CrashlyticsCore";
+            r4 = new java.lang.StringBuilder;
+            r4.&lt;init&gt;();
+            r5 = "Attempting to send ";
+            r4.append(r5);
+            r5 = r0.size();
+            r4.append(r5);
+            r5 = " report(s)";
+            r4.append(r5);
+            r4 = r4.toString();
+            r2.d(r3, r4);
+            r0 = r0.iterator();
+        L_0x00cf:
+            r2 = r0.hasNext();
+            if (r2 == 0) goto L_0x00e1;
+        L_0x00d5:
+            r2 = r0.next();
+            r2 = (com.crashlytics.android.core.Report) r2;
+            r3 = com.crashlytics.android.core.ReportUploader.this;
+            r3.forceUpload(r2);
+            goto L_0x00cf;
+        L_0x00e1:
+            r0 = com.crashlytics.android.core.ReportUploader.this;
+            r0 = r0.findReports();
+            r2 = r0.isEmpty();
+            if (r2 != 0) goto L_0x0095;
+        L_0x00ed:
+            r2 = com.crashlytics.android.core.ReportUploader.RETRY_INTERVALS;
+            r3 = r1 + 1;
+            r4 = com.crashlytics.android.core.ReportUploader.RETRY_INTERVALS;
+            r4 = r4.length;
+            r4 = r4 + -1;
+            r1 = java.lang.Math.min(r1, r4);
+            r1 = r2[r1];
+            r1 = (long) r1;
+            r4 = io.fabric.sdk.android.Fabric.getLogger();
+            r5 = "CrashlyticsCore";
+            r6 = new java.lang.StringBuilder;
+            r6.&lt;init&gt;();
+            r7 = "Report submisson: scheduling delayed retry in ";
+            r6.append(r7);
+            r6.append(r1);
+            r7 = " seconds";
+            r6.append(r7);
+            r6 = r6.toString();
+            r4.d(r5, r6);
+            r4 = 1000; // 0x3e8 float:1.401E-42 double:4.94E-321;
+            r1 = r1 * r4;
+            java.lang.Thread.sleep(r1);	 Catch:{ InterruptedException -&gt; 0x012a }
+            r1 = r3;
+            goto L_0x0095;
+        L_0x012a:
+            r0 = java.lang.Thread.currentThread();
+            r0.interrupt();
+            return;
+        L_0x0132:
+            return;
+            */
+            throw new UnsupportedOperationException("Method not decompiled: com.crashlytics.android.core.ReportUploader.Worker.attemptUploadWithRetry():void");
+        }
+    }
+
+    public ReportUploader(String str, CreateReportSpiCall createReportSpiCall, ReportFilesProvider reportFilesProvider, HandlingExceptionCheck handlingExceptionCheck) {
+        if (createReportSpiCall != null) {
+            this.createReportCall = createReportSpiCall;
+            this.apiKey = str;
+            this.reportFilesProvider = reportFilesProvider;
+            this.handlingExceptionCheck = handlingExceptionCheck;
+            return;
+        }
+        throw new IllegalArgumentException("createReportCall must not be null.");
+    }
+
+    public synchronized void uploadReports(float f, SendCheck sendCheck) {
+        if (this.uploadThread != null) {
+            Fabric.getLogger().d(CrashlyticsCore.TAG, "Report upload has already been started.");
+            return;
+        }
+        this.uploadThread = new Thread(new Worker(f, sendCheck), "Crashlytics Report Uploader");
+        this.uploadThread.start();
+    }
+
+    boolean isUploading() {
+        return this.uploadThread != null;
+    }
+
+    boolean forceUpload(Report report) {
+        boolean z;
+        synchronized (this.fileAccessLock) {
+            z = false;
+            try {
+                boolean invoke = this.createReportCall.invoke(new CreateReportRequest(this.apiKey, report));
+                Logger logger = Fabric.getLogger();
+                String str = CrashlyticsCore.TAG;
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("Crashlytics report upload ");
+                stringBuilder.append(invoke ? "complete: " : "FAILED: ");
+                stringBuilder.append(report.getIdentifier());
+                logger.i(str, stringBuilder.toString());
+                if (invoke) {
+                    report.remove();
+                    z = true;
+                }
+            } catch (Throwable e) {
+                logger = Fabric.getLogger();
+                str = CrashlyticsCore.TAG;
+                stringBuilder = new StringBuilder();
+                stringBuilder.append("Error occurred sending report ");
+                stringBuilder.append(report);
+                logger.e(str, stringBuilder.toString(), e);
+            }
+        }
+        return z;
+    }
+
+    List&lt;Report&gt; findReports() {
+        Fabric.getLogger().d(CrashlyticsCore.TAG, "Checking for crash reports...");
+        synchronized (this.fileAccessLock) {
+            File[] completeSessionFiles = this.reportFilesProvider.getCompleteSessionFiles();
+            File[] invalidSessionFiles = this.reportFilesProvider.getInvalidSessionFiles();
+            File[] nativeReportFiles = this.reportFilesProvider.getNativeReportFiles();
+        }
+        List&lt;Report&gt; linkedList = new LinkedList();
+        if (completeSessionFiles != null) {
+            for (File file : completeSessionFiles) {
+                Logger logger = Fabric.getLogger();
+                String str = CrashlyticsCore.TAG;
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("Found crash report ");
+                stringBuilder.append(file.getPath());
+                logger.d(str, stringBuilder.toString());
+                linkedList.add(new SessionReport(file));
+            }
+        }
+        Map hashMap = new HashMap();
+        if (invalidSessionFiles != null) {
+            for (File file2 : invalidSessionFiles) {
+                String sessionIdFromSessionFile = CrashlyticsController.getSessionIdFromSessionFile(file2);
+                if (!hashMap.containsKey(sessionIdFromSessionFile)) {
+                    hashMap.put(sessionIdFromSessionFile, new LinkedList());
+                }
+                ((List) hashMap.get(sessionIdFromSessionFile)).add(file2);
+            }
+        }
+        for (String str2 : hashMap.keySet()) {
+            Logger logger2 = Fabric.getLogger();
+            String str3 = CrashlyticsCore.TAG;
+            StringBuilder stringBuilder2 = new StringBuilder();
+            stringBuilder2.append("Found invalid session: ");
+            stringBuilder2.append(str2);
+            logger2.d(str3, stringBuilder2.toString());
+            List list = (List) hashMap.get(str2);
+            linkedList.add(new InvalidSessionReport(str2, (File[]) list.toArray(new File[list.size()])));
+        }
+        if (nativeReportFiles != null) {
+            for (File nativeSessionReport : nativeReportFiles) {
+                linkedList.add(new NativeSessionReport(nativeSessionReport));
+            }
+        }
+        if (linkedList.isEmpty()) {
+            Fabric.getLogger().d(CrashlyticsCore.TAG, "No reports found.");
+        }
+        return linkedList;
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:5 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

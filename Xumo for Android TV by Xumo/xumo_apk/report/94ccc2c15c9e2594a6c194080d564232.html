@@ -1,0 +1,221 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/res/values-be/strings.xml" target="_blank">/xumo_apk/jadx_source_code/res/values-be/strings.xml</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="strings.xml" data-line="" class="code line-numbers"><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;resources&gt;
+    &lt;string name="abc_action_bar_home_description"&gt;Перайсці на галоўную старонку&lt;/string&gt;
+    &lt;string name="abc_action_bar_up_description"&gt;Перайсці ўверх&lt;/string&gt;
+    &lt;string name="abc_action_menu_overflow_description"&gt;Дадатковыя параметры&lt;/string&gt;
+    &lt;string name="abc_action_mode_done"&gt;Гатова&lt;/string&gt;
+    &lt;string name="abc_activity_chooser_view_see_all"&gt;Прагледзець усё&lt;/string&gt;
+    &lt;string name="abc_activitychooserview_choose_application"&gt;Выбраць праграму&lt;/string&gt;
+    &lt;string name="abc_capital_off"&gt;ВЫКЛ.&lt;/string&gt;
+    &lt;string name="abc_capital_on"&gt;УКЛ.&lt;/string&gt;
+    &lt;string name="abc_menu_alt_shortcut_label"&gt;Alt +&lt;/string&gt;
+    &lt;string name="abc_menu_ctrl_shortcut_label"&gt;Ctrl +&lt;/string&gt;
+    &lt;string name="abc_menu_delete_shortcut_label"&gt;Delete&lt;/string&gt;
+    &lt;string name="abc_menu_enter_shortcut_label"&gt;Enter&lt;/string&gt;
+    &lt;string name="abc_menu_function_shortcut_label"&gt;Fn +&lt;/string&gt;
+    &lt;string name="abc_menu_meta_shortcut_label"&gt;Meta +&lt;/string&gt;
+    &lt;string name="abc_menu_shift_shortcut_label"&gt;Shift +&lt;/string&gt;
+    &lt;string name="abc_menu_space_shortcut_label"&gt;Прабел&lt;/string&gt;
+    &lt;string name="abc_menu_sym_shortcut_label"&gt;Sym +&lt;/string&gt;
+    &lt;string name="abc_prepend_shortcut_label"&gt;Меню +&lt;/string&gt;
+    &lt;string name="abc_search_hint"&gt;Пошук...&lt;/string&gt;
+    &lt;string name="abc_searchview_description_clear"&gt;Выдалiць запыт&lt;/string&gt;
+    &lt;string name="abc_searchview_description_query"&gt;Запыт на пошук&lt;/string&gt;
+    &lt;string name="abc_searchview_description_search"&gt;Пошук&lt;/string&gt;
+    &lt;string name="abc_searchview_description_submit"&gt;Адправіць запыт&lt;/string&gt;
+    &lt;string name="abc_searchview_description_voice"&gt;Галасавы пошук&lt;/string&gt;
+    &lt;string name="abc_shareactionprovider_share_with"&gt;Абагуліць з&lt;/string&gt;
+    &lt;string name="abc_shareactionprovider_share_with_application"&gt;Абагуліць праз праграму %s&lt;/string&gt;
+    &lt;string name="abc_toolbar_collapse_description"&gt;Згарнуць&lt;/string&gt;
+    &lt;string name="cast_ad_label"&gt;Рэклама&lt;/string&gt;
+    &lt;string name="cast_casting_to_device"&gt;Трансляцыя на %1$s&lt;/string&gt;
+    &lt;string name="cast_closed_captions"&gt;Схаваныя цітры&lt;/string&gt;
+    &lt;string name="cast_closed_captions_unavailable"&gt;Схаваныя цітры недаступныя&lt;/string&gt;
+    &lt;string name="cast_connecting_to_device"&gt;Падключэнне да прылады %1$s&lt;/string&gt;
+    &lt;string name="cast_disconnect"&gt;Адключыць&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_ad_image_description"&gt;Відарыс, які адлюстроўваецца ў той час, калі на прыёмніку Cast прайграецца рэклама&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_ad_in_progress"&gt;Паказваецца рэклама…&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_background_image"&gt;Вокладка альбома&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_live_stream_indicator"&gt;Жывая трансляцыя&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_loading"&gt;Загрузка…&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_skip_ad_label"&gt;Прапусціць рэкламу&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_skip_ad_text"&gt;Рэкламу можна прапусціць праз %1$d…&lt;/string&gt;
+    &lt;string name="cast_forward"&gt;Наперад&lt;/string&gt;
+    &lt;string name="cast_forward_10"&gt;Дзесяць секунд наперад&lt;/string&gt;
+    &lt;string name="cast_forward_30"&gt;Трыццаць секунд наперад&lt;/string&gt;
+    &lt;string name="cast_intro_overlay_button_text"&gt;@android:string/ok&lt;/string&gt;
+    &lt;string name="cast_mute"&gt;Адключыць гук&lt;/string&gt;
+    &lt;string name="cast_notification_connected_message"&gt;Падключэнне да %1$s выканана&lt;/string&gt;
+    &lt;string name="cast_notification_connecting_message"&gt;Падключэнне да %1$s&lt;/string&gt;
+    &lt;string name="cast_notification_default_channel_name"&gt;Cast&lt;/string&gt;
+    &lt;string name="cast_notification_disconnect"&gt;Адключыць&lt;/string&gt;
+    &lt;string name="cast_pause"&gt;Паўза&lt;/string&gt;
+    &lt;string name="cast_play"&gt;Прайграць&lt;/string&gt;
+    &lt;string name="cast_rewind"&gt;Перамотка назад&lt;/string&gt;
+    &lt;string name="cast_rewind_10"&gt;Перамотка на дзесяць секунд назад&lt;/string&gt;
+    &lt;string name="cast_rewind_30"&gt;Перамотка на трыццаць секунд назад&lt;/string&gt;
+    &lt;string name="cast_seek_bar"&gt;Элемент прайгравання&lt;/string&gt;
+    &lt;string name="cast_skip_next"&gt;Пераход да наступнага элемента&lt;/string&gt;
+    &lt;string name="cast_skip_prev"&gt;Пераход да папярэдняга элемента&lt;/string&gt;
+    &lt;string name="cast_stop"&gt;Спыніць&lt;/string&gt;
+    &lt;string name="cast_stop_live_stream"&gt;Спыніць перадачу плынню ў рэальным часе&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_audio"&gt;Аўдыя&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_cancel"&gt;Скасаваць&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_closed_captions"&gt;Схаваныя цітры&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_default_track_name"&gt;Трэк %1$d&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_none"&gt;Няма&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_ok"&gt;ОК&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_subtitles"&gt;Субцітры&lt;/string&gt;
+    &lt;string name="cast_unmute"&gt;Уключыць гук&lt;/string&gt;
+    &lt;string name="common_google_play_services_enable_button"&gt;Уключыць&lt;/string&gt;
+    &lt;string name="common_google_play_services_enable_text"&gt;%1$s не будзе працаваць, пакуль вы не ўключыце службы Google Play.&lt;/string&gt;
+    &lt;string name="common_google_play_services_enable_title"&gt;Уключыць службы Google Play&lt;/string&gt;
+    &lt;string name="common_google_play_services_install_button"&gt;Усталяваць&lt;/string&gt;
+    &lt;string name="common_google_play_services_install_text"&gt;%1$s не будзе працаваць без службаў Google Play, якія адсутнічаюць на вашай прыладзе.&lt;/string&gt;
+    &lt;string name="common_google_play_services_install_title"&gt;Атрымаць службы Google Play&lt;/string&gt;
+    &lt;string name="common_google_play_services_notification_channel_name"&gt;Даступнасць сэрвісаў Google Play&lt;/string&gt;
+    &lt;string name="common_google_play_services_notification_ticker"&gt;Памылка службаў Google Play&lt;/string&gt;
+    &lt;string name="common_google_play_services_unknown_issue"&gt;У праграмы %1$s узніклі праблемы са службамі Google Play. Паўтарыце спробу.&lt;/string&gt;
+    &lt;string name="common_google_play_services_unsupported_text"&gt;%1$s не будзе працаваць без службаў Google Play, якія не падтрымліваюцца вашай прыладай.&lt;/string&gt;
+    &lt;string name="common_google_play_services_update_button"&gt;Абнавіць&lt;/string&gt;
+    &lt;string name="common_google_play_services_update_text"&gt;%1$s не будзе працаваць, пакуль вы не абновіце службы Google Play.&lt;/string&gt;
+    &lt;string name="common_google_play_services_update_title"&gt;Абнаўленне службаў Google Play&lt;/string&gt;
+    &lt;string name="common_google_play_services_updating_text"&gt;%1$s не будзе працаваць без службаў Google Play, якія ў цяперашні час абнаўляюцца.&lt;/string&gt;
+    &lt;string name="common_google_play_services_wear_update_text"&gt;Патрабуецца новая версія служб Google Play. Яна абновіцца аўтаматычна ў бліжэйшы час.&lt;/string&gt;
+    &lt;string name="common_open_on_phone"&gt;Адкрыць на тэлефоне&lt;/string&gt;
+    &lt;string name="common_signin_button_text"&gt;Увайсцi&lt;/string&gt;
+    &lt;string name="common_signin_button_text_long"&gt;Увайсці праз Google&lt;/string&gt;
+    &lt;string name="exo_controls_fastforward_description"&gt;Пераматаць уперад&lt;/string&gt;
+    &lt;string name="exo_controls_fullscreen_description"&gt;Поўнаэкранны рэжым&lt;/string&gt;
+    &lt;string name="exo_controls_next_description"&gt;Наступны трэк&lt;/string&gt;
+    &lt;string name="exo_controls_pause_description"&gt;Паўза&lt;/string&gt;
+    &lt;string name="exo_controls_play_description"&gt;Гуляць&lt;/string&gt;
+    &lt;string name="exo_controls_previous_description"&gt;Папярэдні трэк&lt;/string&gt;
+    &lt;string name="exo_controls_repeat_all_description"&gt;Паўтарыць усе&lt;/string&gt;
+    &lt;string name="exo_controls_repeat_off_description"&gt;Не паўтараць нічога&lt;/string&gt;
+    &lt;string name="exo_controls_repeat_one_description"&gt;Паўтарыць адзін элемент&lt;/string&gt;
+    &lt;string name="exo_controls_rewind_description"&gt;Пераматаць назад&lt;/string&gt;
+    &lt;string name="exo_controls_shuffle_description"&gt;Перамяшаць&lt;/string&gt;
+    &lt;string name="exo_controls_stop_description"&gt;Спыніць&lt;/string&gt;
+    &lt;string name="exo_download_completed"&gt;Спампоўка завершана&lt;/string&gt;
+    &lt;string name="exo_download_description"&gt;Спампаваць&lt;/string&gt;
+    &lt;string name="exo_download_downloading"&gt;Спампоўваецца&lt;/string&gt;
+    &lt;string name="exo_download_failed"&gt;Збой спампоўкі&lt;/string&gt;
+    &lt;string name="exo_download_notification_channel_name"&gt;Спампоўкі&lt;/string&gt;
+    &lt;string name="exo_download_removing"&gt;Выдаленне спамповак&lt;/string&gt;
+    &lt;string name="exo_item_list"&gt;%1$s, %2$s&lt;/string&gt;
+    &lt;string name="exo_track_bitrate"&gt;%1$.2f Мбіт/с&lt;/string&gt;
+    &lt;string name="exo_track_mono"&gt;Мона&lt;/string&gt;
+    &lt;string name="exo_track_resolution"&gt;%1$d × %2$d&lt;/string&gt;
+    &lt;string name="exo_track_selection_auto"&gt;Аўтаматычна&lt;/string&gt;
+    &lt;string name="exo_track_selection_none"&gt;Няма&lt;/string&gt;
+    &lt;string name="exo_track_selection_title_audio"&gt;Аўдыя&lt;/string&gt;
+    &lt;string name="exo_track_selection_title_text"&gt;Тэкст&lt;/string&gt;
+    &lt;string name="exo_track_selection_title_video"&gt;Відэа&lt;/string&gt;
+    &lt;string name="exo_track_stereo"&gt;Стэрэа&lt;/string&gt;
+    &lt;string name="exo_track_surround"&gt;Аб\'ёмны гук&lt;/string&gt;
+    &lt;string name="exo_track_surround_5_point_1"&gt;Аб\'ёмны гук 5.1&lt;/string&gt;
+    &lt;string name="exo_track_surround_7_point_1"&gt;Аб\'ёмны гук 7.1&lt;/string&gt;
+    &lt;string name="exo_track_unknown"&gt;Невядома&lt;/string&gt;
+    &lt;string name="expand_button_title"&gt;Пашыраныя налады&lt;/string&gt;
+    &lt;string name="fcm_fallback_notification_channel_label"&gt;Рознае&lt;/string&gt;
+    &lt;string name="mr_button_content_description"&gt;Кнопка трансляцыі&lt;/string&gt;
+    &lt;string name="mr_cast_button_connected"&gt;Кнопка трансляцыі. Прылада злучана&lt;/string&gt;
+    &lt;string name="mr_cast_button_connecting"&gt;Кнопка трансляцыі. Прылада злучаецца&lt;/string&gt;
+    &lt;string name="mr_cast_button_disconnected"&gt;Кнопка трансляцыі. Прылада адлучана&lt;/string&gt;
+    &lt;string name="mr_chooser_searching"&gt;Пошук прылад&lt;/string&gt;
+    &lt;string name="mr_chooser_title"&gt;Трансліраваць на прыладу&lt;/string&gt;
+    &lt;string name="mr_controller_album_art"&gt;Вокладка альбома&lt;/string&gt;
+    &lt;string name="mr_controller_casting_screen"&gt;Трансліруецца змесціва экрана&lt;/string&gt;
+    &lt;string name="mr_controller_close_description"&gt;Закрыць&lt;/string&gt;
+    &lt;string name="mr_controller_collapse_group"&gt;Згарнуць&lt;/string&gt;
+    &lt;string name="mr_controller_disconnect"&gt;Адлучыць&lt;/string&gt;
+    &lt;string name="mr_controller_expand_group"&gt;Разгарнуць&lt;/string&gt;
+    &lt;string name="mr_controller_no_info_available"&gt;Інфармацыя адсутнічае&lt;/string&gt;
+    &lt;string name="mr_controller_no_media_selected"&gt;Мультымедыя не выбрана&lt;/string&gt;
+    &lt;string name="mr_controller_pause"&gt;Прыпыніць&lt;/string&gt;
+    &lt;string name="mr_controller_play"&gt;Прайграць&lt;/string&gt;
+    &lt;string name="mr_controller_stop"&gt;Спыніць&lt;/string&gt;
+    &lt;string name="mr_controller_stop_casting"&gt;Спыніць трансляцыю&lt;/string&gt;
+    &lt;string name="mr_controller_volume_slider"&gt;Рэгулятар гучнасці&lt;/string&gt;
+    &lt;string name="mr_system_route_name"&gt;Сістэма&lt;/string&gt;
+    &lt;string name="mr_user_route_category_name"&gt;Прылады&lt;/string&gt;
+    &lt;string name="search_menu_title"&gt;Пошук&lt;/string&gt;
+    &lt;string name="status_bar_notification_info_overflow"&gt;999+&lt;/string&gt;
+    &lt;string name="summary_collapsed_preference_list"&gt;%1$s, %2$s&lt;/string&gt;
+    &lt;string name="v7_preference_off"&gt;ВЫКЛ.&lt;/string&gt;
+    &lt;string name="v7_preference_on"&gt;УКЛ.&lt;/string&gt;
+&lt;/resources&gt;
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:2 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

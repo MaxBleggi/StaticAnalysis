@@ -1,0 +1,334 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/androidx/appcompat/view/menu/StandardMenuPopup.java" target="_blank">/xumo_apk/jadx_source_code/androidx/appcompat/view/menu/StandardMenuPopup.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="StandardMenuPopup.java" data-line="" class="code line-numbers"><code>package androidx.appcompat.view.menu;
+
+import android.content.Context;
+import android.os.Parcelable;
+import android.view.Gravity;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnAttachStateChangeListener;
+import android.view.View.OnKeyListener;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.view.ViewTreeObserver.OnGlobalLayoutListener;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.FrameLayout;
+import android.widget.ListView;
+import android.widget.PopupWindow.OnDismissListener;
+import android.widget.TextView;
+import androidx.appcompat.R;
+import androidx.appcompat.view.menu.MenuPresenter.Callback;
+import androidx.appcompat.widget.MenuPopupWindow;
+import androidx.core.view.ViewCompat;
+
+final class StandardMenuPopup extends MenuPopup implements OnDismissListener, OnItemClickListener, MenuPresenter, OnKeyListener {
+    private static final int ITEM_LAYOUT = R.layout.abc_popup_menu_item_layout;
+    private final MenuAdapter mAdapter;
+    private View mAnchorView;
+    private final OnAttachStateChangeListener mAttachStateChangeListener = new OnAttachStateChangeListener() {
+        public void onViewAttachedToWindow(View view) {
+        }
+
+        public void onViewDetachedFromWindow(View view) {
+            if (StandardMenuPopup.this.mTreeObserver != null) {
+                if (!StandardMenuPopup.this.mTreeObserver.isAlive()) {
+                    StandardMenuPopup.this.mTreeObserver = view.getViewTreeObserver();
+                }
+                StandardMenuPopup.this.mTreeObserver.removeGlobalOnLayoutListener(StandardMenuPopup.this.mGlobalLayoutListener);
+            }
+            view.removeOnAttachStateChangeListener(this);
+        }
+    };
+    private int mContentWidth;
+    private final Context mContext;
+    private int mDropDownGravity = 0;
+    final OnGlobalLayoutListener mGlobalLayoutListener = new OnGlobalLayoutListener() {
+        public void onGlobalLayout() {
+            if (StandardMenuPopup.this.isShowing() &amp;&amp; !StandardMenuPopup.this.mPopup.isModal()) {
+                View view = StandardMenuPopup.this.mShownAnchorView;
+                if (view != null) {
+                    if (view.isShown()) {
+                        StandardMenuPopup.this.mPopup.show();
+                        return;
+                    }
+                }
+                StandardMenuPopup.this.dismiss();
+            }
+        }
+    };
+    private boolean mHasContentWidth;
+    private final MenuBuilder mMenu;
+    private OnDismissListener mOnDismissListener;
+    private final boolean mOverflowOnly;
+    final MenuPopupWindow mPopup;
+    private final int mPopupMaxWidth;
+    private final int mPopupStyleAttr;
+    private final int mPopupStyleRes;
+    private Callback mPresenterCallback;
+    private boolean mShowTitle;
+    View mShownAnchorView;
+    ViewTreeObserver mTreeObserver;
+    private boolean mWasDismissed;
+
+    public void addMenu(MenuBuilder menuBuilder) {
+    }
+
+    public boolean flagActionItems() {
+        return false;
+    }
+
+    public void onRestoreInstanceState(Parcelable parcelable) {
+    }
+
+    public Parcelable onSaveInstanceState() {
+        return null;
+    }
+
+    public StandardMenuPopup(Context context, MenuBuilder menuBuilder, View view, int i, int i2, boolean z) {
+        this.mContext = context;
+        this.mMenu = menuBuilder;
+        this.mOverflowOnly = z;
+        this.mAdapter = new MenuAdapter(menuBuilder, LayoutInflater.from(context), this.mOverflowOnly, ITEM_LAYOUT);
+        this.mPopupStyleAttr = i;
+        this.mPopupStyleRes = i2;
+        i = context.getResources();
+        this.mPopupMaxWidth = Math.max(i.getDisplayMetrics().widthPixels / 2, i.getDimensionPixelSize(R.dimen.abc_config_prefDialogWidth));
+        this.mAnchorView = view;
+        this.mPopup = new MenuPopupWindow(this.mContext, null, this.mPopupStyleAttr, this.mPopupStyleRes);
+        menuBuilder.addMenuPresenter(this, context);
+    }
+
+    public void setForceShowIcon(boolean z) {
+        this.mAdapter.setForceShowIcon(z);
+    }
+
+    public void setGravity(int i) {
+        this.mDropDownGravity = i;
+    }
+
+    private boolean tryShow() {
+        if (isShowing()) {
+            return true;
+        }
+        if (!this.mWasDismissed) {
+            if (this.mAnchorView != null) {
+                this.mShownAnchorView = this.mAnchorView;
+                this.mPopup.setOnDismissListener(this);
+                this.mPopup.setOnItemClickListener(this);
+                this.mPopup.setModal(true);
+                View view = this.mShownAnchorView;
+                Object obj = this.mTreeObserver == null ? 1 : null;
+                this.mTreeObserver = view.getViewTreeObserver();
+                if (obj != null) {
+                    this.mTreeObserver.addOnGlobalLayoutListener(this.mGlobalLayoutListener);
+                }
+                view.addOnAttachStateChangeListener(this.mAttachStateChangeListener);
+                this.mPopup.setAnchorView(view);
+                this.mPopup.setDropDownGravity(this.mDropDownGravity);
+                if (!this.mHasContentWidth) {
+                    this.mContentWidth = MenuPopup.measureIndividualMenuWidth(this.mAdapter, null, this.mContext, this.mPopupMaxWidth);
+                    this.mHasContentWidth = true;
+                }
+                this.mPopup.setContentWidth(this.mContentWidth);
+                this.mPopup.setInputMethodMode(2);
+                this.mPopup.setEpicenterBounds(getEpicenterBounds());
+                this.mPopup.show();
+                ViewGroup listView = this.mPopup.getListView();
+                listView.setOnKeyListener(this);
+                if (this.mShowTitle &amp;&amp; this.mMenu.getHeaderTitle() != null) {
+                    FrameLayout frameLayout = (FrameLayout) LayoutInflater.from(this.mContext).inflate(R.layout.abc_popup_menu_header_item_layout, listView, false);
+                    TextView textView = (TextView) frameLayout.findViewById(16908310);
+                    if (textView != null) {
+                        textView.setText(this.mMenu.getHeaderTitle());
+                    }
+                    frameLayout.setEnabled(false);
+                    listView.addHeaderView(frameLayout, null, false);
+                }
+                this.mPopup.setAdapter(this.mAdapter);
+                this.mPopup.show();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void show() {
+        if (!tryShow()) {
+            throw new IllegalStateException("StandardMenuPopup cannot be used without an anchor");
+        }
+    }
+
+    public void dismiss() {
+        if (isShowing()) {
+            this.mPopup.dismiss();
+        }
+    }
+
+    public boolean isShowing() {
+        return !this.mWasDismissed &amp;&amp; this.mPopup.isShowing();
+    }
+
+    public void onDismiss() {
+        this.mWasDismissed = true;
+        this.mMenu.close();
+        if (this.mTreeObserver != null) {
+            if (!this.mTreeObserver.isAlive()) {
+                this.mTreeObserver = this.mShownAnchorView.getViewTreeObserver();
+            }
+            this.mTreeObserver.removeGlobalOnLayoutListener(this.mGlobalLayoutListener);
+            this.mTreeObserver = null;
+        }
+        this.mShownAnchorView.removeOnAttachStateChangeListener(this.mAttachStateChangeListener);
+        if (this.mOnDismissListener != null) {
+            this.mOnDismissListener.onDismiss();
+        }
+    }
+
+    public void updateMenuView(boolean z) {
+        this.mHasContentWidth = false;
+        if (this.mAdapter) {
+            this.mAdapter.notifyDataSetChanged();
+        }
+    }
+
+    public void setCallback(Callback callback) {
+        this.mPresenterCallback = callback;
+    }
+
+    public boolean onSubMenuSelected(SubMenuBuilder subMenuBuilder) {
+        if (subMenuBuilder.hasVisibleItems()) {
+            MenuPopupHelper menuPopupHelper = new MenuPopupHelper(this.mContext, subMenuBuilder, this.mShownAnchorView, this.mOverflowOnly, this.mPopupStyleAttr, this.mPopupStyleRes);
+            menuPopupHelper.setPresenterCallback(this.mPresenterCallback);
+            menuPopupHelper.setForceShowIcon(MenuPopup.shouldPreserveIconSpacing(subMenuBuilder));
+            menuPopupHelper.setOnDismissListener(this.mOnDismissListener);
+            this.mOnDismissListener = null;
+            this.mMenu.close(false);
+            int horizontalOffset = this.mPopup.getHorizontalOffset();
+            int verticalOffset = this.mPopup.getVerticalOffset();
+            if ((Gravity.getAbsoluteGravity(this.mDropDownGravity, ViewCompat.getLayoutDirection(this.mAnchorView)) &amp; 7) == 5) {
+                horizontalOffset += this.mAnchorView.getWidth();
+            }
+            if (menuPopupHelper.tryShow(horizontalOffset, verticalOffset)) {
+                if (this.mPresenterCallback != null) {
+                    this.mPresenterCallback.onOpenSubMenu(subMenuBuilder);
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void onCloseMenu(MenuBuilder menuBuilder, boolean z) {
+        if (menuBuilder == this.mMenu) {
+            dismiss();
+            if (this.mPresenterCallback != null) {
+                this.mPresenterCallback.onCloseMenu(menuBuilder, z);
+            }
+        }
+    }
+
+    public void setAnchorView(View view) {
+        this.mAnchorView = view;
+    }
+
+    public boolean onKey(View view, int i, KeyEvent keyEvent) {
+        if (keyEvent.getAction() != 1 || i != 82) {
+            return null;
+        }
+        dismiss();
+        return true;
+    }
+
+    public void setOnDismissListener(OnDismissListener onDismissListener) {
+        this.mOnDismissListener = onDismissListener;
+    }
+
+    public ListView getListView() {
+        return this.mPopup.getListView();
+    }
+
+    public void setHorizontalOffset(int i) {
+        this.mPopup.setHorizontalOffset(i);
+    }
+
+    public void setVerticalOffset(int i) {
+        this.mPopup.setVerticalOffset(i);
+    }
+
+    public void setShowTitle(boolean z) {
+        this.mShowTitle = z;
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:4 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

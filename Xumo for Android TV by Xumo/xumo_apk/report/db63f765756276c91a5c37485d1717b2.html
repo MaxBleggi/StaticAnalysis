@@ -1,0 +1,237 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/gms/common/util/DeviceProperties.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/gms/common/util/DeviceProperties.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="DeviceProperties.java" data-line="" class="code line-numbers"><code>package com.google.android.gms.common.util;
+
+import android.annotation.TargetApi;
+import android.content.Context;
+import android.os.Build;
+import com.google.android.gms.common.annotation.KeepForSdk;
+
+@KeepForSdk
+public final class DeviceProperties {
+    private static Boolean zzgl;
+    private static Boolean zzgm;
+    private static Boolean zzgn;
+    private static Boolean zzgo;
+    private static Boolean zzgp;
+    private static Boolean zzgq;
+    private static Boolean zzgr;
+    private static Boolean zzgs;
+
+    private DeviceProperties() {
+    }
+
+    /* JADX WARNING: inconsistent code. */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    @com.google.android.gms.common.annotation.KeepForSdk
+    public static boolean isTablet(android.content.res.Resources r4) {
+        /*
+        r0 = 0;
+        if (r4 != 0) goto L_0x0004;
+    L_0x0003:
+        return r0;
+    L_0x0004:
+        r1 = zzgl;
+        if (r1 != 0) goto L_0x0045;
+    L_0x0008:
+        r1 = r4.getConfiguration();
+        r1 = r1.screenLayout;
+        r1 = r1 &amp; 15;
+        r2 = 3;
+        r3 = 1;
+        if (r1 &lt;= r2) goto L_0x0016;
+    L_0x0014:
+        r1 = 1;
+        goto L_0x0017;
+    L_0x0016:
+        r1 = 0;
+    L_0x0017:
+        if (r1 != 0) goto L_0x003e;
+    L_0x0019:
+        r1 = zzgm;
+        if (r1 != 0) goto L_0x0036;
+    L_0x001d:
+        r4 = r4.getConfiguration();
+        r1 = r4.screenLayout;
+        r1 = r1 &amp; 15;
+        if (r1 &gt; r2) goto L_0x002f;
+    L_0x0027:
+        r4 = r4.smallestScreenWidthDp;
+        r1 = 600; // 0x258 float:8.41E-43 double:2.964E-321;
+        if (r4 &lt; r1) goto L_0x002f;
+    L_0x002d:
+        r4 = 1;
+        goto L_0x0030;
+    L_0x002f:
+        r4 = 0;
+    L_0x0030:
+        r4 = java.lang.Boolean.valueOf(r4);
+        zzgm = r4;
+    L_0x0036:
+        r4 = zzgm;
+        r4 = r4.booleanValue();
+        if (r4 == 0) goto L_0x003f;
+    L_0x003e:
+        r0 = 1;
+    L_0x003f:
+        r4 = java.lang.Boolean.valueOf(r0);
+        zzgl = r4;
+    L_0x0045:
+        r4 = zzgl;
+        r4 = r4.booleanValue();
+        return r4;
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.google.android.gms.common.util.DeviceProperties.isTablet(android.content.res.Resources):boolean");
+    }
+
+    @TargetApi(20)
+    @KeepForSdk
+    public static boolean isWearable(Context context) {
+        if (zzgn == null) {
+            context = (!PlatformVersion.isAtLeastKitKatWatch() || context.getPackageManager().hasSystemFeature("android.hardware.type.watch") == null) ? null : true;
+            zzgn = Boolean.valueOf(context);
+        }
+        return zzgn.booleanValue();
+    }
+
+    @TargetApi(26)
+    @KeepForSdk
+    public static boolean isWearableWithoutPlayStore(Context context) {
+        return (!isWearable(context) || (PlatformVersion.isAtLeastN() &amp;&amp; (isSidewinder(context) == null || PlatformVersion.isAtLeastO() != null))) ? null : true;
+    }
+
+    @TargetApi(21)
+    @KeepForSdk
+    public static boolean isSidewinder(Context context) {
+        if (zzgo == null) {
+            context = (!PlatformVersion.isAtLeastLollipop() || context.getPackageManager().hasSystemFeature("cn.google") == null) ? null : true;
+            zzgo = Boolean.valueOf(context);
+        }
+        return zzgo.booleanValue();
+    }
+
+    @KeepForSdk
+    public static boolean isLatchsky(Context context) {
+        if (zzgp == null) {
+            context = context.getPackageManager();
+            context = (!context.hasSystemFeature("com.google.android.feature.services_updater") || context.hasSystemFeature("cn.google.services") == null) ? null : true;
+            zzgp = Boolean.valueOf(context);
+        }
+        return zzgp.booleanValue();
+    }
+
+    public static boolean zzf(Context context) {
+        if (zzgq == null) {
+            if (!context.getPackageManager().hasSystemFeature("android.hardware.type.iot")) {
+                if (context.getPackageManager().hasSystemFeature("android.hardware.type.embedded") == null) {
+                    context = null;
+                    zzgq = Boolean.valueOf(context);
+                }
+            }
+            context = true;
+            zzgq = Boolean.valueOf(context);
+        }
+        return zzgq.booleanValue();
+    }
+
+    @KeepForSdk
+    public static boolean isAuto(Context context) {
+        if (zzgr == null) {
+            context = (!PlatformVersion.isAtLeastO() || context.getPackageManager().hasSystemFeature("android.hardware.type.automotive") == null) ? null : true;
+            zzgr = Boolean.valueOf(context);
+        }
+        return zzgr.booleanValue();
+    }
+
+    @KeepForSdk
+    public static boolean isTv(Context context) {
+        if (zzgs == null) {
+            context = context.getPackageManager();
+            if (!(context.hasSystemFeature("com.google.android.tv") || context.hasSystemFeature("android.hardware.type.television"))) {
+                if (context.hasSystemFeature("android.software.leanback") == null) {
+                    context = null;
+                    zzgs = Boolean.valueOf(context);
+                }
+            }
+            context = true;
+            zzgs = Boolean.valueOf(context);
+        }
+        return zzgs.booleanValue();
+    }
+
+    @KeepForSdk
+    public static boolean isUserBuild() {
+        return "user".equals(Build.TYPE);
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:12 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

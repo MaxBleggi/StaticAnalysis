@@ -1,0 +1,135 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9"><div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/io/fabric/sdk/android/services/settings/AppRequestData.java" target="_blank">/xumo_apk/jadx_source_code/io/fabric/sdk/android/services/settings/AppRequestData.java</a></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-50">report</i><h5>(private|secret|api|aws)[_-]?key</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>Sensitive parameters which can contain hardcoded credentials. The score is quite low because this query is often a false-positive.</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#AppRequestData_java7priv" class="active">line 7</a></li><li class="tab"><a style="color: #d82c2b;" href="#AppRequestData_java20priv">line 20</a></li></ul></div><div class="card-content"><div id="AppRequestData_java7priv">Code @ line 7<pre data-start="4" data-line="7" data-src="AppRequestData.java" class="code line-numbers"><code>import java.util.Collection;
+
+public class AppRequestData {
+    public final String apiKey;
+    public final String appId;
+    public final String buildVersion;
+    public final String builtSdkVersion;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2lvL2ZhYnJpYy9zZGsvYW5kcm9pZC9zZXJ2aWNlcy9zZXR0aW5ncy9BcHBSZXF1ZXN0RGF0YS5qYXZhfHx8bGluZTogNyA6IChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8NTB8fHwocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDd8fHw0">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2lvL2ZhYnJpYy9zZGsvYW5kcm9pZC9zZXJ2aWNlcy9zZXR0aW5ncy9BcHBSZXF1ZXN0RGF0YS5qYXZhfHx8bGluZTogNyA6IChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8NTB8fHwocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDd8fHw0')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2lvL2ZhYnJpYy9zZGsvYW5kcm9pZC9zZXJ2aWNlcy9zZXR0aW5ncy9BcHBSZXF1ZXN0RGF0YS5qYXZhfHx8bGluZTogNyA6IChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8NTB8fHwocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDd8fHw0').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2lvL2ZhYnJpYy9zZGsvYW5kcm9pZC9zZXJ2aWNlcy9zZXR0aW5ncy9BcHBSZXF1ZXN0RGF0YS5qYXZhfHx8bGluZTogNyA6IChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8NTB8fHwocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDd8fHw0" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2lvL2ZhYnJpYy9zZGsvYW5kcm9pZC9zZXJ2aWNlcy9zZXR0aW5ncy9BcHBSZXF1ZXN0RGF0YS5qYXZhfHx8bGluZTogNyA6IChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8NTB8fHwocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDd8fHw0' , 'aW1wb3J0IGphdmEudXRpbC5Db2xsZWN0aW9uOwoKcHVibGljIGNsYXNzIEFwcFJlcXVlc3REYXRhIHsKICAgIHB1YmxpYyBmaW5hbCBTdHJpbmcgYXBpS2V5OwogICAgcHVibGljIGZpbmFsIFN0cmluZyBhcHBJZDsKICAgIHB1YmxpYyBmaW5hbCBTdHJpbmcgYnVpbGRWZXJzaW9uOwogICAgcHVibGljIGZpbmFsIFN0cmluZyBidWlsdFNka1ZlcnNpb247Cg==');  
+                                            });
+                                            </script>
+                                            </div><div id="AppRequestData_java20priv">Code @ line 20<pre data-start="17" data-line="20" data-src="AppRequestData.java" class="code line-numbers"><code>    public final int source;
+
+    public AppRequestData(String str, String str2, String str3, String str4, String str5, String str6, int i, String str7, String str8, IconRequest iconRequest, Collection&lt;KitInfo&gt; collection) {
+        this.apiKey = str;
+        this.appId = str2;
+        this.displayVersion = str3;
+        this.buildVersion = str4;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2lvL2ZhYnJpYy9zZGsvYW5kcm9pZC9zZXJ2aWNlcy9zZXR0aW5ncy9BcHBSZXF1ZXN0RGF0YS5qYXZhfHx8bGluZTogMjAgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwyMHx8fDE3">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2lvL2ZhYnJpYy9zZGsvYW5kcm9pZC9zZXJ2aWNlcy9zZXR0aW5ncy9BcHBSZXF1ZXN0RGF0YS5qYXZhfHx8bGluZTogMjAgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwyMHx8fDE3')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2lvL2ZhYnJpYy9zZGsvYW5kcm9pZC9zZXJ2aWNlcy9zZXR0aW5ncy9BcHBSZXF1ZXN0RGF0YS5qYXZhfHx8bGluZTogMjAgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwyMHx8fDE3').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2lvL2ZhYnJpYy9zZGsvYW5kcm9pZC9zZXJ2aWNlcy9zZXR0aW5ncy9BcHBSZXF1ZXN0RGF0YS5qYXZhfHx8bGluZTogMjAgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwyMHx8fDE3" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2lvL2ZhYnJpYy9zZGsvYW5kcm9pZC9zZXJ2aWNlcy9zZXR0aW5ncy9BcHBSZXF1ZXN0RGF0YS5qYXZhfHx8bGluZTogMjAgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwyMHx8fDE3' , 'ICAgIHB1YmxpYyBmaW5hbCBpbnQgc291cmNlOwoKICAgIHB1YmxpYyBBcHBSZXF1ZXN0RGF0YShTdHJpbmcgc3RyLCBTdHJpbmcgc3RyMiwgU3RyaW5nIHN0cjMsIFN0cmluZyBzdHI0LCBTdHJpbmcgc3RyNSwgU3RyaW5nIHN0cjYsIGludCBpLCBTdHJpbmcgc3RyNywgU3RyaW5nIHN0cjgsIEljb25SZXF1ZXN0IGljb25SZXF1ZXN0LCBDb2xsZWN0aW9uPEtpdEluZm8+IGNvbGxlY3Rpb24pIHsKICAgICAgICB0aGlzLmFwaUtleSA9IHN0cjsKICAgICAgICB0aGlzLmFwcElkID0gc3RyMjsKICAgICAgICB0aGlzLmRpc3BsYXlWZXJzaW9uID0gc3RyMzsKICAgICAgICB0aGlzLmJ1aWxkVmVyc2lvbiA9IHN0cjQ7Cg==');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-83">report</i><h5>password =|secret =|username =|key =</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>the app contain hardcoded sensitive informations like usernames, passwords, keys etc: Hard coded sensitive information in Application Code (including Crypto)</span></div></li></ul><ul class="collapsible"><li><div class="collapsible-header"><img data-position="top" data-tooltip="OWASP item" src="html/owasp_logo.png" height="20em" style="margin-right: 1rem;margin-left: 5px;" class="tooltipped"></img> OWASP Item</div><div class="collapsible-body"><span>For more information, have a look at: https://www.owasp.org/index.php/OWASP_Mobile_Security_Testing_Guide</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#AppRequestData_java20pass" class="active">line 20</a></li></ul></div><div class="card-content"><div id="AppRequestData_java20pass">Code @ line 20<pre data-start="17" data-line="20" data-src="AppRequestData.java" class="code line-numbers"><code>    public final int source;
+
+    public AppRequestData(String str, String str2, String str3, String str4, String str5, String str6, int i, String str7, String str8, IconRequest iconRequest, Collection&lt;KitInfo&gt; collection) {
+        this.apiKey = str;
+        this.appId = str2;
+        this.displayVersion = str3;
+        this.buildVersion = str4;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2lvL2ZhYnJpYy9zZGsvYW5kcm9pZC9zZXJ2aWNlcy9zZXR0aW5ncy9BcHBSZXF1ZXN0RGF0YS5qYXZhfHx8bGluZTogMjAgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDIwfHx8MTc">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2lvL2ZhYnJpYy9zZGsvYW5kcm9pZC9zZXJ2aWNlcy9zZXR0aW5ncy9BcHBSZXF1ZXN0RGF0YS5qYXZhfHx8bGluZTogMjAgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDIwfHx8MTc')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2lvL2ZhYnJpYy9zZGsvYW5kcm9pZC9zZXJ2aWNlcy9zZXR0aW5ncy9BcHBSZXF1ZXN0RGF0YS5qYXZhfHx8bGluZTogMjAgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDIwfHx8MTc').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2lvL2ZhYnJpYy9zZGsvYW5kcm9pZC9zZXJ2aWNlcy9zZXR0aW5ncy9BcHBSZXF1ZXN0RGF0YS5qYXZhfHx8bGluZTogMjAgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDIwfHx8MTc" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2lvL2ZhYnJpYy9zZGsvYW5kcm9pZC9zZXJ2aWNlcy9zZXR0aW5ncy9BcHBSZXF1ZXN0RGF0YS5qYXZhfHx8bGluZTogMjAgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDIwfHx8MTc' , 'ICAgIHB1YmxpYyBmaW5hbCBpbnQgc291cmNlOwoKICAgIHB1YmxpYyBBcHBSZXF1ZXN0RGF0YShTdHJpbmcgc3RyLCBTdHJpbmcgc3RyMiwgU3RyaW5nIHN0cjMsIFN0cmluZyBzdHI0LCBTdHJpbmcgc3RyNSwgU3RyaW5nIHN0cjYsIGludCBpLCBTdHJpbmcgc3RyNywgU3RyaW5nIHN0cjgsIEljb25SZXF1ZXN0IGljb25SZXF1ZXN0LCBDb2xsZWN0aW9uPEtpdEluZm8+IGNvbGxlY3Rpb24pIHsKICAgICAgICB0aGlzLmFwaUtleSA9IHN0cjsKICAgICAgICB0aGlzLmFwcElkID0gc3RyMjsKICAgICAgICB0aGlzLmRpc3BsYXlWZXJzaW9uID0gc3RyMzsKICAgICAgICB0aGlzLmJ1aWxkVmVyc2lvbiA9IHN0cjQ7Cg==');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="AppRequestData.java" data-line="7,20,20," class="code line-numbers"><code>package io.fabric.sdk.android.services.settings;
+
+import io.fabric.sdk.android.KitInfo;
+import java.util.Collection;
+
+public class AppRequestData {
+    public final String apiKey;
+    public final String appId;
+    public final String buildVersion;
+    public final String builtSdkVersion;
+    public final String displayVersion;
+    public final IconRequest icon;
+    public final String instanceIdentifier;
+    public final String minSdkVersion;
+    public final String name;
+    public final Collection&lt;KitInfo&gt; sdkKits;
+    public final int source;
+
+    public AppRequestData(String str, String str2, String str3, String str4, String str5, String str6, int i, String str7, String str8, IconRequest iconRequest, Collection&lt;KitInfo&gt; collection) {
+        this.apiKey = str;
+        this.appId = str2;
+        this.displayVersion = str3;
+        this.buildVersion = str4;
+        this.instanceIdentifier = str5;
+        this.name = str6;
+        this.source = i;
+        this.minSdkVersion = str7;
+        this.builtSdkVersion = str8;
+        this.icon = iconRequest;
+        this.sdkKits = collection;
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:5 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

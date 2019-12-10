@@ -1,0 +1,250 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/androidx/appcompat/widget/TooltipCompatHandler.java" target="_blank">/xumo_apk/jadx_source_code/androidx/appcompat/widget/TooltipCompatHandler.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="TooltipCompatHandler.java" data-line="" class="code line-numbers"><code>package androidx.appcompat.widget;
+
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnAttachStateChangeListener;
+import android.view.View.OnHoverListener;
+import android.view.View.OnLongClickListener;
+import android.view.ViewConfiguration;
+import android.view.accessibility.AccessibilityManager;
+import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo.Scope;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.ViewConfigurationCompat;
+
+@RestrictTo({Scope.LIBRARY_GROUP})
+class TooltipCompatHandler implements OnLongClickListener, OnHoverListener, OnAttachStateChangeListener {
+    private static final long HOVER_HIDE_TIMEOUT_MS = 15000;
+    private static final long HOVER_HIDE_TIMEOUT_SHORT_MS = 3000;
+    private static final long LONG_CLICK_HIDE_TIMEOUT_MS = 2500;
+    private static final String TAG = "TooltipCompatHandler";
+    private static TooltipCompatHandler sActiveHandler;
+    private static TooltipCompatHandler sPendingHandler;
+    private final View mAnchor;
+    private int mAnchorX;
+    private int mAnchorY;
+    private boolean mFromTouch;
+    private final Runnable mHideRunnable = new Runnable() {
+        public void run() {
+            TooltipCompatHandler.this.hide();
+        }
+    };
+    private final int mHoverSlop;
+    private TooltipPopup mPopup;
+    private final Runnable mShowRunnable = new Runnable() {
+        public void run() {
+            TooltipCompatHandler.this.show(false);
+        }
+    };
+    private final CharSequence mTooltipText;
+
+    public void onViewAttachedToWindow(View view) {
+    }
+
+    public static void setTooltipText(View view, CharSequence charSequence) {
+        if (sPendingHandler != null &amp;&amp; sPendingHandler.mAnchor == view) {
+            setPendingHandler(null);
+        }
+        if (TextUtils.isEmpty(charSequence)) {
+            if (sActiveHandler != null &amp;&amp; sActiveHandler.mAnchor == view) {
+                sActiveHandler.hide();
+            }
+            view.setOnLongClickListener(null);
+            view.setLongClickable(null);
+            view.setOnHoverListener(null);
+            return;
+        }
+        TooltipCompatHandler tooltipCompatHandler = new TooltipCompatHandler(view, charSequence);
+    }
+
+    private TooltipCompatHandler(View view, CharSequence charSequence) {
+        this.mAnchor = view;
+        this.mTooltipText = charSequence;
+        this.mHoverSlop = ViewConfigurationCompat.getScaledHoverSlop(ViewConfiguration.get(this.mAnchor.getContext()));
+        clearAnchorPos();
+        this.mAnchor.setOnLongClickListener(this);
+        this.mAnchor.setOnHoverListener(this);
+    }
+
+    public boolean onLongClick(View view) {
+        this.mAnchorX = view.getWidth() / 2;
+        this.mAnchorY = view.getHeight() / 2;
+        show(true);
+        return true;
+    }
+
+    public boolean onHover(View view, MotionEvent motionEvent) {
+        if (this.mPopup != null &amp;&amp; this.mFromTouch != null) {
+            return false;
+        }
+        AccessibilityManager accessibilityManager = (AccessibilityManager) this.mAnchor.getContext().getSystemService("accessibility");
+        if (accessibilityManager.isEnabled() &amp;&amp; accessibilityManager.isTouchExplorationEnabled() != null) {
+            return false;
+        }
+        view = motionEvent.getAction();
+        if (view != 7) {
+            if (view == 10) {
+                clearAnchorPos();
+                hide();
+            }
+        } else if (!(this.mAnchor.isEnabled() == null || this.mPopup != null || updateAnchorPos(motionEvent) == null)) {
+            setPendingHandler(this);
+        }
+        return false;
+    }
+
+    public void onViewDetachedFromWindow(View view) {
+        hide();
+    }
+
+    void show(boolean z) {
+        if (ViewCompat.isAttachedToWindow(this.mAnchor)) {
+            long j;
+            setPendingHandler(null);
+            if (sActiveHandler != null) {
+                sActiveHandler.hide();
+            }
+            sActiveHandler = this;
+            this.mFromTouch = z;
+            this.mPopup = new TooltipPopup(this.mAnchor.getContext());
+            this.mPopup.show(this.mAnchor, this.mAnchorX, this.mAnchorY, this.mFromTouch, this.mTooltipText);
+            this.mAnchor.addOnAttachStateChangeListener(this);
+            if (this.mFromTouch) {
+                j = LONG_CLICK_HIDE_TIMEOUT_MS;
+            } else if (ViewCompat.getWindowSystemUiVisibility(this.mAnchor) &amp; true) {
+                j = HOVER_HIDE_TIMEOUT_SHORT_MS - ((long) ViewConfiguration.getLongPressTimeout());
+            } else {
+                j = HOVER_HIDE_TIMEOUT_MS - ((long) ViewConfiguration.getLongPressTimeout());
+            }
+            this.mAnchor.removeCallbacks(this.mHideRunnable);
+            this.mAnchor.postDelayed(this.mHideRunnable, j);
+        }
+    }
+
+    void hide() {
+        if (sActiveHandler == this) {
+            sActiveHandler = null;
+            if (this.mPopup != null) {
+                this.mPopup.hide();
+                this.mPopup = null;
+                clearAnchorPos();
+                this.mAnchor.removeOnAttachStateChangeListener(this);
+            } else {
+                Log.e(TAG, "sActiveHandler.mPopup == null");
+            }
+        }
+        if (sPendingHandler == this) {
+            setPendingHandler(null);
+        }
+        this.mAnchor.removeCallbacks(this.mHideRunnable);
+    }
+
+    private static void setPendingHandler(TooltipCompatHandler tooltipCompatHandler) {
+        if (sPendingHandler != null) {
+            sPendingHandler.cancelPendingShow();
+        }
+        sPendingHandler = tooltipCompatHandler;
+        if (sPendingHandler != null) {
+            sPendingHandler.scheduleShow();
+        }
+    }
+
+    private void scheduleShow() {
+        this.mAnchor.postDelayed(this.mShowRunnable, (long) ViewConfiguration.getLongPressTimeout());
+    }
+
+    private void cancelPendingShow() {
+        this.mAnchor.removeCallbacks(this.mShowRunnable);
+    }
+
+    private boolean updateAnchorPos(MotionEvent motionEvent) {
+        int x = (int) motionEvent.getX();
+        motionEvent = (int) motionEvent.getY();
+        if (Math.abs(x - this.mAnchorX) &lt;= this.mHoverSlop &amp;&amp; Math.abs(motionEvent - this.mAnchorY) &lt;= this.mHoverSlop) {
+            return null;
+        }
+        this.mAnchorX = x;
+        this.mAnchorY = motionEvent;
+        return true;
+    }
+
+    private void clearAnchorPos() {
+        this.mAnchorX = Integer.MAX_VALUE;
+        this.mAnchorY = Integer.MAX_VALUE;
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:4 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

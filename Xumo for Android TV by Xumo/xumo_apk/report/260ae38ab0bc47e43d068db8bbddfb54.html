@@ -1,0 +1,210 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/exoplayer2/extractor/DefaultExtractorsFactory.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/exoplayer2/extractor/DefaultExtractorsFactory.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="DefaultExtractorsFactory.java" data-line="" class="code line-numbers"><code>package com.google.android.exoplayer2.extractor;
+
+import com.google.android.exoplayer2.extractor.amr.AmrExtractor;
+import com.google.android.exoplayer2.extractor.flv.FlvExtractor;
+import com.google.android.exoplayer2.extractor.mkv.MatroskaExtractor;
+import com.google.android.exoplayer2.extractor.mp3.Mp3Extractor;
+import com.google.android.exoplayer2.extractor.mp4.FragmentedMp4Extractor;
+import com.google.android.exoplayer2.extractor.mp4.Mp4Extractor;
+import com.google.android.exoplayer2.extractor.ogg.OggExtractor;
+import com.google.android.exoplayer2.extractor.ts.Ac3Extractor;
+import com.google.android.exoplayer2.extractor.ts.AdtsExtractor;
+import com.google.android.exoplayer2.extractor.ts.PsExtractor;
+import com.google.android.exoplayer2.extractor.ts.TsExtractor;
+import com.google.android.exoplayer2.extractor.wav.WavExtractor;
+import java.lang.reflect.Constructor;
+
+public final class DefaultExtractorsFactory implements ExtractorsFactory {
+    private static final Constructor&lt;? extends Extractor&gt; FLAC_EXTRACTOR_CONSTRUCTOR;
+    private int adtsFlags;
+    private int amrFlags;
+    private boolean constantBitrateSeekingEnabled;
+    private int fragmentedMp4Flags;
+    private int matroskaFlags;
+    private int mp3Flags;
+    private int mp4Flags;
+    private int tsFlags;
+    private int tsMode = 1;
+
+    static {
+        /* JADX: method processing error */
+/*
+Error: java.lang.NullPointerException
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.searchTryCatchDominators(ProcessTryCatchRegions.java:75)
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.process(ProcessTryCatchRegions.java:45)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.postProcessRegions(RegionMakerVisitor.java:63)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.visit(RegionMakerVisitor.java:58)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:31)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:17)
+	at jadx.core.ProcessClass.process(ProcessClass.java:37)
+	at jadx.api.JadxDecompiler.processClass(JadxDecompiler.java:306)
+	at jadx.api.JavaClass.decompile(JavaClass.java:62)
+	at jadx.api.JadxDecompiler$1.run(JadxDecompiler.java:199)
+*/
+        /*
+        r0 = "com.google.android.exoplayer2.ext.flac.FlacExtractor";	 Catch:{ ClassNotFoundException -&gt; 0x001d, Exception -&gt; 0x0014 }
+        r0 = java.lang.Class.forName(r0);	 Catch:{ ClassNotFoundException -&gt; 0x001d, Exception -&gt; 0x0014 }
+        r1 = com.google.android.exoplayer2.extractor.Extractor.class;	 Catch:{ ClassNotFoundException -&gt; 0x001d, Exception -&gt; 0x0014 }
+        r0 = r0.asSubclass(r1);	 Catch:{ ClassNotFoundException -&gt; 0x001d, Exception -&gt; 0x0014 }
+        r1 = 0;	 Catch:{ ClassNotFoundException -&gt; 0x001d, Exception -&gt; 0x0014 }
+        r1 = new java.lang.Class[r1];	 Catch:{ ClassNotFoundException -&gt; 0x001d, Exception -&gt; 0x0014 }
+        r0 = r0.getConstructor(r1);	 Catch:{ ClassNotFoundException -&gt; 0x001d, Exception -&gt; 0x0014 }
+        goto L_0x001e;
+    L_0x0014:
+        r0 = move-exception;
+        r1 = new java.lang.RuntimeException;
+        r2 = "Error instantiating FLAC extension";
+        r1.&lt;init&gt;(r2, r0);
+        throw r1;
+    L_0x001d:
+        r0 = 0;
+    L_0x001e:
+        FLAC_EXTRACTOR_CONSTRUCTOR = r0;
+        return;
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.google.android.exoplayer2.extractor.DefaultExtractorsFactory.&lt;clinit&gt;():void");
+    }
+
+    public synchronized DefaultExtractorsFactory setConstantBitrateSeekingEnabled(boolean z) {
+        this.constantBitrateSeekingEnabled = z;
+        return this;
+    }
+
+    public synchronized DefaultExtractorsFactory setAdtsExtractorFlags(int i) {
+        this.adtsFlags = i;
+        return this;
+    }
+
+    public synchronized DefaultExtractorsFactory setAmrExtractorFlags(int i) {
+        this.amrFlags = i;
+        return this;
+    }
+
+    public synchronized DefaultExtractorsFactory setMatroskaExtractorFlags(int i) {
+        this.matroskaFlags = i;
+        return this;
+    }
+
+    public synchronized DefaultExtractorsFactory setMp4ExtractorFlags(int i) {
+        this.mp4Flags = i;
+        return this;
+    }
+
+    public synchronized DefaultExtractorsFactory setFragmentedMp4ExtractorFlags(int i) {
+        this.fragmentedMp4Flags = i;
+        return this;
+    }
+
+    public synchronized DefaultExtractorsFactory setMp3ExtractorFlags(int i) {
+        this.mp3Flags = i;
+        return this;
+    }
+
+    public synchronized DefaultExtractorsFactory setTsExtractorMode(int i) {
+        this.tsMode = i;
+        return this;
+    }
+
+    public synchronized DefaultExtractorsFactory setTsExtractorFlags(int i) {
+        this.tsFlags = i;
+        return this;
+    }
+
+    public synchronized Extractor[] createExtractors() {
+        Extractor[] extractorArr;
+        extractorArr = new Extractor[(FLAC_EXTRACTOR_CONSTRUCTOR == null ? 12 : 13)];
+        extractorArr[0] = new MatroskaExtractor(this.matroskaFlags);
+        extractorArr[1] = new FragmentedMp4Extractor(this.fragmentedMp4Flags);
+        extractorArr[2] = new Mp4Extractor(this.mp4Flags);
+        extractorArr[3] = new Mp3Extractor(this.mp3Flags | this.constantBitrateSeekingEnabled);
+        extractorArr[4] = new AdtsExtractor(0, this.adtsFlags | this.constantBitrateSeekingEnabled);
+        extractorArr[5] = new Ac3Extractor();
+        extractorArr[6] = new TsExtractor(this.tsMode, this.tsFlags);
+        extractorArr[7] = new FlvExtractor();
+        extractorArr[8] = new OggExtractor();
+        extractorArr[9] = new PsExtractor();
+        extractorArr[10] = new WavExtractor();
+        extractorArr[11] = new AmrExtractor(this.amrFlags | this.constantBitrateSeekingEnabled);
+        if (FLAC_EXTRACTOR_CONSTRUCTOR != null) {
+            try {
+                extractorArr[12] = (Extractor) FLAC_EXTRACTOR_CONSTRUCTOR.newInstance(new Object[0]);
+            } catch (Throwable e) {
+                throw new IllegalStateException("Unexpected error creating FLAC extractor", e);
+            }
+        }
+        return extractorArr;
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:8 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="match_parent"
+    <LinearLayout android:orientation="vertical" android:layout_width="UNKNOWN_DATA_0x1" android:layout_height="match_parent" android:layout_weight="1.0">
+        <TextView android:textSize="15sp" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="HELP SETTINGS" android:fontFamily="@font/open_sans_semi_bold" />
+        <LinearLayout android:gravity="top|bottom|center_vertical|fill_vertical|center|fill" android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="UNKNOWN_DATA_0x2301" android:layout_marginTop="10dp">
+            <TextView android:textSize="10sp" android:id="@+id/default_tv" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="DISPLAY CLOSED CAPTIONS BY DEFAULT" android:fontFamily="@font/open_sans_bold" />
+            <Switch android:id="@+id/default_switch" android:background="@drawable/switch_custom_thumb_selector" android:layout_width="UNKNOWN_DATA_0x1e01" android:layout_height="UNKNOWN_DATA_0xf01" android:thumb="0x0" android:track="0x0" android:layout_marginStart="50dp" />
+        </LinearLayout>
+        <TextView android:textSize="10sp" android:textColor="@color/tab_noselect" android:gravity="top|bottom|center_vertical|fill_vertical|center|fill" android:id="@+id/app_tv" android:layout_width="match_parent" android:layout_height="UNKNOWN_DATA_0x2301" android:layout_marginTop="10dp" android:text="DEFINE THE APPEARANCE OF CLOSED CAPTIONS" android:fontFamily="@font/open_sans_bold" />
+    </LinearLayout>
+    <RelativeLayout android:layout_width="UNKNOWN_DATA_0x1" android:layout_height="match_parent" android:layout_weight="1.0">
+        <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent">
+            <TextView android:textSize="15sp" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="MORE INFORMATION" android:fontFamily="@font/open_sans_semi_bold" />
+            <TextView android:textSize="12.5sp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:text="Terms of Service" />
+            <TextView android:textSize="11sp" android:textColor="@color/xumoGrayFourth" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:text="xumo.com/terms" />
+            <TextView android:textSize="12.5sp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="15dp" android:text="Privacy Policy" />
+            <TextView android:textSize="11sp" android:textColor="@color/xumoGrayFourth" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:text="xumo.com/privacy" />
+            <TextView android:textSize="12.5sp" android:id="@+id/licenses_tv" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="15dp" android:text="Licenses" />
+            <TextView android:textSize="12.5sp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="15dp" android:text="Support for App" />
+            <TextView android:textSize="11sp" android:textColor="@color/xumoGrayFourth" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:text="xumo.com/support" />
+            <TextView android:textSize="12.5sp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="15dp" android:text="Support Email" />
+            <TextView android:textSize="11sp" android:textColor="@color/xumoGrayFourth" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:text="support@xumo.com" />
+            <TextView android:textSize="12.5sp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="15dp" android:text="Client ID for Customer Service" />
+            <TextView android:textSize="11sp" android:textColor="@color/xumoGrayFourth" android:id="@+id/clientId_tv" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="5dp" />
+            <TextView android:textSize="12.5sp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="15dp" android:text="App Version" />
+            <TextView android:textSize="11sp" android:textColor="@color/xumoGrayFourth" android:id="@+id/appVersion_tv" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="5dp" />
+        </LinearLayout>
+        <LinearLayout android:gravity="left|right|center_horizontal|fill_horizontal|center|fill|start|end" android:orientation="vertical" android:layout_width="UNKNOWN_DATA_0xd201" android:layout_height="UNKNOWN_DATA_0x8c01" android:layout_alignParentBottom="true" android:layout_alignParentEnd="true"
+            <LinearLayout android:id="@+id/debug_mode_tv" android:visibility="invisible" android:layout_width="match_parent" android:layout_height="wrap_content">
+                <TextView android:textStyle="bold" android:textColor="@color/yellow" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/settings_debug_mode_asterisk" />
+                <TextView android:textStyle="bold" android:textColor="@color/yellow" android:id="@+id/debug_mode_code_1_tv" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+                <TextView android:textStyle="bold" android:textColor="@color/yellow" android:id="@+id/debug_mode_separator" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/settings_debug_mode_separator" />
+                <TextView android:textStyle="bold" android:textColor="@color/yellow" android:id="@+id/debug_mode_code_2_tv" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+            </LinearLayout>
+            <TextView android:textColor="@color/red" android:id="@+id/enable_debug_logs_tv" android:visibility="invisible" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="debug log enabled" />
+            <TextView android:textColor="@color/red" android:id="@+id/enable_test_channels_tv" android:visibility="invisible" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="test channels enabled" />
+            <TextView android:textColor="@color/red" android:id="@+id/enable_staging_players_tv" android:visibility="invisible" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="staging-players.json enabled" />
+            <TextView android:textColor="@color/red" android:id="@+id/viewbooster_staging_tv" android:visibility="invisible" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="viewbooster-staging.json" />
+            <TextView android:textColor="@color/red" android:id="@+id/clear_local_storage_tv" android:visibility="invisible" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="local storage reset" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,259 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/ads/interactivemedia/v3/internal/jc.java" target="_blank">/xumo_apk/jadx_source_code/com/google/ads/interactivemedia/v3/internal/jc.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="jc.java" data-line="" class="code line-numbers"><code>package com.google.ads.interactivemedia.v3.internal;
+
+import android.net.Uri;
+import com.google.ads.interactivemedia.v3.api.CompanionAdSlot;
+import com.google.ads.interactivemedia.v3.api.UiElement;
+import com.google.ads.interactivemedia.v3.impl.data.m;
+import com.google.ads.interactivemedia.v3.impl.data.n;
+import com.google.android.exoplayer2.upstream.DataSchemeDataSource;
+import java.lang.reflect.Type;
+import java.net.MalformedURLException;
+
+/* compiled from: IMASDK */
+public class jc {
+    private static final fz a = new ga().a(UiElement.class, n.GSON_TYPE_ADAPTER).a(CompanionAdSlot.class, new gm&lt;CompanionAdSlot&gt;() {
+        public gf a(CompanionAdSlot companionAdSlot, Type type, gl glVar) {
+            glVar = companionAdSlot.getWidth();
+            companionAdSlot = companionAdSlot.getHeight();
+            StringBuilder stringBuilder = new StringBuilder(23);
+            stringBuilder.append(glVar);
+            stringBuilder.append("x");
+            stringBuilder.append(companionAdSlot);
+            return new gk(stringBuilder.toString());
+        }
+    }).a(new ko()).a();
+    private final b b;
+    private final Object c;
+    private final String d;
+    private final c e;
+
+    /* compiled from: IMASDK */
+    public enum a {
+        nativeUi,
+        webViewUi,
+        none
+    }
+
+    /* compiled from: IMASDK */
+    public enum b {
+        activityMonitor,
+        adsManager,
+        adsLoader,
+        contentTimeUpdate,
+        displayContainer,
+        i18n,
+        log,
+        omid,
+        videoDisplay,
+        webViewLoaded
+    }
+
+    /* compiled from: IMASDK */
+    public enum c {
+        adBreakEnded,
+        adBreakReady,
+        adBreakStarted,
+        adMetadata,
+        adProgress,
+        adsLoaded,
+        allAdsCompleted,
+        appStateChanged,
+        click,
+        complete,
+        companionView,
+        contentComplete,
+        contentPauseRequested,
+        contentResumeRequested,
+        contentTimeUpdate,
+        csi,
+        cuepointsChanged,
+        discardAdBreak,
+        displayCompanions,
+        destroy,
+        end,
+        error,
+        firstquartile,
+        focusSkipButton,
+        fullscreen,
+        getViewability,
+        hide,
+        impression,
+        init,
+        initialized,
+        load,
+        loaded,
+        loadStream,
+        log,
+        midpoint,
+        mute,
+        omidReady,
+        omidUnavailable,
+        pause,
+        play,
+        reportVastEvent,
+        resume,
+        requestAds,
+        requestNextAdBreak,
+        requestStream,
+        setPlaybackOptions,
+        showVideo,
+        skip,
+        skippableStateChanged,
+        skipShown,
+        start,
+        startTracking,
+        stop,
+        stopTracking,
+        streamInitialized,
+        thirdquartile,
+        timedMetadata,
+        timeupdate,
+        unload,
+        unmute,
+        viewability,
+        videoClicked,
+        videoIconClicked,
+        volumeChange,
+        adRemainingTime,
+        learnMore,
+        preSkipButton,
+        skipButton
+    }
+
+    public static jc a(String str) throws MalformedURLException, gn {
+        str = Uri.parse(str);
+        String substring = str.getPath().substring(1);
+        if (str.getQueryParameter("sid") != null) {
+            return new jc(b.valueOf(substring), c.valueOf(str.getQueryParameter("type")), str.getQueryParameter("sid"), a.a(str.getQueryParameter(DataSchemeDataSource.SCHEME_DATA), m.class));
+        }
+        throw new MalformedURLException("Session id must be provided in message.");
+    }
+
+    public jc(b bVar, c cVar, String str, Object obj) {
+        this.b = bVar;
+        this.e = cVar;
+        this.d = str;
+        this.c = obj;
+    }
+
+    public jc(b bVar, c cVar, String str) {
+        this(bVar, cVar, str, null);
+    }
+
+    public b a() {
+        return this.b;
+    }
+
+    public c b() {
+        return this.e;
+    }
+
+    public Object c() {
+        return this.c;
+    }
+
+    public String d() {
+        return this.d;
+    }
+
+    public String e() {
+        com.google.ads.interactivemedia.v3.internal.lf.a a = new com.google.ads.interactivemedia.v3.internal.lf.a().a("type", this.e).a("sid", this.d);
+        if (this.c != null) {
+            a.a(DataSchemeDataSource.SCHEME_DATA, this.c);
+        }
+        Object a2 = a.a();
+        return String.format("%s('%s', %s);", new Object[]{"javascript:adsense.mobileads.afmanotify.receiveMessage", this.b, a.a(a2)});
+    }
+
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || !(obj instanceof jc)) {
+            return false;
+        }
+        jc jcVar = (jc) obj;
+        return this.b == jcVar.b &amp;&amp; ks.a(this.c, jcVar.c) &amp;&amp; ks.a(this.d, jcVar.d) &amp;&amp; this.e == jcVar.e;
+    }
+
+    public int hashCode() {
+        return ks.a(this.b, this.c, this.d, this.e);
+    }
+
+    public String toString() {
+        return String.format("JavaScriptMessage [command=%s, type=%s, sid=%s, data=%s]", new Object[]{this.b, this.e, this.d, this.c});
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:5 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

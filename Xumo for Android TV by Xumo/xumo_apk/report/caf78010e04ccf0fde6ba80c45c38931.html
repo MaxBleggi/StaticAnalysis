@@ -1,0 +1,221 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/res/values-ar/strings.xml" target="_blank">/xumo_apk/jadx_source_code/res/values-ar/strings.xml</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="strings.xml" data-line="" class="code line-numbers"><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;resources&gt;
+    &lt;string name="abc_action_bar_home_description"&gt;التنقل إلى الشاشة الرئيسية&lt;/string&gt;
+    &lt;string name="abc_action_bar_up_description"&gt;التنقل إلى أعلى&lt;/string&gt;
+    &lt;string name="abc_action_menu_overflow_description"&gt;خيارات إضافية&lt;/string&gt;
+    &lt;string name="abc_action_mode_done"&gt;تم&lt;/string&gt;
+    &lt;string name="abc_activity_chooser_view_see_all"&gt;عرض الكل&lt;/string&gt;
+    &lt;string name="abc_activitychooserview_choose_application"&gt;اختيار تطبيق&lt;/string&gt;
+    &lt;string name="abc_capital_off"&gt;إيقاف&lt;/string&gt;
+    &lt;string name="abc_capital_on"&gt;تشغيل&lt;/string&gt;
+    &lt;string name="abc_menu_alt_shortcut_label"&gt;Alt+&lt;/string&gt;
+    &lt;string name="abc_menu_ctrl_shortcut_label"&gt;Ctrl+&lt;/string&gt;
+    &lt;string name="abc_menu_delete_shortcut_label"&gt;delete&lt;/string&gt;
+    &lt;string name="abc_menu_enter_shortcut_label"&gt;enter&lt;/string&gt;
+    &lt;string name="abc_menu_function_shortcut_label"&gt;Function+&lt;/string&gt;
+    &lt;string name="abc_menu_meta_shortcut_label"&gt;Meta+&lt;/string&gt;
+    &lt;string name="abc_menu_shift_shortcut_label"&gt;Shift+&lt;/string&gt;
+    &lt;string name="abc_menu_space_shortcut_label"&gt;space&lt;/string&gt;
+    &lt;string name="abc_menu_sym_shortcut_label"&gt;Sym+&lt;/string&gt;
+    &lt;string name="abc_prepend_shortcut_label"&gt;القائمة+&lt;/string&gt;
+    &lt;string name="abc_search_hint"&gt;بحث…&lt;/string&gt;
+    &lt;string name="abc_searchview_description_clear"&gt;محو طلب البحث&lt;/string&gt;
+    &lt;string name="abc_searchview_description_query"&gt;طلب البحث&lt;/string&gt;
+    &lt;string name="abc_searchview_description_search"&gt;بحث&lt;/string&gt;
+    &lt;string name="abc_searchview_description_submit"&gt;إرسال طلب البحث&lt;/string&gt;
+    &lt;string name="abc_searchview_description_voice"&gt;البحث الصوتي&lt;/string&gt;
+    &lt;string name="abc_shareactionprovider_share_with"&gt;مشاركة مع&lt;/string&gt;
+    &lt;string name="abc_shareactionprovider_share_with_application"&gt;مشاركة مع %s&lt;/string&gt;
+    &lt;string name="abc_toolbar_collapse_description"&gt;تصغير&lt;/string&gt;
+    &lt;string name="cast_ad_label"&gt;إعلان&lt;/string&gt;
+    &lt;string name="cast_casting_to_device"&gt;‏جارٍ الإرسال إلى %1$s&lt;/string&gt;
+    &lt;string name="cast_closed_captions"&gt;الترجمة والشرح&lt;/string&gt;
+    &lt;string name="cast_closed_captions_unavailable"&gt;الترجمة والشرح غير متاحة&lt;/string&gt;
+    &lt;string name="cast_connecting_to_device"&gt;جارٍ الاتصال بـ %1$s&lt;/string&gt;
+    &lt;string name="cast_disconnect"&gt;إلغاء الربط&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_ad_image_description"&gt;‏الصورة المعروضة أثناء تشغيل مستقبل cast لأحد الإعلانات&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_ad_in_progress"&gt;الإعلان قيد التقدم...&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_background_image"&gt;صورة الألبوم&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_live_stream_indicator"&gt;بث مباشر&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_loading"&gt;جارٍ التحميل…&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_skip_ad_label"&gt;تخطي الإعلان&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_skip_ad_text"&gt;‏يمكنك تخطي الإعلان بعد %1$d…&lt;/string&gt;
+    &lt;string name="cast_forward"&gt;إلى الأمام&lt;/string&gt;
+    &lt;string name="cast_forward_10"&gt;إلى الأمام عشر ثوانٍ&lt;/string&gt;
+    &lt;string name="cast_forward_30"&gt;إلى الأمام ثلاثين ثانية&lt;/string&gt;
+    &lt;string name="cast_intro_overlay_button_text"&gt;@android:string/ok&lt;/string&gt;
+    &lt;string name="cast_mute"&gt;كتم الصوت&lt;/string&gt;
+    &lt;string name="cast_notification_connected_message"&gt;تم الاتصال بـ %1$s&lt;/string&gt;
+    &lt;string name="cast_notification_connecting_message"&gt;جارٍ الاتصال بـ %1$s&lt;/string&gt;
+    &lt;string name="cast_notification_default_channel_name"&gt;Cast&lt;/string&gt;
+    &lt;string name="cast_notification_disconnect"&gt;إلغاء الربط&lt;/string&gt;
+    &lt;string name="cast_pause"&gt;إيقاف مؤقت&lt;/string&gt;
+    &lt;string name="cast_play"&gt;تشغيل&lt;/string&gt;
+    &lt;string name="cast_rewind"&gt;إرجاع&lt;/string&gt;
+    &lt;string name="cast_rewind_10"&gt;إرجاع عشر ثوانٍ&lt;/string&gt;
+    &lt;string name="cast_rewind_30"&gt;إرجاع ثلاثين ثانية&lt;/string&gt;
+    &lt;string name="cast_seek_bar"&gt;تشغيل شريط التحكم&lt;/string&gt;
+    &lt;string name="cast_skip_next"&gt;التخطي إلى العنصر التالي&lt;/string&gt;
+    &lt;string name="cast_skip_prev"&gt;التخطي إلى العنصر السابق&lt;/string&gt;
+    &lt;string name="cast_stop"&gt;إيقاف&lt;/string&gt;
+    &lt;string name="cast_stop_live_stream"&gt;إيقاف البث المباشر&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_audio"&gt;الصوت&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_cancel"&gt;إلغاء&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_closed_captions"&gt;الترجمة والشرح&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_default_track_name"&gt;المقطع الصوتي %1$d&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_none"&gt;لا شيء&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_ok"&gt;موافق&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_subtitles"&gt;الترجمات المصاحبة&lt;/string&gt;
+    &lt;string name="cast_unmute"&gt;إعادة الصوت&lt;/string&gt;
+    &lt;string name="common_google_play_services_enable_button"&gt;تفعيل&lt;/string&gt;
+    &lt;string name="common_google_play_services_enable_text"&gt;‏لن يعمل %1$s ما لم يتم تفعيل خدمات Google Play.&lt;/string&gt;
+    &lt;string name="common_google_play_services_enable_title"&gt;‏تفعيل خدمات Google Play&lt;/string&gt;
+    &lt;string name="common_google_play_services_install_button"&gt;تثبيت&lt;/string&gt;
+    &lt;string name="common_google_play_services_install_text"&gt;‏لن يتم تشغيل %1$s بدون خدمات Google Play، والتي لا تتوفر على جهازك.&lt;/string&gt;
+    &lt;string name="common_google_play_services_install_title"&gt;‏الحصول على خدمات Google Play&lt;/string&gt;
+    &lt;string name="common_google_play_services_notification_channel_name"&gt;‏مدى توفّر خدمات Google Play&lt;/string&gt;
+    &lt;string name="common_google_play_services_notification_ticker"&gt;‏خطأ في خدمات Google Play&lt;/string&gt;
+    &lt;string name="common_google_play_services_unknown_issue"&gt;‏لدى %1$s مشكلة في خدمات Google Play. يُرجى إعادة المحاولة.&lt;/string&gt;
+    &lt;string name="common_google_play_services_unsupported_text"&gt;‏لن يتم تشغيل %1$s بدون خدمات Google Play التي لا يوفرها جهازك.&lt;/string&gt;
+    &lt;string name="common_google_play_services_update_button"&gt;تحديث&lt;/string&gt;
+    &lt;string name="common_google_play_services_update_text"&gt;‏لن يتم تشغيل %1$s ما لم يتم تحديث خدمات Google Play.&lt;/string&gt;
+    &lt;string name="common_google_play_services_update_title"&gt;‏تحديث خدمات Google Play&lt;/string&gt;
+    &lt;string name="common_google_play_services_updating_text"&gt;‏لن يتم تشغيل %1$s بدون خدمات Google Play، والتي يتم تحديثها حاليًا.&lt;/string&gt;
+    &lt;string name="common_google_play_services_wear_update_text"&gt;‏يجب توفر إصدار جديد من خدمات Google Play. سيتم تحديثها تلقائيًا قريبًا.&lt;/string&gt;
+    &lt;string name="common_open_on_phone"&gt;فتح على الهاتف&lt;/string&gt;
+    &lt;string name="common_signin_button_text"&gt;تسجل الدخول&lt;/string&gt;
+    &lt;string name="common_signin_button_text_long"&gt;‏تسجيل الدخول عبر Google&lt;/string&gt;
+    &lt;string name="exo_controls_fastforward_description"&gt;تقديم سريع&lt;/string&gt;
+    &lt;string name="exo_controls_fullscreen_description"&gt;وضع ملء الشاشة&lt;/string&gt;
+    &lt;string name="exo_controls_next_description"&gt;المقطع الصوتي التالي&lt;/string&gt;
+    &lt;string name="exo_controls_pause_description"&gt;إيقاف مؤقت&lt;/string&gt;
+    &lt;string name="exo_controls_play_description"&gt;تشغيل&lt;/string&gt;
+    &lt;string name="exo_controls_previous_description"&gt;المقطع الصوتي السابق&lt;/string&gt;
+    &lt;string name="exo_controls_repeat_all_description"&gt;تكرار الكل&lt;/string&gt;
+    &lt;string name="exo_controls_repeat_off_description"&gt;عدم التكرار&lt;/string&gt;
+    &lt;string name="exo_controls_repeat_one_description"&gt;تكرار مقطع صوتي واحد&lt;/string&gt;
+    &lt;string name="exo_controls_rewind_description"&gt;إرجاع&lt;/string&gt;
+    &lt;string name="exo_controls_shuffle_description"&gt;ترتيب عشوائي&lt;/string&gt;
+    &lt;string name="exo_controls_stop_description"&gt;إيقاف&lt;/string&gt;
+    &lt;string name="exo_download_completed"&gt;اكتمل التنزيل&lt;/string&gt;
+    &lt;string name="exo_download_description"&gt;تنزيل&lt;/string&gt;
+    &lt;string name="exo_download_downloading"&gt;جارٍ التنزيل.&lt;/string&gt;
+    &lt;string name="exo_download_failed"&gt;تعذّر التنزيل&lt;/string&gt;
+    &lt;string name="exo_download_notification_channel_name"&gt;التنزيلات&lt;/string&gt;
+    &lt;string name="exo_download_removing"&gt;جارٍ إزالة التنزيلات&lt;/string&gt;
+    &lt;string name="exo_item_list"&gt;%1$s، %2$s&lt;/string&gt;
+    &lt;string name="exo_track_bitrate"&gt;%1$.2f ميغابت في الثانية&lt;/string&gt;
+    &lt;string name="exo_track_mono"&gt;قناة أحادية&lt;/string&gt;
+    &lt;string name="exo_track_resolution"&gt;%1$d × %2$d&lt;/string&gt;
+    &lt;string name="exo_track_selection_auto"&gt;تلقائي&lt;/string&gt;
+    &lt;string name="exo_track_selection_none"&gt;بدون اختيار&lt;/string&gt;
+    &lt;string name="exo_track_selection_title_audio"&gt;صوت&lt;/string&gt;
+    &lt;string name="exo_track_selection_title_text"&gt;نص&lt;/string&gt;
+    &lt;string name="exo_track_selection_title_video"&gt;فيديو&lt;/string&gt;
+    &lt;string name="exo_track_stereo"&gt;استريو&lt;/string&gt;
+    &lt;string name="exo_track_surround"&gt;صوت مجسّم&lt;/string&gt;
+    &lt;string name="exo_track_surround_5_point_1"&gt;صوت مجسّم 5.1&lt;/string&gt;
+    &lt;string name="exo_track_surround_7_point_1"&gt;صوت مجسّم 7.1&lt;/string&gt;
+    &lt;string name="exo_track_unknown"&gt;غير معروف&lt;/string&gt;
+    &lt;string name="expand_button_title"&gt;إعدادات متقدمة&lt;/string&gt;
+    &lt;string name="fcm_fallback_notification_channel_label"&gt;متنوعة&lt;/string&gt;
+    &lt;string name="mr_button_content_description"&gt;زر الإرسال&lt;/string&gt;
+    &lt;string name="mr_cast_button_connected"&gt;زر الإرسال. تم الاتصال&lt;/string&gt;
+    &lt;string name="mr_cast_button_connecting"&gt;زر الإرسال. جارٍ الاتصال&lt;/string&gt;
+    &lt;string name="mr_cast_button_disconnected"&gt;زر الإرسال. تم قطع الاتصال&lt;/string&gt;
+    &lt;string name="mr_chooser_searching"&gt;جارٍ البحث عن أجهزة&lt;/string&gt;
+    &lt;string name="mr_chooser_title"&gt;إرسال إلى&lt;/string&gt;
+    &lt;string name="mr_controller_album_art"&gt;صورة الألبوم&lt;/string&gt;
+    &lt;string name="mr_controller_casting_screen"&gt;جارٍ إرسال الشاشة&lt;/string&gt;
+    &lt;string name="mr_controller_close_description"&gt;إغلاق&lt;/string&gt;
+    &lt;string name="mr_controller_collapse_group"&gt;تصغير&lt;/string&gt;
+    &lt;string name="mr_controller_disconnect"&gt;قطع اتصال&lt;/string&gt;
+    &lt;string name="mr_controller_expand_group"&gt;توسيع&lt;/string&gt;
+    &lt;string name="mr_controller_no_info_available"&gt;لا تتوفر أي معلومات&lt;/string&gt;
+    &lt;string name="mr_controller_no_media_selected"&gt;لم يتم اختيار أي وسائط&lt;/string&gt;
+    &lt;string name="mr_controller_pause"&gt;إيقاف مؤقت&lt;/string&gt;
+    &lt;string name="mr_controller_play"&gt;تشغيل&lt;/string&gt;
+    &lt;string name="mr_controller_stop"&gt;إيقاف&lt;/string&gt;
+    &lt;string name="mr_controller_stop_casting"&gt;إيقاف الإرسال&lt;/string&gt;
+    &lt;string name="mr_controller_volume_slider"&gt;شريط تمرير مستوى الصوت&lt;/string&gt;
+    &lt;string name="mr_system_route_name"&gt;النظام&lt;/string&gt;
+    &lt;string name="mr_user_route_category_name"&gt;الأجهزة&lt;/string&gt;
+    &lt;string name="search_menu_title"&gt;البحث&lt;/string&gt;
+    &lt;string name="status_bar_notification_info_overflow"&gt;999+&lt;/string&gt;
+    &lt;string name="summary_collapsed_preference_list"&gt;%1$s، %2$s&lt;/string&gt;
+    &lt;string name="v7_preference_off"&gt;إيقاف&lt;/string&gt;
+    &lt;string name="v7_preference_on"&gt;تفعيل&lt;/string&gt;
+&lt;/resources&gt;
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:2 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

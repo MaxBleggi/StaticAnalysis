@@ -1,0 +1,205 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/exoplayer2/drm/OfflineLicenseHelper.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/exoplayer2/drm/OfflineLicenseHelper.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="OfflineLicenseHelper.java" data-line="" class="code line-numbers"><code>package com.google.android.exoplayer2.drm;
+
+import android.os.ConditionVariable;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.util.Pair;
+import com.google.android.exoplayer2.C;
+import com.google.android.exoplayer2.drm.DefaultDrmSessionEventListener.-CC;
+import com.google.android.exoplayer2.drm.DrmSession.DrmSessionException;
+import com.google.android.exoplayer2.upstream.HttpDataSource.Factory;
+import com.google.android.exoplayer2.util.Assertions;
+import java.util.HashMap;
+import java.util.UUID;
+
+public final class OfflineLicenseHelper&lt;T extends ExoMediaCrypto&gt; {
+    private final ConditionVariable conditionVariable;
+    private final DefaultDrmSessionManager&lt;T&gt; drmSessionManager;
+    private final HandlerThread handlerThread = new HandlerThread("OfflineLicenseHelper");
+
+    public static OfflineLicenseHelper&lt;FrameworkMediaCrypto&gt; newWidevineInstance(String str, Factory factory) throws UnsupportedDrmException {
+        return newWidevineInstance(str, false, factory, null);
+    }
+
+    public static OfflineLicenseHelper&lt;FrameworkMediaCrypto&gt; newWidevineInstance(String str, boolean z, Factory factory) throws UnsupportedDrmException {
+        return newWidevineInstance(str, z, factory, null);
+    }
+
+    public static OfflineLicenseHelper&lt;FrameworkMediaCrypto&gt; newWidevineInstance(String str, boolean z, Factory factory, HashMap&lt;String, String&gt; hashMap) throws UnsupportedDrmException {
+        return new OfflineLicenseHelper(C.WIDEVINE_UUID, FrameworkMediaDrm.newInstance(C.WIDEVINE_UUID), new HttpMediaDrmCallback(str, z, factory), hashMap);
+    }
+
+    public OfflineLicenseHelper(UUID uuid, ExoMediaDrm&lt;T&gt; exoMediaDrm, MediaDrmCallback mediaDrmCallback, HashMap&lt;String, String&gt; hashMap) {
+        this.handlerThread.start();
+        this.conditionVariable = new ConditionVariable();
+        DefaultDrmSessionEventListener anonymousClass1 = new DefaultDrmSessionEventListener() {
+            public /* synthetic */ void onDrmSessionAcquired() {
+                -CC.$default$onDrmSessionAcquired(this);
+            }
+
+            public /* synthetic */ void onDrmSessionReleased() {
+                -CC.$default$onDrmSessionReleased(this);
+            }
+
+            public void onDrmKeysLoaded() {
+                OfflineLicenseHelper.this.conditionVariable.open();
+            }
+
+            public void onDrmSessionManagerError(Exception exception) {
+                OfflineLicenseHelper.this.conditionVariable.open();
+            }
+
+            public void onDrmKeysRestored() {
+                OfflineLicenseHelper.this.conditionVariable.open();
+            }
+
+            public void onDrmKeysRemoved() {
+                OfflineLicenseHelper.this.conditionVariable.open();
+            }
+        };
+        this.drmSessionManager = new DefaultDrmSessionManager(uuid, exoMediaDrm, mediaDrmCallback, hashMap);
+        this.drmSessionManager.addListener(new Handler(this.handlerThread.getLooper()), anonymousClass1);
+    }
+
+    public synchronized byte[] getPropertyByteArray(String str) {
+        return this.drmSessionManager.getPropertyByteArray(str);
+    }
+
+    public synchronized void setPropertyByteArray(String str, byte[] bArr) {
+        this.drmSessionManager.setPropertyByteArray(str, bArr);
+    }
+
+    public synchronized String getPropertyString(String str) {
+        return this.drmSessionManager.getPropertyString(str);
+    }
+
+    public synchronized void setPropertyString(String str, String str2) {
+        this.drmSessionManager.setPropertyString(str, str2);
+    }
+
+    public synchronized byte[] downloadLicense(DrmInitData drmInitData) throws DrmSessionException {
+        Assertions.checkArgument(drmInitData != null);
+        return blockingKeyRequest(2, null, drmInitData);
+    }
+
+    public synchronized byte[] renewLicense(byte[] bArr) throws DrmSessionException {
+        Assertions.checkNotNull(bArr);
+        return blockingKeyRequest(2, bArr, null);
+    }
+
+    public synchronized void releaseLicense(byte[] bArr) throws DrmSessionException {
+        Assertions.checkNotNull(bArr);
+        blockingKeyRequest(3, bArr, null);
+    }
+
+    public synchronized Pair&lt;Long, Long&gt; getLicenseDurationRemainingSec(byte[] bArr) throws DrmSessionException {
+        Assertions.checkNotNull(bArr);
+        bArr = openBlockingKeyRequest(1, bArr, null);
+        DrmSessionException error = bArr.getError();
+        Pair&lt;Long, Long&gt; licenseDurationRemainingSec = WidevineUtil.getLicenseDurationRemainingSec(bArr);
+        this.drmSessionManager.releaseSession(bArr);
+        if (error == null) {
+            return licenseDurationRemainingSec;
+        }
+        if ((error.getCause() instanceof KeysExpiredException) != null) {
+            return Pair.create(Long.valueOf(0), Long.valueOf(0));
+        }
+        throw error;
+    }
+
+    public void release() {
+        this.handlerThread.quit();
+    }
+
+    private byte[] blockingKeyRequest(int i, byte[] bArr, DrmInitData drmInitData) throws DrmSessionException {
+        i = openBlockingKeyRequest(i, bArr, drmInitData);
+        bArr = i.getError();
+        drmInitData = i.getOfflineLicenseKeySetId();
+        this.drmSessionManager.releaseSession(i);
+        if (bArr == null) {
+            return drmInitData;
+        }
+        throw bArr;
+    }
+
+    private DrmSession&lt;T&gt; openBlockingKeyRequest(int i, byte[] bArr, DrmInitData drmInitData) {
+        this.drmSessionManager.setMode(i, bArr);
+        this.conditionVariable.close();
+        i = this.drmSessionManager.acquireSession(this.handlerThread.getLooper(), drmInitData);
+        this.conditionVariable.block();
+        return i;
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:7 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

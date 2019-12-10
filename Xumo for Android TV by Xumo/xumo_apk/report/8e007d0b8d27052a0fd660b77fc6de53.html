@@ -1,0 +1,325 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/android/volley/CacheDispatcher.java" target="_blank">/xumo_apk/jadx_source_code/com/android/volley/CacheDispatcher.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="CacheDispatcher.java" data-line="" class="code line-numbers"><code>package com.android.volley;
+
+import com.android.volley.Cache.Entry;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.BlockingQueue;
+
+public class CacheDispatcher extends Thread {
+    private static final boolean DEBUG = VolleyLog.DEBUG;
+    private final Cache mCache;
+    private final BlockingQueue&lt;Request&lt;?&gt;&gt; mCacheQueue;
+    private final ResponseDelivery mDelivery;
+    private final BlockingQueue&lt;Request&lt;?&gt;&gt; mNetworkQueue;
+    private volatile boolean mQuit = false;
+    private final WaitingRequestManager mWaitingRequestManager;
+
+    private static class WaitingRequestManager implements NetworkRequestCompleteListener {
+        private final CacheDispatcher mCacheDispatcher;
+        private final Map&lt;String, List&lt;Request&lt;?&gt;&gt;&gt; mWaitingRequests = new HashMap();
+
+        WaitingRequestManager(CacheDispatcher cacheDispatcher) {
+            this.mCacheDispatcher = cacheDispatcher;
+        }
+
+        public void onResponseReceived(Request&lt;?&gt; request, Response&lt;?&gt; response) {
+            if (response.cacheEntry != null) {
+                if (!response.cacheEntry.isExpired()) {
+                    List&lt;Request&gt; list;
+                    request = request.getCacheKey();
+                    synchronized (this) {
+                        list = (List) this.mWaitingRequests.remove(request);
+                    }
+                    if (list != null) {
+                        if (VolleyLog.DEBUG) {
+                            VolleyLog.v("Releasing %d waiting requests for cacheKey=%s.", Integer.valueOf(list.size()), request);
+                        }
+                        for (Request postResponse : list) {
+                            this.mCacheDispatcher.mDelivery.postResponse(postResponse, response);
+                        }
+                    }
+                    return;
+                }
+            }
+            onNoUsableResponseReceived(request);
+        }
+
+        public synchronized void onNoUsableResponseReceived(Request&lt;?&gt; request) {
+            request = request.getCacheKey();
+            List list = (List) this.mWaitingRequests.remove(request);
+            if (!(list == null || list.isEmpty())) {
+                if (VolleyLog.DEBUG) {
+                    VolleyLog.v("%d waiting requests for cacheKey=%s; resend to network", Integer.valueOf(list.size()), request);
+                }
+                Request request2 = (Request) list.remove(0);
+                this.mWaitingRequests.put(request, list);
+                request2.setNetworkRequestCompleteListener(this);
+                try {
+                    this.mCacheDispatcher.mNetworkQueue.put(request2);
+                } catch (Request&lt;?&gt; request3) {
+                    VolleyLog.e("Couldn't add request to queue. %s", request3.toString());
+                    Thread.currentThread().interrupt();
+                    this.mCacheDispatcher.quit();
+                }
+            }
+            return;
+        }
+
+        /* JADX WARNING: inconsistent code. */
+        /* Code decompiled incorrectly, please refer to instructions dump. */
+        private synchronized boolean maybeAddToWaitingRequests(com.android.volley.Request&lt;?&gt; r6) {
+            /*
+            r5 = this;
+            monitor-enter(r5);
+            r0 = r6.getCacheKey();	 Catch:{ all -&gt; 0x0052 }
+            r1 = r5.mWaitingRequests;	 Catch:{ all -&gt; 0x0052 }
+            r1 = r1.containsKey(r0);	 Catch:{ all -&gt; 0x0052 }
+            r2 = 1;
+            r3 = 0;
+            if (r1 == 0) goto L_0x003a;
+        L_0x000f:
+            r1 = r5.mWaitingRequests;	 Catch:{ all -&gt; 0x0052 }
+            r1 = r1.get(r0);	 Catch:{ all -&gt; 0x0052 }
+            r1 = (java.util.List) r1;	 Catch:{ all -&gt; 0x0052 }
+            if (r1 != 0) goto L_0x001e;
+        L_0x0019:
+            r1 = new java.util.ArrayList;	 Catch:{ all -&gt; 0x0052 }
+            r1.&lt;init&gt;();	 Catch:{ all -&gt; 0x0052 }
+        L_0x001e:
+            r4 = "waiting-for-response";
+            r6.addMarker(r4);	 Catch:{ all -&gt; 0x0052 }
+            r1.add(r6);	 Catch:{ all -&gt; 0x0052 }
+            r6 = r5.mWaitingRequests;	 Catch:{ all -&gt; 0x0052 }
+            r6.put(r0, r1);	 Catch:{ all -&gt; 0x0052 }
+            r6 = com.android.volley.VolleyLog.DEBUG;	 Catch:{ all -&gt; 0x0052 }
+            if (r6 == 0) goto L_0x0038;
+        L_0x002f:
+            r6 = "Request for cacheKey=%s is in flight, putting on hold.";
+            r1 = new java.lang.Object[r2];	 Catch:{ all -&gt; 0x0052 }
+            r1[r3] = r0;	 Catch:{ all -&gt; 0x0052 }
+            com.android.volley.VolleyLog.d(r6, r1);	 Catch:{ all -&gt; 0x0052 }
+        L_0x0038:
+            monitor-exit(r5);
+            return r2;
+        L_0x003a:
+            r1 = r5.mWaitingRequests;	 Catch:{ all -&gt; 0x0052 }
+            r4 = 0;
+            r1.put(r0, r4);	 Catch:{ all -&gt; 0x0052 }
+            r6.setNetworkRequestCompleteListener(r5);	 Catch:{ all -&gt; 0x0052 }
+            r6 = com.android.volley.VolleyLog.DEBUG;	 Catch:{ all -&gt; 0x0052 }
+            if (r6 == 0) goto L_0x0050;
+        L_0x0047:
+            r6 = "new request, sending to network %s";
+            r1 = new java.lang.Object[r2];	 Catch:{ all -&gt; 0x0052 }
+            r1[r3] = r0;	 Catch:{ all -&gt; 0x0052 }
+            com.android.volley.VolleyLog.d(r6, r1);	 Catch:{ all -&gt; 0x0052 }
+        L_0x0050:
+            monitor-exit(r5);
+            return r3;
+        L_0x0052:
+            r6 = move-exception;
+            monitor-exit(r5);
+            throw r6;
+            */
+            throw new UnsupportedOperationException("Method not decompiled: com.android.volley.CacheDispatcher.WaitingRequestManager.maybeAddToWaitingRequests(com.android.volley.Request):boolean");
+        }
+    }
+
+    public CacheDispatcher(BlockingQueue&lt;Request&lt;?&gt;&gt; blockingQueue, BlockingQueue&lt;Request&lt;?&gt;&gt; blockingQueue2, Cache cache, ResponseDelivery responseDelivery) {
+        this.mCacheQueue = blockingQueue;
+        this.mNetworkQueue = blockingQueue2;
+        this.mCache = cache;
+        this.mDelivery = responseDelivery;
+        this.mWaitingRequestManager = new WaitingRequestManager(this);
+    }
+
+    public void quit() {
+        this.mQuit = true;
+        interrupt();
+    }
+
+    public void run() {
+        /* JADX: method processing error */
+/*
+Error: java.lang.NullPointerException
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.searchTryCatchDominators(ProcessTryCatchRegions.java:75)
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.process(ProcessTryCatchRegions.java:45)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.postProcessRegions(RegionMakerVisitor.java:63)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.visit(RegionMakerVisitor.java:58)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:31)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:17)
+	at jadx.core.ProcessClass.process(ProcessClass.java:37)
+	at jadx.api.JadxDecompiler.processClass(JadxDecompiler.java:306)
+	at jadx.api.JavaClass.decompile(JavaClass.java:62)
+	at jadx.api.JadxDecompiler$1.run(JadxDecompiler.java:199)
+*/
+        /*
+        r2 = this;
+        r0 = DEBUG;
+        if (r0 == 0) goto L_0x000c;
+    L_0x0004:
+        r0 = "start new dispatcher";
+        r1 = 0;
+        r1 = new java.lang.Object[r1];
+        com.android.volley.VolleyLog.v(r0, r1);
+    L_0x000c:
+        r0 = 10;
+        android.os.Process.setThreadPriority(r0);
+        r0 = r2.mCache;
+        r0.initialize();
+    L_0x0016:
+        r2.processRequest();	 Catch:{ InterruptedException -&gt; 0x001a }
+        goto L_0x0016;
+    L_0x001a:
+        r0 = r2.mQuit;
+        if (r0 == 0) goto L_0x0016;
+    L_0x001e:
+        return;
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.android.volley.CacheDispatcher.run():void");
+    }
+
+    private void processRequest() throws InterruptedException {
+        final Request request = (Request) this.mCacheQueue.take();
+        request.addMarker("cache-queue-take");
+        if (request.isCanceled()) {
+            request.finish("cache-discard-canceled");
+            return;
+        }
+        Entry entry = this.mCache.get(request.getCacheKey());
+        if (entry == null) {
+            request.addMarker("cache-miss");
+            if (!this.mWaitingRequestManager.maybeAddToWaitingRequests(request)) {
+                this.mNetworkQueue.put(request);
+            }
+        } else if (entry.isExpired()) {
+            request.addMarker("cache-hit-expired");
+            request.setCacheEntry(entry);
+            if (!this.mWaitingRequestManager.maybeAddToWaitingRequests(request)) {
+                this.mNetworkQueue.put(request);
+            }
+        } else {
+            request.addMarker("cache-hit");
+            Response parseNetworkResponse = request.parseNetworkResponse(new NetworkResponse(entry.data, entry.responseHeaders));
+            request.addMarker("cache-hit-parsed");
+            if (entry.refreshNeeded()) {
+                request.addMarker("cache-hit-refresh-needed");
+                request.setCacheEntry(entry);
+                parseNetworkResponse.intermediate = true;
+                if (this.mWaitingRequestManager.maybeAddToWaitingRequests(request)) {
+                    this.mDelivery.postResponse(request, parseNetworkResponse);
+                } else {
+                    this.mDelivery.postResponse(request, parseNetworkResponse, new Runnable() {
+                        public void run() {
+                            /* JADX: method processing error */
+/*
+Error: java.lang.NullPointerException
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.searchTryCatchDominators(ProcessTryCatchRegions.java:75)
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.process(ProcessTryCatchRegions.java:45)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.postProcessRegions(RegionMakerVisitor.java:63)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.visit(RegionMakerVisitor.java:58)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:31)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:17)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:14)
+	at jadx.core.ProcessClass.process(ProcessClass.java:37)
+	at jadx.api.JadxDecompiler.processClass(JadxDecompiler.java:306)
+	at jadx.api.JavaClass.decompile(JavaClass.java:62)
+	at jadx.api.JadxDecompiler$1.run(JadxDecompiler.java:199)
+*/
+                            /*
+                            r2 = this;
+                            r0 = com.android.volley.CacheDispatcher.this;	 Catch:{ InterruptedException -&gt; 0x000c }
+                            r0 = r0.mNetworkQueue;	 Catch:{ InterruptedException -&gt; 0x000c }
+                            r1 = r0;	 Catch:{ InterruptedException -&gt; 0x000c }
+                            r0.put(r1);	 Catch:{ InterruptedException -&gt; 0x000c }
+                            goto L_0x0013;
+                        L_0x000c:
+                            r0 = java.lang.Thread.currentThread();
+                            r0.interrupt();
+                        L_0x0013:
+                            return;
+                            */
+                            throw new UnsupportedOperationException("Method not decompiled: com.android.volley.CacheDispatcher.1.run():void");
+                        }
+                    });
+                }
+            } else {
+                this.mDelivery.postResponse(request, parseNetworkResponse);
+            }
+        }
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:13 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

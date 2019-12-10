@@ -1,0 +1,289 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/androidx/core/content/res/ResourcesCompat.java" target="_blank">/xumo_apk/jadx_source_code/androidx/core/content/res/ResourcesCompat.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="ResourcesCompat.java" data-line="" class="code line-numbers"><code>package androidx.core.content.res;
+
+import android.content.Context;
+import android.content.res.ColorStateList;
+import android.content.res.Resources;
+import android.content.res.Resources.NotFoundException;
+import android.content.res.Resources.Theme;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.os.Build.VERSION;
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
+import android.util.TypedValue;
+import androidx.annotation.ColorInt;
+import androidx.annotation.ColorRes;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.FontRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo.Scope;
+import androidx.core.content.res.FontResourcesParserCompat.FamilyResourceEntry;
+import androidx.core.graphics.TypefaceCompat;
+import androidx.core.util.Preconditions;
+
+public final class ResourcesCompat {
+    private static final String TAG = "ResourcesCompat";
+
+    public static abstract class FontCallback {
+        public abstract void onFontRetrievalFailed(int i);
+
+        public abstract void onFontRetrieved(@NonNull Typeface typeface);
+
+        @RestrictTo({Scope.LIBRARY_GROUP})
+        public final void callbackSuccessAsync(final Typeface typeface, @Nullable Handler handler) {
+            if (handler == null) {
+                handler = new Handler(Looper.getMainLooper());
+            }
+            handler.post(new Runnable() {
+                public void run() {
+                    FontCallback.this.onFontRetrieved(typeface);
+                }
+            });
+        }
+
+        @RestrictTo({Scope.LIBRARY_GROUP})
+        public final void callbackFailAsync(final int i, @Nullable Handler handler) {
+            if (handler == null) {
+                handler = new Handler(Looper.getMainLooper());
+            }
+            handler.post(new Runnable() {
+                public void run() {
+                    FontCallback.this.onFontRetrievalFailed(i);
+                }
+            });
+        }
+    }
+
+    @Nullable
+    public static Drawable getDrawable(@NonNull Resources resources, @DrawableRes int i, @Nullable Theme theme) throws NotFoundException {
+        if (VERSION.SDK_INT &gt;= 21) {
+            return resources.getDrawable(i, theme);
+        }
+        return resources.getDrawable(i);
+    }
+
+    @Nullable
+    public static Drawable getDrawableForDensity(@NonNull Resources resources, @DrawableRes int i, int i2, @Nullable Theme theme) throws NotFoundException {
+        if (VERSION.SDK_INT &gt;= 21) {
+            return resources.getDrawableForDensity(i, i2, theme);
+        }
+        if (VERSION.SDK_INT &gt;= 15) {
+            return resources.getDrawableForDensity(i, i2);
+        }
+        return resources.getDrawable(i);
+    }
+
+    @ColorInt
+    public static int getColor(@NonNull Resources resources, @ColorRes int i, @Nullable Theme theme) throws NotFoundException {
+        if (VERSION.SDK_INT &gt;= 23) {
+            return resources.getColor(i, theme);
+        }
+        return resources.getColor(i);
+    }
+
+    @Nullable
+    public static ColorStateList getColorStateList(@NonNull Resources resources, @ColorRes int i, @Nullable Theme theme) throws NotFoundException {
+        if (VERSION.SDK_INT &gt;= 23) {
+            return resources.getColorStateList(i, theme);
+        }
+        return resources.getColorStateList(i);
+    }
+
+    @Nullable
+    public static Typeface getFont(@NonNull Context context, @FontRes int i) throws NotFoundException {
+        if (context.isRestricted()) {
+            return null;
+        }
+        return loadFont(context, i, new TypedValue(), 0, null, null, false);
+    }
+
+    public static void getFont(@NonNull Context context, @FontRes int i, @NonNull FontCallback fontCallback, @Nullable Handler handler) throws NotFoundException {
+        Preconditions.checkNotNull(fontCallback);
+        if (context.isRestricted()) {
+            fontCallback.callbackFailAsync(-4, handler);
+            return;
+        }
+        loadFont(context, i, new TypedValue(), 0, fontCallback, handler, false);
+    }
+
+    @RestrictTo({Scope.LIBRARY_GROUP})
+    public static Typeface getFont(@NonNull Context context, @FontRes int i, TypedValue typedValue, int i2, @Nullable FontCallback fontCallback) throws NotFoundException {
+        if (context.isRestricted()) {
+            return null;
+        }
+        return loadFont(context, i, typedValue, i2, fontCallback, null, true);
+    }
+
+    private static Typeface loadFont(@NonNull Context context, int i, TypedValue typedValue, int i2, @Nullable FontCallback fontCallback, @Nullable Handler handler, boolean z) {
+        Resources resources = context.getResources();
+        resources.getValue(i, typedValue, true);
+        context = loadFont(context, resources, typedValue, i, i2, fontCallback, handler, z);
+        if (context == null) {
+            if (fontCallback == null) {
+                typedValue = new StringBuilder();
+                typedValue.append("Font resource ID #0x");
+                typedValue.append(Integer.toHexString(i));
+                typedValue.append(" could not be retrieved.");
+                throw new NotFoundException(typedValue.toString());
+            }
+        }
+        return context;
+    }
+
+    private static Typeface loadFont(@NonNull Context context, Resources resources, TypedValue typedValue, int i, int i2, @Nullable FontCallback fontCallback, @Nullable Handler handler, boolean z) {
+        String str;
+        StringBuilder stringBuilder;
+        Resources resources2 = resources;
+        TypedValue typedValue2 = typedValue;
+        int i3 = i;
+        int i4 = i2;
+        FontCallback fontCallback2 = fontCallback;
+        Handler handler2 = handler;
+        if (typedValue2.string != null) {
+            String charSequence = typedValue2.string.toString();
+            if (charSequence.startsWith("res/")) {
+                Typeface findFromCache = TypefaceCompat.findFromCache(resources, i3, i4);
+                if (findFromCache != null) {
+                    if (fontCallback2 != null) {
+                        fontCallback2.callbackSuccessAsync(findFromCache, handler2);
+                    }
+                    return findFromCache;
+                }
+                try {
+                    if (charSequence.toLowerCase().endsWith(".xml")) {
+                        FamilyResourceEntry parse = FontResourcesParserCompat.parse(resources.getXml(i3), resources);
+                        if (parse != null) {
+                            return TypefaceCompat.createFromResourcesFamilyXml(context, parse, resources, i, i2, fontCallback, handler, z);
+                        }
+                        Log.e(TAG, "Failed to find font-family tag");
+                        if (fontCallback2 != null) {
+                            fontCallback2.callbackFailAsync(-3, handler2);
+                        }
+                        return null;
+                    }
+                    Context context2 = context;
+                    Typeface createFromResourcesFontFile = TypefaceCompat.createFromResourcesFontFile(context, resources, i3, charSequence, i4);
+                    if (fontCallback2 != null) {
+                        if (createFromResourcesFontFile != null) {
+                            fontCallback2.callbackSuccessAsync(createFromResourcesFontFile, handler2);
+                        } else {
+                            fontCallback2.callbackFailAsync(-3, handler2);
+                        }
+                    }
+                    return createFromResourcesFontFile;
+                } catch (Throwable e) {
+                    str = TAG;
+                    stringBuilder = new StringBuilder();
+                    stringBuilder.append("Failed to parse xml resource ");
+                    stringBuilder.append(charSequence);
+                    Log.e(str, stringBuilder.toString(), e);
+                    if (fontCallback2 != null) {
+                        fontCallback2.callbackFailAsync(-3, handler2);
+                    }
+                    return null;
+                } catch (Throwable e2) {
+                    str = TAG;
+                    stringBuilder = new StringBuilder();
+                    stringBuilder.append("Failed to read xml resource ");
+                    stringBuilder.append(charSequence);
+                    Log.e(str, stringBuilder.toString(), e2);
+                    if (fontCallback2 != null) {
+                        fontCallback2.callbackFailAsync(-3, handler2);
+                    }
+                    return null;
+                }
+            }
+            if (fontCallback2 != null) {
+                fontCallback2.callbackFailAsync(-3, handler2);
+            }
+            return null;
+        }
+        StringBuilder stringBuilder2 = new StringBuilder();
+        stringBuilder2.append("Resource \"");
+        stringBuilder2.append(resources.getResourceName(i3));
+        stringBuilder2.append("\" (");
+        stringBuilder2.append(Integer.toHexString(i));
+        stringBuilder2.append(") is not a Font: ");
+        stringBuilder2.append(typedValue2);
+        throw new NotFoundException(stringBuilder2.toString());
+    }
+
+    private ResourcesCompat() {
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:3 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

@@ -1,0 +1,512 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9"><div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/exoplayer2/upstream/cache/CachedContentIndex.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/exoplayer2/upstream/cache/CachedContentIndex.java</a></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-50">report</i><h5>(private|secret|api|aws)[_-]?key</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>Sensitive parameters which can contain hardcoded credentials. The score is quite low because this query is often a false-positive.</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#CachedContentIndex_java21priv" class="active">line 21</a></li><li class="tab"><a style="color: #d82c2b;" href="#CachedContentIndex_java34priv">line 34</a></li><li class="tab"><a style="color: #d82c2b;" href="#CachedContentIndex_java80priv">line 80</a></li><li class="tab"><a style="color: #d82c2b;" href="#CachedContentIndex_java158priv">line 158</a></li><li class="tab"><a style="color: #d82c2b;" href="#CachedContentIndex_java165priv">line 165</a></li><li class="tab"><a style="color: #d82c2b;" href="#CachedContentIndex_java259priv">line 259</a></li></ul></div><div class="card-content"><div id="CachedContentIndex_java21priv">Code @ line 21<pre data-start="18" data-line="21" data-src="CachedContentIndex.java" class="code line-numbers"><code>import javax.crypto.Cipher;
+import javax.crypto.CipherOutputStream;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+
+class CachedContentIndex {
+    public static final String FILE_NAME = "cached_content_index.exi";
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlZENvbnRlbnRJbmRleC5qYXZhfHx8bGluZTogMjEgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwyMXx8fDE4">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlZENvbnRlbnRJbmRleC5qYXZhfHx8bGluZTogMjEgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwyMXx8fDE4')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlZENvbnRlbnRJbmRleC5qYXZhfHx8bGluZTogMjEgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwyMXx8fDE4').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlZENvbnRlbnRJbmRleC5qYXZhfHx8bGluZTogMjEgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwyMXx8fDE4" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlZENvbnRlbnRJbmRleC5qYXZhfHx8bGluZTogMjEgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwyMXx8fDE4' , 'aW1wb3J0IGphdmF4LmNyeXB0by5DaXBoZXI7CmltcG9ydCBqYXZheC5jcnlwdG8uQ2lwaGVyT3V0cHV0U3RyZWFtOwppbXBvcnQgamF2YXguY3J5cHRvLnNwZWMuSXZQYXJhbWV0ZXJTcGVjOwppbXBvcnQgamF2YXguY3J5cHRvLnNwZWMuU2VjcmV0S2V5U3BlYzsKCmNsYXNzIENhY2hlZENvbnRlbnRJbmRleCB7CiAgICBwdWJsaWMgc3RhdGljIGZpbmFsIFN0cmluZyBGSUxFX05BTUUgPSAiY2FjaGVkX2NvbnRlbnRfaW5kZXguZXhpIjsK');  
+                                            });
+                                            </script>
+                                            </div><div id="CachedContentIndex_java34priv">Code @ line 34<pre data-start="31" data-line="34" data-src="CachedContentIndex.java" class="code line-numbers"><code>    private final boolean encrypt;
+    private final SparseArray&lt;String&gt; idToKey;
+    private final HashMap&lt;String, CachedContent&gt; keyToContent;
+    private final SecretKeySpec secretKeySpec;
+
+    private boolean readFile() {
+        /* JADX: method processing error */
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlZENvbnRlbnRJbmRleC5qYXZhfHx8bGluZTogMzQgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwzNHx8fDMx">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlZENvbnRlbnRJbmRleC5qYXZhfHx8bGluZTogMzQgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwzNHx8fDMx')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlZENvbnRlbnRJbmRleC5qYXZhfHx8bGluZTogMzQgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwzNHx8fDMx').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlZENvbnRlbnRJbmRleC5qYXZhfHx8bGluZTogMzQgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwzNHx8fDMx" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlZENvbnRlbnRJbmRleC5qYXZhfHx8bGluZTogMzQgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwzNHx8fDMx' , 'ICAgIHByaXZhdGUgZmluYWwgYm9vbGVhbiBlbmNyeXB0OwogICAgcHJpdmF0ZSBmaW5hbCBTcGFyc2VBcnJheTxTdHJpbmc+IGlkVG9LZXk7CiAgICBwcml2YXRlIGZpbmFsIEhhc2hNYXA8U3RyaW5nLCBDYWNoZWRDb250ZW50PiBrZXlUb0NvbnRlbnQ7CiAgICBwcml2YXRlIGZpbmFsIFNlY3JldEtleVNwZWMgc2VjcmV0S2V5U3BlYzsKCiAgICBwcml2YXRlIGJvb2xlYW4gcmVhZEZpbGUoKSB7CiAgICAgICAgLyogSkFEWDogbWV0aG9kIHByb2Nlc3NpbmcgZXJyb3IgKi8K');  
+                                            });
+                                            </script>
+                                            </div><div id="CachedContentIndex_java80priv">Code @ line 80<pre data-start="77" data-line="80" data-src="CachedContentIndex.java" class="code line-numbers"><code>        r7 = new javax.crypto.spec.IvParameterSpec;
+        r7.&lt;init&gt;(r5);
+        r5 = r9.cipher;
+        r8 = r9.secretKeySpec;
+        r5.init(r4, r8, r7);
+        r4 = new java.io.DataInputStream;
+        r5 = new javax.crypto.CipherInputStream;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlZENvbnRlbnRJbmRleC5qYXZhfHx8bGluZTogODAgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHw4MHx8fDc3">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlZENvbnRlbnRJbmRleC5qYXZhfHx8bGluZTogODAgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHw4MHx8fDc3')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlZENvbnRlbnRJbmRleC5qYXZhfHx8bGluZTogODAgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHw4MHx8fDc3').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlZENvbnRlbnRJbmRleC5qYXZhfHx8bGluZTogODAgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHw4MHx8fDc3" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlZENvbnRlbnRJbmRleC5qYXZhfHx8bGluZTogODAgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHw4MHx8fDc3' , 'ICAgICAgICByNyA9IG5ldyBqYXZheC5jcnlwdG8uc3BlYy5JdlBhcmFtZXRlclNwZWM7CiAgICAgICAgcjcuPGluaXQ+KHI1KTsKICAgICAgICByNSA9IHI5LmNpcGhlcjsKICAgICAgICByOCA9IHI5LnNlY3JldEtleVNwZWM7CiAgICAgICAgcjUuaW5pdChyNCwgcjgsIHI3KTsKICAgICAgICByNCA9IG5ldyBqYXZhLmlvLkRhdGFJbnB1dFN0cmVhbTsKICAgICAgICByNSA9IG5ldyBqYXZheC5jcnlwdG8uQ2lwaGVySW5wdXRTdHJlYW07Cg==');  
+                                            });
+                                            </script>
+                                            </div><div id="CachedContentIndex_java158priv">Code @ line 158<pre data-start="155" data-line="158" data-src="CachedContentIndex.java" class="code line-numbers"><code>            Assertions.checkArgument(z2);
+            try {
+                this.cipher = getCipher();
+                this.secretKeySpec = new SecretKeySpec(bArr, "AES");
+            } catch (File file2) {
+                throw new IllegalStateException(file2);
+            }
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlZENvbnRlbnRJbmRleC5qYXZhfHx8bGluZTogMTU4IDogKHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHw1MHx8fChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8MTU4fHx8MTU1">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlZENvbnRlbnRJbmRleC5qYXZhfHx8bGluZTogMTU4IDogKHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHw1MHx8fChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8MTU4fHx8MTU1')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlZENvbnRlbnRJbmRleC5qYXZhfHx8bGluZTogMTU4IDogKHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHw1MHx8fChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8MTU4fHx8MTU1').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlZENvbnRlbnRJbmRleC5qYXZhfHx8bGluZTogMTU4IDogKHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHw1MHx8fChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8MTU4fHx8MTU1" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlZENvbnRlbnRJbmRleC5qYXZhfHx8bGluZTogMTU4IDogKHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHw1MHx8fChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8MTU4fHx8MTU1' , 'ICAgICAgICAgICAgQXNzZXJ0aW9ucy5jaGVja0FyZ3VtZW50KHoyKTsKICAgICAgICAgICAgdHJ5IHsKICAgICAgICAgICAgICAgIHRoaXMuY2lwaGVyID0gZ2V0Q2lwaGVyKCk7CiAgICAgICAgICAgICAgICB0aGlzLnNlY3JldEtleVNwZWMgPSBuZXcgU2VjcmV0S2V5U3BlYyhiQXJyLCAiQUVTIik7CiAgICAgICAgICAgIH0gY2F0Y2ggKEZpbGUgZmlsZTIpIHsKICAgICAgICAgICAgICAgIHRocm93IG5ldyBJbGxlZ2FsU3RhdGVFeGNlcHRpb24oZmlsZTIpOwogICAgICAgICAgICB9Cg==');  
+                                            });
+                                            </script>
+                                            </div><div id="CachedContentIndex_java165priv">Code @ line 165<pre data-start="162" data-line="165" data-src="CachedContentIndex.java" class="code line-numbers"><code>        }
+        Assertions.checkState(z ^ 1);
+        this.cipher = null;
+        this.secretKeySpec = null;
+        this.keyToContent = new HashMap();
+        this.idToKey = new SparseArray();
+        this.atomicFile = new AtomicFile(new File(file2, FILE_NAME));
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlZENvbnRlbnRJbmRleC5qYXZhfHx8bGluZTogMTY1IDogKHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHw1MHx8fChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8MTY1fHx8MTYy">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlZENvbnRlbnRJbmRleC5qYXZhfHx8bGluZTogMTY1IDogKHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHw1MHx8fChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8MTY1fHx8MTYy')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlZENvbnRlbnRJbmRleC5qYXZhfHx8bGluZTogMTY1IDogKHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHw1MHx8fChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8MTY1fHx8MTYy').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlZENvbnRlbnRJbmRleC5qYXZhfHx8bGluZTogMTY1IDogKHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHw1MHx8fChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8MTY1fHx8MTYy" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlZENvbnRlbnRJbmRleC5qYXZhfHx8bGluZTogMTY1IDogKHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHw1MHx8fChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8MTY1fHx8MTYy' , 'ICAgICAgICB9CiAgICAgICAgQXNzZXJ0aW9ucy5jaGVja1N0YXRlKHogXiAxKTsKICAgICAgICB0aGlzLmNpcGhlciA9IG51bGw7CiAgICAgICAgdGhpcy5zZWNyZXRLZXlTcGVjID0gbnVsbDsKICAgICAgICB0aGlzLmtleVRvQ29udGVudCA9IG5ldyBIYXNoTWFwKCk7CiAgICAgICAgdGhpcy5pZFRvS2V5ID0gbmV3IFNwYXJzZUFycmF5KCk7CiAgICAgICAgdGhpcy5hdG9taWNGaWxlID0gbmV3IEF0b21pY0ZpbGUobmV3IEZpbGUoZmlsZTIsIEZJTEVfTkFNRSkpOwo=');  
+                                            });
+                                            </script>
+                                            </div><div id="CachedContentIndex_java259priv">Code @ line 259<pre data-start="256" data-line="259" data-src="CachedContentIndex.java" class="code line-numbers"><code>                    byte[] bArr = new byte[16];
+                    new Random().nextBytes(bArr);
+                    dataOutputStream.write(bArr);
+                    this.cipher.init(1, this.secretKeySpec, new IvParameterSpec(bArr));
+                    dataOutputStream.flush();
+                    startWrite = new DataOutputStream(new CipherOutputStream(this.bufferedOutputStream, this.cipher));
+                }
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlZENvbnRlbnRJbmRleC5qYXZhfHx8bGluZTogMjU5IDogKHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHw1MHx8fChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8MjU5fHx8MjU2">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlZENvbnRlbnRJbmRleC5qYXZhfHx8bGluZTogMjU5IDogKHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHw1MHx8fChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8MjU5fHx8MjU2')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlZENvbnRlbnRJbmRleC5qYXZhfHx8bGluZTogMjU5IDogKHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHw1MHx8fChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8MjU5fHx8MjU2').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlZENvbnRlbnRJbmRleC5qYXZhfHx8bGluZTogMjU5IDogKHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHw1MHx8fChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8MjU5fHx8MjU2" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlZENvbnRlbnRJbmRleC5qYXZhfHx8bGluZTogMjU5IDogKHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHw1MHx8fChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8MjU5fHx8MjU2' , 'ICAgICAgICAgICAgICAgICAgICBieXRlW10gYkFyciA9IG5ldyBieXRlWzE2XTsKICAgICAgICAgICAgICAgICAgICBuZXcgUmFuZG9tKCkubmV4dEJ5dGVzKGJBcnIpOwogICAgICAgICAgICAgICAgICAgIGRhdGFPdXRwdXRTdHJlYW0ud3JpdGUoYkFycik7CiAgICAgICAgICAgICAgICAgICAgdGhpcy5jaXBoZXIuaW5pdCgxLCB0aGlzLnNlY3JldEtleVNwZWMsIG5ldyBJdlBhcmFtZXRlclNwZWMoYkFycikpOwogICAgICAgICAgICAgICAgICAgIGRhdGFPdXRwdXRTdHJlYW0uZmx1c2goKTsKICAgICAgICAgICAgICAgICAgICBzdGFydFdyaXRlID0gbmV3IERhdGFPdXRwdXRTdHJlYW0obmV3IENpcGhlck91dHB1dFN0cmVhbSh0aGlzLmJ1ZmZlcmVkT3V0cHV0U3RyZWFtLCB0aGlzLmNpcGhlcikpOwogICAgICAgICAgICAgICAgfQo=');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-83">report</i><h5>password =|secret =|username =|key =</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>the app contain hardcoded sensitive informations like usernames, passwords, keys etc: Hard coded sensitive information in Application Code (including Crypto)</span></div></li></ul><ul class="collapsible"><li><div class="collapsible-header"><img data-position="top" data-tooltip="OWASP item" src="html/owasp_logo.png" height="20em" style="margin-right: 1rem;margin-left: 5px;" class="tooltipped"></img> OWASP Item</div><div class="collapsible-body"><span>For more information, have a look at: https://www.owasp.org/index.php/OWASP_Mobile_Security_Testing_Guide</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#CachedContentIndex_java167pass" class="active">line 167</a></li></ul></div><div class="card-content"><div id="CachedContentIndex_java167pass">Code @ line 167<pre data-start="164" data-line="167" data-src="CachedContentIndex.java" class="code line-numbers"><code>        this.cipher = null;
+        this.secretKeySpec = null;
+        this.keyToContent = new HashMap();
+        this.idToKey = new SparseArray();
+        this.atomicFile = new AtomicFile(new File(file2, FILE_NAME));
+    }
+
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlZENvbnRlbnRJbmRleC5qYXZhfHx8bGluZTogMTY3IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwxNjd8fHwxNjQ">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlZENvbnRlbnRJbmRleC5qYXZhfHx8bGluZTogMTY3IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwxNjd8fHwxNjQ')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlZENvbnRlbnRJbmRleC5qYXZhfHx8bGluZTogMTY3IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwxNjd8fHwxNjQ').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlZENvbnRlbnRJbmRleC5qYXZhfHx8bGluZTogMTY3IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwxNjd8fHwxNjQ" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlZENvbnRlbnRJbmRleC5qYXZhfHx8bGluZTogMTY3IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwxNjd8fHwxNjQ' , 'ICAgICAgICB0aGlzLmNpcGhlciA9IG51bGw7CiAgICAgICAgdGhpcy5zZWNyZXRLZXlTcGVjID0gbnVsbDsKICAgICAgICB0aGlzLmtleVRvQ29udGVudCA9IG5ldyBIYXNoTWFwKCk7CiAgICAgICAgdGhpcy5pZFRvS2V5ID0gbmV3IFNwYXJzZUFycmF5KCk7CiAgICAgICAgdGhpcy5hdG9taWNGaWxlID0gbmV3IEF0b21pY0ZpbGUobmV3IEZpbGUoZmlsZTIsIEZJTEVfTkFNRSkpOwogICAgfQoK');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="CachedContentIndex.java" data-line="21,34,80,158,165,259,167," class="code line-numbers"><code>package com.google.android.exoplayer2.upstream.cache;
+
+import android.util.SparseArray;
+import com.google.android.exoplayer2.upstream.cache.Cache.CacheException;
+import com.google.android.exoplayer2.util.Assertions;
+import com.google.android.exoplayer2.util.AtomicFile;
+import com.google.android.exoplayer2.util.ReusableBufferedOutputStream;
+import com.google.android.exoplayer2.util.Util;
+import java.io.Closeable;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Random;
+import java.util.Set;
+import javax.crypto.Cipher;
+import javax.crypto.CipherOutputStream;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+
+class CachedContentIndex {
+    public static final String FILE_NAME = "cached_content_index.exi";
+    private static final int FLAG_ENCRYPTED_INDEX = 1;
+    private static final int VERSION = 2;
+    private final AtomicFile atomicFile;
+    private ReusableBufferedOutputStream bufferedOutputStream;
+    private boolean changed;
+    private final Cipher cipher;
+    private final boolean encrypt;
+    private final SparseArray&lt;String&gt; idToKey;
+    private final HashMap&lt;String, CachedContent&gt; keyToContent;
+    private final SecretKeySpec secretKeySpec;
+
+    private boolean readFile() {
+        /* JADX: method processing error */
+/*
+Error: jadx.core.utils.exceptions.DecodeException: Load method exception in method: com.google.android.exoplayer2.upstream.cache.CachedContentIndex.readFile():boolean
+	at jadx.core.dex.nodes.MethodNode.load(MethodNode.java:116)
+	at jadx.core.dex.nodes.ClassNode.load(ClassNode.java:249)
+	at jadx.core.ProcessClass.process(ProcessClass.java:34)
+	at jadx.api.JadxDecompiler.processClass(JadxDecompiler.java:306)
+	at jadx.api.JavaClass.decompile(JavaClass.java:62)
+	at jadx.api.JadxDecompiler$1.run(JadxDecompiler.java:199)
+Caused by: java.lang.NullPointerException
+	at jadx.core.dex.nodes.MethodNode.initTryCatches(MethodNode.java:305)
+	at jadx.core.dex.nodes.MethodNode.load(MethodNode.java:105)
+	... 5 more
+*/
+        /*
+        r0 = this;
+        r0 = 0;
+        r1 = 0;
+        r2 = new java.io.BufferedInputStream;
+        r3 = r9.atomicFile;
+        r3 = r3.openRead();
+        r2.&lt;init&gt;(r3);
+        r3 = new java.io.DataInputStream;
+        r3.&lt;init&gt;(r2);
+        r1 = r3.readInt();
+        if (r1 &lt; 0) goto L_0x008d;
+        r4 = 2;
+        if (r1 &lt;= r4) goto L_0x001d;
+        goto L_0x008d;
+        r5 = r3.readInt();
+        r6 = 1;
+        r5 = r5 &amp; r6;
+        if (r5 == 0) goto L_0x0055;
+        r5 = r9.cipher;
+        if (r5 != 0) goto L_0x002d;
+        com.google.android.exoplayer2.util.Util.closeQuietly(r3);
+        return r0;
+        r5 = 16;
+        r5 = new byte[r5];
+        r3.readFully(r5);
+        r7 = new javax.crypto.spec.IvParameterSpec;
+        r7.&lt;init&gt;(r5);
+        r5 = r9.cipher;
+        r8 = r9.secretKeySpec;
+        r5.init(r4, r8, r7);
+        r4 = new java.io.DataInputStream;
+        r5 = new javax.crypto.CipherInputStream;
+        r7 = r9.cipher;
+        r5.&lt;init&gt;(r2, r7);
+        r4.&lt;init&gt;(r5);
+        r3 = r4;
+        goto L_0x005b;
+        r1 = move-exception;
+        r2 = new java.lang.IllegalStateException;
+        r2.&lt;init&gt;(r1);
+        throw r2;
+        r2 = r9.encrypt;
+        if (r2 == 0) goto L_0x005b;
+        r9.changed = r6;
+        r2 = r3.readInt();
+        r4 = 0;
+        r5 = 0;
+        if (r4 &gt;= r2) goto L_0x0072;
+        r7 = com.google.android.exoplayer2.upstream.cache.CachedContent.readFromStream(r1, r3);
+        r9.add(r7);
+        r7 = r7.headerHashCode(r1);
+        r5 = r5 + r7;
+        r4 = r4 + 1;
+        goto L_0x0061;
+        r1 = r3.readInt();
+        r2 = r3.read();
+        r4 = -1;
+        if (r2 != r4) goto L_0x007f;
+        r2 = 1;
+        goto L_0x0080;
+        r2 = 0;
+        if (r1 != r5) goto L_0x0089;
+        if (r2 != 0) goto L_0x0085;
+        goto L_0x0089;
+        com.google.android.exoplayer2.util.Util.closeQuietly(r3);
+        return r6;
+        com.google.android.exoplayer2.util.Util.closeQuietly(r3);
+        return r0;
+        com.google.android.exoplayer2.util.Util.closeQuietly(r3);
+        return r0;
+        r0 = move-exception;
+        goto L_0x0097;
+        goto L_0x009e;
+    L_0x0095:
+        r0 = move-exception;
+        r3 = r1;
+        if (r3 == 0) goto L_0x009c;
+        com.google.android.exoplayer2.util.Util.closeQuietly(r3);
+        throw r0;
+    L_0x009d:
+        r3 = r1;
+        if (r3 == 0) goto L_0x00a3;
+        com.google.android.exoplayer2.util.Util.closeQuietly(r3);
+        return r0;
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.google.android.exoplayer2.upstream.cache.CachedContentIndex.readFile():boolean");
+    }
+
+    public CachedContentIndex(File file) {
+        this(file, null);
+    }
+
+    public CachedContentIndex(File file, byte[] bArr) {
+        this(file, bArr, bArr != null);
+    }
+
+    public CachedContentIndex(File file, byte[] bArr, boolean z) {
+        this.encrypt = z;
+        boolean z2 = true;
+        if (bArr != null) {
+            if (!bArr.length) {
+                z2 = false;
+            }
+            Assertions.checkArgument(z2);
+            try {
+                this.cipher = getCipher();
+                this.secretKeySpec = new SecretKeySpec(bArr, "AES");
+            } catch (File file2) {
+                throw new IllegalStateException(file2);
+            }
+        }
+        Assertions.checkState(z ^ 1);
+        this.cipher = null;
+        this.secretKeySpec = null;
+        this.keyToContent = new HashMap();
+        this.idToKey = new SparseArray();
+        this.atomicFile = new AtomicFile(new File(file2, FILE_NAME));
+    }
+
+    public void load() {
+        Assertions.checkState(this.changed ^ 1);
+        if (!readFile()) {
+            this.atomicFile.delete();
+            this.keyToContent.clear();
+            this.idToKey.clear();
+        }
+    }
+
+    public void store() throws CacheException {
+        if (this.changed) {
+            writeFile();
+            this.changed = false;
+        }
+    }
+
+    public CachedContent getOrAdd(String str) {
+        CachedContent cachedContent = (CachedContent) this.keyToContent.get(str);
+        return cachedContent == null ? addNew(str) : cachedContent;
+    }
+
+    public CachedContent get(String str) {
+        return (CachedContent) this.keyToContent.get(str);
+    }
+
+    public Collection&lt;CachedContent&gt; getAll() {
+        return this.keyToContent.values();
+    }
+
+    public int assignIdForKey(String str) {
+        return getOrAdd(str).id;
+    }
+
+    public String getKeyForId(int i) {
+        return (String) this.idToKey.get(i);
+    }
+
+    public void maybeRemove(String str) {
+        CachedContent cachedContent = (CachedContent) this.keyToContent.get(str);
+        if (cachedContent != null &amp;&amp; cachedContent.isEmpty() &amp;&amp; !cachedContent.isLocked()) {
+            this.keyToContent.remove(str);
+            this.idToKey.remove(cachedContent.id);
+            this.changed = true;
+        }
+    }
+
+    public void removeEmpty() {
+        String[] strArr = new String[this.keyToContent.size()];
+        this.keyToContent.keySet().toArray(strArr);
+        for (String maybeRemove : strArr) {
+            maybeRemove(maybeRemove);
+        }
+    }
+
+    public Set&lt;String&gt; getKeys() {
+        return this.keyToContent.keySet();
+    }
+
+    public void applyContentMetadataMutations(String str, ContentMetadataMutations contentMetadataMutations) {
+        if (getOrAdd(str).applyMetadataMutations(contentMetadataMutations) != null) {
+            this.changed = true;
+        }
+    }
+
+    public ContentMetadata getContentMetadata(String str) {
+        str = get(str);
+        return str != null ? str.getMetadata() : DefaultContentMetadata.EMPTY;
+    }
+
+    private void writeFile() throws CacheException {
+        Throwable e;
+        Throwable th;
+        Closeable dataOutputStream;
+        try {
+            OutputStream startWrite = this.atomicFile.startWrite();
+            if (this.bufferedOutputStream == null) {
+                this.bufferedOutputStream = new ReusableBufferedOutputStream(startWrite);
+            } else {
+                this.bufferedOutputStream.reset(startWrite);
+            }
+            dataOutputStream = new DataOutputStream(this.bufferedOutputStream);
+            try {
+                dataOutputStream.writeInt(2);
+                dataOutputStream.writeInt(this.encrypt);
+                if (this.encrypt) {
+                    byte[] bArr = new byte[16];
+                    new Random().nextBytes(bArr);
+                    dataOutputStream.write(bArr);
+                    this.cipher.init(1, this.secretKeySpec, new IvParameterSpec(bArr));
+                    dataOutputStream.flush();
+                    startWrite = new DataOutputStream(new CipherOutputStream(this.bufferedOutputStream, this.cipher));
+                }
+                startWrite.writeInt(this.keyToContent.size());
+                int i = 0;
+                for (CachedContent cachedContent : this.keyToContent.values()) {
+                    cachedContent.writeToStream(startWrite);
+                    i += cachedContent.headerHashCode(2);
+                }
+                startWrite.writeInt(i);
+                this.atomicFile.endWrite(startWrite);
+                Util.closeQuietly(null);
+            } catch (Throwable e2) {
+                throw new IllegalStateException(e2);
+            } catch (IOException e3) {
+                e2 = e3;
+                try {
+                    throw new CacheException(e2);
+                } catch (Throwable th2) {
+                    e2 = th2;
+                    Util.closeQuietly(dataOutputStream);
+                    throw e2;
+                }
+            }
+        } catch (Throwable e4) {
+            th = e4;
+            dataOutputStream = null;
+            e2 = th;
+            throw new CacheException(e2);
+        } catch (Throwable e42) {
+            th = e42;
+            dataOutputStream = null;
+            e2 = th;
+            Util.closeQuietly(dataOutputStream);
+            throw e2;
+        }
+    }
+
+    private CachedContent addNew(String str) {
+        CachedContent cachedContent = new CachedContent(getNewId(this.idToKey), str);
+        add(cachedContent);
+        this.changed = true;
+        return cachedContent;
+    }
+
+    private void add(CachedContent cachedContent) {
+        this.keyToContent.put(cachedContent.key, cachedContent);
+        this.idToKey.put(cachedContent.id, cachedContent.key);
+    }
+
+    private static javax.crypto.Cipher getCipher() throws javax.crypto.NoSuchPaddingException, java.security.NoSuchAlgorithmException {
+        /* JADX: method processing error */
+/*
+Error: java.lang.NullPointerException
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.searchTryCatchDominators(ProcessTryCatchRegions.java:75)
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.process(ProcessTryCatchRegions.java:45)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.postProcessRegions(RegionMakerVisitor.java:63)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.visit(RegionMakerVisitor.java:58)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:31)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:17)
+	at jadx.core.ProcessClass.process(ProcessClass.java:37)
+	at jadx.api.JadxDecompiler.processClass(JadxDecompiler.java:306)
+	at jadx.api.JavaClass.decompile(JavaClass.java:62)
+	at jadx.api.JadxDecompiler$1.run(JadxDecompiler.java:199)
+*/
+        /*
+        r0 = com.google.android.exoplayer2.util.Util.SDK_INT;
+        r1 = 18;
+        if (r0 != r1) goto L_0x000f;
+    L_0x0006:
+        r0 = "AES/CBC/PKCS5PADDING";	 Catch:{ Throwable -&gt; 0x000f }
+        r1 = "BC";	 Catch:{ Throwable -&gt; 0x000f }
+        r0 = javax.crypto.Cipher.getInstance(r0, r1);	 Catch:{ Throwable -&gt; 0x000f }
+        return r0;
+    L_0x000f:
+        r0 = "AES/CBC/PKCS5PADDING";
+        r0 = javax.crypto.Cipher.getInstance(r0);
+        return r0;
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.google.android.exoplayer2.upstream.cache.CachedContentIndex.getCipher():javax.crypto.Cipher");
+    }
+
+    public static int getNewId(SparseArray&lt;String&gt; sparseArray) {
+        int i;
+        int size = sparseArray.size();
+        if (size == 0) {
+            i = 0;
+        } else {
+            i = sparseArray.keyAt(size - 1) + 1;
+        }
+        if (i &lt; 0) {
+            i = 0;
+            while (i &lt; size) {
+                if (i != sparseArray.keyAt(i)) {
+                    break;
+                }
+                i++;
+            }
+        }
+        return i;
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:9 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

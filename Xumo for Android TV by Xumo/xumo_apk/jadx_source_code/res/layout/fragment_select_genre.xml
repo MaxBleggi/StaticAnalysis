@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res-auto" app:background="@drawable/shap_gradient_black" app:layout_width="match_parent" app:layout_height="match_parent">
+    <LinearLayout app:orientation="vertical" app:layout_width="wrap_content" app:layout_height="match_parent" app:layout_marginStart="110dp">
+        <ImageView app:id="@+id/on_now_genre_up" app:visibility="invisible" app:layout_width="wrap_content" app:layout_height="wrap_content" app:layout_marginTop="70dp" app:src="@drawable/cast_arrow" app:layout_marginStart="80dp" />
+        <com.xumo.xumo.widget.XumoTvRecyclerView app:id="@+id/genre_selector_list" app:focusable="true" app:layout_width="wrap_content" app:layout_height="UNKNOWN_DATA_0x19001" app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        <ImageView app:id="@+id/on_now_genre_down" app:layout_width="wrap_content" app:layout_height="wrap_content" app:src="@drawable/cast_arrow" app:rotation="180.0" app:layout_marginStart="80dp" />
+    </LinearLayout>
+    <LinearLayout app:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end" app:id="@+id/control_guide_genre_selector" app:background="@drawable/shap_gradient_black90" app:layout_width="match_parent" app:layout_height="UNKNOWN_DATA_0x5a01" app:layout_alignParentBottom="true"
+        <LinearLayout app:gravity="top|bottom|center_vertical|fill_vertical|center|fill" app:layout_width="wrap_content" app:layout_height="wrap_content" app:layout_marginBottom="40dp" app:layout_marginEnd="90dp">
+            <ImageView app:layout_width="UNKNOWN_DATA_0x1801" app:layout_height="UNKNOWN_DATA_0x1801" app:src="@drawable/hinting_icon_ok" />
+            <TextView app:textSize="12.5sp" app:textStyle="bold" app:textColor="@color/text_white" app:layout_width="wrap_content" app:layout_height="wrap_content" app:text="@string/control_guide_select_genre" app:fontFamily="@font/open_sans_bold" app:layout_marginStart="10dp" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

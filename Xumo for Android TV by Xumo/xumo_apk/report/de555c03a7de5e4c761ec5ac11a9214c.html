@@ -1,0 +1,221 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/res/values-hi/strings.xml" target="_blank">/xumo_apk/jadx_source_code/res/values-hi/strings.xml</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="strings.xml" data-line="" class="code line-numbers"><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;resources&gt;
+    &lt;string name="abc_action_bar_home_description"&gt;होम पेज पर जाएं&lt;/string&gt;
+    &lt;string name="abc_action_bar_up_description"&gt;ऊपर जाएं&lt;/string&gt;
+    &lt;string name="abc_action_menu_overflow_description"&gt;ज़्यादा विकल्प&lt;/string&gt;
+    &lt;string name="abc_action_mode_done"&gt;हो गया&lt;/string&gt;
+    &lt;string name="abc_activity_chooser_view_see_all"&gt;सभी देखें&lt;/string&gt;
+    &lt;string name="abc_activitychooserview_choose_application"&gt;कोई एप्‍लिकेशन चुनें&lt;/string&gt;
+    &lt;string name="abc_capital_off"&gt;बंद&lt;/string&gt;
+    &lt;string name="abc_capital_on"&gt;चालू&lt;/string&gt;
+    &lt;string name="abc_menu_alt_shortcut_label"&gt;Alt+&lt;/string&gt;
+    &lt;string name="abc_menu_ctrl_shortcut_label"&gt;Ctrl+&lt;/string&gt;
+    &lt;string name="abc_menu_delete_shortcut_label"&gt;delete&lt;/string&gt;
+    &lt;string name="abc_menu_enter_shortcut_label"&gt;enter&lt;/string&gt;
+    &lt;string name="abc_menu_function_shortcut_label"&gt;Function+&lt;/string&gt;
+    &lt;string name="abc_menu_meta_shortcut_label"&gt;Meta+&lt;/string&gt;
+    &lt;string name="abc_menu_shift_shortcut_label"&gt;Shift+&lt;/string&gt;
+    &lt;string name="abc_menu_space_shortcut_label"&gt;space&lt;/string&gt;
+    &lt;string name="abc_menu_sym_shortcut_label"&gt;Sym+&lt;/string&gt;
+    &lt;string name="abc_prepend_shortcut_label"&gt;Menu+&lt;/string&gt;
+    &lt;string name="abc_search_hint"&gt;खोजा जा रहा है…&lt;/string&gt;
+    &lt;string name="abc_searchview_description_clear"&gt;क्‍वेरी साफ़ करें&lt;/string&gt;
+    &lt;string name="abc_searchview_description_query"&gt;सर्च क्वेरी&lt;/string&gt;
+    &lt;string name="abc_searchview_description_search"&gt;सर्च करें&lt;/string&gt;
+    &lt;string name="abc_searchview_description_submit"&gt;क्वेरी सबमिट करें&lt;/string&gt;
+    &lt;string name="abc_searchview_description_voice"&gt;आवाज़ सर्च&lt;/string&gt;
+    &lt;string name="abc_shareactionprovider_share_with"&gt;इसके साथ शेयर करें&lt;/string&gt;
+    &lt;string name="abc_shareactionprovider_share_with_application"&gt;%s के साथ शेयर करें&lt;/string&gt;
+    &lt;string name="abc_toolbar_collapse_description"&gt;छोटा करें&lt;/string&gt;
+    &lt;string name="cast_ad_label"&gt;विज्ञापन&lt;/string&gt;
+    &lt;string name="cast_casting_to_device"&gt;%1$s पर कास्ट किया जा रहा है&lt;/string&gt;
+    &lt;string name="cast_closed_captions"&gt;बंद कैप्‍शन&lt;/string&gt;
+    &lt;string name="cast_closed_captions_unavailable"&gt;बंद कैप्शन उपलब्ध नहीं हैं&lt;/string&gt;
+    &lt;string name="cast_connecting_to_device"&gt;%1$s से कनेक्ट हो रहा है&lt;/string&gt;
+    &lt;string name="cast_disconnect"&gt;डिसकनेक्ट करें&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_ad_image_description"&gt;कास्ट पाने वाले के विज्ञापन देखने के दौरान दिखाई जाने वाली इमेज&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_ad_in_progress"&gt;विज्ञापन चल रहा है…&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_background_image"&gt;एल्बम आर्ट&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_live_stream_indicator"&gt;लाइव प्रसारण&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_loading"&gt;लोड हो रहा है…&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_skip_ad_label"&gt;विज्ञापन छोड़ें&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_skip_ad_text"&gt;आप %1$d में विज्ञापन छोड़ सकते हैं…&lt;/string&gt;
+    &lt;string name="cast_forward"&gt;आगे बढ़ाएं&lt;/string&gt;
+    &lt;string name="cast_forward_10"&gt;दस सेकंड आगे बढ़ाएं&lt;/string&gt;
+    &lt;string name="cast_forward_30"&gt;तीस सेकंड आगे बढ़ाएं&lt;/string&gt;
+    &lt;string name="cast_intro_overlay_button_text"&gt;@android:string/ok&lt;/string&gt;
+    &lt;string name="cast_mute"&gt;म्यूट करें&lt;/string&gt;
+    &lt;string name="cast_notification_connected_message"&gt;%1$s से कनेक्ट है&lt;/string&gt;
+    &lt;string name="cast_notification_connecting_message"&gt;%1$s से कनेक्ट हो रहा है&lt;/string&gt;
+    &lt;string name="cast_notification_default_channel_name"&gt;कास्ट करें&lt;/string&gt;
+    &lt;string name="cast_notification_disconnect"&gt;डिसकनेक्ट करें&lt;/string&gt;
+    &lt;string name="cast_pause"&gt;रोकें&lt;/string&gt;
+    &lt;string name="cast_play"&gt;चलाएं&lt;/string&gt;
+    &lt;string name="cast_rewind"&gt;पीछे ले जाएं&lt;/string&gt;
+    &lt;string name="cast_rewind_10"&gt;दस सेकंड पीछे ले जाएं&lt;/string&gt;
+    &lt;string name="cast_rewind_30"&gt;तीस सेकंड पीछे ले जाएं&lt;/string&gt;
+    &lt;string name="cast_seek_bar"&gt;प्लेबैक आगे-पीछे ले जाने का नियंत्रण&lt;/string&gt;
+    &lt;string name="cast_skip_next"&gt;अगली चीज़ पर जाएं&lt;/string&gt;
+    &lt;string name="cast_skip_prev"&gt;पिछली चीज़ पर जाएं&lt;/string&gt;
+    &lt;string name="cast_stop"&gt;रोकें&lt;/string&gt;
+    &lt;string name="cast_stop_live_stream"&gt;लाइव प्रसारण को रोकें&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_audio"&gt;आवाज़&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_cancel"&gt;रद्द करें&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_closed_captions"&gt;बंद कैप्शन&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_default_track_name"&gt;ट्रैक %1$d&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_none"&gt;कोई नहीं&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_ok"&gt;ठीक है&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_subtitles"&gt;उपशीर्षक&lt;/string&gt;
+    &lt;string name="cast_unmute"&gt;अनम्यूट करें&lt;/string&gt;
+    &lt;string name="common_google_play_services_enable_button"&gt;चालू करें&lt;/string&gt;
+    &lt;string name="common_google_play_services_enable_text"&gt;जब तक आप Google Play सेवाएं चालू नहीं करते, %1$s काम नहीं करेगा.&lt;/string&gt;
+    &lt;string name="common_google_play_services_enable_title"&gt;Google Play सेवाएं चालू करें&lt;/string&gt;
+    &lt;string name="common_google_play_services_install_button"&gt;इंस्टॉल करें&lt;/string&gt;
+    &lt;string name="common_google_play_services_install_text"&gt;%1$s उन Google Play सेवाओं के बिना नहीं चलेगा जो आपके डिवाइस में उपलब्ध नहीं हैं.&lt;/string&gt;
+    &lt;string name="common_google_play_services_install_title"&gt;Google Play सेवाएं इंस्टॉल करें&lt;/string&gt;
+    &lt;string name="common_google_play_services_notification_channel_name"&gt;Google Play सेवाएं उपलब्ध हैं&lt;/string&gt;
+    &lt;string name="common_google_play_services_notification_ticker"&gt;Google Play सेवाओं से जुड़ी गड़बड़ी&lt;/string&gt;
+    &lt;string name="common_google_play_services_unknown_issue"&gt;%1$s को Google Play सेवाओं के साथ समस्या आ रही है. कृपया फिर से कोशिश करें.&lt;/string&gt;
+    &lt;string name="common_google_play_services_unsupported_text"&gt;%1$s उन Google Play सेवाओं के बिना नहीं चलेगा, जो आपके डिवाइस पर काम नहीं करती हैं.&lt;/string&gt;
+    &lt;string name="common_google_play_services_update_button"&gt;अपडेट करें&lt;/string&gt;
+    &lt;string name="common_google_play_services_update_text"&gt;%1$s तब तक नहीं चलेगा जब तक आप Google Play सेवाओं को अपडेट नहीं करते.&lt;/string&gt;
+    &lt;string name="common_google_play_services_update_title"&gt;Google Play सेवाओं को अपडेट करें&lt;/string&gt;
+    &lt;string name="common_google_play_services_updating_text"&gt;%1$s उन Google Play सेवाओं के बिना नहीं चलेगा जो अभी अपडेट हो रही हैं.&lt;/string&gt;
+    &lt;string name="common_google_play_services_wear_update_text"&gt;Google Play सेवाओं के नए वर्शन की ज़रूरत है. यह जल्द ही अपने आप अपडेट हो जाएगा.&lt;/string&gt;
+    &lt;string name="common_open_on_phone"&gt;फ़ोन पर खोलें&lt;/string&gt;
+    &lt;string name="common_signin_button_text"&gt;साइन इन करें&lt;/string&gt;
+    &lt;string name="common_signin_button_text_long"&gt;Google के ज़रिए साइन इन करें&lt;/string&gt;
+    &lt;string name="exo_controls_fastforward_description"&gt;तेज़ी से आगे बढ़ाएं&lt;/string&gt;
+    &lt;string name="exo_controls_fullscreen_description"&gt;फ़ुलस्क्रीन मोड&lt;/string&gt;
+    &lt;string name="exo_controls_next_description"&gt;अगला ट्रैक&lt;/string&gt;
+    &lt;string name="exo_controls_pause_description"&gt;रोकें&lt;/string&gt;
+    &lt;string name="exo_controls_play_description"&gt;चलाएं&lt;/string&gt;
+    &lt;string name="exo_controls_previous_description"&gt;पिछला ट्रैक&lt;/string&gt;
+    &lt;string name="exo_controls_repeat_all_description"&gt;सभी को दोहराएं&lt;/string&gt;
+    &lt;string name="exo_controls_repeat_off_description"&gt;किसी को न दोहराएं&lt;/string&gt;
+    &lt;string name="exo_controls_repeat_one_description"&gt;एक को दोहराएं&lt;/string&gt;
+    &lt;string name="exo_controls_rewind_description"&gt;पीछे ले जाएं&lt;/string&gt;
+    &lt;string name="exo_controls_shuffle_description"&gt;शफ़ल करें&lt;/string&gt;
+    &lt;string name="exo_controls_stop_description"&gt;बंद करें&lt;/string&gt;
+    &lt;string name="exo_download_completed"&gt;डाउनलोड पूरा हुआ&lt;/string&gt;
+    &lt;string name="exo_download_description"&gt;डाउनलोड करें&lt;/string&gt;
+    &lt;string name="exo_download_downloading"&gt;डाउनलोड हो रहा है&lt;/string&gt;
+    &lt;string name="exo_download_failed"&gt;डाउनलोड नहीं हो सका&lt;/string&gt;
+    &lt;string name="exo_download_notification_channel_name"&gt;डाउनलोड की गई मीडिया फ़ाइलें&lt;/string&gt;
+    &lt;string name="exo_download_removing"&gt;डाउनलोड की गई फ़ाइलें हटाई जा रही हैं&lt;/string&gt;
+    &lt;string name="exo_item_list"&gt;%1$s, %2$s&lt;/string&gt;
+    &lt;string name="exo_track_bitrate"&gt;%1$.2f एमबीपीएस&lt;/string&gt;
+    &lt;string name="exo_track_mono"&gt;मोनो साउंड&lt;/string&gt;
+    &lt;string name="exo_track_resolution"&gt;%1$d × %2$d&lt;/string&gt;
+    &lt;string name="exo_track_selection_auto"&gt;अपने आप&lt;/string&gt;
+    &lt;string name="exo_track_selection_none"&gt;कोई नहीं&lt;/string&gt;
+    &lt;string name="exo_track_selection_title_audio"&gt;ऑडियो&lt;/string&gt;
+    &lt;string name="exo_track_selection_title_text"&gt;लेख&lt;/string&gt;
+    &lt;string name="exo_track_selection_title_video"&gt;वीडियो&lt;/string&gt;
+    &lt;string name="exo_track_stereo"&gt;स्टीरियो साउंड&lt;/string&gt;
+    &lt;string name="exo_track_surround"&gt;सराउंड साउंड&lt;/string&gt;
+    &lt;string name="exo_track_surround_5_point_1"&gt;5.1 सराउंड साउंड&lt;/string&gt;
+    &lt;string name="exo_track_surround_7_point_1"&gt;7.1 सराउंड साउंड&lt;/string&gt;
+    &lt;string name="exo_track_unknown"&gt;अज्ञात&lt;/string&gt;
+    &lt;string name="expand_button_title"&gt;बेहतर सेटिंग&lt;/string&gt;
+    &lt;string name="fcm_fallback_notification_channel_label"&gt;अन्य&lt;/string&gt;
+    &lt;string name="mr_button_content_description"&gt;कास्ट बटन&lt;/string&gt;
+    &lt;string name="mr_cast_button_connected"&gt;कास्ट बटन. कनेक्ट हो गया&lt;/string&gt;
+    &lt;string name="mr_cast_button_connecting"&gt;कास्ट बटन. कनेक्ट हो रहा है&lt;/string&gt;
+    &lt;string name="mr_cast_button_disconnected"&gt;कास्ट बटन. डिसकनेक्ट हो गया&lt;/string&gt;
+    &lt;string name="mr_chooser_searching"&gt;डिवाइस ढूंढे जा रहे हैं&lt;/string&gt;
+    &lt;string name="mr_chooser_title"&gt;इस पर कास्‍ट करें&lt;/string&gt;
+    &lt;string name="mr_controller_album_art"&gt;एल्बम आर्ट&lt;/string&gt;
+    &lt;string name="mr_controller_casting_screen"&gt;स्क्रीन कास्ट की जा रही है&lt;/string&gt;
+    &lt;string name="mr_controller_close_description"&gt;बंद करें&lt;/string&gt;
+    &lt;string name="mr_controller_collapse_group"&gt;छोटा करें&lt;/string&gt;
+    &lt;string name="mr_controller_disconnect"&gt;डिसकनेक्ट करें&lt;/string&gt;
+    &lt;string name="mr_controller_expand_group"&gt;बड़ा करके देखें&lt;/string&gt;
+    &lt;string name="mr_controller_no_info_available"&gt;कोई जानकारी मौजूद नहीं है&lt;/string&gt;
+    &lt;string name="mr_controller_no_media_selected"&gt;कोई मीडिया नहीं चुना गया&lt;/string&gt;
+    &lt;string name="mr_controller_pause"&gt;रोकें&lt;/string&gt;
+    &lt;string name="mr_controller_play"&gt;चलाएं&lt;/string&gt;
+    &lt;string name="mr_controller_stop"&gt;बंद करें&lt;/string&gt;
+    &lt;string name="mr_controller_stop_casting"&gt;कास्ट करना रोकें&lt;/string&gt;
+    &lt;string name="mr_controller_volume_slider"&gt;आवाज़ बढ़ाने या घटाने वाला स्लाइडर&lt;/string&gt;
+    &lt;string name="mr_system_route_name"&gt;सिस्टम&lt;/string&gt;
+    &lt;string name="mr_user_route_category_name"&gt;डिवाइस&lt;/string&gt;
+    &lt;string name="search_menu_title"&gt;सर्च&lt;/string&gt;
+    &lt;string name="status_bar_notification_info_overflow"&gt;999+&lt;/string&gt;
+    &lt;string name="summary_collapsed_preference_list"&gt;%1$s, %2$s&lt;/string&gt;
+    &lt;string name="v7_preference_off"&gt;बंद&lt;/string&gt;
+    &lt;string name="v7_preference_on"&gt;चालू&lt;/string&gt;
+&lt;/resources&gt;
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:2 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

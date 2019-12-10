@@ -1,0 +1,245 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9"><div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/androidx/core/view/inputmethod/InputConnectionCompat.java" target="_blank">/xumo_apk/jadx_source_code/androidx/core/view/inputmethod/InputConnectionCompat.java</a></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-83">report</i><h5>password =|secret =|username =|key =</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>the app contain hardcoded sensitive informations like usernames, passwords, keys etc: Hard coded sensitive information in Application Code (including Crypto)</span></div></li></ul><ul class="collapsible"><li><div class="collapsible-header"><img data-position="top" data-tooltip="OWASP item" src="html/owasp_logo.png" height="20em" style="margin-right: 1rem;margin-left: 5px;" class="tooltipped"></img> OWASP Item</div><div class="collapsible-body"><span>For more information, have a look at: https://www.owasp.org/index.php/OWASP_Mobile_Security_Testing_Guide</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#InputConnectionCompat_java18pass" class="active">line 18</a></li><li class="tab"><a style="color: #d82c2b;" href="#InputConnectionCompat_java19pass">line 19</a></li><li class="tab"><a style="color: #d82c2b;" href="#InputConnectionCompat_java20pass">line 20</a></li><li class="tab"><a style="color: #d82c2b;" href="#InputConnectionCompat_java21pass">line 21</a></li><li class="tab"><a style="color: #d82c2b;" href="#InputConnectionCompat_java22pass">line 22</a></li></ul></div><div class="card-content"><div id="InputConnectionCompat_java18pass">Code @ line 18<pre data-start="15" data-line="18" data-src="InputConnectionCompat.java" class="code line-numbers"><code>
+public final class InputConnectionCompat {
+    private static final String COMMIT_CONTENT_ACTION = "androidx.core.view.inputmethod.InputConnectionCompat.COMMIT_CONTENT";
+    private static final String COMMIT_CONTENT_CONTENT_URI_KEY = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_URI";
+    private static final String COMMIT_CONTENT_DESCRIPTION_KEY = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_DESCRIPTION";
+    private static final String COMMIT_CONTENT_FLAGS_KEY = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_FLAGS";
+    private static final String COMMIT_CONTENT_LINK_URI_KEY = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_LINK_URI";
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9pbnB1dG1ldGhvZC9JbnB1dENvbm5lY3Rpb25Db21wYXQuamF2YXx8fGxpbmU6IDE4IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwxOHx8fDE1">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9pbnB1dG1ldGhvZC9JbnB1dENvbm5lY3Rpb25Db21wYXQuamF2YXx8fGxpbmU6IDE4IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwxOHx8fDE1')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9pbnB1dG1ldGhvZC9JbnB1dENvbm5lY3Rpb25Db21wYXQuamF2YXx8fGxpbmU6IDE4IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwxOHx8fDE1').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9pbnB1dG1ldGhvZC9JbnB1dENvbm5lY3Rpb25Db21wYXQuamF2YXx8fGxpbmU6IDE4IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwxOHx8fDE1" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9pbnB1dG1ldGhvZC9JbnB1dENvbm5lY3Rpb25Db21wYXQuamF2YXx8fGxpbmU6IDE4IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwxOHx8fDE1' , 'CnB1YmxpYyBmaW5hbCBjbGFzcyBJbnB1dENvbm5lY3Rpb25Db21wYXQgewogICAgcHJpdmF0ZSBzdGF0aWMgZmluYWwgU3RyaW5nIENPTU1JVF9DT05URU5UX0FDVElPTiA9ICJhbmRyb2lkeC5jb3JlLnZpZXcuaW5wdXRtZXRob2QuSW5wdXRDb25uZWN0aW9uQ29tcGF0LkNPTU1JVF9DT05URU5UIjsKICAgIHByaXZhdGUgc3RhdGljIGZpbmFsIFN0cmluZyBDT01NSVRfQ09OVEVOVF9DT05URU5UX1VSSV9LRVkgPSAiYW5kcm9pZHguY29yZS52aWV3LmlucHV0bWV0aG9kLklucHV0Q29ubmVjdGlvbkNvbXBhdC5DT05URU5UX1VSSSI7CiAgICBwcml2YXRlIHN0YXRpYyBmaW5hbCBTdHJpbmcgQ09NTUlUX0NPTlRFTlRfREVTQ1JJUFRJT05fS0VZID0gImFuZHJvaWR4LmNvcmUudmlldy5pbnB1dG1ldGhvZC5JbnB1dENvbm5lY3Rpb25Db21wYXQuQ09OVEVOVF9ERVNDUklQVElPTiI7CiAgICBwcml2YXRlIHN0YXRpYyBmaW5hbCBTdHJpbmcgQ09NTUlUX0NPTlRFTlRfRkxBR1NfS0VZID0gImFuZHJvaWR4LmNvcmUudmlldy5pbnB1dG1ldGhvZC5JbnB1dENvbm5lY3Rpb25Db21wYXQuQ09OVEVOVF9GTEFHUyI7CiAgICBwcml2YXRlIHN0YXRpYyBmaW5hbCBTdHJpbmcgQ09NTUlUX0NPTlRFTlRfTElOS19VUklfS0VZID0gImFuZHJvaWR4LmNvcmUudmlldy5pbnB1dG1ldGhvZC5JbnB1dENvbm5lY3Rpb25Db21wYXQuQ09OVEVOVF9MSU5LX1VSSSI7Cg==');  
+                                            });
+                                            </script>
+                                            </div><div id="InputConnectionCompat_java19pass">Code @ line 19<pre data-start="16" data-line="19" data-src="InputConnectionCompat.java" class="code line-numbers"><code>public final class InputConnectionCompat {
+    private static final String COMMIT_CONTENT_ACTION = "androidx.core.view.inputmethod.InputConnectionCompat.COMMIT_CONTENT";
+    private static final String COMMIT_CONTENT_CONTENT_URI_KEY = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_URI";
+    private static final String COMMIT_CONTENT_DESCRIPTION_KEY = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_DESCRIPTION";
+    private static final String COMMIT_CONTENT_FLAGS_KEY = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_FLAGS";
+    private static final String COMMIT_CONTENT_LINK_URI_KEY = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_LINK_URI";
+    private static final String COMMIT_CONTENT_OPTS_KEY = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_OPTS";
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9pbnB1dG1ldGhvZC9JbnB1dENvbm5lY3Rpb25Db21wYXQuamF2YXx8fGxpbmU6IDE5IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwxOXx8fDE2">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9pbnB1dG1ldGhvZC9JbnB1dENvbm5lY3Rpb25Db21wYXQuamF2YXx8fGxpbmU6IDE5IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwxOXx8fDE2')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9pbnB1dG1ldGhvZC9JbnB1dENvbm5lY3Rpb25Db21wYXQuamF2YXx8fGxpbmU6IDE5IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwxOXx8fDE2').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9pbnB1dG1ldGhvZC9JbnB1dENvbm5lY3Rpb25Db21wYXQuamF2YXx8fGxpbmU6IDE5IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwxOXx8fDE2" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9pbnB1dG1ldGhvZC9JbnB1dENvbm5lY3Rpb25Db21wYXQuamF2YXx8fGxpbmU6IDE5IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwxOXx8fDE2' , 'cHVibGljIGZpbmFsIGNsYXNzIElucHV0Q29ubmVjdGlvbkNvbXBhdCB7CiAgICBwcml2YXRlIHN0YXRpYyBmaW5hbCBTdHJpbmcgQ09NTUlUX0NPTlRFTlRfQUNUSU9OID0gImFuZHJvaWR4LmNvcmUudmlldy5pbnB1dG1ldGhvZC5JbnB1dENvbm5lY3Rpb25Db21wYXQuQ09NTUlUX0NPTlRFTlQiOwogICAgcHJpdmF0ZSBzdGF0aWMgZmluYWwgU3RyaW5nIENPTU1JVF9DT05URU5UX0NPTlRFTlRfVVJJX0tFWSA9ICJhbmRyb2lkeC5jb3JlLnZpZXcuaW5wdXRtZXRob2QuSW5wdXRDb25uZWN0aW9uQ29tcGF0LkNPTlRFTlRfVVJJIjsKICAgIHByaXZhdGUgc3RhdGljIGZpbmFsIFN0cmluZyBDT01NSVRfQ09OVEVOVF9ERVNDUklQVElPTl9LRVkgPSAiYW5kcm9pZHguY29yZS52aWV3LmlucHV0bWV0aG9kLklucHV0Q29ubmVjdGlvbkNvbXBhdC5DT05URU5UX0RFU0NSSVBUSU9OIjsKICAgIHByaXZhdGUgc3RhdGljIGZpbmFsIFN0cmluZyBDT01NSVRfQ09OVEVOVF9GTEFHU19LRVkgPSAiYW5kcm9pZHguY29yZS52aWV3LmlucHV0bWV0aG9kLklucHV0Q29ubmVjdGlvbkNvbXBhdC5DT05URU5UX0ZMQUdTIjsKICAgIHByaXZhdGUgc3RhdGljIGZpbmFsIFN0cmluZyBDT01NSVRfQ09OVEVOVF9MSU5LX1VSSV9LRVkgPSAiYW5kcm9pZHguY29yZS52aWV3LmlucHV0bWV0aG9kLklucHV0Q29ubmVjdGlvbkNvbXBhdC5DT05URU5UX0xJTktfVVJJIjsKICAgIHByaXZhdGUgc3RhdGljIGZpbmFsIFN0cmluZyBDT01NSVRfQ09OVEVOVF9PUFRTX0tFWSA9ICJhbmRyb2lkeC5jb3JlLnZpZXcuaW5wdXRtZXRob2QuSW5wdXRDb25uZWN0aW9uQ29tcGF0LkNPTlRFTlRfT1BUUyI7Cg==');  
+                                            });
+                                            </script>
+                                            </div><div id="InputConnectionCompat_java20pass">Code @ line 20<pre data-start="17" data-line="20" data-src="InputConnectionCompat.java" class="code line-numbers"><code>    private static final String COMMIT_CONTENT_ACTION = "androidx.core.view.inputmethod.InputConnectionCompat.COMMIT_CONTENT";
+    private static final String COMMIT_CONTENT_CONTENT_URI_KEY = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_URI";
+    private static final String COMMIT_CONTENT_DESCRIPTION_KEY = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_DESCRIPTION";
+    private static final String COMMIT_CONTENT_FLAGS_KEY = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_FLAGS";
+    private static final String COMMIT_CONTENT_LINK_URI_KEY = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_LINK_URI";
+    private static final String COMMIT_CONTENT_OPTS_KEY = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_OPTS";
+    private static final String COMMIT_CONTENT_RESULT_RECEIVER = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_RESULT_RECEIVER";
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9pbnB1dG1ldGhvZC9JbnB1dENvbm5lY3Rpb25Db21wYXQuamF2YXx8fGxpbmU6IDIwIDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwyMHx8fDE3">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9pbnB1dG1ldGhvZC9JbnB1dENvbm5lY3Rpb25Db21wYXQuamF2YXx8fGxpbmU6IDIwIDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwyMHx8fDE3')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9pbnB1dG1ldGhvZC9JbnB1dENvbm5lY3Rpb25Db21wYXQuamF2YXx8fGxpbmU6IDIwIDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwyMHx8fDE3').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9pbnB1dG1ldGhvZC9JbnB1dENvbm5lY3Rpb25Db21wYXQuamF2YXx8fGxpbmU6IDIwIDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwyMHx8fDE3" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9pbnB1dG1ldGhvZC9JbnB1dENvbm5lY3Rpb25Db21wYXQuamF2YXx8fGxpbmU6IDIwIDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwyMHx8fDE3' , 'ICAgIHByaXZhdGUgc3RhdGljIGZpbmFsIFN0cmluZyBDT01NSVRfQ09OVEVOVF9BQ1RJT04gPSAiYW5kcm9pZHguY29yZS52aWV3LmlucHV0bWV0aG9kLklucHV0Q29ubmVjdGlvbkNvbXBhdC5DT01NSVRfQ09OVEVOVCI7CiAgICBwcml2YXRlIHN0YXRpYyBmaW5hbCBTdHJpbmcgQ09NTUlUX0NPTlRFTlRfQ09OVEVOVF9VUklfS0VZID0gImFuZHJvaWR4LmNvcmUudmlldy5pbnB1dG1ldGhvZC5JbnB1dENvbm5lY3Rpb25Db21wYXQuQ09OVEVOVF9VUkkiOwogICAgcHJpdmF0ZSBzdGF0aWMgZmluYWwgU3RyaW5nIENPTU1JVF9DT05URU5UX0RFU0NSSVBUSU9OX0tFWSA9ICJhbmRyb2lkeC5jb3JlLnZpZXcuaW5wdXRtZXRob2QuSW5wdXRDb25uZWN0aW9uQ29tcGF0LkNPTlRFTlRfREVTQ1JJUFRJT04iOwogICAgcHJpdmF0ZSBzdGF0aWMgZmluYWwgU3RyaW5nIENPTU1JVF9DT05URU5UX0ZMQUdTX0tFWSA9ICJhbmRyb2lkeC5jb3JlLnZpZXcuaW5wdXRtZXRob2QuSW5wdXRDb25uZWN0aW9uQ29tcGF0LkNPTlRFTlRfRkxBR1MiOwogICAgcHJpdmF0ZSBzdGF0aWMgZmluYWwgU3RyaW5nIENPTU1JVF9DT05URU5UX0xJTktfVVJJX0tFWSA9ICJhbmRyb2lkeC5jb3JlLnZpZXcuaW5wdXRtZXRob2QuSW5wdXRDb25uZWN0aW9uQ29tcGF0LkNPTlRFTlRfTElOS19VUkkiOwogICAgcHJpdmF0ZSBzdGF0aWMgZmluYWwgU3RyaW5nIENPTU1JVF9DT05URU5UX09QVFNfS0VZID0gImFuZHJvaWR4LmNvcmUudmlldy5pbnB1dG1ldGhvZC5JbnB1dENvbm5lY3Rpb25Db21wYXQuQ09OVEVOVF9PUFRTIjsKICAgIHByaXZhdGUgc3RhdGljIGZpbmFsIFN0cmluZyBDT01NSVRfQ09OVEVOVF9SRVNVTFRfUkVDRUlWRVIgPSAiYW5kcm9pZHguY29yZS52aWV3LmlucHV0bWV0aG9kLklucHV0Q29ubmVjdGlvbkNvbXBhdC5DT05URU5UX1JFU1VMVF9SRUNFSVZFUiI7Cg==');  
+                                            });
+                                            </script>
+                                            </div><div id="InputConnectionCompat_java21pass">Code @ line 21<pre data-start="18" data-line="21" data-src="InputConnectionCompat.java" class="code line-numbers"><code>    private static final String COMMIT_CONTENT_CONTENT_URI_KEY = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_URI";
+    private static final String COMMIT_CONTENT_DESCRIPTION_KEY = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_DESCRIPTION";
+    private static final String COMMIT_CONTENT_FLAGS_KEY = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_FLAGS";
+    private static final String COMMIT_CONTENT_LINK_URI_KEY = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_LINK_URI";
+    private static final String COMMIT_CONTENT_OPTS_KEY = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_OPTS";
+    private static final String COMMIT_CONTENT_RESULT_RECEIVER = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_RESULT_RECEIVER";
+    public static final int INPUT_CONTENT_GRANT_READ_URI_PERMISSION = 1;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9pbnB1dG1ldGhvZC9JbnB1dENvbm5lY3Rpb25Db21wYXQuamF2YXx8fGxpbmU6IDIxIDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwyMXx8fDE4">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9pbnB1dG1ldGhvZC9JbnB1dENvbm5lY3Rpb25Db21wYXQuamF2YXx8fGxpbmU6IDIxIDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwyMXx8fDE4')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9pbnB1dG1ldGhvZC9JbnB1dENvbm5lY3Rpb25Db21wYXQuamF2YXx8fGxpbmU6IDIxIDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwyMXx8fDE4').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9pbnB1dG1ldGhvZC9JbnB1dENvbm5lY3Rpb25Db21wYXQuamF2YXx8fGxpbmU6IDIxIDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwyMXx8fDE4" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9pbnB1dG1ldGhvZC9JbnB1dENvbm5lY3Rpb25Db21wYXQuamF2YXx8fGxpbmU6IDIxIDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwyMXx8fDE4' , 'ICAgIHByaXZhdGUgc3RhdGljIGZpbmFsIFN0cmluZyBDT01NSVRfQ09OVEVOVF9DT05URU5UX1VSSV9LRVkgPSAiYW5kcm9pZHguY29yZS52aWV3LmlucHV0bWV0aG9kLklucHV0Q29ubmVjdGlvbkNvbXBhdC5DT05URU5UX1VSSSI7CiAgICBwcml2YXRlIHN0YXRpYyBmaW5hbCBTdHJpbmcgQ09NTUlUX0NPTlRFTlRfREVTQ1JJUFRJT05fS0VZID0gImFuZHJvaWR4LmNvcmUudmlldy5pbnB1dG1ldGhvZC5JbnB1dENvbm5lY3Rpb25Db21wYXQuQ09OVEVOVF9ERVNDUklQVElPTiI7CiAgICBwcml2YXRlIHN0YXRpYyBmaW5hbCBTdHJpbmcgQ09NTUlUX0NPTlRFTlRfRkxBR1NfS0VZID0gImFuZHJvaWR4LmNvcmUudmlldy5pbnB1dG1ldGhvZC5JbnB1dENvbm5lY3Rpb25Db21wYXQuQ09OVEVOVF9GTEFHUyI7CiAgICBwcml2YXRlIHN0YXRpYyBmaW5hbCBTdHJpbmcgQ09NTUlUX0NPTlRFTlRfTElOS19VUklfS0VZID0gImFuZHJvaWR4LmNvcmUudmlldy5pbnB1dG1ldGhvZC5JbnB1dENvbm5lY3Rpb25Db21wYXQuQ09OVEVOVF9MSU5LX1VSSSI7CiAgICBwcml2YXRlIHN0YXRpYyBmaW5hbCBTdHJpbmcgQ09NTUlUX0NPTlRFTlRfT1BUU19LRVkgPSAiYW5kcm9pZHguY29yZS52aWV3LmlucHV0bWV0aG9kLklucHV0Q29ubmVjdGlvbkNvbXBhdC5DT05URU5UX09QVFMiOwogICAgcHJpdmF0ZSBzdGF0aWMgZmluYWwgU3RyaW5nIENPTU1JVF9DT05URU5UX1JFU1VMVF9SRUNFSVZFUiA9ICJhbmRyb2lkeC5jb3JlLnZpZXcuaW5wdXRtZXRob2QuSW5wdXRDb25uZWN0aW9uQ29tcGF0LkNPTlRFTlRfUkVTVUxUX1JFQ0VJVkVSIjsKICAgIHB1YmxpYyBzdGF0aWMgZmluYWwgaW50IElOUFVUX0NPTlRFTlRfR1JBTlRfUkVBRF9VUklfUEVSTUlTU0lPTiA9IDE7Cg==');  
+                                            });
+                                            </script>
+                                            </div><div id="InputConnectionCompat_java22pass">Code @ line 22<pre data-start="19" data-line="22" data-src="InputConnectionCompat.java" class="code line-numbers"><code>    private static final String COMMIT_CONTENT_DESCRIPTION_KEY = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_DESCRIPTION";
+    private static final String COMMIT_CONTENT_FLAGS_KEY = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_FLAGS";
+    private static final String COMMIT_CONTENT_LINK_URI_KEY = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_LINK_URI";
+    private static final String COMMIT_CONTENT_OPTS_KEY = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_OPTS";
+    private static final String COMMIT_CONTENT_RESULT_RECEIVER = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_RESULT_RECEIVER";
+    public static final int INPUT_CONTENT_GRANT_READ_URI_PERMISSION = 1;
+
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9pbnB1dG1ldGhvZC9JbnB1dENvbm5lY3Rpb25Db21wYXQuamF2YXx8fGxpbmU6IDIyIDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwyMnx8fDE5">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9pbnB1dG1ldGhvZC9JbnB1dENvbm5lY3Rpb25Db21wYXQuamF2YXx8fGxpbmU6IDIyIDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwyMnx8fDE5')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9pbnB1dG1ldGhvZC9JbnB1dENvbm5lY3Rpb25Db21wYXQuamF2YXx8fGxpbmU6IDIyIDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwyMnx8fDE5').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9pbnB1dG1ldGhvZC9JbnB1dENvbm5lY3Rpb25Db21wYXQuamF2YXx8fGxpbmU6IDIyIDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwyMnx8fDE5" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2NvcmUvdmlldy9pbnB1dG1ldGhvZC9JbnB1dENvbm5lY3Rpb25Db21wYXQuamF2YXx8fGxpbmU6IDIyIDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwyMnx8fDE5' , 'ICAgIHByaXZhdGUgc3RhdGljIGZpbmFsIFN0cmluZyBDT01NSVRfQ09OVEVOVF9ERVNDUklQVElPTl9LRVkgPSAiYW5kcm9pZHguY29yZS52aWV3LmlucHV0bWV0aG9kLklucHV0Q29ubmVjdGlvbkNvbXBhdC5DT05URU5UX0RFU0NSSVBUSU9OIjsKICAgIHByaXZhdGUgc3RhdGljIGZpbmFsIFN0cmluZyBDT01NSVRfQ09OVEVOVF9GTEFHU19LRVkgPSAiYW5kcm9pZHguY29yZS52aWV3LmlucHV0bWV0aG9kLklucHV0Q29ubmVjdGlvbkNvbXBhdC5DT05URU5UX0ZMQUdTIjsKICAgIHByaXZhdGUgc3RhdGljIGZpbmFsIFN0cmluZyBDT01NSVRfQ09OVEVOVF9MSU5LX1VSSV9LRVkgPSAiYW5kcm9pZHguY29yZS52aWV3LmlucHV0bWV0aG9kLklucHV0Q29ubmVjdGlvbkNvbXBhdC5DT05URU5UX0xJTktfVVJJIjsKICAgIHByaXZhdGUgc3RhdGljIGZpbmFsIFN0cmluZyBDT01NSVRfQ09OVEVOVF9PUFRTX0tFWSA9ICJhbmRyb2lkeC5jb3JlLnZpZXcuaW5wdXRtZXRob2QuSW5wdXRDb25uZWN0aW9uQ29tcGF0LkNPTlRFTlRfT1BUUyI7CiAgICBwcml2YXRlIHN0YXRpYyBmaW5hbCBTdHJpbmcgQ09NTUlUX0NPTlRFTlRfUkVTVUxUX1JFQ0VJVkVSID0gImFuZHJvaWR4LmNvcmUudmlldy5pbnB1dG1ldGhvZC5JbnB1dENvbm5lY3Rpb25Db21wYXQuQ09OVEVOVF9SRVNVTFRfUkVDRUlWRVIiOwogICAgcHVibGljIHN0YXRpYyBmaW5hbCBpbnQgSU5QVVRfQ09OVEVOVF9HUkFOVF9SRUFEX1VSSV9QRVJNSVNTSU9OID0gMTsKCg==');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="InputConnectionCompat.java" data-line="18,19,20,21,22," class="code line-numbers"><code>package androidx.core.view.inputmethod;
+
+import android.content.ClipDescription;
+import android.net.Uri;
+import android.os.Build.VERSION;
+import android.os.Bundle;
+import android.os.ResultReceiver;
+import android.text.TextUtils;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputConnection;
+import android.view.inputmethod.InputConnectionWrapper;
+import android.view.inputmethod.InputContentInfo;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+public final class InputConnectionCompat {
+    private static final String COMMIT_CONTENT_ACTION = "androidx.core.view.inputmethod.InputConnectionCompat.COMMIT_CONTENT";
+    private static final String COMMIT_CONTENT_CONTENT_URI_KEY = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_URI";
+    private static final String COMMIT_CONTENT_DESCRIPTION_KEY = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_DESCRIPTION";
+    private static final String COMMIT_CONTENT_FLAGS_KEY = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_FLAGS";
+    private static final String COMMIT_CONTENT_LINK_URI_KEY = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_LINK_URI";
+    private static final String COMMIT_CONTENT_OPTS_KEY = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_OPTS";
+    private static final String COMMIT_CONTENT_RESULT_RECEIVER = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_RESULT_RECEIVER";
+    public static final int INPUT_CONTENT_GRANT_READ_URI_PERMISSION = 1;
+
+    public interface OnCommitContentListener {
+        boolean onCommitContent(InputContentInfoCompat inputContentInfoCompat, int i, Bundle bundle);
+    }
+
+    static boolean handlePerformPrivateCommand(@Nullable String str, @NonNull Bundle bundle, @NonNull OnCommitContentListener onCommitContentListener) {
+        ResultReceiver resultReceiver;
+        if (TextUtils.equals(COMMIT_CONTENT_ACTION, str) == null || bundle == null) {
+            return false;
+        }
+        try {
+            resultReceiver = (ResultReceiver) bundle.getParcelable(COMMIT_CONTENT_RESULT_RECEIVER);
+            try {
+                Uri uri = (Uri) bundle.getParcelable(COMMIT_CONTENT_CONTENT_URI_KEY);
+                ClipDescription clipDescription = (ClipDescription) bundle.getParcelable(COMMIT_CONTENT_DESCRIPTION_KEY);
+                Uri uri2 = (Uri) bundle.getParcelable(COMMIT_CONTENT_LINK_URI_KEY);
+                bundle = onCommitContentListener.onCommitContent(new InputContentInfoCompat(uri, clipDescription, uri2), bundle.getInt(COMMIT_CONTENT_FLAGS_KEY), (Bundle) bundle.getParcelable(COMMIT_CONTENT_OPTS_KEY));
+                if (resultReceiver != null) {
+                    resultReceiver.send(bundle, null);
+                }
+                return bundle;
+            } catch (Throwable th) {
+                bundle = th;
+                if (resultReceiver != null) {
+                    resultReceiver.send(0, null);
+                }
+                throw bundle;
+            }
+        } catch (Throwable th2) {
+            bundle = th2;
+            resultReceiver = null;
+            if (resultReceiver != null) {
+                resultReceiver.send(0, null);
+            }
+            throw bundle;
+        }
+    }
+
+    public static boolean commitContent(@NonNull InputConnection inputConnection, @NonNull EditorInfo editorInfo, @NonNull InputContentInfoCompat inputContentInfoCompat, int i, @Nullable Bundle bundle) {
+        ClipDescription description = inputContentInfoCompat.getDescription();
+        for (String hasMimeType : EditorInfoCompat.getContentMimeTypes(editorInfo)) {
+            if (description.hasMimeType(hasMimeType)) {
+                editorInfo = true;
+                break;
+            }
+        }
+        editorInfo = null;
+        if (editorInfo == null) {
+            return false;
+        }
+        if (VERSION.SDK_INT &gt;= 25) {
+            return inputConnection.commitContent((InputContentInfo) inputContentInfoCompat.unwrap(), i, bundle);
+        }
+        editorInfo = new Bundle();
+        editorInfo.putParcelable(COMMIT_CONTENT_CONTENT_URI_KEY, inputContentInfoCompat.getContentUri());
+        editorInfo.putParcelable(COMMIT_CONTENT_DESCRIPTION_KEY, inputContentInfoCompat.getDescription());
+        editorInfo.putParcelable(COMMIT_CONTENT_LINK_URI_KEY, inputContentInfoCompat.getLinkUri());
+        editorInfo.putInt(COMMIT_CONTENT_FLAGS_KEY, i);
+        editorInfo.putParcelable(COMMIT_CONTENT_OPTS_KEY, bundle);
+        return inputConnection.performPrivateCommand(COMMIT_CONTENT_ACTION, editorInfo);
+    }
+
+    @NonNull
+    public static InputConnection createWrapper(@NonNull InputConnection inputConnection, @NonNull EditorInfo editorInfo, @NonNull final OnCommitContentListener onCommitContentListener) {
+        if (inputConnection == null) {
+            throw new IllegalArgumentException("inputConnection must be non-null");
+        } else if (editorInfo == null) {
+            throw new IllegalArgumentException("editorInfo must be non-null");
+        } else if (onCommitContentListener == null) {
+            throw new IllegalArgumentException("onCommitContentListener must be non-null");
+        } else if (VERSION.SDK_INT &gt;= 25) {
+            return new InputConnectionWrapper(inputConnection, false) {
+                public boolean commitContent(InputContentInfo inputContentInfo, int i, Bundle bundle) {
+                    if (onCommitContentListener.onCommitContent(InputContentInfoCompat.wrap(inputContentInfo), i, bundle)) {
+                        return true;
+                    }
+                    return super.commitContent(inputContentInfo, i, bundle);
+                }
+            };
+        } else {
+            if (EditorInfoCompat.getContentMimeTypes(editorInfo).length == null) {
+                return inputConnection;
+            }
+            return new InputConnectionWrapper(inputConnection, false) {
+                public boolean performPrivateCommand(String str, Bundle bundle) {
+                    if (InputConnectionCompat.handlePerformPrivateCommand(str, bundle, onCommitContentListener)) {
+                        return true;
+                    }
+                    return super.performPrivateCommand(str, bundle);
+                }
+            };
+        }
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:3 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

@@ -1,0 +1,221 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/res/values-et/strings.xml" target="_blank">/xumo_apk/jadx_source_code/res/values-et/strings.xml</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="strings.xml" data-line="" class="code line-numbers"><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;resources&gt;
+    &lt;string name="abc_action_bar_home_description"&gt;Navigeerimine avaekraanile&lt;/string&gt;
+    &lt;string name="abc_action_bar_up_description"&gt;Navigeerimine üles&lt;/string&gt;
+    &lt;string name="abc_action_menu_overflow_description"&gt;Rohkem valikuid&lt;/string&gt;
+    &lt;string name="abc_action_mode_done"&gt;Valmis&lt;/string&gt;
+    &lt;string name="abc_activity_chooser_view_see_all"&gt;Kuva kõik&lt;/string&gt;
+    &lt;string name="abc_activitychooserview_choose_application"&gt;Valige rakendus&lt;/string&gt;
+    &lt;string name="abc_capital_off"&gt;VÄLJAS&lt;/string&gt;
+    &lt;string name="abc_capital_on"&gt;SEES&lt;/string&gt;
+    &lt;string name="abc_menu_alt_shortcut_label"&gt;Alt +&lt;/string&gt;
+    &lt;string name="abc_menu_ctrl_shortcut_label"&gt;Ctrl +&lt;/string&gt;
+    &lt;string name="abc_menu_delete_shortcut_label"&gt;kustutamisklahv&lt;/string&gt;
+    &lt;string name="abc_menu_enter_shortcut_label"&gt;sisestusklahv&lt;/string&gt;
+    &lt;string name="abc_menu_function_shortcut_label"&gt;Funktsiooniklahv +&lt;/string&gt;
+    &lt;string name="abc_menu_meta_shortcut_label"&gt;Meta +&lt;/string&gt;
+    &lt;string name="abc_menu_shift_shortcut_label"&gt;Tõstuklahv +&lt;/string&gt;
+    &lt;string name="abc_menu_space_shortcut_label"&gt;tühik&lt;/string&gt;
+    &lt;string name="abc_menu_sym_shortcut_label"&gt;Sym +&lt;/string&gt;
+    &lt;string name="abc_prepend_shortcut_label"&gt;Menüü +&lt;/string&gt;
+    &lt;string name="abc_search_hint"&gt;Otsige …&lt;/string&gt;
+    &lt;string name="abc_searchview_description_clear"&gt;Päringu tühistamine&lt;/string&gt;
+    &lt;string name="abc_searchview_description_query"&gt;Otsingupäring&lt;/string&gt;
+    &lt;string name="abc_searchview_description_search"&gt;Otsing&lt;/string&gt;
+    &lt;string name="abc_searchview_description_submit"&gt;Päringu esitamine&lt;/string&gt;
+    &lt;string name="abc_searchview_description_voice"&gt;Häälotsing&lt;/string&gt;
+    &lt;string name="abc_shareactionprovider_share_with"&gt;Jagamine:&lt;/string&gt;
+    &lt;string name="abc_shareactionprovider_share_with_application"&gt;Jagamine rakendusega %s&lt;/string&gt;
+    &lt;string name="abc_toolbar_collapse_description"&gt;Ahendamine&lt;/string&gt;
+    &lt;string name="cast_ad_label"&gt;Reklaam&lt;/string&gt;
+    &lt;string name="cast_casting_to_device"&gt;Ülekandmine seadmesse %1$s&lt;/string&gt;
+    &lt;string name="cast_closed_captions"&gt;Subtiitrid&lt;/string&gt;
+    &lt;string name="cast_closed_captions_unavailable"&gt;Subtiitrid pole saadaval&lt;/string&gt;
+    &lt;string name="cast_connecting_to_device"&gt;Ühendamine ekraaniga %1$s&lt;/string&gt;
+    &lt;string name="cast_disconnect"&gt;Katkesta ühendus&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_ad_image_description"&gt;Samal ajal kui Cast\'i vastuvõtja esitab reklaami, kuvatakse kujutis&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_ad_in_progress"&gt;Reklaam on pooleli …&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_background_image"&gt;Albumi kujundus&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_live_stream_indicator"&gt;Reaalajas voog&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_loading"&gt;Laadimine …&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_skip_ad_label"&gt;Jäta reklaam vahele&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_skip_ad_text"&gt;Reklaami saab vahele jätta %1$d pärast …&lt;/string&gt;
+    &lt;string name="cast_forward"&gt;Keri edasi&lt;/string&gt;
+    &lt;string name="cast_forward_10"&gt;Keri edasi kümme sekundit&lt;/string&gt;
+    &lt;string name="cast_forward_30"&gt;Keri edasi kolmkümmend sekundit&lt;/string&gt;
+    &lt;string name="cast_intro_overlay_button_text"&gt;@android:string/ok&lt;/string&gt;
+    &lt;string name="cast_mute"&gt;Vaigista&lt;/string&gt;
+    &lt;string name="cast_notification_connected_message"&gt;Ühendatud ekraaniga %1$s&lt;/string&gt;
+    &lt;string name="cast_notification_connecting_message"&gt;Ühendamine ekraaniga %1$s&lt;/string&gt;
+    &lt;string name="cast_notification_default_channel_name"&gt;Cast&lt;/string&gt;
+    &lt;string name="cast_notification_disconnect"&gt;Katkesta ühendus&lt;/string&gt;
+    &lt;string name="cast_pause"&gt;Peata&lt;/string&gt;
+    &lt;string name="cast_play"&gt;Esita&lt;/string&gt;
+    &lt;string name="cast_rewind"&gt;Keri tagasi&lt;/string&gt;
+    &lt;string name="cast_rewind_10"&gt;Keri tagasi kümme sekundit&lt;/string&gt;
+    &lt;string name="cast_rewind_30"&gt;Keri tagasi kolmkümmend sekundit&lt;/string&gt;
+    &lt;string name="cast_seek_bar"&gt;Taasesituse otsimise juhtnupp&lt;/string&gt;
+    &lt;string name="cast_skip_next"&gt;Liigu järgmise üksuse juurde&lt;/string&gt;
+    &lt;string name="cast_skip_prev"&gt;Liigu eelmise üksuse juurde&lt;/string&gt;
+    &lt;string name="cast_stop"&gt;Peata&lt;/string&gt;
+    &lt;string name="cast_stop_live_stream"&gt;Peata reaalajas voogesitus&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_audio"&gt;Heli&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_cancel"&gt;Tühista&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_closed_captions"&gt;Subtiitrid&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_default_track_name"&gt;Rada %1$d&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_none"&gt;Mitte ühtegi&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_ok"&gt;OK&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_subtitles"&gt;Subtiitrid&lt;/string&gt;
+    &lt;string name="cast_unmute"&gt;Tühista vaigistus&lt;/string&gt;
+    &lt;string name="common_google_play_services_enable_button"&gt;Luba&lt;/string&gt;
+    &lt;string name="common_google_play_services_enable_text"&gt;Rakendus %1$s töötab ainult siis, kui lubate Google Play teenused.&lt;/string&gt;
+    &lt;string name="common_google_play_services_enable_title"&gt;Google Play teenuste lubamine&lt;/string&gt;
+    &lt;string name="common_google_play_services_install_button"&gt;Installi&lt;/string&gt;
+    &lt;string name="common_google_play_services_install_text"&gt;Rakendus %1$s töötab ainult koos Google Play teenustega, mida teie seadmes pole.&lt;/string&gt;
+    &lt;string name="common_google_play_services_install_title"&gt;Google Play teenuste hankimine&lt;/string&gt;
+    &lt;string name="common_google_play_services_notification_channel_name"&gt;Google Play teenuste saadavalolek&lt;/string&gt;
+    &lt;string name="common_google_play_services_notification_ticker"&gt;Viga Google Play teenustes&lt;/string&gt;
+    &lt;string name="common_google_play_services_unknown_issue"&gt;Rakendusel %1$s on probleeme Google Play teenustega. Proovige uuesti.&lt;/string&gt;
+    &lt;string name="common_google_play_services_unsupported_text"&gt;Rakendus %1$s töötab ainult koos Google Play teenustega, mida teie seadmes ei toetata.&lt;/string&gt;
+    &lt;string name="common_google_play_services_update_button"&gt;Värskenda&lt;/string&gt;
+    &lt;string name="common_google_play_services_update_text"&gt;Rakenduse %1$s töötamiseks peate värskendama Google Play teenuseid.&lt;/string&gt;
+    &lt;string name="common_google_play_services_update_title"&gt;Google Play teenuste värskendamine&lt;/string&gt;
+    &lt;string name="common_google_play_services_updating_text"&gt;Rakendus %1$s töötab ainult koos Google Play teenustega, mida praegu värskendatakse.&lt;/string&gt;
+    &lt;string name="common_google_play_services_wear_update_text"&gt;Vajalik on Google Play teenuste uus versioon. See värskendab end peagi.&lt;/string&gt;
+    &lt;string name="common_open_on_phone"&gt;Ava telefonis&lt;/string&gt;
+    &lt;string name="common_signin_button_text"&gt;Logi sisse&lt;/string&gt;
+    &lt;string name="common_signin_button_text_long"&gt;Logi sisse Google\'i kontoga&lt;/string&gt;
+    &lt;string name="exo_controls_fastforward_description"&gt;Keri edasi&lt;/string&gt;
+    &lt;string name="exo_controls_fullscreen_description"&gt;Täisekraani režiim&lt;/string&gt;
+    &lt;string name="exo_controls_next_description"&gt;Järgmine lugu&lt;/string&gt;
+    &lt;string name="exo_controls_pause_description"&gt;Peata&lt;/string&gt;
+    &lt;string name="exo_controls_play_description"&gt;Esita&lt;/string&gt;
+    &lt;string name="exo_controls_previous_description"&gt;Eelmine lugu&lt;/string&gt;
+    &lt;string name="exo_controls_repeat_all_description"&gt;Korda kõiki&lt;/string&gt;
+    &lt;string name="exo_controls_repeat_off_description"&gt;Ära korda ühtegi&lt;/string&gt;
+    &lt;string name="exo_controls_repeat_one_description"&gt;Korda ühte&lt;/string&gt;
+    &lt;string name="exo_controls_rewind_description"&gt;Keri tagasi&lt;/string&gt;
+    &lt;string name="exo_controls_shuffle_description"&gt;Esita juhuslikus järjekorras&lt;/string&gt;
+    &lt;string name="exo_controls_stop_description"&gt;Lõpeta&lt;/string&gt;
+    &lt;string name="exo_download_completed"&gt;Allalaadimine lõpetati&lt;/string&gt;
+    &lt;string name="exo_download_description"&gt;Allalaadimine&lt;/string&gt;
+    &lt;string name="exo_download_downloading"&gt;Allalaadimine&lt;/string&gt;
+    &lt;string name="exo_download_failed"&gt;Allalaadimine ebaõnnestus&lt;/string&gt;
+    &lt;string name="exo_download_notification_channel_name"&gt;Allalaadimised&lt;/string&gt;
+    &lt;string name="exo_download_removing"&gt;Allalaadimiste eemaldamine&lt;/string&gt;
+    &lt;string name="exo_item_list"&gt;%1$s, %2$s&lt;/string&gt;
+    &lt;string name="exo_track_bitrate"&gt;%1$.2f Mbit/s&lt;/string&gt;
+    &lt;string name="exo_track_mono"&gt;Mono&lt;/string&gt;
+    &lt;string name="exo_track_resolution"&gt;%1$d × %2$d&lt;/string&gt;
+    &lt;string name="exo_track_selection_auto"&gt;Automaatne&lt;/string&gt;
+    &lt;string name="exo_track_selection_none"&gt;Ühtegi&lt;/string&gt;
+    &lt;string name="exo_track_selection_title_audio"&gt;Heli&lt;/string&gt;
+    &lt;string name="exo_track_selection_title_text"&gt;Tekst&lt;/string&gt;
+    &lt;string name="exo_track_selection_title_video"&gt;Video&lt;/string&gt;
+    &lt;string name="exo_track_stereo"&gt;Stereo&lt;/string&gt;
+    &lt;string name="exo_track_surround"&gt;Ruumiline heli&lt;/string&gt;
+    &lt;string name="exo_track_surround_5_point_1"&gt;Ruumiline heli 5.1&lt;/string&gt;
+    &lt;string name="exo_track_surround_7_point_1"&gt;Ruumiline heli 7.1&lt;/string&gt;
+    &lt;string name="exo_track_unknown"&gt;Teadmata&lt;/string&gt;
+    &lt;string name="expand_button_title"&gt;Täpsem&lt;/string&gt;
+    &lt;string name="fcm_fallback_notification_channel_label"&gt;Muu&lt;/string&gt;
+    &lt;string name="mr_button_content_description"&gt;Ülekandenupp&lt;/string&gt;
+    &lt;string name="mr_cast_button_connected"&gt;Ülekandenupp. Ühendatud&lt;/string&gt;
+    &lt;string name="mr_cast_button_connecting"&gt;Ülekandenupp. Ühendamine&lt;/string&gt;
+    &lt;string name="mr_cast_button_disconnected"&gt;Ülekandenupp. Ühendus on katkestatud&lt;/string&gt;
+    &lt;string name="mr_chooser_searching"&gt;Seadmete otsimine&lt;/string&gt;
+    &lt;string name="mr_chooser_title"&gt;Ülekandmine seadmesse&lt;/string&gt;
+    &lt;string name="mr_controller_album_art"&gt;Albumi kujundus&lt;/string&gt;
+    &lt;string name="mr_controller_casting_screen"&gt;Ekraanikuva ülekandmine&lt;/string&gt;
+    &lt;string name="mr_controller_close_description"&gt;Sule&lt;/string&gt;
+    &lt;string name="mr_controller_collapse_group"&gt;Ahenda&lt;/string&gt;
+    &lt;string name="mr_controller_disconnect"&gt;Katkesta ühendus&lt;/string&gt;
+    &lt;string name="mr_controller_expand_group"&gt;Laienda&lt;/string&gt;
+    &lt;string name="mr_controller_no_info_available"&gt;Teave pole saadaval&lt;/string&gt;
+    &lt;string name="mr_controller_no_media_selected"&gt;Meediat pole valitud&lt;/string&gt;
+    &lt;string name="mr_controller_pause"&gt;Peata&lt;/string&gt;
+    &lt;string name="mr_controller_play"&gt;Esita&lt;/string&gt;
+    &lt;string name="mr_controller_stop"&gt;Katkesta&lt;/string&gt;
+    &lt;string name="mr_controller_stop_casting"&gt;Katkesta ülekandmine&lt;/string&gt;
+    &lt;string name="mr_controller_volume_slider"&gt;Helitugevuse liugur&lt;/string&gt;
+    &lt;string name="mr_system_route_name"&gt;Süsteem&lt;/string&gt;
+    &lt;string name="mr_user_route_category_name"&gt;Seadmed&lt;/string&gt;
+    &lt;string name="search_menu_title"&gt;Otsing&lt;/string&gt;
+    &lt;string name="status_bar_notification_info_overflow"&gt;999+&lt;/string&gt;
+    &lt;string name="summary_collapsed_preference_list"&gt;%1$s, %2$s&lt;/string&gt;
+    &lt;string name="v7_preference_off"&gt;VÄLJAS&lt;/string&gt;
+    &lt;string name="v7_preference_on"&gt;SEES&lt;/string&gt;
+&lt;/resources&gt;
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:2 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

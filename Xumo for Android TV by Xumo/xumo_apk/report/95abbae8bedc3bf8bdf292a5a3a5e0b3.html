@@ -1,0 +1,239 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/gms/internal/measurement/zzzn.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/gms/internal/measurement/zzzn.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="zzzn.java" data-line="" class="code line-numbers"><code>package com.google.android.gms.internal.measurement;
+
+public final class zzzn implements Cloneable {
+    private static final zzzo zzcga = new zzzo();
+    private int mSize;
+    private boolean zzcgb;
+    private int[] zzcgc;
+    private zzzo[] zzcgd;
+
+    zzzn() {
+        this(10);
+    }
+
+    private zzzn(int i) {
+        this.zzcgb = false;
+        i = idealIntArraySize(i);
+        this.zzcgc = new int[i];
+        this.zzcgd = new zzzo[i];
+        this.mSize = 0;
+    }
+
+    final zzzo zzcd(int i) {
+        i = zzcf(i);
+        if (i &gt;= 0) {
+            if (this.zzcgd[i] != zzcga) {
+                return this.zzcgd[i];
+            }
+        }
+        return 0;
+    }
+
+    final void zza(int i, zzzo com_google_android_gms_internal_measurement_zzzo) {
+        int zzcf = zzcf(i);
+        if (zzcf &gt;= 0) {
+            this.zzcgd[zzcf] = com_google_android_gms_internal_measurement_zzzo;
+            return;
+        }
+        zzcf ^= -1;
+        if (zzcf &gt;= this.mSize || this.zzcgd[zzcf] != zzcga) {
+            if (this.mSize &gt;= this.zzcgc.length) {
+                int idealIntArraySize = idealIntArraySize(this.mSize + 1);
+                Object obj = new int[idealIntArraySize];
+                Object obj2 = new zzzo[idealIntArraySize];
+                System.arraycopy(this.zzcgc, 0, obj, 0, this.zzcgc.length);
+                System.arraycopy(this.zzcgd, 0, obj2, 0, this.zzcgd.length);
+                this.zzcgc = obj;
+                this.zzcgd = obj2;
+            }
+            if (this.mSize - zzcf != 0) {
+                int i2 = zzcf + 1;
+                System.arraycopy(this.zzcgc, zzcf, this.zzcgc, i2, this.mSize - zzcf);
+                System.arraycopy(this.zzcgd, zzcf, this.zzcgd, i2, this.mSize - zzcf);
+            }
+            this.zzcgc[zzcf] = i;
+            this.zzcgd[zzcf] = com_google_android_gms_internal_measurement_zzzo;
+            this.mSize++;
+            return;
+        }
+        this.zzcgc[zzcf] = i;
+        this.zzcgd[zzcf] = com_google_android_gms_internal_measurement_zzzo;
+    }
+
+    final int size() {
+        return this.mSize;
+    }
+
+    public final boolean isEmpty() {
+        return this.mSize == 0;
+    }
+
+    final zzzo zzce(int i) {
+        return this.zzcgd[i];
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof zzzn)) {
+            return false;
+        }
+        zzzn com_google_android_gms_internal_measurement_zzzn = (zzzn) obj;
+        if (this.mSize != com_google_android_gms_internal_measurement_zzzn.mSize) {
+            return false;
+        }
+        Object obj2;
+        int[] iArr = this.zzcgc;
+        int[] iArr2 = com_google_android_gms_internal_measurement_zzzn.zzcgc;
+        int i = this.mSize;
+        for (int i2 = 0; i2 &lt; i; i2++) {
+            if (iArr[i2] != iArr2[i2]) {
+                obj2 = null;
+                break;
+            }
+        }
+        obj2 = 1;
+        if (obj2 != null) {
+            zzzo[] com_google_android_gms_internal_measurement_zzzoArr = this.zzcgd;
+            obj = com_google_android_gms_internal_measurement_zzzn.zzcgd;
+            int i3 = this.mSize;
+            for (i = 0; i &lt; i3; i++) {
+                if (!com_google_android_gms_internal_measurement_zzzoArr[i].equals(obj[i])) {
+                    obj = null;
+                    break;
+                }
+            }
+            obj = true;
+            if (obj != null) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        int i = 17;
+        for (int i2 = 0; i2 &lt; this.mSize; i2++) {
+            i = (((i * 31) + this.zzcgc[i2]) * 31) + this.zzcgd[i2].hashCode();
+        }
+        return i;
+    }
+
+    private static int idealIntArraySize(int i) {
+        i &lt;&lt;= 2;
+        for (int i2 = 4; i2 &lt; 32; i2++) {
+            int i3 = (1 &lt;&lt; i2) - 12;
+            if (i &lt;= i3) {
+                i = i3;
+                break;
+            }
+        }
+        return i / 4;
+    }
+
+    private final int zzcf(int i) {
+        int i2 = this.mSize - 1;
+        int i3 = 0;
+        while (i3 &lt;= i2) {
+            int i4 = (i3 + i2) &gt;&gt;&gt; 1;
+            int i5 = this.zzcgc[i4];
+            if (i5 &lt; i) {
+                i3 = i4 + 1;
+            } else if (i5 &lt;= i) {
+                return i4;
+            } else {
+                i2 = i4 - 1;
+            }
+        }
+        return i3 ^ -1;
+    }
+
+    public final /* synthetic */ Object clone() throws CloneNotSupportedException {
+        int i = this.mSize;
+        zzzn com_google_android_gms_internal_measurement_zzzn = new zzzn(i);
+        int i2 = 0;
+        System.arraycopy(this.zzcgc, 0, com_google_android_gms_internal_measurement_zzzn.zzcgc, 0, i);
+        while (i2 &lt; i) {
+            if (this.zzcgd[i2] != null) {
+                com_google_android_gms_internal_measurement_zzzn.zzcgd[i2] = (zzzo) this.zzcgd[i2].clone();
+            }
+            i2++;
+        }
+        com_google_android_gms_internal_measurement_zzzn.mSize = i;
+        return com_google_android_gms_internal_measurement_zzzn;
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:11 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

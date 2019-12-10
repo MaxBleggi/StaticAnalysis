@@ -1,0 +1,227 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/exoplayer2/trackselection/BaseTrackSelection.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/exoplayer2/trackselection/BaseTrackSelection.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="BaseTrackSelection.java" data-line="" class="code line-numbers"><code>package com.google.android.exoplayer2.trackselection;
+
+import android.os.SystemClock;
+import androidx.annotation.Nullable;
+import com.google.android.exoplayer2.Format;
+import com.google.android.exoplayer2.source.TrackGroup;
+import com.google.android.exoplayer2.source.chunk.MediaChunk;
+import com.google.android.exoplayer2.source.chunk.MediaChunkIterator;
+import com.google.android.exoplayer2.trackselection.TrackSelection.-CC;
+import com.google.android.exoplayer2.util.Assertions;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+
+public abstract class BaseTrackSelection implements TrackSelection {
+    private final long[] blacklistUntilTimes;
+    private final Format[] formats;
+    protected final TrackGroup group;
+    private int hashCode;
+    protected final int length;
+    protected final int[] tracks;
+
+    private static final class DecreasingBandwidthComparator implements Comparator&lt;Format&gt; {
+        private DecreasingBandwidthComparator() {
+        }
+
+        public int compare(Format format, Format format2) {
+            return format2.bitrate - format.bitrate;
+        }
+    }
+
+    public void disable() {
+    }
+
+    public void enable() {
+    }
+
+    public void onPlaybackSpeed(float f) {
+    }
+
+    @Deprecated
+    public /* synthetic */ void updateSelectedTrack(long j, long j2, long j3) {
+        -CC.$default$updateSelectedTrack(this, j, j2, j3);
+    }
+
+    public /* synthetic */ void updateSelectedTrack(long j, long j2, long j3, List&lt;? extends MediaChunk&gt; list, MediaChunkIterator[] mediaChunkIteratorArr) {
+        -CC.$default$updateSelectedTrack(this, j, j2, j3, list, mediaChunkIteratorArr);
+    }
+
+    public BaseTrackSelection(TrackGroup trackGroup, int... iArr) {
+        Assertions.checkState(iArr.length &gt; 0);
+        this.group = (TrackGroup) Assertions.checkNotNull(trackGroup);
+        this.length = iArr.length;
+        this.formats = new Format[this.length];
+        for (int i = 0; i &lt; iArr.length; i++) {
+            this.formats[i] = trackGroup.getFormat(iArr[i]);
+        }
+        Arrays.sort(this.formats, new DecreasingBandwidthComparator());
+        this.tracks = new int[this.length];
+        for (int i2 = 0; i2 &lt; this.length; i2++) {
+            this.tracks[i2] = trackGroup.indexOf(this.formats[i2]);
+        }
+        this.blacklistUntilTimes = new long[this.length];
+    }
+
+    public final TrackGroup getTrackGroup() {
+        return this.group;
+    }
+
+    public final int length() {
+        return this.tracks.length;
+    }
+
+    public final Format getFormat(int i) {
+        return this.formats[i];
+    }
+
+    public final int getIndexInTrackGroup(int i) {
+        return this.tracks[i];
+    }
+
+    public final int indexOf(Format format) {
+        for (int i = 0; i &lt; this.length; i++) {
+            if (this.formats[i] == format) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public final int indexOf(int i) {
+        for (int i2 = 0; i2 &lt; this.length; i2++) {
+            if (this.tracks[i2] == i) {
+                return i2;
+            }
+        }
+        return -1;
+    }
+
+    public final Format getSelectedFormat() {
+        return this.formats[getSelectedIndex()];
+    }
+
+    public final int getSelectedIndexInTrackGroup() {
+        return this.tracks[getSelectedIndex()];
+    }
+
+    public int evaluateQueueSize(long j, List&lt;? extends MediaChunk&gt; list) {
+        return list.size();
+    }
+
+    public final boolean blacklist(int i, long j) {
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        boolean isBlacklisted = isBlacklisted(i, elapsedRealtime);
+        int i2 = 0;
+        while (i2 &lt; this.length &amp;&amp; !isBlacklisted) {
+            isBlacklisted = (i2 == i || isBlacklisted(i2, elapsedRealtime)) ? false : true;
+            i2++;
+        }
+        if (!isBlacklisted) {
+            return false;
+        }
+        this.blacklistUntilTimes[i] = Math.max(this.blacklistUntilTimes[i], elapsedRealtime + j);
+        return true;
+    }
+
+    protected final boolean isBlacklisted(int i, long j) {
+        return this.blacklistUntilTimes[i] &gt; j;
+    }
+
+    public int hashCode() {
+        if (this.hashCode == 0) {
+            this.hashCode = (System.identityHashCode(this.group) * 31) + Arrays.hashCode(this.tracks);
+        }
+        return this.hashCode;
+    }
+
+    public boolean equals(@Nullable Object obj) {
+        boolean z = true;
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null) {
+            if (getClass() == obj.getClass()) {
+                BaseTrackSelection baseTrackSelection = (BaseTrackSelection) obj;
+                if (this.group != baseTrackSelection.group || Arrays.equals(this.tracks, baseTrackSelection.tracks) == null) {
+                    z = false;
+                }
+                return z;
+            }
+        }
+        return false;
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:8 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

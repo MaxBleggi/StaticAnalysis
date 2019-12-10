@@ -1,0 +1,221 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/res/values-ca/strings.xml" target="_blank">/xumo_apk/jadx_source_code/res/values-ca/strings.xml</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="strings.xml" data-line="" class="code line-numbers"><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;resources&gt;
+    &lt;string name="abc_action_bar_home_description"&gt;Navega a la pàgina d\'inici&lt;/string&gt;
+    &lt;string name="abc_action_bar_up_description"&gt;Navega cap a dalt&lt;/string&gt;
+    &lt;string name="abc_action_menu_overflow_description"&gt;Més opcions&lt;/string&gt;
+    &lt;string name="abc_action_mode_done"&gt;Fet&lt;/string&gt;
+    &lt;string name="abc_activity_chooser_view_see_all"&gt;Mostra\'ls tots&lt;/string&gt;
+    &lt;string name="abc_activitychooserview_choose_application"&gt;Selecciona una aplicació&lt;/string&gt;
+    &lt;string name="abc_capital_off"&gt;DESACTIVAT&lt;/string&gt;
+    &lt;string name="abc_capital_on"&gt;ACTIVAT&lt;/string&gt;
+    &lt;string name="abc_menu_alt_shortcut_label"&gt;Alt+&lt;/string&gt;
+    &lt;string name="abc_menu_ctrl_shortcut_label"&gt;Ctrl+&lt;/string&gt;
+    &lt;string name="abc_menu_delete_shortcut_label"&gt;Supr&lt;/string&gt;
+    &lt;string name="abc_menu_enter_shortcut_label"&gt;Retorn&lt;/string&gt;
+    &lt;string name="abc_menu_function_shortcut_label"&gt;Funció+&lt;/string&gt;
+    &lt;string name="abc_menu_meta_shortcut_label"&gt;Meta+&lt;/string&gt;
+    &lt;string name="abc_menu_shift_shortcut_label"&gt;Maj+&lt;/string&gt;
+    &lt;string name="abc_menu_space_shortcut_label"&gt;Espai&lt;/string&gt;
+    &lt;string name="abc_menu_sym_shortcut_label"&gt;Sym+&lt;/string&gt;
+    &lt;string name="abc_prepend_shortcut_label"&gt;Menú+&lt;/string&gt;
+    &lt;string name="abc_search_hint"&gt;Cerca...&lt;/string&gt;
+    &lt;string name="abc_searchview_description_clear"&gt;Esborra la consulta&lt;/string&gt;
+    &lt;string name="abc_searchview_description_query"&gt;Consulta de cerca&lt;/string&gt;
+    &lt;string name="abc_searchview_description_search"&gt;Cerca&lt;/string&gt;
+    &lt;string name="abc_searchview_description_submit"&gt;Envia la consulta&lt;/string&gt;
+    &lt;string name="abc_searchview_description_voice"&gt;Cerca per veu&lt;/string&gt;
+    &lt;string name="abc_shareactionprovider_share_with"&gt;Comparteix amb&lt;/string&gt;
+    &lt;string name="abc_shareactionprovider_share_with_application"&gt;Comparteix amb %s&lt;/string&gt;
+    &lt;string name="abc_toolbar_collapse_description"&gt;Replega&lt;/string&gt;
+    &lt;string name="cast_ad_label"&gt;Anunci&lt;/string&gt;
+    &lt;string name="cast_casting_to_device"&gt;S\'està emetent a %1$s&lt;/string&gt;
+    &lt;string name="cast_closed_captions"&gt;Subtítols&lt;/string&gt;
+    &lt;string name="cast_closed_captions_unavailable"&gt;Els subtítols no estan disponibles&lt;/string&gt;
+    &lt;string name="cast_connecting_to_device"&gt;S\'està connectant a %1$s&lt;/string&gt;
+    &lt;string name="cast_disconnect"&gt;Desconnecta&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_ad_image_description"&gt;Imatge que es mostra mentre el receptor de Google Cast està reproduint un anunci&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_ad_in_progress"&gt;Anunci en curs…&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_background_image"&gt;Imatge de l\'àlbum&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_live_stream_indicator"&gt;Reproducció en directe&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_loading"&gt;S\'està carregant…&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_skip_ad_label"&gt;Omet l\'anunci&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_skip_ad_text"&gt;Pots ometre l\'anunci d\'aquí a %1$d…&lt;/string&gt;
+    &lt;string name="cast_forward"&gt;Avança&lt;/string&gt;
+    &lt;string name="cast_forward_10"&gt;Avança 10 segons&lt;/string&gt;
+    &lt;string name="cast_forward_30"&gt;Avança 30 segons&lt;/string&gt;
+    &lt;string name="cast_intro_overlay_button_text"&gt;@android:string/ok&lt;/string&gt;
+    &lt;string name="cast_mute"&gt;Silencia&lt;/string&gt;
+    &lt;string name="cast_notification_connected_message"&gt;S\'ha connectat a %1$s&lt;/string&gt;
+    &lt;string name="cast_notification_connecting_message"&gt;S\'està connectant a %1$s&lt;/string&gt;
+    &lt;string name="cast_notification_default_channel_name"&gt;Cast&lt;/string&gt;
+    &lt;string name="cast_notification_disconnect"&gt;Desconnecta&lt;/string&gt;
+    &lt;string name="cast_pause"&gt;Posa en pausa&lt;/string&gt;
+    &lt;string name="cast_play"&gt;Reprodueix&lt;/string&gt;
+    &lt;string name="cast_rewind"&gt;Rebobina&lt;/string&gt;
+    &lt;string name="cast_rewind_10"&gt;Rebobina 10 segons&lt;/string&gt;
+    &lt;string name="cast_rewind_30"&gt;Rebobina 30 segons&lt;/string&gt;
+    &lt;string name="cast_seek_bar"&gt;Control de cerca de reproducció&lt;/string&gt;
+    &lt;string name="cast_skip_next"&gt;Ves a l\'element següent&lt;/string&gt;
+    &lt;string name="cast_skip_prev"&gt;Ves a l\'element anterior&lt;/string&gt;
+    &lt;string name="cast_stop"&gt;Atura&lt;/string&gt;
+    &lt;string name="cast_stop_live_stream"&gt;Atura la reproducció en directe&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_audio"&gt;Àudio&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_cancel"&gt;Cancel·la&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_closed_captions"&gt;Subtítols&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_default_track_name"&gt;Pista %1$d&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_none"&gt;Cap&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_ok"&gt;D\'acord&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_subtitles"&gt;Subtítols&lt;/string&gt;
+    &lt;string name="cast_unmute"&gt;Deixa de silenciar&lt;/string&gt;
+    &lt;string name="common_google_play_services_enable_button"&gt;Activa&lt;/string&gt;
+    &lt;string name="common_google_play_services_enable_text"&gt;%1$s no funcionarà si no actives Serveis de Google Play.&lt;/string&gt;
+    &lt;string name="common_google_play_services_enable_title"&gt;Activa Serveis de Google Play&lt;/string&gt;
+    &lt;string name="common_google_play_services_install_button"&gt;Instal·la&lt;/string&gt;
+    &lt;string name="common_google_play_services_install_text"&gt;%1$s no s\'executarà si Serveis de Google Play no està instal·lat al dispositiu.&lt;/string&gt;
+    &lt;string name="common_google_play_services_install_title"&gt;Obtén Serveis de Google Play&lt;/string&gt;
+    &lt;string name="common_google_play_services_notification_channel_name"&gt;Disponibilitat de serveis de Google Play&lt;/string&gt;
+    &lt;string name="common_google_play_services_notification_ticker"&gt;Error de Serveis de Google Play&lt;/string&gt;
+    &lt;string name="common_google_play_services_unknown_issue"&gt;%1$s té problemes amb Serveis de Google Play. Torna-ho a provar.&lt;/string&gt;
+    &lt;string name="common_google_play_services_unsupported_text"&gt;%1$s no es pot executar sense Serveis de Google Play, que no és compatible amb el teu dispositiu.&lt;/string&gt;
+    &lt;string name="common_google_play_services_update_button"&gt;Actualitza&lt;/string&gt;
+    &lt;string name="common_google_play_services_update_text"&gt;%1$s no s\'executarà si no actualitzes Serveis de Google Play.&lt;/string&gt;
+    &lt;string name="common_google_play_services_update_title"&gt;Actualitza Serveis de Google Play&lt;/string&gt;
+    &lt;string name="common_google_play_services_updating_text"&gt;%1$s no s\'executarà sense Serveis de Google Play, que s\'està actualitzant en aquest moment.&lt;/string&gt;
+    &lt;string name="common_google_play_services_wear_update_text"&gt;Cal una nova versió de Serveis de Google Play. S\'actualitzarà automàticament aviat.&lt;/string&gt;
+    &lt;string name="common_open_on_phone"&gt;Obre al telèfon&lt;/string&gt;
+    &lt;string name="common_signin_button_text"&gt;Inicia sessió&lt;/string&gt;
+    &lt;string name="common_signin_button_text_long"&gt;Inicia la sessió amb Google&lt;/string&gt;
+    &lt;string name="exo_controls_fastforward_description"&gt;Avança ràpidament&lt;/string&gt;
+    &lt;string name="exo_controls_fullscreen_description"&gt;Mode de pantalla completa&lt;/string&gt;
+    &lt;string name="exo_controls_next_description"&gt;Pista següent&lt;/string&gt;
+    &lt;string name="exo_controls_pause_description"&gt;Posa en pausa&lt;/string&gt;
+    &lt;string name="exo_controls_play_description"&gt;Reprodueix&lt;/string&gt;
+    &lt;string name="exo_controls_previous_description"&gt;Pista anterior&lt;/string&gt;
+    &lt;string name="exo_controls_repeat_all_description"&gt;Repeteix tot&lt;/string&gt;
+    &lt;string name="exo_controls_repeat_off_description"&gt;No en repeteixis cap&lt;/string&gt;
+    &lt;string name="exo_controls_repeat_one_description"&gt;Repeteix una&lt;/string&gt;
+    &lt;string name="exo_controls_rewind_description"&gt;Rebobina&lt;/string&gt;
+    &lt;string name="exo_controls_shuffle_description"&gt;Reprodueix aleatòriament&lt;/string&gt;
+    &lt;string name="exo_controls_stop_description"&gt;Atura&lt;/string&gt;
+    &lt;string name="exo_download_completed"&gt;S\'ha completat la baixada&lt;/string&gt;
+    &lt;string name="exo_download_description"&gt;Baixa&lt;/string&gt;
+    &lt;string name="exo_download_downloading"&gt;S\'està baixant&lt;/string&gt;
+    &lt;string name="exo_download_failed"&gt;No s\'ha pogut baixar&lt;/string&gt;
+    &lt;string name="exo_download_notification_channel_name"&gt;Baixades&lt;/string&gt;
+    &lt;string name="exo_download_removing"&gt;S\'estan suprimint les baixades&lt;/string&gt;
+    &lt;string name="exo_item_list"&gt;%1$s, %2$s&lt;/string&gt;
+    &lt;string name="exo_track_bitrate"&gt;%1$.2f Mbps&lt;/string&gt;
+    &lt;string name="exo_track_mono"&gt;Mono&lt;/string&gt;
+    &lt;string name="exo_track_resolution"&gt;%1$d × %2$d&lt;/string&gt;
+    &lt;string name="exo_track_selection_auto"&gt;Automàtica&lt;/string&gt;
+    &lt;string name="exo_track_selection_none"&gt;Cap&lt;/string&gt;
+    &lt;string name="exo_track_selection_title_audio"&gt;Àudio&lt;/string&gt;
+    &lt;string name="exo_track_selection_title_text"&gt;Text&lt;/string&gt;
+    &lt;string name="exo_track_selection_title_video"&gt;Vídeo&lt;/string&gt;
+    &lt;string name="exo_track_stereo"&gt;Estèreo&lt;/string&gt;
+    &lt;string name="exo_track_surround"&gt;So envoltant&lt;/string&gt;
+    &lt;string name="exo_track_surround_5_point_1"&gt;So envoltant 5.1&lt;/string&gt;
+    &lt;string name="exo_track_surround_7_point_1"&gt;So envoltant 7.1&lt;/string&gt;
+    &lt;string name="exo_track_unknown"&gt;Desconegut&lt;/string&gt;
+    &lt;string name="expand_button_title"&gt;Opcions avançades&lt;/string&gt;
+    &lt;string name="fcm_fallback_notification_channel_label"&gt;Altres&lt;/string&gt;
+    &lt;string name="mr_button_content_description"&gt;Botó d\'emetre&lt;/string&gt;
+    &lt;string name="mr_cast_button_connected"&gt;Botó d\'emetre. Connectat.&lt;/string&gt;
+    &lt;string name="mr_cast_button_connecting"&gt;Botó d\'emetre. S\'està connectant.&lt;/string&gt;
+    &lt;string name="mr_cast_button_disconnected"&gt;Botó d\'emetre. Desconnectat.&lt;/string&gt;
+    &lt;string name="mr_chooser_searching"&gt;S\'estan cercant dispositius&lt;/string&gt;
+    &lt;string name="mr_chooser_title"&gt;Emet contingut a&lt;/string&gt;
+    &lt;string name="mr_controller_album_art"&gt;Imatge de l\'àlbum&lt;/string&gt;
+    &lt;string name="mr_controller_casting_screen"&gt;S\'està emetent la pantalla&lt;/string&gt;
+    &lt;string name="mr_controller_close_description"&gt;Tanca&lt;/string&gt;
+    &lt;string name="mr_controller_collapse_group"&gt;Replega&lt;/string&gt;
+    &lt;string name="mr_controller_disconnect"&gt;Desconnecta&lt;/string&gt;
+    &lt;string name="mr_controller_expand_group"&gt;Desplega&lt;/string&gt;
+    &lt;string name="mr_controller_no_info_available"&gt;No hi ha informació disponible&lt;/string&gt;
+    &lt;string name="mr_controller_no_media_selected"&gt;No hi ha contingut multimèdia seleccionat&lt;/string&gt;
+    &lt;string name="mr_controller_pause"&gt;Posa en pausa&lt;/string&gt;
+    &lt;string name="mr_controller_play"&gt;Reprodueix&lt;/string&gt;
+    &lt;string name="mr_controller_stop"&gt;Atura&lt;/string&gt;
+    &lt;string name="mr_controller_stop_casting"&gt;Atura l\'emissió&lt;/string&gt;
+    &lt;string name="mr_controller_volume_slider"&gt;Control lliscant de volum&lt;/string&gt;
+    &lt;string name="mr_system_route_name"&gt;Sistema&lt;/string&gt;
+    &lt;string name="mr_user_route_category_name"&gt;Dispositius&lt;/string&gt;
+    &lt;string name="search_menu_title"&gt;Cerca&lt;/string&gt;
+    &lt;string name="status_bar_notification_info_overflow"&gt;999+&lt;/string&gt;
+    &lt;string name="summary_collapsed_preference_list"&gt;%1$s, %2$s&lt;/string&gt;
+    &lt;string name="v7_preference_off"&gt;DESACTIVAT&lt;/string&gt;
+    &lt;string name="v7_preference_on"&gt;ACTIVAT&lt;/string&gt;
+&lt;/resources&gt;
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:1 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

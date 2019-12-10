@@ -1,0 +1,214 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/gms/common/api/internal/zza.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/gms/common/api/internal/zza.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="zza.java" data-line="" class="code line-numbers"><code>package com.google.android.gms.common.api.internal;
+
+import android.app.Activity;
+import android.app.Fragment;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Looper;
+import androidx.annotation.NonNull;
+import androidx.collection.ArrayMap;
+import com.google.android.gms.internal.common.zze;
+import java.io.FileDescriptor;
+import java.io.PrintWriter;
+import java.lang.ref.WeakReference;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.WeakHashMap;
+
+public final class zza extends Fragment implements LifecycleFragment {
+    private static WeakHashMap&lt;Activity, WeakReference&lt;zza&gt;&gt; zzbd = new WeakHashMap();
+    private Map&lt;String, LifecycleCallback&gt; zzbe = new ArrayMap();
+    private int zzbf = 0;
+    private Bundle zzbg;
+
+    public static zza zza(Activity activity) {
+        zza com_google_android_gms_common_api_internal_zza;
+        WeakReference weakReference = (WeakReference) zzbd.get(activity);
+        if (weakReference != null) {
+            com_google_android_gms_common_api_internal_zza = (zza) weakReference.get();
+            if (com_google_android_gms_common_api_internal_zza != null) {
+                return com_google_android_gms_common_api_internal_zza;
+            }
+        }
+        try {
+            com_google_android_gms_common_api_internal_zza = (zza) activity.getFragmentManager().findFragmentByTag("LifecycleFragmentImpl");
+            if (com_google_android_gms_common_api_internal_zza == null || com_google_android_gms_common_api_internal_zza.isRemoving()) {
+                com_google_android_gms_common_api_internal_zza = new zza();
+                activity.getFragmentManager().beginTransaction().add(com_google_android_gms_common_api_internal_zza, "LifecycleFragmentImpl").commitAllowingStateLoss();
+            }
+            zzbd.put(activity, new WeakReference(com_google_android_gms_common_api_internal_zza));
+            return com_google_android_gms_common_api_internal_zza;
+        } catch (Activity activity2) {
+            throw new IllegalStateException("Fragment with tag LifecycleFragmentImpl is not a LifecycleFragmentImpl", activity2);
+        }
+    }
+
+    public final &lt;T extends LifecycleCallback&gt; T getCallbackOrNull(String str, Class&lt;T&gt; cls) {
+        return (LifecycleCallback) cls.cast(this.zzbe.get(str));
+    }
+
+    public final void addCallback(String str, @NonNull LifecycleCallback lifecycleCallback) {
+        if (this.zzbe.containsKey(str)) {
+            StringBuilder stringBuilder = new StringBuilder(String.valueOf(str).length() + 59);
+            stringBuilder.append("LifecycleCallback with tag ");
+            stringBuilder.append(str);
+            stringBuilder.append(" already added to this fragment.");
+            throw new IllegalArgumentException(stringBuilder.toString());
+        }
+        this.zzbe.put(str, lifecycleCallback);
+        if (this.zzbf &gt; 0) {
+            new zze(Looper.getMainLooper()).post(new zzb(this, lifecycleCallback, str));
+        }
+    }
+
+    public final boolean isCreated() {
+        return this.zzbf &gt; 0;
+    }
+
+    public final boolean isStarted() {
+        return this.zzbf &gt;= 2;
+    }
+
+    public final Activity getLifecycleActivity() {
+        return getActivity();
+    }
+
+    public final void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+        this.zzbf = 1;
+        this.zzbg = bundle;
+        for (Entry entry : this.zzbe.entrySet()) {
+            ((LifecycleCallback) entry.getValue()).onCreate(bundle != null ? bundle.getBundle((String) entry.getKey()) : null);
+        }
+    }
+
+    public final void onStart() {
+        super.onStart();
+        this.zzbf = 2;
+        for (LifecycleCallback onStart : this.zzbe.values()) {
+            onStart.onStart();
+        }
+    }
+
+    public final void onResume() {
+        super.onResume();
+        this.zzbf = 3;
+        for (LifecycleCallback onResume : this.zzbe.values()) {
+            onResume.onResume();
+        }
+    }
+
+    public final void onActivityResult(int i, int i2, Intent intent) {
+        super.onActivityResult(i, i2, intent);
+        for (LifecycleCallback onActivityResult : this.zzbe.values()) {
+            onActivityResult.onActivityResult(i, i2, intent);
+        }
+    }
+
+    public final void onSaveInstanceState(Bundle bundle) {
+        super.onSaveInstanceState(bundle);
+        if (bundle != null) {
+            for (Entry entry : this.zzbe.entrySet()) {
+                Bundle bundle2 = new Bundle();
+                ((LifecycleCallback) entry.getValue()).onSaveInstanceState(bundle2);
+                bundle.putBundle((String) entry.getKey(), bundle2);
+            }
+        }
+    }
+
+    public final void onStop() {
+        super.onStop();
+        this.zzbf = 4;
+        for (LifecycleCallback onStop : this.zzbe.values()) {
+            onStop.onStop();
+        }
+    }
+
+    public final void onDestroy() {
+        super.onDestroy();
+        this.zzbf = 5;
+        for (LifecycleCallback onDestroy : this.zzbe.values()) {
+            onDestroy.onDestroy();
+        }
+    }
+
+    public final void dump(String str, FileDescriptor fileDescriptor, PrintWriter printWriter, String[] strArr) {
+        super.dump(str, fileDescriptor, printWriter, strArr);
+        for (LifecycleCallback dump : this.zzbe.values()) {
+            dump.dump(str, fileDescriptor, printWriter, strArr);
+        }
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:12 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

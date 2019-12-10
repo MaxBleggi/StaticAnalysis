@@ -1,0 +1,308 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/gms/internal/measurement/zzgm.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/gms/internal/measurement/zzgm.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="zzgm.java" data-line="" class="code line-numbers"><code>package com.google.android.gms.internal.measurement;
+
+import java.io.IOException;
+
+public final class zzgm extends zzzl&lt;zzgm&gt; {
+    public long[] zzayz;
+    public long[] zzaza;
+    public zzgh[] zzazb;
+    public zzgn[] zzazc;
+
+    public zzgm() {
+        this.zzayz = zzzu.zzcgm;
+        this.zzaza = zzzu.zzcgm;
+        this.zzazb = zzgh.zzmy();
+        this.zzazc = zzgn.zznc();
+        this.zzcfx = null;
+        this.zzcgh = -1;
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof zzgm)) {
+            return false;
+        }
+        zzgm com_google_android_gms_internal_measurement_zzgm = (zzgm) obj;
+        if (!zzzp.equals(this.zzayz, com_google_android_gms_internal_measurement_zzgm.zzayz) || !zzzp.equals(this.zzaza, com_google_android_gms_internal_measurement_zzgm.zzaza) || !zzzp.equals(this.zzazb, com_google_android_gms_internal_measurement_zzgm.zzazb) || !zzzp.equals(this.zzazc, com_google_android_gms_internal_measurement_zzgm.zzazc)) {
+            return false;
+        }
+        if (this.zzcfx != null) {
+            if (!this.zzcfx.isEmpty()) {
+                return this.zzcfx.equals(com_google_android_gms_internal_measurement_zzgm.zzcfx);
+            }
+        }
+        if (com_google_android_gms_internal_measurement_zzgm.zzcfx != null) {
+            if (com_google_android_gms_internal_measurement_zzgm.zzcfx.isEmpty() == null) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        int hashCode;
+        int hashCode2 = (((((((((getClass().getName().hashCode() + 527) * 31) + zzzp.hashCode(this.zzayz)) * 31) + zzzp.hashCode(this.zzaza)) * 31) + zzzp.hashCode(this.zzazb)) * 31) + zzzp.hashCode(this.zzazc)) * 31;
+        if (this.zzcfx != null) {
+            if (!this.zzcfx.isEmpty()) {
+                hashCode = this.zzcfx.hashCode();
+                return hashCode2 + hashCode;
+            }
+        }
+        hashCode = 0;
+        return hashCode2 + hashCode;
+    }
+
+    public final void zza(zzzj com_google_android_gms_internal_measurement_zzzj) throws IOException {
+        if (this.zzayz != null &amp;&amp; this.zzayz.length &gt; 0) {
+            for (long zza : this.zzayz) {
+                com_google_android_gms_internal_measurement_zzzj.zza(1, zza);
+            }
+        }
+        if (this.zzaza != null &amp;&amp; this.zzaza.length &gt; 0) {
+            for (long zza2 : this.zzaza) {
+                com_google_android_gms_internal_measurement_zzzj.zza(2, zza2);
+            }
+        }
+        if (this.zzazb != null &amp;&amp; this.zzazb.length &gt; 0) {
+            for (zzzr com_google_android_gms_internal_measurement_zzzr : this.zzazb) {
+                if (com_google_android_gms_internal_measurement_zzzr != null) {
+                    com_google_android_gms_internal_measurement_zzzj.zza(3, com_google_android_gms_internal_measurement_zzzr);
+                }
+            }
+        }
+        if (this.zzazc != null &amp;&amp; this.zzazc.length &gt; 0) {
+            for (zzzr com_google_android_gms_internal_measurement_zzzr2 : this.zzazc) {
+                if (com_google_android_gms_internal_measurement_zzzr2 != null) {
+                    com_google_android_gms_internal_measurement_zzzj.zza(4, com_google_android_gms_internal_measurement_zzzr2);
+                }
+            }
+        }
+        super.zza(com_google_android_gms_internal_measurement_zzzj);
+    }
+
+    protected final int zzf() {
+        int i;
+        int i2;
+        int zzf = super.zzf();
+        if (this.zzayz != null &amp;&amp; this.zzayz.length &gt; 0) {
+            i = 0;
+            for (long zzbl : this.zzayz) {
+                i += zzzj.zzbl(zzbl);
+            }
+            zzf = (zzf + i) + (this.zzayz.length * 1);
+        }
+        if (this.zzaza != null &amp;&amp; this.zzaza.length &gt; 0) {
+            i = 0;
+            for (long zzbl2 : this.zzaza) {
+                i += zzzj.zzbl(zzbl2);
+            }
+            zzf = (zzf + i) + (this.zzaza.length * 1);
+        }
+        if (this.zzazb != null &amp;&amp; this.zzazb.length &gt; 0) {
+            i2 = zzf;
+            for (zzzr com_google_android_gms_internal_measurement_zzzr : this.zzazb) {
+                if (com_google_android_gms_internal_measurement_zzzr != null) {
+                    i2 += zzzj.zzb(3, com_google_android_gms_internal_measurement_zzzr);
+                }
+            }
+            zzf = i2;
+        }
+        if (this.zzazc != null &amp;&amp; this.zzazc.length &gt; 0) {
+            for (zzzr com_google_android_gms_internal_measurement_zzzr2 : this.zzazc) {
+                if (com_google_android_gms_internal_measurement_zzzr2 != null) {
+                    zzf += zzzj.zzb(4, com_google_android_gms_internal_measurement_zzzr2);
+                }
+            }
+        }
+        return zzf;
+    }
+
+    public final /* synthetic */ zzzr zza(zzzi com_google_android_gms_internal_measurement_zzzi) throws IOException {
+        while (true) {
+            int zzuq = com_google_android_gms_internal_measurement_zzzi.zzuq();
+            if (zzuq == 0) {
+                return this;
+            }
+            int length;
+            Object obj;
+            if (zzuq == 8) {
+                zzuq = zzzu.zzb(com_google_android_gms_internal_measurement_zzzi, 8);
+                length = this.zzayz == null ? 0 : this.zzayz.length;
+                obj = new long[(zzuq + length)];
+                if (length != 0) {
+                    System.arraycopy(this.zzayz, 0, obj, 0, length);
+                }
+                while (length &lt; obj.length - 1) {
+                    obj[length] = com_google_android_gms_internal_measurement_zzzi.zzvj();
+                    com_google_android_gms_internal_measurement_zzzi.zzuq();
+                    length++;
+                }
+                obj[length] = com_google_android_gms_internal_measurement_zzzi.zzvj();
+                this.zzayz = obj;
+            } else if (zzuq == 10) {
+                zzuq = com_google_android_gms_internal_measurement_zzzi.zzar(com_google_android_gms_internal_measurement_zzzi.zzvi());
+                length = com_google_android_gms_internal_measurement_zzzi.getPosition();
+                r3 = 0;
+                while (com_google_android_gms_internal_measurement_zzzi.zzzf() &gt; 0) {
+                    com_google_android_gms_internal_measurement_zzzi.zzvj();
+                    r3++;
+                }
+                com_google_android_gms_internal_measurement_zzzi.zzca(length);
+                length = this.zzayz == null ? 0 : this.zzayz.length;
+                r3 = new long[(r3 + length)];
+                if (length != 0) {
+                    System.arraycopy(this.zzayz, 0, r3, 0, length);
+                }
+                while (length &lt; r3.length) {
+                    r3[length] = com_google_android_gms_internal_measurement_zzzi.zzvj();
+                    length++;
+                }
+                this.zzayz = r3;
+                com_google_android_gms_internal_measurement_zzzi.zzas(zzuq);
+            } else if (zzuq == 16) {
+                zzuq = zzzu.zzb(com_google_android_gms_internal_measurement_zzzi, 16);
+                length = this.zzaza == null ? 0 : this.zzaza.length;
+                obj = new long[(zzuq + length)];
+                if (length != 0) {
+                    System.arraycopy(this.zzaza, 0, obj, 0, length);
+                }
+                while (length &lt; obj.length - 1) {
+                    obj[length] = com_google_android_gms_internal_measurement_zzzi.zzvj();
+                    com_google_android_gms_internal_measurement_zzzi.zzuq();
+                    length++;
+                }
+                obj[length] = com_google_android_gms_internal_measurement_zzzi.zzvj();
+                this.zzaza = obj;
+            } else if (zzuq == 18) {
+                zzuq = com_google_android_gms_internal_measurement_zzzi.zzar(com_google_android_gms_internal_measurement_zzzi.zzvi());
+                length = com_google_android_gms_internal_measurement_zzzi.getPosition();
+                r3 = 0;
+                while (com_google_android_gms_internal_measurement_zzzi.zzzf() &gt; 0) {
+                    com_google_android_gms_internal_measurement_zzzi.zzvj();
+                    r3++;
+                }
+                com_google_android_gms_internal_measurement_zzzi.zzca(length);
+                length = this.zzaza == null ? 0 : this.zzaza.length;
+                r3 = new long[(r3 + length)];
+                if (length != 0) {
+                    System.arraycopy(this.zzaza, 0, r3, 0, length);
+                }
+                while (length &lt; r3.length) {
+                    r3[length] = com_google_android_gms_internal_measurement_zzzi.zzvj();
+                    length++;
+                }
+                this.zzaza = r3;
+                com_google_android_gms_internal_measurement_zzzi.zzas(zzuq);
+            } else if (zzuq == 26) {
+                zzuq = zzzu.zzb(com_google_android_gms_internal_measurement_zzzi, 26);
+                length = this.zzazb == null ? 0 : this.zzazb.length;
+                obj = new zzgh[(zzuq + length)];
+                if (length != 0) {
+                    System.arraycopy(this.zzazb, 0, obj, 0, length);
+                }
+                while (length &lt; obj.length - 1) {
+                    obj[length] = new zzgh();
+                    com_google_android_gms_internal_measurement_zzzi.zza(obj[length]);
+                    com_google_android_gms_internal_measurement_zzzi.zzuq();
+                    length++;
+                }
+                obj[length] = new zzgh();
+                com_google_android_gms_internal_measurement_zzzi.zza(obj[length]);
+                this.zzazb = obj;
+            } else if (zzuq == 34) {
+                zzuq = zzzu.zzb(com_google_android_gms_internal_measurement_zzzi, 34);
+                length = this.zzazc == null ? 0 : this.zzazc.length;
+                obj = new zzgn[(zzuq + length)];
+                if (length != 0) {
+                    System.arraycopy(this.zzazc, 0, obj, 0, length);
+                }
+                while (length &lt; obj.length - 1) {
+                    obj[length] = new zzgn();
+                    com_google_android_gms_internal_measurement_zzzi.zza(obj[length]);
+                    com_google_android_gms_internal_measurement_zzzi.zzuq();
+                    length++;
+                }
+                obj[length] = new zzgn();
+                com_google_android_gms_internal_measurement_zzzi.zza(obj[length]);
+                this.zzazc = obj;
+            } else if (!super.zza(com_google_android_gms_internal_measurement_zzzi, zzuq)) {
+                return this;
+            }
+        }
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:11 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

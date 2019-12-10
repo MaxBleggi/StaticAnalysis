@@ -1,0 +1,226 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/exoplayer2/source/hls/playlist/HlsMediaPlaylist.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/exoplayer2/source/hls/playlist/HlsMediaPlaylist.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="HlsMediaPlaylist.java" data-line="" class="code line-numbers"><code>package com.google.android.exoplayer2.source.hls.playlist;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.exoplayer2.C;
+import com.google.android.exoplayer2.drm.DrmInitData;
+import com.google.android.exoplayer2.offline.StreamKey;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.util.Collections;
+import java.util.List;
+
+public final class HlsMediaPlaylist extends HlsPlaylist {
+    public static final int PLAYLIST_TYPE_EVENT = 2;
+    public static final int PLAYLIST_TYPE_UNKNOWN = 0;
+    public static final int PLAYLIST_TYPE_VOD = 1;
+    public final int discontinuitySequence;
+    public final long durationUs;
+    public final boolean hasDiscontinuitySequence;
+    public final boolean hasEndTag;
+    public final boolean hasProgramDateTime;
+    public final long mediaSequence;
+    public final int playlistType;
+    @Nullable
+    public final DrmInitData protectionSchemes;
+    public final List&lt;Segment&gt; segments;
+    public final long startOffsetUs;
+    public final long startTimeUs;
+    public final long targetDurationUs;
+    public final int version;
+
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface PlaylistType {
+    }
+
+    public static final class Segment implements Comparable&lt;Long&gt; {
+        public final long byterangeLength;
+        public final long byterangeOffset;
+        @Nullable
+        public final DrmInitData drmInitData;
+        public final long durationUs;
+        @Nullable
+        public final String encryptionIV;
+        @Nullable
+        public final String fullSegmentEncryptionKeyUri;
+        public final boolean hasGapTag;
+        @Nullable
+        public final Segment initializationSegment;
+        public final int relativeDiscontinuitySequence;
+        public final long relativeStartTimeUs;
+        public final String title;
+        public final String url;
+
+        public Segment(String str, long j, long j2) {
+            this(str, null, "", 0, -1, C.TIME_UNSET, null, null, null, j, j2, false);
+        }
+
+        public Segment(String str, @Nullable Segment segment, String str2, long j, int i, long j2, @Nullable DrmInitData drmInitData, @Nullable String str3, @Nullable String str4, long j3, long j4, boolean z) {
+            this.url = str;
+            this.initializationSegment = segment;
+            this.title = str2;
+            this.durationUs = j;
+            this.relativeDiscontinuitySequence = i;
+            this.relativeStartTimeUs = j2;
+            this.drmInitData = drmInitData;
+            this.fullSegmentEncryptionKeyUri = str3;
+            this.encryptionIV = str4;
+            this.byterangeOffset = j3;
+            this.byterangeLength = j4;
+            this.hasGapTag = z;
+        }
+
+        public int compareTo(@NonNull Long l) {
+            if (this.relativeStartTimeUs &gt; l.longValue()) {
+                return 1;
+            }
+            return this.relativeStartTimeUs &lt; l.longValue() ? -1 : null;
+        }
+    }
+
+    public HlsMediaPlaylist copy(List&lt;StreamKey&gt; list) {
+        return this;
+    }
+
+    public HlsMediaPlaylist(int i, String str, List&lt;String&gt; list, long j, long j2, boolean z, int i2, long j3, int i3, long j4, boolean z2, boolean z3, boolean z4, @Nullable DrmInitData drmInitData, List&lt;Segment&gt; list2) {
+        long j5;
+        String str2 = str;
+        List&lt;String&gt; list3 = list;
+        super(str, list, z2);
+        this.playlistType = i;
+        this.startTimeUs = j2;
+        this.hasDiscontinuitySequence = z;
+        this.discontinuitySequence = i2;
+        this.mediaSequence = j3;
+        this.version = i3;
+        this.targetDurationUs = j4;
+        this.hasEndTag = z3;
+        this.hasProgramDateTime = z4;
+        this.protectionSchemes = drmInitData;
+        this.segments = Collections.unmodifiableList(list2);
+        if (list2.isEmpty()) {
+            r0.durationUs = 0;
+        } else {
+            Segment segment = (Segment) list2.get(list2.size() - 1);
+            r0.durationUs = segment.relativeStartTimeUs + segment.durationUs;
+        }
+        if (j == C.TIME_UNSET) {
+            j5 = C.TIME_UNSET;
+        } else if (j &gt;= 0) {
+            j5 = j;
+        } else {
+            j5 = r0.durationUs + j;
+        }
+        r0.startOffsetUs = j5;
+    }
+
+    public boolean isNewerThan(HlsMediaPlaylist hlsMediaPlaylist) {
+        boolean z = true;
+        if (hlsMediaPlaylist != null) {
+            if (this.mediaSequence &lt;= hlsMediaPlaylist.mediaSequence) {
+                if (this.mediaSequence &lt; hlsMediaPlaylist.mediaSequence) {
+                    return false;
+                }
+                int size = this.segments.size();
+                int size2 = hlsMediaPlaylist.segments.size();
+                if (size &lt;= size2) {
+                    if (size != size2 || !this.hasEndTag || hlsMediaPlaylist.hasEndTag != null) {
+                        z = false;
+                    }
+                }
+                return z;
+            }
+        }
+        return true;
+    }
+
+    public long getEndTimeUs() {
+        return this.startTimeUs + this.durationUs;
+    }
+
+    public HlsMediaPlaylist copyWith(long j, int i) {
+        return new HlsMediaPlaylist(this.playlistType, this.baseUri, this.tags, this.startOffsetUs, j, true, i, this.mediaSequence, this.version, this.targetDurationUs, this.hasIndependentSegments, this.hasEndTag, this.hasProgramDateTime, this.protectionSchemes, this.segments);
+    }
+
+    public HlsMediaPlaylist copyWithEndTag() {
+        if (this.hasEndTag) {
+            return r0;
+        }
+        HlsMediaPlaylist hlsMediaPlaylist = r2;
+        HlsMediaPlaylist hlsMediaPlaylist2 = new HlsMediaPlaylist(r0.playlistType, r0.baseUri, r0.tags, r0.startOffsetUs, r0.startTimeUs, r0.hasDiscontinuitySequence, r0.discontinuitySequence, r0.mediaSequence, r0.version, r0.targetDurationUs, r0.hasIndependentSegments, true, r0.hasProgramDateTime, r0.protectionSchemes, r0.segments);
+        return hlsMediaPlaylist;
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:8 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

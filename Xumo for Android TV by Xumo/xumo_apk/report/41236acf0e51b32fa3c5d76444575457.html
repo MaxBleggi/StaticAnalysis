@@ -1,0 +1,144 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/crashlytics/android/core/CLSUUID.java" target="_blank">/xumo_apk/jadx_source_code/com/crashlytics/android/core/CLSUUID.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="CLSUUID.java" data-line="" class="code line-numbers"><code>package com.crashlytics.android.core;
+
+import android.os.Process;
+import io.fabric.sdk.android.services.common.CommonUtils;
+import io.fabric.sdk.android.services.common.IdManager;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.util.Date;
+import java.util.Locale;
+import java.util.concurrent.atomic.AtomicLong;
+
+class CLSUUID {
+    private static String _clsId;
+    private static final AtomicLong _sequenceNumber = new AtomicLong(0);
+
+    public CLSUUID(IdManager idManager) {
+        r0 = new byte[10];
+        populateTime(r0);
+        populateSequenceNumber(r0);
+        populatePID(r0);
+        idManager = CommonUtils.sha1(idManager.getAppInstallIdentifier());
+        String hexify = CommonUtils.hexify(r0);
+        _clsId = String.format(Locale.US, "%s-%s-%s-%s", new Object[]{hexify.substring(0, 12), hexify.substring(12, 16), hexify.subSequence(16, 20), idManager.substring(0, 12)}).toUpperCase(Locale.US);
+    }
+
+    private void populateTime(byte[] bArr) {
+        long time = new Date().getTime();
+        long j = time / 1000;
+        time %= 1000;
+        byte[] convertLongToFourByteBuffer = convertLongToFourByteBuffer(j);
+        bArr[0] = convertLongToFourByteBuffer[0];
+        bArr[1] = convertLongToFourByteBuffer[1];
+        bArr[2] = convertLongToFourByteBuffer[2];
+        bArr[3] = convertLongToFourByteBuffer[3];
+        byte[] convertLongToTwoByteBuffer = convertLongToTwoByteBuffer(time);
+        bArr[4] = convertLongToTwoByteBuffer[0];
+        bArr[5] = convertLongToTwoByteBuffer[1];
+    }
+
+    private void populateSequenceNumber(byte[] bArr) {
+        byte[] convertLongToTwoByteBuffer = convertLongToTwoByteBuffer(_sequenceNumber.incrementAndGet());
+        bArr[6] = convertLongToTwoByteBuffer[0];
+        bArr[7] = convertLongToTwoByteBuffer[1];
+    }
+
+    private void populatePID(byte[] bArr) {
+        byte[] convertLongToTwoByteBuffer = convertLongToTwoByteBuffer((long) Integer.valueOf(Process.myPid()).shortValue());
+        bArr[8] = convertLongToTwoByteBuffer[0];
+        bArr[9] = convertLongToTwoByteBuffer[1];
+    }
+
+    private static byte[] convertLongToFourByteBuffer(long j) {
+        ByteBuffer allocate = ByteBuffer.allocate(4);
+        allocate.putInt((int) j);
+        allocate.order(ByteOrder.BIG_ENDIAN);
+        allocate.position(0);
+        return allocate.array();
+    }
+
+    private static byte[] convertLongToTwoByteBuffer(long j) {
+        ByteBuffer allocate = ByteBuffer.allocate(2);
+        allocate.putShort((short) ((int) j));
+        allocate.order(ByteOrder.BIG_ENDIAN);
+        allocate.position(0);
+        return allocate.array();
+    }
+
+    public String toString() {
+        return _clsId;
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:5 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

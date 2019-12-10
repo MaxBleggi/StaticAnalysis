@@ -1,0 +1,294 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/exoplayer2/text/pgs/PgsDecoder.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/exoplayer2/text/pgs/PgsDecoder.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="PgsDecoder.java" data-line="" class="code line-numbers"><code>package com.google.android.exoplayer2.text.pgs;
+
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
+import com.google.android.exoplayer2.text.Cue;
+import com.google.android.exoplayer2.text.SimpleSubtitleDecoder;
+import com.google.android.exoplayer2.text.Subtitle;
+import com.google.android.exoplayer2.text.SubtitleDecoderException;
+import com.google.android.exoplayer2.util.ParsableByteArray;
+import com.google.android.exoplayer2.util.Util;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.zip.Inflater;
+
+public final class PgsDecoder extends SimpleSubtitleDecoder {
+    private static final byte INFLATE_HEADER = (byte) 120;
+    private static final int SECTION_TYPE_BITMAP_PICTURE = 21;
+    private static final int SECTION_TYPE_END = 128;
+    private static final int SECTION_TYPE_IDENTIFIER = 22;
+    private static final int SECTION_TYPE_PALETTE = 20;
+    private final ParsableByteArray buffer = new ParsableByteArray();
+    private final CueBuilder cueBuilder = new CueBuilder();
+    private final ParsableByteArray inflatedBuffer = new ParsableByteArray();
+    private Inflater inflater;
+
+    private static final class CueBuilder {
+        private final ParsableByteArray bitmapData = new ParsableByteArray();
+        private int bitmapHeight;
+        private int bitmapWidth;
+        private int bitmapX;
+        private int bitmapY;
+        private final int[] colors = new int[256];
+        private boolean colorsSet;
+        private int planeHeight;
+        private int planeWidth;
+
+        private void parsePaletteSection(ParsableByteArray parsableByteArray, int i) {
+            CueBuilder cueBuilder = this;
+            if (i % 5 == 2) {
+                parsableByteArray.skipBytes(2);
+                Arrays.fill(cueBuilder.colors, 0);
+                int i2 = i / 5;
+                for (int i3 = 0; i3 &lt; i2; i3++) {
+                    int readUnsignedByte = parsableByteArray.readUnsignedByte();
+                    int readUnsignedByte2 = parsableByteArray.readUnsignedByte();
+                    int readUnsignedByte3 = parsableByteArray.readUnsignedByte();
+                    int readUnsignedByte4 = parsableByteArray.readUnsignedByte();
+                    int readUnsignedByte5 = parsableByteArray.readUnsignedByte();
+                    double d = (double) readUnsignedByte2;
+                    double d2 = (double) (readUnsignedByte3 - 128);
+                    Double.isNaN(d2);
+                    double d3 = 1.402d * d2;
+                    Double.isNaN(d);
+                    int i4 = (int) (d3 + d);
+                    int i5 = readUnsignedByte;
+                    double d4 = (double) (readUnsignedByte4 - 128);
+                    Double.isNaN(d4);
+                    double d5 = 0.34414d * d4;
+                    Double.isNaN(d);
+                    d5 = d - d5;
+                    Double.isNaN(d2);
+                    readUnsignedByte2 = (int) (d5 - (d2 * 0.71414d));
+                    Double.isNaN(d4);
+                    d4 *= 1.772d;
+                    Double.isNaN(d);
+                    int i6 = (int) (d + d4);
+                    cueBuilder.colors[i5] = Util.constrainValue(i6, 0, 255) | ((Util.constrainValue(readUnsignedByte2, 0, 255) &lt;&lt; 8) | ((readUnsignedByte5 &lt;&lt; 24) | (Util.constrainValue(i4, 0, 255) &lt;&lt; 16)));
+                }
+                cueBuilder.colorsSet = true;
+            }
+        }
+
+        private void parseBitmapSection(ParsableByteArray parsableByteArray, int i) {
+            if (i &gt;= 4) {
+                int readUnsignedInt24;
+                parsableByteArray.skipBytes(3);
+                i -= 4;
+                if (((parsableByteArray.readUnsignedByte() &amp; 128) != 0 ? 1 : null) != null) {
+                    if (i &gt;= 7) {
+                        readUnsignedInt24 = parsableByteArray.readUnsignedInt24();
+                        if (readUnsignedInt24 &gt;= 4) {
+                            this.bitmapWidth = parsableByteArray.readUnsignedShort();
+                            this.bitmapHeight = parsableByteArray.readUnsignedShort();
+                            this.bitmapData.reset(readUnsignedInt24 - 4);
+                            i -= 7;
+                        } else {
+                            return;
+                        }
+                    }
+                    return;
+                }
+                int position = this.bitmapData.getPosition();
+                readUnsignedInt24 = this.bitmapData.limit();
+                if (position &lt; readUnsignedInt24 &amp;&amp; i &gt; 0) {
+                    i = Math.min(i, readUnsignedInt24 - position);
+                    parsableByteArray.readBytes(this.bitmapData.data, position, i);
+                    this.bitmapData.setPosition(position + i);
+                }
+            }
+        }
+
+        private void parseIdentifierSection(ParsableByteArray parsableByteArray, int i) {
+            if (i &gt;= 19) {
+                this.planeWidth = parsableByteArray.readUnsignedShort();
+                this.planeHeight = parsableByteArray.readUnsignedShort();
+                parsableByteArray.skipBytes(11);
+                this.bitmapX = parsableByteArray.readUnsignedShort();
+                this.bitmapY = parsableByteArray.readUnsignedShort();
+            }
+        }
+
+        public Cue build() {
+            if (!(this.planeWidth == 0 || this.planeHeight == 0 || this.bitmapWidth == 0 || this.bitmapHeight == 0 || this.bitmapData.limit() == 0 || this.bitmapData.getPosition() != this.bitmapData.limit())) {
+                if (this.colorsSet) {
+                    this.bitmapData.setPosition(0);
+                    int[] iArr = new int[(this.bitmapWidth * this.bitmapHeight)];
+                    int i = 0;
+                    while (i &lt; iArr.length) {
+                        int i2;
+                        int readUnsignedByte = this.bitmapData.readUnsignedByte();
+                        if (readUnsignedByte != 0) {
+                            i2 = i + 1;
+                            iArr[i] = this.colors[readUnsignedByte];
+                        } else {
+                            readUnsignedByte = this.bitmapData.readUnsignedByte();
+                            if (readUnsignedByte != 0) {
+                                if ((readUnsignedByte &amp; 64) == 0) {
+                                    i2 = readUnsignedByte &amp; 63;
+                                } else {
+                                    i2 = ((readUnsignedByte &amp; 63) &lt;&lt; 8) | this.bitmapData.readUnsignedByte();
+                                }
+                                if ((readUnsignedByte &amp; 128) == 0) {
+                                    readUnsignedByte = 0;
+                                } else {
+                                    readUnsignedByte = this.colors[this.bitmapData.readUnsignedByte()];
+                                }
+                                i2 += i;
+                                Arrays.fill(iArr, i, i2, readUnsignedByte);
+                            }
+                        }
+                        i = i2;
+                    }
+                    return new Cue(Bitmap.createBitmap(iArr, this.bitmapWidth, this.bitmapHeight, Config.ARGB_8888), ((float) this.bitmapX) / ((float) this.planeWidth), 0, ((float) this.bitmapY) / ((float) this.planeHeight), 0, ((float) this.bitmapWidth) / ((float) this.planeWidth), ((float) this.bitmapHeight) / ((float) this.planeHeight));
+                }
+            }
+            return null;
+        }
+
+        public void reset() {
+            this.planeWidth = 0;
+            this.planeHeight = 0;
+            this.bitmapX = 0;
+            this.bitmapY = 0;
+            this.bitmapWidth = 0;
+            this.bitmapHeight = 0;
+            this.bitmapData.reset(0);
+            this.colorsSet = false;
+        }
+    }
+
+    public PgsDecoder() {
+        super("PgsDecoder");
+    }
+
+    protected Subtitle decode(byte[] bArr, int i, boolean z) throws SubtitleDecoderException {
+        this.buffer.reset(bArr, i);
+        maybeInflateData(this.buffer);
+        this.cueBuilder.reset();
+        bArr = new ArrayList();
+        while (this.buffer.bytesLeft() &gt;= true) {
+            i = readNextSection(this.buffer, this.cueBuilder);
+            if (i != 0) {
+                bArr.add(i);
+            }
+        }
+        return new PgsSubtitle(Collections.unmodifiableList(bArr));
+    }
+
+    private void maybeInflateData(ParsableByteArray parsableByteArray) {
+        if (parsableByteArray.bytesLeft() &gt; 0 &amp;&amp; parsableByteArray.peekUnsignedByte() == 120) {
+            if (this.inflater == null) {
+                this.inflater = new Inflater();
+            }
+            if (Util.inflate(parsableByteArray, this.inflatedBuffer, this.inflater)) {
+                parsableByteArray.reset(this.inflatedBuffer.data, this.inflatedBuffer.limit());
+            }
+        }
+    }
+
+    private static Cue readNextSection(ParsableByteArray parsableByteArray, CueBuilder cueBuilder) {
+        int limit = parsableByteArray.limit();
+        int readUnsignedByte = parsableByteArray.readUnsignedByte();
+        int readUnsignedShort = parsableByteArray.readUnsignedShort();
+        int position = parsableByteArray.getPosition() + readUnsignedShort;
+        Cue cue = null;
+        if (position &gt; limit) {
+            parsableByteArray.setPosition(limit);
+            return null;
+        }
+        if (readUnsignedByte != 128) {
+            switch (readUnsignedByte) {
+                case 20:
+                    cueBuilder.parsePaletteSection(parsableByteArray, readUnsignedShort);
+                    break;
+                case 21:
+                    cueBuilder.parseBitmapSection(parsableByteArray, readUnsignedShort);
+                    break;
+                case 22:
+                    cueBuilder.parseIdentifierSection(parsableByteArray, readUnsignedShort);
+                    break;
+                default:
+                    break;
+            }
+        }
+        cue = cueBuilder.build();
+        cueBuilder.reset();
+        parsableByteArray.setPosition(position);
+        return cue;
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:9 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

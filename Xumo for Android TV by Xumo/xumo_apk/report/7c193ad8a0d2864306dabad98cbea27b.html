@@ -1,0 +1,472 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/gms/cast/RemoteMediaPlayer.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/gms/cast/RemoteMediaPlayer.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="RemoteMediaPlayer.java" data-line="" class="code line-numbers"><code>package com.google.android.gms.cast;
+
+import android.annotation.SuppressLint;
+import android.os.RemoteException;
+import com.google.android.gms.cast.Cast.MessageReceivedCallback;
+import com.google.android.gms.common.api.Api.AnyClient;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.Result;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.common.api.internal.BaseImplementation.ApiMethodImpl;
+import com.google.android.gms.common.util.VisibleForTesting;
+import com.google.android.gms.internal.cast.zzcg;
+import com.google.android.gms.internal.cast.zzco;
+import com.google.android.gms.internal.cast.zzdi;
+import com.google.android.gms.internal.cast.zzdm;
+import com.google.android.gms.internal.cast.zzdn;
+import org.json.JSONObject;
+
+@SuppressLint({"MissingRemoteException"})
+@Deprecated
+public class RemoteMediaPlayer implements MessageReceivedCallback {
+    public static final String NAMESPACE = zzdi.NAMESPACE;
+    public static final int RESUME_STATE_PAUSE = 2;
+    public static final int RESUME_STATE_PLAY = 1;
+    public static final int RESUME_STATE_UNCHANGED = 0;
+    public static final int STATUS_CANCELED = 2101;
+    public static final int STATUS_FAILED = 2100;
+    public static final int STATUS_REPLACED = 2103;
+    public static final int STATUS_SUCCEEDED = 0;
+    public static final int STATUS_TIMED_OUT = 2102;
+    private final Object lock;
+    private final zzdi zzfl;
+    private final zza zzfm;
+    private OnPreloadStatusUpdatedListener zzfn;
+    private OnQueueStatusUpdatedListener zzfo;
+    private OnMetadataUpdatedListener zzfp;
+    private OnStatusUpdatedListener zzfq;
+
+    @Deprecated
+    public interface OnMetadataUpdatedListener {
+        void onMetadataUpdated();
+    }
+
+    @Deprecated
+    public interface OnPreloadStatusUpdatedListener {
+        void onPreloadStatusUpdated();
+    }
+
+    @Deprecated
+    public interface OnQueueStatusUpdatedListener {
+        void onQueueStatusUpdated();
+    }
+
+    @Deprecated
+    public interface OnStatusUpdatedListener {
+        void onStatusUpdated();
+    }
+
+    @Deprecated
+    public interface MediaChannelResult extends Result {
+        JSONObject getCustomData();
+    }
+
+    private class zza implements zzdm {
+        final /* synthetic */ RemoteMediaPlayer zzfr;
+        private GoogleApiClient zzgn;
+        private long zzgo = 0;
+
+        public zza(RemoteMediaPlayer remoteMediaPlayer) {
+            this.zzfr = remoteMediaPlayer;
+        }
+
+        public final void zza(GoogleApiClient googleApiClient) {
+            this.zzgn = googleApiClient;
+        }
+
+        public final void zza(String str, String str2, long j, String str3) {
+            if (this.zzgn != null) {
+                Cast.CastApi.sendMessage(this.zzgn, str, str2).setResultCallback(new zzbq(this, j));
+                return;
+            }
+            throw new IllegalStateException("No GoogleApiClient available");
+        }
+
+        public final long zzl() {
+            long j = this.zzgo + 1;
+            this.zzgo = j;
+            return j;
+        }
+    }
+
+    private static final class zzc implements MediaChannelResult {
+        private final Status zzgt;
+        private final JSONObject zzp;
+
+        zzc(Status status, JSONObject jSONObject) {
+            this.zzgt = status;
+            this.zzp = jSONObject;
+        }
+
+        public final Status getStatus() {
+            return this.zzgt;
+        }
+
+        public final JSONObject getCustomData() {
+            return this.zzp;
+        }
+    }
+
+    @VisibleForTesting
+    static abstract class zzb extends zzcg&lt;MediaChannelResult&gt; {
+        zzdn zzgr = new zzbr(this);
+
+        zzb(GoogleApiClient googleApiClient) {
+            super(googleApiClient);
+        }
+
+        protected void zza(zzco com_google_android_gms_internal_cast_zzco) {
+        }
+
+        protected /* synthetic */ void doExecute(AnyClient anyClient) throws RemoteException {
+            zza((zzco) anyClient);
+        }
+
+        public /* synthetic */ Result createFailedResult(Status status) {
+            return new zzbs(this, status);
+        }
+    }
+
+    public RemoteMediaPlayer() {
+        this(new zzdi(null));
+    }
+
+    @VisibleForTesting
+    private RemoteMediaPlayer(zzdi com_google_android_gms_internal_cast_zzdi) {
+        this.lock = new Object();
+        this.zzfl = com_google_android_gms_internal_cast_zzdi;
+        this.zzfl.zza(new zzat(this));
+        this.zzfm = new zza(this);
+        this.zzfl.zza(this.zzfm);
+    }
+
+    public PendingResult&lt;MediaChannelResult&gt; load(GoogleApiClient googleApiClient, MediaInfo mediaInfo) {
+        return load(googleApiClient, mediaInfo, true, 0, null, null);
+    }
+
+    public PendingResult&lt;MediaChannelResult&gt; load(GoogleApiClient googleApiClient, MediaInfo mediaInfo, boolean z) {
+        return load(googleApiClient, mediaInfo, z, 0, null, null);
+    }
+
+    public PendingResult&lt;MediaChannelResult&gt; load(GoogleApiClient googleApiClient, MediaInfo mediaInfo, boolean z, long j) {
+        return load(googleApiClient, mediaInfo, z, j, null, null);
+    }
+
+    public PendingResult&lt;MediaChannelResult&gt; load(GoogleApiClient googleApiClient, MediaInfo mediaInfo, boolean z, long j, JSONObject jSONObject) {
+        return load(googleApiClient, mediaInfo, z, j, null, jSONObject);
+    }
+
+    public PendingResult&lt;MediaChannelResult&gt; load(GoogleApiClient googleApiClient, MediaInfo mediaInfo, boolean z, long j, long[] jArr, JSONObject jSONObject) {
+        ApiMethodImpl com_google_android_gms_cast_zzbe = new zzbe(this, googleApiClient, googleApiClient, z, j, jArr, jSONObject, mediaInfo);
+        GoogleApiClient googleApiClient2 = googleApiClient;
+        return googleApiClient.execute(com_google_android_gms_cast_zzbe);
+    }
+
+    public PendingResult&lt;MediaChannelResult&gt; pause(GoogleApiClient googleApiClient) {
+        return pause(googleApiClient, null);
+    }
+
+    public PendingResult&lt;MediaChannelResult&gt; pause(GoogleApiClient googleApiClient, JSONObject jSONObject) {
+        return googleApiClient.execute(new zzbj(this, googleApiClient, googleApiClient, jSONObject));
+    }
+
+    public PendingResult&lt;MediaChannelResult&gt; stop(GoogleApiClient googleApiClient) {
+        return stop(googleApiClient, null);
+    }
+
+    public PendingResult&lt;MediaChannelResult&gt; stop(GoogleApiClient googleApiClient, JSONObject jSONObject) {
+        return googleApiClient.execute(new zzbk(this, googleApiClient, googleApiClient, jSONObject));
+    }
+
+    public PendingResult&lt;MediaChannelResult&gt; play(GoogleApiClient googleApiClient) {
+        return play(googleApiClient, null);
+    }
+
+    public PendingResult&lt;MediaChannelResult&gt; play(GoogleApiClient googleApiClient, JSONObject jSONObject) {
+        return googleApiClient.execute(new zzbl(this, googleApiClient, googleApiClient, jSONObject));
+    }
+
+    public PendingResult&lt;MediaChannelResult&gt; seek(GoogleApiClient googleApiClient, long j) {
+        return seek(googleApiClient, j, 0, null);
+    }
+
+    public PendingResult&lt;MediaChannelResult&gt; seek(GoogleApiClient googleApiClient, long j, int i) {
+        return seek(googleApiClient, j, i, null);
+    }
+
+    public PendingResult&lt;MediaChannelResult&gt; seek(GoogleApiClient googleApiClient, long j, int i, JSONObject jSONObject) {
+        return googleApiClient.execute(new zzbm(this, googleApiClient, googleApiClient, j, i, jSONObject));
+    }
+
+    public PendingResult&lt;MediaChannelResult&gt; setStreamVolume(GoogleApiClient googleApiClient, double d) throws IllegalArgumentException {
+        return setStreamVolume(googleApiClient, d, null);
+    }
+
+    public PendingResult&lt;MediaChannelResult&gt; setStreamVolume(GoogleApiClient googleApiClient, double d, JSONObject jSONObject) throws IllegalArgumentException {
+        if (!Double.isInfinite(d) &amp;&amp; !Double.isNaN(d)) {
+            return googleApiClient.execute(new zzbn(this, googleApiClient, googleApiClient, d, jSONObject));
+        }
+        StringBuilder stringBuilder = new StringBuilder(41);
+        stringBuilder.append("Volume cannot be ");
+        stringBuilder.append(d);
+        throw new IllegalArgumentException(stringBuilder.toString());
+    }
+
+    public PendingResult&lt;MediaChannelResult&gt; setStreamMute(GoogleApiClient googleApiClient, boolean z) {
+        return setStreamMute(googleApiClient, z, null);
+    }
+
+    public PendingResult&lt;MediaChannelResult&gt; setStreamMute(GoogleApiClient googleApiClient, boolean z, JSONObject jSONObject) {
+        return googleApiClient.execute(new zzbo(this, googleApiClient, googleApiClient, z, jSONObject));
+    }
+
+    public PendingResult&lt;MediaChannelResult&gt; requestStatus(GoogleApiClient googleApiClient) {
+        return googleApiClient.execute(new zzbp(this, googleApiClient, googleApiClient));
+    }
+
+    public PendingResult&lt;MediaChannelResult&gt; setActiveMediaTracks(GoogleApiClient googleApiClient, long[] jArr) {
+        if (jArr != null) {
+            return googleApiClient.execute(new zzau(this, googleApiClient, googleApiClient, jArr));
+        }
+        throw new IllegalArgumentException("trackIds cannot be null");
+    }
+
+    public PendingResult&lt;MediaChannelResult&gt; setTextTrackStyle(GoogleApiClient googleApiClient, TextTrackStyle textTrackStyle) {
+        if (textTrackStyle != null) {
+            return googleApiClient.execute(new zzav(this, googleApiClient, googleApiClient, textTrackStyle));
+        }
+        throw new IllegalArgumentException("trackStyle cannot be null");
+    }
+
+    public PendingResult&lt;MediaChannelResult&gt; queueLoad(GoogleApiClient googleApiClient, MediaQueueItem[] mediaQueueItemArr, int i, int i2, JSONObject jSONObject) throws IllegalArgumentException {
+        return queueLoad(googleApiClient, mediaQueueItemArr, i, i2, -1, jSONObject);
+    }
+
+    public PendingResult&lt;MediaChannelResult&gt; queueLoad(GoogleApiClient googleApiClient, MediaQueueItem[] mediaQueueItemArr, int i, int i2, long j, JSONObject jSONObject) throws IllegalArgumentException {
+        ApiMethodImpl com_google_android_gms_cast_zzaw = new zzaw(this, googleApiClient, googleApiClient, mediaQueueItemArr, i, i2, j, jSONObject);
+        GoogleApiClient googleApiClient2 = googleApiClient;
+        return googleApiClient.execute(com_google_android_gms_cast_zzaw);
+    }
+
+    public PendingResult&lt;MediaChannelResult&gt; queueInsertItems(GoogleApiClient googleApiClient, MediaQueueItem[] mediaQueueItemArr, int i, JSONObject jSONObject) throws IllegalArgumentException {
+        return googleApiClient.execute(new zzax(this, googleApiClient, googleApiClient, mediaQueueItemArr, i, jSONObject));
+    }
+
+    public PendingResult&lt;MediaChannelResult&gt; queueAppendItem(GoogleApiClient googleApiClient, MediaQueueItem mediaQueueItem, JSONObject jSONObject) throws IllegalArgumentException {
+        return queueInsertItems(googleApiClient, new MediaQueueItem[]{mediaQueueItem}, 0, jSONObject);
+    }
+
+    public PendingResult&lt;MediaChannelResult&gt; queueInsertAndPlayItem(GoogleApiClient googleApiClient, MediaQueueItem mediaQueueItem, int i, JSONObject jSONObject) {
+        return queueInsertAndPlayItem(googleApiClient, mediaQueueItem, i, -1, jSONObject);
+    }
+
+    public PendingResult&lt;MediaChannelResult&gt; queueInsertAndPlayItem(GoogleApiClient googleApiClient, MediaQueueItem mediaQueueItem, int i, long j, JSONObject jSONObject) {
+        ApiMethodImpl com_google_android_gms_cast_zzay = new zzay(this, googleApiClient, googleApiClient, mediaQueueItem, i, j, jSONObject);
+        GoogleApiClient googleApiClient2 = googleApiClient;
+        return googleApiClient.execute(com_google_android_gms_cast_zzay);
+    }
+
+    public PendingResult&lt;MediaChannelResult&gt; queueUpdateItems(GoogleApiClient googleApiClient, MediaQueueItem[] mediaQueueItemArr, JSONObject jSONObject) {
+        return googleApiClient.execute(new zzaz(this, googleApiClient, googleApiClient, mediaQueueItemArr, jSONObject));
+    }
+
+    public PendingResult&lt;MediaChannelResult&gt; queueRemoveItems(GoogleApiClient googleApiClient, int[] iArr, JSONObject jSONObject) throws IllegalArgumentException {
+        return googleApiClient.execute(new zzba(this, googleApiClient, googleApiClient, iArr, jSONObject));
+    }
+
+    public PendingResult&lt;MediaChannelResult&gt; queueReorderItems(GoogleApiClient googleApiClient, int[] iArr, int i, JSONObject jSONObject) throws IllegalArgumentException {
+        return googleApiClient.execute(new zzbb(this, googleApiClient, googleApiClient, iArr, i, jSONObject));
+    }
+
+    public PendingResult&lt;MediaChannelResult&gt; queuePrev(GoogleApiClient googleApiClient, JSONObject jSONObject) {
+        return googleApiClient.execute(new zzbc(this, googleApiClient, googleApiClient, jSONObject));
+    }
+
+    public PendingResult&lt;MediaChannelResult&gt; queueNext(GoogleApiClient googleApiClient, JSONObject jSONObject) {
+        return googleApiClient.execute(new zzbd(this, googleApiClient, googleApiClient, jSONObject));
+    }
+
+    public PendingResult&lt;MediaChannelResult&gt; queueSetRepeatMode(GoogleApiClient googleApiClient, int i, JSONObject jSONObject) {
+        return googleApiClient.execute(new zzbf(this, googleApiClient, googleApiClient, i, jSONObject));
+    }
+
+    public PendingResult&lt;MediaChannelResult&gt; queueRemoveItem(GoogleApiClient googleApiClient, int i, JSONObject jSONObject) {
+        return googleApiClient.execute(new zzbg(this, googleApiClient, i, googleApiClient, jSONObject));
+    }
+
+    public PendingResult&lt;MediaChannelResult&gt; queueJumpToItem(GoogleApiClient googleApiClient, int i, JSONObject jSONObject) {
+        return queueJumpToItem(googleApiClient, i, -1, jSONObject);
+    }
+
+    public PendingResult&lt;MediaChannelResult&gt; queueJumpToItem(GoogleApiClient googleApiClient, int i, long j, JSONObject jSONObject) {
+        return googleApiClient.execute(new zzbh(this, googleApiClient, i, googleApiClient, j, jSONObject));
+    }
+
+    public PendingResult&lt;MediaChannelResult&gt; queueMoveItemToNewIndex(GoogleApiClient googleApiClient, int i, int i2, JSONObject jSONObject) {
+        return googleApiClient.execute(new zzbi(this, googleApiClient, i, i2, googleApiClient, jSONObject));
+    }
+
+    private final int zzc(int i) {
+        MediaStatus mediaStatus = getMediaStatus();
+        for (int i2 = 0; i2 &lt; mediaStatus.getQueueItemCount(); i2++) {
+            if (mediaStatus.getQueueItem(i2).getItemId() == i) {
+                return i2;
+            }
+        }
+        return -1;
+    }
+
+    public long getApproximateStreamPosition() {
+        long approximateStreamPosition;
+        synchronized (this.lock) {
+            approximateStreamPosition = this.zzfl.getApproximateStreamPosition();
+        }
+        return approximateStreamPosition;
+    }
+
+    public long getStreamDuration() {
+        long streamDuration;
+        synchronized (this.lock) {
+            streamDuration = this.zzfl.getStreamDuration();
+        }
+        return streamDuration;
+    }
+
+    public MediaStatus getMediaStatus() {
+        MediaStatus mediaStatus;
+        synchronized (this.lock) {
+            mediaStatus = this.zzfl.getMediaStatus();
+        }
+        return mediaStatus;
+    }
+
+    public MediaInfo getMediaInfo() {
+        MediaInfo mediaInfo;
+        synchronized (this.lock) {
+            mediaInfo = this.zzfl.getMediaInfo();
+        }
+        return mediaInfo;
+    }
+
+    public void setOnStatusUpdatedListener(OnStatusUpdatedListener onStatusUpdatedListener) {
+        this.zzfq = onStatusUpdatedListener;
+    }
+
+    private final void onStatusUpdated() {
+        if (this.zzfq != null) {
+            this.zzfq.onStatusUpdated();
+        }
+    }
+
+    public void setOnMetadataUpdatedListener(OnMetadataUpdatedListener onMetadataUpdatedListener) {
+        this.zzfp = onMetadataUpdatedListener;
+    }
+
+    private final void onMetadataUpdated() {
+        if (this.zzfp != null) {
+            this.zzfp.onMetadataUpdated();
+        }
+    }
+
+    public void setOnQueueStatusUpdatedListener(OnQueueStatusUpdatedListener onQueueStatusUpdatedListener) {
+        this.zzfo = onQueueStatusUpdatedListener;
+    }
+
+    private final void onQueueStatusUpdated() {
+        if (this.zzfo != null) {
+            this.zzfo.onQueueStatusUpdated();
+        }
+    }
+
+    public void setOnPreloadStatusUpdatedListener(OnPreloadStatusUpdatedListener onPreloadStatusUpdatedListener) {
+        this.zzfn = onPreloadStatusUpdatedListener;
+    }
+
+    private final void onPreloadStatusUpdated() {
+        if (this.zzfn != null) {
+            this.zzfn.onPreloadStatusUpdated();
+        }
+    }
+
+    public String getNamespace() {
+        return this.zzfl.getNamespace();
+    }
+
+    public void onMessageReceived(CastDevice castDevice, String str, String str2) {
+        this.zzfl.zzn(str2);
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:10 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

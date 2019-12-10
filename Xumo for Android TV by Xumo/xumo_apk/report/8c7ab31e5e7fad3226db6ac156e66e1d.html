@@ -1,0 +1,661 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/exoplayer2/util/EventLogger.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/exoplayer2/util/EventLogger.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="EventLogger.java" data-line="" class="code line-numbers"><code>package com.google.android.exoplayer2.util;
+
+import android.os.SystemClock;
+import android.view.Surface;
+import androidx.annotation.Nullable;
+import com.google.android.exoplayer2.C;
+import com.google.android.exoplayer2.ExoPlaybackException;
+import com.google.android.exoplayer2.Format;
+import com.google.android.exoplayer2.PlaybackParameters;
+import com.google.android.exoplayer2.Timeline.Period;
+import com.google.android.exoplayer2.Timeline.Window;
+import com.google.android.exoplayer2.analytics.AnalyticsListener;
+import com.google.android.exoplayer2.analytics.AnalyticsListener.-CC;
+import com.google.android.exoplayer2.analytics.AnalyticsListener.EventTime;
+import com.google.android.exoplayer2.audio.AudioAttributes;
+import com.google.android.exoplayer2.decoder.DecoderCounters;
+import com.google.android.exoplayer2.metadata.Metadata;
+import com.google.android.exoplayer2.source.MediaSourceEventListener.LoadEventInfo;
+import com.google.android.exoplayer2.source.MediaSourceEventListener.MediaLoadData;
+import com.google.android.exoplayer2.source.TrackGroup;
+import com.google.android.exoplayer2.source.TrackGroupArray;
+import com.google.android.exoplayer2.trackselection.MappingTrackSelector;
+import com.google.android.exoplayer2.trackselection.TrackSelection;
+import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
+import java.io.IOException;
+import java.text.NumberFormat;
+import java.util.Locale;
+
+public class EventLogger implements AnalyticsListener {
+    private static final String DEFAULT_TAG = "EventLogger";
+    private static final int MAX_TIMELINE_ITEM_LINES = 3;
+    private static final NumberFormat TIME_FORMAT = NumberFormat.getInstance(Locale.US);
+    private final Period period;
+    private final long startTimeMs;
+    private final String tag;
+    @Nullable
+    private final MappingTrackSelector trackSelector;
+    private final Window window;
+
+    private static String getAdaptiveSupportString(int i, int i2) {
+        return i &lt; 2 ? "N/A" : i2 != 0 ? i2 != 8 ? i2 != 16 ? "?" : "YES" : "YES_NOT_SEAMLESS" : "NO";
+    }
+
+    private static String getDiscontinuityReasonString(int i) {
+        switch (i) {
+            case 0:
+                return "PERIOD_TRANSITION";
+            case 1:
+                return "SEEK";
+            case 2:
+                return "SEEK_ADJUSTMENT";
+            case 3:
+                return "AD_INSERTION";
+            case 4:
+                return "INTERNAL";
+            default:
+                return "?";
+        }
+    }
+
+    private static String getFormatSupportString(int i) {
+        switch (i) {
+            case 0:
+                return "NO";
+            case 1:
+                return "NO_UNSUPPORTED_TYPE";
+            case 2:
+                return "NO_UNSUPPORTED_DRM";
+            case 3:
+                return "NO_EXCEEDS_CAPABILITIES";
+            case 4:
+                return "YES";
+            default:
+                return "?";
+        }
+    }
+
+    private static String getRepeatModeString(int i) {
+        switch (i) {
+            case 0:
+                return "OFF";
+            case 1:
+                return "ONE";
+            case 2:
+                return "ALL";
+            default:
+                return "?";
+        }
+    }
+
+    private static String getStateString(int i) {
+        switch (i) {
+            case 1:
+                return "IDLE";
+            case 2:
+                return "BUFFERING";
+            case 3:
+                return "READY";
+            case 4:
+                return "ENDED";
+            default:
+                return "?";
+        }
+    }
+
+    private static String getTimelineChangeReasonString(int i) {
+        switch (i) {
+            case 0:
+                return "PREPARED";
+            case 1:
+                return "RESET";
+            case 2:
+                return "DYNAMIC";
+            default:
+                return "?";
+        }
+    }
+
+    private static String getTrackStatusString(boolean z) {
+        return z ? "[X]" : "[ ]";
+    }
+
+    public /* synthetic */ void onAudioAttributesChanged(EventTime eventTime, AudioAttributes audioAttributes) {
+        -CC.$default$onAudioAttributesChanged(this, eventTime, audioAttributes);
+    }
+
+    public void onBandwidthEstimate(EventTime eventTime, int i, long j, long j2) {
+    }
+
+    public void onLoadCanceled(EventTime eventTime, LoadEventInfo loadEventInfo, MediaLoadData mediaLoadData) {
+    }
+
+    public void onLoadCompleted(EventTime eventTime, LoadEventInfo loadEventInfo, MediaLoadData mediaLoadData) {
+    }
+
+    public void onLoadStarted(EventTime eventTime, LoadEventInfo loadEventInfo, MediaLoadData mediaLoadData) {
+    }
+
+    public /* synthetic */ void onVolumeChanged(EventTime eventTime, float f) {
+        -CC.$default$onVolumeChanged(this, eventTime, f);
+    }
+
+    static {
+        TIME_FORMAT.setMinimumFractionDigits(2);
+        TIME_FORMAT.setMaximumFractionDigits(2);
+        TIME_FORMAT.setGroupingUsed(false);
+    }
+
+    public EventLogger(@Nullable MappingTrackSelector mappingTrackSelector) {
+        this(mappingTrackSelector, DEFAULT_TAG);
+    }
+
+    public EventLogger(@Nullable MappingTrackSelector mappingTrackSelector, String str) {
+        this.trackSelector = mappingTrackSelector;
+        this.tag = str;
+        this.window = new Window();
+        this.period = new Period();
+        this.startTimeMs = SystemClock.elapsedRealtime();
+    }
+
+    public void onLoadingChanged(EventTime eventTime, boolean z) {
+        logd(eventTime, "loading", Boolean.toString(z));
+    }
+
+    public void onPlayerStateChanged(EventTime eventTime, boolean z, int i) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(z);
+        stringBuilder.append(", ");
+        stringBuilder.append(getStateString(i));
+        logd(eventTime, "state", stringBuilder.toString());
+    }
+
+    public void onRepeatModeChanged(EventTime eventTime, int i) {
+        logd(eventTime, "repeatMode", getRepeatModeString(i));
+    }
+
+    public void onShuffleModeChanged(EventTime eventTime, boolean z) {
+        logd(eventTime, "shuffleModeEnabled", Boolean.toString(z));
+    }
+
+    public void onPositionDiscontinuity(EventTime eventTime, int i) {
+        logd(eventTime, "positionDiscontinuity", getDiscontinuityReasonString(i));
+    }
+
+    public void onSeekStarted(EventTime eventTime) {
+        logd(eventTime, "seekStarted");
+    }
+
+    public void onPlaybackParametersChanged(EventTime eventTime, PlaybackParameters playbackParameters) {
+        logd(eventTime, "playbackParameters", Util.formatInvariant("speed=%.2f, pitch=%.2f, skipSilence=%s", Float.valueOf(playbackParameters.speed), Float.valueOf(playbackParameters.pitch), Boolean.valueOf(playbackParameters.skipSilence)));
+    }
+
+    public void onTimelineChanged(EventTime eventTime, int i) {
+        int periodCount = eventTime.timeline.getPeriodCount();
+        int windowCount = eventTime.timeline.getWindowCount();
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("timelineChanged [");
+        stringBuilder.append(getEventTimeString(eventTime));
+        stringBuilder.append(", periodCount=");
+        stringBuilder.append(periodCount);
+        stringBuilder.append(", windowCount=");
+        stringBuilder.append(windowCount);
+        stringBuilder.append(", reason=");
+        stringBuilder.append(getTimelineChangeReasonString(i));
+        logd(stringBuilder.toString());
+        i = 0;
+        for (int i2 = 0; i2 &lt; Math.min(periodCount, 3); i2++) {
+            eventTime.timeline.getPeriod(i2, this.period);
+            StringBuilder stringBuilder2 = new StringBuilder();
+            stringBuilder2.append("  period [");
+            stringBuilder2.append(getTimeString(this.period.getDurationMs()));
+            stringBuilder2.append("]");
+            logd(stringBuilder2.toString());
+        }
+        if (periodCount &gt; 3) {
+            logd("  ...");
+        }
+        while (i &lt; Math.min(windowCount, 3)) {
+            eventTime.timeline.getWindow(i, this.window);
+            StringBuilder stringBuilder3 = new StringBuilder();
+            stringBuilder3.append("  window [");
+            stringBuilder3.append(getTimeString(this.window.getDurationMs()));
+            stringBuilder3.append(", ");
+            stringBuilder3.append(this.window.isSeekable);
+            stringBuilder3.append(", ");
+            stringBuilder3.append(this.window.isDynamic);
+            stringBuilder3.append("]");
+            logd(stringBuilder3.toString());
+            i++;
+        }
+        if (windowCount &gt; 3) {
+            logd("  ...");
+        }
+        logd("]");
+    }
+
+    public void onPlayerError(EventTime eventTime, ExoPlaybackException exoPlaybackException) {
+        loge(eventTime, "playerFailed", exoPlaybackException);
+    }
+
+    public void onTracksChanged(EventTime eventTime, TrackGroupArray trackGroupArray, TrackSelectionArray trackSelectionArray) {
+        trackGroupArray = this.trackSelector != null ? this.trackSelector.getCurrentMappedTrackInfo() : null;
+        if (trackGroupArray == null) {
+            logd(eventTime, "tracksChanged", "[]");
+            return;
+        }
+        int i;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("tracksChanged [");
+        stringBuilder.append(getEventTimeString(eventTime));
+        stringBuilder.append(", ");
+        logd(stringBuilder.toString());
+        eventTime = trackGroupArray.getRendererCount();
+        for (i = 0; i &lt; eventTime; i++) {
+            TrackGroupArray trackGroups = trackGroupArray.getTrackGroups(i);
+            TrackSelection trackSelection = trackSelectionArray.get(i);
+            if (trackGroups.length &gt; 0) {
+                StringBuilder stringBuilder2 = new StringBuilder();
+                stringBuilder2.append("  Renderer:");
+                stringBuilder2.append(i);
+                stringBuilder2.append(" [");
+                logd(stringBuilder2.toString());
+                for (int i2 = 0; i2 &lt; trackGroups.length; i2++) {
+                    TrackGroup trackGroup = trackGroups.get(i2);
+                    String adaptiveSupportString = getAdaptiveSupportString(trackGroup.length, trackGroupArray.getAdaptiveSupport(i, i2, false));
+                    StringBuilder stringBuilder3 = new StringBuilder();
+                    stringBuilder3.append("    Group:");
+                    stringBuilder3.append(i2);
+                    stringBuilder3.append(", adaptive_supported=");
+                    stringBuilder3.append(adaptiveSupportString);
+                    stringBuilder3.append(" [");
+                    logd(stringBuilder3.toString());
+                    for (int i3 = 0; i3 &lt; trackGroup.length; i3++) {
+                        String trackStatusString = getTrackStatusString(trackSelection, trackGroup, i3);
+                        String formatSupportString = getFormatSupportString(trackGroupArray.getTrackSupport(i, i2, i3));
+                        StringBuilder stringBuilder4 = new StringBuilder();
+                        stringBuilder4.append("      ");
+                        stringBuilder4.append(trackStatusString);
+                        stringBuilder4.append(" Track:");
+                        stringBuilder4.append(i3);
+                        stringBuilder4.append(", ");
+                        stringBuilder4.append(Format.toLogString(trackGroup.getFormat(i3)));
+                        stringBuilder4.append(", supported=");
+                        stringBuilder4.append(formatSupportString);
+                        logd(stringBuilder4.toString());
+                    }
+                    logd("    ]");
+                }
+                if (trackSelection != null) {
+                    for (int i4 = 0; i4 &lt; trackSelection.length(); i4++) {
+                        Metadata metadata = trackSelection.getFormat(i4).metadata;
+                        if (metadata != null) {
+                            logd("    Metadata [");
+                            printMetadata(metadata, "      ");
+                            logd("    ]");
+                            break;
+                        }
+                    }
+                }
+                logd("  ]");
+            }
+        }
+        eventTime = trackGroupArray.getUnmappedTrackGroups();
+        if (eventTime.length &gt; null) {
+            logd("  Renderer:None [");
+            for (trackGroupArray = null; trackGroupArray &lt; eventTime.length; trackGroupArray++) {
+                trackSelectionArray = new StringBuilder();
+                trackSelectionArray.append("    Group:");
+                trackSelectionArray.append(trackGroupArray);
+                trackSelectionArray.append(" [");
+                logd(trackSelectionArray.toString());
+                trackSelectionArray = eventTime.get(trackGroupArray);
+                for (i = 0; i &lt; trackSelectionArray.length; i++) {
+                    String trackStatusString2 = getTrackStatusString(false);
+                    String formatSupportString2 = getFormatSupportString(0);
+                    stringBuilder2 = new StringBuilder();
+                    stringBuilder2.append("      ");
+                    stringBuilder2.append(trackStatusString2);
+                    stringBuilder2.append(" Track:");
+                    stringBuilder2.append(i);
+                    stringBuilder2.append(", ");
+                    stringBuilder2.append(Format.toLogString(trackSelectionArray.getFormat(i)));
+                    stringBuilder2.append(", supported=");
+                    stringBuilder2.append(formatSupportString2);
+                    logd(stringBuilder2.toString());
+                }
+                logd("    ]");
+            }
+            logd("  ]");
+        }
+        logd("]");
+    }
+
+    public void onSeekProcessed(EventTime eventTime) {
+        logd(eventTime, "seekProcessed");
+    }
+
+    public void onMetadata(EventTime eventTime, Metadata metadata) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("metadata [");
+        stringBuilder.append(getEventTimeString(eventTime));
+        stringBuilder.append(", ");
+        logd(stringBuilder.toString());
+        printMetadata(metadata, "  ");
+        logd("]");
+    }
+
+    public void onDecoderEnabled(EventTime eventTime, int i, DecoderCounters decoderCounters) {
+        logd(eventTime, "decoderEnabled", getTrackTypeString(i));
+    }
+
+    public void onAudioSessionId(EventTime eventTime, int i) {
+        logd(eventTime, "audioSessionId", Integer.toString(i));
+    }
+
+    public void onDecoderInitialized(EventTime eventTime, int i, String str, long j) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(getTrackTypeString(i));
+        stringBuilder.append(", ");
+        stringBuilder.append(str);
+        logd(eventTime, "decoderInitialized", stringBuilder.toString());
+    }
+
+    public void onDecoderInputFormatChanged(EventTime eventTime, int i, Format format) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(getTrackTypeString(i));
+        stringBuilder.append(", ");
+        stringBuilder.append(Format.toLogString(format));
+        logd(eventTime, "decoderInputFormatChanged", stringBuilder.toString());
+    }
+
+    public void onDecoderDisabled(EventTime eventTime, int i, DecoderCounters decoderCounters) {
+        logd(eventTime, "decoderDisabled", getTrackTypeString(i));
+    }
+
+    public void onAudioUnderrun(EventTime eventTime, int i, long j, long j2) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(i);
+        stringBuilder.append(", ");
+        stringBuilder.append(j);
+        stringBuilder.append(", ");
+        stringBuilder.append(j2);
+        stringBuilder.append("]");
+        loge(eventTime, "audioTrackUnderrun", stringBuilder.toString(), 0);
+    }
+
+    public void onDroppedVideoFrames(EventTime eventTime, int i, long j) {
+        logd(eventTime, "droppedFrames", Integer.toString(i));
+    }
+
+    public void onVideoSizeChanged(EventTime eventTime, int i, int i2, int i3, float f) {
+        f = new StringBuilder();
+        f.append(i);
+        f.append(", ");
+        f.append(i2);
+        logd(eventTime, "videoSizeChanged", f.toString());
+    }
+
+    public void onRenderedFirstFrame(EventTime eventTime, @Nullable Surface surface) {
+        logd(eventTime, "renderedFirstFrame", String.valueOf(surface));
+    }
+
+    public void onMediaPeriodCreated(EventTime eventTime) {
+        logd(eventTime, "mediaPeriodCreated");
+    }
+
+    public void onMediaPeriodReleased(EventTime eventTime) {
+        logd(eventTime, "mediaPeriodReleased");
+    }
+
+    public void onLoadError(EventTime eventTime, LoadEventInfo loadEventInfo, MediaLoadData mediaLoadData, IOException iOException, boolean z) {
+        printInternalError(eventTime, "loadError", iOException);
+    }
+
+    public void onReadingStarted(EventTime eventTime) {
+        logd(eventTime, "mediaPeriodReadingStarted");
+    }
+
+    public void onSurfaceSizeChanged(EventTime eventTime, int i, int i2) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(i);
+        stringBuilder.append(", ");
+        stringBuilder.append(i2);
+        logd(eventTime, "surfaceSizeChanged", stringBuilder.toString());
+    }
+
+    public void onUpstreamDiscarded(EventTime eventTime, MediaLoadData mediaLoadData) {
+        logd(eventTime, "upstreamDiscarded", Format.toLogString(mediaLoadData.trackFormat));
+    }
+
+    public void onDownstreamFormatChanged(EventTime eventTime, MediaLoadData mediaLoadData) {
+        logd(eventTime, "downstreamFormatChanged", Format.toLogString(mediaLoadData.trackFormat));
+    }
+
+    public void onDrmSessionAcquired(EventTime eventTime) {
+        logd(eventTime, "drmSessionAcquired");
+    }
+
+    public void onDrmSessionManagerError(EventTime eventTime, Exception exception) {
+        printInternalError(eventTime, "drmSessionManagerError", exception);
+    }
+
+    public void onDrmKeysRestored(EventTime eventTime) {
+        logd(eventTime, "drmKeysRestored");
+    }
+
+    public void onDrmKeysRemoved(EventTime eventTime) {
+        logd(eventTime, "drmKeysRemoved");
+    }
+
+    public void onDrmKeysLoaded(EventTime eventTime) {
+        logd(eventTime, "drmKeysLoaded");
+    }
+
+    public void onDrmSessionReleased(EventTime eventTime) {
+        logd(eventTime, "drmSessionReleased");
+    }
+
+    protected void logd(String str) {
+        Log.d(this.tag, str);
+    }
+
+    protected void loge(String str, @Nullable Throwable th) {
+        Log.e(this.tag, str, th);
+    }
+
+    private void logd(EventTime eventTime, String str) {
+        logd(getEventString(eventTime, str));
+    }
+
+    private void logd(EventTime eventTime, String str, String str2) {
+        logd(getEventString(eventTime, str, str2));
+    }
+
+    private void loge(EventTime eventTime, String str, @Nullable Throwable th) {
+        loge(getEventString(eventTime, str), th);
+    }
+
+    private void loge(EventTime eventTime, String str, String str2, @Nullable Throwable th) {
+        loge(getEventString(eventTime, str, str2), th);
+    }
+
+    private void printInternalError(EventTime eventTime, String str, Exception exception) {
+        loge(eventTime, "internalError", str, exception);
+    }
+
+    private void printMetadata(Metadata metadata, String str) {
+        for (int i = 0; i &lt; metadata.length(); i++) {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(str);
+            stringBuilder.append(metadata.get(i));
+            logd(stringBuilder.toString());
+        }
+    }
+
+    private String getEventString(EventTime eventTime, String str) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(str);
+        stringBuilder.append(" [");
+        stringBuilder.append(getEventTimeString(eventTime));
+        stringBuilder.append("]");
+        return stringBuilder.toString();
+    }
+
+    private String getEventString(EventTime eventTime, String str, String str2) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(str);
+        stringBuilder.append(" [");
+        stringBuilder.append(getEventTimeString(eventTime));
+        stringBuilder.append(", ");
+        stringBuilder.append(str2);
+        stringBuilder.append("]");
+        return stringBuilder.toString();
+    }
+
+    private String getEventTimeString(EventTime eventTime) {
+        StringBuilder stringBuilder;
+        StringBuilder stringBuilder2 = new StringBuilder();
+        stringBuilder2.append("window=");
+        stringBuilder2.append(eventTime.windowIndex);
+        String stringBuilder3 = stringBuilder2.toString();
+        if (eventTime.mediaPeriodId != null) {
+            stringBuilder = new StringBuilder();
+            stringBuilder.append(stringBuilder3);
+            stringBuilder.append(", period=");
+            stringBuilder.append(eventTime.timeline.getIndexOfPeriod(eventTime.mediaPeriodId.periodUid));
+            stringBuilder3 = stringBuilder.toString();
+            if (eventTime.mediaPeriodId.isAd()) {
+                stringBuilder = new StringBuilder();
+                stringBuilder.append(stringBuilder3);
+                stringBuilder.append(", adGroup=");
+                stringBuilder.append(eventTime.mediaPeriodId.adGroupIndex);
+                stringBuilder3 = stringBuilder.toString();
+                stringBuilder = new StringBuilder();
+                stringBuilder.append(stringBuilder3);
+                stringBuilder.append(", ad=");
+                stringBuilder.append(eventTime.mediaPeriodId.adIndexInAdGroup);
+                stringBuilder3 = stringBuilder.toString();
+            }
+        }
+        stringBuilder = new StringBuilder();
+        stringBuilder.append(getTimeString(eventTime.realtimeMs - this.startTimeMs));
+        stringBuilder.append(", ");
+        stringBuilder.append(getTimeString(eventTime.currentPlaybackPositionMs));
+        stringBuilder.append(", ");
+        stringBuilder.append(stringBuilder3);
+        return stringBuilder.toString();
+    }
+
+    private static String getTimeString(long j) {
+        return j == C.TIME_UNSET ? "?" : TIME_FORMAT.format((double) (((float) j) / 1000.0f));
+    }
+
+    private static String getTrackStatusString(@Nullable TrackSelection trackSelection, TrackGroup trackGroup, int i) {
+        trackSelection = (trackSelection == null || trackSelection.getTrackGroup() != trackGroup || trackSelection.indexOf(i) == -1) ? null : true;
+        return getTrackStatusString(trackSelection);
+    }
+
+    private static String getTrackTypeString(int i) {
+        switch (i) {
+            case 0:
+                return "default";
+            case 1:
+                return MimeTypes.BASE_TYPE_AUDIO;
+            case 2:
+                return MimeTypes.BASE_TYPE_VIDEO;
+            case 3:
+                return MimeTypes.BASE_TYPE_TEXT;
+            case 4:
+                return TtmlNode.TAG_METADATA;
+            case 5:
+                return "camera motion";
+            case 6:
+                return "none";
+            default:
+                if (i &gt;= 10000) {
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.append("custom (");
+                    stringBuilder.append(i);
+                    stringBuilder.append(")");
+                    i = stringBuilder.toString();
+                } else {
+                    i = "?";
+                }
+                return i;
+        }
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:8 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

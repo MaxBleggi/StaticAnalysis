@@ -1,0 +1,276 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/exoplayer2/source/hls/DefaultHlsExtractorFactory.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/exoplayer2/source/hls/DefaultHlsExtractorFactory.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="DefaultHlsExtractorFactory.java" data-line="" class="code line-numbers"><code>package com.google.android.exoplayer2.source.hls;
+
+import android.net.Uri;
+import android.text.TextUtils;
+import android.util.Pair;
+import com.google.android.exoplayer2.Format;
+import com.google.android.exoplayer2.drm.DrmInitData;
+import com.google.android.exoplayer2.extractor.Extractor;
+import com.google.android.exoplayer2.extractor.ExtractorInput;
+import com.google.android.exoplayer2.extractor.mp3.Mp3Extractor;
+import com.google.android.exoplayer2.extractor.mp4.FragmentedMp4Extractor;
+import com.google.android.exoplayer2.extractor.ts.Ac3Extractor;
+import com.google.android.exoplayer2.extractor.ts.AdtsExtractor;
+import com.google.android.exoplayer2.extractor.ts.DefaultTsPayloadReaderFactory;
+import com.google.android.exoplayer2.extractor.ts.TsExtractor;
+import com.google.android.exoplayer2.util.MimeTypes;
+import com.google.android.exoplayer2.util.TimestampAdjuster;
+import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+
+public final class DefaultHlsExtractorFactory implements HlsExtractorFactory {
+    public static final String AAC_FILE_EXTENSION = ".aac";
+    public static final String AC3_FILE_EXTENSION = ".ac3";
+    public static final String EC3_FILE_EXTENSION = ".ec3";
+    public static final String M4_FILE_EXTENSION_PREFIX = ".m4";
+    public static final String MP3_FILE_EXTENSION = ".mp3";
+    public static final String MP4_FILE_EXTENSION = ".mp4";
+    public static final String MP4_FILE_EXTENSION_PREFIX = ".mp4";
+    public static final String VTT_FILE_EXTENSION = ".vtt";
+    public static final String WEBVTT_FILE_EXTENSION = ".webvtt";
+
+    public Pair&lt;Extractor, Boolean&gt; createExtractor(Extractor extractor, Uri uri, Format format, List&lt;Format&gt; list, DrmInitData drmInitData, TimestampAdjuster timestampAdjuster, Map&lt;String, List&lt;String&gt;&gt; map, ExtractorInput extractorInput) throws InterruptedException, IOException {
+        if (extractor != null) {
+            if ((extractor instanceof TsExtractor) == null) {
+                if ((extractor instanceof FragmentedMp4Extractor) == null) {
+                    if ((extractor instanceof WebvttExtractor) != null) {
+                        return buildResult(new WebvttExtractor(format.language, timestampAdjuster));
+                    }
+                    if ((extractor instanceof AdtsExtractor) != null) {
+                        return buildResult(new AdtsExtractor());
+                    }
+                    if ((extractor instanceof Ac3Extractor) != null) {
+                        return buildResult(new Ac3Extractor());
+                    }
+                    if ((extractor instanceof Mp3Extractor) != null) {
+                        return buildResult(new Mp3Extractor());
+                    }
+                    format = new StringBuilder();
+                    format.append("Unexpected previousExtractor type: ");
+                    format.append(extractor.getClass().getSimpleName());
+                    throw new IllegalArgumentException(format.toString());
+                }
+            }
+            return buildResult(extractor);
+        }
+        extractor = createExtractorByFileExtension(uri, format, list, drmInitData, timestampAdjuster);
+        extractorInput.resetPeekPosition();
+        if (sniffQuietly(extractor, extractorInput) != null) {
+            return buildResult(extractor);
+        }
+        if ((extractor instanceof WebvttExtractor) == null) {
+            uri = new WebvttExtractor(format.language, timestampAdjuster);
+            if (sniffQuietly(uri, extractorInput) != null) {
+                return buildResult(uri);
+            }
+        }
+        if ((extractor instanceof AdtsExtractor) == null) {
+            uri = new AdtsExtractor();
+            if (sniffQuietly(uri, extractorInput) != null) {
+                return buildResult(uri);
+            }
+        }
+        if ((extractor instanceof Ac3Extractor) == null) {
+            uri = new Ac3Extractor();
+            if (sniffQuietly(uri, extractorInput) != null) {
+                return buildResult(uri);
+            }
+        }
+        if ((extractor instanceof Mp3Extractor) == null) {
+            uri = new Mp3Extractor(null, 0);
+            if (sniffQuietly(uri, extractorInput) != null) {
+                return buildResult(uri);
+            }
+        }
+        if ((extractor instanceof FragmentedMp4Extractor) == null) {
+            List list2;
+            if (list != null) {
+                list2 = list;
+            } else {
+                list2 = Collections.emptyList();
+            }
+            Uri fragmentedMp4Extractor = new FragmentedMp4Extractor(0, timestampAdjuster, null, drmInitData, list2);
+            if (sniffQuietly(fragmentedMp4Extractor, extractorInput) != null) {
+                return buildResult(fragmentedMp4Extractor);
+            }
+        }
+        if ((extractor instanceof TsExtractor) == null) {
+            uri = createTsExtractor(format, list, timestampAdjuster);
+            if (sniffQuietly(uri, extractorInput) != null) {
+                return buildResult(uri);
+            }
+        }
+        return buildResult(extractor);
+    }
+
+    private Extractor createExtractorByFileExtension(Uri uri, Format format, List&lt;Format&gt; list, DrmInitData drmInitData, TimestampAdjuster timestampAdjuster) {
+        uri = uri.getLastPathSegment();
+        if (uri == null) {
+            uri = "";
+        }
+        if (!(MimeTypes.TEXT_VTT.equals(format.sampleMimeType) || uri.endsWith(WEBVTT_FILE_EXTENSION))) {
+            if (!uri.endsWith(VTT_FILE_EXTENSION)) {
+                if (uri.endsWith(AAC_FILE_EXTENSION)) {
+                    return new AdtsExtractor();
+                }
+                if (!uri.endsWith(AC3_FILE_EXTENSION)) {
+                    if (!uri.endsWith(EC3_FILE_EXTENSION)) {
+                        if (uri.endsWith(MP3_FILE_EXTENSION)) {
+                            return new Mp3Extractor(null, null);
+                        }
+                        if (!(uri.endsWith(".mp4") || uri.startsWith(M4_FILE_EXTENSION_PREFIX, uri.length() - 4))) {
+                            if (uri.startsWith(".mp4", uri.length() - 5) == null) {
+                                return createTsExtractor(format, list, timestampAdjuster);
+                            }
+                        }
+                        if (list == null) {
+                            list = Collections.emptyList();
+                        }
+                        return new FragmentedMp4Extractor(0, timestampAdjuster, null, drmInitData, list);
+                    }
+                }
+                return new Ac3Extractor();
+            }
+        }
+        return new WebvttExtractor(format.language, timestampAdjuster);
+    }
+
+    private static TsExtractor createTsExtractor(Format format, List&lt;Format&gt; list, TimestampAdjuster timestampAdjuster) {
+        int i;
+        if (list != null) {
+            i = 48;
+        } else {
+            list = Collections.singletonList(Format.createTextSampleFormat(null, MimeTypes.APPLICATION_CEA608, 0, null));
+            i = 16;
+        }
+        format = format.codecs;
+        if (!TextUtils.isEmpty(format)) {
+            if (!MimeTypes.AUDIO_AAC.equals(MimeTypes.getAudioMediaMimeType(format))) {
+                i |= 2;
+            }
+            if (MimeTypes.VIDEO_H264.equals(MimeTypes.getVideoMediaMimeType(format)) == null) {
+                i |= 4;
+            }
+        }
+        return new TsExtractor(2, timestampAdjuster, new DefaultTsPayloadReaderFactory(i, list));
+    }
+
+    private static Pair&lt;Extractor, Boolean&gt; buildResult(Extractor extractor) {
+        boolean z;
+        if (!((extractor instanceof AdtsExtractor) || (extractor instanceof Ac3Extractor))) {
+            if (!(extractor instanceof Mp3Extractor)) {
+                z = false;
+                return new Pair(extractor, Boolean.valueOf(z));
+            }
+        }
+        z = true;
+        return new Pair(extractor, Boolean.valueOf(z));
+    }
+
+    private static boolean sniffQuietly(com.google.android.exoplayer2.extractor.Extractor r0, com.google.android.exoplayer2.extractor.ExtractorInput r1) throws java.lang.InterruptedException, java.io.IOException {
+        /* JADX: method processing error */
+/*
+Error: java.lang.NullPointerException
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.searchTryCatchDominators(ProcessTryCatchRegions.java:75)
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.process(ProcessTryCatchRegions.java:45)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.postProcessRegions(RegionMakerVisitor.java:63)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.visit(RegionMakerVisitor.java:58)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:31)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:17)
+	at jadx.core.ProcessClass.process(ProcessClass.java:37)
+	at jadx.api.JadxDecompiler.processClass(JadxDecompiler.java:306)
+	at jadx.api.JavaClass.decompile(JavaClass.java:62)
+	at jadx.api.JadxDecompiler$1.run(JadxDecompiler.java:199)
+*/
+        /*
+        r0 = r0.sniff(r1);	 Catch:{ EOFException -&gt; 0x000d, all -&gt; 0x0008 }
+        r1.resetPeekPosition();
+        goto L_0x0011;
+    L_0x0008:
+        r0 = move-exception;
+        r1.resetPeekPosition();
+        throw r0;
+    L_0x000d:
+        r1.resetPeekPosition();
+        r0 = 0;
+    L_0x0011:
+        return r0;
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.google.android.exoplayer2.source.hls.DefaultHlsExtractorFactory.sniffQuietly(com.google.android.exoplayer2.extractor.Extractor, com.google.android.exoplayer2.extractor.ExtractorInput):boolean");
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:8 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

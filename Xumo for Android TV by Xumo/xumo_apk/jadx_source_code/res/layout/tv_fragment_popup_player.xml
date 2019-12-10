@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.exoplayer2.ui.PlayerView xmlns:android="http://schemas.android.com/apk/res-auto" app:id="@+id/player_view" app:background="@color/settingsBackgroundColor" app:layout_width="match_parent" app:layout_height="match_parent" app:resize_mode="1">
+    <RelativeLayout app:id="@+id/player_error_message_layout" app:background="0x106000c" app:layout_width="match_parent" app:layout_height="match_parent">
+        <TextView app:textSize="16sp" app:textColor="@color/xumoGrayFourth" app:id="@+id/player_error_message" app:layout_width="wrap_content" app:layout_height="wrap_content" app:layout_centerInParent="true" app:lineSpacingExtra="12sp" app:textAlignment="center" />
+    </RelativeLayout>
+    <ProgressBar app:layout_gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end" app:id="@+id/buffering_indicator" app:visibility="gone" app:layout_width="wrap_content" app:layout_height="wrap_content" />
+    <FrameLayout app:id="@+id/fb_ad_view" app:visibility="gone" app:layout_width="match_parent" app:layout_height="match_parent" />
+</com.google.android.exoplayer2.ui.PlayerView>

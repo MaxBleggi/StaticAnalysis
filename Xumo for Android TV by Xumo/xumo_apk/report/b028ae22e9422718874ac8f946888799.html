@@ -1,0 +1,298 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/androidx/core/app/ActivityCompat.java" target="_blank">/xumo_apk/jadx_source_code/androidx/core/app/ActivityCompat.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="ActivityCompat.java" data-line="" class="code line-numbers"><code>package androidx.core.app;
+
+import android.app.Activity;
+import android.app.SharedElementCallback;
+import android.app.SharedElementCallback.OnSharedElementsReadyListener;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentSender;
+import android.content.IntentSender.SendIntentException;
+import android.content.pm.PackageManager;
+import android.graphics.Matrix;
+import android.graphics.RectF;
+import android.net.Uri;
+import android.os.Build.VERSION;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Parcelable;
+import android.view.DragEvent;
+import android.view.View;
+import androidx.annotation.IdRes;
+import androidx.annotation.IntRange;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo.Scope;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.DragAndDropPermissionsCompat;
+import java.util.List;
+import java.util.Map;
+
+public class ActivityCompat extends ContextCompat {
+    private static PermissionCompatDelegate sDelegate;
+
+    public interface OnRequestPermissionsResultCallback {
+        void onRequestPermissionsResult(int i, @NonNull String[] strArr, @NonNull int[] iArr);
+    }
+
+    public interface PermissionCompatDelegate {
+        boolean onActivityResult(@NonNull Activity activity, @IntRange(from = 0) int i, int i2, @Nullable Intent intent);
+
+        boolean requestPermissions(@NonNull Activity activity, @NonNull String[] strArr, @IntRange(from = 0) int i);
+    }
+
+    @RestrictTo({Scope.LIBRARY_GROUP})
+    public interface RequestPermissionsRequestCodeValidator {
+        void validateRequestPermissionsRequestCode(int i);
+    }
+
+    @RequiresApi(21)
+    private static class SharedElementCallback21Impl extends SharedElementCallback {
+        private final SharedElementCallback mCallback;
+
+        SharedElementCallback21Impl(SharedElementCallback sharedElementCallback) {
+            this.mCallback = sharedElementCallback;
+        }
+
+        public void onSharedElementStart(List&lt;String&gt; list, List&lt;View&gt; list2, List&lt;View&gt; list3) {
+            this.mCallback.onSharedElementStart(list, list2, list3);
+        }
+
+        public void onSharedElementEnd(List&lt;String&gt; list, List&lt;View&gt; list2, List&lt;View&gt; list3) {
+            this.mCallback.onSharedElementEnd(list, list2, list3);
+        }
+
+        public void onRejectSharedElements(List&lt;View&gt; list) {
+            this.mCallback.onRejectSharedElements(list);
+        }
+
+        public void onMapSharedElements(List&lt;String&gt; list, Map&lt;String, View&gt; map) {
+            this.mCallback.onMapSharedElements(list, map);
+        }
+
+        public Parcelable onCaptureSharedElementSnapshot(View view, Matrix matrix, RectF rectF) {
+            return this.mCallback.onCaptureSharedElementSnapshot(view, matrix, rectF);
+        }
+
+        public View onCreateSnapshotView(Context context, Parcelable parcelable) {
+            return this.mCallback.onCreateSnapshotView(context, parcelable);
+        }
+
+        @RequiresApi(23)
+        public void onSharedElementsArrived(List&lt;String&gt; list, List&lt;View&gt; list2, final OnSharedElementsReadyListener onSharedElementsReadyListener) {
+            this.mCallback.onSharedElementsArrived(list, list2, new SharedElementCallback.OnSharedElementsReadyListener() {
+                public void onSharedElementsReady() {
+                    onSharedElementsReadyListener.onSharedElementsReady();
+                }
+            });
+        }
+    }
+
+    protected ActivityCompat() {
+    }
+
+    public static void setPermissionCompatDelegate(@Nullable PermissionCompatDelegate permissionCompatDelegate) {
+        sDelegate = permissionCompatDelegate;
+    }
+
+    @RestrictTo({Scope.LIBRARY_GROUP})
+    public static PermissionCompatDelegate getPermissionCompatDelegate() {
+        return sDelegate;
+    }
+
+    @Deprecated
+    public static boolean invalidateOptionsMenu(Activity activity) {
+        activity.invalidateOptionsMenu();
+        return true;
+    }
+
+    public static void startActivityForResult(@NonNull Activity activity, @NonNull Intent intent, int i, @Nullable Bundle bundle) {
+        if (VERSION.SDK_INT &gt;= 16) {
+            activity.startActivityForResult(intent, i, bundle);
+        } else {
+            activity.startActivityForResult(intent, i);
+        }
+    }
+
+    public static void startIntentSenderForResult(@NonNull Activity activity, @NonNull IntentSender intentSender, int i, @Nullable Intent intent, int i2, int i3, int i4, @Nullable Bundle bundle) throws SendIntentException {
+        if (VERSION.SDK_INT &gt;= 16) {
+            activity.startIntentSenderForResult(intentSender, i, intent, i2, i3, i4, bundle);
+        } else {
+            activity.startIntentSenderForResult(intentSender, i, intent, i2, i3, i4);
+        }
+    }
+
+    public static void finishAffinity(@NonNull Activity activity) {
+        if (VERSION.SDK_INT &gt;= 16) {
+            activity.finishAffinity();
+        } else {
+            activity.finish();
+        }
+    }
+
+    public static void finishAfterTransition(@NonNull Activity activity) {
+        if (VERSION.SDK_INT &gt;= 21) {
+            activity.finishAfterTransition();
+        } else {
+            activity.finish();
+        }
+    }
+
+    @Nullable
+    public static Uri getReferrer(@NonNull Activity activity) {
+        if (VERSION.SDK_INT &gt;= 22) {
+            return activity.getReferrer();
+        }
+        activity = activity.getIntent();
+        Uri uri = (Uri) activity.getParcelableExtra("android.intent.extra.REFERRER");
+        if (uri != null) {
+            return uri;
+        }
+        activity = activity.getStringExtra("android.intent.extra.REFERRER_NAME");
+        return activity != null ? Uri.parse(activity) : null;
+    }
+
+    @NonNull
+    public static &lt;T extends View&gt; T requireViewById(@NonNull Activity activity, @IdRes int i) {
+        if (VERSION.SDK_INT &gt;= 28) {
+            return activity.requireViewById(i);
+        }
+        activity = activity.findViewById(i);
+        if (activity != null) {
+            return activity;
+        }
+        throw new IllegalArgumentException("ID does not reference a View inside this Activity");
+    }
+
+    public static void setEnterSharedElementCallback(@NonNull Activity activity, @Nullable SharedElementCallback sharedElementCallback) {
+        if (VERSION.SDK_INT &gt;= 21) {
+            activity.setEnterSharedElementCallback(sharedElementCallback != null ? new SharedElementCallback21Impl(sharedElementCallback) : null);
+        }
+    }
+
+    public static void setExitSharedElementCallback(@NonNull Activity activity, @Nullable SharedElementCallback sharedElementCallback) {
+        if (VERSION.SDK_INT &gt;= 21) {
+            activity.setExitSharedElementCallback(sharedElementCallback != null ? new SharedElementCallback21Impl(sharedElementCallback) : null);
+        }
+    }
+
+    public static void postponeEnterTransition(@NonNull Activity activity) {
+        if (VERSION.SDK_INT &gt;= 21) {
+            activity.postponeEnterTransition();
+        }
+    }
+
+    public static void startPostponedEnterTransition(@NonNull Activity activity) {
+        if (VERSION.SDK_INT &gt;= 21) {
+            activity.startPostponedEnterTransition();
+        }
+    }
+
+    public static void requestPermissions(@NonNull final Activity activity, @NonNull final String[] strArr, @IntRange(from = 0) final int i) {
+        if (sDelegate == null || !sDelegate.requestPermissions(activity, strArr, i)) {
+            if (VERSION.SDK_INT &gt;= 23) {
+                if (activity instanceof RequestPermissionsRequestCodeValidator) {
+                    ((RequestPermissionsRequestCodeValidator) activity).validateRequestPermissionsRequestCode(i);
+                }
+                activity.requestPermissions(strArr, i);
+            } else if (activity instanceof OnRequestPermissionsResultCallback) {
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    public void run() {
+                        int[] iArr = new int[strArr.length];
+                        PackageManager packageManager = activity.getPackageManager();
+                        String packageName = activity.getPackageName();
+                        int length = strArr.length;
+                        for (int i = 0; i &lt; length; i++) {
+                            iArr[i] = packageManager.checkPermission(strArr[i], packageName);
+                        }
+                        ((OnRequestPermissionsResultCallback) activity).onRequestPermissionsResult(i, strArr, iArr);
+                    }
+                });
+            }
+        }
+    }
+
+    public static boolean shouldShowRequestPermissionRationale(@NonNull Activity activity, @NonNull String str) {
+        return VERSION.SDK_INT &gt;= 23 ? activity.shouldShowRequestPermissionRationale(str) : null;
+    }
+
+    @Nullable
+    public static DragAndDropPermissionsCompat requestDragAndDropPermissions(Activity activity, DragEvent dragEvent) {
+        return DragAndDropPermissionsCompat.request(activity, dragEvent);
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:3 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

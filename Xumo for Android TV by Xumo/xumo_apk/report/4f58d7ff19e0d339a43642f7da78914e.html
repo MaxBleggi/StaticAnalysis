@@ -1,0 +1,171 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/ads/interactivemedia/v3/impl/data/m.java" target="_blank">/xumo_apk/jadx_source_code/com/google/ads/interactivemedia/v3/impl/data/m.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="m.java" data-line="" class="code line-numbers"><code>package com.google.ads.interactivemedia.v3.impl.data;
+
+import android.util.Log;
+import com.google.ads.interactivemedia.v3.internal.mb;
+import com.google.ads.interactivemedia.v3.internal.md;
+import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.SortedSet;
+
+/* compiled from: IMASDK */
+public class m {
+    public double adBreakDuration;
+    public String adBreakTime;
+    public List&lt;Float&gt; adCuePoints;
+    public b adData;
+    public int adPosition;
+    public long adTimeUpdateMs;
+    public String adUiStyle;
+    public double bufferedTime;
+    public String clickThroughUrl;
+    public Map&lt;String, CompanionData&gt; companions;
+    public List&lt;k&gt; cuepoints;
+    public double currentTime;
+    public double duration;
+    public int errorCode;
+    public String errorMessage;
+    public String eventId;
+    public String innerError;
+    public SortedSet&lt;Float&gt; internalCuePoints;
+    public String ln;
+    public a logData;
+    public String m;
+    public String minutes;
+    public boolean monitorAppLifecycle;
+    public String n;
+    public String queryId;
+    public String seconds;
+    public String streamId;
+    public String streamUrl;
+    public List&lt;HashMap&lt;String, String&gt;&gt; subtitles;
+    public int totalAds;
+    public String translation;
+    public String vastEvent;
+    public String videoUrl;
+
+    /* compiled from: IMASDK */
+    public static class a {
+        public int errorCode;
+        public String errorMessage;
+        public String innerError;
+        public String type;
+
+        public Map&lt;String, String&gt; constructMap() {
+            Map&lt;String, String&gt; hashMap = new HashMap();
+            hashMap.put("type", this.type);
+            hashMap.put("errorCode", String.valueOf(this.errorCode));
+            hashMap.put("errorMessage", this.errorMessage);
+            if (this.innerError != null) {
+                hashMap.put("innerError", this.innerError);
+            }
+            return hashMap;
+        }
+
+        public String toString() {
+            return String.format("Log[type=%s, errorCode=%s, errorMessage=%s, innerError=%s]", new Object[]{this.type, Integer.valueOf(this.errorCode), this.errorMessage, this.innerError});
+        }
+    }
+
+    public boolean equals(Object obj) {
+        return mb.a((Object) this, obj, new String[0]);
+    }
+
+    public int hashCode() {
+        return md.a(this, new String[0]);
+    }
+
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("JavaScriptMsgData[");
+        for (Field field : m.class.getFields()) {
+            try {
+                Object obj = field.get(this);
+                stringBuilder.append(field.getName());
+                stringBuilder.append(":");
+                stringBuilder.append(obj);
+                stringBuilder.append(",");
+            } catch (Throwable e) {
+                Log.e("IMASDK", "IllegalArgumentException occurred", e);
+            } catch (Throwable e2) {
+                Log.e("IMASDK", "IllegalAccessException occurred", e2);
+            }
+        }
+        stringBuilder.append("]");
+        return stringBuilder.toString();
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:5 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

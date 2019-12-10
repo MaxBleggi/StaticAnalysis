@@ -1,0 +1,207 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/gms/internal/measurement/zzyu.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/gms/internal/measurement/zzyu.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="zzyu.java" data-line="" class="code line-numbers"><code>package com.google.android.gms.internal.measurement;
+
+import java.nio.ByteBuffer;
+
+final class zzyu {
+    private static final zzyw zzcek;
+
+    private static int zzby(int i) {
+        return i &gt; -12 ? -1 : i;
+    }
+
+    private static int zzc(int i, int i2, int i3) {
+        if (i &lt;= -12 &amp;&amp; i2 &lt;= -65) {
+            if (i3 &lt;= -65) {
+                return (i ^ (i2 &lt;&lt; 8)) ^ (i3 &lt;&lt; 16);
+            }
+        }
+        return -1;
+    }
+
+    public static boolean zzl(byte[] bArr) {
+        return zzcek.zzf(bArr, 0, bArr.length);
+    }
+
+    private static int zzq(int i, int i2) {
+        if (i &lt;= -12) {
+            if (i2 &lt;= -65) {
+                return i ^ (i2 &lt;&lt; 8);
+            }
+        }
+        return -1;
+    }
+
+    public static boolean zzf(byte[] bArr, int i, int i2) {
+        return zzcek.zzf(bArr, i, i2);
+    }
+
+    private static int zzg(byte[] bArr, int i, int i2) {
+        byte b = bArr[i - 1];
+        switch (i2 - i) {
+            case 0:
+                return zzby(b);
+            case 1:
+                return zzq(b, bArr[i]);
+            case 2:
+                return zzc(b, bArr[i], bArr[i + 1]);
+            default:
+                throw new AssertionError();
+        }
+    }
+
+    static int zza(CharSequence charSequence) {
+        int length = charSequence.length();
+        int i = 0;
+        int i2 = 0;
+        while (i2 &lt; length &amp;&amp; charSequence.charAt(i2) &lt; '') {
+            i2++;
+        }
+        int i3 = length;
+        while (i2 &lt; length) {
+            char charAt = charSequence.charAt(i2);
+            if (charAt &lt; 'ࠀ') {
+                i3 += (127 - charAt) &gt;&gt;&gt; 31;
+                i2++;
+            } else {
+                int length2 = charSequence.length();
+                while (i2 &lt; length2) {
+                    char charAt2 = charSequence.charAt(i2);
+                    if (charAt2 &lt; 'ࠀ') {
+                        i += (127 - charAt2) &gt;&gt;&gt; 31;
+                    } else {
+                        i += 2;
+                        if ('?' &lt;= charAt2 &amp;&amp; charAt2 &lt;= '?') {
+                            if (Character.codePointAt(charSequence, i2) &gt;= 65536) {
+                                i2++;
+                            } else {
+                                throw new zzyy(i2, length2);
+                            }
+                        }
+                    }
+                    i2++;
+                }
+                i3 += i;
+                if (i3 &gt;= length) {
+                    return i3;
+                }
+                long j = ((long) i3) + 4294967296L;
+                StringBuilder stringBuilder = new StringBuilder(54);
+                stringBuilder.append("UTF-8 length does not fit in int: ");
+                stringBuilder.append(j);
+                throw new IllegalArgumentException(stringBuilder.toString());
+            }
+        }
+        if (i3 &gt;= length) {
+            return i3;
+        }
+        long j2 = ((long) i3) + 4294967296L;
+        StringBuilder stringBuilder2 = new StringBuilder(54);
+        stringBuilder2.append("UTF-8 length does not fit in int: ");
+        stringBuilder2.append(j2);
+        throw new IllegalArgumentException(stringBuilder2.toString());
+    }
+
+    static int zza(CharSequence charSequence, byte[] bArr, int i, int i2) {
+        return zzcek.zzb(charSequence, bArr, i, i2);
+    }
+
+    static String zzh(byte[] bArr, int i, int i2) throws zzwe {
+        return zzcek.zzh(bArr, i, i2);
+    }
+
+    static void zza(CharSequence charSequence, ByteBuffer byteBuffer) {
+        zzyw com_google_android_gms_internal_measurement_zzyw = zzcek;
+        if (byteBuffer.hasArray()) {
+            int arrayOffset = byteBuffer.arrayOffset();
+            byteBuffer.position(zza(charSequence, byteBuffer.array(), byteBuffer.position() + arrayOffset, byteBuffer.remaining()) - arrayOffset);
+        } else if (byteBuffer.isDirect()) {
+            com_google_android_gms_internal_measurement_zzyw.zzb(charSequence, byteBuffer);
+        } else {
+            zzyw.zzc(charSequence, byteBuffer);
+        }
+    }
+
+    static {
+        zzyw com_google_android_gms_internal_measurement_zzyx;
+        Object obj = (zzys.zzyv() &amp;&amp; zzys.zzyw()) ? 1 : null;
+        if (obj == null || zzuk.zzui()) {
+            com_google_android_gms_internal_measurement_zzyx = new zzyx();
+        } else {
+            com_google_android_gms_internal_measurement_zzyx = new zzyz();
+        }
+        zzcek = com_google_android_gms_internal_measurement_zzyx;
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:11 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

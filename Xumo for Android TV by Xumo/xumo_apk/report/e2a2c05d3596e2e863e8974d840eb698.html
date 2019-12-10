@@ -1,0 +1,351 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/android/support/v4/media/MediaDescriptionCompat.java" target="_blank">/xumo_apk/jadx_source_code/android/support/v4/media/MediaDescriptionCompat.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="MediaDescriptionCompat.java" data-line="" class="code line-numbers"><code>package android.support.v4.media;
+
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.Build.VERSION;
+import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.os.Parcelable.Creator;
+import android.support.v4.media.session.MediaSessionCompat;
+import android.text.TextUtils;
+import androidx.annotation.Nullable;
+import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo.Scope;
+
+public final class MediaDescriptionCompat implements Parcelable {
+    public static final long BT_FOLDER_TYPE_ALBUMS = 2;
+    public static final long BT_FOLDER_TYPE_ARTISTS = 3;
+    public static final long BT_FOLDER_TYPE_GENRES = 4;
+    public static final long BT_FOLDER_TYPE_MIXED = 0;
+    public static final long BT_FOLDER_TYPE_PLAYLISTS = 5;
+    public static final long BT_FOLDER_TYPE_TITLES = 1;
+    public static final long BT_FOLDER_TYPE_YEARS = 6;
+    public static final Creator&lt;MediaDescriptionCompat&gt; CREATOR = new Creator&lt;MediaDescriptionCompat&gt;() {
+        public MediaDescriptionCompat createFromParcel(Parcel parcel) {
+            if (VERSION.SDK_INT &lt; 21) {
+                return new MediaDescriptionCompat(parcel);
+            }
+            return MediaDescriptionCompat.fromMediaDescription(MediaDescriptionCompatApi21.fromParcel(parcel));
+        }
+
+        public MediaDescriptionCompat[] newArray(int i) {
+            return new MediaDescriptionCompat[i];
+        }
+    };
+    @RestrictTo({Scope.LIBRARY_GROUP})
+    public static final String DESCRIPTION_KEY_MEDIA_URI = "android.support.v4.media.description.MEDIA_URI";
+    @RestrictTo({Scope.LIBRARY_GROUP})
+    public static final String DESCRIPTION_KEY_NULL_BUNDLE_FLAG = "android.support.v4.media.description.NULL_BUNDLE_FLAG";
+    public static final String EXTRA_BT_FOLDER_TYPE = "android.media.extra.BT_FOLDER_TYPE";
+    public static final String EXTRA_DOWNLOAD_STATUS = "android.media.extra.DOWNLOAD_STATUS";
+    public static final long STATUS_DOWNLOADED = 2;
+    public static final long STATUS_DOWNLOADING = 1;
+    public static final long STATUS_NOT_DOWNLOADED = 0;
+    private final CharSequence mDescription;
+    private Object mDescriptionObj;
+    private final Bundle mExtras;
+    private final Bitmap mIcon;
+    private final Uri mIconUri;
+    private final String mMediaId;
+    private final Uri mMediaUri;
+    private final CharSequence mSubtitle;
+    private final CharSequence mTitle;
+
+    public static final class Builder {
+        private CharSequence mDescription;
+        private Bundle mExtras;
+        private Bitmap mIcon;
+        private Uri mIconUri;
+        private String mMediaId;
+        private Uri mMediaUri;
+        private CharSequence mSubtitle;
+        private CharSequence mTitle;
+
+        public Builder setMediaId(@Nullable String str) {
+            this.mMediaId = str;
+            return this;
+        }
+
+        public Builder setTitle(@Nullable CharSequence charSequence) {
+            this.mTitle = charSequence;
+            return this;
+        }
+
+        public Builder setSubtitle(@Nullable CharSequence charSequence) {
+            this.mSubtitle = charSequence;
+            return this;
+        }
+
+        public Builder setDescription(@Nullable CharSequence charSequence) {
+            this.mDescription = charSequence;
+            return this;
+        }
+
+        public Builder setIconBitmap(@Nullable Bitmap bitmap) {
+            this.mIcon = bitmap;
+            return this;
+        }
+
+        public Builder setIconUri(@Nullable Uri uri) {
+            this.mIconUri = uri;
+            return this;
+        }
+
+        public Builder setExtras(@Nullable Bundle bundle) {
+            this.mExtras = bundle;
+            return this;
+        }
+
+        public Builder setMediaUri(@Nullable Uri uri) {
+            this.mMediaUri = uri;
+            return this;
+        }
+
+        public MediaDescriptionCompat build() {
+            return new MediaDescriptionCompat(this.mMediaId, this.mTitle, this.mSubtitle, this.mDescription, this.mIcon, this.mIconUri, this.mExtras, this.mMediaUri);
+        }
+    }
+
+    public int describeContents() {
+        return 0;
+    }
+
+    MediaDescriptionCompat(String str, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3, Bitmap bitmap, Uri uri, Bundle bundle, Uri uri2) {
+        this.mMediaId = str;
+        this.mTitle = charSequence;
+        this.mSubtitle = charSequence2;
+        this.mDescription = charSequence3;
+        this.mIcon = bitmap;
+        this.mIconUri = uri;
+        this.mExtras = bundle;
+        this.mMediaUri = uri2;
+    }
+
+    MediaDescriptionCompat(Parcel parcel) {
+        this.mMediaId = parcel.readString();
+        this.mTitle = (CharSequence) TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(parcel);
+        this.mSubtitle = (CharSequence) TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(parcel);
+        this.mDescription = (CharSequence) TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(parcel);
+        ClassLoader classLoader = getClass().getClassLoader();
+        this.mIcon = (Bitmap) parcel.readParcelable(classLoader);
+        this.mIconUri = (Uri) parcel.readParcelable(classLoader);
+        this.mExtras = parcel.readBundle(classLoader);
+        this.mMediaUri = (Uri) parcel.readParcelable(classLoader);
+    }
+
+    @Nullable
+    public String getMediaId() {
+        return this.mMediaId;
+    }
+
+    @Nullable
+    public CharSequence getTitle() {
+        return this.mTitle;
+    }
+
+    @Nullable
+    public CharSequence getSubtitle() {
+        return this.mSubtitle;
+    }
+
+    @Nullable
+    public CharSequence getDescription() {
+        return this.mDescription;
+    }
+
+    @Nullable
+    public Bitmap getIconBitmap() {
+        return this.mIcon;
+    }
+
+    @Nullable
+    public Uri getIconUri() {
+        return this.mIconUri;
+    }
+
+    @Nullable
+    public Bundle getExtras() {
+        return this.mExtras;
+    }
+
+    @Nullable
+    public Uri getMediaUri() {
+        return this.mMediaUri;
+    }
+
+    public void writeToParcel(Parcel parcel, int i) {
+        if (VERSION.SDK_INT &lt; 21) {
+            parcel.writeString(this.mMediaId);
+            TextUtils.writeToParcel(this.mTitle, parcel, i);
+            TextUtils.writeToParcel(this.mSubtitle, parcel, i);
+            TextUtils.writeToParcel(this.mDescription, parcel, i);
+            parcel.writeParcelable(this.mIcon, i);
+            parcel.writeParcelable(this.mIconUri, i);
+            parcel.writeBundle(this.mExtras);
+            parcel.writeParcelable(this.mMediaUri, i);
+            return;
+        }
+        MediaDescriptionCompatApi21.writeToParcel(getMediaDescription(), parcel, i);
+    }
+
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(this.mTitle);
+        stringBuilder.append(", ");
+        stringBuilder.append(this.mSubtitle);
+        stringBuilder.append(", ");
+        stringBuilder.append(this.mDescription);
+        return stringBuilder.toString();
+    }
+
+    public Object getMediaDescription() {
+        if (this.mDescriptionObj == null) {
+            if (VERSION.SDK_INT &gt;= 21) {
+                Object newInstance = Builder.newInstance();
+                Builder.setMediaId(newInstance, this.mMediaId);
+                Builder.setTitle(newInstance, this.mTitle);
+                Builder.setSubtitle(newInstance, this.mSubtitle);
+                Builder.setDescription(newInstance, this.mDescription);
+                Builder.setIconBitmap(newInstance, this.mIcon);
+                Builder.setIconUri(newInstance, this.mIconUri);
+                Bundle bundle = this.mExtras;
+                if (VERSION.SDK_INT &lt; 23 &amp;&amp; this.mMediaUri != null) {
+                    if (bundle == null) {
+                        bundle = new Bundle();
+                        bundle.putBoolean(DESCRIPTION_KEY_NULL_BUNDLE_FLAG, true);
+                    }
+                    bundle.putParcelable(DESCRIPTION_KEY_MEDIA_URI, this.mMediaUri);
+                }
+                Builder.setExtras(newInstance, bundle);
+                if (VERSION.SDK_INT &gt;= 23) {
+                    Builder.setMediaUri(newInstance, this.mMediaUri);
+                }
+                this.mDescriptionObj = Builder.build(newInstance);
+                return this.mDescriptionObj;
+            }
+        }
+        return this.mDescriptionObj;
+    }
+
+    public static MediaDescriptionCompat fromMediaDescription(Object obj) {
+        Bundle bundle = null;
+        if (obj == null || VERSION.SDK_INT &lt; 21) {
+            return null;
+        }
+        Uri uri;
+        MediaDescriptionCompat build;
+        Builder builder = new Builder();
+        builder.setMediaId(MediaDescriptionCompatApi21.getMediaId(obj));
+        builder.setTitle(MediaDescriptionCompatApi21.getTitle(obj));
+        builder.setSubtitle(MediaDescriptionCompatApi21.getSubtitle(obj));
+        builder.setDescription(MediaDescriptionCompatApi21.getDescription(obj));
+        builder.setIconBitmap(MediaDescriptionCompatApi21.getIconBitmap(obj));
+        builder.setIconUri(MediaDescriptionCompatApi21.getIconUri(obj));
+        Bundle extras = MediaDescriptionCompatApi21.getExtras(obj);
+        if (extras != null) {
+            MediaSessionCompat.ensureClassLoader(extras);
+            uri = (Uri) extras.getParcelable(DESCRIPTION_KEY_MEDIA_URI);
+        } else {
+            uri = null;
+        }
+        if (uri != null) {
+            if (extras.containsKey(DESCRIPTION_KEY_NULL_BUNDLE_FLAG) &amp;&amp; extras.size() == 2) {
+                builder.setExtras(bundle);
+                if (uri != null) {
+                    builder.setMediaUri(uri);
+                } else if (VERSION.SDK_INT &gt;= 23) {
+                    builder.setMediaUri(MediaDescriptionCompatApi23.getMediaUri(obj));
+                }
+                build = builder.build();
+                build.mDescriptionObj = obj;
+                return build;
+            }
+            extras.remove(DESCRIPTION_KEY_MEDIA_URI);
+            extras.remove(DESCRIPTION_KEY_NULL_BUNDLE_FLAG);
+        }
+        bundle = extras;
+        builder.setExtras(bundle);
+        if (uri != null) {
+            builder.setMediaUri(uri);
+        } else if (VERSION.SDK_INT &gt;= 23) {
+            builder.setMediaUri(MediaDescriptionCompatApi23.getMediaUri(obj));
+        }
+        build = builder.build();
+        build.mDescriptionObj = obj;
+        return build;
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:5 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

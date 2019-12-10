@@ -1,0 +1,221 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/res/values-ka/strings.xml" target="_blank">/xumo_apk/jadx_source_code/res/values-ka/strings.xml</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="strings.xml" data-line="" class="code line-numbers"><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;resources&gt;
+    &lt;string name="abc_action_bar_home_description"&gt;მთავარზე ნავიგაცია&lt;/string&gt;
+    &lt;string name="abc_action_bar_up_description"&gt;ზემოთ ნავიგაცია&lt;/string&gt;
+    &lt;string name="abc_action_menu_overflow_description"&gt;მეტი ვარიანტები&lt;/string&gt;
+    &lt;string name="abc_action_mode_done"&gt;დასრულდა&lt;/string&gt;
+    &lt;string name="abc_activity_chooser_view_see_all"&gt;ყველას ნახვა&lt;/string&gt;
+    &lt;string name="abc_activitychooserview_choose_application"&gt;აპის არჩევა&lt;/string&gt;
+    &lt;string name="abc_capital_off"&gt;გამორთულია&lt;/string&gt;
+    &lt;string name="abc_capital_on"&gt;ჩართულია&lt;/string&gt;
+    &lt;string name="abc_menu_alt_shortcut_label"&gt;Alt+&lt;/string&gt;
+    &lt;string name="abc_menu_ctrl_shortcut_label"&gt;Ctrl+&lt;/string&gt;
+    &lt;string name="abc_menu_delete_shortcut_label"&gt;წაშლა&lt;/string&gt;
+    &lt;string name="abc_menu_enter_shortcut_label"&gt;შეყვანა&lt;/string&gt;
+    &lt;string name="abc_menu_function_shortcut_label"&gt;Function+&lt;/string&gt;
+    &lt;string name="abc_menu_meta_shortcut_label"&gt;Meta+&lt;/string&gt;
+    &lt;string name="abc_menu_shift_shortcut_label"&gt;Shift+&lt;/string&gt;
+    &lt;string name="abc_menu_space_shortcut_label"&gt;space&lt;/string&gt;
+    &lt;string name="abc_menu_sym_shortcut_label"&gt;Sym+&lt;/string&gt;
+    &lt;string name="abc_prepend_shortcut_label"&gt;Menu+&lt;/string&gt;
+    &lt;string name="abc_search_hint"&gt;ძიება...&lt;/string&gt;
+    &lt;string name="abc_searchview_description_clear"&gt;მოთხოვნის გასუფთავება&lt;/string&gt;
+    &lt;string name="abc_searchview_description_query"&gt;ძიების მოთხოვნა&lt;/string&gt;
+    &lt;string name="abc_searchview_description_search"&gt;ძიება&lt;/string&gt;
+    &lt;string name="abc_searchview_description_submit"&gt;მოთხოვნის გადაგზავნა&lt;/string&gt;
+    &lt;string name="abc_searchview_description_voice"&gt;ხმოვანი ძიება&lt;/string&gt;
+    &lt;string name="abc_shareactionprovider_share_with"&gt;გაზიარება:&lt;/string&gt;
+    &lt;string name="abc_shareactionprovider_share_with_application"&gt;გაუზიარეთ %s-ს&lt;/string&gt;
+    &lt;string name="abc_toolbar_collapse_description"&gt;აკეცვა&lt;/string&gt;
+    &lt;string name="cast_ad_label"&gt;რეკლამა&lt;/string&gt;
+    &lt;string name="cast_casting_to_device"&gt;ტრანსლირება %1$s-ში&lt;/string&gt;
+    &lt;string name="cast_closed_captions"&gt;დახურული სუბტიტრები&lt;/string&gt;
+    &lt;string name="cast_closed_captions_unavailable"&gt;დახურული სუბტიტრები მიუწვდომელია&lt;/string&gt;
+    &lt;string name="cast_connecting_to_device"&gt;მიმდინარეობს %1$s-თან დაკავშირება&lt;/string&gt;
+    &lt;string name="cast_disconnect"&gt;გათიშვა&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_ad_image_description"&gt;სურათი, რომელიც ნაჩვენებია ტრანსლირების მიმღების მიერ რეკლამის დაკვრისას&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_ad_in_progress"&gt;მიმდინარეობს რეკლამა…&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_background_image"&gt;ალბომის გარეკანი&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_live_stream_indicator"&gt;პირდაპირი სტრიმინგი&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_loading"&gt;იტვირთება…&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_skip_ad_label"&gt;რეკლამის გამოტოვება&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_skip_ad_text"&gt;შეგიძლია გამოტოვო რეკლამა %1$d-ში…&lt;/string&gt;
+    &lt;string name="cast_forward"&gt;წინ გადახვევა&lt;/string&gt;
+    &lt;string name="cast_forward_10"&gt;წინ გადახვევა ათი წამით&lt;/string&gt;
+    &lt;string name="cast_forward_30"&gt;წინ გადახვევა ოცდაათი წამით&lt;/string&gt;
+    &lt;string name="cast_intro_overlay_button_text"&gt;@android:string/ok&lt;/string&gt;
+    &lt;string name="cast_mute"&gt;დადუმება&lt;/string&gt;
+    &lt;string name="cast_notification_connected_message"&gt;დაკავშირებულია %1$s-თან&lt;/string&gt;
+    &lt;string name="cast_notification_connecting_message"&gt;მიმდინარეობს %1$s-თან დაკავშირება&lt;/string&gt;
+    &lt;string name="cast_notification_default_channel_name"&gt;Cast&lt;/string&gt;
+    &lt;string name="cast_notification_disconnect"&gt;კავშირის გაწყვეტა&lt;/string&gt;
+    &lt;string name="cast_pause"&gt;პაუზა&lt;/string&gt;
+    &lt;string name="cast_play"&gt;დაკვრა&lt;/string&gt;
+    &lt;string name="cast_rewind"&gt;უკან გადახვევა&lt;/string&gt;
+    &lt;string name="cast_rewind_10"&gt;უკან გადახვევა ათი წამით&lt;/string&gt;
+    &lt;string name="cast_rewind_30"&gt;უკან გადახვევა ოცდაათი წამით&lt;/string&gt;
+    &lt;string name="cast_seek_bar"&gt;დაკვრის ცოცია&lt;/string&gt;
+    &lt;string name="cast_skip_next"&gt;შემდეგ ერთეულზე გადასვლა&lt;/string&gt;
+    &lt;string name="cast_skip_prev"&gt;წინა ერთეულზე გადასვლა&lt;/string&gt;
+    &lt;string name="cast_stop"&gt;შეწყვეტა&lt;/string&gt;
+    &lt;string name="cast_stop_live_stream"&gt;პირდაპირი სტრიმინგის შეწყვეტა&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_audio"&gt;აუდიო&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_cancel"&gt;გაუქმება&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_closed_captions"&gt;დახურული სუბტიტრები&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_default_track_name"&gt;ჩანაწერი %1$d&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_none"&gt;არცერთი&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_ok"&gt;კარგი&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_subtitles"&gt;სუბტიტრები&lt;/string&gt;
+    &lt;string name="cast_unmute"&gt;დადუმების გაუქმება&lt;/string&gt;
+    &lt;string name="common_google_play_services_enable_button"&gt;ჩართვა&lt;/string&gt;
+    &lt;string name="common_google_play_services_enable_text"&gt;%1$s ვერ იმუშავებს Google Play Services-ის ჩართვამდე.&lt;/string&gt;
+    &lt;string name="common_google_play_services_enable_title"&gt;Google Play Services-ის ჩართვა&lt;/string&gt;
+    &lt;string name="common_google_play_services_install_button"&gt;ინსტალაცია&lt;/string&gt;
+    &lt;string name="common_google_play_services_install_text"&gt;%1$s ვერ გაეშვება Google Play Services-ის გარეშე, რომელიც აკლია თქვენს მოწყობილობას.&lt;/string&gt;
+    &lt;string name="common_google_play_services_install_title"&gt;Google Play Services-ის ჩამოტვირთვა&lt;/string&gt;
+    &lt;string name="common_google_play_services_notification_channel_name"&gt;Google Play services-ის ხელმისაწვდომობა&lt;/string&gt;
+    &lt;string name="common_google_play_services_notification_ticker"&gt;Google Play Services-ის შეცდომა&lt;/string&gt;
+    &lt;string name="common_google_play_services_unknown_issue"&gt;%1$s-ს Google Play Services-თან პრობლემა შეექმნა. გთხოვთ, ცადოთ ხელახლა.&lt;/string&gt;
+    &lt;string name="common_google_play_services_unsupported_text"&gt;%1$s ვერ გაეშვება Google Play Services-ის გარეშე, რომლებიც მხარდაუჭერელია თქვენი მოწყობილობის მიერ.&lt;/string&gt;
+    &lt;string name="common_google_play_services_update_button"&gt;განახლება&lt;/string&gt;
+    &lt;string name="common_google_play_services_update_text"&gt;%1$s ვერ გაეშვება, თუ Google Play სერვისებს არ განაახლებთ.&lt;/string&gt;
+    &lt;string name="common_google_play_services_update_title"&gt;განაახლეთ Google Play Services&lt;/string&gt;
+    &lt;string name="common_google_play_services_updating_text"&gt;%1$s ვერ გაეშვება Google Play Services-ის გარეშე, რომელთა განახლებაც ამჟამად მიმდინარეობს.&lt;/string&gt;
+    &lt;string name="common_google_play_services_wear_update_text"&gt;საჭიროა Google Play Services-ის ახალი ვერსია. ის მალე განახლდება.&lt;/string&gt;
+    &lt;string name="common_open_on_phone"&gt;ტელეფონში გახსნა&lt;/string&gt;
+    &lt;string name="common_signin_button_text"&gt;შესვლა&lt;/string&gt;
+    &lt;string name="common_signin_button_text_long"&gt;Google-ით შესვლა&lt;/string&gt;
+    &lt;string name="exo_controls_fastforward_description"&gt;წინ გადახვევა&lt;/string&gt;
+    &lt;string name="exo_controls_fullscreen_description"&gt;სრულეკრანიანი რეჟიმი&lt;/string&gt;
+    &lt;string name="exo_controls_next_description"&gt;შემდეგი ჩანაწერი&lt;/string&gt;
+    &lt;string name="exo_controls_pause_description"&gt;პაუზა&lt;/string&gt;
+    &lt;string name="exo_controls_play_description"&gt;დაკვრა&lt;/string&gt;
+    &lt;string name="exo_controls_previous_description"&gt;წინა ჩანაწერი&lt;/string&gt;
+    &lt;string name="exo_controls_repeat_all_description"&gt;ყველას გამეორება&lt;/string&gt;
+    &lt;string name="exo_controls_repeat_off_description"&gt;არცერთის გამეორება&lt;/string&gt;
+    &lt;string name="exo_controls_repeat_one_description"&gt;ერთის გამეორება&lt;/string&gt;
+    &lt;string name="exo_controls_rewind_description"&gt;უკან გადახვევა&lt;/string&gt;
+    &lt;string name="exo_controls_shuffle_description"&gt;არეულად დაკვრა&lt;/string&gt;
+    &lt;string name="exo_controls_stop_description"&gt;შეწყვეტა&lt;/string&gt;
+    &lt;string name="exo_download_completed"&gt;ჩამოტვირთვა დასრულდა&lt;/string&gt;
+    &lt;string name="exo_download_description"&gt;ჩამოტვირთვა&lt;/string&gt;
+    &lt;string name="exo_download_downloading"&gt;მიმდინარეობს ჩამოტვირთვა&lt;/string&gt;
+    &lt;string name="exo_download_failed"&gt;ჩამოტვირთვა ვერ მოხერხდა&lt;/string&gt;
+    &lt;string name="exo_download_notification_channel_name"&gt;ჩამოტვირთვები&lt;/string&gt;
+    &lt;string name="exo_download_removing"&gt;მიმდინარეობს ჩამოტვირთვების ამოშლა&lt;/string&gt;
+    &lt;string name="exo_item_list"&gt;%1$s, %2$s&lt;/string&gt;
+    &lt;string name="exo_track_bitrate"&gt;%1$.2f მბიტ/წმ&lt;/string&gt;
+    &lt;string name="exo_track_mono"&gt;მონო&lt;/string&gt;
+    &lt;string name="exo_track_resolution"&gt;%1$d × %2$d&lt;/string&gt;
+    &lt;string name="exo_track_selection_auto"&gt;ავტომატური&lt;/string&gt;
+    &lt;string name="exo_track_selection_none"&gt;არცერთი&lt;/string&gt;
+    &lt;string name="exo_track_selection_title_audio"&gt;აუდიო&lt;/string&gt;
+    &lt;string name="exo_track_selection_title_text"&gt;SMS&lt;/string&gt;
+    &lt;string name="exo_track_selection_title_video"&gt;ვიდეო&lt;/string&gt;
+    &lt;string name="exo_track_stereo"&gt;სტერეო&lt;/string&gt;
+    &lt;string name="exo_track_surround"&gt;მოცულობითი ხმა&lt;/string&gt;
+    &lt;string name="exo_track_surround_5_point_1"&gt;5.1 მოცულობითი ხმა&lt;/string&gt;
+    &lt;string name="exo_track_surround_7_point_1"&gt;7.1 მოცულობითი ხმა&lt;/string&gt;
+    &lt;string name="exo_track_unknown"&gt;უცნობი&lt;/string&gt;
+    &lt;string name="expand_button_title"&gt;დამატებით&lt;/string&gt;
+    &lt;string name="fcm_fallback_notification_channel_label"&gt;სხვადასხვა&lt;/string&gt;
+    &lt;string name="mr_button_content_description"&gt;ტრანსლირების ღილაკი&lt;/string&gt;
+    &lt;string name="mr_cast_button_connected"&gt;ტრანსლირების ღილაკი. დაკავშირებული&lt;/string&gt;
+    &lt;string name="mr_cast_button_connecting"&gt;ტრანსლირების ღილაკი. მიმდინარეობს დაკავშირება&lt;/string&gt;
+    &lt;string name="mr_cast_button_disconnected"&gt;ტრანსლირების ღილაკი. გათიშული&lt;/string&gt;
+    &lt;string name="mr_chooser_searching"&gt;მიმდინარეობს მოწყობილობების მოძიება&lt;/string&gt;
+    &lt;string name="mr_chooser_title"&gt;ტრანსლირება&lt;/string&gt;
+    &lt;string name="mr_controller_album_art"&gt;ალბომის გარეკანი&lt;/string&gt;
+    &lt;string name="mr_controller_casting_screen"&gt;მიმდინარეობს ეკრანის ტრანსლირება&lt;/string&gt;
+    &lt;string name="mr_controller_close_description"&gt;დახურვა&lt;/string&gt;
+    &lt;string name="mr_controller_collapse_group"&gt;ჩაკეცვა&lt;/string&gt;
+    &lt;string name="mr_controller_disconnect"&gt;გათიშვა&lt;/string&gt;
+    &lt;string name="mr_controller_expand_group"&gt;გაშლა&lt;/string&gt;
+    &lt;string name="mr_controller_no_info_available"&gt;ინფორმაცია არ არის ხელმისაწვდომი&lt;/string&gt;
+    &lt;string name="mr_controller_no_media_selected"&gt;მედია არჩეული არ არის&lt;/string&gt;
+    &lt;string name="mr_controller_pause"&gt;პაუზა&lt;/string&gt;
+    &lt;string name="mr_controller_play"&gt;დაკვრა&lt;/string&gt;
+    &lt;string name="mr_controller_stop"&gt;შეწყვეტა&lt;/string&gt;
+    &lt;string name="mr_controller_stop_casting"&gt;ტრანსლირების შეწყვეტა&lt;/string&gt;
+    &lt;string name="mr_controller_volume_slider"&gt;ხმის სლაიდერი&lt;/string&gt;
+    &lt;string name="mr_system_route_name"&gt;სისტემა&lt;/string&gt;
+    &lt;string name="mr_user_route_category_name"&gt;მოწყობილობები&lt;/string&gt;
+    &lt;string name="search_menu_title"&gt;ძიება&lt;/string&gt;
+    &lt;string name="status_bar_notification_info_overflow"&gt;999+&lt;/string&gt;
+    &lt;string name="summary_collapsed_preference_list"&gt;%1$s, %2$s&lt;/string&gt;
+    &lt;string name="v7_preference_off"&gt;გამორთული&lt;/string&gt;
+    &lt;string name="v7_preference_on"&gt;ჩართული&lt;/string&gt;
+&lt;/resources&gt;
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:2 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

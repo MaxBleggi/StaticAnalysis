@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent"
+    <LinearLayout android:gravity="top|bottom|center_vertical|fill_vertical|center|fill" android:orientation="vertical" android:background="@color/tab_select" android:paddingLeft="60dp" android:paddingBottom="40dp" android:layout_width="match_parent" android:layout_height="match_parent">
+        <TextView android:textColor="@color/xumoWhite" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="10dp" android:text="@string/up_next" />
+        <TextView android:textSize="25sp" android:textColor="@color/xumoWhite" android:id="@+id/vod_next_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="10dp" />
+        <TextView android:textColor="@color/xumoWhite" android:ellipsize="end" android:id="@+id/vod_next_description" android:layout_width="UNKNOWN_DATA_0x22601" android:layout_height="wrap_content" android:layout_marginBottom="20dp" android:maxLines="4" />
+        <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <RelativeLayout android:id="@+id/vod_next_play_button_bg" android:background="@color/xumoBlue" android:padding="2dp" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                <TextView android:textSize="12sp" android:textColor="@color/xumoBlue" android:id="@+id/vod_next_play_button" android:background="@color/xumoGray" android:paddingLeft="25dp" android:paddingTop="5dp" android:paddingRight="25dp" android:paddingBottom="5dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/play_button" />
+            </RelativeLayout>
+            <RelativeLayout android:id="@+id/vod_next_back_button_bg" android:background="@color/xumoGray" android:padding="2dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="5dp" android:layout_below="@+id/vod_next_play_button_bg">
+                <TextView android:textSize="12sp" android:textColor="@color/xumoWhite" android:id="@+id/vod_next_back_button" android:background="@color/xumoGray" android:paddingLeft="25dp" android:paddingTop="5dp" android:paddingRight="25dp" android:paddingBottom="5dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/back_to_movies" />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

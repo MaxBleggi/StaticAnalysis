@@ -1,0 +1,150 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/androidx/transition/CircularPropagation.java" target="_blank">/xumo_apk/jadx_source_code/androidx/transition/CircularPropagation.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="CircularPropagation.java" data-line="" class="code line-numbers"><code>package androidx.transition;
+
+import android.graphics.Rect;
+import android.view.ViewGroup;
+
+public class CircularPropagation extends VisibilityPropagation {
+    private float mPropagationSpeed = 3.0f;
+
+    public void setPropagationSpeed(float f) {
+        if (f != 0.0f) {
+            this.mPropagationSpeed = f;
+            return;
+        }
+        throw new IllegalArgumentException("propagationSpeed may not be 0");
+    }
+
+    public long getStartDelay(ViewGroup viewGroup, Transition transition, TransitionValues transitionValues, TransitionValues transitionValues2) {
+        if (transitionValues == null &amp;&amp; transitionValues2 == null) {
+            return 0;
+        }
+        int viewX;
+        Rect epicenter;
+        int centerX;
+        int centerY;
+        if (transitionValues2 != null) {
+            if (getViewVisibility(transitionValues) != 0) {
+                transitionValues = transitionValues2;
+                transitionValues2 = true;
+                viewX = getViewX(transitionValues);
+                transitionValues = getViewY(transitionValues);
+                epicenter = transition.getEpicenter();
+                if (epicenter == null) {
+                    centerX = epicenter.centerX();
+                    centerY = epicenter.centerY();
+                } else {
+                    int[] iArr = new int[2];
+                    viewGroup.getLocationOnScreen(iArr);
+                    int round = Math.round(((float) (iArr[0] + (viewGroup.getWidth() / 2))) + viewGroup.getTranslationX());
+                    centerY = Math.round(((float) (iArr[1] + (viewGroup.getHeight() / 2))) + viewGroup.getTranslationY());
+                    centerX = round;
+                }
+                transitionValues = distance((float) viewX, (float) transitionValues, (float) centerX, (float) centerY) / distance(0.0f, 0.0f, (float) viewGroup.getWidth(), (float) viewGroup.getHeight());
+                viewGroup = transition.getDuration();
+                if (viewGroup &lt; null) {
+                    viewGroup = 300;
+                }
+                return (long) Math.round((((float) (viewGroup * ((long) transitionValues2))) / this.mPropagationSpeed) * transitionValues);
+            }
+        }
+        transitionValues2 = -1;
+        viewX = getViewX(transitionValues);
+        transitionValues = getViewY(transitionValues);
+        epicenter = transition.getEpicenter();
+        if (epicenter == null) {
+            int[] iArr2 = new int[2];
+            viewGroup.getLocationOnScreen(iArr2);
+            int round2 = Math.round(((float) (iArr2[0] + (viewGroup.getWidth() / 2))) + viewGroup.getTranslationX());
+            centerY = Math.round(((float) (iArr2[1] + (viewGroup.getHeight() / 2))) + viewGroup.getTranslationY());
+            centerX = round2;
+        } else {
+            centerX = epicenter.centerX();
+            centerY = epicenter.centerY();
+        }
+        transitionValues = distance((float) viewX, (float) transitionValues, (float) centerX, (float) centerY) / distance(0.0f, 0.0f, (float) viewGroup.getWidth(), (float) viewGroup.getHeight());
+        viewGroup = transition.getDuration();
+        if (viewGroup &lt; null) {
+            viewGroup = 300;
+        }
+        return (long) Math.round((((float) (viewGroup * ((long) transitionValues2))) / this.mPropagationSpeed) * transitionValues);
+    }
+
+    private static float distance(float f, float f2, float f3, float f4) {
+        f3 -= f;
+        f4 -= f2;
+        return (float) Math.sqrt((double) ((f3 * f3) + (f4 * f4)));
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:3 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

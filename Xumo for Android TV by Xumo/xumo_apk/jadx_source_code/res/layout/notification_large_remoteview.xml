@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content"
+    <LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="@dimen/notification_text_padding"
+        <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <ImageView android:layout_width="UNKNOWN_DATA_0x7f070102" android:layout_height="UNKNOWN_DATA_0x7f070100" android:src="@drawable/ic_xumo_android_icon" android:tint="@color/xumo_black" />
+            <TextView android:ellipsize="end" android:id="@+id/notificationTitleBig" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/app_name" android:maxLines="2" style="@style/XumoNotificationTitleTextTheme" />
+        </LinearLayout>
+        <TextView android:gravity="top|bottom|center_vertical|fill_vertical|center|fill" android:id="@+id/notificationBodyBig" android:layout_width="wrap_content" android:layout_height="match_parent" style="@style/TextAppearance.Compat.Notification.Media" />
+    </LinearLayout>
+    <ImageView android:layout_gravity="top|bottom|center_vertical|fill_vertical|center|fill" android:id="@+id/notificationLargeImageBig" android:background="0x106000d" android:layout_width="match_parent" android:layout_height="wrap_content" android:scaleType="fitCenter" android:adjustViewBounds="true" />
+</LinearLayout>

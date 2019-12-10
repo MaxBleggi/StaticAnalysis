@@ -1,0 +1,399 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/androidx/customview/widget/FocusStrategy.java" target="_blank">/xumo_apk/jadx_source_code/androidx/customview/widget/FocusStrategy.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="FocusStrategy.java" data-line="" class="code line-numbers"><code>package androidx.customview.widget;
+
+import android.graphics.Rect;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.exoplayer2.extractor.ts.TsExtractor;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
+class FocusStrategy {
+
+    public interface BoundsAdapter&lt;T&gt; {
+        void obtainBounds(T t, Rect rect);
+    }
+
+    public interface CollectionAdapter&lt;T, V&gt; {
+        V get(T t, int i);
+
+        int size(T t);
+    }
+
+    private static class SequentialComparator&lt;T&gt; implements Comparator&lt;T&gt; {
+        private final BoundsAdapter&lt;T&gt; mAdapter;
+        private final boolean mIsLayoutRtl;
+        private final Rect mTemp1 = new Rect();
+        private final Rect mTemp2 = new Rect();
+
+        SequentialComparator(boolean z, BoundsAdapter&lt;T&gt; boundsAdapter) {
+            this.mIsLayoutRtl = z;
+            this.mAdapter = boundsAdapter;
+        }
+
+        public int compare(T t, T t2) {
+            Rect rect = this.mTemp1;
+            Rect rect2 = this.mTemp2;
+            this.mAdapter.obtainBounds(t, rect);
+            this.mAdapter.obtainBounds(t2, rect2);
+            int i = -1;
+            if (rect.top &lt; rect2.top) {
+                return -1;
+            }
+            if (rect.top &gt; rect2.top) {
+                return 1;
+            }
+            if (rect.left &lt; rect2.left) {
+                if (this.mIsLayoutRtl != null) {
+                    i = 1;
+                }
+                return i;
+            } else if (rect.left &gt; rect2.left) {
+                if (this.mIsLayoutRtl == null) {
+                    i = 1;
+                }
+                return i;
+            } else if (rect.bottom &lt; rect2.bottom) {
+                return -1;
+            } else {
+                if (rect.bottom &gt; rect2.bottom) {
+                    return 1;
+                }
+                if (rect.right &lt; rect2.right) {
+                    if (this.mIsLayoutRtl != null) {
+                        i = 1;
+                    }
+                    return i;
+                } else if (rect.right &lt;= rect2.right) {
+                    return null;
+                } else {
+                    if (this.mIsLayoutRtl == null) {
+                        i = 1;
+                    }
+                    return i;
+                }
+            }
+        }
+    }
+
+    private static int getWeightedDistanceFor(int i, int i2) {
+        return ((i * 13) * i) + (i2 * i2);
+    }
+
+    public static &lt;L, T&gt; T findNextFocusInRelativeDirection(@NonNull L l, @NonNull CollectionAdapter&lt;L, T&gt; collectionAdapter, @NonNull BoundsAdapter&lt;T&gt; boundsAdapter, @Nullable T t, int i, boolean z, boolean z2) {
+        int size = collectionAdapter.size(l);
+        ArrayList arrayList = new ArrayList(size);
+        for (int i2 = 0; i2 &lt; size; i2++) {
+            arrayList.add(collectionAdapter.get(l, i2));
+        }
+        Collections.sort(arrayList, new SequentialComparator(z, boundsAdapter));
+        switch (i) {
+            case 1:
+                return getPreviousFocusable(t, arrayList, z2);
+            case 2:
+                return getNextFocusable(t, arrayList, z2);
+            default:
+                throw new IllegalArgumentException("direction must be one of {FOCUS_FORWARD, FOCUS_BACKWARD}.");
+        }
+    }
+
+    private static &lt;T&gt; T getNextFocusable(T t, ArrayList&lt;T&gt; arrayList, boolean z) {
+        T size = arrayList.size();
+        if (t == null) {
+            t = -1;
+        } else {
+            t = arrayList.lastIndexOf(t);
+        }
+        t++;
+        if (t &lt; size) {
+            return arrayList.get(t);
+        }
+        return (!z || size &lt;= null) ? null : arrayList.get(null);
+    }
+
+    private static &lt;T&gt; T getPreviousFocusable(T t, ArrayList&lt;T&gt; arrayList, boolean z) {
+        T size = arrayList.size();
+        if (t == null) {
+            t = size;
+        } else {
+            t = arrayList.indexOf(t);
+        }
+        t--;
+        if (t &gt;= null) {
+            return arrayList.get(t);
+        }
+        return (!z || size &lt;= null) ? null : arrayList.get(size - 1);
+    }
+
+    public static &lt;L, T&gt; T findNextFocusInAbsoluteDirection(@NonNull L l, @NonNull CollectionAdapter&lt;L, T&gt; collectionAdapter, @NonNull BoundsAdapter&lt;T&gt; boundsAdapter, @Nullable T t, @NonNull Rect rect, int i) {
+        Rect rect2 = new Rect(rect);
+        int i2 = 0;
+        if (i == 17) {
+            rect2.offset(rect.width() + 1, 0);
+        } else if (i == 33) {
+            rect2.offset(0, rect.height() + 1);
+        } else if (i == 66) {
+            rect2.offset(-(rect.width() + 1), 0);
+        } else if (i == TsExtractor.TS_STREAM_TYPE_HDMV_DTS) {
+            rect2.offset(0, -(rect.height() + 1));
+        } else {
+            throw new IllegalArgumentException("direction must be one of {FOCUS_UP, FOCUS_DOWN, FOCUS_LEFT, FOCUS_RIGHT}.");
+        }
+        T t2 = null;
+        int size = collectionAdapter.size(l);
+        Rect rect3 = new Rect();
+        while (i2 &lt; size) {
+            T t3 = collectionAdapter.get(l, i2);
+            if (t3 != t) {
+                boundsAdapter.obtainBounds(t3, rect3);
+                if (isBetterCandidate(i, rect, rect3, rect2)) {
+                    rect2.set(rect3);
+                    t2 = t3;
+                }
+            }
+            i2++;
+        }
+        return t2;
+    }
+
+    private static boolean isBetterCandidate(int i, @NonNull Rect rect, @NonNull Rect rect2, @NonNull Rect rect3) {
+        boolean z = false;
+        if (!isCandidate(rect, rect2, i)) {
+            return false;
+        }
+        if (!isCandidate(rect, rect3, i) || beamBeats(i, rect, rect2, rect3)) {
+            return true;
+        }
+        if (beamBeats(i, rect, rect3, rect2)) {
+            return false;
+        }
+        if (getWeightedDistanceFor(majorAxisDistance(i, rect, rect2), minorAxisDistance(i, rect, rect2)) &lt; getWeightedDistanceFor(majorAxisDistance(i, rect, rect3), minorAxisDistance(i, rect, rect3))) {
+            z = true;
+        }
+        return z;
+    }
+
+    private static boolean beamBeats(int i, @NonNull Rect rect, @NonNull Rect rect2, @NonNull Rect rect3) {
+        boolean beamsOverlap = beamsOverlap(i, rect, rect2);
+        if (!beamsOverlap(i, rect, rect3)) {
+            if (beamsOverlap) {
+                boolean z = true;
+                if (isToDirectionOf(i, rect, rect3) &amp;&amp; i != 17) {
+                    if (i != 66) {
+                        if (majorAxisDistance(i, rect, rect2) &gt;= majorAxisDistanceToFarEdge(i, rect, rect3)) {
+                            z = false;
+                        }
+                        return z;
+                    }
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean isCandidate(@NonNull Rect rect, @NonNull Rect rect2, int i) {
+        boolean z = true;
+        if (i == 17) {
+            if ((rect.right &lt;= rect2.right &amp;&amp; rect.left &lt; rect2.right) || rect.left &lt;= rect2.left) {
+                z = false;
+            }
+            return z;
+        } else if (i == 33) {
+            if ((rect.bottom &lt;= rect2.bottom &amp;&amp; rect.top &lt; rect2.bottom) || rect.top &lt;= rect2.top) {
+                z = false;
+            }
+            return z;
+        } else if (i == 66) {
+            if ((rect.left &gt;= rect2.left &amp;&amp; rect.right &gt; rect2.left) || rect.right &gt;= rect2.right) {
+                z = false;
+            }
+            return z;
+        } else if (i == TsExtractor.TS_STREAM_TYPE_HDMV_DTS) {
+            if ((rect.top &gt;= rect2.top &amp;&amp; rect.bottom &gt; rect2.top) || rect.bottom &gt;= rect2.bottom) {
+                z = false;
+            }
+            return z;
+        } else {
+            throw new IllegalArgumentException("direction must be one of {FOCUS_UP, FOCUS_DOWN, FOCUS_LEFT, FOCUS_RIGHT}.");
+        }
+    }
+
+    private static boolean beamsOverlap(int i, @NonNull Rect rect, @NonNull Rect rect2) {
+        boolean z = true;
+        if (i != 17) {
+            if (i != 33) {
+                if (i != 66) {
+                    if (i != TsExtractor.TS_STREAM_TYPE_HDMV_DTS) {
+                        throw new IllegalArgumentException("direction must be one of {FOCUS_UP, FOCUS_DOWN, FOCUS_LEFT, FOCUS_RIGHT}.");
+                    }
+                }
+            }
+            if (rect2.right &lt; rect.left || rect2.left &gt; rect.right) {
+                z = false;
+            }
+            return z;
+        }
+        if (rect2.bottom &lt; rect.top || rect2.top &gt; rect.bottom) {
+            z = false;
+        }
+        return z;
+    }
+
+    private static boolean isToDirectionOf(int i, @NonNull Rect rect, @NonNull Rect rect2) {
+        boolean z = false;
+        if (i == 17) {
+            if (rect.left &gt;= rect2.right) {
+                z = true;
+            }
+            return z;
+        } else if (i == 33) {
+            if (rect.top &gt;= rect2.bottom) {
+                z = true;
+            }
+            return z;
+        } else if (i == 66) {
+            if (rect.right &lt;= rect2.left) {
+                z = true;
+            }
+            return z;
+        } else if (i == TsExtractor.TS_STREAM_TYPE_HDMV_DTS) {
+            if (rect.bottom &lt;= rect2.top) {
+                z = true;
+            }
+            return z;
+        } else {
+            throw new IllegalArgumentException("direction must be one of {FOCUS_UP, FOCUS_DOWN, FOCUS_LEFT, FOCUS_RIGHT}.");
+        }
+    }
+
+    private static int majorAxisDistance(int i, @NonNull Rect rect, @NonNull Rect rect2) {
+        return Math.max(null, majorAxisDistanceRaw(i, rect, rect2));
+    }
+
+    private static int majorAxisDistanceRaw(int i, @NonNull Rect rect, @NonNull Rect rect2) {
+        if (i == 17) {
+            return rect.left - rect2.right;
+        }
+        if (i == 33) {
+            return rect.top - rect2.bottom;
+        }
+        if (i == 66) {
+            return rect2.left - rect.right;
+        }
+        if (i == TsExtractor.TS_STREAM_TYPE_HDMV_DTS) {
+            return rect2.top - rect.bottom;
+        }
+        throw new IllegalArgumentException("direction must be one of {FOCUS_UP, FOCUS_DOWN, FOCUS_LEFT, FOCUS_RIGHT}.");
+    }
+
+    private static int majorAxisDistanceToFarEdge(int i, @NonNull Rect rect, @NonNull Rect rect2) {
+        return Math.max(1, majorAxisDistanceToFarEdgeRaw(i, rect, rect2));
+    }
+
+    private static int majorAxisDistanceToFarEdgeRaw(int i, @NonNull Rect rect, @NonNull Rect rect2) {
+        if (i == 17) {
+            return rect.left - rect2.left;
+        }
+        if (i == 33) {
+            return rect.top - rect2.top;
+        }
+        if (i == 66) {
+            return rect2.right - rect.right;
+        }
+        if (i == TsExtractor.TS_STREAM_TYPE_HDMV_DTS) {
+            return rect2.bottom - rect.bottom;
+        }
+        throw new IllegalArgumentException("direction must be one of {FOCUS_UP, FOCUS_DOWN, FOCUS_LEFT, FOCUS_RIGHT}.");
+    }
+
+    private static int minorAxisDistance(int i, @NonNull Rect rect, @NonNull Rect rect2) {
+        if (i != 17) {
+            if (i != 33) {
+                if (i != 66) {
+                    if (i != TsExtractor.TS_STREAM_TYPE_HDMV_DTS) {
+                        throw new IllegalArgumentException("direction must be one of {FOCUS_UP, FOCUS_DOWN, FOCUS_LEFT, FOCUS_RIGHT}.");
+                    }
+                }
+            }
+            return Math.abs((rect.left + (rect.width() / 2)) - (rect2.left + (rect2.width() / 2)));
+        }
+        return Math.abs((rect.top + (rect.height() / 2)) - (rect2.top + (rect2.height() / 2)));
+    }
+
+    private FocusStrategy() {
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:4 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

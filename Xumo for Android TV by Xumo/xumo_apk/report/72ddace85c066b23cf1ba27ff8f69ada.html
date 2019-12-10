@@ -1,0 +1,299 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/exoplayer2/drm/FrameworkMediaDrm.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/exoplayer2/drm/FrameworkMediaDrm.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="FrameworkMediaDrm.java" data-line="" class="code line-numbers"><code>package com.google.android.exoplayer2.drm;
+
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
+import android.media.DeniedByServerException;
+import android.media.MediaCrypto;
+import android.media.MediaCryptoException;
+import android.media.MediaDrm;
+import android.media.MediaDrm.KeyStatus;
+import android.media.MediaDrmException;
+import android.media.NotProvisionedException;
+import android.media.UnsupportedSchemeException;
+import android.text.TextUtils;
+import androidx.annotation.Nullable;
+import com.google.android.exoplayer2.C;
+import com.google.android.exoplayer2.drm.DrmInitData.SchemeData;
+import com.google.android.exoplayer2.drm.ExoMediaDrm.KeyRequest;
+import com.google.android.exoplayer2.drm.ExoMediaDrm.OnEventListener;
+import com.google.android.exoplayer2.drm.ExoMediaDrm.OnKeyStatusChangeListener;
+import com.google.android.exoplayer2.drm.ExoMediaDrm.ProvisionRequest;
+import com.google.android.exoplayer2.extractor.mp4.PsshAtomUtil;
+import com.google.android.exoplayer2.util.Assertions;
+import com.google.android.exoplayer2.util.MimeTypes;
+import com.google.android.exoplayer2.util.Util;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+@TargetApi(23)
+public final class FrameworkMediaDrm implements ExoMediaDrm&lt;FrameworkMediaCrypto&gt; {
+    private static final String CENC_SCHEME_MIME_TYPE = "cenc";
+    private final MediaDrm mediaDrm;
+    private final UUID uuid;
+
+    public static FrameworkMediaDrm newInstance(UUID uuid) throws UnsupportedDrmException {
+        try {
+            return new FrameworkMediaDrm(uuid);
+        } catch (UUID uuid2) {
+            throw new UnsupportedDrmException(1, uuid2);
+        } catch (UUID uuid22) {
+            throw new UnsupportedDrmException(2, uuid22);
+        }
+    }
+
+    private FrameworkMediaDrm(UUID uuid) throws UnsupportedSchemeException {
+        Assertions.checkNotNull(uuid);
+        Assertions.checkArgument(C.COMMON_PSSH_UUID.equals(uuid) ^ 1, "Use C.CLEARKEY_UUID instead");
+        this.uuid = uuid;
+        UUID uuid2 = (Util.SDK_INT &gt;= 27 || !C.CLEARKEY_UUID.equals(uuid)) ? uuid : C.COMMON_PSSH_UUID;
+        this.mediaDrm = new MediaDrm(uuid2);
+        if (C.WIDEVINE_UUID.equals(uuid) != null &amp;&amp; needsForceWidevineL3Workaround() != null) {
+            forceWidevineL3(this.mediaDrm);
+        }
+    }
+
+    public void setOnEventListener(OnEventListener&lt;? super FrameworkMediaCrypto&gt; onEventListener) {
+        this.mediaDrm.setOnEventListener(onEventListener == null ? null : new -$$Lambda$FrameworkMediaDrm$zJ3h9UKP9ayPF2iQATh7r7bKJes(this, onEventListener));
+    }
+
+    public void setOnKeyStatusChangeListener(OnKeyStatusChangeListener&lt;? super FrameworkMediaCrypto&gt; onKeyStatusChangeListener) {
+        if (Util.SDK_INT &gt;= 23) {
+            this.mediaDrm.setOnKeyStatusChangeListener(onKeyStatusChangeListener == null ? null : new -$$Lambda$FrameworkMediaDrm$WcqXRf-ZlBuRYiaqpRgpL0-wRvg(this, onKeyStatusChangeListener), null);
+            return;
+        }
+        throw new UnsupportedOperationException();
+    }
+
+    public static /* synthetic */ void lambda$setOnKeyStatusChangeListener$1(FrameworkMediaDrm frameworkMediaDrm, OnKeyStatusChangeListener onKeyStatusChangeListener, MediaDrm mediaDrm, byte[] bArr, List list, boolean z) {
+        mediaDrm = new ArrayList();
+        for (KeyStatus keyStatus : list) {
+            mediaDrm.add(new ExoMediaDrm.KeyStatus(keyStatus.getStatusCode(), keyStatus.getKeyId()));
+        }
+        onKeyStatusChangeListener.onKeyStatusChange(frameworkMediaDrm, bArr, mediaDrm, z);
+    }
+
+    public byte[] openSession() throws MediaDrmException {
+        return this.mediaDrm.openSession();
+    }
+
+    public void closeSession(byte[] bArr) {
+        this.mediaDrm.closeSession(bArr);
+    }
+
+    public KeyRequest getKeyRequest(byte[] bArr, @Nullable List&lt;SchemeData&gt; list, int i, @Nullable HashMap&lt;String, String&gt; hashMap) throws NotProvisionedException {
+        byte[] adjustRequestInitData;
+        String adjustRequestMimeType;
+        SchemeData schemeData = null;
+        if (list != null) {
+            schemeData = getSchemeData(this.uuid, list);
+            adjustRequestInitData = adjustRequestInitData(this.uuid, schemeData.data);
+            adjustRequestMimeType = adjustRequestMimeType(this.uuid, schemeData.mimeType);
+        } else {
+            adjustRequestInitData = null;
+            adjustRequestMimeType = adjustRequestInitData;
+        }
+        bArr = this.mediaDrm.getKeyRequest(bArr, adjustRequestInitData, adjustRequestMimeType, i, hashMap);
+        list = adjustRequestData(this.uuid, bArr.getData());
+        bArr = bArr.getDefaultUrl();
+        if (!(TextUtils.isEmpty(bArr) == 0 || schemeData == null || TextUtils.isEmpty(schemeData.licenseServerUrl) != 0)) {
+            bArr = schemeData.licenseServerUrl;
+        }
+        return new KeyRequest(list, bArr);
+    }
+
+    public byte[] provideKeyResponse(byte[] bArr, byte[] bArr2) throws NotProvisionedException, DeniedByServerException {
+        if (C.CLEARKEY_UUID.equals(this.uuid)) {
+            bArr2 = ClearKeyUtil.adjustResponseData(bArr2);
+        }
+        return this.mediaDrm.provideKeyResponse(bArr, bArr2);
+    }
+
+    public ProvisionRequest getProvisionRequest() {
+        MediaDrm.ProvisionRequest provisionRequest = this.mediaDrm.getProvisionRequest();
+        return new ProvisionRequest(provisionRequest.getData(), provisionRequest.getDefaultUrl());
+    }
+
+    public void provideProvisionResponse(byte[] bArr) throws DeniedByServerException {
+        this.mediaDrm.provideProvisionResponse(bArr);
+    }
+
+    public Map&lt;String, String&gt; queryKeyStatus(byte[] bArr) {
+        return this.mediaDrm.queryKeyStatus(bArr);
+    }
+
+    public void release() {
+        this.mediaDrm.release();
+    }
+
+    public void restoreKeys(byte[] bArr, byte[] bArr2) {
+        this.mediaDrm.restoreKeys(bArr, bArr2);
+    }
+
+    public String getPropertyString(String str) {
+        return this.mediaDrm.getPropertyString(str);
+    }
+
+    public byte[] getPropertyByteArray(String str) {
+        return this.mediaDrm.getPropertyByteArray(str);
+    }
+
+    public void setPropertyString(String str, String str2) {
+        this.mediaDrm.setPropertyString(str, str2);
+    }
+
+    public void setPropertyByteArray(String str, byte[] bArr) {
+        this.mediaDrm.setPropertyByteArray(str, bArr);
+    }
+
+    public FrameworkMediaCrypto createMediaCrypto(byte[] bArr) throws MediaCryptoException {
+        boolean z = Util.SDK_INT &lt; 21 &amp;&amp; C.WIDEVINE_UUID.equals(this.uuid) &amp;&amp; "L3".equals(getPropertyString("securityLevel"));
+        return new FrameworkMediaCrypto(new MediaCrypto(this.uuid, bArr), z);
+    }
+
+    private static SchemeData getSchemeData(UUID uuid, List&lt;SchemeData&gt; list) {
+        if (C.WIDEVINE_UUID.equals(uuid) == null) {
+            return (SchemeData) list.get(0);
+        }
+        int i;
+        if (Util.SDK_INT &gt;= 28 &amp;&amp; list.size() &gt; 1) {
+            SchemeData schemeData;
+            Object obj;
+            SchemeData schemeData2 = (SchemeData) list.get(0);
+            i = 0;
+            for (int i2 = 0; i2 &lt; list.size(); i2++) {
+                schemeData = (SchemeData) list.get(i2);
+                if (schemeData.requiresSecureDecryption != schemeData2.requiresSecureDecryption || !Util.areEqual(schemeData.mimeType, schemeData2.mimeType) || !Util.areEqual(schemeData.licenseServerUrl, schemeData2.licenseServerUrl) || !PsshAtomUtil.isPsshAtom(schemeData.data)) {
+                    obj = null;
+                    break;
+                }
+                i += schemeData.data.length;
+            }
+            obj = 1;
+            if (obj != null) {
+                obj = new byte[i];
+                i = 0;
+                for (int i3 = 0; i3 &lt; list.size(); i3++) {
+                    schemeData = (SchemeData) list.get(i3);
+                    int length = schemeData.data.length;
+                    System.arraycopy(schemeData.data, 0, obj, i, length);
+                    i += length;
+                }
+                return schemeData2.copyWithData(obj);
+            }
+        }
+        for (uuid = null; uuid &lt; list.size(); uuid++) {
+            SchemeData schemeData3 = (SchemeData) list.get(uuid);
+            i = PsshAtomUtil.parseVersion(schemeData3.data);
+            if (Util.SDK_INT &lt; 23 &amp;&amp; i == 0) {
+                return schemeData3;
+            }
+            if (Util.SDK_INT &gt;= 23 &amp;&amp; i == 1) {
+                return schemeData3;
+            }
+        }
+        return (SchemeData) list.get(0);
+    }
+
+    private static byte[] adjustRequestInitData(UUID uuid, byte[] bArr) {
+        if ((Util.SDK_INT &lt; 21 &amp;&amp; C.WIDEVINE_UUID.equals(uuid)) || (C.PLAYREADY_UUID.equals(uuid) &amp;&amp; "Amazon".equals(Util.MANUFACTURER) &amp;&amp; ("AFTB".equals(Util.MODEL) || "AFTS".equals(Util.MODEL) || "AFTM".equals(Util.MODEL)))) {
+            uuid = PsshAtomUtil.parseSchemeSpecificData(bArr, uuid);
+            if (uuid != null) {
+                return uuid;
+            }
+        }
+        return bArr;
+    }
+
+    private static String adjustRequestMimeType(UUID uuid, String str) {
+        return (Util.SDK_INT &gt;= 26 || C.CLEARKEY_UUID.equals(uuid) == null || (MimeTypes.VIDEO_MP4.equals(str) == null &amp;&amp; MimeTypes.AUDIO_MP4.equals(str) == null)) ? str : "cenc";
+    }
+
+    private static byte[] adjustRequestData(UUID uuid, byte[] bArr) {
+        return C.CLEARKEY_UUID.equals(uuid) != null ? ClearKeyUtil.adjustRequestData(bArr) : bArr;
+    }
+
+    @SuppressLint({"WrongConstant"})
+    private static void forceWidevineL3(MediaDrm mediaDrm) {
+        mediaDrm.setPropertyString("securityLevel", "L3");
+    }
+
+    private static boolean needsForceWidevineL3Workaround() {
+        return "ASUS_Z00AD".equals(Util.MODEL);
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:7 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

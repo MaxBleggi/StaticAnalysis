@@ -1,0 +1,188 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/gms/base/R.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/gms/base/R.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="R.java" data-line="" class="code line-numbers"><code>package com.google.android.gms.base;
+
+public final class R {
+
+    public static final class attr {
+        public static final int buttonSize = 2130968673;
+        public static final int circleCrop = 2130968751;
+        public static final int colorScheme = 2130968774;
+        public static final int imageAspectRatio = 2130968906;
+        public static final int imageAspectRatioAdjust = 2130968907;
+        public static final int scopeUris = 2130969094;
+
+        private attr() {
+        }
+    }
+
+    public static final class color {
+        public static final int common_google_signin_btn_text_dark = 2131099740;
+        public static final int common_google_signin_btn_text_dark_default = 2131099741;
+        public static final int common_google_signin_btn_text_dark_disabled = 2131099742;
+        public static final int common_google_signin_btn_text_dark_focused = 2131099743;
+        public static final int common_google_signin_btn_text_dark_pressed = 2131099744;
+        public static final int common_google_signin_btn_text_light = 2131099745;
+        public static final int common_google_signin_btn_text_light_default = 2131099746;
+        public static final int common_google_signin_btn_text_light_disabled = 2131099747;
+        public static final int common_google_signin_btn_text_light_focused = 2131099748;
+        public static final int common_google_signin_btn_text_light_pressed = 2131099749;
+        public static final int common_google_signin_btn_tint = 2131099750;
+
+        private color() {
+        }
+    }
+
+    public static final class drawable {
+        public static final int common_full_open_on_phone = 2131230887;
+        public static final int common_google_signin_btn_icon_dark = 2131230888;
+        public static final int common_google_signin_btn_icon_dark_focused = 2131230889;
+        public static final int common_google_signin_btn_icon_dark_normal = 2131230890;
+        public static final int common_google_signin_btn_icon_dark_normal_background = 2131230891;
+        public static final int common_google_signin_btn_icon_disabled = 2131230892;
+        public static final int common_google_signin_btn_icon_light = 2131230893;
+        public static final int common_google_signin_btn_icon_light_focused = 2131230894;
+        public static final int common_google_signin_btn_icon_light_normal = 2131230895;
+        public static final int common_google_signin_btn_icon_light_normal_background = 2131230896;
+        public static final int common_google_signin_btn_text_dark = 2131230897;
+        public static final int common_google_signin_btn_text_dark_focused = 2131230898;
+        public static final int common_google_signin_btn_text_dark_normal = 2131230899;
+        public static final int common_google_signin_btn_text_dark_normal_background = 2131230900;
+        public static final int common_google_signin_btn_text_disabled = 2131230901;
+        public static final int common_google_signin_btn_text_light = 2131230902;
+        public static final int common_google_signin_btn_text_light_focused = 2131230903;
+        public static final int common_google_signin_btn_text_light_normal = 2131230904;
+        public static final int common_google_signin_btn_text_light_normal_background = 2131230905;
+        public static final int googleg_disabled_color_18 = 2131230949;
+        public static final int googleg_standard_color_18 = 2131230950;
+
+        private drawable() {
+        }
+    }
+
+    public static final class id {
+        public static final int adjust_height = 2131361825;
+        public static final int adjust_width = 2131361826;
+        public static final int auto = 2131361839;
+        public static final int dark = 2131361946;
+        public static final int icon_only = 2131362096;
+        public static final int light = 2131362112;
+        public static final int none = 2131362220;
+        public static final int standard = 2131362378;
+        public static final int wide = 2131362538;
+
+        private id() {
+        }
+    }
+
+    public static final class string {
+        public static final int common_google_play_services_enable_button = 2131755177;
+        public static final int common_google_play_services_enable_text = 2131755178;
+        public static final int common_google_play_services_enable_title = 2131755179;
+        public static final int common_google_play_services_install_button = 2131755180;
+        public static final int common_google_play_services_install_text = 2131755181;
+        public static final int common_google_play_services_install_title = 2131755182;
+        public static final int common_google_play_services_notification_channel_name = 2131755183;
+        public static final int common_google_play_services_notification_ticker = 2131755184;
+        public static final int common_google_play_services_unsupported_text = 2131755186;
+        public static final int common_google_play_services_update_button = 2131755187;
+        public static final int common_google_play_services_update_text = 2131755188;
+        public static final int common_google_play_services_update_title = 2131755189;
+        public static final int common_google_play_services_updating_text = 2131755190;
+        public static final int common_google_play_services_wear_update_text = 2131755191;
+        public static final int common_open_on_phone = 2131755192;
+        public static final int common_signin_button_text = 2131755193;
+        public static final int common_signin_button_text_long = 2131755194;
+
+        private string() {
+        }
+    }
+
+    public static final class styleable {
+        public static final int[] LoadingImageView = new int[]{com.xumo.xumo.tv.R.attr.circleCrop, com.xumo.xumo.tv.R.attr.imageAspectRatio, com.xumo.xumo.tv.R.attr.imageAspectRatioAdjust};
+        public static final int LoadingImageView_circleCrop = 0;
+        public static final int LoadingImageView_imageAspectRatio = 1;
+        public static final int LoadingImageView_imageAspectRatioAdjust = 2;
+        public static final int[] SignInButton = new int[]{com.xumo.xumo.tv.R.attr.buttonSize, com.xumo.xumo.tv.R.attr.colorScheme, com.xumo.xumo.tv.R.attr.scopeUris};
+        public static final int SignInButton_buttonSize = 0;
+        public static final int SignInButton_colorScheme = 1;
+        public static final int SignInButton_scopeUris = 2;
+
+        private styleable() {
+        }
+    }
+
+    private R() {
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:13 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

@@ -1,0 +1,135 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/gms/internal/measurement/zzvm.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/gms/internal/measurement/zzvm.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="zzvm.java" data-line="" class="code line-numbers"><code>package com.google.android.gms.internal.measurement;
+
+import com.google.android.gms.internal.measurement.zzvx.zzc;
+import java.io.IOException;
+import java.util.Map.Entry;
+
+final class zzvm extends zzvl&lt;Object&gt; {
+    zzvm() {
+    }
+
+    final boolean zze(zzxe com_google_android_gms_internal_measurement_zzxe) {
+        return com_google_android_gms_internal_measurement_zzxe instanceof zzc;
+    }
+
+    final zzvo&lt;Object&gt; zzw(Object obj) {
+        return ((zzc) obj).zzbzn;
+    }
+
+    final void zza(Object obj, zzvo&lt;Object&gt; com_google_android_gms_internal_measurement_zzvo_java_lang_Object) {
+        ((zzc) obj).zzbzn = com_google_android_gms_internal_measurement_zzvo_java_lang_Object;
+    }
+
+    final zzvo&lt;Object&gt; zzx(Object obj) {
+        zzvo&lt;Object&gt; zzw = zzw(obj);
+        if (!zzw.isImmutable()) {
+            return zzw;
+        }
+        zzvo com_google_android_gms_internal_measurement_zzvo = (zzvo) zzw.clone();
+        zza(obj, com_google_android_gms_internal_measurement_zzvo);
+        return com_google_android_gms_internal_measurement_zzvo;
+    }
+
+    final void zzy(Object obj) {
+        zzw(obj).zzsw();
+    }
+
+    final &lt;UT, UB&gt; UB zza(zzxt com_google_android_gms_internal_measurement_zzxt, Object obj, zzvk com_google_android_gms_internal_measurement_zzvk, zzvo&lt;Object&gt; com_google_android_gms_internal_measurement_zzvo_java_lang_Object, UB ub, zzym&lt;UT, UB&gt; com_google_android_gms_internal_measurement_zzym_UT__UB) throws IOException {
+        throw new NoSuchMethodError();
+    }
+
+    final int zzb(Entry&lt;?, ?&gt; entry) {
+        entry.getKey();
+        throw new NoSuchMethodError();
+    }
+
+    final void zza(zzzh com_google_android_gms_internal_measurement_zzzh, Entry&lt;?, ?&gt; entry) throws IOException {
+        entry.getKey();
+        throw new NoSuchMethodError();
+    }
+
+    final Object zza(zzvk com_google_android_gms_internal_measurement_zzvk, zzxe com_google_android_gms_internal_measurement_zzxe, int i) {
+        return com_google_android_gms_internal_measurement_zzvk.zza(com_google_android_gms_internal_measurement_zzxe, i);
+    }
+
+    final void zza(zzxt com_google_android_gms_internal_measurement_zzxt, Object obj, zzvk com_google_android_gms_internal_measurement_zzvk, zzvo&lt;Object&gt; com_google_android_gms_internal_measurement_zzvo_java_lang_Object) throws IOException {
+        throw new NoSuchMethodError();
+    }
+
+    final void zza(zzun com_google_android_gms_internal_measurement_zzun, Object obj, zzvk com_google_android_gms_internal_measurement_zzvk, zzvo&lt;Object&gt; com_google_android_gms_internal_measurement_zzvo_java_lang_Object) throws IOException {
+        throw new NoSuchMethodError();
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:11 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

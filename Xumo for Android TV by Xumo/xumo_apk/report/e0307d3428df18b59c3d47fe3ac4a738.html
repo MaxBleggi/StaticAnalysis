@@ -1,0 +1,328 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/ads/interactivemedia/v3/internal/bh.java" target="_blank">/xumo_apk/jadx_source_code/com/google/ads/interactivemedia/v3/internal/bh.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="bh.java" data-line="" class="code line-numbers"><code>package com.google.ads.interactivemedia.v3.internal;
+
+import android.annotation.TargetApi;
+import android.media.MediaCodecInfo;
+import android.media.MediaCodecInfo.CodecCapabilities;
+import android.media.MediaCodecList;
+import android.text.TextUtils;
+import android.util.Log;
+import com.google.android.exoplayer2.util.MimeTypes;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+@TargetApi(16)
+/* compiled from: IMASDK */
+public final class bh {
+    private static final ay a = new ay("OMX.google.raw.decoder", null);
+    private static final Map&lt;a, List&lt;ay&gt;&gt; b = new HashMap();
+    private static int c = -1;
+
+    /* compiled from: IMASDK */
+    private static final class a {
+        public final String a;
+        public final boolean b;
+
+        public a(String str, boolean z) {
+            this.a = str;
+            this.b = z;
+        }
+
+        public int hashCode() {
+            return (((this.a == null ? 0 : this.a.hashCode()) + 31) * 31) + (this.b ? 1231 : 1237);
+        }
+
+        public boolean equals(Object obj) {
+            boolean z = true;
+            if (this == obj) {
+                return true;
+            }
+            if (obj != null) {
+                if (obj.getClass() == a.class) {
+                    a aVar = (a) obj;
+                    if (!TextUtils.equals(this.a, aVar.a) || this.b != aVar.b) {
+                        z = false;
+                    }
+                    return z;
+                }
+            }
+            return false;
+        }
+    }
+
+    /* compiled from: IMASDK */
+    public static class b extends IOException {
+        private b(Throwable th) {
+            super("Failed to query underlying media codecs", th);
+        }
+    }
+
+    /* compiled from: IMASDK */
+    private interface c {
+        int a();
+
+        MediaCodecInfo a(int i);
+
+        boolean a(String str, CodecCapabilities codecCapabilities);
+
+        boolean b();
+    }
+
+    /* compiled from: IMASDK */
+    private static final class d implements c {
+        private d() {
+        }
+
+        public boolean b() {
+            return false;
+        }
+
+        public int a() {
+            return MediaCodecList.getCodecCount();
+        }
+
+        public MediaCodecInfo a(int i) {
+            return MediaCodecList.getCodecInfoAt(i);
+        }
+
+        public boolean a(String str, CodecCapabilities codecCapabilities) {
+            return MimeTypes.VIDEO_H264.equals(str);
+        }
+    }
+
+    @TargetApi(21)
+    /* compiled from: IMASDK */
+    private static final class e implements c {
+        private final int a;
+        private MediaCodecInfo[] b;
+
+        public e(boolean z) {
+            this.a = z;
+        }
+
+        public boolean b() {
+            return true;
+        }
+
+        public int a() {
+            c();
+            return this.b.length;
+        }
+
+        public MediaCodecInfo a(int i) {
+            c();
+            return this.b[i];
+        }
+
+        public boolean a(String str, CodecCapabilities codecCapabilities) {
+            return codecCapabilities.isFeatureSupported("secure-playback");
+        }
+
+        private void c() {
+            if (this.b == null) {
+                this.b = new MediaCodecList(this.a).getCodecInfos();
+            }
+        }
+    }
+
+    public static ay a() {
+        return a;
+    }
+
+    public static ay a(String str, boolean z) throws b {
+        str = b(str, z);
+        return str.isEmpty() ? null : (ay) str.get(false);
+    }
+
+    public static synchronized List&lt;ay&gt; b(String str, boolean z) throws b {
+        synchronized (bh.class) {
+            a aVar = new a(str, z);
+            List&lt;ay&gt; list = (List) b.get(aVar);
+            if (list != null) {
+                return list;
+            }
+            List a = a(aVar, ft.a &gt;= 21 ? new e(z) : new d());
+            if (z &amp;&amp; a.isEmpty() &amp;&amp; true &lt;= ft.a &amp;&amp; ft.a &lt;= true) {
+                a = a(aVar, new d());
+                if (!a.isEmpty()) {
+                    String str2 = ((ay) a.get(0)).a;
+                    StringBuilder stringBuilder = new StringBuilder((String.valueOf(str).length() + 63) + String.valueOf(str2).length());
+                    stringBuilder.append("MediaCodecList API didn't list secure decoder for: ");
+                    stringBuilder.append(str);
+                    stringBuilder.append(". Assuming: ");
+                    stringBuilder.append(str2);
+                    Log.w("MediaCodecUtil", stringBuilder.toString());
+                }
+            }
+            str = Collections.unmodifiableList(a);
+            b.put(aVar, str);
+            return str;
+        }
+    }
+
+    private static List&lt;ay&gt; a(a aVar, c cVar) throws b {
+        String str;
+        a aVar2 = aVar;
+        c cVar2 = cVar;
+        String name;
+        try {
+            List&lt;ay&gt; arrayList = new ArrayList();
+            String str2 = aVar2.a;
+            int a = cVar.a();
+            boolean b = cVar.b();
+            int i = 0;
+            while (i &lt; a) {
+                MediaCodecInfo a2 = cVar2.a(i);
+                name = a2.getName();
+                if (a(a2, name, b)) {
+                    String[] supportedTypes = a2.getSupportedTypes();
+                    int length = supportedTypes.length;
+                    int i2 = 0;
+                    while (i2 &lt; length) {
+                        str = supportedTypes[i2];
+                        if (str.equalsIgnoreCase(str2)) {
+                            CodecCapabilities capabilitiesForType = a2.getCapabilitiesForType(str);
+                            boolean a3 = cVar2.a(str2, capabilitiesForType);
+                            if ((b &amp;&amp; r1.b == a3) || (!b &amp;&amp; !r1.b)) {
+                                arrayList.add(new ay(name, capabilitiesForType));
+                            } else if (!b &amp;&amp; a3) {
+                                arrayList.add(new ay(String.valueOf(name).concat(".secure"), capabilitiesForType));
+                                return arrayList;
+                            }
+                        }
+                        i2++;
+                        aVar2 = aVar;
+                    }
+                    continue;
+                }
+                i++;
+                aVar2 = aVar;
+            }
+            return arrayList;
+        } catch (Exception e) {
+            if (ft.a &gt; 23 || arrayList.isEmpty()) {
+                StringBuilder stringBuilder = new StringBuilder((String.valueOf(name).length() + 25) + String.valueOf(str).length());
+                stringBuilder.append("Failed to query codec ");
+                stringBuilder.append(name);
+                stringBuilder.append(" (");
+                stringBuilder.append(str);
+                stringBuilder.append(")");
+                Log.e("MediaCodecUtil", stringBuilder.toString());
+                throw e;
+            }
+            StringBuilder stringBuilder2 = new StringBuilder(String.valueOf(name).length() + 46);
+            stringBuilder2.append("Skipping codec ");
+            stringBuilder2.append(name);
+            stringBuilder2.append(" (failed to query capabilities)");
+            Log.e("MediaCodecUtil", stringBuilder2.toString());
+        } catch (Throwable e2) {
+            throw new b(e2);
+        }
+    }
+
+    private static boolean a(MediaCodecInfo mediaCodecInfo, String str, boolean z) {
+        if (mediaCodecInfo.isEncoder() == null) {
+            if (z || str.endsWith(".secure") == null) {
+                if (ft.a &lt; true &amp;&amp; ("CIPAACDecoder".equals(str) != null || "CIPMP3Decoder".equals(str) != null || "CIPVorbisDecoder".equals(str) != null || "CIPAMRNBDecoder".equals(str) != null || "AACDecoder".equals(str) != null || "MP3Decoder".equals(str) != null)) {
+                    return false;
+                }
+                if (ft.a &lt; 18 &amp;&amp; "OMX.SEC.MP3.Decoder".equals(str) != null) {
+                    return false;
+                }
+                if (ft.a &lt; 18 &amp;&amp; "OMX.MTK.AUDIO.DECODER.AAC".equals(str) != null &amp;&amp; "a70".equals(ft.b) != null) {
+                    return false;
+                }
+                if (ft.a == 16 &amp;&amp; ft.b != null &amp;&amp; "OMX.qcom.audio.decoder.mp3".equals(str) != null &amp;&amp; ("dlxu".equals(ft.b) != null || "protou".equals(ft.b) != null || "ville".equals(ft.b) != null || "villeplus".equals(ft.b) != null || "villec2".equals(ft.b) != null || ft.b.startsWith("gee") != null || "C6602".equals(ft.b) != null || "C6603".equals(ft.b) != null || "C6606".equals(ft.b) != null || "C6616".equals(ft.b) != null || "L36h".equals(ft.b) != null || "SO-02E".equals(ft.b) != null)) {
+                    return false;
+                }
+                if (ft.a == 16 &amp;&amp; "OMX.qcom.audio.decoder.aac".equals(str) != null &amp;&amp; ("C1504".equals(ft.b) != null || "C1505".equals(ft.b) != null || "C1604".equals(ft.b) != null || "C1605".equals(ft.b) != null)) {
+                    return false;
+                }
+                if (ft.a &lt;= 19 &amp;&amp; ft.b != null &amp;&amp; ((ft.b.startsWith("d2") != null || ft.b.startsWith("serrano") != null || ft.b.startsWith("jflte") != null || ft.b.startsWith("santos") != null) &amp;&amp; "samsung".equals(ft.c) != null &amp;&amp; str.equals("OMX.SEC.vp8.dec") != null)) {
+                    return false;
+                }
+                if (ft.a &gt; 19 || ft.b == null || ft.b.startsWith("jflte") == null || "OMX.qcom.video.decoder.vp8".equals(str) == null) {
+                    return true;
+                }
+                return false;
+            }
+        }
+        return false;
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:6 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

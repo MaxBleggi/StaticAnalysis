@@ -1,0 +1,163 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/gms/measurement/internal/zzz.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/gms/measurement/internal/zzz.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="zzz.java" data-line="" class="code line-numbers"><code>package com.google.android.gms.measurement.internal;
+
+import android.os.Bundle;
+import android.text.TextUtils;
+import com.google.android.gms.common.internal.Preconditions;
+
+public final class zzz {
+    final String name;
+    private final String origin;
+    final long timestamp;
+    final long zzaif;
+    final zzab zzaig;
+    final String zztt;
+
+    private zzz(zzbu com_google_android_gms_measurement_internal_zzbu, String str, String str2, String str3, long j, long j2, zzab com_google_android_gms_measurement_internal_zzab) {
+        Preconditions.checkNotEmpty(str2);
+        Preconditions.checkNotEmpty(str3);
+        Preconditions.checkNotNull(com_google_android_gms_measurement_internal_zzab);
+        this.zztt = str2;
+        this.name = str3;
+        if (TextUtils.isEmpty(str)) {
+            str = null;
+        }
+        this.origin = str;
+        this.timestamp = j;
+        this.zzaif = j2;
+        if (this.zzaif != 0 &amp;&amp; this.zzaif &gt; this.timestamp) {
+            com_google_android_gms_measurement_internal_zzbu.zzgt().zzjj().zze("Event created with reverse previous/current timestamps. appId, name", zzaq.zzby(str2), zzaq.zzby(str3));
+        }
+        this.zzaig = com_google_android_gms_measurement_internal_zzab;
+    }
+
+    zzz(zzbu com_google_android_gms_measurement_internal_zzbu, String str, String str2, String str3, long j, long j2, Bundle bundle) {
+        Preconditions.checkNotEmpty(str2);
+        Preconditions.checkNotEmpty(str3);
+        this.zztt = str2;
+        this.name = str3;
+        if (TextUtils.isEmpty(str) != null) {
+            str = null;
+        }
+        this.origin = str;
+        this.timestamp = j;
+        this.zzaif = j2;
+        if (this.zzaif != 0 &amp;&amp; this.zzaif &gt; this.timestamp) {
+            com_google_android_gms_measurement_internal_zzbu.zzgt().zzjj().zzg("Event created with reverse previous/current timestamps. appId", zzaq.zzby(str2));
+        }
+        if (bundle == null || bundle.isEmpty() != null) {
+            com_google_android_gms_measurement_internal_zzbu = new zzab(new Bundle());
+        } else {
+            Bundle bundle2 = new Bundle(bundle);
+            str2 = bundle2.keySet().iterator();
+            while (str2.hasNext() != null) {
+                str3 = (String) str2.next();
+                if (str3 == null) {
+                    com_google_android_gms_measurement_internal_zzbu.zzgt().zzjg().zzca("Param name can't be null");
+                    str2.remove();
+                } else {
+                    Object zzh = com_google_android_gms_measurement_internal_zzbu.zzgr().zzh(str3, bundle2.get(str3));
+                    if (zzh == null) {
+                        com_google_android_gms_measurement_internal_zzbu.zzgt().zzjj().zzg("Param value can't be null", com_google_android_gms_measurement_internal_zzbu.zzgq().zzbw(str3));
+                        str2.remove();
+                    } else {
+                        com_google_android_gms_measurement_internal_zzbu.zzgr().zza(bundle2, str3, zzh);
+                    }
+                }
+            }
+            com_google_android_gms_measurement_internal_zzbu = new zzab(bundle2);
+        }
+        this.zzaig = com_google_android_gms_measurement_internal_zzbu;
+    }
+
+    final zzz zza(zzbu com_google_android_gms_measurement_internal_zzbu, long j) {
+        return new zzz(com_google_android_gms_measurement_internal_zzbu, this.origin, this.zztt, this.name, this.timestamp, j, this.zzaig);
+    }
+
+    public final String toString() {
+        String str = this.zztt;
+        String str2 = this.name;
+        String valueOf = String.valueOf(this.zzaig);
+        StringBuilder stringBuilder = new StringBuilder(((String.valueOf(str).length() + 33) + String.valueOf(str2).length()) + String.valueOf(valueOf).length());
+        stringBuilder.append("Event{appId='");
+        stringBuilder.append(str);
+        stringBuilder.append("', name='");
+        stringBuilder.append(str2);
+        stringBuilder.append("', params=");
+        stringBuilder.append(valueOf);
+        stringBuilder.append('}');
+        return stringBuilder.toString();
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:10 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

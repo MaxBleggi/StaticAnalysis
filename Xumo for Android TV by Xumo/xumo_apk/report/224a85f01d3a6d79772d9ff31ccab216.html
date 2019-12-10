@@ -1,0 +1,190 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/ads/interactivemedia/v3/api/AdError.java" target="_blank">/xumo_apk/jadx_source_code/com/google/ads/interactivemedia/v3/api/AdError.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="AdError.java" data-line="" class="code line-numbers"><code>package com.google.ads.interactivemedia.v3.api;
+
+import androidx.core.view.PointerIconCompat;
+
+/* compiled from: IMASDK */
+public final class AdError extends Exception {
+    private final AdErrorCode a;
+    private final AdErrorType b;
+
+    /* compiled from: IMASDK */
+    public enum AdErrorCode {
+        INTERNAL_ERROR(-1),
+        VAST_MALFORMED_RESPONSE(100),
+        UNKNOWN_AD_RESPONSE(PointerIconCompat.TYPE_ALIAS),
+        VAST_LOAD_TIMEOUT(301),
+        VAST_TOO_MANY_REDIRECTS(302),
+        VIDEO_PLAY_ERROR(400),
+        VAST_MEDIA_LOAD_TIMEOUT(402),
+        VAST_LINEAR_ASSET_MISMATCH(403),
+        OVERLAY_AD_PLAYING_FAILED(500),
+        OVERLAY_AD_LOADING_FAILED(502),
+        VAST_NONLINEAR_ASSET_MISMATCH(503),
+        COMPANION_AD_LOADING_FAILED(603),
+        UNKNOWN_ERROR(900),
+        VAST_EMPTY_RESPONSE(PointerIconCompat.TYPE_VERTICAL_TEXT),
+        FAILED_TO_REQUEST_ADS(1005),
+        VAST_ASSET_NOT_FOUND(PointerIconCompat.TYPE_CROSSHAIR),
+        ADS_REQUEST_NETWORK_ERROR(PointerIconCompat.TYPE_NO_DROP),
+        INVALID_ARGUMENTS(1101),
+        PLAYLIST_NO_CONTENT_TRACKING(1205);
+        
+        private final int a;
+
+        private AdErrorCode(int i) {
+            this.a = i;
+        }
+
+        public int getErrorNumber() {
+            return this.a;
+        }
+
+        static AdErrorCode a(int i) {
+            for (AdErrorCode adErrorCode : values()) {
+                if (adErrorCode.getErrorNumber() == i) {
+                    return adErrorCode;
+                }
+            }
+            if (1204 == i) {
+                return INTERNAL_ERROR;
+            }
+            return UNKNOWN_ERROR;
+        }
+
+        public boolean equals(int i) {
+            return this.a == i;
+        }
+
+        public String toString() {
+            String name = name();
+            int i = this.a;
+            StringBuilder stringBuilder = new StringBuilder(String.valueOf(name).length() + 41);
+            stringBuilder.append("AdErrorCode [name: ");
+            stringBuilder.append(name);
+            stringBuilder.append(", number: ");
+            stringBuilder.append(i);
+            stringBuilder.append("]");
+            return stringBuilder.toString();
+        }
+    }
+
+    /* compiled from: IMASDK */
+    public enum AdErrorType {
+        LOAD,
+        PLAY
+    }
+
+    public AdError(AdErrorType adErrorType, int i, String str) {
+        this(adErrorType, AdErrorCode.a(i), str);
+    }
+
+    public AdError(AdErrorType adErrorType, AdErrorCode adErrorCode, String str) {
+        super(str);
+        this.b = adErrorType;
+        this.a = adErrorCode;
+    }
+
+    public AdErrorType getErrorType() {
+        return this.b;
+    }
+
+    public AdErrorCode getErrorCode() {
+        return this.a;
+    }
+
+    public int getErrorCodeNumber() {
+        return this.a.getErrorNumber();
+    }
+
+    public String getMessage() {
+        return super.getMessage();
+    }
+
+    public String toString() {
+        String valueOf = String.valueOf(this.b);
+        String valueOf2 = String.valueOf(this.a);
+        String message = getMessage();
+        StringBuilder stringBuilder = new StringBuilder(((String.valueOf(valueOf).length() + 45) + String.valueOf(valueOf2).length()) + String.valueOf(message).length());
+        stringBuilder.append("AdError [errorType: ");
+        stringBuilder.append(valueOf);
+        stringBuilder.append(", errorCode: ");
+        stringBuilder.append(valueOf2);
+        stringBuilder.append(", message: ");
+        stringBuilder.append(message);
+        stringBuilder.append("]");
+        return stringBuilder.toString();
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:7 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

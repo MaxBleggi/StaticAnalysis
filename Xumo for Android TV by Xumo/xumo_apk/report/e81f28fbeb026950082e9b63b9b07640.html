@@ -1,0 +1,358 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/androidx/constraintlayout/solver/widgets/ResolutionAnchor.java" target="_blank">/xumo_apk/jadx_source_code/androidx/constraintlayout/solver/widgets/ResolutionAnchor.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="ResolutionAnchor.java" data-line="" class="code line-numbers"><code>package androidx.constraintlayout.solver.widgets;
+
+import androidx.constraintlayout.solver.LinearSystem;
+import androidx.constraintlayout.solver.SolverVariable;
+import androidx.constraintlayout.solver.widgets.ConstraintAnchor.Type;
+import com.google.android.exoplayer2.text.Cue;
+
+public class ResolutionAnchor extends ResolutionNode {
+    public static final int BARRIER_CONNECTION = 5;
+    public static final int CENTER_CONNECTION = 2;
+    public static final int CHAIN_CONNECTION = 4;
+    public static final int DIRECT_CONNECTION = 1;
+    public static final int MATCH_CONNECTION = 3;
+    public static final int UNCONNECTED = 0;
+    float computedValue;
+    private ResolutionDimension dimension = null;
+    private int dimensionMultiplier = 1;
+    ConstraintAnchor myAnchor;
+    float offset;
+    private ResolutionAnchor opposite;
+    private ResolutionDimension oppositeDimension = null;
+    private int oppositeDimensionMultiplier = 1;
+    private float oppositeOffset;
+    float resolvedOffset;
+    ResolutionAnchor resolvedTarget;
+    ResolutionAnchor target;
+    int type = 0;
+
+    String sType(int i) {
+        return i == 1 ? "DIRECT" : i == 2 ? "CENTER" : i == 3 ? "MATCH" : i == 4 ? "CHAIN" : i == 5 ? "BARRIER" : "UNCONNECTED";
+    }
+
+    public ResolutionAnchor(ConstraintAnchor constraintAnchor) {
+        this.myAnchor = constraintAnchor;
+    }
+
+    public void remove(ResolutionDimension resolutionDimension) {
+        if (this.dimension == resolutionDimension) {
+            this.dimension = null;
+            this.offset = (float) this.dimensionMultiplier;
+        } else if (this.dimension == this.oppositeDimension) {
+            this.oppositeDimension = null;
+            this.oppositeOffset = (float) this.oppositeDimensionMultiplier;
+        }
+        resolve();
+    }
+
+    public String toString() {
+        StringBuilder stringBuilder;
+        if (this.state != 1) {
+            stringBuilder = new StringBuilder();
+            stringBuilder.append("{ ");
+            stringBuilder.append(this.myAnchor);
+            stringBuilder.append(" UNRESOLVED} type: ");
+            stringBuilder.append(sType(this.type));
+            return stringBuilder.toString();
+        } else if (this.resolvedTarget == this) {
+            stringBuilder = new StringBuilder();
+            stringBuilder.append("[");
+            stringBuilder.append(this.myAnchor);
+            stringBuilder.append(", RESOLVED: ");
+            stringBuilder.append(this.resolvedOffset);
+            stringBuilder.append("]  type: ");
+            stringBuilder.append(sType(this.type));
+            return stringBuilder.toString();
+        } else {
+            stringBuilder = new StringBuilder();
+            stringBuilder.append("[");
+            stringBuilder.append(this.myAnchor);
+            stringBuilder.append(", RESOLVED: ");
+            stringBuilder.append(this.resolvedTarget);
+            stringBuilder.append(":");
+            stringBuilder.append(this.resolvedOffset);
+            stringBuilder.append("] type: ");
+            stringBuilder.append(sType(this.type));
+            return stringBuilder.toString();
+        }
+    }
+
+    public void resolve(ResolutionAnchor resolutionAnchor, float f) {
+        if (this.state == 0 || !(this.resolvedTarget == resolutionAnchor || this.resolvedOffset == f)) {
+            this.resolvedTarget = resolutionAnchor;
+            this.resolvedOffset = f;
+            if (this.state == Cue.DIMEN_UNSET) {
+                invalidate();
+            }
+            didResolve();
+        }
+    }
+
+    public void resolve() {
+        Object obj = 1;
+        if (this.state != 1 &amp;&amp; this.type != 4) {
+            if (this.dimension != null) {
+                if (this.dimension.state == 1) {
+                    this.offset = ((float) this.dimensionMultiplier) * this.dimension.value;
+                } else {
+                    return;
+                }
+            }
+            if (this.oppositeDimension != null) {
+                if (this.oppositeDimension.state == 1) {
+                    this.oppositeOffset = ((float) this.oppositeDimensionMultiplier) * this.oppositeDimension.value;
+                } else {
+                    return;
+                }
+            }
+            if (this.type == 1 &amp;&amp; (this.target == null || this.target.state == 1)) {
+                if (this.target == null) {
+                    this.resolvedTarget = this;
+                    this.resolvedOffset = this.offset;
+                } else {
+                    this.resolvedTarget = this.target.resolvedTarget;
+                    this.resolvedOffset = this.target.resolvedOffset + this.offset;
+                }
+                didResolve();
+            } else if (this.type == 2 &amp;&amp; this.target != null &amp;&amp; this.target.state == 1 &amp;&amp; this.opposite != null &amp;&amp; this.opposite.target != null &amp;&amp; this.opposite.target.state == 1) {
+                float f;
+                float f2;
+                int margin;
+                int margin2;
+                float f3;
+                float f4;
+                if (LinearSystem.getMetrics() != null) {
+                    r0 = LinearSystem.getMetrics();
+                    r0.centerConnectionResolved++;
+                }
+                this.resolvedTarget = this.target.resolvedTarget;
+                this.opposite.resolvedTarget = this.opposite.target.resolvedTarget;
+                int i = 0;
+                if (this.myAnchor.mType != Type.RIGHT) {
+                    if (this.myAnchor.mType != Type.BOTTOM) {
+                        obj = null;
+                    }
+                }
+                if (obj != null) {
+                    f = this.target.resolvedOffset - this.opposite.target.resolvedOffset;
+                } else {
+                    f = this.opposite.target.resolvedOffset - this.target.resolvedOffset;
+                }
+                if (this.myAnchor.mType != Type.LEFT) {
+                    if (this.myAnchor.mType != Type.RIGHT) {
+                        f -= (float) this.myAnchor.mOwner.getHeight();
+                        f2 = this.myAnchor.mOwner.mVerticalBiasPercent;
+                        margin = this.myAnchor.getMargin();
+                        margin2 = this.opposite.myAnchor.getMargin();
+                        if (this.myAnchor.getTarget() != this.opposite.myAnchor.getTarget()) {
+                            f2 = 0.5f;
+                            margin2 = 0;
+                        } else {
+                            i = margin;
+                        }
+                        f3 = (float) i;
+                        f4 = (float) margin2;
+                        f = (f - f3) - f4;
+                        if (obj == null) {
+                            this.opposite.resolvedOffset = (this.opposite.target.resolvedOffset + f4) + (f * f2);
+                            this.resolvedOffset = (this.target.resolvedOffset - f3) - (f * (1.0f - f2));
+                        } else {
+                            this.resolvedOffset = (this.target.resolvedOffset + f3) + (f * f2);
+                            this.opposite.resolvedOffset = (this.opposite.target.resolvedOffset - f4) - (f * (1.0f - f2));
+                        }
+                        didResolve();
+                        this.opposite.didResolve();
+                    }
+                }
+                f -= (float) this.myAnchor.mOwner.getWidth();
+                f2 = this.myAnchor.mOwner.mHorizontalBiasPercent;
+                margin = this.myAnchor.getMargin();
+                margin2 = this.opposite.myAnchor.getMargin();
+                if (this.myAnchor.getTarget() != this.opposite.myAnchor.getTarget()) {
+                    i = margin;
+                } else {
+                    f2 = 0.5f;
+                    margin2 = 0;
+                }
+                f3 = (float) i;
+                f4 = (float) margin2;
+                f = (f - f3) - f4;
+                if (obj == null) {
+                    this.resolvedOffset = (this.target.resolvedOffset + f3) + (f * f2);
+                    this.opposite.resolvedOffset = (this.opposite.target.resolvedOffset - f4) - (f * (1.0f - f2));
+                } else {
+                    this.opposite.resolvedOffset = (this.opposite.target.resolvedOffset + f4) + (f * f2);
+                    this.resolvedOffset = (this.target.resolvedOffset - f3) - (f * (1.0f - f2));
+                }
+                didResolve();
+                this.opposite.didResolve();
+            } else if (this.type == 3 &amp;&amp; this.target != null &amp;&amp; this.target.state == 1 &amp;&amp; this.opposite != null &amp;&amp; this.opposite.target != null &amp;&amp; this.opposite.target.state == 1) {
+                if (LinearSystem.getMetrics() != null) {
+                    r0 = LinearSystem.getMetrics();
+                    r0.matchConnectionResolved++;
+                }
+                this.resolvedTarget = this.target.resolvedTarget;
+                this.opposite.resolvedTarget = this.opposite.target.resolvedTarget;
+                this.resolvedOffset = this.target.resolvedOffset + this.offset;
+                this.opposite.resolvedOffset = this.opposite.target.resolvedOffset + this.opposite.offset;
+                didResolve();
+                this.opposite.didResolve();
+            } else if (this.type == 5) {
+                this.myAnchor.mOwner.resolve();
+            }
+        }
+    }
+
+    public void setType(int i) {
+        this.type = i;
+    }
+
+    public void reset() {
+        super.reset();
+        this.target = null;
+        this.offset = 0.0f;
+        this.dimension = null;
+        this.dimensionMultiplier = 1;
+        this.oppositeDimension = null;
+        this.oppositeDimensionMultiplier = 1;
+        this.resolvedTarget = null;
+        this.resolvedOffset = 0.0f;
+        this.computedValue = 0.0f;
+        this.opposite = null;
+        this.oppositeOffset = 0.0f;
+        this.type = 0;
+    }
+
+    public void update() {
+        ConstraintAnchor target = this.myAnchor.getTarget();
+        if (target != null) {
+            if (target.getTarget() == this.myAnchor) {
+                this.type = 4;
+                target.getResolutionNode().type = 4;
+            }
+            int margin = this.myAnchor.getMargin();
+            if (this.myAnchor.mType == Type.RIGHT || this.myAnchor.mType == Type.BOTTOM) {
+                margin = -margin;
+            }
+            dependsOn(target.getResolutionNode(), margin);
+        }
+    }
+
+    public void dependsOn(int i, ResolutionAnchor resolutionAnchor, int i2) {
+        this.type = i;
+        this.target = resolutionAnchor;
+        this.offset = (float) i2;
+        this.target.addDependent(this);
+    }
+
+    public void dependsOn(ResolutionAnchor resolutionAnchor, int i) {
+        this.target = resolutionAnchor;
+        this.offset = (float) i;
+        this.target.addDependent(this);
+    }
+
+    public void dependsOn(ResolutionAnchor resolutionAnchor, int i, ResolutionDimension resolutionDimension) {
+        this.target = resolutionAnchor;
+        this.target.addDependent(this);
+        this.dimension = resolutionDimension;
+        this.dimensionMultiplier = i;
+        this.dimension.addDependent(this);
+    }
+
+    public void setOpposite(ResolutionAnchor resolutionAnchor, float f) {
+        this.opposite = resolutionAnchor;
+        this.oppositeOffset = f;
+    }
+
+    public void setOpposite(ResolutionAnchor resolutionAnchor, int i, ResolutionDimension resolutionDimension) {
+        this.opposite = resolutionAnchor;
+        this.oppositeDimension = resolutionDimension;
+        this.oppositeDimensionMultiplier = i;
+    }
+
+    void addResolvedValue(LinearSystem linearSystem) {
+        SolverVariable solverVariable = this.myAnchor.getSolverVariable();
+        if (this.resolvedTarget == null) {
+            linearSystem.addEquality(solverVariable, (int) (this.resolvedOffset + 0.5f));
+        } else {
+            linearSystem.addEquality(solverVariable, linearSystem.createObjectVariable(this.resolvedTarget.myAnchor), (int) (this.resolvedOffset + 0.5f), 6);
+        }
+    }
+
+    public float getResolvedValue() {
+        return this.resolvedOffset;
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:5 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

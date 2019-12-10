@@ -1,0 +1,267 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/xumo/xumo/util/LicenseUtil.java" target="_blank">/xumo_apk/jadx_source_code/com/xumo/xumo/util/LicenseUtil.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="LicenseUtil.java" data-line="" class="code line-numbers"><code>package com.xumo.xumo.util;
+
+import android.content.Context;
+import android.os.AsyncTask;
+
+public class LicenseUtil {
+    private static final String HTML_BEGIN_HTML = "&lt;html style=\"font-family: Raleway-Regular;\"&gt;&lt;body style=\"margin: 20px;\"&gt;";
+    private static final String HTML_END_HTML = "&lt;/body&gt;&lt;/html&gt;";
+    private static final String LICENSE_DESCRIPTION_HTML = "&lt;div style=\"font-size: 1.25rem; color: rgba(80,80,80,1); margin-bottom: 15px;\"&gt;The following third party libraries are contained in Xumo application.&lt;/div&gt;";
+    private static final String LICENSE_DETAIL_BEGIN_HTML = "&lt;div style=\"overflow: hidden;\"&gt;&lt;pre id=\"%s\" style=\"display: none; padding: 0.8rem; border: 1px solid rgba(232,232,232,1); background-color: rgba(230,230,230,1); overflow-x: scroll;\"&gt;";
+    private static final String LICENSE_DETAIL_END_HTML = "&lt;/pre&gt;&lt;/div&gt;";
+    private static final String LICENSE_DIRECTORY_NAME = "licenses";
+    private static final String LICENSE_LIST_BEGIN_HTML = "&lt;ul style=\"padding: 0; list-style-type: none;\"&gt;";
+    private static final String LICENSE_LIST_END_HTML = "&lt;/ul&gt;";
+    private static final String LICENSE_LIST_ITEM_BEGIN_HTML = "&lt;li style=\"display: block; margin: 5px;\"&gt;";
+    private static final String LICENSE_LIST_ITEM_END_HTML = "&lt;/li&gt;";
+    private static final String LICENSE_NAME_BEGIN_HTML = "&lt;a style=\"font-size: 20px; color: rgba(0,122,184,1)\" onClick=\"%s\" onmouseover=\"this.style.textDecoration='underline';\" onmouseout=\"this.style.textDecoration='none';\"&gt;";
+    private static final String LICENSE_NAME_END_HTML = "&lt;/a&gt;";
+    private static final String LICENSE_TITME_HTML = "&lt;div style=\"font-size: 2rem; color: rgba(80,80,80,1); margin-bottom: 10px;\"&gt;Libraries We Use&lt;/div&gt;";
+    private Context mContext;
+    private LicenseListListener mListener;
+
+    public interface LicenseListListener {
+        void onFinish(String str);
+    }
+
+    private class LicenseLoadAsyncTask extends AsyncTask&lt;Void, Void, String&gt; {
+        private LicenseLoadAsyncTask() {
+        }
+
+        protected String doInBackground(Void... voidArr) {
+            voidArr = loadLicenseFileList();
+            if (voidArr != null) {
+                if (voidArr.length != 0) {
+                    StringBuilder stringBuilder = new StringBuilder("");
+                    stringBuilder.append(LicenseUtil.HTML_BEGIN_HTML);
+                    stringBuilder.append(LicenseUtil.LICENSE_TITME_HTML);
+                    stringBuilder.append(LicenseUtil.LICENSE_DESCRIPTION_HTML);
+                    stringBuilder.append(LicenseUtil.LICENSE_LIST_BEGIN_HTML);
+                    for (String str : voidArr) {
+                        String loadLicenseFileData = loadLicenseFileData(str);
+                        if (loadLicenseFileData != null) {
+                            if (loadLicenseFileData.length() &gt; 0) {
+                                StringBuilder stringBuilder2 = new StringBuilder();
+                                stringBuilder2.append("var el = document.getElementById('");
+                                stringBuilder2.append(str);
+                                stringBuilder2.append("'); var disp = 'none'; if (el.style.display == 'none') disp = 'block'; el.style.display = disp;");
+                                String stringBuilder3 = stringBuilder2.toString();
+                                stringBuilder.append(LicenseUtil.LICENSE_LIST_ITEM_BEGIN_HTML);
+                                stringBuilder.append(String.format(LicenseUtil.LICENSE_NAME_BEGIN_HTML, new Object[]{stringBuilder3}));
+                                stringBuilder.append(str);
+                                stringBuilder.append(LicenseUtil.LICENSE_NAME_END_HTML);
+                                stringBuilder.append(String.format(LicenseUtil.LICENSE_DETAIL_BEGIN_HTML, new Object[]{str}));
+                                stringBuilder.append(loadLicenseFileData);
+                                stringBuilder.append(LicenseUtil.LICENSE_DETAIL_END_HTML);
+                                stringBuilder.append(LicenseUtil.LICENSE_LIST_ITEM_END_HTML);
+                            }
+                        }
+                    }
+                    stringBuilder.append(LicenseUtil.LICENSE_LIST_END_HTML);
+                    stringBuilder.append(LicenseUtil.HTML_END_HTML);
+                    return stringBuilder.toString();
+                }
+            }
+            return "";
+        }
+
+        protected void onPostExecute(String str) {
+            LicenseUtil.this.mListener.onFinish(str);
+        }
+
+        private java.lang.String[] loadLicenseFileList() {
+            /* JADX: method processing error */
+/*
+Error: java.lang.NullPointerException
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.searchTryCatchDominators(ProcessTryCatchRegions.java:75)
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.process(ProcessTryCatchRegions.java:45)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.postProcessRegions(RegionMakerVisitor.java:63)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.visit(RegionMakerVisitor.java:58)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:31)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:17)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:14)
+	at jadx.core.ProcessClass.process(ProcessClass.java:37)
+	at jadx.api.JadxDecompiler.processClass(JadxDecompiler.java:306)
+	at jadx.api.JavaClass.decompile(JavaClass.java:62)
+	at jadx.api.JadxDecompiler$1.run(JadxDecompiler.java:199)
+*/
+            /*
+            r2 = this;
+            r0 = com.xumo.xumo.util.LicenseUtil.this;
+            r0 = r0.mContext;
+            r0 = r0.getAssets();
+            r1 = "licenses";	 Catch:{ Exception -&gt; 0x0011 }
+            r0 = r0.list(r1);	 Catch:{ Exception -&gt; 0x0011 }
+            goto L_0x0012;
+        L_0x0011:
+            r0 = 0;
+        L_0x0012:
+            return r0;
+            */
+            throw new UnsupportedOperationException("Method not decompiled: com.xumo.xumo.util.LicenseUtil.LicenseLoadAsyncTask.loadLicenseFileList():java.lang.String[]");
+        }
+
+        private java.lang.String loadLicenseFileData(java.lang.String r6) {
+            /* JADX: method processing error */
+/*
+Error: java.lang.NullPointerException
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.searchTryCatchDominators(ProcessTryCatchRegions.java:75)
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.process(ProcessTryCatchRegions.java:45)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.postProcessRegions(RegionMakerVisitor.java:63)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.visit(RegionMakerVisitor.java:58)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:31)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:17)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:14)
+	at jadx.core.ProcessClass.process(ProcessClass.java:37)
+	at jadx.api.JadxDecompiler.processClass(JadxDecompiler.java:306)
+	at jadx.api.JavaClass.decompile(JavaClass.java:62)
+	at jadx.api.JadxDecompiler$1.run(JadxDecompiler.java:199)
+*/
+            /*
+            r5 = this;
+            r0 = "";
+            r1 = 0;
+            r2 = com.xumo.xumo.util.LicenseUtil.this;	 Catch:{ all -&gt; 0x0055 }
+            r2 = r2.mContext;	 Catch:{ all -&gt; 0x0055 }
+            r2 = r2.getAssets();	 Catch:{ all -&gt; 0x0055 }
+            r3 = new java.lang.StringBuilder;	 Catch:{ all -&gt; 0x0055 }
+            r3.&lt;init&gt;();	 Catch:{ all -&gt; 0x0055 }
+            r4 = "licenses/";	 Catch:{ all -&gt; 0x0055 }
+            r3.append(r4);	 Catch:{ all -&gt; 0x0055 }
+            r3.append(r6);	 Catch:{ all -&gt; 0x0055 }
+            r6 = r3.toString();	 Catch:{ all -&gt; 0x0055 }
+            r6 = r2.open(r6);	 Catch:{ all -&gt; 0x0055 }
+            r2 = new java.io.BufferedReader;	 Catch:{ all -&gt; 0x0053 }
+            r3 = new java.io.InputStreamReader;	 Catch:{ all -&gt; 0x0053 }
+            r3.&lt;init&gt;(r6);	 Catch:{ all -&gt; 0x0053 }
+            r2.&lt;init&gt;(r3);	 Catch:{ all -&gt; 0x0053 }
+        L_0x002c:
+            r1 = r2.readLine();	 Catch:{ all -&gt; 0x0050 }
+            if (r1 == 0) goto L_0x0047;	 Catch:{ all -&gt; 0x0050 }
+        L_0x0032:
+            r3 = new java.lang.StringBuilder;	 Catch:{ all -&gt; 0x0050 }
+            r3.&lt;init&gt;();	 Catch:{ all -&gt; 0x0050 }
+            r3.append(r0);	 Catch:{ all -&gt; 0x0050 }
+            r3.append(r1);	 Catch:{ all -&gt; 0x0050 }
+            r0 = "&lt;/br&gt;";	 Catch:{ all -&gt; 0x0050 }
+            r3.append(r0);	 Catch:{ all -&gt; 0x0050 }
+            r0 = r3.toString();	 Catch:{ all -&gt; 0x0050 }
+            goto L_0x002c;
+        L_0x0047:
+            if (r6 == 0) goto L_0x004c;
+        L_0x0049:
+            r6.close();	 Catch:{ Exception -&gt; 0x0062 }
+        L_0x004c:
+            r2.close();	 Catch:{ Exception -&gt; 0x0062 }
+            goto L_0x0064;	 Catch:{ Exception -&gt; 0x0062 }
+        L_0x0050:
+            r0 = move-exception;	 Catch:{ Exception -&gt; 0x0062 }
+            r1 = r2;	 Catch:{ Exception -&gt; 0x0062 }
+            goto L_0x0057;	 Catch:{ Exception -&gt; 0x0062 }
+        L_0x0053:
+            r0 = move-exception;	 Catch:{ Exception -&gt; 0x0062 }
+            goto L_0x0057;	 Catch:{ Exception -&gt; 0x0062 }
+        L_0x0055:
+            r0 = move-exception;	 Catch:{ Exception -&gt; 0x0062 }
+            r6 = r1;	 Catch:{ Exception -&gt; 0x0062 }
+        L_0x0057:
+            if (r6 == 0) goto L_0x005c;	 Catch:{ Exception -&gt; 0x0062 }
+        L_0x0059:
+            r6.close();	 Catch:{ Exception -&gt; 0x0062 }
+        L_0x005c:
+            if (r1 == 0) goto L_0x0061;	 Catch:{ Exception -&gt; 0x0062 }
+        L_0x005e:
+            r1.close();	 Catch:{ Exception -&gt; 0x0062 }
+        L_0x0061:
+            throw r0;	 Catch:{ Exception -&gt; 0x0062 }
+        L_0x0062:
+            r0 = "";
+        L_0x0064:
+            return r0;
+            */
+            throw new UnsupportedOperationException("Method not decompiled: com.xumo.xumo.util.LicenseUtil.LicenseLoadAsyncTask.loadLicenseFileData(java.lang.String):java.lang.String");
+        }
+    }
+
+    public LicenseUtil(Context context) {
+        this.mContext = context;
+    }
+
+    public void startLicenseList(LicenseListListener licenseListListener) {
+        this.mListener = licenseListListener;
+        new LicenseLoadAsyncTask().execute(new Void[0]);
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:13 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

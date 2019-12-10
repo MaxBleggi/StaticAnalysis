@@ -1,0 +1,221 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/res/values-tl/strings.xml" target="_blank">/xumo_apk/jadx_source_code/res/values-tl/strings.xml</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="strings.xml" data-line="" class="code line-numbers"><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;resources&gt;
+    &lt;string name="abc_action_bar_home_description"&gt;Mag-navigate patungo sa home&lt;/string&gt;
+    &lt;string name="abc_action_bar_up_description"&gt;Mag-navigate pataas&lt;/string&gt;
+    &lt;string name="abc_action_menu_overflow_description"&gt;Higit pang mga opsyon&lt;/string&gt;
+    &lt;string name="abc_action_mode_done"&gt;Tapos na&lt;/string&gt;
+    &lt;string name="abc_activity_chooser_view_see_all"&gt;Tingnan lahat&lt;/string&gt;
+    &lt;string name="abc_activitychooserview_choose_application"&gt;Pumili ng isang app&lt;/string&gt;
+    &lt;string name="abc_capital_off"&gt;I-OFF&lt;/string&gt;
+    &lt;string name="abc_capital_on"&gt;I-ON&lt;/string&gt;
+    &lt;string name="abc_menu_alt_shortcut_label"&gt;Alt+&lt;/string&gt;
+    &lt;string name="abc_menu_ctrl_shortcut_label"&gt;Ctrl+&lt;/string&gt;
+    &lt;string name="abc_menu_delete_shortcut_label"&gt;delete&lt;/string&gt;
+    &lt;string name="abc_menu_enter_shortcut_label"&gt;enter&lt;/string&gt;
+    &lt;string name="abc_menu_function_shortcut_label"&gt;Function+&lt;/string&gt;
+    &lt;string name="abc_menu_meta_shortcut_label"&gt;Meta+&lt;/string&gt;
+    &lt;string name="abc_menu_shift_shortcut_label"&gt;Shift+&lt;/string&gt;
+    &lt;string name="abc_menu_space_shortcut_label"&gt;space&lt;/string&gt;
+    &lt;string name="abc_menu_sym_shortcut_label"&gt;Sym+&lt;/string&gt;
+    &lt;string name="abc_prepend_shortcut_label"&gt;Menu+&lt;/string&gt;
+    &lt;string name="abc_search_hint"&gt;Maghanap…&lt;/string&gt;
+    &lt;string name="abc_searchview_description_clear"&gt;I-clear ang query&lt;/string&gt;
+    &lt;string name="abc_searchview_description_query"&gt;Query sa paghahanap&lt;/string&gt;
+    &lt;string name="abc_searchview_description_search"&gt;Maghanap&lt;/string&gt;
+    &lt;string name="abc_searchview_description_submit"&gt;Isumite ang query&lt;/string&gt;
+    &lt;string name="abc_searchview_description_voice"&gt;Paghahanap gamit ang boses&lt;/string&gt;
+    &lt;string name="abc_shareactionprovider_share_with"&gt;Ibahagi sa/kay&lt;/string&gt;
+    &lt;string name="abc_shareactionprovider_share_with_application"&gt;Ibahagi gamit ang %s&lt;/string&gt;
+    &lt;string name="abc_toolbar_collapse_description"&gt;I-collapse&lt;/string&gt;
+    &lt;string name="cast_ad_label"&gt;Ad&lt;/string&gt;
+    &lt;string name="cast_casting_to_device"&gt;Nagka-cast sa %1$s&lt;/string&gt;
+    &lt;string name="cast_closed_captions"&gt;Mga closed caption&lt;/string&gt;
+    &lt;string name="cast_closed_captions_unavailable"&gt;Hindi available ang mga closed caption&lt;/string&gt;
+    &lt;string name="cast_connecting_to_device"&gt;Kumokonekta sa %1$s&lt;/string&gt;
+    &lt;string name="cast_disconnect"&gt;Idiskonekta&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_ad_image_description"&gt;Ipinapakitang larawan habang nagpe-play ng ad ang cast receiver&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_ad_in_progress"&gt;Nasa proseso ang paggawa ng ad...&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_background_image"&gt;Album art&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_live_stream_indicator"&gt;Live stream&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_loading"&gt;Naglo-load…&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_skip_ad_label"&gt;Laktawan ang Ad&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_skip_ad_text"&gt;Malalaktawan mo ang ad sa loob ng %1$d…&lt;/string&gt;
+    &lt;string name="cast_forward"&gt;I-forward&lt;/string&gt;
+    &lt;string name="cast_forward_10"&gt;I-forward nang sampung segundo&lt;/string&gt;
+    &lt;string name="cast_forward_30"&gt;I-forward nang tatlumpung segundo&lt;/string&gt;
+    &lt;string name="cast_intro_overlay_button_text"&gt;@android:string/ok&lt;/string&gt;
+    &lt;string name="cast_mute"&gt;I-mute&lt;/string&gt;
+    &lt;string name="cast_notification_connected_message"&gt;Nakakonekta sa %1$s&lt;/string&gt;
+    &lt;string name="cast_notification_connecting_message"&gt;Kumokonekta sa %1$s&lt;/string&gt;
+    &lt;string name="cast_notification_default_channel_name"&gt;Cast&lt;/string&gt;
+    &lt;string name="cast_notification_disconnect"&gt;Idiskonekta&lt;/string&gt;
+    &lt;string name="cast_pause"&gt;I-pause&lt;/string&gt;
+    &lt;string name="cast_play"&gt;I-play&lt;/string&gt;
+    &lt;string name="cast_rewind"&gt;I-rewind&lt;/string&gt;
+    &lt;string name="cast_rewind_10"&gt;I-rewind nang sampung segundo&lt;/string&gt;
+    &lt;string name="cast_rewind_30"&gt;I-rewind nang tatlumpung segundo&lt;/string&gt;
+    &lt;string name="cast_seek_bar"&gt;Kontrol sa paghahanap sa pag-playback&lt;/string&gt;
+    &lt;string name="cast_skip_next"&gt;Lumaktaw sa susunod na item&lt;/string&gt;
+    &lt;string name="cast_skip_prev"&gt;Lumaktaw sa nakaraang item&lt;/string&gt;
+    &lt;string name="cast_stop"&gt;Ihinto&lt;/string&gt;
+    &lt;string name="cast_stop_live_stream"&gt;Ihinto ang live stream&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_audio"&gt;Audio&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_cancel"&gt;Kanselahin&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_closed_captions"&gt;Mga Nakasarang Caption&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_default_track_name"&gt;Track %1$d&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_none"&gt;Wala&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_ok"&gt;OK&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_subtitles"&gt;Mga Subtitle&lt;/string&gt;
+    &lt;string name="cast_unmute"&gt;I-unmute&lt;/string&gt;
+    &lt;string name="common_google_play_services_enable_button"&gt;I-enable&lt;/string&gt;
+    &lt;string name="common_google_play_services_enable_text"&gt;Hindi gagana ang %1$s maliban kung ie-enable mo ang mga serbisyo ng Google Play.&lt;/string&gt;
+    &lt;string name="common_google_play_services_enable_title"&gt;I-enable ang mga serbisyo ng Google Play&lt;/string&gt;
+    &lt;string name="common_google_play_services_install_button"&gt;I-install&lt;/string&gt;
+    &lt;string name="common_google_play_services_install_text"&gt;Hindi gagana ang %1$s nang wala ang mga serbisyo ng Google Play na wala sa iyong device.&lt;/string&gt;
+    &lt;string name="common_google_play_services_install_title"&gt;Kunin ang mga serbisyo ng Google Play&lt;/string&gt;
+    &lt;string name="common_google_play_services_notification_channel_name"&gt;Availability ng serbisyo ng Google Play&lt;/string&gt;
+    &lt;string name="common_google_play_services_notification_ticker"&gt;Error sa Mga Serbisyo ng Google Play&lt;/string&gt;
+    &lt;string name="common_google_play_services_unknown_issue"&gt;Nagkakaproblema ang %1$s sa mga serbisyo ng Google Play. Pakisubukang muli.&lt;/string&gt;
+    &lt;string name="common_google_play_services_unsupported_text"&gt;Hindi gagana ang %1$s nang wala ang mga serbisyo ng Google Play, na hindi nasusuportahan ng iyong device.&lt;/string&gt;
+    &lt;string name="common_google_play_services_update_button"&gt;I-update&lt;/string&gt;
+    &lt;string name="common_google_play_services_update_text"&gt;Hindi gagana ang %1$s maliban kung i-a-update mo ang mga serbisyo ng Google Play.&lt;/string&gt;
+    &lt;string name="common_google_play_services_update_title"&gt;I-update ang mga serbisyo ng Google Play&lt;/string&gt;
+    &lt;string name="common_google_play_services_updating_text"&gt;Hindi gagana ang %1$s nang wala ang mga serbisyo ng Google Play na kasalukuyang ina-update.&lt;/string&gt;
+    &lt;string name="common_google_play_services_wear_update_text"&gt;Kailangan ang bagong bersyon ng mga serbisyo ng Google Play. Mag-a-update itong mag-isa sa ilang sandali.&lt;/string&gt;
+    &lt;string name="common_open_on_phone"&gt;Buksan sa telepono&lt;/string&gt;
+    &lt;string name="common_signin_button_text"&gt;Mag-sign in&lt;/string&gt;
+    &lt;string name="common_signin_button_text_long"&gt;Mag-sign in sa Google&lt;/string&gt;
+    &lt;string name="exo_controls_fastforward_description"&gt;I-fast forward&lt;/string&gt;
+    &lt;string name="exo_controls_fullscreen_description"&gt;Fullscreen mode&lt;/string&gt;
+    &lt;string name="exo_controls_next_description"&gt;Susunod na track&lt;/string&gt;
+    &lt;string name="exo_controls_pause_description"&gt;I-pause&lt;/string&gt;
+    &lt;string name="exo_controls_play_description"&gt;I-play&lt;/string&gt;
+    &lt;string name="exo_controls_previous_description"&gt;Nakaraang track&lt;/string&gt;
+    &lt;string name="exo_controls_repeat_all_description"&gt;Ulitin lahat&lt;/string&gt;
+    &lt;string name="exo_controls_repeat_off_description"&gt;Walang uulitin&lt;/string&gt;
+    &lt;string name="exo_controls_repeat_one_description"&gt;Mag-ulit ng isa&lt;/string&gt;
+    &lt;string name="exo_controls_rewind_description"&gt;I-rewind&lt;/string&gt;
+    &lt;string name="exo_controls_shuffle_description"&gt;I-shuffle&lt;/string&gt;
+    &lt;string name="exo_controls_stop_description"&gt;Ihinto&lt;/string&gt;
+    &lt;string name="exo_download_completed"&gt;Tapos na ang pag-download&lt;/string&gt;
+    &lt;string name="exo_download_description"&gt;I-download&lt;/string&gt;
+    &lt;string name="exo_download_downloading"&gt;Nagda-download&lt;/string&gt;
+    &lt;string name="exo_download_failed"&gt;Hindi na-download&lt;/string&gt;
+    &lt;string name="exo_download_notification_channel_name"&gt;Mga Download&lt;/string&gt;
+    &lt;string name="exo_download_removing"&gt;Inaalis ang mga na-download&lt;/string&gt;
+    &lt;string name="exo_item_list"&gt;%1$s, %2$s&lt;/string&gt;
+    &lt;string name="exo_track_bitrate"&gt;%1$.2f Mbps&lt;/string&gt;
+    &lt;string name="exo_track_mono"&gt;Mono&lt;/string&gt;
+    &lt;string name="exo_track_resolution"&gt;%1$d × %2$d&lt;/string&gt;
+    &lt;string name="exo_track_selection_auto"&gt;Awtomatiko&lt;/string&gt;
+    &lt;string name="exo_track_selection_none"&gt;Wala&lt;/string&gt;
+    &lt;string name="exo_track_selection_title_audio"&gt;Audio&lt;/string&gt;
+    &lt;string name="exo_track_selection_title_text"&gt;Text&lt;/string&gt;
+    &lt;string name="exo_track_selection_title_video"&gt;Video&lt;/string&gt;
+    &lt;string name="exo_track_stereo"&gt;Stereo&lt;/string&gt;
+    &lt;string name="exo_track_surround"&gt;Surround sound&lt;/string&gt;
+    &lt;string name="exo_track_surround_5_point_1"&gt;5.1 na surround sound&lt;/string&gt;
+    &lt;string name="exo_track_surround_7_point_1"&gt;7.1 na surround sound&lt;/string&gt;
+    &lt;string name="exo_track_unknown"&gt;Hindi Alam&lt;/string&gt;
+    &lt;string name="expand_button_title"&gt;Advanced&lt;/string&gt;
+    &lt;string name="fcm_fallback_notification_channel_label"&gt;Iba Pa&lt;/string&gt;
+    &lt;string name="mr_button_content_description"&gt;Button na I-cast&lt;/string&gt;
+    &lt;string name="mr_cast_button_connected"&gt;Button na I-cast. Nakakonekta&lt;/string&gt;
+    &lt;string name="mr_cast_button_connecting"&gt;Button na I-cast. Kumokonekta&lt;/string&gt;
+    &lt;string name="mr_cast_button_disconnected"&gt;Button na I-cast. Nadiskonekta&lt;/string&gt;
+    &lt;string name="mr_chooser_searching"&gt;Naghahanap ng mga device&lt;/string&gt;
+    &lt;string name="mr_chooser_title"&gt;I-cast sa&lt;/string&gt;
+    &lt;string name="mr_controller_album_art"&gt;Album art&lt;/string&gt;
+    &lt;string name="mr_controller_casting_screen"&gt;Ikina-cast ang screen&lt;/string&gt;
+    &lt;string name="mr_controller_close_description"&gt;Isara&lt;/string&gt;
+    &lt;string name="mr_controller_collapse_group"&gt;I-collapse&lt;/string&gt;
+    &lt;string name="mr_controller_disconnect"&gt;Idiskonekta&lt;/string&gt;
+    &lt;string name="mr_controller_expand_group"&gt;I-expand&lt;/string&gt;
+    &lt;string name="mr_controller_no_info_available"&gt;Walang available na impormasyon&lt;/string&gt;
+    &lt;string name="mr_controller_no_media_selected"&gt;Walang napiling media&lt;/string&gt;
+    &lt;string name="mr_controller_pause"&gt;I-pause&lt;/string&gt;
+    &lt;string name="mr_controller_play"&gt;I-play&lt;/string&gt;
+    &lt;string name="mr_controller_stop"&gt;Ihinto&lt;/string&gt;
+    &lt;string name="mr_controller_stop_casting"&gt;Ihinto ang pag-cast&lt;/string&gt;
+    &lt;string name="mr_controller_volume_slider"&gt;Slider ng volume&lt;/string&gt;
+    &lt;string name="mr_system_route_name"&gt;System&lt;/string&gt;
+    &lt;string name="mr_user_route_category_name"&gt;Mga Device&lt;/string&gt;
+    &lt;string name="search_menu_title"&gt;Maghanap&lt;/string&gt;
+    &lt;string name="status_bar_notification_info_overflow"&gt;999+&lt;/string&gt;
+    &lt;string name="summary_collapsed_preference_list"&gt;%1$s, %2$s&lt;/string&gt;
+    &lt;string name="v7_preference_off"&gt;NAKA-OFF&lt;/string&gt;
+    &lt;string name="v7_preference_on"&gt;NAKA-ON&lt;/string&gt;
+&lt;/resources&gt;
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:1 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

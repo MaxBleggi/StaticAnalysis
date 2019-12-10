@@ -1,0 +1,193 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9"><div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/AndroidManifest.xml" target="_blank">/xumo_apk/jadx_source_code/AndroidManifest.xml</a></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-70">report</i><h5>\b([a-f0-9]{40})\b</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>A SHA1 hash was found! You are lucky because SHA1 is easily crack-able. Just google for "SHA1 decrypt online" and you will come a long end.</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#AndroidManifest_xml21bafb" class="active">line 21</a></li></ul></div><div class="card-content"><div id="AndroidManifest_xml21bafb">Code @ line 21<pre data-start="18" data-line="21" data-src="AndroidManifest.xml" class="code line-numbers"><code>        &lt;meta-data android:name="com.google.firebase.messaging.default_notification_icon" android:resource="@drawable/ic_xumo_android_icon" /&gt;
+        &lt;meta-data android:name="com.google.firebase.messaging.default_notification_color" android:resource="@color/xumo_black" /&gt;
+        &lt;meta-data android:name="com.google.firebase.messaging.default_notification_channel_id" android:value="@string/default_notification_channel_id" /&gt;
+        &lt;meta-data android:name="io.fabric.ApiKey" android:value="2611d57b285fbaca2aaeb2121e32adf3349e0b09" /&gt;
+        &lt;activity android:theme="@style/AppTheme_Splash" android:name="com.xumo.xumo.activity.SplashActivity" android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize"&gt;
+            &lt;intent-filter&gt;
+                &lt;action android:name="android.intent.action.MAIN" /&gt;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL0FuZHJvaWRNYW5pZmVzdC54bWx8fHxsaW5lOiAyMSA6IFxiKFthLWYwLTldezQwfSlcYnx8fDcwfHx8XGIoW2EtZjAtOV17NDB9KVxifHx8MjF8fHwxOA">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL0FuZHJvaWRNYW5pZmVzdC54bWx8fHxsaW5lOiAyMSA6IFxiKFthLWYwLTldezQwfSlcYnx8fDcwfHx8XGIoW2EtZjAtOV17NDB9KVxifHx8MjF8fHwxOA')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL0FuZHJvaWRNYW5pZmVzdC54bWx8fHxsaW5lOiAyMSA6IFxiKFthLWYwLTldezQwfSlcYnx8fDcwfHx8XGIoW2EtZjAtOV17NDB9KVxifHx8MjF8fHwxOA').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL0FuZHJvaWRNYW5pZmVzdC54bWx8fHxsaW5lOiAyMSA6IFxiKFthLWYwLTldezQwfSlcYnx8fDcwfHx8XGIoW2EtZjAtOV17NDB9KVxifHx8MjF8fHwxOA" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL0FuZHJvaWRNYW5pZmVzdC54bWx8fHxsaW5lOiAyMSA6IFxiKFthLWYwLTldezQwfSlcYnx8fDcwfHx8XGIoW2EtZjAtOV17NDB9KVxifHx8MjF8fHwxOA' , 'ICAgICAgICA8bWV0YS1kYXRhIGFuZHJvaWQ6bmFtZT0iY29tLmdvb2dsZS5maXJlYmFzZS5tZXNzYWdpbmcuZGVmYXVsdF9ub3RpZmljYXRpb25faWNvbiIgYW5kcm9pZDpyZXNvdXJjZT0iQGRyYXdhYmxlL2ljX3h1bW9fYW5kcm9pZF9pY29uIiAvPgogICAgICAgIDxtZXRhLWRhdGEgYW5kcm9pZDpuYW1lPSJjb20uZ29vZ2xlLmZpcmViYXNlLm1lc3NhZ2luZy5kZWZhdWx0X25vdGlmaWNhdGlvbl9jb2xvciIgYW5kcm9pZDpyZXNvdXJjZT0iQGNvbG9yL3h1bW9fYmxhY2siIC8+CiAgICAgICAgPG1ldGEtZGF0YSBhbmRyb2lkOm5hbWU9ImNvbS5nb29nbGUuZmlyZWJhc2UubWVzc2FnaW5nLmRlZmF1bHRfbm90aWZpY2F0aW9uX2NoYW5uZWxfaWQiIGFuZHJvaWQ6dmFsdWU9IkBzdHJpbmcvZGVmYXVsdF9ub3RpZmljYXRpb25fY2hhbm5lbF9pZCIgLz4KICAgICAgICA8bWV0YS1kYXRhIGFuZHJvaWQ6bmFtZT0iaW8uZmFicmljLkFwaUtleSIgYW5kcm9pZDp2YWx1ZT0iMjYxMWQ1N2IyODVmYmFjYTJhYWViMjEyMWUzMmFkZjMzNDllMGIwOSIgLz4KICAgICAgICA8YWN0aXZpdHkgYW5kcm9pZDp0aGVtZT0iQHN0eWxlL0FwcFRoZW1lX1NwbGFzaCIgYW5kcm9pZDpuYW1lPSJjb20ueHVtby54dW1vLmFjdGl2aXR5LlNwbGFzaEFjdGl2aXR5IiBhbmRyb2lkOmNvbmZpZ0NoYW5nZXM9ImtleWJvYXJkSGlkZGVufG9yaWVudGF0aW9ufHNjcmVlbkxheW91dHxzY3JlZW5TaXplfHNtYWxsZXN0U2NyZWVuU2l6ZSI+CiAgICAgICAgICAgIDxpbnRlbnQtZmlsdGVyPgogICAgICAgICAgICAgICAgPGFjdGlvbiBhbmRyb2lkOm5hbWU9ImFuZHJvaWQuaW50ZW50LmFjdGlvbi5NQUlOIiAvPgo=');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-50">report</i><h5>(private|secret|api|aws)[_-]?key</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>Sensitive parameters which can contain hardcoded credentials. The score is quite low because this query is often a false-positive.</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#AndroidManifest_xml21priv" class="active">line 21</a></li></ul></div><div class="card-content"><div id="AndroidManifest_xml21priv">Code @ line 21<pre data-start="18" data-line="21" data-src="AndroidManifest.xml" class="code line-numbers"><code>        &lt;meta-data android:name="com.google.firebase.messaging.default_notification_icon" android:resource="@drawable/ic_xumo_android_icon" /&gt;
+        &lt;meta-data android:name="com.google.firebase.messaging.default_notification_color" android:resource="@color/xumo_black" /&gt;
+        &lt;meta-data android:name="com.google.firebase.messaging.default_notification_channel_id" android:value="@string/default_notification_channel_id" /&gt;
+        &lt;meta-data android:name="io.fabric.ApiKey" android:value="2611d57b285fbaca2aaeb2121e32adf3349e0b09" /&gt;
+        &lt;activity android:theme="@style/AppTheme_Splash" android:name="com.xumo.xumo.activity.SplashActivity" android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize"&gt;
+            &lt;intent-filter&gt;
+                &lt;action android:name="android.intent.action.MAIN" /&gt;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL0FuZHJvaWRNYW5pZmVzdC54bWx8fHxsaW5lOiAyMSA6IChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8NTB8fHwocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDIxfHx8MTg">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL0FuZHJvaWRNYW5pZmVzdC54bWx8fHxsaW5lOiAyMSA6IChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8NTB8fHwocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDIxfHx8MTg')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL0FuZHJvaWRNYW5pZmVzdC54bWx8fHxsaW5lOiAyMSA6IChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8NTB8fHwocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDIxfHx8MTg').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL0FuZHJvaWRNYW5pZmVzdC54bWx8fHxsaW5lOiAyMSA6IChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8NTB8fHwocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDIxfHx8MTg" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL0FuZHJvaWRNYW5pZmVzdC54bWx8fHxsaW5lOiAyMSA6IChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8NTB8fHwocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDIxfHx8MTg' , 'ICAgICAgICA8bWV0YS1kYXRhIGFuZHJvaWQ6bmFtZT0iY29tLmdvb2dsZS5maXJlYmFzZS5tZXNzYWdpbmcuZGVmYXVsdF9ub3RpZmljYXRpb25faWNvbiIgYW5kcm9pZDpyZXNvdXJjZT0iQGRyYXdhYmxlL2ljX3h1bW9fYW5kcm9pZF9pY29uIiAvPgogICAgICAgIDxtZXRhLWRhdGEgYW5kcm9pZDpuYW1lPSJjb20uZ29vZ2xlLmZpcmViYXNlLm1lc3NhZ2luZy5kZWZhdWx0X25vdGlmaWNhdGlvbl9jb2xvciIgYW5kcm9pZDpyZXNvdXJjZT0iQGNvbG9yL3h1bW9fYmxhY2siIC8+CiAgICAgICAgPG1ldGEtZGF0YSBhbmRyb2lkOm5hbWU9ImNvbS5nb29nbGUuZmlyZWJhc2UubWVzc2FnaW5nLmRlZmF1bHRfbm90aWZpY2F0aW9uX2NoYW5uZWxfaWQiIGFuZHJvaWQ6dmFsdWU9IkBzdHJpbmcvZGVmYXVsdF9ub3RpZmljYXRpb25fY2hhbm5lbF9pZCIgLz4KICAgICAgICA8bWV0YS1kYXRhIGFuZHJvaWQ6bmFtZT0iaW8uZmFicmljLkFwaUtleSIgYW5kcm9pZDp2YWx1ZT0iMjYxMWQ1N2IyODVmYmFjYTJhYWViMjEyMWUzMmFkZjMzNDllMGIwOSIgLz4KICAgICAgICA8YWN0aXZpdHkgYW5kcm9pZDp0aGVtZT0iQHN0eWxlL0FwcFRoZW1lX1NwbGFzaCIgYW5kcm9pZDpuYW1lPSJjb20ueHVtby54dW1vLmFjdGl2aXR5LlNwbGFzaEFjdGl2aXR5IiBhbmRyb2lkOmNvbmZpZ0NoYW5nZXM9ImtleWJvYXJkSGlkZGVufG9yaWVudGF0aW9ufHNjcmVlbkxheW91dHxzY3JlZW5TaXplfHNtYWxsZXN0U2NyZWVuU2l6ZSI+CiAgICAgICAgICAgIDxpbnRlbnQtZmlsdGVyPgogICAgICAgICAgICAgICAgPGFjdGlvbiBhbmRyb2lkOm5hbWU9ImFuZHJvaWQuaW50ZW50LmFjdGlvbi5NQUlOIiAvPgo=');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="AndroidManifest.xml" data-line="21,21," class="code line-numbers"><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="34" android:versionName="1.1" android:compileSdkVersion="28" android:compileSdkVersionCodename="9" package="com.xumo.xumo.tv" platformBuildVersionCode="34" platformBuildVersionName="1.1"&gt;
+    &lt;uses-sdk android:minSdkVersion="19" android:targetSdkVersion="28" /&gt;
+    &lt;permission android:name="com.xumo.xumo.c2dm.permission.C2D_MESSAGE" android:protectionLevel="signature|signatureOrSystem" /&gt;
+    &lt;uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /&gt;
+    &lt;uses-permission android:name="com.xumo.xumo.c2dm.permission.C2D_MESSAGE" /&gt;
+    &lt;uses-permission android:name="android.permission.INTERNET" /&gt;
+    &lt;uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /&gt;
+    &lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /&gt;
+    &lt;uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /&gt;
+    &lt;uses-permission android:name="android.permission.WAKE_LOCK" /&gt;
+    &lt;uses-feature android:name="android.software.leanback" android:required="true" /&gt;
+    &lt;uses-feature android:name="android.hardware.touchscreen" android:required="false" /&gt;
+    &lt;uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" /&gt;
+    &lt;uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" /&gt;
+    &lt;application android:theme="@style/AppTheme" android:label="@string/app_name" android:icon="@mipmap/ic_launcher" android:name="com.xumo.xumo.application.XumoApplication" android:allowBackup="true" android:supportsRtl="true" android:banner="@drawable/xumo_banner" android:appComponentFactory="androidx.core.app.CoreComponentFactory"&gt;
+        &lt;meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" /&gt;
+        &lt;meta-data android:name="com.google.firebase.messaging.default_notification_icon" android:resource="@drawable/ic_xumo_android_icon" /&gt;
+        &lt;meta-data android:name="com.google.firebase.messaging.default_notification_color" android:resource="@color/xumo_black" /&gt;
+        &lt;meta-data android:name="com.google.firebase.messaging.default_notification_channel_id" android:value="@string/default_notification_channel_id" /&gt;
+        &lt;meta-data android:name="io.fabric.ApiKey" android:value="2611d57b285fbaca2aaeb2121e32adf3349e0b09" /&gt;
+        &lt;activity android:theme="@style/AppTheme_Splash" android:name="com.xumo.xumo.activity.SplashActivity" android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize"&gt;
+            &lt;intent-filter&gt;
+                &lt;action android:name="android.intent.action.MAIN" /&gt;
+                &lt;category android:name="android.intent.category.LAUNCHER" /&gt;
+                &lt;category android:name="android.intent.category.LEANBACK_LAUNCHER" /&gt;
+            &lt;/intent-filter&gt;
+            &lt;intent-filter&gt;
+                &lt;data android:scheme="xumo" android:host="open" /&gt;
+                &lt;action android:name="android.intent.action.VIEW" /&gt;
+                &lt;category android:name="android.intent.category.DEFAULT" /&gt;
+                &lt;category android:name="android.intent.category.BROWSABLE" /&gt;
+            &lt;/intent-filter&gt;
+        &lt;/activity&gt;
+        &lt;activity android:theme="@style/TvTheme" android:label="@string/app_name" android:name="com.xumo.xumo.activity.MainTvActivity" android:screenOrientation="landscape" android:configChanges="keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize"&gt;
+            &lt;intent-filter&gt;
+                &lt;action android:name="android.intent.action.VIEW" /&gt;
+                &lt;action android:name="android.intent.action.MAIN" /&gt;
+                &lt;category android:name="android.intent.category.LEANBACK_LAUNCHER" /&gt;
+                &lt;category android:name="android.intent.category.DEFAULT" /&gt;
+                &lt;category android:name="android.intent.category.BROWSABLE" /&gt;
+                &lt;data android:scheme="http" android:host="www.xumo.com" /&gt;
+                &lt;data android:scheme="https" android:host="www.xumo.com" /&gt;
+                &lt;data android:scheme="http" android:host="www.xumo.tv" /&gt;
+                &lt;data android:scheme="https" android:host="www.xumo.tv" /&gt;
+                &lt;data android:scheme="http" android:host="xumo.page.link" /&gt;
+                &lt;data android:scheme="https" android:host="xumo.page.link" /&gt;
+            &lt;/intent-filter&gt;
+        &lt;/activity&gt;
+        &lt;service android:name="com.xumo.xumo.service.XumoFirebaseInstanceIDService"&gt;
+            &lt;intent-filter&gt;
+                &lt;action android:name="com.google.firebase.INSTANCE_ID_EVENT" /&gt;
+            &lt;/intent-filter&gt;
+        &lt;/service&gt;
+        &lt;service android:name="com.xumo.xumo.service.XumoFirebaseMessagingService"&gt;
+            &lt;intent-filter&gt;
+                &lt;action android:name="com.google.firebase.MESSAGING_EVENT" /&gt;
+            &lt;/intent-filter&gt;
+        &lt;/service&gt;
+        &lt;service android:name="com.xumo.xumo.service.XumoFcmJobService" android:permission="android.permission.BIND_JOB_SERVICE" /&gt;
+        &lt;service android:name="com.xumo.xumo.service.XumoFcmAlarmService" /&gt;
+        &lt;receiver android:name="com.xumo.xumo.receivers.XumoFcmReceiver" android:permission="com.google.android.c2dm.permission.SEND" android:exported="true"&gt;
+            &lt;intent-filter android:priority="1000"&gt;
+                &lt;action android:name="com.google.android.c2dm.intent.RECEIVE" /&gt;
+                &lt;category android:name="{applicationId}" /&gt;
+            &lt;/intent-filter&gt;
+        &lt;/receiver&gt;
+        &lt;receiver android:name="com.google.android.gms.cast.framework.media.MediaIntentReceiver" android:exported="false" /&gt;
+        &lt;service android:name="com.google.android.gms.cast.framework.media.MediaNotificationService" android:exported="false" /&gt;
+        &lt;service android:name="com.google.android.gms.cast.framework.ReconnectionService" android:exported="false" /&gt;
+        &lt;service android:name="com.google.firebase.messaging.FirebaseMessagingService" android:exported="true"&gt;
+            &lt;intent-filter android:priority="-500"&gt;
+                &lt;action android:name="com.google.firebase.MESSAGING_EVENT" /&gt;
+            &lt;/intent-filter&gt;
+        &lt;/service&gt;
+        &lt;service android:name="com.google.firebase.components.ComponentDiscoveryService" android:exported="false"&gt;
+            &lt;meta-data android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar" android:value="com.google.firebase.components.ComponentRegistrar" /&gt;
+            &lt;meta-data android:name="com.google.firebase.components:com.google.firebase.iid.Registrar" android:value="com.google.firebase.components.ComponentRegistrar" /&gt;
+        &lt;/service&gt;
+        &lt;receiver android:name="com.google.android.gms.measurement.AppMeasurementReceiver" android:enabled="true" android:exported="false" /&gt;
+        &lt;receiver android:name="com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver" android:permission="android.permission.INSTALL_PACKAGES" android:enabled="true" android:exported="true"&gt;
+            &lt;intent-filter&gt;
+                &lt;action android:name="com.android.vending.INSTALL_REFERRER" /&gt;
+            &lt;/intent-filter&gt;
+        &lt;/receiver&gt;
+        &lt;service android:name="com.google.android.gms.measurement.AppMeasurementService" android:enabled="true" android:exported="false" /&gt;
+        &lt;service android:name="com.google.android.gms.measurement.AppMeasurementJobService" android:permission="android.permission.BIND_JOB_SERVICE" android:enabled="true" android:exported="false" /&gt;
+        &lt;receiver android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver" android:permission="com.google.android.c2dm.permission.SEND" android:exported="true"&gt;
+            &lt;intent-filter&gt;
+                &lt;action android:name="com.google.android.c2dm.intent.RECEIVE" /&gt;
+            &lt;/intent-filter&gt;
+        &lt;/receiver&gt;
+        &lt;service android:name="com.google.firebase.iid.FirebaseInstanceIdService" android:exported="true"&gt;
+            &lt;intent-filter android:priority="-500"&gt;
+                &lt;action android:name="com.google.firebase.INSTANCE_ID_EVENT" /&gt;
+            &lt;/intent-filter&gt;
+        &lt;/service&gt;
+        &lt;provider android:name="com.google.firebase.provider.FirebaseInitProvider" android:exported="false" android:authorities="com.xumo.xumo.tv.firebaseinitprovider" android:initOrder="100" /&gt;
+        &lt;activity android:theme="@*android:style/Theme.Translucent.NoTitleBar" android:name="com.google.android.gms.common.api.GoogleApiActivity" android:exported="false" /&gt;
+        &lt;provider android:name="com.crashlytics.android.CrashlyticsInitProvider" android:exported="false" android:authorities="com.xumo.xumo.tv.crashlyticsinitprovider" android:initOrder="90" /&gt;
+    &lt;/application&gt;
+&lt;/manifest&gt;
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:1 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

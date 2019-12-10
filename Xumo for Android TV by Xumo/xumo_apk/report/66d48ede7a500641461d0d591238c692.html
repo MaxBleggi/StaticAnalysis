@@ -1,0 +1,732 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9"><div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/crashlytics/android/core/CrashlyticsCore.java" target="_blank">/xumo_apk/jadx_source_code/com/crashlytics/android/core/CrashlyticsCore.java</a></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-50">report</i><h5>(private|secret|api|aws)[_-]?key</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>Sensitive parameters which can contain hardcoded credentials. The score is quite low because this query is often a false-positive.</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#CrashlyticsCore_java10priv" class="active">line 10</a></li><li class="tab"><a style="color: #d82c2b;" href="#CrashlyticsCore_java192priv">line 192</a></li></ul></div><div class="card-content"><div id="CrashlyticsCore_java10priv">Code @ line 10<pre data-start="7" data-line="10" data-src="CrashlyticsCore.java" class="code line-numbers"><code>import io.fabric.sdk.android.Fabric;
+import io.fabric.sdk.android.Kit;
+import io.fabric.sdk.android.Logger;
+import io.fabric.sdk.android.services.common.ApiKey;
+import io.fabric.sdk.android.services.common.CommonUtils;
+import io.fabric.sdk.android.services.common.ExecutorUtils;
+import io.fabric.sdk.android.services.common.FirebaseInfo;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvQ3Jhc2hseXRpY3NDb3JlLmphdmF8fHxsaW5lOiAxMCA6IChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8NTB8fHwocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDEwfHx8Nw">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvQ3Jhc2hseXRpY3NDb3JlLmphdmF8fHxsaW5lOiAxMCA6IChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8NTB8fHwocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDEwfHx8Nw')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvQ3Jhc2hseXRpY3NDb3JlLmphdmF8fHxsaW5lOiAxMCA6IChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8NTB8fHwocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDEwfHx8Nw').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvQ3Jhc2hseXRpY3NDb3JlLmphdmF8fHxsaW5lOiAxMCA6IChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8NTB8fHwocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDEwfHx8Nw" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvQ3Jhc2hseXRpY3NDb3JlLmphdmF8fHxsaW5lOiAxMCA6IChwcml2YXRlfHNlY3JldHxhcGl8YXdzKVtfLV0/a2V5fHx8NTB8fHwocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDEwfHx8Nw' , 'aW1wb3J0IGlvLmZhYnJpYy5zZGsuYW5kcm9pZC5GYWJyaWM7CmltcG9ydCBpby5mYWJyaWMuc2RrLmFuZHJvaWQuS2l0OwppbXBvcnQgaW8uZmFicmljLnNkay5hbmRyb2lkLkxvZ2dlcjsKaW1wb3J0IGlvLmZhYnJpYy5zZGsuYW5kcm9pZC5zZXJ2aWNlcy5jb21tb24uQXBpS2V5OwppbXBvcnQgaW8uZmFicmljLnNkay5hbmRyb2lkLnNlcnZpY2VzLmNvbW1vbi5Db21tb25VdGlsczsKaW1wb3J0IGlvLmZhYnJpYy5zZGsuYW5kcm9pZC5zZXJ2aWNlcy5jb21tb24uRXhlY3V0b3JVdGlsczsKaW1wb3J0IGlvLmZhYnJpYy5zZGsuYW5kcm9pZC5zZXJ2aWNlcy5jb21tb24uRmlyZWJhc2VJbmZvOwo=');  
+                                            });
+                                            </script>
+                                            </div><div id="CrashlyticsCore_java192priv">Code @ line 192<pre data-start="189" data-line="192" data-src="CrashlyticsCore.java" class="code line-numbers"><code>        if (kit.disabled) {
+            return false;
+        }
+        String value = new ApiKey().getValue(context2);
+        if (value == null) {
+            return false;
+        }
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvQ3Jhc2hseXRpY3NDb3JlLmphdmF8fHxsaW5lOiAxOTIgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwxOTJ8fHwxODk">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvQ3Jhc2hseXRpY3NDb3JlLmphdmF8fHxsaW5lOiAxOTIgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwxOTJ8fHwxODk')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvQ3Jhc2hseXRpY3NDb3JlLmphdmF8fHxsaW5lOiAxOTIgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwxOTJ8fHwxODk').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvQ3Jhc2hseXRpY3NDb3JlLmphdmF8fHxsaW5lOiAxOTIgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwxOTJ8fHwxODk" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvQ3Jhc2hseXRpY3NDb3JlLmphdmF8fHxsaW5lOiAxOTIgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwxOTJ8fHwxODk' , 'ICAgICAgICBpZiAoa2l0LmRpc2FibGVkKSB7CiAgICAgICAgICAgIHJldHVybiBmYWxzZTsKICAgICAgICB9CiAgICAgICAgU3RyaW5nIHZhbHVlID0gbmV3IEFwaUtleSgpLmdldFZhbHVlKGNvbnRleHQyKTsKICAgICAgICBpZiAodmFsdWUgPT0gbnVsbCkgewogICAgICAgICAgICByZXR1cm4gZmFsc2U7CiAgICAgICAgfQo=');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-55">report</i><h5>net.URL|openStream</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>Insecure Communication: the app URL can connect to http/https/ftp/jar</span></div></li></ul><ul class="collapsible"><li><div class="collapsible-header"><img data-position="top" data-tooltip="OWASP item" src="html/owasp_logo.png" height="20em" style="margin-right: 1rem;margin-left: 5px;" class="tooltipped"></img> OWASP Item</div><div class="collapsible-body"><span>For more information, have a look at: https://www.owasp.org/index.php/OWASP_Mobile_Security_Testing_Guide</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#CrashlyticsCore_java29netU" class="active">line 29</a></li></ul></div><div class="card-content"><div id="CrashlyticsCore_java29netU">Code @ line 29<pre data-start="26" data-line="29" data-src="CrashlyticsCore.java" class="code line-numbers"><code>import io.fabric.sdk.android.services.persistence.PreferenceStoreImpl;
+import io.fabric.sdk.android.services.settings.Settings;
+import io.fabric.sdk.android.services.settings.SettingsData;
+import java.net.URL;
+import java.util.Collections;
+import java.util.Map;
+import java.util.concurrent.Callable;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvQ3Jhc2hseXRpY3NDb3JlLmphdmF8fHxsaW5lOiAyOSA6IG5ldC5VUkx8b3BlblN0cmVhbXx8fDU1fHx8bmV0LlVSTHxvcGVuU3RyZWFtfHx8Mjl8fHwyNg">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvQ3Jhc2hseXRpY3NDb3JlLmphdmF8fHxsaW5lOiAyOSA6IG5ldC5VUkx8b3BlblN0cmVhbXx8fDU1fHx8bmV0LlVSTHxvcGVuU3RyZWFtfHx8Mjl8fHwyNg')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvQ3Jhc2hseXRpY3NDb3JlLmphdmF8fHxsaW5lOiAyOSA6IG5ldC5VUkx8b3BlblN0cmVhbXx8fDU1fHx8bmV0LlVSTHxvcGVuU3RyZWFtfHx8Mjl8fHwyNg').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvQ3Jhc2hseXRpY3NDb3JlLmphdmF8fHxsaW5lOiAyOSA6IG5ldC5VUkx8b3BlblN0cmVhbXx8fDU1fHx8bmV0LlVSTHxvcGVuU3RyZWFtfHx8Mjl8fHwyNg" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvQ3Jhc2hseXRpY3NDb3JlLmphdmF8fHxsaW5lOiAyOSA6IG5ldC5VUkx8b3BlblN0cmVhbXx8fDU1fHx8bmV0LlVSTHxvcGVuU3RyZWFtfHx8Mjl8fHwyNg' , 'aW1wb3J0IGlvLmZhYnJpYy5zZGsuYW5kcm9pZC5zZXJ2aWNlcy5wZXJzaXN0ZW5jZS5QcmVmZXJlbmNlU3RvcmVJbXBsOwppbXBvcnQgaW8uZmFicmljLnNkay5hbmRyb2lkLnNlcnZpY2VzLnNldHRpbmdzLlNldHRpbmdzOwppbXBvcnQgaW8uZmFicmljLnNkay5hbmRyb2lkLnNlcnZpY2VzLnNldHRpbmdzLlNldHRpbmdzRGF0YTsKaW1wb3J0IGphdmEubmV0LlVSTDsKaW1wb3J0IGphdmEudXRpbC5Db2xsZWN0aW9uczsKaW1wb3J0IGphdmEudXRpbC5NYXA7CmltcG9ydCBqYXZhLnV0aWwuY29uY3VycmVudC5DYWxsYWJsZTsK');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-7">report</i><h5>https?:</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>An URL was found, this might be an API endpoint or just a link to documentation. Hopefully the first one.</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#CrashlyticsCore_java49http" class="active">line 49</a></li></ul></div><div class="card-content"><div id="CrashlyticsCore_java49http">Code @ line 49<pre data-start="46" data-line="49" data-src="CrashlyticsCore.java" class="code line-numbers"><code>    private static final String INITIALIZATION_MARKER_FILE_NAME = "initialization_marker";
+    static final int MAX_ATTRIBUTES = 64;
+    static final int MAX_ATTRIBUTE_SIZE = 1024;
+    private static final String MISSING_BUILD_ID_MSG = "This app relies on Crashlytics. Please sign up for access at https://fabric.io/sign_up,\ninstall an Android build tool and ask a team member to invite you to this app's organization.";
+    private static final String PREFERENCE_STORE_NAME = "com.crashlytics.android.core.CrashlyticsCore";
+    public static final String TAG = "CrashlyticsCore";
+    private final ConcurrentHashMap&lt;String, String&gt; attributes;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvQ3Jhc2hseXRpY3NDb3JlLmphdmF8fHxsaW5lOiA0OSA6IGh0dHBzPzp8fHw3fHx8aHR0cHM/Onx8fDQ5fHx8NDY">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvQ3Jhc2hseXRpY3NDb3JlLmphdmF8fHxsaW5lOiA0OSA6IGh0dHBzPzp8fHw3fHx8aHR0cHM/Onx8fDQ5fHx8NDY')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvQ3Jhc2hseXRpY3NDb3JlLmphdmF8fHxsaW5lOiA0OSA6IGh0dHBzPzp8fHw3fHx8aHR0cHM/Onx8fDQ5fHx8NDY').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvQ3Jhc2hseXRpY3NDb3JlLmphdmF8fHxsaW5lOiA0OSA6IGh0dHBzPzp8fHw3fHx8aHR0cHM/Onx8fDQ5fHx8NDY" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvQ3Jhc2hseXRpY3NDb3JlLmphdmF8fHxsaW5lOiA0OSA6IGh0dHBzPzp8fHw3fHx8aHR0cHM/Onx8fDQ5fHx8NDY' , 'ICAgIHByaXZhdGUgc3RhdGljIGZpbmFsIFN0cmluZyBJTklUSUFMSVpBVElPTl9NQVJLRVJfRklMRV9OQU1FID0gImluaXRpYWxpemF0aW9uX21hcmtlciI7CiAgICBzdGF0aWMgZmluYWwgaW50IE1BWF9BVFRSSUJVVEVTID0gNjQ7CiAgICBzdGF0aWMgZmluYWwgaW50IE1BWF9BVFRSSUJVVEVfU0laRSA9IDEwMjQ7CiAgICBwcml2YXRlIHN0YXRpYyBmaW5hbCBTdHJpbmcgTUlTU0lOR19CVUlMRF9JRF9NU0cgPSAiVGhpcyBhcHAgcmVsaWVzIG9uIENyYXNobHl0aWNzLiBQbGVhc2Ugc2lnbiB1cCBmb3IgYWNjZXNzIGF0IGh0dHBzOi8vZmFicmljLmlvL3NpZ25fdXAsXG5pbnN0YWxsIGFuIEFuZHJvaWQgYnVpbGQgdG9vbCBhbmQgYXNrIGEgdGVhbSBtZW1iZXIgdG8gaW52aXRlIHlvdSB0byB0aGlzIGFwcCdzIG9yZ2FuaXphdGlvbi4iOwogICAgcHJpdmF0ZSBzdGF0aWMgZmluYWwgU3RyaW5nIFBSRUZFUkVOQ0VfU1RPUkVfTkFNRSA9ICJjb20uY3Jhc2hseXRpY3MuYW5kcm9pZC5jb3JlLkNyYXNobHl0aWNzQ29yZSI7CiAgICBwdWJsaWMgc3RhdGljIGZpbmFsIFN0cmluZyBUQUcgPSAiQ3Jhc2hseXRpY3NDb3JlIjsKICAgIHByaXZhdGUgZmluYWwgQ29uY3VycmVudEhhc2hNYXA8U3RyaW5nLCBTdHJpbmc+IGF0dHJpYnV0ZXM7Cg==');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-83">report</i><h5>password =|secret =|username =|key =</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>the app contain hardcoded sensitive informations like usernames, passwords, keys etc: Hard coded sensitive information in Application Code (including Crypto)</span></div></li></ul><ul class="collapsible"><li><div class="collapsible-header"><img data-position="top" data-tooltip="OWASP item" src="html/owasp_logo.png" height="20em" style="margin-right: 1rem;margin-left: 5px;" class="tooltipped"></img> OWASP Item</div><div class="collapsible-body"><span>For more information, have a look at: https://www.owasp.org/index.php/OWASP_Mobile_Security_Testing_Guide</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#CrashlyticsCore_java165pass" class="active">line 165</a></li><li class="tab"><a style="color: #d82c2b;" href="#CrashlyticsCore_java335pass">line 335</a></li></ul></div><div class="card-content"><div id="CrashlyticsCore_java165pass">Code @ line 165<pre data-start="162" data-line="165" data-src="CrashlyticsCore.java" class="code line-numbers"><code>    CrashlyticsCore(float f, CrashlyticsListener crashlyticsListener, PinningInfoProvider pinningInfoProvider, boolean z, ExecutorService executorService) {
+        this.userId = null;
+        this.userEmail = null;
+        this.userName = null;
+        this.delay = f;
+        if (crashlyticsListener == null) {
+            crashlyticsListener = new NoOpListener();
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvQ3Jhc2hseXRpY3NDb3JlLmphdmF8fHxsaW5lOiAxNjUgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE2NXx8fDE2Mg">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvQ3Jhc2hseXRpY3NDb3JlLmphdmF8fHxsaW5lOiAxNjUgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE2NXx8fDE2Mg')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvQ3Jhc2hseXRpY3NDb3JlLmphdmF8fHxsaW5lOiAxNjUgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE2NXx8fDE2Mg').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvQ3Jhc2hseXRpY3NDb3JlLmphdmF8fHxsaW5lOiAxNjUgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE2NXx8fDE2Mg" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvQ3Jhc2hseXRpY3NDb3JlLmphdmF8fHxsaW5lOiAxNjUgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE2NXx8fDE2Mg' , 'ICAgIENyYXNobHl0aWNzQ29yZShmbG9hdCBmLCBDcmFzaGx5dGljc0xpc3RlbmVyIGNyYXNobHl0aWNzTGlzdGVuZXIsIFBpbm5pbmdJbmZvUHJvdmlkZXIgcGlubmluZ0luZm9Qcm92aWRlciwgYm9vbGVhbiB6LCBFeGVjdXRvclNlcnZpY2UgZXhlY3V0b3JTZXJ2aWNlKSB7CiAgICAgICAgdGhpcy51c2VySWQgPSBudWxsOwogICAgICAgIHRoaXMudXNlckVtYWlsID0gbnVsbDsKICAgICAgICB0aGlzLnVzZXJOYW1lID0gbnVsbDsKICAgICAgICB0aGlzLmRlbGF5ID0gZjsKICAgICAgICBpZiAoY3Jhc2hseXRpY3NMaXN0ZW5lciA9PSBudWxsKSB7CiAgICAgICAgICAgIGNyYXNobHl0aWNzTGlzdGVuZXIgPSBuZXcgTm9PcExpc3RlbmVyKCk7Cg==');  
+                                            });
+                                            </script>
+                                            </div><div id="CrashlyticsCore_java335pass">Code @ line 335<pre data-start="332" data-line="335" data-src="CrashlyticsCore.java" class="code line-numbers"><code>
+    public void setUserName(String str) {
+        if (!this.disabled &amp;&amp; ensureFabricWithCalled("prior to setting user data.")) {
+            this.userName = sanitizeAttribute(str);
+            this.controller.cacheUserData(this.userId, this.userName, this.userEmail);
+        }
+    }
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvQ3Jhc2hseXRpY3NDb3JlLmphdmF8fHxsaW5lOiAzMzUgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDMzNXx8fDMzMg">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvQ3Jhc2hseXRpY3NDb3JlLmphdmF8fHxsaW5lOiAzMzUgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDMzNXx8fDMzMg')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvQ3Jhc2hseXRpY3NDb3JlLmphdmF8fHxsaW5lOiAzMzUgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDMzNXx8fDMzMg').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvQ3Jhc2hseXRpY3NDb3JlLmphdmF8fHxsaW5lOiAzMzUgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDMzNXx8fDMzMg" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2NvcmUvQ3Jhc2hseXRpY3NDb3JlLmphdmF8fHxsaW5lOiAzMzUgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDMzNXx8fDMzMg' , 'CiAgICBwdWJsaWMgdm9pZCBzZXRVc2VyTmFtZShTdHJpbmcgc3RyKSB7CiAgICAgICAgaWYgKCF0aGlzLmRpc2FibGVkICYmIGVuc3VyZUZhYnJpY1dpdGhDYWxsZWQoInByaW9yIHRvIHNldHRpbmcgdXNlciBkYXRhLiIpKSB7CiAgICAgICAgICAgIHRoaXMudXNlck5hbWUgPSBzYW5pdGl6ZUF0dHJpYnV0ZShzdHIpOwogICAgICAgICAgICB0aGlzLmNvbnRyb2xsZXIuY2FjaGVVc2VyRGF0YSh0aGlzLnVzZXJJZCwgdGhpcy51c2VyTmFtZSwgdGhpcy51c2VyRW1haWwpOwogICAgICAgIH0KICAgIH0K');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="CrashlyticsCore.java" data-line="10,192,29,49,165,335," class="code line-numbers"><code>package com.crashlytics.android.core;
+
+import android.content.Context;
+import android.util.Log;
+import com.crashlytics.android.answers.AppMeasurementEventLogger;
+import com.crashlytics.android.answers.EventLogger;
+import io.fabric.sdk.android.Fabric;
+import io.fabric.sdk.android.Kit;
+import io.fabric.sdk.android.Logger;
+import io.fabric.sdk.android.services.common.ApiKey;
+import io.fabric.sdk.android.services.common.CommonUtils;
+import io.fabric.sdk.android.services.common.ExecutorUtils;
+import io.fabric.sdk.android.services.common.FirebaseInfo;
+import io.fabric.sdk.android.services.common.IdManager;
+import io.fabric.sdk.android.services.concurrency.DependsOn;
+import io.fabric.sdk.android.services.concurrency.Priority;
+import io.fabric.sdk.android.services.concurrency.PriorityCallable;
+import io.fabric.sdk.android.services.concurrency.Task;
+import io.fabric.sdk.android.services.concurrency.UnmetDependencyException;
+import io.fabric.sdk.android.services.network.DefaultHttpRequestFactory;
+import io.fabric.sdk.android.services.network.HttpMethod;
+import io.fabric.sdk.android.services.network.HttpRequestFactory;
+import io.fabric.sdk.android.services.network.PinningInfoProvider;
+import io.fabric.sdk.android.services.persistence.FileStore;
+import io.fabric.sdk.android.services.persistence.FileStoreImpl;
+import io.fabric.sdk.android.services.persistence.PreferenceStoreImpl;
+import io.fabric.sdk.android.services.settings.Settings;
+import io.fabric.sdk.android.services.settings.SettingsData;
+import java.net.URL;
+import java.util.Collections;
+import java.util.Map;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import javax.net.ssl.HttpsURLConnection;
+
+@DependsOn({CrashlyticsNdkDataProvider.class})
+public class CrashlyticsCore extends Kit&lt;Void&gt; {
+    static final float CLS_DEFAULT_PROCESS_DELAY = 1.0f;
+    static final String CRASHLYTICS_REQUIRE_BUILD_ID = "com.crashlytics.RequireBuildId";
+    static final boolean CRASHLYTICS_REQUIRE_BUILD_ID_DEFAULT = true;
+    static final String CRASH_MARKER_FILE_NAME = "crash_marker";
+    static final int DEFAULT_MAIN_HANDLER_TIMEOUT_SEC = 4;
+    private static final String INITIALIZATION_MARKER_FILE_NAME = "initialization_marker";
+    static final int MAX_ATTRIBUTES = 64;
+    static final int MAX_ATTRIBUTE_SIZE = 1024;
+    private static final String MISSING_BUILD_ID_MSG = "This app relies on Crashlytics. Please sign up for access at https://fabric.io/sign_up,\ninstall an Android build tool and ask a team member to invite you to this app's organization.";
+    private static final String PREFERENCE_STORE_NAME = "com.crashlytics.android.core.CrashlyticsCore";
+    public static final String TAG = "CrashlyticsCore";
+    private final ConcurrentHashMap&lt;String, String&gt; attributes;
+    private CrashlyticsBackgroundWorker backgroundWorker;
+    private CrashlyticsController controller;
+    private CrashlyticsFileMarker crashMarker;
+    private CrashlyticsNdkDataProvider crashlyticsNdkDataProvider;
+    private float delay;
+    private boolean disabled;
+    private HttpRequestFactory httpRequestFactory;
+    private CrashlyticsFileMarker initializationMarker;
+    private CrashlyticsListener listener;
+    private final PinningInfoProvider pinningInfo;
+    private final long startTime;
+    private String userEmail;
+    private String userId;
+    private String userName;
+
+    public static class Builder {
+        private float delay = -1.0f;
+        private boolean disabled = false;
+        private CrashlyticsListener listener;
+        private PinningInfoProvider pinningInfoProvider;
+
+        public Builder delay(float f) {
+            if (f &lt;= 0.0f) {
+                throw new IllegalArgumentException("delay must be greater than 0");
+            } else if (this.delay &lt;= 0.0f) {
+                this.delay = f;
+                return this;
+            } else {
+                throw new IllegalStateException("delay already set.");
+            }
+        }
+
+        public Builder listener(CrashlyticsListener crashlyticsListener) {
+            if (crashlyticsListener == null) {
+                throw new IllegalArgumentException("listener must not be null.");
+            } else if (this.listener == null) {
+                this.listener = crashlyticsListener;
+                return this;
+            } else {
+                throw new IllegalStateException("listener already set.");
+            }
+        }
+
+        @Deprecated
+        public Builder pinningInfo(PinningInfoProvider pinningInfoProvider) {
+            if (pinningInfoProvider == null) {
+                throw new IllegalArgumentException("pinningInfoProvider must not be null.");
+            } else if (this.pinningInfoProvider == null) {
+                this.pinningInfoProvider = pinningInfoProvider;
+                return this;
+            } else {
+                throw new IllegalStateException("pinningInfoProvider already set.");
+            }
+        }
+
+        public Builder disabled(boolean z) {
+            this.disabled = z;
+            return this;
+        }
+
+        public CrashlyticsCore build() {
+            if (this.delay &lt; 0.0f) {
+                this.delay = 1.0f;
+            }
+            return new CrashlyticsCore(this.delay, this.listener, this.pinningInfoProvider, this.disabled);
+        }
+    }
+
+    private static final class CrashMarkerCheck implements Callable&lt;Boolean&gt; {
+        private final CrashlyticsFileMarker crashMarker;
+
+        public CrashMarkerCheck(CrashlyticsFileMarker crashlyticsFileMarker) {
+            this.crashMarker = crashlyticsFileMarker;
+        }
+
+        public Boolean call() throws Exception {
+            if (!this.crashMarker.isPresent()) {
+                return Boolean.FALSE;
+            }
+            Fabric.getLogger().d(CrashlyticsCore.TAG, "Found previous crash marker.");
+            this.crashMarker.remove();
+            return Boolean.TRUE;
+        }
+    }
+
+    private static final class NoOpListener implements CrashlyticsListener {
+        public void crashlyticsDidDetectCrashDuringPreviousExecution() {
+        }
+
+        private NoOpListener() {
+        }
+    }
+
+    public String getIdentifier() {
+        return "com.crashlytics.sdk.android.crashlytics-core";
+    }
+
+    public String getVersion() {
+        return "2.6.5.28";
+    }
+
+    public CrashlyticsCore() {
+        this(1.0f, null, null, false);
+    }
+
+    CrashlyticsCore(float f, CrashlyticsListener crashlyticsListener, PinningInfoProvider pinningInfoProvider, boolean z) {
+        this(f, crashlyticsListener, pinningInfoProvider, z, ExecutorUtils.buildSingleThreadExecutorService("Crashlytics Exception Handler"));
+    }
+
+    CrashlyticsCore(float f, CrashlyticsListener crashlyticsListener, PinningInfoProvider pinningInfoProvider, boolean z, ExecutorService executorService) {
+        this.userId = null;
+        this.userEmail = null;
+        this.userName = null;
+        this.delay = f;
+        if (crashlyticsListener == null) {
+            crashlyticsListener = new NoOpListener();
+        }
+        this.listener = crashlyticsListener;
+        this.pinningInfo = pinningInfoProvider;
+        this.disabled = z;
+        this.backgroundWorker = new CrashlyticsBackgroundWorker(executorService);
+        this.attributes = new ConcurrentHashMap();
+        this.startTime = System.currentTimeMillis();
+    }
+
+    protected boolean onPreExecute() {
+        return onPreExecute(super.getContext());
+    }
+
+    boolean onPreExecute(Context context) {
+        Kit kit = this;
+        Context context2 = context;
+        if (!new FirebaseInfo().isDataCollectionDefaultEnabled(context2)) {
+            Fabric.getLogger().d(TAG, "Crashlytics is disabled, because data collection is disabled by Firebase.");
+            kit.disabled = true;
+        }
+        if (kit.disabled) {
+            return false;
+        }
+        String value = new ApiKey().getValue(context2);
+        if (value == null) {
+            return false;
+        }
+        String resolveBuildId = CommonUtils.resolveBuildId(context);
+        if (isBuildIdValid(resolveBuildId, CommonUtils.getBooleanResourceValue(context2, CRASHLYTICS_REQUIRE_BUILD_ID, true))) {
+            try {
+                Logger logger = Fabric.getLogger();
+                String str = TAG;
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("Initializing Crashlytics ");
+                stringBuilder.append(getVersion());
+                logger.i(str, stringBuilder.toString());
+                FileStore fileStoreImpl = new FileStoreImpl(kit);
+                kit.crashMarker = new CrashlyticsFileMarker(CRASH_MARKER_FILE_NAME, fileStoreImpl);
+                kit.initializationMarker = new CrashlyticsFileMarker(INITIALIZATION_MARKER_FILE_NAME, fileStoreImpl);
+                PreferenceManager create = PreferenceManager.create(new PreferenceStoreImpl(getContext(), PREFERENCE_STORE_NAME), kit);
+                PinningInfoProvider crashlyticsPinningInfoProvider = kit.pinningInfo != null ? new CrashlyticsPinningInfoProvider(kit.pinningInfo) : null;
+                kit.httpRequestFactory = new DefaultHttpRequestFactory(Fabric.getLogger());
+                kit.httpRequestFactory.setPinningInfoProvider(crashlyticsPinningInfoProvider);
+                IdManager idManager = getIdManager();
+                AppData create2 = AppData.create(context2, idManager, value, resolveBuildId);
+                UnityVersionProvider resourceUnityVersionProvider = new ResourceUnityVersionProvider(context2, new ManifestUnityVersionProvider(context2, create2.packageName));
+                AppMeasurementEventListenerRegistrar instanceFrom = DefaultAppMeasurementEventListenerRegistrar.instanceFrom(this);
+                EventLogger eventLogger = AppMeasurementEventLogger.getEventLogger(context);
+                Logger logger2 = Fabric.getLogger();
+                resolveBuildId = TAG;
+                StringBuilder stringBuilder2 = new StringBuilder();
+                stringBuilder2.append("Installer package name is: ");
+                stringBuilder2.append(create2.installerPackageName);
+                logger2.d(resolveBuildId, stringBuilder2.toString());
+                CrashlyticsController crashlyticsController = r1;
+                CrashlyticsController crashlyticsController2 = new CrashlyticsController(this, kit.backgroundWorker, kit.httpRequestFactory, idManager, create, fileStoreImpl, create2, resourceUnityVersionProvider, instanceFrom, eventLogger);
+                kit.controller = crashlyticsController;
+                boolean didPreviousInitializationFail = didPreviousInitializationFail();
+                checkForPreviousCrash();
+                kit.controller.enableExceptionHandling(Thread.getDefaultUncaughtExceptionHandler(), new FirebaseInfo().isFirebaseCrashlyticsEnabled(context2));
+                if (didPreviousInitializationFail &amp;&amp; CommonUtils.canTryConnection(context)) {
+                    Fabric.getLogger().d(TAG, "Crashlytics did not finish previous background initialization. Initializing synchronously.");
+                    finishInitSynchronously();
+                    return false;
+                }
+                Fabric.getLogger().d(TAG, "Exception handling initialization successful");
+                return true;
+            } catch (Throwable e) {
+                Fabric.getLogger().e(TAG, "Crashlytics was not started due to an exception during initialization", e);
+                kit.controller = null;
+                return false;
+            }
+        }
+        throw new UnmetDependencyException(MISSING_BUILD_ID_MSG);
+    }
+
+    protected Void doInBackground() {
+        markInitializationStarted();
+        this.controller.cleanInvalidTempFiles();
+        try {
+            this.controller.registerDevicePowerStateListener();
+            SettingsData awaitSettingsData = Settings.getInstance().awaitSettingsData();
+            if (awaitSettingsData == null) {
+                Fabric.getLogger().w(TAG, "Received null settings, skipping report submission!");
+                markInitializationComplete();
+                return null;
+            }
+            this.controller.registerAnalyticsEventListener(awaitSettingsData);
+            if (!awaitSettingsData.featuresData.collectReports) {
+                Fabric.getLogger().d(TAG, "Collection of crash reports disabled in Crashlytics settings.");
+                markInitializationComplete();
+                return null;
+            } else if (new FirebaseInfo().isDataCollectionDefaultEnabled(getContext())) {
+                CrashlyticsNdkData nativeCrashData = getNativeCrashData();
+                if (!(nativeCrashData == null || this.controller.finalizeNativeReport(nativeCrashData))) {
+                    Fabric.getLogger().d(TAG, "Could not finalize previous NDK sessions.");
+                }
+                if (!this.controller.finalizeSessions(awaitSettingsData.sessionData)) {
+                    Fabric.getLogger().d(TAG, "Could not finalize previous sessions.");
+                }
+                this.controller.submitAllReports(this.delay, awaitSettingsData);
+                markInitializationComplete();
+                return null;
+            } else {
+                Fabric.getLogger().d(TAG, "Automatic collection of crash reports disabled by Firebase settings.");
+                markInitializationComplete();
+                return null;
+            }
+        } catch (Throwable e) {
+            Fabric.getLogger().e(TAG, "Crashlytics encountered a problem during asynchronous initialization.", e);
+        } catch (Throwable th) {
+            markInitializationComplete();
+        }
+    }
+
+    public static CrashlyticsCore getInstance() {
+        return (CrashlyticsCore) Fabric.getKit(CrashlyticsCore.class);
+    }
+
+    public PinningInfoProvider getPinningInfoProvider() {
+        return !this.disabled ? this.pinningInfo : null;
+    }
+
+    public void logException(Throwable th) {
+        if (this.disabled || !ensureFabricWithCalled("prior to logging exceptions.")) {
+            return;
+        }
+        if (th == null) {
+            Fabric.getLogger().log(5, TAG, "Crashlytics is ignoring a request to log a null exception.");
+        } else {
+            this.controller.writeNonFatalException(Thread.currentThread(), th);
+        }
+    }
+
+    public void log(String str) {
+        doLog(3, TAG, str);
+    }
+
+    private void doLog(int i, String str, String str2) {
+        if (!this.disabled &amp;&amp; ensureFabricWithCalled("prior to logging messages.")) {
+            this.controller.writeToLog(System.currentTimeMillis() - this.startTime, formatLogMessage(i, str, str2));
+        }
+    }
+
+    public void log(int i, String str, String str2) {
+        doLog(i, str, str2);
+        Logger logger = Fabric.getLogger();
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("");
+        stringBuilder.append(str);
+        str = stringBuilder.toString();
+        stringBuilder = new StringBuilder();
+        stringBuilder.append("");
+        stringBuilder.append(str2);
+        logger.log(i, str, stringBuilder.toString(), true);
+    }
+
+    public void setUserIdentifier(String str) {
+        if (!this.disabled &amp;&amp; ensureFabricWithCalled("prior to setting user data.")) {
+            this.userId = sanitizeAttribute(str);
+            this.controller.cacheUserData(this.userId, this.userName, this.userEmail);
+        }
+    }
+
+    public void setUserName(String str) {
+        if (!this.disabled &amp;&amp; ensureFabricWithCalled("prior to setting user data.")) {
+            this.userName = sanitizeAttribute(str);
+            this.controller.cacheUserData(this.userId, this.userName, this.userEmail);
+        }
+    }
+
+    public void setUserEmail(String str) {
+        if (!this.disabled &amp;&amp; ensureFabricWithCalled("prior to setting user data.")) {
+            this.userEmail = sanitizeAttribute(str);
+            this.controller.cacheUserData(this.userId, this.userName, this.userEmail);
+        }
+    }
+
+    public void setString(String str, String str2) {
+        if (this.disabled || !ensureFabricWithCalled("prior to setting keys.")) {
+            return;
+        }
+        if (str == null) {
+            str = getContext();
+            if (str != null) {
+                if (CommonUtils.isAppDebuggable(str) != null) {
+                    throw new IllegalArgumentException("Custom attribute key must not be null.");
+                }
+            }
+            Fabric.getLogger().e(TAG, "Attempting to set custom attribute with null key, ignoring.", null);
+            return;
+        }
+        str = sanitizeAttribute(str);
+        if (this.attributes.size() &lt; 64 || this.attributes.containsKey(str)) {
+            if (str2 == null) {
+                str2 = "";
+            } else {
+                str2 = sanitizeAttribute(str2);
+            }
+            this.attributes.put(str, str2);
+            this.controller.cacheKeyData(this.attributes);
+            return;
+        }
+        Fabric.getLogger().d(TAG, "Exceeded maximum number of custom attributes (64)");
+    }
+
+    public void setBool(String str, boolean z) {
+        setString(str, Boolean.toString(z));
+    }
+
+    public void setDouble(String str, double d) {
+        setString(str, Double.toString(d));
+    }
+
+    public void setFloat(String str, float f) {
+        setString(str, Float.toString(f));
+    }
+
+    public void setInt(String str, int i) {
+        setString(str, Integer.toString(i));
+    }
+
+    public void setLong(String str, long j) {
+        setString(str, Long.toString(j));
+    }
+
+    public void crash() {
+        new CrashTest().indexOutOfBounds();
+    }
+
+    public boolean verifyPinning(URL url) {
+        try {
+            return internalVerifyPinning(url);
+        } catch (URL url2) {
+            Fabric.getLogger().e(TAG, "Could not verify SSL pinning", url2);
+            return null;
+        }
+    }
+
+    @Deprecated
+    public synchronized void setListener(CrashlyticsListener crashlyticsListener) {
+        Fabric.getLogger().w(TAG, "Use of setListener is deprecated.");
+        if (crashlyticsListener != null) {
+            this.listener = crashlyticsListener;
+        } else {
+            throw new IllegalArgumentException("listener must not be null.");
+        }
+    }
+
+    Map&lt;String, String&gt; getAttributes() {
+        return Collections.unmodifiableMap(this.attributes);
+    }
+
+    CrashlyticsController getController() {
+        return this.controller;
+    }
+
+    String getUserIdentifier() {
+        return getIdManager().canCollectUserIds() ? this.userId : null;
+    }
+
+    String getUserEmail() {
+        return getIdManager().canCollectUserIds() ? this.userEmail : null;
+    }
+
+    String getUserName() {
+        return getIdManager().canCollectUserIds() ? this.userName : null;
+    }
+
+    private void finishInitSynchronously() {
+        Callable anonymousClass1 = new PriorityCallable&lt;Void&gt;() {
+            public Void call() throws Exception {
+                return CrashlyticsCore.this.doInBackground();
+            }
+
+            public Priority getPriority() {
+                return Priority.IMMEDIATE;
+            }
+        };
+        for (Task addDependency : getDependencies()) {
+            anonymousClass1.addDependency(addDependency);
+        }
+        Future submit = getFabric().getExecutorService().submit(anonymousClass1);
+        Fabric.getLogger().d(TAG, "Crashlytics detected incomplete initialization on previous app launch. Will initialize synchronously.");
+        try {
+            submit.get(4, TimeUnit.SECONDS);
+        } catch (Throwable e) {
+            Fabric.getLogger().e(TAG, "Crashlytics was interrupted during initialization.", e);
+        } catch (Throwable e2) {
+            Fabric.getLogger().e(TAG, "Problem encountered during Crashlytics initialization.", e2);
+        } catch (Throwable e22) {
+            Fabric.getLogger().e(TAG, "Crashlytics timed out during initialization.", e22);
+        }
+    }
+
+    void markInitializationStarted() {
+        this.backgroundWorker.submitAndWait(new Callable&lt;Void&gt;() {
+            public Void call() throws Exception {
+                CrashlyticsCore.this.initializationMarker.create();
+                Fabric.getLogger().d(CrashlyticsCore.TAG, "Initialization marker file created.");
+                return null;
+            }
+        });
+    }
+
+    void markInitializationComplete() {
+        this.backgroundWorker.submit(new Callable&lt;Boolean&gt;() {
+            public Boolean call() throws Exception {
+                try {
+                    boolean remove = CrashlyticsCore.this.initializationMarker.remove();
+                    Logger logger = Fabric.getLogger();
+                    String str = CrashlyticsCore.TAG;
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.append("Initialization marker file removed: ");
+                    stringBuilder.append(remove);
+                    logger.d(str, stringBuilder.toString());
+                    return Boolean.valueOf(remove);
+                } catch (Throwable e) {
+                    Fabric.getLogger().e(CrashlyticsCore.TAG, "Problem encountered deleting Crashlytics initialization marker.", e);
+                    return Boolean.valueOf(false);
+                }
+            }
+        });
+    }
+
+    boolean didPreviousInitializationFail() {
+        return this.initializationMarker.isPresent();
+    }
+
+    void setCrashlyticsNdkDataProvider(CrashlyticsNdkDataProvider crashlyticsNdkDataProvider) {
+        this.crashlyticsNdkDataProvider = crashlyticsNdkDataProvider;
+    }
+
+    CrashlyticsNdkData getNativeCrashData() {
+        return this.crashlyticsNdkDataProvider != null ? this.crashlyticsNdkDataProvider.getCrashlyticsNdkData() : null;
+    }
+
+    boolean internalVerifyPinning(URL url) {
+        if (getPinningInfoProvider() == null) {
+            return false;
+        }
+        url = this.httpRequestFactory.buildHttpRequest(HttpMethod.GET, url.toString());
+        ((HttpsURLConnection) url.getConnection()).setInstanceFollowRedirects(false);
+        url.code();
+        return true;
+    }
+
+    private void checkForPreviousCrash() {
+        if (Boolean.TRUE.equals((Boolean) this.backgroundWorker.submitAndWait(new CrashMarkerCheck(this.crashMarker)))) {
+            try {
+                this.listener.crashlyticsDidDetectCrashDuringPreviousExecution();
+            } catch (Throwable e) {
+                Fabric.getLogger().e(TAG, "Exception thrown by CrashlyticsListener while notifying of previous crash.", e);
+            }
+        }
+    }
+
+    void createCrashMarker() {
+        this.crashMarker.create();
+    }
+
+    private static String formatLogMessage(int i, String str, String str2) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(CommonUtils.logPriorityToString(i));
+        stringBuilder.append("/");
+        stringBuilder.append(str);
+        stringBuilder.append(" ");
+        stringBuilder.append(str2);
+        return stringBuilder.toString();
+    }
+
+    private static boolean ensureFabricWithCalled(String str) {
+        CrashlyticsCore instance = getInstance();
+        if (instance != null) {
+            if (instance.controller != null) {
+                return true;
+            }
+        }
+        Logger logger = Fabric.getLogger();
+        String str2 = TAG;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Crashlytics must be initialized by calling Fabric.with(Context) ");
+        stringBuilder.append(str);
+        logger.e(str2, stringBuilder.toString(), null);
+        return null;
+    }
+
+    private static String sanitizeAttribute(String str) {
+        if (str == null) {
+            return str;
+        }
+        str = str.trim();
+        return str.length() &gt; 1024 ? str.substring(0, 1024) : str;
+    }
+
+    static boolean isBuildIdValid(String str, boolean z) {
+        if (!z) {
+            Fabric.getLogger().d(TAG, "Configured not to require a build ID.");
+            return true;
+        } else if (CommonUtils.isNullOrEmpty(str) == null) {
+            return true;
+        } else {
+            Log.e(TAG, ".");
+            Log.e(TAG, ".     |  | ");
+            Log.e(TAG, ".     |  |");
+            Log.e(TAG, ".     |  |");
+            Log.e(TAG, ".   \\ |  | /");
+            Log.e(TAG, ".    \\    /");
+            Log.e(TAG, ".     \\  /");
+            Log.e(TAG, ".      \\/");
+            Log.e(TAG, ".");
+            Log.e(TAG, MISSING_BUILD_ID_MSG);
+            Log.e(TAG, ".");
+            Log.e(TAG, ".      /\\");
+            Log.e(TAG, ".     /  \\");
+            Log.e(TAG, ".    /    \\");
+            Log.e(TAG, ".   / |  | \\");
+            Log.e(TAG, ".     |  |");
+            Log.e(TAG, ".     |  |");
+            Log.e(TAG, ".     |  |");
+            Log.e(TAG, ".");
+            return null;
+        }
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:5 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

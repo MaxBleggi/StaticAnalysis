@@ -1,0 +1,666 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9"><div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/androidx/customview/widget/ExploreByTouchHelper.java" target="_blank">/xumo_apk/jadx_source_code/androidx/customview/widget/ExploreByTouchHelper.java</a></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-10">report</i><h5>passw(d|ord)?</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>Sensitive parameters which can contain hardcoded credentials. The score is quite low because this query is often a false-positive.</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#ExploreByTouchHelper_java366pass" class="active">line 366</a></li></ul></div><div class="card-content"><div id="ExploreByTouchHelper_java366pass">Code @ line 366<pre data-start="363" data-line="366" data-src="ExploreByTouchHelper.java" class="code line-numbers"><code>        i2.getText().add(obtainAccessibilityNodeInfo.getText());
+        i2.setContentDescription(obtainAccessibilityNodeInfo.getContentDescription());
+        i2.setScrollable(obtainAccessibilityNodeInfo.isScrollable());
+        i2.setPassword(obtainAccessibilityNodeInfo.isPassword());
+        i2.setEnabled(obtainAccessibilityNodeInfo.isEnabled());
+        i2.setChecked(obtainAccessibilityNodeInfo.isChecked());
+        onPopulateEventForVirtualView(i, i2);
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2N1c3RvbXZpZXcvd2lkZ2V0L0V4cGxvcmVCeVRvdWNoSGVscGVyLmphdmF8fHxsaW5lOiAzNjYgOiBwYXNzdyhkfG9yZCk/fHx8MTB8fHxwYXNzdyhkfG9yZCk/fHx8MzY2fHx8MzYz">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2N1c3RvbXZpZXcvd2lkZ2V0L0V4cGxvcmVCeVRvdWNoSGVscGVyLmphdmF8fHxsaW5lOiAzNjYgOiBwYXNzdyhkfG9yZCk/fHx8MTB8fHxwYXNzdyhkfG9yZCk/fHx8MzY2fHx8MzYz')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2N1c3RvbXZpZXcvd2lkZ2V0L0V4cGxvcmVCeVRvdWNoSGVscGVyLmphdmF8fHxsaW5lOiAzNjYgOiBwYXNzdyhkfG9yZCk/fHx8MTB8fHxwYXNzdyhkfG9yZCk/fHx8MzY2fHx8MzYz').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2N1c3RvbXZpZXcvd2lkZ2V0L0V4cGxvcmVCeVRvdWNoSGVscGVyLmphdmF8fHxsaW5lOiAzNjYgOiBwYXNzdyhkfG9yZCk/fHx8MTB8fHxwYXNzdyhkfG9yZCk/fHx8MzY2fHx8MzYz" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L2N1c3RvbXZpZXcvd2lkZ2V0L0V4cGxvcmVCeVRvdWNoSGVscGVyLmphdmF8fHxsaW5lOiAzNjYgOiBwYXNzdyhkfG9yZCk/fHx8MTB8fHxwYXNzdyhkfG9yZCk/fHx8MzY2fHx8MzYz' , 'ICAgICAgICBpMi5nZXRUZXh0KCkuYWRkKG9idGFpbkFjY2Vzc2liaWxpdHlOb2RlSW5mby5nZXRUZXh0KCkpOwogICAgICAgIGkyLnNldENvbnRlbnREZXNjcmlwdGlvbihvYnRhaW5BY2Nlc3NpYmlsaXR5Tm9kZUluZm8uZ2V0Q29udGVudERlc2NyaXB0aW9uKCkpOwogICAgICAgIGkyLnNldFNjcm9sbGFibGUob2J0YWluQWNjZXNzaWJpbGl0eU5vZGVJbmZvLmlzU2Nyb2xsYWJsZSgpKTsKICAgICAgICBpMi5zZXRQYXNzd29yZChvYnRhaW5BY2Nlc3NpYmlsaXR5Tm9kZUluZm8uaXNQYXNzd29yZCgpKTsKICAgICAgICBpMi5zZXRFbmFibGVkKG9idGFpbkFjY2Vzc2liaWxpdHlOb2RlSW5mby5pc0VuYWJsZWQoKSk7CiAgICAgICAgaTIuc2V0Q2hlY2tlZChvYnRhaW5BY2Nlc3NpYmlsaXR5Tm9kZUluZm8uaXNDaGVja2VkKCkpOwogICAgICAgIG9uUG9wdWxhdGVFdmVudEZvclZpcnR1YWxWaWV3KGksIGkyKTsK');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="ExploreByTouchHelper.java" data-line="366," class="code line-numbers"><code>package androidx.customview.widget;
+
+import android.graphics.Rect;
+import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewParent;
+import android.view.accessibility.AccessibilityEvent;
+import android.view.accessibility.AccessibilityManager;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.collection.SparseArrayCompat;
+import androidx.core.view.AccessibilityDelegateCompat;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.ViewParentCompat;
+import androidx.core.view.accessibility.AccessibilityEventCompat;
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
+import androidx.core.view.accessibility.AccessibilityNodeProviderCompat;
+import androidx.core.view.accessibility.AccessibilityRecordCompat;
+import androidx.customview.widget.FocusStrategy.BoundsAdapter;
+import androidx.customview.widget.FocusStrategy.CollectionAdapter;
+import com.google.android.exoplayer2.extractor.ts.TsExtractor;
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class ExploreByTouchHelper extends AccessibilityDelegateCompat {
+    private static final String DEFAULT_CLASS_NAME = "android.view.View";
+    public static final int HOST_ID = -1;
+    public static final int INVALID_ID = Integer.MIN_VALUE;
+    private static final Rect INVALID_PARENT_BOUNDS = new Rect(Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE);
+    private static final BoundsAdapter&lt;AccessibilityNodeInfoCompat&gt; NODE_ADAPTER = new BoundsAdapter&lt;AccessibilityNodeInfoCompat&gt;() {
+        public void obtainBounds(AccessibilityNodeInfoCompat accessibilityNodeInfoCompat, Rect rect) {
+            accessibilityNodeInfoCompat.getBoundsInParent(rect);
+        }
+    };
+    private static final CollectionAdapter&lt;SparseArrayCompat&lt;AccessibilityNodeInfoCompat&gt;, AccessibilityNodeInfoCompat&gt; SPARSE_VALUES_ADAPTER = new CollectionAdapter&lt;SparseArrayCompat&lt;AccessibilityNodeInfoCompat&gt;, AccessibilityNodeInfoCompat&gt;() {
+        public AccessibilityNodeInfoCompat get(SparseArrayCompat&lt;AccessibilityNodeInfoCompat&gt; sparseArrayCompat, int i) {
+            return (AccessibilityNodeInfoCompat) sparseArrayCompat.valueAt(i);
+        }
+
+        public int size(SparseArrayCompat&lt;AccessibilityNodeInfoCompat&gt; sparseArrayCompat) {
+            return sparseArrayCompat.size();
+        }
+    };
+    int mAccessibilityFocusedVirtualViewId = Integer.MIN_VALUE;
+    private final View mHost;
+    private int mHoveredVirtualViewId = Integer.MIN_VALUE;
+    int mKeyboardFocusedVirtualViewId = Integer.MIN_VALUE;
+    private final AccessibilityManager mManager;
+    private MyNodeProvider mNodeProvider;
+    private final int[] mTempGlobalRect = new int[2];
+    private final Rect mTempParentRect = new Rect();
+    private final Rect mTempScreenRect = new Rect();
+    private final Rect mTempVisibleRect = new Rect();
+
+    private class MyNodeProvider extends AccessibilityNodeProviderCompat {
+        MyNodeProvider() {
+        }
+
+        public AccessibilityNodeInfoCompat createAccessibilityNodeInfo(int i) {
+            return AccessibilityNodeInfoCompat.obtain(ExploreByTouchHelper.this.obtainAccessibilityNodeInfo(i));
+        }
+
+        public boolean performAction(int i, int i2, Bundle bundle) {
+            return ExploreByTouchHelper.this.performAction(i, i2, bundle);
+        }
+
+        public AccessibilityNodeInfoCompat findFocus(int i) {
+            i = i == 2 ? ExploreByTouchHelper.this.mAccessibilityFocusedVirtualViewId : ExploreByTouchHelper.this.mKeyboardFocusedVirtualViewId;
+            if (i == Integer.MIN_VALUE) {
+                return 0;
+            }
+            return createAccessibilityNodeInfo(i);
+        }
+    }
+
+    private static int keyToDirection(int i) {
+        switch (i) {
+            case 19:
+                return 33;
+            case 21:
+                return 17;
+            case 22:
+                return 66;
+            default:
+                return TsExtractor.TS_STREAM_TYPE_HDMV_DTS;
+        }
+    }
+
+    protected abstract int getVirtualViewAt(float f, float f2);
+
+    protected abstract void getVisibleVirtualViews(List&lt;Integer&gt; list);
+
+    protected abstract boolean onPerformActionForVirtualView(int i, int i2, @Nullable Bundle bundle);
+
+    protected void onPopulateEventForHost(@NonNull AccessibilityEvent accessibilityEvent) {
+    }
+
+    protected void onPopulateEventForVirtualView(int i, @NonNull AccessibilityEvent accessibilityEvent) {
+    }
+
+    protected void onPopulateNodeForHost(@NonNull AccessibilityNodeInfoCompat accessibilityNodeInfoCompat) {
+    }
+
+    protected abstract void onPopulateNodeForVirtualView(int i, @NonNull AccessibilityNodeInfoCompat accessibilityNodeInfoCompat);
+
+    protected void onVirtualViewKeyboardFocusChanged(int i, boolean z) {
+    }
+
+    public ExploreByTouchHelper(@NonNull View view) {
+        if (view != null) {
+            this.mHost = view;
+            this.mManager = (AccessibilityManager) view.getContext().getSystemService("accessibility");
+            view.setFocusable(true);
+            if (ViewCompat.getImportantForAccessibility(view) == 0) {
+                ViewCompat.setImportantForAccessibility(view, 1);
+                return;
+            }
+            return;
+        }
+        throw new IllegalArgumentException("View may not be null");
+    }
+
+    public AccessibilityNodeProviderCompat getAccessibilityNodeProvider(View view) {
+        if (this.mNodeProvider == null) {
+            this.mNodeProvider = new MyNodeProvider();
+        }
+        return this.mNodeProvider;
+    }
+
+    public final boolean dispatchHoverEvent(@NonNull MotionEvent motionEvent) {
+        boolean z = false;
+        if (this.mManager.isEnabled()) {
+            if (this.mManager.isTouchExplorationEnabled()) {
+                int action = motionEvent.getAction();
+                if (action != 7) {
+                    switch (action) {
+                        case 9:
+                            break;
+                        case 10:
+                            if (this.mHoveredVirtualViewId == -2147483648) {
+                                return false;
+                            }
+                            updateHoveredVirtualView(Integer.MIN_VALUE);
+                            return true;
+                        default:
+                            return false;
+                    }
+                }
+                motionEvent = getVirtualViewAt(motionEvent.getX(), motionEvent.getY());
+                updateHoveredVirtualView(motionEvent);
+                if (motionEvent != -2147483648) {
+                    z = true;
+                }
+                return z;
+            }
+        }
+        return false;
+    }
+
+    public final boolean dispatchKeyEvent(@NonNull KeyEvent keyEvent) {
+        int i = 0;
+        if (keyEvent.getAction() == 1) {
+            return false;
+        }
+        int keyCode = keyEvent.getKeyCode();
+        if (keyCode != 61) {
+            if (keyCode != 66) {
+                switch (keyCode) {
+                    case 19:
+                    case 20:
+                    case 21:
+                    case 22:
+                        if (!keyEvent.hasNoModifiers()) {
+                            return false;
+                        }
+                        keyCode = keyToDirection(keyCode);
+                        keyEvent = keyEvent.getRepeatCount() + 1;
+                        boolean z = false;
+                        while (i &lt; keyEvent &amp;&amp; moveFocus(keyCode, null)) {
+                            i++;
+                            z = true;
+                        }
+                        return z;
+                    case 23:
+                        break;
+                    default:
+                        return false;
+                }
+            }
+            if (!keyEvent.hasNoModifiers() || keyEvent.getRepeatCount() != null) {
+                return false;
+            }
+            clickKeyboardFocusedVirtualView();
+            return true;
+        } else if (keyEvent.hasNoModifiers()) {
+            return moveFocus(2, null);
+        } else {
+            if (keyEvent.hasModifiers(1) != null) {
+                return moveFocus(1, null);
+            }
+            return false;
+        }
+    }
+
+    public final void onFocusChanged(boolean z, int i, @Nullable Rect rect) {
+        if (this.mKeyboardFocusedVirtualViewId != Integer.MIN_VALUE) {
+            clearKeyboardFocusForVirtualView(this.mKeyboardFocusedVirtualViewId);
+        }
+        if (z) {
+            moveFocus(i, rect);
+        }
+    }
+
+    public final int getAccessibilityFocusedVirtualViewId() {
+        return this.mAccessibilityFocusedVirtualViewId;
+    }
+
+    public final int getKeyboardFocusedVirtualViewId() {
+        return this.mKeyboardFocusedVirtualViewId;
+    }
+
+    private void getBoundsInParent(int i, Rect rect) {
+        obtainAccessibilityNodeInfo(i).getBoundsInParent(rect);
+    }
+
+    private boolean moveFocus(int i, @Nullable Rect rect) {
+        AccessibilityNodeInfoCompat accessibilityNodeInfoCompat;
+        SparseArrayCompat allNodes = getAllNodes();
+        int i2 = this.mKeyboardFocusedVirtualViewId;
+        int i3 = Integer.MIN_VALUE;
+        if (i2 == Integer.MIN_VALUE) {
+            accessibilityNodeInfoCompat = null;
+        } else {
+            accessibilityNodeInfoCompat = (AccessibilityNodeInfoCompat) allNodes.get(i2);
+        }
+        AccessibilityNodeInfoCompat accessibilityNodeInfoCompat2 = accessibilityNodeInfoCompat;
+        if (i == 17 || i == 33 || i == 66 || i == TsExtractor.TS_STREAM_TYPE_HDMV_DTS) {
+            Rect rect2 = new Rect();
+            if (this.mKeyboardFocusedVirtualViewId != Integer.MIN_VALUE) {
+                getBoundsInParent(this.mKeyboardFocusedVirtualViewId, rect2);
+            } else if (rect != null) {
+                rect2.set(rect);
+            } else {
+                guessPreviouslyFocusedRect(this.mHost, i, rect2);
+            }
+            i = (AccessibilityNodeInfoCompat) FocusStrategy.findNextFocusInAbsoluteDirection(allNodes, SPARSE_VALUES_ADAPTER, NODE_ADAPTER, accessibilityNodeInfoCompat2, rect2, i);
+        } else {
+            switch (i) {
+                case 1:
+                case 2:
+                    i = (AccessibilityNodeInfoCompat) FocusStrategy.findNextFocusInRelativeDirection(allNodes, SPARSE_VALUES_ADAPTER, NODE_ADAPTER, accessibilityNodeInfoCompat2, i, ViewCompat.getLayoutDirection(this.mHost) == 1, false);
+                    break;
+                default:
+                    throw new IllegalArgumentException("direction must be one of {FOCUS_FORWARD, FOCUS_BACKWARD, FOCUS_UP, FOCUS_DOWN, FOCUS_LEFT, FOCUS_RIGHT}.");
+            }
+        }
+        if (i != 0) {
+            i3 = allNodes.keyAt(allNodes.indexOfValue(i));
+        }
+        return requestKeyboardFocusForVirtualView(i3);
+    }
+
+    private SparseArrayCompat&lt;AccessibilityNodeInfoCompat&gt; getAllNodes() {
+        List arrayList = new ArrayList();
+        getVisibleVirtualViews(arrayList);
+        SparseArrayCompat&lt;AccessibilityNodeInfoCompat&gt; sparseArrayCompat = new SparseArrayCompat();
+        for (int i = 0; i &lt; arrayList.size(); i++) {
+            sparseArrayCompat.put(i, createNodeForChild(i));
+        }
+        return sparseArrayCompat;
+    }
+
+    private static Rect guessPreviouslyFocusedRect(@NonNull View view, int i, @NonNull Rect rect) {
+        int width = view.getWidth();
+        view = view.getHeight();
+        if (i == 17) {
+            rect.set(width, 0, width, view);
+        } else if (i == 33) {
+            rect.set(0, view, width, view);
+        } else if (i == 66) {
+            rect.set(-1, 0, -1, view);
+        } else if (i == TsExtractor.TS_STREAM_TYPE_HDMV_DTS) {
+            rect.set(0, -1, width, -1);
+        } else {
+            throw new IllegalArgumentException("direction must be one of {FOCUS_UP, FOCUS_DOWN, FOCUS_LEFT, FOCUS_RIGHT}.");
+        }
+        return rect;
+    }
+
+    private boolean clickKeyboardFocusedVirtualView() {
+        return this.mKeyboardFocusedVirtualViewId != Integer.MIN_VALUE &amp;&amp; onPerformActionForVirtualView(this.mKeyboardFocusedVirtualViewId, 16, null);
+    }
+
+    public final boolean sendEventForVirtualView(int i, int i2) {
+        if (i != Integer.MIN_VALUE) {
+            if (this.mManager.isEnabled()) {
+                ViewParent parent = this.mHost.getParent();
+                if (parent == null) {
+                    return false;
+                }
+                return ViewParentCompat.requestSendAccessibilityEvent(parent, this.mHost, createEvent(i, i2));
+            }
+        }
+        return false;
+    }
+
+    public final void invalidateRoot() {
+        invalidateVirtualView(-1, 1);
+    }
+
+    public final void invalidateVirtualView(int i) {
+        invalidateVirtualView(i, 0);
+    }
+
+    public final void invalidateVirtualView(int i, int i2) {
+        if (i != Integer.MIN_VALUE &amp;&amp; this.mManager.isEnabled()) {
+            ViewParent parent = this.mHost.getParent();
+            if (parent != null) {
+                i = createEvent(i, 2048);
+                AccessibilityEventCompat.setContentChangeTypes(i, i2);
+                ViewParentCompat.requestSendAccessibilityEvent(parent, this.mHost, i);
+            }
+        }
+    }
+
+    @Deprecated
+    public int getFocusedVirtualView() {
+        return getAccessibilityFocusedVirtualViewId();
+    }
+
+    private void updateHoveredVirtualView(int i) {
+        if (this.mHoveredVirtualViewId != i) {
+            int i2 = this.mHoveredVirtualViewId;
+            this.mHoveredVirtualViewId = i;
+            sendEventForVirtualView(i, 128);
+            sendEventForVirtualView(i2, 256);
+        }
+    }
+
+    private AccessibilityEvent createEvent(int i, int i2) {
+        if (i != -1) {
+            return createEventForChild(i, i2);
+        }
+        return createEventForHost(i2);
+    }
+
+    private AccessibilityEvent createEventForHost(int i) {
+        i = AccessibilityEvent.obtain(i);
+        this.mHost.onInitializeAccessibilityEvent(i);
+        return i;
+    }
+
+    public void onInitializeAccessibilityEvent(View view, AccessibilityEvent accessibilityEvent) {
+        super.onInitializeAccessibilityEvent(view, accessibilityEvent);
+        onPopulateEventForHost(accessibilityEvent);
+    }
+
+    private AccessibilityEvent createEventForChild(int i, int i2) {
+        i2 = AccessibilityEvent.obtain(i2);
+        AccessibilityNodeInfoCompat obtainAccessibilityNodeInfo = obtainAccessibilityNodeInfo(i);
+        i2.getText().add(obtainAccessibilityNodeInfo.getText());
+        i2.setContentDescription(obtainAccessibilityNodeInfo.getContentDescription());
+        i2.setScrollable(obtainAccessibilityNodeInfo.isScrollable());
+        i2.setPassword(obtainAccessibilityNodeInfo.isPassword());
+        i2.setEnabled(obtainAccessibilityNodeInfo.isEnabled());
+        i2.setChecked(obtainAccessibilityNodeInfo.isChecked());
+        onPopulateEventForVirtualView(i, i2);
+        if (i2.getText().isEmpty()) {
+            if (i2.getContentDescription() == null) {
+                throw new RuntimeException("Callbacks must add text or a content description in populateEventForVirtualViewId()");
+            }
+        }
+        i2.setClassName(obtainAccessibilityNodeInfo.getClassName());
+        AccessibilityRecordCompat.setSource(i2, this.mHost, i);
+        i2.setPackageName(this.mHost.getContext().getPackageName());
+        return i2;
+    }
+
+    @NonNull
+    AccessibilityNodeInfoCompat obtainAccessibilityNodeInfo(int i) {
+        if (i == -1) {
+            return createNodeForHost();
+        }
+        return createNodeForChild(i);
+    }
+
+    @NonNull
+    private AccessibilityNodeInfoCompat createNodeForHost() {
+        AccessibilityNodeInfoCompat obtain = AccessibilityNodeInfoCompat.obtain(this.mHost);
+        ViewCompat.onInitializeAccessibilityNodeInfo(this.mHost, obtain);
+        ArrayList arrayList = new ArrayList();
+        getVisibleVirtualViews(arrayList);
+        if (obtain.getChildCount() &gt; 0) {
+            if (arrayList.size() &gt; 0) {
+                throw new RuntimeException("Views cannot have both real and virtual children");
+            }
+        }
+        int size = arrayList.size();
+        for (int i = 0; i &lt; size; i++) {
+            obtain.addChild(this.mHost, ((Integer) arrayList.get(i)).intValue());
+        }
+        return obtain;
+    }
+
+    public void onInitializeAccessibilityNodeInfo(View view, AccessibilityNodeInfoCompat accessibilityNodeInfoCompat) {
+        super.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfoCompat);
+        onPopulateNodeForHost(accessibilityNodeInfoCompat);
+    }
+
+    @NonNull
+    private AccessibilityNodeInfoCompat createNodeForChild(int i) {
+        AccessibilityNodeInfoCompat obtain = AccessibilityNodeInfoCompat.obtain();
+        obtain.setEnabled(true);
+        obtain.setFocusable(true);
+        obtain.setClassName(DEFAULT_CLASS_NAME);
+        obtain.setBoundsInParent(INVALID_PARENT_BOUNDS);
+        obtain.setBoundsInScreen(INVALID_PARENT_BOUNDS);
+        obtain.setParent(this.mHost);
+        onPopulateNodeForVirtualView(i, obtain);
+        if (obtain.getText() == null) {
+            if (obtain.getContentDescription() == null) {
+                throw new RuntimeException("Callbacks must add text or a content description in populateNodeForVirtualViewId()");
+            }
+        }
+        obtain.getBoundsInParent(this.mTempParentRect);
+        if (this.mTempParentRect.equals(INVALID_PARENT_BOUNDS)) {
+            throw new RuntimeException("Callbacks must set parent bounds in populateNodeForVirtualViewId()");
+        }
+        int actions = obtain.getActions();
+        if ((actions &amp; 64) != 0) {
+            throw new RuntimeException("Callbacks must not add ACTION_ACCESSIBILITY_FOCUS in populateNodeForVirtualViewId()");
+        } else if ((actions &amp; 128) == 0) {
+            obtain.setPackageName(this.mHost.getContext().getPackageName());
+            obtain.setSource(this.mHost, i);
+            if (this.mAccessibilityFocusedVirtualViewId == i) {
+                obtain.setAccessibilityFocused(true);
+                obtain.addAction(128);
+            } else {
+                obtain.setAccessibilityFocused(false);
+                obtain.addAction(64);
+            }
+            i = this.mKeyboardFocusedVirtualViewId == i ? 1 : 0;
+            if (i != 0) {
+                obtain.addAction(2);
+            } else if (obtain.isFocusable()) {
+                obtain.addAction(1);
+            }
+            obtain.setFocused(i);
+            this.mHost.getLocationOnScreen(this.mTempGlobalRect);
+            obtain.getBoundsInScreen(this.mTempScreenRect);
+            if (this.mTempScreenRect.equals(INVALID_PARENT_BOUNDS) != 0) {
+                obtain.getBoundsInParent(this.mTempScreenRect);
+                if (obtain.mParentVirtualDescendantId != -1) {
+                    i = AccessibilityNodeInfoCompat.obtain();
+                    for (int i2 = obtain.mParentVirtualDescendantId; i2 != -1; i2 = i.mParentVirtualDescendantId) {
+                        i.setParent(this.mHost, -1);
+                        i.setBoundsInParent(INVALID_PARENT_BOUNDS);
+                        onPopulateNodeForVirtualView(i2, i);
+                        i.getBoundsInParent(this.mTempParentRect);
+                        this.mTempScreenRect.offset(this.mTempParentRect.left, this.mTempParentRect.top);
+                    }
+                    i.recycle();
+                }
+                this.mTempScreenRect.offset(this.mTempGlobalRect[0] - this.mHost.getScrollX(), this.mTempGlobalRect[1] - this.mHost.getScrollY());
+            }
+            if (this.mHost.getLocalVisibleRect(this.mTempVisibleRect) != 0) {
+                this.mTempVisibleRect.offset(this.mTempGlobalRect[0] - this.mHost.getScrollX(), this.mTempGlobalRect[1] - this.mHost.getScrollY());
+                if (this.mTempScreenRect.intersect(this.mTempVisibleRect) != 0) {
+                    obtain.setBoundsInScreen(this.mTempScreenRect);
+                    if (isVisibleToUser(this.mTempScreenRect) != 0) {
+                        obtain.setVisibleToUser(true);
+                    }
+                }
+            }
+            return obtain;
+        } else {
+            throw new RuntimeException("Callbacks must not add ACTION_CLEAR_ACCESSIBILITY_FOCUS in populateNodeForVirtualViewId()");
+        }
+    }
+
+    boolean performAction(int i, int i2, Bundle bundle) {
+        if (i != -1) {
+            return performActionForChild(i, i2, bundle);
+        }
+        return performActionForHost(i2, bundle);
+    }
+
+    private boolean performActionForHost(int i, Bundle bundle) {
+        return ViewCompat.performAccessibilityAction(this.mHost, i, bundle);
+    }
+
+    private boolean performActionForChild(int i, int i2, Bundle bundle) {
+        if (i2 == 64) {
+            return requestAccessibilityFocus(i);
+        }
+        if (i2 == 128) {
+            return clearAccessibilityFocus(i);
+        }
+        switch (i2) {
+            case 1:
+                return requestKeyboardFocusForVirtualView(i);
+            case 2:
+                return clearKeyboardFocusForVirtualView(i);
+            default:
+                return onPerformActionForVirtualView(i, i2, bundle);
+        }
+    }
+
+    private boolean isVisibleToUser(Rect rect) {
+        boolean z = false;
+        if (rect != null) {
+            if (rect.isEmpty() == null) {
+                if (this.mHost.getWindowVisibility() != null) {
+                    return false;
+                }
+                rect = this.mHost.getParent();
+                while (rect instanceof View) {
+                    View view = (View) rect;
+                    if (view.getAlpha() &gt; 0.0f) {
+                        if (view.getVisibility() == 0) {
+                            rect = view.getParent();
+                        }
+                    }
+                    return false;
+                }
+                if (rect != null) {
+                    z = true;
+                }
+                return z;
+            }
+        }
+        return false;
+    }
+
+    private boolean requestAccessibilityFocus(int i) {
+        if (this.mManager.isEnabled()) {
+            if (this.mManager.isTouchExplorationEnabled()) {
+                if (this.mAccessibilityFocusedVirtualViewId == i) {
+                    return false;
+                }
+                if (this.mAccessibilityFocusedVirtualViewId != Integer.MIN_VALUE) {
+                    clearAccessibilityFocus(this.mAccessibilityFocusedVirtualViewId);
+                }
+                this.mAccessibilityFocusedVirtualViewId = i;
+                this.mHost.invalidate();
+                sendEventForVirtualView(i, 32768);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean clearAccessibilityFocus(int i) {
+        if (this.mAccessibilityFocusedVirtualViewId != i) {
+            return false;
+        }
+        this.mAccessibilityFocusedVirtualViewId = Integer.MIN_VALUE;
+        this.mHost.invalidate();
+        sendEventForVirtualView(i, 65536);
+        return true;
+    }
+
+    public final boolean requestKeyboardFocusForVirtualView(int i) {
+        if ((!this.mHost.isFocused() &amp;&amp; !this.mHost.requestFocus()) || this.mKeyboardFocusedVirtualViewId == i) {
+            return false;
+        }
+        if (this.mKeyboardFocusedVirtualViewId != Integer.MIN_VALUE) {
+            clearKeyboardFocusForVirtualView(this.mKeyboardFocusedVirtualViewId);
+        }
+        this.mKeyboardFocusedVirtualViewId = i;
+        onVirtualViewKeyboardFocusChanged(i, true);
+        sendEventForVirtualView(i, 8);
+        return true;
+    }
+
+    public final boolean clearKeyboardFocusForVirtualView(int i) {
+        if (this.mKeyboardFocusedVirtualViewId != i) {
+            return false;
+        }
+        this.mKeyboardFocusedVirtualViewId = Integer.MIN_VALUE;
+        onVirtualViewKeyboardFocusChanged(i, false);
+        sendEventForVirtualView(i, 8);
+        return true;
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:4 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

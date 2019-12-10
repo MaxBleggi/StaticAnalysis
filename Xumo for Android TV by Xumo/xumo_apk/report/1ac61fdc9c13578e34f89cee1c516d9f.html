@@ -1,0 +1,365 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9"><div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/exoplayer2/upstream/cache/CacheUtil.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/exoplayer2/upstream/cache/CacheUtil.java</a></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-83">report</i><h5>password =|secret =|username =|key =</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>the app contain hardcoded sensitive informations like usernames, passwords, keys etc: Hard coded sensitive information in Application Code (including Crypto)</span></div></li></ul><ul class="collapsible"><li><div class="collapsible-header"><img data-position="top" data-tooltip="OWASP item" src="html/owasp_logo.png" height="20em" style="margin-right: 1rem;margin-left: 5px;" class="tooltipped"></img> OWASP Item</div><div class="collapsible-body"><span>For more information, have a look at: https://www.owasp.org/index.php/OWASP_Mobile_Security_Testing_Guide</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#CacheUtil_java39pass" class="active">line 39</a></li><li class="tab"><a style="color: #d82c2b;" href="#CacheUtil_java86pass">line 86</a></li></ul></div><div class="card-content"><div id="CacheUtil_java39pass">Code @ line 39<pre data-start="36" data-line="39" data-src="CacheUtil.java" class="code line-numbers"><code>        long j;
+        DataSpec dataSpec2 = dataSpec;
+        CachingCounters cachingCounters2 = cachingCounters;
+        String key = getKey(dataSpec);
+        long j2 = dataSpec2.absoluteStreamPosition;
+        if (dataSpec2.length != -1) {
+            j = dataSpec2.length;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlVXRpbC5qYXZhfHx8bGluZTogMzkgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDM5fHx8MzY">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlVXRpbC5qYXZhfHx8bGluZTogMzkgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDM5fHx8MzY')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlVXRpbC5qYXZhfHx8bGluZTogMzkgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDM5fHx8MzY').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlVXRpbC5qYXZhfHx8bGluZTogMzkgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDM5fHx8MzY" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlVXRpbC5qYXZhfHx8bGluZTogMzkgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDM5fHx8MzY' , 'ICAgICAgICBsb25nIGo7CiAgICAgICAgRGF0YVNwZWMgZGF0YVNwZWMyID0gZGF0YVNwZWM7CiAgICAgICAgQ2FjaGluZ0NvdW50ZXJzIGNhY2hpbmdDb3VudGVyczIgPSBjYWNoaW5nQ291bnRlcnM7CiAgICAgICAgU3RyaW5nIGtleSA9IGdldEtleShkYXRhU3BlYyk7CiAgICAgICAgbG9uZyBqMiA9IGRhdGFTcGVjMi5hYnNvbHV0ZVN0cmVhbVBvc2l0aW9uOwogICAgICAgIGlmIChkYXRhU3BlYzIubGVuZ3RoICE9IC0xKSB7CiAgICAgICAgICAgIGogPSBkYXRhU3BlYzIubGVuZ3RoOwo=');  
+                                            });
+                                            </script>
+                                            </div><div id="CacheUtil_java86pass">Code @ line 86<pre data-start="83" data-line="86" data-src="CacheUtil.java" class="code line-numbers"><code>            cachingCounters2 = new CachingCounters();
+        }
+        CachingCounters cachingCounters3 = cachingCounters2;
+        String key = getKey(dataSpec);
+        long j = dataSpec2.absoluteStreamPosition;
+        long contentLength = dataSpec2.length != -1 ? dataSpec2.length : cache2.getContentLength(key);
+        while (contentLength != 0) {
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlVXRpbC5qYXZhfHx8bGluZTogODYgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDg2fHx8ODM">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlVXRpbC5qYXZhfHx8bGluZTogODYgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDg2fHx8ODM')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlVXRpbC5qYXZhfHx8bGluZTogODYgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDg2fHx8ODM').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlVXRpbC5qYXZhfHx8bGluZTogODYgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDg2fHx8ODM" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NhY2hlL0NhY2hlVXRpbC5qYXZhfHx8bGluZTogODYgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDg2fHx8ODM' , 'ICAgICAgICAgICAgY2FjaGluZ0NvdW50ZXJzMiA9IG5ldyBDYWNoaW5nQ291bnRlcnMoKTsKICAgICAgICB9CiAgICAgICAgQ2FjaGluZ0NvdW50ZXJzIGNhY2hpbmdDb3VudGVyczMgPSBjYWNoaW5nQ291bnRlcnMyOwogICAgICAgIFN0cmluZyBrZXkgPSBnZXRLZXkoZGF0YVNwZWMpOwogICAgICAgIGxvbmcgaiA9IGRhdGFTcGVjMi5hYnNvbHV0ZVN0cmVhbVBvc2l0aW9uOwogICAgICAgIGxvbmcgY29udGVudExlbmd0aCA9IGRhdGFTcGVjMi5sZW5ndGggIT0gLTEgPyBkYXRhU3BlYzIubGVuZ3RoIDogY2FjaGUyLmdldENvbnRlbnRMZW5ndGgoa2V5KTsKICAgICAgICB3aGlsZSAoY29udGVudExlbmd0aCAhPSAwKSB7Cg==');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="CacheUtil.java" data-line="39,86," class="code line-numbers"><code>package com.google.android.exoplayer2.upstream.cache;
+
+import android.net.Uri;
+import androidx.annotation.Nullable;
+import com.google.android.exoplayer2.upstream.DataSource;
+import com.google.android.exoplayer2.upstream.DataSpec;
+import com.google.android.exoplayer2.util.Assertions;
+import com.google.android.exoplayer2.util.PriorityTaskManager;
+import java.io.EOFException;
+import java.io.IOException;
+import java.util.concurrent.atomic.AtomicBoolean;
+
+public final class CacheUtil {
+    public static final int DEFAULT_BUFFER_SIZE_BYTES = 131072;
+    public static final CacheKeyFactory DEFAULT_CACHE_KEY_FACTORY = -$$Lambda$u97poD-IIwob7OPYcVJkh9jokx0.INSTANCE;
+
+    public static class CachingCounters {
+        public volatile long alreadyCachedBytes;
+        public volatile long contentLength = -1;
+        public volatile long newlyCachedBytes;
+
+        public long totalCachedBytes() {
+            return this.alreadyCachedBytes + this.newlyCachedBytes;
+        }
+    }
+
+    public static String generateKey(Uri uri) {
+        return uri.toString();
+    }
+
+    public static String getKey(DataSpec dataSpec) {
+        return dataSpec.key != null ? dataSpec.key : generateKey(dataSpec.uri);
+    }
+
+    public static void getCached(DataSpec dataSpec, Cache cache, CachingCounters cachingCounters) {
+        long j;
+        DataSpec dataSpec2 = dataSpec;
+        CachingCounters cachingCounters2 = cachingCounters;
+        String key = getKey(dataSpec);
+        long j2 = dataSpec2.absoluteStreamPosition;
+        if (dataSpec2.length != -1) {
+            j = dataSpec2.length;
+            Cache cache2 = cache;
+        } else {
+            j = cache.getContentLength(key);
+        }
+        cachingCounters2.contentLength = j;
+        cachingCounters2.alreadyCachedBytes = 0;
+        cachingCounters2.newlyCachedBytes = 0;
+        long j3 = j2;
+        long j4 = j;
+        while (j4 != 0) {
+            j2 = cache.getCachedLength(key, j3, j4 != -1 ? j4 : Long.MAX_VALUE);
+            if (j2 &gt; 0) {
+                cachingCounters2.alreadyCachedBytes += j2;
+            } else {
+                j2 = -j2;
+                if (j2 == Long.MAX_VALUE) {
+                    return;
+                }
+            }
+            j3 += j2;
+            if (j4 == -1) {
+                j2 = 0;
+            }
+            j4 -= j2;
+        }
+    }
+
+    public static void cache(DataSpec dataSpec, Cache cache, DataSource dataSource, @Nullable CachingCounters cachingCounters, @Nullable AtomicBoolean atomicBoolean) throws IOException, InterruptedException {
+        cache(dataSpec, cache, new CacheDataSource(cache, dataSource), new byte[131072], null, 0, cachingCounters, atomicBoolean, false);
+    }
+
+    public static void cache(DataSpec dataSpec, Cache cache, CacheDataSource cacheDataSource, byte[] bArr, PriorityTaskManager priorityTaskManager, int i, @Nullable CachingCounters cachingCounters, @Nullable AtomicBoolean atomicBoolean, boolean z) throws IOException, InterruptedException {
+        DataSpec dataSpec2 = dataSpec;
+        Cache cache2 = cache;
+        CachingCounters cachingCounters2 = cachingCounters;
+        Assertions.checkNotNull(cacheDataSource);
+        Assertions.checkNotNull(bArr);
+        if (cachingCounters2 != null) {
+            getCached(dataSpec2, cache2, cachingCounters2);
+        } else {
+            cachingCounters2 = new CachingCounters();
+        }
+        CachingCounters cachingCounters3 = cachingCounters2;
+        String key = getKey(dataSpec);
+        long j = dataSpec2.absoluteStreamPosition;
+        long contentLength = dataSpec2.length != -1 ? dataSpec2.length : cache2.getContentLength(key);
+        while (contentLength != 0) {
+            long j2;
+            throwExceptionIfInterruptedOrCancelled(atomicBoolean);
+            long cachedLength = cache.getCachedLength(key, j, contentLength != -1 ? contentLength : Long.MAX_VALUE);
+            if (cachedLength &gt; 0) {
+                j2 = cachedLength;
+            } else {
+                long j3 = -cachedLength;
+                j2 = j3;
+                if (readAndDiscard(dataSpec, j, j3, cacheDataSource, bArr, priorityTaskManager, i, cachingCounters3, atomicBoolean) &lt; j2) {
+                    if (!z) {
+                        return;
+                    }
+                    if (contentLength != -1) {
+                        throw new EOFException();
+                    }
+                    return;
+                }
+            }
+            j += j2;
+            if (contentLength == -1) {
+                j2 = 0;
+            }
+            contentLength -= j2;
+        }
+    }
+
+    private static long readAndDiscard(com.google.android.exoplayer2.upstream.DataSpec r19, long r20, long r22, com.google.android.exoplayer2.upstream.DataSource r24, byte[] r25, com.google.android.exoplayer2.util.PriorityTaskManager r26, int r27, com.google.android.exoplayer2.upstream.cache.CacheUtil.CachingCounters r28, java.util.concurrent.atomic.AtomicBoolean r29) throws java.io.IOException, java.lang.InterruptedException {
+        /* JADX: method processing error */
+/*
+Error: java.lang.NullPointerException
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.searchTryCatchDominators(ProcessTryCatchRegions.java:75)
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.process(ProcessTryCatchRegions.java:45)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.postProcessRegions(RegionMakerVisitor.java:63)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.visit(RegionMakerVisitor.java:58)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:31)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:17)
+	at jadx.core.ProcessClass.process(ProcessClass.java:37)
+	at jadx.api.JadxDecompiler.processClass(JadxDecompiler.java:306)
+	at jadx.api.JavaClass.decompile(JavaClass.java:62)
+	at jadx.api.JadxDecompiler$1.run(JadxDecompiler.java:199)
+*/
+        /*
+        r1 = r24;
+        r2 = r25;
+        r3 = r28;
+        r5 = r19;
+    L_0x0008:
+        if (r26 == 0) goto L_0x000d;
+    L_0x000a:
+        r26.proceed(r27);
+    L_0x000d:
+        throwExceptionIfInterruptedOrCancelled(r29);	 Catch:{ PriorityTooLowException -&gt; 0x008d, all -&gt; 0x0088 }
+        r14 = new com.google.android.exoplayer2.upstream.DataSpec;	 Catch:{ PriorityTooLowException -&gt; 0x008d, all -&gt; 0x0088 }
+        r7 = r5.uri;	 Catch:{ PriorityTooLowException -&gt; 0x008d, all -&gt; 0x0088 }
+        r8 = r5.httpMethod;	 Catch:{ PriorityTooLowException -&gt; 0x008d, all -&gt; 0x0088 }
+        r9 = r5.httpBody;	 Catch:{ PriorityTooLowException -&gt; 0x008d, all -&gt; 0x0088 }
+        r10 = r5.position;	 Catch:{ PriorityTooLowException -&gt; 0x008d, all -&gt; 0x0088 }
+        r6 = 0;	 Catch:{ PriorityTooLowException -&gt; 0x008d, all -&gt; 0x0088 }
+        r10 = r10 + r20;	 Catch:{ PriorityTooLowException -&gt; 0x008d, all -&gt; 0x0088 }
+        r12 = r5.absoluteStreamPosition;	 Catch:{ PriorityTooLowException -&gt; 0x008d, all -&gt; 0x0088 }
+        r6 = 0;	 Catch:{ PriorityTooLowException -&gt; 0x008d, all -&gt; 0x0088 }
+        r12 = r10 - r12;	 Catch:{ PriorityTooLowException -&gt; 0x008d, all -&gt; 0x0088 }
+        r15 = -1;	 Catch:{ PriorityTooLowException -&gt; 0x008d, all -&gt; 0x0088 }
+        r10 = r5.key;	 Catch:{ PriorityTooLowException -&gt; 0x008d, all -&gt; 0x0088 }
+        r6 = r5.flags;	 Catch:{ PriorityTooLowException -&gt; 0x008d, all -&gt; 0x0088 }
+        r17 = r6 | 2;	 Catch:{ PriorityTooLowException -&gt; 0x008d, all -&gt; 0x0088 }
+        r6 = r14;	 Catch:{ PriorityTooLowException -&gt; 0x008d, all -&gt; 0x0088 }
+        r18 = r10;	 Catch:{ PriorityTooLowException -&gt; 0x008d, all -&gt; 0x0088 }
+        r10 = r20;	 Catch:{ PriorityTooLowException -&gt; 0x008d, all -&gt; 0x0088 }
+        r4 = r14;	 Catch:{ PriorityTooLowException -&gt; 0x008d, all -&gt; 0x0088 }
+        r14 = r15;	 Catch:{ PriorityTooLowException -&gt; 0x008d, all -&gt; 0x0088 }
+        r16 = r18;	 Catch:{ PriorityTooLowException -&gt; 0x008d, all -&gt; 0x0088 }
+        r6.&lt;init&gt;(r7, r8, r9, r10, r12, r14, r16, r17);	 Catch:{ PriorityTooLowException -&gt; 0x008d, all -&gt; 0x0088 }
+        r5 = r1.open(r4);	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+        r7 = r3.contentLength;	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+        r9 = -1;	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+        r11 = (r7 &gt; r9 ? 1 : (r7 == r9 ? 0 : -1));	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+        if (r11 != 0) goto L_0x004c;	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+    L_0x0042:
+        r7 = (r5 &gt; r9 ? 1 : (r5 == r9 ? 0 : -1));	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+        if (r7 == 0) goto L_0x004c;	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+    L_0x0046:
+        r7 = r4.absoluteStreamPosition;	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+        r11 = 0;	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+        r7 = r7 + r5;	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+        r3.contentLength = r7;	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+    L_0x004c:
+        r5 = 0;	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+    L_0x004e:
+        r7 = (r5 &gt; r22 ? 1 : (r5 == r22 ? 0 : -1));	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+        if (r7 == 0) goto L_0x0082;	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+    L_0x0052:
+        throwExceptionIfInterruptedOrCancelled(r29);	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+        r7 = 0;	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+        r8 = (r22 &gt; r9 ? 1 : (r22 == r9 ? 0 : -1));	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+        if (r8 == 0) goto L_0x0064;	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+    L_0x005a:
+        r8 = r2.length;	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+        r11 = (long) r8;	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+        r13 = r22 - r5;	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+        r11 = java.lang.Math.min(r11, r13);	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+        r8 = (int) r11;	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+        goto L_0x0065;	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+    L_0x0064:
+        r8 = r2.length;	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+    L_0x0065:
+        r7 = r1.read(r2, r7, r8);	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+        r8 = -1;	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+        if (r7 != r8) goto L_0x0079;	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+    L_0x006c:
+        r7 = r3.contentLength;	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+        r11 = (r7 &gt; r9 ? 1 : (r7 == r9 ? 0 : -1));	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+        if (r11 != 0) goto L_0x0082;	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+    L_0x0072:
+        r7 = r4.absoluteStreamPosition;	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+        r9 = 0;	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+        r7 = r7 + r5;	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+        r3.contentLength = r7;	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+        goto L_0x0082;	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+    L_0x0079:
+        r7 = (long) r7;	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+        r5 = r5 + r7;	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+        r11 = r3.newlyCachedBytes;	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+        r13 = 0;	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+        r11 = r11 + r7;	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+        r3.newlyCachedBytes = r11;	 Catch:{ PriorityTooLowException -&gt; 0x0086, all -&gt; 0x0088 }
+        goto L_0x004e;
+    L_0x0082:
+        com.google.android.exoplayer2.util.Util.closeQuietly(r24);
+        return r5;
+    L_0x0086:
+        r5 = r4;
+        goto L_0x008d;
+    L_0x0088:
+        r0 = move-exception;
+        com.google.android.exoplayer2.util.Util.closeQuietly(r24);
+        throw r0;
+    L_0x008d:
+        com.google.android.exoplayer2.util.Util.closeQuietly(r24);
+        goto L_0x0008;
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.google.android.exoplayer2.upstream.cache.CacheUtil.readAndDiscard(com.google.android.exoplayer2.upstream.DataSpec, long, long, com.google.android.exoplayer2.upstream.DataSource, byte[], com.google.android.exoplayer2.util.PriorityTaskManager, int, com.google.android.exoplayer2.upstream.cache.CacheUtil$CachingCounters, java.util.concurrent.atomic.AtomicBoolean):long");
+    }
+
+    public static void remove(com.google.android.exoplayer2.upstream.cache.Cache r1, java.lang.String r2) {
+        /* JADX: method processing error */
+/*
+Error: java.lang.NullPointerException
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.searchTryCatchDominators(ProcessTryCatchRegions.java:75)
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.process(ProcessTryCatchRegions.java:45)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.postProcessRegions(RegionMakerVisitor.java:63)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.visit(RegionMakerVisitor.java:58)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:31)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:17)
+	at jadx.core.ProcessClass.process(ProcessClass.java:37)
+	at jadx.api.JadxDecompiler.processClass(JadxDecompiler.java:306)
+	at jadx.api.JavaClass.decompile(JavaClass.java:62)
+	at jadx.api.JadxDecompiler$1.run(JadxDecompiler.java:199)
+*/
+        /*
+        r2 = r1.getCachedSpans(r2);
+        r2 = r2.iterator();
+    L_0x0008:
+        r0 = r2.hasNext();
+        if (r0 == 0) goto L_0x0018;
+    L_0x000e:
+        r0 = r2.next();
+        r0 = (com.google.android.exoplayer2.upstream.cache.CacheSpan) r0;
+        r1.removeSpan(r0);	 Catch:{ CacheException -&gt; 0x0008 }
+        goto L_0x0008;
+    L_0x0018:
+        return;
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.google.android.exoplayer2.upstream.cache.CacheUtil.remove(com.google.android.exoplayer2.upstream.cache.Cache, java.lang.String):void");
+    }
+
+    private static void throwExceptionIfInterruptedOrCancelled(AtomicBoolean atomicBoolean) throws InterruptedException {
+        if (Thread.interrupted() || !(atomicBoolean == null || atomicBoolean.get() == null)) {
+            throw new InterruptedException();
+        }
+    }
+
+    private CacheUtil() {
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:9 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

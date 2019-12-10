@@ -1,0 +1,342 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/firebase/components/Component.java" target="_blank">/xumo_apk/jadx_source_code/com/google/firebase/components/Component.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="Component.java" data-line="" class="code line-numbers"><code>package com.google.firebase.components;
+
+import android.content.Context;
+import android.util.Log;
+import androidx.annotation.VisibleForTesting;
+import com.google.android.gms.common.annotation.KeepForSdk;
+import com.google.android.gms.common.internal.Preconditions;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+@KeepForSdk
+/* compiled from: com.google.firebase:firebase-common@@16.0.2 */
+public final class Component&lt;T&gt; {
+    private final Set&lt;Class&lt;? super T&gt;&gt; zza;
+    private final Set&lt;Dependency&gt; zzb;
+    private final int zzc;
+    private final ComponentFactory&lt;T&gt; zzd;
+    private final Set&lt;Class&lt;?&gt;&gt; zze;
+
+    /* compiled from: com.google.firebase:firebase-common@@16.0.2 */
+    public static /* synthetic */ class AnonymousClass1&lt;T&gt; {
+        private final T zza;
+        private final zze&lt;T&gt; zzb;
+
+        public static AnonymousClass1&lt;Context&gt; zza(Context context) {
+            return new AnonymousClass1(context, new zzd());
+        }
+
+        @VisibleForTesting
+        private AnonymousClass1(T t, zze&lt;T&gt; com_google_firebase_components_zze_T) {
+            this.zza = t;
+            this.zzb = com_google_firebase_components_zze_T;
+        }
+
+        public List&lt;ComponentRegistrar&gt; zza() {
+            return AnonymousClass1.zzb(this.zzb.zza(this.zza));
+        }
+
+        private static List&lt;ComponentRegistrar&gt; zzb(List&lt;String&gt; list) {
+            List&lt;ComponentRegistrar&gt; arrayList = new ArrayList();
+            for (String cls : list) {
+                try {
+                    Class cls2 = Class.forName(cls);
+                    if (ComponentRegistrar.class.isAssignableFrom(cls2)) {
+                        arrayList.add((ComponentRegistrar) cls2.getDeclaredConstructor(new Class[0]).newInstance(new Object[0]));
+                    } else {
+                        Log.w("ComponentDiscovery", String.format("Class %s is not an instance of %s", new Object[]{cls, "com.google.firebase.components.ComponentRegistrar"}));
+                    }
+                } catch (Throwable e) {
+                    Log.w("ComponentDiscovery", String.format("Class %s is not an found.", new Object[]{cls}), e);
+                } catch (Throwable e2) {
+                    Log.w("ComponentDiscovery", String.format("Could not instantiate %s.", new Object[]{cls}), e2);
+                } catch (Throwable e22) {
+                    Log.w("ComponentDiscovery", String.format("Could not instantiate %s.", new Object[]{cls}), e22);
+                } catch (Throwable e222) {
+                    Log.w("ComponentDiscovery", String.format("Could not instantiate %s", new Object[]{cls}), e222);
+                } catch (Throwable e2222) {
+                    Log.w("ComponentDiscovery", String.format("Could not instantiate %s", new Object[]{cls}), e2222);
+                }
+            }
+            return arrayList;
+        }
+
+        static List&lt;Component&lt;?&gt;&gt; zza(List&lt;Component&lt;?&gt;&gt; list) {
+            Map hashMap = new HashMap(list.size());
+            for (Component component : list) {
+                zzg com_google_firebase_components_zzg = new zzg(component);
+                for (Class put : component.zza()) {
+                    if (hashMap.put(put, com_google_firebase_components_zzg) != null) {
+                        throw new IllegalArgumentException(String.format("Multiple components provide %s.", new Object[]{(Class) r2.next()}));
+                    }
+                }
+            }
+            for (zzg com_google_firebase_components_zzg2 : hashMap.values()) {
+                for (Dependency dependency : com_google_firebase_components_zzg2.zzb().zzb()) {
+                    if (dependency.zzc()) {
+                        zzg com_google_firebase_components_zzg3 = (zzg) hashMap.get(dependency.zza());
+                        if (com_google_firebase_components_zzg3 != null) {
+                            com_google_firebase_components_zzg2.zza(com_google_firebase_components_zzg3);
+                            com_google_firebase_components_zzg3.zzb(com_google_firebase_components_zzg2);
+                        }
+                    }
+                }
+            }
+            Set&lt;zzg&gt; hashSet = new HashSet(hashMap.values());
+            Set zza = AnonymousClass1.zza((Set) hashSet);
+            List&lt;Component&lt;?&gt;&gt; arrayList = new ArrayList();
+            while (!zza.isEmpty()) {
+                com_google_firebase_components_zzg = (zzg) zza.iterator().next();
+                zza.remove(com_google_firebase_components_zzg);
+                arrayList.add(com_google_firebase_components_zzg.zzb());
+                for (zzg com_google_firebase_components_zzg4 : com_google_firebase_components_zzg.zza()) {
+                    com_google_firebase_components_zzg4.zzc(com_google_firebase_components_zzg);
+                    if (com_google_firebase_components_zzg4.zzc()) {
+                        zza.add(com_google_firebase_components_zzg4);
+                    }
+                }
+            }
+            if (arrayList.size() == list.size()) {
+                Collections.reverse(arrayList);
+                return arrayList;
+            }
+            list = new ArrayList();
+            for (zzg com_google_firebase_components_zzg5 : hashSet) {
+                if (!(com_google_firebase_components_zzg5.zzc() || com_google_firebase_components_zzg5.zzd())) {
+                    list.add(com_google_firebase_components_zzg5.zzb());
+                }
+            }
+            throw new DependencyCycleException(list);
+        }
+
+        private static Set&lt;zzg&gt; zza(Set&lt;zzg&gt; set) {
+            Set&lt;zzg&gt; hashSet = new HashSet();
+            for (zzg com_google_firebase_components_zzg : set) {
+                if (com_google_firebase_components_zzg.zzc()) {
+                    hashSet.add(com_google_firebase_components_zzg);
+                }
+            }
+            return hashSet;
+        }
+    }
+
+    @KeepForSdk
+    /* compiled from: com.google.firebase:firebase-common@@16.0.2 */
+    public static class Builder&lt;T&gt; {
+        private final Set&lt;Class&lt;? super T&gt;&gt; zza;
+        private final Set&lt;Dependency&gt; zzb;
+        private int zzc;
+        private ComponentFactory&lt;T&gt; zzd;
+        private Set&lt;Class&lt;?&gt;&gt; zze;
+
+        private Builder(Class&lt;T&gt; cls, Class&lt;? super T&gt;... clsArr) {
+            this.zza = new HashSet();
+            this.zzb = new HashSet();
+            int i = 0;
+            this.zzc = 0;
+            this.zze = new HashSet();
+            Preconditions.checkNotNull(cls, "Null interface");
+            this.zza.add(cls);
+            cls = clsArr.length;
+            while (i &lt; cls) {
+                Preconditions.checkNotNull(clsArr[i], "Null interface");
+                i++;
+            }
+            Collections.addAll(this.zza, clsArr);
+        }
+
+        @KeepForSdk
+        public Builder&lt;T&gt; add(Dependency dependency) {
+            Preconditions.checkNotNull(dependency, "Null dependency");
+            Preconditions.checkArgument(this.zza.contains(dependency.zza()) ^ 1, "Components are not allowed to depend on interfaces they themselves provide.");
+            this.zzb.add(dependency);
+            return this;
+        }
+
+        @KeepForSdk
+        public Builder&lt;T&gt; alwaysEager() {
+            return zza(1);
+        }
+
+        @KeepForSdk
+        public Builder&lt;T&gt; eagerInDefaultApp() {
+            return zza(2);
+        }
+
+        @KeepForSdk
+        public Builder&lt;T&gt; publishes(Class&lt;?&gt; cls) {
+            this.zze.add(cls);
+            return this;
+        }
+
+        private Builder&lt;T&gt; zza(int i) {
+            Preconditions.checkState(this.zzc == 0, "Instantiation type has already been set.");
+            this.zzc = i;
+            return this;
+        }
+
+        @KeepForSdk
+        public Builder&lt;T&gt; factory(ComponentFactory&lt;T&gt; componentFactory) {
+            this.zzd = (ComponentFactory) Preconditions.checkNotNull(componentFactory, "Null factory");
+            return this;
+        }
+
+        @KeepForSdk
+        public Component&lt;T&gt; build() {
+            Preconditions.checkState(this.zzd != null, "Missing required property: factory.");
+            return new Component(new HashSet(this.zza), new HashSet(this.zzb), this.zzc, this.zzd, this.zze);
+        }
+    }
+
+    static /* synthetic */ Object zza(Object obj) {
+        return obj;
+    }
+
+    static /* synthetic */ Object zzb(Object obj) {
+        return obj;
+    }
+
+    private Component(Set&lt;Class&lt;? super T&gt;&gt; set, Set&lt;Dependency&gt; set2, int i, ComponentFactory&lt;T&gt; componentFactory, Set&lt;Class&lt;?&gt;&gt; set3) {
+        this.zza = Collections.unmodifiableSet(set);
+        this.zzb = Collections.unmodifiableSet(set2);
+        this.zzc = i;
+        this.zzd = componentFactory;
+        this.zze = Collections.unmodifiableSet(set3);
+    }
+
+    public final Set&lt;Class&lt;? super T&gt;&gt; zza() {
+        return this.zza;
+    }
+
+    public final Set&lt;Dependency&gt; zzb() {
+        return this.zzb;
+    }
+
+    public final ComponentFactory&lt;T&gt; zzc() {
+        return this.zzd;
+    }
+
+    public final Set&lt;Class&lt;?&gt;&gt; zzd() {
+        return this.zze;
+    }
+
+    public final boolean zze() {
+        return this.zzc == 1;
+    }
+
+    public final boolean zzf() {
+        return this.zzc == 2;
+    }
+
+    public final String toString() {
+        StringBuilder stringBuilder = new StringBuilder("Component&lt;");
+        stringBuilder.append(Arrays.toString(this.zza.toArray()));
+        stringBuilder.append("&gt;{");
+        stringBuilder.append(this.zzc);
+        stringBuilder.append(", deps=");
+        stringBuilder.append(Arrays.toString(this.zzb.toArray()));
+        stringBuilder.append("}");
+        return stringBuilder.toString();
+    }
+
+    @KeepForSdk
+    public static &lt;T&gt; Builder&lt;T&gt; builder(Class&lt;T&gt; cls) {
+        return new Builder(cls, new Class[0]);
+    }
+
+    @KeepForSdk
+    public static &lt;T&gt; Builder&lt;T&gt; builder(Class&lt;T&gt; cls, Class&lt;? super T&gt;... clsArr) {
+        return new Builder(cls, clsArr);
+    }
+
+    @KeepForSdk
+    @Deprecated
+    public static &lt;T&gt; Component&lt;T&gt; of(Class&lt;T&gt; cls, T t) {
+        return builder(cls).factory(zzb.zza(t)).build();
+    }
+
+    @KeepForSdk
+    @SafeVarargs
+    public static &lt;T&gt; Component&lt;T&gt; of(T t, Class&lt;T&gt; cls, Class&lt;? super T&gt;... clsArr) {
+        return builder(cls, clsArr).factory(zzc.zza(t)).build();
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:7 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

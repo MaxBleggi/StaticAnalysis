@@ -1,0 +1,364 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/exoplayer2/audio/AudioFocusManager.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/exoplayer2/audio/AudioFocusManager.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="AudioFocusManager.java" data-line="" class="code line-numbers"><code>package com.google.android.exoplayer2.audio;
+
+import android.content.Context;
+import android.media.AudioFocusRequest;
+import android.media.AudioFocusRequest.Builder;
+import android.media.AudioManager;
+import android.media.AudioManager.OnAudioFocusChangeListener;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import com.google.android.exoplayer2.util.Assertions;
+import com.google.android.exoplayer2.util.Log;
+import com.google.android.exoplayer2.util.MimeTypes;
+import com.google.android.exoplayer2.util.Util;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
+public final class AudioFocusManager {
+    private static final int AUDIO_FOCUS_STATE_HAVE_FOCUS = 1;
+    private static final int AUDIO_FOCUS_STATE_LOSS_TRANSIENT = 2;
+    private static final int AUDIO_FOCUS_STATE_LOSS_TRANSIENT_DUCK = 3;
+    private static final int AUDIO_FOCUS_STATE_LOST_FOCUS = -1;
+    private static final int AUDIO_FOCUS_STATE_NO_FOCUS = 0;
+    public static final int PLAYER_COMMAND_DO_NOT_PLAY = -1;
+    public static final int PLAYER_COMMAND_PLAY_WHEN_READY = 1;
+    public static final int PLAYER_COMMAND_WAIT_FOR_CALLBACK = 0;
+    private static final String TAG = "AudioFocusManager";
+    private static final float VOLUME_MULTIPLIER_DEFAULT = 1.0f;
+    private static final float VOLUME_MULTIPLIER_DUCK = 0.2f;
+    @Nullable
+    private AudioAttributes audioAttributes;
+    private AudioFocusRequest audioFocusRequest;
+    private int audioFocusState;
+    @Nullable
+    private final AudioManager audioManager;
+    private int focusGain;
+    private final AudioFocusListener focusListener;
+    private final PlayerControl playerControl;
+    private boolean rebuildAudioFocusRequest;
+    private float volumeMultiplier = 1.0f;
+
+    private class AudioFocusListener implements OnAudioFocusChangeListener {
+        private AudioFocusListener() {
+        }
+
+        public void onAudioFocusChange(int i) {
+            if (i != 1) {
+                switch (i) {
+                    case -3:
+                        if (AudioFocusManager.this.willPauseWhenDucked() == 0) {
+                            AudioFocusManager.this.audioFocusState = 3;
+                            break;
+                        } else {
+                            AudioFocusManager.this.audioFocusState = 2;
+                            break;
+                        }
+                    case -2:
+                        AudioFocusManager.this.audioFocusState = 2;
+                        break;
+                    case -1:
+                        AudioFocusManager.this.audioFocusState = -1;
+                        break;
+                    default:
+                        String str = AudioFocusManager.TAG;
+                        StringBuilder stringBuilder = new StringBuilder();
+                        stringBuilder.append("Unknown focus change type: ");
+                        stringBuilder.append(i);
+                        Log.w(str, stringBuilder.toString());
+                        return;
+                }
+            }
+            AudioFocusManager.this.audioFocusState = 1;
+            switch (AudioFocusManager.this.audioFocusState) {
+                case -1:
+                    AudioFocusManager.this.playerControl.executePlayerCommand(-1);
+                    AudioFocusManager.this.abandonAudioFocus(true);
+                    break;
+                case 0:
+                case 3:
+                    break;
+                case 1:
+                    AudioFocusManager.this.playerControl.executePlayerCommand(1);
+                    break;
+                case 2:
+                    AudioFocusManager.this.playerControl.executePlayerCommand(0);
+                    break;
+                default:
+                    StringBuilder stringBuilder2 = new StringBuilder();
+                    stringBuilder2.append("Unknown audio focus state: ");
+                    stringBuilder2.append(AudioFocusManager.this.audioFocusState);
+                    throw new IllegalStateException(stringBuilder2.toString());
+            }
+            i = AudioFocusManager.this.audioFocusState == 3 ? 1045220557 : 1065353216;
+            if (AudioFocusManager.this.volumeMultiplier != i) {
+                AudioFocusManager.this.volumeMultiplier = i;
+                AudioFocusManager.this.playerControl.setVolumeMultiplier(i);
+            }
+        }
+    }
+
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface PlayerCommand {
+    }
+
+    public interface PlayerControl {
+        void executePlayerCommand(int i);
+
+        void setVolumeMultiplier(float f);
+    }
+
+    public AudioFocusManager(@Nullable Context context, PlayerControl playerControl) {
+        this.audioManager = context == null ? null : (AudioManager) context.getApplicationContext().getSystemService(MimeTypes.BASE_TYPE_AUDIO);
+        this.playerControl = playerControl;
+        this.focusListener = new AudioFocusListener();
+        this.audioFocusState = null;
+    }
+
+    public float getVolumeMultiplier() {
+        return this.volumeMultiplier;
+    }
+
+    public int setAudioAttributes(@Nullable AudioAttributes audioAttributes, boolean z, int i) {
+        if (audioAttributes == null) {
+            return 1;
+        }
+        Assertions.checkNotNull(this.audioManager, "SimpleExoPlayer must be created with a context to handle audio focus.");
+        if (!Util.areEqual(this.audioAttributes, audioAttributes)) {
+            this.audioAttributes = audioAttributes;
+            this.focusGain = convertAudioAttributesToFocusGain(audioAttributes);
+            if (this.focusGain != 1) {
+                if (this.focusGain != null) {
+                    audioAttributes = null;
+                    Assertions.checkArgument(audioAttributes, "Automatic handling of audio focus is only available for USAGE_MEDIA and USAGE_GAME.");
+                    if (z &amp;&amp; (i == 2 || i == 3)) {
+                        return requestAudioFocus();
+                    }
+                }
+            }
+            audioAttributes = true;
+            Assertions.checkArgument(audioAttributes, "Automatic handling of audio focus is only available for USAGE_MEDIA and USAGE_GAME.");
+            return requestAudioFocus();
+        }
+        if (i == 1) {
+            return 0;
+        }
+        return handlePrepare(z);
+    }
+
+    public int handlePrepare(boolean z) {
+        if (this.audioManager == null) {
+            return true;
+        }
+        return z ? requestAudioFocus() : true;
+    }
+
+    public int handleSetPlayWhenReady(boolean z, int i) {
+        int i2 = 1;
+        if (this.audioManager == null) {
+            return 1;
+        }
+        if (!z) {
+            abandonAudioFocus();
+            return true;
+        } else if (i != 1) {
+            return requestAudioFocus();
+        } else {
+            if (this.focusGain) {
+                i2 = 0;
+            }
+            return i2;
+        }
+    }
+
+    public void handleStop() {
+        if (this.audioManager != null) {
+            abandonAudioFocus(true);
+        }
+    }
+
+    private int requestAudioFocus() {
+        int i = 1;
+        if (this.focusGain == 0) {
+            if (this.audioFocusState != 0) {
+                abandonAudioFocus(true);
+            }
+            return 1;
+        }
+        if (this.audioFocusState == 0) {
+            int requestAudioFocusV26;
+            if (Util.SDK_INT &gt;= 26) {
+                requestAudioFocusV26 = requestAudioFocusV26();
+            } else {
+                requestAudioFocusV26 = requestAudioFocusDefault();
+            }
+            this.audioFocusState = requestAudioFocusV26 == 1 ? 1 : 0;
+        }
+        if (this.audioFocusState == 0) {
+            return -1;
+        }
+        if (this.audioFocusState == 2) {
+            i = 0;
+        }
+        return i;
+    }
+
+    private void abandonAudioFocus() {
+        abandonAudioFocus(false);
+    }
+
+    private void abandonAudioFocus(boolean z) {
+        if (this.focusGain != 0 || this.audioFocusState != 0) {
+            if (this.focusGain != 1 || this.audioFocusState == -1 || z) {
+                if (Util.SDK_INT &gt;= true) {
+                    abandonAudioFocusV26();
+                } else {
+                    abandonAudioFocusDefault();
+                }
+                this.audioFocusState = false;
+            }
+        }
+    }
+
+    private int requestAudioFocusDefault() {
+        return ((AudioManager) Assertions.checkNotNull(this.audioManager)).requestAudioFocus(this.focusListener, Util.getStreamTypeForAudioUsage(((AudioAttributes) Assertions.checkNotNull(this.audioAttributes)).usage), this.focusGain);
+    }
+
+    @RequiresApi(26)
+    private int requestAudioFocusV26() {
+        if (this.audioFocusRequest == null || this.rebuildAudioFocusRequest) {
+            this.audioFocusRequest = (this.audioFocusRequest == null ? new Builder(this.focusGain) : new Builder(this.audioFocusRequest)).setAudioAttributes(((AudioAttributes) Assertions.checkNotNull(this.audioAttributes)).getAudioAttributesV21()).setWillPauseWhenDucked(willPauseWhenDucked()).setOnAudioFocusChangeListener(this.focusListener).build();
+            this.rebuildAudioFocusRequest = false;
+        }
+        return ((AudioManager) Assertions.checkNotNull(this.audioManager)).requestAudioFocus(this.audioFocusRequest);
+    }
+
+    private void abandonAudioFocusDefault() {
+        ((AudioManager) Assertions.checkNotNull(this.audioManager)).abandonAudioFocus(this.focusListener);
+    }
+
+    @RequiresApi(26)
+    private void abandonAudioFocusV26() {
+        if (this.audioFocusRequest != null) {
+            ((AudioManager) Assertions.checkNotNull(this.audioManager)).abandonAudioFocusRequest(this.audioFocusRequest);
+        }
+    }
+
+    private boolean willPauseWhenDucked() {
+        return this.audioAttributes != null &amp;&amp; this.audioAttributes.contentType == 1;
+    }
+
+    private static int convertAudioAttributesToFocusGain(@Nullable AudioAttributes audioAttributes) {
+        if (audioAttributes == null) {
+            return 0;
+        }
+        switch (audioAttributes.usage) {
+            case 0:
+                Log.w(TAG, "Specify a proper usage in the audio attributes for audio focus handling. Using AUDIOFOCUS_GAIN by default.");
+                return 1;
+            case 1:
+            case 14:
+                return 1;
+            case 2:
+            case 4:
+                return 2;
+            case 3:
+                return 0;
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+            case 10:
+            case 12:
+            case 13:
+                return 3;
+            case 11:
+                return audioAttributes.contentType == 1 ? 2 : 3;
+            case 16:
+                if (Util.SDK_INT &gt;= 19) {
+                    return 4;
+                }
+                return 2;
+            default:
+                String str = TAG;
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("Unidentified audio usage: ");
+                stringBuilder.append(audioAttributes.usage);
+                Log.w(str, stringBuilder.toString());
+                return 0;
+        }
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:8 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

@@ -1,0 +1,223 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/gms/common/api/Status.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/gms/common/api/Status.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="Status.java" data-line="" class="code line-numbers"><code>package com.google.android.gms.common.api;
+
+import android.app.Activity;
+import android.app.PendingIntent;
+import android.content.IntentSender.SendIntentException;
+import android.os.Parcel;
+import android.os.Parcelable.Creator;
+import androidx.annotation.Nullable;
+import com.google.android.gms.common.annotation.KeepForSdk;
+import com.google.android.gms.common.internal.Objects;
+import com.google.android.gms.common.internal.ReflectedParcelable;
+import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelWriter;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable.Class;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable.Constructor;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable.Field;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable.Param;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable.VersionField;
+import com.google.android.gms.common.util.VisibleForTesting;
+
+@KeepForSdk
+@Class(creator = "StatusCreator")
+public final class Status extends AbstractSafeParcelable implements Result, ReflectedParcelable {
+    public static final Creator&lt;Status&gt; CREATOR = new zzb();
+    @KeepForSdk
+    public static final Status RESULT_CANCELED = new Status(16);
+    @KeepForSdk
+    public static final Status RESULT_DEAD_CLIENT = new Status(18);
+    @KeepForSdk
+    public static final Status RESULT_INTERNAL_ERROR = new Status(8);
+    @KeepForSdk
+    public static final Status RESULT_INTERRUPTED = new Status(14);
+    @KeepForSdk
+    @VisibleForTesting
+    public static final Status RESULT_SUCCESS = new Status(0);
+    @KeepForSdk
+    public static final Status RESULT_TIMEOUT = new Status(15);
+    private static final Status zzaq = new Status(17);
+    @VersionField(id = 1000)
+    private final int zzg;
+    @Field(getter = "getStatusCode", id = 1)
+    private final int zzh;
+    @Field(getter = "getPendingIntent", id = 3)
+    @Nullable
+    private final PendingIntent zzi;
+    @Field(getter = "getStatusMessage", id = 2)
+    @Nullable
+    private final String zzj;
+
+    @Constructor
+    @KeepForSdk
+    Status(@Param(id = 1000) int i, @Param(id = 1) int i2, @Param(id = 2) @Nullable String str, @Param(id = 3) @Nullable PendingIntent pendingIntent) {
+        this.zzg = i;
+        this.zzh = i2;
+        this.zzj = str;
+        this.zzi = pendingIntent;
+    }
+
+    @KeepForSdk
+    public final Status getStatus() {
+        return this;
+    }
+
+    @KeepForSdk
+    public Status(int i) {
+        this(i, null);
+    }
+
+    @KeepForSdk
+    public Status(int i, @Nullable String str) {
+        this(1, i, str, null);
+    }
+
+    @KeepForSdk
+    public Status(int i, @Nullable String str, @Nullable PendingIntent pendingIntent) {
+        this(1, i, str, pendingIntent);
+    }
+
+    public final void startResolutionForResult(Activity activity, int i) throws SendIntentException {
+        if (hasResolution()) {
+            activity.startIntentSenderForResult(this.zzi.getIntentSender(), i, null, 0, 0, 0);
+        }
+    }
+
+    @Nullable
+    public final String getStatusMessage() {
+        return this.zzj;
+    }
+
+    @VisibleForTesting
+    public final boolean hasResolution() {
+        return this.zzi != null;
+    }
+
+    public final boolean isSuccess() {
+        return this.zzh &lt;= 0;
+    }
+
+    public final boolean isCanceled() {
+        return this.zzh == 16;
+    }
+
+    public final boolean isInterrupted() {
+        return this.zzh == 14;
+    }
+
+    public final int getStatusCode() {
+        return this.zzh;
+    }
+
+    public final PendingIntent getResolution() {
+        return this.zzi;
+    }
+
+    public final int hashCode() {
+        return Objects.hashCode(Integer.valueOf(this.zzg), Integer.valueOf(this.zzh), this.zzj, this.zzi);
+    }
+
+    public final boolean equals(Object obj) {
+        if (!(obj instanceof Status)) {
+            return false;
+        }
+        Status status = (Status) obj;
+        if (this.zzg == status.zzg &amp;&amp; this.zzh == status.zzh &amp;&amp; Objects.equal(this.zzj, status.zzj) &amp;&amp; Objects.equal(this.zzi, status.zzi) != null) {
+            return true;
+        }
+        return false;
+    }
+
+    public final String zzg() {
+        if (this.zzj != null) {
+            return this.zzj;
+        }
+        return CommonStatusCodes.getStatusCodeString(this.zzh);
+    }
+
+    public final String toString() {
+        return Objects.toStringHelper(this).add("statusCode", zzg()).add("resolution", this.zzi).toString();
+    }
+
+    @KeepForSdk
+    public final void writeToParcel(Parcel parcel, int i) {
+        int beginObjectHeader = SafeParcelWriter.beginObjectHeader(parcel);
+        SafeParcelWriter.writeInt(parcel, 1, getStatusCode());
+        SafeParcelWriter.writeString(parcel, 2, getStatusMessage(), false);
+        SafeParcelWriter.writeParcelable(parcel, 3, this.zzi, i, false);
+        SafeParcelWriter.writeInt(parcel, 1000, this.zzg);
+        SafeParcelWriter.finishObjectHeader(parcel, beginObjectHeader);
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:12 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

@@ -1,0 +1,453 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9"><div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/androidx/preference/PreferenceGroup.java" target="_blank">/xumo_apk/jadx_source_code/androidx/preference/PreferenceGroup.java</a></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-83">report</i><h5>password =|secret =|username =|key =</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>the app contain hardcoded sensitive informations like usernames, passwords, keys etc: Hard coded sensitive information in Application Code (including Crypto)</span></div></li></ul><ul class="collapsible"><li><div class="collapsible-header"><img data-position="top" data-tooltip="OWASP item" src="html/owasp_logo.png" height="20em" style="margin-right: 1rem;margin-left: 5px;" class="tooltipped"></img> OWASP Item</div><div class="collapsible-body"><span>For more information, have a look at: https://www.owasp.org/index.php/OWASP_Mobile_Security_Testing_Guide</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#PreferenceGroup_java155pass" class="active">line 155</a></li><li class="tab"><a style="color: #d82c2b;" href="#PreferenceGroup_java219pass">line 219</a></li><li class="tab"><a style="color: #d82c2b;" href="#PreferenceGroup_java255pass">line 255</a></li></ul></div><div class="card-content"><div id="PreferenceGroup_java155pass">Code @ line 155<pre data-start="152" data-line="155" data-src="PreferenceGroup.java" class="code line-numbers"><code>            while (preferenceGroup.getParent() != null) {
+                preferenceGroup = preferenceGroup.getParent();
+            }
+            Object key = preference.getKey();
+            if (preferenceGroup.findPreference(key) != null) {
+                String str = TAG;
+                StringBuilder stringBuilder = new StringBuilder();
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L3ByZWZlcmVuY2UvUHJlZmVyZW5jZUdyb3VwLmphdmF8fHxsaW5lOiAxNTUgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE1NXx8fDE1Mg">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L3ByZWZlcmVuY2UvUHJlZmVyZW5jZUdyb3VwLmphdmF8fHxsaW5lOiAxNTUgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE1NXx8fDE1Mg')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L3ByZWZlcmVuY2UvUHJlZmVyZW5jZUdyb3VwLmphdmF8fHxsaW5lOiAxNTUgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE1NXx8fDE1Mg').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L3ByZWZlcmVuY2UvUHJlZmVyZW5jZUdyb3VwLmphdmF8fHxsaW5lOiAxNTUgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE1NXx8fDE1Mg" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L3ByZWZlcmVuY2UvUHJlZmVyZW5jZUdyb3VwLmphdmF8fHxsaW5lOiAxNTUgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE1NXx8fDE1Mg' , 'ICAgICAgICAgICAgd2hpbGUgKHByZWZlcmVuY2VHcm91cC5nZXRQYXJlbnQoKSAhPSBudWxsKSB7CiAgICAgICAgICAgICAgICBwcmVmZXJlbmNlR3JvdXAgPSBwcmVmZXJlbmNlR3JvdXAuZ2V0UGFyZW50KCk7CiAgICAgICAgICAgIH0KICAgICAgICAgICAgT2JqZWN0IGtleSA9IHByZWZlcmVuY2UuZ2V0S2V5KCk7CiAgICAgICAgICAgIGlmIChwcmVmZXJlbmNlR3JvdXAuZmluZFByZWZlcmVuY2Uoa2V5KSAhPSBudWxsKSB7CiAgICAgICAgICAgICAgICBTdHJpbmcgc3RyID0gVEFHOwogICAgICAgICAgICAgICAgU3RyaW5nQnVpbGRlciBzdHJpbmdCdWlsZGVyID0gbmV3IFN0cmluZ0J1aWxkZXIoKTsK');  
+                                            });
+                                            </script>
+                                            </div><div id="PreferenceGroup_java219pass">Code @ line 219<pre data-start="216" data-line="219" data-src="PreferenceGroup.java" class="code line-numbers"><code>            }
+            remove = this.mPreferenceList.remove(preference);
+            if (remove) {
+                String key = preference.getKey();
+                if (key != null) {
+                    this.mIdRecycleCache.put(key, Long.valueOf(preference.getId()));
+                    this.mHandler.removeCallbacks(this.mClearRecycleCacheRunnable);
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L3ByZWZlcmVuY2UvUHJlZmVyZW5jZUdyb3VwLmphdmF8fHxsaW5lOiAyMTkgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDIxOXx8fDIxNg">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L3ByZWZlcmVuY2UvUHJlZmVyZW5jZUdyb3VwLmphdmF8fHxsaW5lOiAyMTkgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDIxOXx8fDIxNg')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L3ByZWZlcmVuY2UvUHJlZmVyZW5jZUdyb3VwLmphdmF8fHxsaW5lOiAyMTkgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDIxOXx8fDIxNg').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L3ByZWZlcmVuY2UvUHJlZmVyZW5jZUdyb3VwLmphdmF8fHxsaW5lOiAyMTkgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDIxOXx8fDIxNg" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L3ByZWZlcmVuY2UvUHJlZmVyZW5jZUdyb3VwLmphdmF8fHxsaW5lOiAyMTkgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDIxOXx8fDIxNg' , 'ICAgICAgICAgICAgfQogICAgICAgICAgICByZW1vdmUgPSB0aGlzLm1QcmVmZXJlbmNlTGlzdC5yZW1vdmUocHJlZmVyZW5jZSk7CiAgICAgICAgICAgIGlmIChyZW1vdmUpIHsKICAgICAgICAgICAgICAgIFN0cmluZyBrZXkgPSBwcmVmZXJlbmNlLmdldEtleSgpOwogICAgICAgICAgICAgICAgaWYgKGtleSAhPSBudWxsKSB7CiAgICAgICAgICAgICAgICAgICAgdGhpcy5tSWRSZWN5Y2xlQ2FjaGUucHV0KGtleSwgTG9uZy52YWx1ZU9mKHByZWZlcmVuY2UuZ2V0SWQoKSkpOwogICAgICAgICAgICAgICAgICAgIHRoaXMubUhhbmRsZXIucmVtb3ZlQ2FsbGJhY2tzKHRoaXMubUNsZWFyUmVjeWNsZUNhY2hlUnVubmFibGUpOwo=');  
+                                            });
+                                            </script>
+                                            </div><div id="PreferenceGroup_java255pass">Code @ line 255<pre data-start="252" data-line="255" data-src="PreferenceGroup.java" class="code line-numbers"><code>        int preferenceCount = getPreferenceCount();
+        for (int i = 0; i &lt; preferenceCount; i++) {
+            Preference preference = getPreference(i);
+            String key = preference.getKey();
+            if (key != null &amp;&amp; key.equals(charSequence)) {
+                return preference;
+            }
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L3ByZWZlcmVuY2UvUHJlZmVyZW5jZUdyb3VwLmphdmF8fHxsaW5lOiAyNTUgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDI1NXx8fDI1Mg">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L3ByZWZlcmVuY2UvUHJlZmVyZW5jZUdyb3VwLmphdmF8fHxsaW5lOiAyNTUgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDI1NXx8fDI1Mg')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L3ByZWZlcmVuY2UvUHJlZmVyZW5jZUdyb3VwLmphdmF8fHxsaW5lOiAyNTUgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDI1NXx8fDI1Mg').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L3ByZWZlcmVuY2UvUHJlZmVyZW5jZUdyb3VwLmphdmF8fHxsaW5lOiAyNTUgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDI1NXx8fDI1Mg" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L3ByZWZlcmVuY2UvUHJlZmVyZW5jZUdyb3VwLmphdmF8fHxsaW5lOiAyNTUgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDI1NXx8fDI1Mg' , 'ICAgICAgICBpbnQgcHJlZmVyZW5jZUNvdW50ID0gZ2V0UHJlZmVyZW5jZUNvdW50KCk7CiAgICAgICAgZm9yIChpbnQgaSA9IDA7IGkgPCBwcmVmZXJlbmNlQ291bnQ7IGkrKykgewogICAgICAgICAgICBQcmVmZXJlbmNlIHByZWZlcmVuY2UgPSBnZXRQcmVmZXJlbmNlKGkpOwogICAgICAgICAgICBTdHJpbmcga2V5ID0gcHJlZmVyZW5jZS5nZXRLZXkoKTsKICAgICAgICAgICAgaWYgKGtleSAhPSBudWxsICYmIGtleS5lcXVhbHMoY2hhclNlcXVlbmNlKSkgewogICAgICAgICAgICAgICAgcmV0dXJuIHByZWZlcmVuY2U7CiAgICAgICAgICAgIH0K');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="PreferenceGroup.java" data-line="155,219,255," class="code line-numbers"><code>package androidx.preference;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.os.Parcelable.Creator;
+import android.text.TextUtils;
+import android.util.AttributeSet;
+import android.util.Log;
+import androidx.annotation.Nullable;
+import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo.Scope;
+import androidx.collection.SimpleArrayMap;
+import androidx.core.content.res.TypedArrayUtils;
+import androidx.preference.Preference.BaseSavedState;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public abstract class PreferenceGroup extends Preference {
+    private static final String TAG = "PreferenceGroup";
+    private boolean mAttachedToHierarchy;
+    private final Runnable mClearRecycleCacheRunnable;
+    private int mCurrentPreferenceOrder;
+    private final Handler mHandler;
+    final SimpleArrayMap&lt;String, Long&gt; mIdRecycleCache;
+    private int mInitialExpandedChildrenCount;
+    private OnExpandButtonClickListener mOnExpandButtonClickListener;
+    private boolean mOrderingAsAdded;
+    private List&lt;Preference&gt; mPreferenceList;
+
+    @RestrictTo({Scope.LIBRARY_GROUP})
+    public interface OnExpandButtonClickListener {
+        void onExpandButtonClick();
+    }
+
+    public interface PreferencePositionCallback {
+        int getPreferenceAdapterPosition(Preference preference);
+
+        int getPreferenceAdapterPosition(String str);
+    }
+
+    static class SavedState extends BaseSavedState {
+        public static final Creator&lt;SavedState&gt; CREATOR = new Creator&lt;SavedState&gt;() {
+            public SavedState createFromParcel(Parcel parcel) {
+                return new SavedState(parcel);
+            }
+
+            public SavedState[] newArray(int i) {
+                return new SavedState[i];
+            }
+        };
+        int mInitialExpandedChildrenCount;
+
+        SavedState(Parcel parcel) {
+            super(parcel);
+            this.mInitialExpandedChildrenCount = parcel.readInt();
+        }
+
+        SavedState(Parcelable parcelable, int i) {
+            super(parcelable);
+            this.mInitialExpandedChildrenCount = i;
+        }
+
+        public void writeToParcel(Parcel parcel, int i) {
+            super.writeToParcel(parcel, i);
+            parcel.writeInt(this.mInitialExpandedChildrenCount);
+        }
+    }
+
+    protected boolean isOnSameScreenAsChildren() {
+        return true;
+    }
+
+    public PreferenceGroup(Context context, AttributeSet attributeSet, int i, int i2) {
+        super(context, attributeSet, i, i2);
+        this.mOrderingAsAdded = true;
+        this.mCurrentPreferenceOrder = 0;
+        this.mAttachedToHierarchy = false;
+        this.mInitialExpandedChildrenCount = Integer.MAX_VALUE;
+        this.mOnExpandButtonClickListener = null;
+        this.mIdRecycleCache = new SimpleArrayMap();
+        this.mHandler = new Handler();
+        this.mClearRecycleCacheRunnable = new Runnable() {
+            public void run() {
+                synchronized (this) {
+                    PreferenceGroup.this.mIdRecycleCache.clear();
+                }
+            }
+        };
+        this.mPreferenceList = new ArrayList();
+        context = context.obtainStyledAttributes(attributeSet, R.styleable.PreferenceGroup, i, i2);
+        this.mOrderingAsAdded = TypedArrayUtils.getBoolean(context, R.styleable.PreferenceGroup_orderingFromXml, R.styleable.PreferenceGroup_orderingFromXml, true);
+        if (context.hasValue(R.styleable.PreferenceGroup_initialExpandedChildrenCount) != null) {
+            setInitialExpandedChildrenCount(TypedArrayUtils.getInt(context, R.styleable.PreferenceGroup_initialExpandedChildrenCount, R.styleable.PreferenceGroup_initialExpandedChildrenCount, Integer.MAX_VALUE));
+        }
+        context.recycle();
+    }
+
+    public PreferenceGroup(Context context, AttributeSet attributeSet, int i) {
+        this(context, attributeSet, i, 0);
+    }
+
+    public PreferenceGroup(Context context, AttributeSet attributeSet) {
+        this(context, attributeSet, 0);
+    }
+
+    public void setOrderingAsAdded(boolean z) {
+        this.mOrderingAsAdded = z;
+    }
+
+    public boolean isOrderingAsAdded() {
+        return this.mOrderingAsAdded;
+    }
+
+    public void setInitialExpandedChildrenCount(int i) {
+        if (!(i == Integer.MAX_VALUE || hasKey())) {
+            String str = TAG;
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(getClass().getSimpleName());
+            stringBuilder.append(" should have a key defined if it contains an expandable preference");
+            Log.e(str, stringBuilder.toString());
+        }
+        this.mInitialExpandedChildrenCount = i;
+    }
+
+    public int getInitialExpandedChildrenCount() {
+        return this.mInitialExpandedChildrenCount;
+    }
+
+    public void addItemFromInflater(Preference preference) {
+        addPreference(preference);
+    }
+
+    public int getPreferenceCount() {
+        return this.mPreferenceList.size();
+    }
+
+    public Preference getPreference(int i) {
+        return (Preference) this.mPreferenceList.get(i);
+    }
+
+    public boolean addPreference(Preference preference) {
+        if (this.mPreferenceList.contains(preference)) {
+            return true;
+        }
+        int i;
+        if (preference.getKey() != null) {
+            PreferenceGroup preferenceGroup = this;
+            while (preferenceGroup.getParent() != null) {
+                preferenceGroup = preferenceGroup.getParent();
+            }
+            Object key = preference.getKey();
+            if (preferenceGroup.findPreference(key) != null) {
+                String str = TAG;
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("Found duplicated key: \"");
+                stringBuilder.append(key);
+                stringBuilder.append("\". This can cause unintended behaviour,");
+                stringBuilder.append(" please use unique keys for every preference.");
+                Log.e(str, stringBuilder.toString());
+            }
+        }
+        if (preference.getOrder() == Integer.MAX_VALUE) {
+            if (this.mOrderingAsAdded) {
+                i = this.mCurrentPreferenceOrder;
+                this.mCurrentPreferenceOrder = i + 1;
+                preference.setOrder(i);
+            }
+            if (preference instanceof PreferenceGroup) {
+                ((PreferenceGroup) preference).setOrderingAsAdded(this.mOrderingAsAdded);
+            }
+        }
+        i = Collections.binarySearch(this.mPreferenceList, preference);
+        if (i &lt; 0) {
+            i = (i * -1) - 1;
+        }
+        if (!onPrepareAddPreference(preference)) {
+            return null;
+        }
+        long nextId;
+        synchronized (this) {
+            this.mPreferenceList.add(i, preference);
+        }
+        PreferenceManager preferenceManager = getPreferenceManager();
+        String key2 = preference.getKey();
+        if (key2 == null || !this.mIdRecycleCache.containsKey(key2)) {
+            nextId = preferenceManager.getNextId();
+        } else {
+            nextId = ((Long) this.mIdRecycleCache.get(key2)).longValue();
+            this.mIdRecycleCache.remove(key2);
+        }
+        preference.onAttachedToHierarchy(preferenceManager, nextId);
+        preference.assignParent(this);
+        if (this.mAttachedToHierarchy) {
+            preference.onAttached();
+        }
+        notifyHierarchyChanged();
+        return true;
+    }
+
+    public boolean removePreference(Preference preference) {
+        preference = removePreferenceInt(preference);
+        notifyHierarchyChanged();
+        return preference;
+    }
+
+    private boolean removePreferenceInt(Preference preference) {
+        boolean remove;
+        synchronized (this) {
+            preference.onPrepareForRemoval();
+            if (preference.getParent() == this) {
+                preference.assignParent(null);
+            }
+            remove = this.mPreferenceList.remove(preference);
+            if (remove) {
+                String key = preference.getKey();
+                if (key != null) {
+                    this.mIdRecycleCache.put(key, Long.valueOf(preference.getId()));
+                    this.mHandler.removeCallbacks(this.mClearRecycleCacheRunnable);
+                    this.mHandler.post(this.mClearRecycleCacheRunnable);
+                }
+                if (this.mAttachedToHierarchy) {
+                    preference.onDetached();
+                }
+            }
+        }
+        return remove;
+    }
+
+    public void removeAll() {
+        synchronized (this) {
+            List list = this.mPreferenceList;
+            for (int size = list.size() - 1; size &gt;= 0; size--) {
+                removePreferenceInt((Preference) list.get(0));
+            }
+        }
+        notifyHierarchyChanged();
+    }
+
+    protected boolean onPrepareAddPreference(Preference preference) {
+        preference.onParentChanged(this, shouldDisableDependents());
+        return true;
+    }
+
+    public Preference findPreference(CharSequence charSequence) {
+        if (TextUtils.equals(getKey(), charSequence)) {
+            return this;
+        }
+        int preferenceCount = getPreferenceCount();
+        for (int i = 0; i &lt; preferenceCount; i++) {
+            Preference preference = getPreference(i);
+            String key = preference.getKey();
+            if (key != null &amp;&amp; key.equals(charSequence)) {
+                return preference;
+            }
+            if (preference instanceof PreferenceGroup) {
+                preference = ((PreferenceGroup) preference).findPreference(charSequence);
+                if (preference != null) {
+                    return preference;
+                }
+            }
+        }
+        return null;
+    }
+
+    @RestrictTo({Scope.LIBRARY_GROUP})
+    public boolean isAttached() {
+        return this.mAttachedToHierarchy;
+    }
+
+    @RestrictTo({Scope.LIBRARY_GROUP})
+    public void setOnExpandButtonClickListener(@Nullable OnExpandButtonClickListener onExpandButtonClickListener) {
+        this.mOnExpandButtonClickListener = onExpandButtonClickListener;
+    }
+
+    @Nullable
+    @RestrictTo({Scope.LIBRARY_GROUP})
+    public OnExpandButtonClickListener getOnExpandButtonClickListener() {
+        return this.mOnExpandButtonClickListener;
+    }
+
+    public void onAttached() {
+        super.onAttached();
+        this.mAttachedToHierarchy = true;
+        int preferenceCount = getPreferenceCount();
+        for (int i = 0; i &lt; preferenceCount; i++) {
+            getPreference(i).onAttached();
+        }
+    }
+
+    public void onDetached() {
+        super.onDetached();
+        int i = 0;
+        this.mAttachedToHierarchy = false;
+        int preferenceCount = getPreferenceCount();
+        while (i &lt; preferenceCount) {
+            getPreference(i).onDetached();
+            i++;
+        }
+    }
+
+    public void notifyDependencyChange(boolean z) {
+        super.notifyDependencyChange(z);
+        int preferenceCount = getPreferenceCount();
+        for (int i = 0; i &lt; preferenceCount; i++) {
+            getPreference(i).onParentChanged(this, z);
+        }
+    }
+
+    void sortPreferences() {
+        synchronized (this) {
+            Collections.sort(this.mPreferenceList);
+        }
+    }
+
+    protected void dispatchSaveInstanceState(Bundle bundle) {
+        super.dispatchSaveInstanceState(bundle);
+        int preferenceCount = getPreferenceCount();
+        for (int i = 0; i &lt; preferenceCount; i++) {
+            getPreference(i).dispatchSaveInstanceState(bundle);
+        }
+    }
+
+    protected void dispatchRestoreInstanceState(Bundle bundle) {
+        super.dispatchRestoreInstanceState(bundle);
+        int preferenceCount = getPreferenceCount();
+        for (int i = 0; i &lt; preferenceCount; i++) {
+            getPreference(i).dispatchRestoreInstanceState(bundle);
+        }
+    }
+
+    protected Parcelable onSaveInstanceState() {
+        return new SavedState(super.onSaveInstanceState(), this.mInitialExpandedChildrenCount);
+    }
+
+    protected void onRestoreInstanceState(Parcelable parcelable) {
+        if (parcelable != null) {
+            if (parcelable.getClass().equals(SavedState.class)) {
+                SavedState savedState = (SavedState) parcelable;
+                this.mInitialExpandedChildrenCount = savedState.mInitialExpandedChildrenCount;
+                super.onRestoreInstanceState(savedState.getSuperState());
+                return;
+            }
+        }
+        super.onRestoreInstanceState(parcelable);
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:4 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

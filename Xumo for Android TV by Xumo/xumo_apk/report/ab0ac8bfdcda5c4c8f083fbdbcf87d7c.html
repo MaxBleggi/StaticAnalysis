@@ -1,0 +1,164 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/res/values-or/strings.xml" target="_blank">/xumo_apk/jadx_source_code/res/values-or/strings.xml</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="strings.xml" data-line="" class="code line-numbers"><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;resources&gt;
+    &lt;string name="abc_action_bar_home_description"&gt;ହୋମ୍ ପେଜ୍‍କୁ ନେଭିଗେଟ୍ କରନ୍ତୁ&lt;/string&gt;
+    &lt;string name="abc_action_bar_up_description"&gt;ଉପରକୁ ନେଭିଗେଟ୍ କରନ୍ତୁ&lt;/string&gt;
+    &lt;string name="abc_action_menu_overflow_description"&gt;ଅଧିକ ବିକଳ୍ପ&lt;/string&gt;
+    &lt;string name="abc_action_mode_done"&gt;ହୋଇଗଲା&lt;/string&gt;
+    &lt;string name="abc_activity_chooser_view_see_all"&gt;ସବୁ ଦେଖନ୍ତୁ&lt;/string&gt;
+    &lt;string name="abc_activitychooserview_choose_application"&gt;ଗୋଟିଏ ଆପ୍‍ ବାଛନ୍ତୁ&lt;/string&gt;
+    &lt;string name="abc_capital_off"&gt;ଅଫ୍&lt;/string&gt;
+    &lt;string name="abc_capital_on"&gt;ଅନ୍&lt;/string&gt;
+    &lt;string name="abc_menu_alt_shortcut_label"&gt;Alt+&lt;/string&gt;
+    &lt;string name="abc_menu_ctrl_shortcut_label"&gt;Ctrl+&lt;/string&gt;
+    &lt;string name="abc_menu_delete_shortcut_label"&gt;ଡିଲିଟ୍‍&lt;/string&gt;
+    &lt;string name="abc_menu_enter_shortcut_label"&gt;ଏଣ୍ଟର୍&lt;/string&gt;
+    &lt;string name="abc_menu_function_shortcut_label"&gt;Function+&lt;/string&gt;
+    &lt;string name="abc_menu_meta_shortcut_label"&gt;Meta+&lt;/string&gt;
+    &lt;string name="abc_menu_shift_shortcut_label"&gt;Shift+&lt;/string&gt;
+    &lt;string name="abc_menu_space_shortcut_label"&gt;ସ୍ପେସ୍‍&lt;/string&gt;
+    &lt;string name="abc_menu_sym_shortcut_label"&gt;Sym+&lt;/string&gt;
+    &lt;string name="abc_prepend_shortcut_label"&gt;ମେନୁ&lt;/string&gt;
+    &lt;string name="abc_search_hint"&gt;ସର୍ଚ୍ଚ…&lt;/string&gt;
+    &lt;string name="abc_searchview_description_clear"&gt;କ୍ୱେରୀ ଖାଲି କରନ୍ତୁ&lt;/string&gt;
+    &lt;string name="abc_searchview_description_query"&gt;ସର୍ଚ୍ଚ କ୍ୱେରୀ&lt;/string&gt;
+    &lt;string name="abc_searchview_description_search"&gt;ସର୍ଚ୍ଚ କରନ୍ତୁ&lt;/string&gt;
+    &lt;string name="abc_searchview_description_submit"&gt;କ୍ୱେରୀ ଦାଖଲ କରନ୍ତୁ&lt;/string&gt;
+    &lt;string name="abc_searchview_description_voice"&gt;ଭଏସ୍‌ ସର୍ଚ୍ଚ&lt;/string&gt;
+    &lt;string name="abc_shareactionprovider_share_with"&gt;ଏହାଙ୍କ ସହ ଶେୟାର୍‌ କରନ୍ତୁ&lt;/string&gt;
+    &lt;string name="abc_shareactionprovider_share_with_application"&gt;%s ସହ ଶେୟାର୍‍ କରନ୍ତୁ&lt;/string&gt;
+    &lt;string name="abc_toolbar_collapse_description"&gt;ଛୋଟ କରନ୍ତୁ&lt;/string&gt;
+    &lt;string name="cast_ad_label"&gt;ବିଜ୍ଞାପନ&lt;/string&gt;
+    &lt;string name="cast_casting_to_device"&gt;%1$sକୁ କାଷ୍ଟ କରୁଛି&lt;/string&gt;
+    &lt;string name="cast_closed_captions"&gt;ସବଟାଇଟଲ୍‌&lt;/string&gt;
+    &lt;string name="cast_closed_captions_unavailable"&gt;ସବଟାଇଟଲ୍‌ ଉପଲବ୍ଧ ନାହିଁ&lt;/string&gt;
+    &lt;string name="cast_connecting_to_device"&gt;%1$s ସହ ସଂଯୋଗ ହେଉଛି&lt;/string&gt;
+    &lt;string name="cast_disconnect"&gt;ବିଛିନ୍ନ କରନ୍ତୁ&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_ad_image_description"&gt;କାଷ୍ଟ ରିସିଭର୍‍ ଏକ ବିଜ୍ଞାପନ ଚଳାଉଥିବା ବେଳେ ଇମେଜ୍‍ ଦେଖାଗଲା&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_ad_in_progress"&gt;ବିଜ୍ଞାପନ ଚାଲୁଅଛି…&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_background_image"&gt;ଆଲବମ୍ ଆର୍ଟ&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_live_stream_indicator"&gt;ଲାଇଭ୍ ଷ୍ଟ୍ରୀମ୍&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_loading"&gt;ଲୋଡ୍ କରୁଛି…&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_skip_ad_label"&gt;ବିଜ୍ଞାପନକୁ ଛାଡ଼ିଦିଅନ୍ତୁ&lt;/string&gt;
+    &lt;string name="cast_expanded_controller_skip_ad_text"&gt;ଆପଣ ବିଜ୍ଞାପନକୁ %1$d…ରେ ଛାଡ଼ିପାରିବେ&lt;/string&gt;
+    &lt;string name="cast_forward"&gt;ଆଗକୁ ବଢ଼ାନ୍ତୁ&lt;/string&gt;
+    &lt;string name="cast_forward_10"&gt;ଦଶ ସେକେଣ୍ଡ ଆଗକୁ ବଢ଼ାନ୍ତୁ&lt;/string&gt;
+    &lt;string name="cast_forward_30"&gt;30 ସେକେଣ୍ଡ ଆଗକୁ ବଢ଼ାନ୍ତୁ&lt;/string&gt;
+    &lt;string name="cast_intro_overlay_button_text"&gt;@android:ଷ୍ଟ୍ରିଙ୍ଗ/ଠିକ୍‍ ଅଛି&lt;/string&gt;
+    &lt;string name="cast_mute"&gt;ମ୍ୟୁଟ୍ କରନ୍ତୁ&lt;/string&gt;
+    &lt;string name="cast_notification_connected_message"&gt;%1$s ସହ ସଂଯୁକ୍ତ&lt;/string&gt;
+    &lt;string name="cast_notification_connecting_message"&gt;%1$s ସହ ସଂଯୋଗ ହେଉଛି&lt;/string&gt;
+    &lt;string name="cast_notification_default_channel_name"&gt;କାଷ୍ଟ&lt;/string&gt;
+    &lt;string name="cast_notification_disconnect"&gt;ବିଛିନ୍ନ କରନ୍ତୁ&lt;/string&gt;
+    &lt;string name="cast_pause"&gt;ପଜ୍‍ କରନ୍ତୁ&lt;/string&gt;
+    &lt;string name="cast_play"&gt;ଚଲାନ୍ତୁ&lt;/string&gt;
+    &lt;string name="cast_rewind"&gt;ପଛକୁ ନିଅନ୍ତୁ&lt;/string&gt;
+    &lt;string name="cast_rewind_10"&gt;ଦଶ ସେକେଣ୍ଡ ପଛକୁ ନିଅନ୍ତୁ&lt;/string&gt;
+    &lt;string name="cast_rewind_30"&gt;ତିରିଶ ସେକେଣ୍ଡ ପଛକୁ ନିଅନ୍ତୁ&lt;/string&gt;
+    &lt;string name="cast_seek_bar"&gt;ପ୍ଲେବ୍ୟାକ୍‌ ନିୟନ୍ତ୍ରଣ&lt;/string&gt;
+    &lt;string name="cast_skip_next"&gt;ପରବର୍ତ୍ତୀ ଆଇଟମ୍‌କୁ ଯାଆନ୍ତୁ&lt;/string&gt;
+    &lt;string name="cast_skip_prev"&gt;ପୂର୍ବ ଆଇଟମ୍‌କୁ ଯାଆନ୍ତୁ&lt;/string&gt;
+    &lt;string name="cast_stop"&gt;ବନ୍ଦ କରନ୍ତୁ&lt;/string&gt;
+    &lt;string name="cast_stop_live_stream"&gt;ଲାଇଭ୍ ଷ୍ଟ୍ରୀମ୍ ବନ୍ଦ କରନ୍ତୁ&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_audio"&gt;ଅଡିଓ&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_cancel"&gt;କ୍ୟାନ୍ସଲ୍‍ କରନ୍ତୁ&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_closed_captions"&gt;ସବଟାଇଟଲ୍‌&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_default_track_name"&gt;%1$d ଟ୍ରାକ୍‌ କରନ୍ତୁ&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_none"&gt;କିଛି ନୁହେଁ&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_ok"&gt;ଠିକ୍‍ ଅଛି&lt;/string&gt;
+    &lt;string name="cast_tracks_chooser_dialog_subtitles"&gt;ସବଟାଇଟଲ୍‌&lt;/string&gt;
+    &lt;string name="cast_unmute"&gt;ଅନମ୍ୟୁଟ୍ କରନ୍ତୁ&lt;/string&gt;
+    &lt;string name="common_google_play_services_enable_button"&gt;ସକ୍ଷମ କରନ୍ତୁ&lt;/string&gt;
+    &lt;string name="common_google_play_services_enable_text"&gt;ଆପଣ Google Play ସେବା ସକ୍ଷମ ନ କରିବା ପର୍ଯ୍ୟନ୍ତ %1$s କାମ କରିବ ନାହିଁ।&lt;/string&gt;
+    &lt;string name="common_google_play_services_enable_title"&gt;Google Play ସେବାଗୁଡ଼ିକ ସକ୍ଷମ କରନ୍ତୁ&lt;/string&gt;
+    &lt;string name="common_google_play_services_install_button"&gt;ଇନ୍‍ଷ୍ଟଲ୍‍ କରନ୍ତୁ&lt;/string&gt;
+    &lt;string name="common_google_play_services_install_text"&gt;%1$s ଏହି Google Play ସେବାଗୁଡ଼ିକ ବିନା ଚାଲେ ନାହିଁ, ଏବଂ ସେଗୁଡ଼ିକ ଆପଣଙ୍କ ଡିଭାଇସ୍‌ରେ ନାହିଁ।&lt;/string&gt;
+    &lt;string name="common_google_play_services_install_title"&gt;Google Play ସେବାଗୁଡ଼ିକ ପ୍ରାପ୍ତ କରନ୍ତୁ&lt;/string&gt;
+    &lt;string name="common_google_play_services_notification_channel_name"&gt;Google Play ସେବାଗୁଡ଼ିକର ଉପଲବ୍ଧତା&lt;/string&gt;
+    &lt;string name="common_google_play_services_notification_ticker"&gt;Google Play ସେବା ସମ୍ପର୍କିତ ସମସ୍ୟା&lt;/string&gt;
+    &lt;string name="common_google_play_services_unknown_issue"&gt;%1$sର Google Play ସେବା ସହ ଏକ ସମସ୍ୟା ରହିଛି। ଦୟାକରି ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।&lt;/string&gt;
+    &lt;string name="common_google_play_services_unsupported_text"&gt;%1$s ଏହି Google Play ସେବାଗୁଡ଼ିକ ବିନା ଚାଲେ ନାହିଁ, ଏବଂ ସେଗୁଡ଼ିକ ଆପଣଙ୍କ ଡିଭାଇସ୍‌ରେ କାମ କରେ ନାହିଁ।&lt;/string&gt;
+    &lt;string name="common_google_play_services_update_button"&gt;ଅପଡେଟ୍‍ କରନ୍ତୁ&lt;/string&gt;
+    &lt;string name="common_google_play_services_update_text"&gt;ଆପଣ Google Play ସେବା ଅପଡେଟ୍‌ ନ କରିବା ପର୍ଯ୍ୟନ୍ତ %1$s ଚାଲିବ ନାହିଁ।&lt;/string&gt;
+    &lt;string name="common_google_play_services_update_title"&gt;Google Play ସେବାଗୁଡ଼ିକ ଅପଡେଟ୍ କରନ୍ତୁ&lt;/string&gt;
+    &lt;string name="common_google_play_services_updating_text"&gt;Google Play ସେବାଗୁଡ଼ିକ ବିନା %1$s ଚାଲିବ ନାହିଁ, ଯେଉଁଗୁଡ଼ିକ ବର୍ତ୍ତମାନ ଅପଡେଟ୍‌ ହେଉଛି।&lt;/string&gt;
+    &lt;string name="common_google_play_services_wear_update_text"&gt;Google Play ସେବାଗୁଡ଼ିକର ନୂତନ ଭର୍ସନ୍‌ ଆବଶ୍ୟକ। ଏହା ନିଜକୁ କିଛି ସମୟ ମଧ୍ୟରେ ଅପଡେଟ୍‌ କରିବ।&lt;/string&gt;
+    &lt;string name="common_open_on_phone"&gt;ଫୋନ୍‌ରେ ଖୋଲନ୍ତୁ&lt;/string&gt;
+    &lt;string name="common_signin_button_text"&gt;ସାଇନ୍‌-ଇନ୍ କରନ୍ତୁ&lt;/string&gt;
+    &lt;string name="common_signin_button_text_long"&gt;Google ସହ ସାଇନ୍‌-ଇନ୍ କରନ୍ତୁ&lt;/string&gt;
+    &lt;string name="fcm_fallback_notification_channel_label"&gt;ଅନ୍ୟାନ୍ୟ&lt;/string&gt;
+    &lt;string name="search_menu_title"&gt;ସର୍ଚ୍ଚ କରନ୍ତୁ&lt;/string&gt;
+    &lt;string name="status_bar_notification_info_overflow"&gt;999+&lt;/string&gt;
+&lt;/resources&gt;
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:2 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

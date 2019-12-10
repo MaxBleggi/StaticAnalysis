@@ -1,0 +1,619 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9"><div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/exoplayer2/source/hls/HlsChunkSource.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/exoplayer2/source/hls/HlsChunkSource.java</a></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-83">report</i><h5>password =|secret =|username =|key =</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>the app contain hardcoded sensitive informations like usernames, passwords, keys etc: Hard coded sensitive information in Application Code (including Crypto)</span></div></li></ul><ul class="collapsible"><li><div class="collapsible-header"><img data-position="top" data-tooltip="OWASP item" src="html/owasp_logo.png" height="20em" style="margin-right: 1rem;margin-left: 5px;" class="tooltipped"></img> OWASP Item</div><div class="collapsible-body"><span>For more information, have a look at: https://www.owasp.org/index.php/OWASP_Mobile_Security_Testing_Guide</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#HlsChunkSource_java517pass" class="active">line 517</a></li><li class="tab"><a style="color: #d82c2b;" href="#HlsChunkSource_java524pass">line 524</a></li></ul></div><div class="card-content"><div id="HlsChunkSource_java517pass">Code @ line 517<pre data-start="514" data-line="517" data-src="HlsChunkSource.java" class="code line-numbers"><code>        int length = toByteArray.length &gt; 16 ? toByteArray.length - 16 : 0;
+        System.arraycopy(toByteArray, length, obj, (obj.length - toByteArray.length) + length, toByteArray.length - length);
+        this.encryptionKeyUri = uri;
+        this.encryptionKey = bArr;
+        this.encryptionIvString = str;
+        this.encryptionIv = obj;
+    }
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3NvdXJjZS9obHMvSGxzQ2h1bmtTb3VyY2UuamF2YXx8fGxpbmU6IDUxNyA6IHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDgzfHx8cGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8NTE3fHx8NTE0">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3NvdXJjZS9obHMvSGxzQ2h1bmtTb3VyY2UuamF2YXx8fGxpbmU6IDUxNyA6IHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDgzfHx8cGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8NTE3fHx8NTE0')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3NvdXJjZS9obHMvSGxzQ2h1bmtTb3VyY2UuamF2YXx8fGxpbmU6IDUxNyA6IHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDgzfHx8cGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8NTE3fHx8NTE0').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3NvdXJjZS9obHMvSGxzQ2h1bmtTb3VyY2UuamF2YXx8fGxpbmU6IDUxNyA6IHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDgzfHx8cGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8NTE3fHx8NTE0" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3NvdXJjZS9obHMvSGxzQ2h1bmtTb3VyY2UuamF2YXx8fGxpbmU6IDUxNyA6IHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDgzfHx8cGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8NTE3fHx8NTE0' , 'ICAgICAgICBpbnQgbGVuZ3RoID0gdG9CeXRlQXJyYXkubGVuZ3RoID4gMTYgPyB0b0J5dGVBcnJheS5sZW5ndGggLSAxNiA6IDA7CiAgICAgICAgU3lzdGVtLmFycmF5Y29weSh0b0J5dGVBcnJheSwgbGVuZ3RoLCBvYmosIChvYmoubGVuZ3RoIC0gdG9CeXRlQXJyYXkubGVuZ3RoKSArIGxlbmd0aCwgdG9CeXRlQXJyYXkubGVuZ3RoIC0gbGVuZ3RoKTsKICAgICAgICB0aGlzLmVuY3J5cHRpb25LZXlVcmkgPSB1cmk7CiAgICAgICAgdGhpcy5lbmNyeXB0aW9uS2V5ID0gYkFycjsKICAgICAgICB0aGlzLmVuY3J5cHRpb25JdlN0cmluZyA9IHN0cjsKICAgICAgICB0aGlzLmVuY3J5cHRpb25JdiA9IG9iajsKICAgIH0K');  
+                                            });
+                                            </script>
+                                            </div><div id="HlsChunkSource_java524pass">Code @ line 524<pre data-start="521" data-line="524" data-src="HlsChunkSource.java" class="code line-numbers"><code>
+    private void clearEncryptionData() {
+        this.encryptionKeyUri = null;
+        this.encryptionKey = null;
+        this.encryptionIvString = null;
+        this.encryptionIv = null;
+    }
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3NvdXJjZS9obHMvSGxzQ2h1bmtTb3VyY2UuamF2YXx8fGxpbmU6IDUyNCA6IHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDgzfHx8cGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8NTI0fHx8NTIx">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3NvdXJjZS9obHMvSGxzQ2h1bmtTb3VyY2UuamF2YXx8fGxpbmU6IDUyNCA6IHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDgzfHx8cGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8NTI0fHx8NTIx')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3NvdXJjZS9obHMvSGxzQ2h1bmtTb3VyY2UuamF2YXx8fGxpbmU6IDUyNCA6IHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDgzfHx8cGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8NTI0fHx8NTIx').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3NvdXJjZS9obHMvSGxzQ2h1bmtTb3VyY2UuamF2YXx8fGxpbmU6IDUyNCA6IHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDgzfHx8cGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8NTI0fHx8NTIx" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3NvdXJjZS9obHMvSGxzQ2h1bmtTb3VyY2UuamF2YXx8fGxpbmU6IDUyNCA6IHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDgzfHx8cGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8NTI0fHx8NTIx' , 'CiAgICBwcml2YXRlIHZvaWQgY2xlYXJFbmNyeXB0aW9uRGF0YSgpIHsKICAgICAgICB0aGlzLmVuY3J5cHRpb25LZXlVcmkgPSBudWxsOwogICAgICAgIHRoaXMuZW5jcnlwdGlvbktleSA9IG51bGw7CiAgICAgICAgdGhpcy5lbmNyeXB0aW9uSXZTdHJpbmcgPSBudWxsOwogICAgICAgIHRoaXMuZW5jcnlwdGlvbkl2ID0gbnVsbDsKICAgIH0K');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="HlsChunkSource.java" data-line="517,524," class="code line-numbers"><code>package com.google.android.exoplayer2.source.hls;
+
+import android.net.Uri;
+import android.os.SystemClock;
+import androidx.annotation.Nullable;
+import com.google.android.exoplayer2.C;
+import com.google.android.exoplayer2.Format;
+import com.google.android.exoplayer2.source.BehindLiveWindowException;
+import com.google.android.exoplayer2.source.TrackGroup;
+import com.google.android.exoplayer2.source.chunk.BaseMediaChunkIterator;
+import com.google.android.exoplayer2.source.chunk.Chunk;
+import com.google.android.exoplayer2.source.chunk.DataChunk;
+import com.google.android.exoplayer2.source.chunk.MediaChunk;
+import com.google.android.exoplayer2.source.chunk.MediaChunkIterator;
+import com.google.android.exoplayer2.source.hls.playlist.HlsMasterPlaylist.HlsUrl;
+import com.google.android.exoplayer2.source.hls.playlist.HlsMediaPlaylist;
+import com.google.android.exoplayer2.source.hls.playlist.HlsMediaPlaylist.Segment;
+import com.google.android.exoplayer2.source.hls.playlist.HlsPlaylistTracker;
+import com.google.android.exoplayer2.trackselection.BaseTrackSelection;
+import com.google.android.exoplayer2.trackselection.TrackSelection;
+import com.google.android.exoplayer2.upstream.DataSource;
+import com.google.android.exoplayer2.upstream.DataSpec;
+import com.google.android.exoplayer2.upstream.TransferListener;
+import com.google.android.exoplayer2.util.TimestampAdjuster;
+import com.google.android.exoplayer2.util.UriUtil;
+import com.google.android.exoplayer2.util.Util;
+import java.io.IOException;
+import java.math.BigInteger;
+import java.util.Arrays;
+import java.util.List;
+
+class HlsChunkSource {
+    private final DataSource encryptionDataSource;
+    private byte[] encryptionIv;
+    private String encryptionIvString;
+    private byte[] encryptionKey;
+    private Uri encryptionKeyUri;
+    private HlsUrl expectedPlaylistUrl;
+    private final HlsExtractorFactory extractorFactory;
+    private IOException fatalError;
+    private boolean independentSegments;
+    private boolean isTimestampMaster;
+    private long liveEdgeInPeriodTimeUs = 1;
+    private final DataSource mediaDataSource;
+    private final List&lt;Format&gt; muxedCaptionFormats;
+    private final HlsPlaylistTracker playlistTracker;
+    private byte[] scratchSpace;
+    private boolean seenExpectedPlaylistError;
+    private final TimestampAdjusterProvider timestampAdjusterProvider;
+    private final TrackGroup trackGroup;
+    private TrackSelection trackSelection;
+    private final HlsUrl[] variants;
+
+    public static final class HlsChunkHolder {
+        public Chunk chunk;
+        public boolean endOfStream;
+        public HlsUrl playlist;
+
+        public HlsChunkHolder() {
+            clear();
+        }
+
+        public void clear() {
+            this.chunk = null;
+            this.endOfStream = false;
+            this.playlist = null;
+        }
+    }
+
+    private static final class HlsMediaPlaylistSegmentIterator extends BaseMediaChunkIterator {
+        private final HlsMediaPlaylist playlist;
+        private final long startOfPlaylistInPeriodUs;
+
+        public HlsMediaPlaylistSegmentIterator(HlsMediaPlaylist hlsMediaPlaylist, long j, int i) {
+            super((long) i, (long) (hlsMediaPlaylist.segments.size() - 1));
+            this.playlist = hlsMediaPlaylist;
+            this.startOfPlaylistInPeriodUs = j;
+        }
+
+        public DataSpec getDataSpec() {
+            checkInBounds();
+            Segment segment = (Segment) this.playlist.segments.get((int) getCurrentIndex());
+            return new DataSpec(UriUtil.resolveToUri(this.playlist.baseUri, segment.url), segment.byterangeOffset, segment.byterangeLength, null);
+        }
+
+        public long getChunkStartTimeUs() {
+            checkInBounds();
+            return this.startOfPlaylistInPeriodUs + ((Segment) this.playlist.segments.get((int) getCurrentIndex())).relativeStartTimeUs;
+        }
+
+        public long getChunkEndTimeUs() {
+            checkInBounds();
+            Segment segment = (Segment) this.playlist.segments.get((int) getCurrentIndex());
+            return (this.startOfPlaylistInPeriodUs + segment.relativeStartTimeUs) + segment.durationUs;
+        }
+    }
+
+    private static final class InitializationTrackSelection extends BaseTrackSelection {
+        private int selectedIndex;
+
+        public Object getSelectionData() {
+            return null;
+        }
+
+        public int getSelectionReason() {
+            return 0;
+        }
+
+        public InitializationTrackSelection(TrackGroup trackGroup, int[] iArr) {
+            super(trackGroup, iArr);
+            this.selectedIndex = indexOf((Format) trackGroup.getFormat(null));
+        }
+
+        public void updateSelectedTrack(long j, long j2, long j3, List&lt;? extends MediaChunk&gt; list, MediaChunkIterator[] mediaChunkIteratorArr) {
+            j = SystemClock.elapsedRealtime();
+            if (isBlacklisted(this.selectedIndex, j) != null) {
+                j2 = this.length - 1;
+                while (j2 &gt;= null) {
+                    if (isBlacklisted(j2, j)) {
+                        j2--;
+                    } else {
+                        this.selectedIndex = j2;
+                        return;
+                    }
+                }
+                throw new IllegalStateException();
+            }
+        }
+
+        public int getSelectedIndex() {
+            return this.selectedIndex;
+        }
+    }
+
+    private static final class EncryptionKeyChunk extends DataChunk {
+        public final String iv;
+        private byte[] result;
+
+        public EncryptionKeyChunk(DataSource dataSource, DataSpec dataSpec, Format format, int i, Object obj, byte[] bArr, String str) {
+            super(dataSource, dataSpec, 3, format, i, obj, bArr);
+            this.iv = str;
+        }
+
+        protected void consume(byte[] bArr, int i) throws IOException {
+            this.result = Arrays.copyOf(bArr, i);
+        }
+
+        public byte[] getResult() {
+            return this.result;
+        }
+    }
+
+    public HlsChunkSource(HlsExtractorFactory hlsExtractorFactory, HlsPlaylistTracker hlsPlaylistTracker, HlsUrl[] hlsUrlArr, HlsDataSourceFactory hlsDataSourceFactory, @Nullable TransferListener transferListener, TimestampAdjusterProvider timestampAdjusterProvider, List&lt;Format&gt; list) {
+        this.extractorFactory = hlsExtractorFactory;
+        this.playlistTracker = hlsPlaylistTracker;
+        this.variants = hlsUrlArr;
+        this.timestampAdjusterProvider = timestampAdjusterProvider;
+        this.muxedCaptionFormats = list;
+        Format[] formatArr = new Format[hlsUrlArr.length];
+        hlsPlaylistTracker = new int[hlsUrlArr.length];
+        for (timestampAdjusterProvider = null; timestampAdjusterProvider &lt; hlsUrlArr.length; timestampAdjusterProvider++) {
+            formatArr[timestampAdjusterProvider] = hlsUrlArr[timestampAdjusterProvider].format;
+            hlsPlaylistTracker[timestampAdjusterProvider] = timestampAdjusterProvider;
+        }
+        this.mediaDataSource = hlsDataSourceFactory.createDataSource(1);
+        if (transferListener != null) {
+            this.mediaDataSource.addTransferListener(transferListener);
+        }
+        this.encryptionDataSource = hlsDataSourceFactory.createDataSource(3);
+        this.trackGroup = new TrackGroup(formatArr);
+        this.trackSelection = new InitializationTrackSelection(this.trackGroup, hlsPlaylistTracker);
+    }
+
+    public void maybeThrowError() throws IOException {
+        if (this.fatalError != null) {
+            throw this.fatalError;
+        } else if (this.expectedPlaylistUrl != null &amp;&amp; this.seenExpectedPlaylistError) {
+            this.playlistTracker.maybeThrowPlaylistRefreshError(this.expectedPlaylistUrl);
+        }
+    }
+
+    public TrackGroup getTrackGroup() {
+        return this.trackGroup;
+    }
+
+    public void selectTracks(TrackSelection trackSelection) {
+        this.trackSelection = trackSelection;
+    }
+
+    public TrackSelection getTrackSelection() {
+        return this.trackSelection;
+    }
+
+    public void reset() {
+        this.fatalError = null;
+    }
+
+    public void setIsTimestampMaster(boolean z) {
+        this.isTimestampMaster = z;
+    }
+
+    public void getNextChunk(long j, long j2, List&lt;HlsMediaChunk&gt; list, HlsChunkHolder hlsChunkHolder) {
+        HlsMediaChunk hlsMediaChunk;
+        int i;
+        long max;
+        int selectedIndexInTrackGroup;
+        int i2;
+        boolean z;
+        HlsUrl hlsUrl;
+        HlsMediaPlaylist playlistSnapshot;
+        long initialStartTimeUs;
+        HlsMediaChunk hlsMediaChunk2;
+        long chunkMediaSequence;
+        long j3;
+        int i3;
+        HlsUrl hlsUrl2;
+        int i4;
+        Segment segment;
+        Uri resolveToUri;
+        Segment segment2;
+        HlsChunkSource hlsChunkSource = this;
+        long j4 = j2;
+        HlsChunkHolder hlsChunkHolder2 = hlsChunkHolder;
+        if (list.isEmpty()) {
+            List&lt;HlsMediaChunk&gt; list2 = list;
+            hlsMediaChunk = null;
+        } else {
+            hlsMediaChunk = (HlsMediaChunk) list.get(list.size() - 1);
+        }
+        if (hlsMediaChunk == null) {
+            i = -1;
+        } else {
+            i = hlsChunkSource.trackGroup.indexOf(hlsMediaChunk.trackFormat);
+        }
+        long j5 = j4 - j;
+        long resolveTimeToLiveEdgeUs = resolveTimeToLiveEdgeUs(j);
+        if (!(hlsMediaChunk == null || hlsChunkSource.independentSegments)) {
+            long durationUs = hlsMediaChunk.getDurationUs();
+            j5 = Math.max(0, j5 - durationUs);
+            if (resolveTimeToLiveEdgeUs != C.TIME_UNSET) {
+                max = Math.max(0, resolveTimeToLiveEdgeUs - durationUs);
+                hlsChunkSource.trackSelection.updateSelectedTrack(j, j5, max, list, createMediaChunkIterators(hlsMediaChunk, j4));
+                selectedIndexInTrackGroup = hlsChunkSource.trackSelection.getSelectedIndexInTrackGroup();
+                i2 = 0;
+                z = i == selectedIndexInTrackGroup;
+                hlsUrl = hlsChunkSource.variants[selectedIndexInTrackGroup];
+                if (hlsChunkSource.playlistTracker.isSnapshotValid(hlsUrl)) {
+                    hlsChunkHolder2.playlist = hlsUrl;
+                    boolean z2 = hlsChunkSource.seenExpectedPlaylistError;
+                    if (hlsChunkSource.expectedPlaylistUrl == hlsUrl) {
+                        i2 = 1;
+                    }
+                    hlsChunkSource.seenExpectedPlaylistError = z2 &amp; i2;
+                    hlsChunkSource.expectedPlaylistUrl = hlsUrl;
+                }
+                playlistSnapshot = hlsChunkSource.playlistTracker.getPlaylistSnapshot(hlsUrl);
+                hlsChunkSource.independentSegments = playlistSnapshot.hasIndependentSegments;
+                updateLiveEdgeTimeUs(playlistSnapshot);
+                initialStartTimeUs = playlistSnapshot.startTimeUs - hlsChunkSource.playlistTracker.getInitialStartTimeUs();
+                hlsMediaChunk2 = hlsMediaChunk;
+                int i5 = i;
+                chunkMediaSequence = getChunkMediaSequence(hlsMediaChunk, z, playlistSnapshot, initialStartTimeUs, j2);
+                if (chunkMediaSequence &lt; playlistSnapshot.mediaSequence) {
+                    j3 = chunkMediaSequence;
+                    i3 = selectedIndexInTrackGroup;
+                    hlsUrl2 = hlsUrl;
+                } else if (hlsMediaChunk2 == null &amp;&amp; z) {
+                    hlsUrl2 = hlsChunkSource.variants[i5];
+                    playlistSnapshot = hlsChunkSource.playlistTracker.getPlaylistSnapshot(hlsUrl2);
+                    initialStartTimeUs = playlistSnapshot.startTimeUs - hlsChunkSource.playlistTracker.getInitialStartTimeUs();
+                    j3 = hlsMediaChunk2.getNextChunkIndex();
+                    i3 = i5;
+                } else {
+                    hlsChunkSource.fatalError = new BehindLiveWindowException();
+                    return;
+                }
+                i4 = (int) (j3 - playlistSnapshot.mediaSequence);
+                if (i4 &lt; playlistSnapshot.segments.size()) {
+                    if (playlistSnapshot.hasEndTag) {
+                        hlsChunkHolder2.playlist = hlsUrl2;
+                        boolean z3 = hlsChunkSource.seenExpectedPlaylistError;
+                        if (hlsChunkSource.expectedPlaylistUrl == hlsUrl2) {
+                            i2 = 1;
+                        }
+                        hlsChunkSource.seenExpectedPlaylistError = z3 &amp; i2;
+                        hlsChunkSource.expectedPlaylistUrl = hlsUrl2;
+                    } else {
+                        hlsChunkHolder2.endOfStream = true;
+                    }
+                    return;
+                }
+                hlsChunkSource.seenExpectedPlaylistError = false;
+                HlsUrl hlsUrl3 = null;
+                hlsChunkSource.expectedPlaylistUrl = null;
+                segment = (Segment) playlistSnapshot.segments.get(i4);
+                if (segment.fullSegmentEncryptionKeyUri == null) {
+                    resolveToUri = UriUtil.resolveToUri(playlistSnapshot.baseUri, segment.fullSegmentEncryptionKeyUri);
+                    if (!resolveToUri.equals(hlsChunkSource.encryptionKeyUri)) {
+                        hlsChunkHolder2.chunk = newEncryptionKeyChunk(resolveToUri, segment.encryptionIV, i3, hlsChunkSource.trackSelection.getSelectionReason(), hlsChunkSource.trackSelection.getSelectionData());
+                        return;
+                    } else if (!Util.areEqual(segment.encryptionIV, hlsChunkSource.encryptionIvString)) {
+                        setEncryptionData(resolveToUri, segment.encryptionIV, hlsChunkSource.encryptionKey);
+                    }
+                } else {
+                    clearEncryptionData();
+                }
+                segment2 = segment.initializationSegment;
+                if (segment2 != null) {
+                    HlsUrl dataSpec = new DataSpec(UriUtil.resolveToUri(playlistSnapshot.baseUri, segment2.url), segment2.byterangeOffset, segment2.byterangeLength, null);
+                }
+                long j6 = segment.relativeStartTimeUs + initialStartTimeUs;
+                long j7 = j6;
+                i = playlistSnapshot.discontinuitySequence + segment.relativeDiscontinuitySequence;
+                int i6 = i;
+                TimestampAdjuster adjuster = hlsChunkSource.timestampAdjusterProvider.getAdjuster(i);
+                DataSpec dataSpec2 = r32;
+                DataSpec dataSpec3 = new DataSpec(UriUtil.resolveToUri(playlistSnapshot.baseUri, segment.url), segment.byterangeOffset, segment.byterangeLength, null);
+                hlsChunkHolder2.chunk = new HlsMediaChunk(hlsChunkSource.extractorFactory, hlsChunkSource.mediaDataSource, dataSpec2, hlsUrl3, hlsUrl2, hlsChunkSource.muxedCaptionFormats, hlsChunkSource.trackSelection.getSelectionReason(), hlsChunkSource.trackSelection.getSelectionData(), j7, j6 + segment.durationUs, j3, i6, segment.hasGapTag, hlsChunkSource.isTimestampMaster, adjuster, hlsMediaChunk2, segment.drmInitData, hlsChunkSource.encryptionKey, hlsChunkSource.encryptionIv);
+                return;
+            }
+        }
+        max = resolveTimeToLiveEdgeUs;
+        hlsChunkSource.trackSelection.updateSelectedTrack(j, j5, max, list, createMediaChunkIterators(hlsMediaChunk, j4));
+        selectedIndexInTrackGroup = hlsChunkSource.trackSelection.getSelectedIndexInTrackGroup();
+        i2 = 0;
+        if (i == selectedIndexInTrackGroup) {
+        }
+        hlsUrl = hlsChunkSource.variants[selectedIndexInTrackGroup];
+        if (hlsChunkSource.playlistTracker.isSnapshotValid(hlsUrl)) {
+            playlistSnapshot = hlsChunkSource.playlistTracker.getPlaylistSnapshot(hlsUrl);
+            hlsChunkSource.independentSegments = playlistSnapshot.hasIndependentSegments;
+            updateLiveEdgeTimeUs(playlistSnapshot);
+            initialStartTimeUs = playlistSnapshot.startTimeUs - hlsChunkSource.playlistTracker.getInitialStartTimeUs();
+            hlsMediaChunk2 = hlsMediaChunk;
+            int i52 = i;
+            chunkMediaSequence = getChunkMediaSequence(hlsMediaChunk, z, playlistSnapshot, initialStartTimeUs, j2);
+            if (chunkMediaSequence &lt; playlistSnapshot.mediaSequence) {
+                j3 = chunkMediaSequence;
+                i3 = selectedIndexInTrackGroup;
+                hlsUrl2 = hlsUrl;
+            } else {
+                if (hlsMediaChunk2 == null) {
+                }
+                hlsChunkSource.fatalError = new BehindLiveWindowException();
+                return;
+            }
+            i4 = (int) (j3 - playlistSnapshot.mediaSequence);
+            if (i4 &lt; playlistSnapshot.segments.size()) {
+                hlsChunkSource.seenExpectedPlaylistError = false;
+                HlsUrl hlsUrl32 = null;
+                hlsChunkSource.expectedPlaylistUrl = null;
+                segment = (Segment) playlistSnapshot.segments.get(i4);
+                if (segment.fullSegmentEncryptionKeyUri == null) {
+                    clearEncryptionData();
+                } else {
+                    resolveToUri = UriUtil.resolveToUri(playlistSnapshot.baseUri, segment.fullSegmentEncryptionKeyUri);
+                    if (!resolveToUri.equals(hlsChunkSource.encryptionKeyUri)) {
+                        hlsChunkHolder2.chunk = newEncryptionKeyChunk(resolveToUri, segment.encryptionIV, i3, hlsChunkSource.trackSelection.getSelectionReason(), hlsChunkSource.trackSelection.getSelectionData());
+                        return;
+                    } else if (Util.areEqual(segment.encryptionIV, hlsChunkSource.encryptionIvString)) {
+                        setEncryptionData(resolveToUri, segment.encryptionIV, hlsChunkSource.encryptionKey);
+                    }
+                }
+                segment2 = segment.initializationSegment;
+                if (segment2 != null) {
+                    HlsUrl dataSpec4 = new DataSpec(UriUtil.resolveToUri(playlistSnapshot.baseUri, segment2.url), segment2.byterangeOffset, segment2.byterangeLength, null);
+                }
+                long j62 = segment.relativeStartTimeUs + initialStartTimeUs;
+                long j72 = j62;
+                i = playlistSnapshot.discontinuitySequence + segment.relativeDiscontinuitySequence;
+                int i62 = i;
+                TimestampAdjuster adjuster2 = hlsChunkSource.timestampAdjusterProvider.getAdjuster(i);
+                DataSpec dataSpec22 = dataSpec3;
+                DataSpec dataSpec32 = new DataSpec(UriUtil.resolveToUri(playlistSnapshot.baseUri, segment.url), segment.byterangeOffset, segment.byterangeLength, null);
+                hlsChunkHolder2.chunk = new HlsMediaChunk(hlsChunkSource.extractorFactory, hlsChunkSource.mediaDataSource, dataSpec22, hlsUrl32, hlsUrl2, hlsChunkSource.muxedCaptionFormats, hlsChunkSource.trackSelection.getSelectionReason(), hlsChunkSource.trackSelection.getSelectionData(), j72, j62 + segment.durationUs, j3, i62, segment.hasGapTag, hlsChunkSource.isTimestampMaster, adjuster2, hlsMediaChunk2, segment.drmInitData, hlsChunkSource.encryptionKey, hlsChunkSource.encryptionIv);
+                return;
+            }
+            if (playlistSnapshot.hasEndTag) {
+                hlsChunkHolder2.playlist = hlsUrl2;
+                boolean z32 = hlsChunkSource.seenExpectedPlaylistError;
+                if (hlsChunkSource.expectedPlaylistUrl == hlsUrl2) {
+                    i2 = 1;
+                }
+                hlsChunkSource.seenExpectedPlaylistError = z32 &amp; i2;
+                hlsChunkSource.expectedPlaylistUrl = hlsUrl2;
+            } else {
+                hlsChunkHolder2.endOfStream = true;
+            }
+            return;
+        }
+        hlsChunkHolder2.playlist = hlsUrl;
+        boolean z22 = hlsChunkSource.seenExpectedPlaylistError;
+        if (hlsChunkSource.expectedPlaylistUrl == hlsUrl) {
+            i2 = 1;
+        }
+        hlsChunkSource.seenExpectedPlaylistError = z22 &amp; i2;
+        hlsChunkSource.expectedPlaylistUrl = hlsUrl;
+    }
+
+    public void onChunkLoadCompleted(Chunk chunk) {
+        if (chunk instanceof EncryptionKeyChunk) {
+            EncryptionKeyChunk encryptionKeyChunk = (EncryptionKeyChunk) chunk;
+            this.scratchSpace = encryptionKeyChunk.getDataHolder();
+            setEncryptionData(encryptionKeyChunk.dataSpec.uri, encryptionKeyChunk.iv, encryptionKeyChunk.getResult());
+        }
+    }
+
+    public boolean maybeBlacklistTrack(Chunk chunk, long j) {
+        return this.trackSelection.blacklist(this.trackSelection.indexOf(this.trackGroup.indexOf(chunk.trackFormat)), j);
+    }
+
+    public boolean onPlaylistError(HlsUrl hlsUrl, long j) {
+        int indexOf = this.trackGroup.indexOf(hlsUrl.format);
+        boolean z = true;
+        if (indexOf == -1) {
+            return true;
+        }
+        indexOf = this.trackSelection.indexOf(indexOf);
+        if (indexOf == -1) {
+            return true;
+        }
+        this.seenExpectedPlaylistError = (this.expectedPlaylistUrl == hlsUrl ? true : null) | this.seenExpectedPlaylistError;
+        if (j != C.TIME_UNSET) {
+            if (this.trackSelection.blacklist(indexOf, j) == null) {
+                z = false;
+            }
+        }
+        return z;
+    }
+
+    public MediaChunkIterator[] createMediaChunkIterators(@Nullable HlsMediaChunk hlsMediaChunk, long j) {
+        int i;
+        HlsChunkSource hlsChunkSource = this;
+        HlsMediaChunk hlsMediaChunk2 = hlsMediaChunk;
+        if (hlsMediaChunk2 == null) {
+            i = -1;
+        } else {
+            i = hlsChunkSource.trackGroup.indexOf(hlsMediaChunk2.trackFormat);
+        }
+        MediaChunkIterator[] mediaChunkIteratorArr = new MediaChunkIterator[hlsChunkSource.trackSelection.length()];
+        for (int i2 = 0; i2 &lt; mediaChunkIteratorArr.length; i2++) {
+            int indexInTrackGroup = hlsChunkSource.trackSelection.getIndexInTrackGroup(i2);
+            HlsUrl hlsUrl = hlsChunkSource.variants[indexInTrackGroup];
+            if (hlsChunkSource.playlistTracker.isSnapshotValid(hlsUrl)) {
+                HlsMediaPlaylist playlistSnapshot = hlsChunkSource.playlistTracker.getPlaylistSnapshot(hlsUrl);
+                long initialStartTimeUs = playlistSnapshot.startTimeUs - hlsChunkSource.playlistTracker.getInitialStartTimeUs();
+                long j2 = initialStartTimeUs;
+                long chunkMediaSequence = getChunkMediaSequence(hlsMediaChunk, indexInTrackGroup != i, playlistSnapshot, initialStartTimeUs, j);
+                if (chunkMediaSequence &lt; playlistSnapshot.mediaSequence) {
+                    mediaChunkIteratorArr[i2] = MediaChunkIterator.EMPTY;
+                } else {
+                    mediaChunkIteratorArr[i2] = new HlsMediaPlaylistSegmentIterator(playlistSnapshot, j2, (int) (chunkMediaSequence - playlistSnapshot.mediaSequence));
+                }
+            } else {
+                mediaChunkIteratorArr[i2] = MediaChunkIterator.EMPTY;
+            }
+        }
+        return mediaChunkIteratorArr;
+    }
+
+    private long getChunkMediaSequence(@Nullable HlsMediaChunk hlsMediaChunk, boolean z, HlsMediaPlaylist hlsMediaPlaylist, long j, long j2) {
+        if (hlsMediaChunk != null) {
+            if (!z) {
+                return hlsMediaChunk.getNextChunkIndex();
+            }
+        }
+        long j3 = hlsMediaPlaylist.durationUs + j;
+        if (hlsMediaChunk != null) {
+            if (!this.independentSegments) {
+                j2 = hlsMediaChunk.startTimeUs;
+            }
+        }
+        if (!hlsMediaPlaylist.hasEndTag &amp;&amp; j2 &gt;= j3) {
+            return hlsMediaPlaylist.mediaSequence + ((long) hlsMediaPlaylist.segments.size());
+        }
+        boolean z2;
+        j2 -= j;
+        List list = hlsMediaPlaylist.segments;
+        Comparable valueOf = Long.valueOf(j2);
+        if (this.playlistTracker.isLive()) {
+            if (hlsMediaChunk != null) {
+                z2 = null;
+                return ((long) Util.binarySearchFloor(list, valueOf, (boolean) 1, z2)) + hlsMediaPlaylist.mediaSequence;
+            }
+        }
+        z2 = true;
+        return ((long) Util.binarySearchFloor(list, valueOf, (boolean) 1, z2)) + hlsMediaPlaylist.mediaSequence;
+    }
+
+    private long resolveTimeToLiveEdgeUs(long j) {
+        if ((this.liveEdgeInPeriodTimeUs != C.TIME_UNSET ? 1 : null) != null) {
+            return this.liveEdgeInPeriodTimeUs - j;
+        }
+        return C.TIME_UNSET;
+    }
+
+    private void updateLiveEdgeTimeUs(HlsMediaPlaylist hlsMediaPlaylist) {
+        long j;
+        if (hlsMediaPlaylist.hasEndTag) {
+            j = C.TIME_UNSET;
+        } else {
+            j = hlsMediaPlaylist.getEndTimeUs() - this.playlistTracker.getInitialStartTimeUs();
+        }
+        this.liveEdgeInPeriodTimeUs = j;
+    }
+
+    private EncryptionKeyChunk newEncryptionKeyChunk(Uri uri, String str, int i, int i2, Object obj) {
+        return new EncryptionKeyChunk(this.encryptionDataSource, new DataSpec(uri, 0, -1, null, 1), this.variants[i].format, i2, obj, this.scratchSpace, str);
+    }
+
+    private void setEncryptionData(Uri uri, String str, byte[] bArr) {
+        Object toByteArray = new BigInteger(Util.toLowerInvariant(str).startsWith("0x") ? str.substring(2) : str, 16).toByteArray();
+        Object obj = new byte[16];
+        int length = toByteArray.length &gt; 16 ? toByteArray.length - 16 : 0;
+        System.arraycopy(toByteArray, length, obj, (obj.length - toByteArray.length) + length, toByteArray.length - length);
+        this.encryptionKeyUri = uri;
+        this.encryptionKey = bArr;
+        this.encryptionIvString = str;
+        this.encryptionIv = obj;
+    }
+
+    private void clearEncryptionData() {
+        this.encryptionKeyUri = null;
+        this.encryptionKey = null;
+        this.encryptionIvString = null;
+        this.encryptionIv = null;
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:8 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

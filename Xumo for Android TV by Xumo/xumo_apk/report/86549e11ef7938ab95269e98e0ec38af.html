@@ -1,0 +1,106 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/res/layout/tv_fragment_brand_page.xml" target="_blank">/xumo_apk/jadx_source_code/res/layout/tv_fragment_brand_page.xml</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="tv_fragment_brand_page.xml" data-line="" class="code line-numbers"><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;RelativeLayout xmlns:android="http://schemas.android.com/apk/res-auto" app:layout_width="match_parent" app:layout_height="match_parent"&gt;
+    &lt;LinearLayout app:orientation="horizontal" app:layout_width="match_parent" app:layout_height="match_parent"
+        &lt;LinearLayout app:orientation="vertical" app:id="@+id/player_layout" app:visibility="gone" app:layout_width="UNKNOWN_DATA_0x1" app:layout_height="match_parent" app:layout_weight="6.0"&gt;
+            &lt;androidx.constraintlayout.widget.ConstraintLayout app:background="0x106000c" app:layout_width="match_parent" app:layout_height="wrap_content"&gt;
+                &lt;com.google.android.exoplayer2.ui.PlayerView app:id="@+id/player_view" app:layout_width="match_parent" app:layout_height="UNKNOWN_DATA_0x1" app:layout_constraintDimensionRatio="h,320:180" app:resize_mode="2"&gt;
+                    &lt;RelativeLayout app:id="@+id/player_error_message_layout" app:background="0x106000c" app:layout_width="match_parent" app:layout_height="match_parent"&gt;
+                        &lt;TextView app:textSize="16sp" app:textColor="@color/xumoGrayFourth" app:id="@+id/player_error_message" app:layout_width="wrap_content" app:layout_height="wrap_content" app:layout_centerInParent="true" app:lineSpacingExtra="12sp" app:textAlignment="center" /&gt;
+                    &lt;/RelativeLayout&gt;
+                    &lt;ProgressBar app:layout_gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end" app:id="@+id/buffering_indicator" app:visibility="gone" app:layout_width="wrap_content" app:layout_height="wrap_content" /&gt;
+                    &lt;FrameLayout app:id="@+id/fb_ad_view" app:visibility="gone" app:layout_width="match_parent" app:layout_height="match_parent" /&gt;
+                &lt;/com.google.android.exoplayer2.ui.PlayerView&gt;
+            &lt;/androidx.constraintlayout.widget.ConstraintLayout&gt;
+            &lt;ScrollView app:background="@color/onNowDescriptionBackgroundColor" app:layout_width="match_parent" app:layout_height="match_parent" app:paddingStart="16dp" app:paddingEnd="16dp"&gt;
+                &lt;RelativeLayout app:paddingTop="16dp" app:paddingBottom="16dp" app:layout_width="match_parent" app:layout_height="wrap_content"&gt;
+                    &lt;ImageView app:id="@+id/channel_icon" app:layout_width="UNKNOWN_DATA_0x4401" app:layout_height="UNKNOWN_DATA_0x4401" app:scaleType="fitCenter" app:contentDescription="@string/channel_logo_description" app:layout_alignParentStart="true" /&gt;
+                    &lt;TextView app:textSize="12sp" app:textColor="@color/xumoWhite" app:id="@+id/channel_program_number" app:layout_width="UNKNOWN_DATA_0x4401" app:layout_height="wrap_content" app:layout_marginTop="10dp" app:layout_below="@+id/channel_icon" app:textAlignment="center" fontPath="fonts/Lato-Bold.ttf" /&gt;
+                    &lt;TextView app:textSize="24sp" app:textColor="@color/xumoWhite" app:ellipsize="end" app:id="@+id/content_title" app:layout_width="wrap_content" app:layout_height="wrap_content" app:layout_marginTop="8dp" app:maxLines="1" app:textAlignment="textStart" app:layout_marginStart="20dp" app:layout_toEndOf="@+id/channel_icon" fontPath="fonts/Raleway-Bold.ttf" /&gt;
+                    &lt;TextView app:textSize="16sp" app:textColor="@color/xumoWhiteSecond" app:id="@+id/content_description" app:layout_width="wrap_content" app:layout_height="wrap_content" app:layout_marginTop="8dp" app:layout_below="@+id/content_title" app:lineSpacingExtra="8sp" app:textAlignment="textStart" app:layout_marginStart="20dp" app:layout_toEndOf="@+id/channel_icon" fontPath="fonts/Raleway-Regular.ttf" /&gt;
+                &lt;/RelativeLayout&gt;
+            &lt;/ScrollView&gt;
+        &lt;/LinearLayout&gt;
+        &lt;RelativeLayout app:id="@+id/genre_selector_brand_list_layout" app:background="@color/genre_selector_list_layout" app:layout_width="UNKNOWN_DATA_0x1" app:layout_height="match_parent" app:layout_marginLeft="20dp" app:layout_weight="1.0"&gt;
+            &lt;com.xumo.xumo.widget.XumoTvRecyclerView app:layout_gravity="top|bottom|center_vertical|fill_vertical|center|fill" app:orientation="vertical" app:id="@+id/genre_selector_brand_list" app:focusable="true" app:layout_width="match_parent" app:layout_height="match_parent" app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" /&gt;
+        &lt;/RelativeLayout&gt;
+        &lt;RelativeLayout app:layout_width="UNKNOWN_DATA_0x1" app:layout_height="match_parent" app:layout_weight="4.0"&gt;
+            &lt;se.emilsjolander.stickylistheaders.StickyListHeadersListView app:id="@+id/video_asset_list" app:background="@color/shadow" app:layout_width="match_parent" app:layout_height="match_parent" app:divider="#00ffffff" app:dividerHeight="0dp" app:layout_alignParentBottom="true" /&gt;
+        &lt;/RelativeLayout&gt;
+    &lt;/LinearLayout&gt;
+    &lt;RelativeLayout app:id="@+id/channel_error_message_layout" app:background="0x106000c" app:layout_width="match_parent" app:layout_height="match_parent"&gt;
+        &lt;TextView app:textSize="16sp" app:textColor="@color/xumoGrayFourth" app:layout_width="wrap_content" app:layout_height="wrap_content" app:text="@string/channel_error_message" app:layout_centerInParent="true" app:lineSpacingExtra="12sp" app:textAlignment="center" fontPath="fonts/Raleway-Medium.ttf" /&gt;
+    &lt;/RelativeLayout&gt;
+&lt;/RelativeLayout&gt;
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:2 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

@@ -1,0 +1,215 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/android/volley/RequestQueue.java" target="_blank">/xumo_apk/jadx_source_code/com/android/volley/RequestQueue.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="RequestQueue.java" data-line="" class="code line-numbers"><code>package com.android.volley;
+
+import android.os.Handler;
+import android.os.Looper;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.PriorityBlockingQueue;
+import java.util.concurrent.atomic.AtomicInteger;
+
+public class RequestQueue {
+    private static final int DEFAULT_NETWORK_THREAD_POOL_SIZE = 4;
+    private final Cache mCache;
+    private CacheDispatcher mCacheDispatcher;
+    private final PriorityBlockingQueue&lt;Request&lt;?&gt;&gt; mCacheQueue;
+    private final Set&lt;Request&lt;?&gt;&gt; mCurrentRequests;
+    private final ResponseDelivery mDelivery;
+    private final NetworkDispatcher[] mDispatchers;
+    private final List&lt;RequestFinishedListener&gt; mFinishedListeners;
+    private final Network mNetwork;
+    private final PriorityBlockingQueue&lt;Request&lt;?&gt;&gt; mNetworkQueue;
+    private final AtomicInteger mSequenceGenerator;
+
+    public interface RequestFilter {
+        boolean apply(Request&lt;?&gt; request);
+    }
+
+    public interface RequestFinishedListener&lt;T&gt; {
+        void onRequestFinished(Request&lt;T&gt; request);
+    }
+
+    public RequestQueue(Cache cache, Network network, int i, ResponseDelivery responseDelivery) {
+        this.mSequenceGenerator = new AtomicInteger();
+        this.mCurrentRequests = new HashSet();
+        this.mCacheQueue = new PriorityBlockingQueue();
+        this.mNetworkQueue = new PriorityBlockingQueue();
+        this.mFinishedListeners = new ArrayList();
+        this.mCache = cache;
+        this.mNetwork = network;
+        this.mDispatchers = new NetworkDispatcher[i];
+        this.mDelivery = responseDelivery;
+    }
+
+    public RequestQueue(Cache cache, Network network, int i) {
+        this(cache, network, i, new ExecutorDelivery(new Handler(Looper.getMainLooper())));
+    }
+
+    public RequestQueue(Cache cache, Network network) {
+        this(cache, network, 4);
+    }
+
+    public void start() {
+        stop();
+        this.mCacheDispatcher = new CacheDispatcher(this.mCacheQueue, this.mNetworkQueue, this.mCache, this.mDelivery);
+        this.mCacheDispatcher.start();
+        for (int i = 0; i &lt; this.mDispatchers.length; i++) {
+            NetworkDispatcher networkDispatcher = new NetworkDispatcher(this.mNetworkQueue, this.mNetwork, this.mCache, this.mDelivery);
+            this.mDispatchers[i] = networkDispatcher;
+            networkDispatcher.start();
+        }
+    }
+
+    public void stop() {
+        if (this.mCacheDispatcher != null) {
+            this.mCacheDispatcher.quit();
+        }
+        for (NetworkDispatcher networkDispatcher : this.mDispatchers) {
+            if (networkDispatcher != null) {
+                networkDispatcher.quit();
+            }
+        }
+    }
+
+    public int getSequenceNumber() {
+        return this.mSequenceGenerator.incrementAndGet();
+    }
+
+    public Cache getCache() {
+        return this.mCache;
+    }
+
+    public void cancelAll(RequestFilter requestFilter) {
+        synchronized (this.mCurrentRequests) {
+            for (Request request : this.mCurrentRequests) {
+                if (requestFilter.apply(request)) {
+                    request.cancel();
+                }
+            }
+        }
+    }
+
+    public void cancelAll(final Object obj) {
+        if (obj != null) {
+            cancelAll(new RequestFilter() {
+                public boolean apply(Request&lt;?&gt; request) {
+                    return request.getTag() == obj ? true : null;
+                }
+            });
+            return;
+        }
+        throw new IllegalArgumentException("Cannot cancelAll with a null tag");
+    }
+
+    public &lt;T&gt; Request&lt;T&gt; add(Request&lt;T&gt; request) {
+        request.setRequestQueue(this);
+        synchronized (this.mCurrentRequests) {
+            this.mCurrentRequests.add(request);
+        }
+        request.setSequence(getSequenceNumber());
+        request.addMarker("add-to-queue");
+        if (request.shouldCache()) {
+            this.mCacheQueue.add(request);
+            return request;
+        }
+        this.mNetworkQueue.add(request);
+        return request;
+    }
+
+    &lt;T&gt; void finish(Request&lt;T&gt; request) {
+        synchronized (this.mCurrentRequests) {
+            this.mCurrentRequests.remove(request);
+        }
+        synchronized (this.mFinishedListeners) {
+            for (RequestFinishedListener onRequestFinished : this.mFinishedListeners) {
+                onRequestFinished.onRequestFinished(request);
+            }
+        }
+    }
+
+    public &lt;T&gt; void addRequestFinishedListener(RequestFinishedListener&lt;T&gt; requestFinishedListener) {
+        synchronized (this.mFinishedListeners) {
+            this.mFinishedListeners.add(requestFinishedListener);
+        }
+    }
+
+    public &lt;T&gt; void removeRequestFinishedListener(RequestFinishedListener&lt;T&gt; requestFinishedListener) {
+        synchronized (this.mFinishedListeners) {
+            this.mFinishedListeners.remove(requestFinishedListener);
+        }
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:13 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

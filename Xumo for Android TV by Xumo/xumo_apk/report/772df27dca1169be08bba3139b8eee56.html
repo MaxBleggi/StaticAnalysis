@@ -1,0 +1,353 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9"><div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/libraries/cast/companionlibrary/widgets/IntroductoryOverlay.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/libraries/cast/companionlibrary/widgets/IntroductoryOverlay.java</a></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-83">report</i><h5>password =|secret =|username =|key =</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>the app contain hardcoded sensitive informations like usernames, passwords, keys etc: Hard coded sensitive information in Application Code (including Crypto)</span></div></li></ul><ul class="collapsible"><li><div class="collapsible-header"><img data-position="top" data-tooltip="OWASP item" src="html/owasp_logo.png" height="20em" style="margin-right: 1rem;margin-left: 5px;" class="tooltipped"></img> OWASP Item</div><div class="collapsible-body"><span>For more information, have a look at: https://www.owasp.org/index.php/OWASP_Mobile_Security_Testing_Guide</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#IntroductoryOverlay_java42pass" class="active">line 42</a></li></ul></div><div class="card-content"><div id="IntroductoryOverlay_java42pass">Code @ line 42<pre data-start="39" data-line="42" data-src="IntroductoryOverlay.java" class="code line-numbers"><code>public class IntroductoryOverlay extends RelativeLayout {
+    private static final String ALPHA_PROPERTY = "alpha";
+    private static final long FADE_OUT_LENGTH_MS = 400;
+    public static final String FTU_SHOWN_KEY = "ccl_ftu_shown";
+    private static final float INVISIBLE_VALUE = 0.0f;
+    private Bitmap mBitmap;
+    private Button mButton;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3dpZGdldHMvSW50cm9kdWN0b3J5T3ZlcmxheS5qYXZhfHx8bGluZTogNDIgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDQyfHx8Mzk">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3dpZGdldHMvSW50cm9kdWN0b3J5T3ZlcmxheS5qYXZhfHx8bGluZTogNDIgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDQyfHx8Mzk')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3dpZGdldHMvSW50cm9kdWN0b3J5T3ZlcmxheS5qYXZhfHx8bGluZTogNDIgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDQyfHx8Mzk').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3dpZGdldHMvSW50cm9kdWN0b3J5T3ZlcmxheS5qYXZhfHx8bGluZTogNDIgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDQyfHx8Mzk" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3dpZGdldHMvSW50cm9kdWN0b3J5T3ZlcmxheS5qYXZhfHx8bGluZTogNDIgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDQyfHx8Mzk' , 'cHVibGljIGNsYXNzIEludHJvZHVjdG9yeU92ZXJsYXkgZXh0ZW5kcyBSZWxhdGl2ZUxheW91dCB7CiAgICBwcml2YXRlIHN0YXRpYyBmaW5hbCBTdHJpbmcgQUxQSEFfUFJPUEVSVFkgPSAiYWxwaGEiOwogICAgcHJpdmF0ZSBzdGF0aWMgZmluYWwgbG9uZyBGQURFX09VVF9MRU5HVEhfTVMgPSA0MDA7CiAgICBwdWJsaWMgc3RhdGljIGZpbmFsIFN0cmluZyBGVFVfU0hPV05fS0VZID0gImNjbF9mdHVfc2hvd24iOwogICAgcHJpdmF0ZSBzdGF0aWMgZmluYWwgZmxvYXQgSU5WSVNJQkxFX1ZBTFVFID0gMC4wZjsKICAgIHByaXZhdGUgQml0bWFwIG1CaXRtYXA7CiAgICBwcml2YXRlIEJ1dHRvbiBtQnV0dG9uOwo=');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="IntroductoryOverlay.java" data-line="42," class="code line-numbers"><code>package com.google.android.libraries.cast.companionlibrary.widgets;
+
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
+import android.annotation.TargetApi;
+import android.app.Activity;
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.Xfermode;
+import android.preference.PreferenceManager;
+import android.text.TextUtils;
+import android.util.AttributeSet;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import androidx.annotation.ColorRes;
+import androidx.annotation.DimenRes;
+import androidx.annotation.StringRes;
+import androidx.core.view.ViewCompat;
+import androidx.mediarouter.app.MediaRouteButton;
+import com.google.android.libraries.cast.companionlibrary.R;
+import com.google.android.libraries.cast.companionlibrary.utils.Utils;
+
+public class IntroductoryOverlay extends RelativeLayout {
+    private static final String ALPHA_PROPERTY = "alpha";
+    private static final long FADE_OUT_LENGTH_MS = 400;
+    public static final String FTU_SHOWN_KEY = "ccl_ftu_shown";
+    private static final float INVISIBLE_VALUE = 0.0f;
+    private Bitmap mBitmap;
+    private Button mButton;
+    private int mCenterX;
+    private int mCenterY;
+    private float mFocusRadius;
+    private Paint mHolePaint;
+    private boolean mIsOverlayVisible;
+    private boolean mIsSingleTime;
+    private OnOverlayDismissedListener mListener;
+    private int mOverlayColorId;
+    private TextView mSubtitleText;
+    private TextView mTitleText;
+
+    public static class Builder {
+        private String mButtonText;
+        private Context mContext;
+        private OnOverlayDismissedListener mListener;
+        private int mOverlayColor;
+        @ColorRes
+        private float mRadius;
+        private boolean mSingleTime;
+        private String mSubtitleText;
+        private String mTitleText;
+        private View mView;
+
+        public Builder(Context context) {
+            this.mContext = context;
+        }
+
+        public IntroductoryOverlay build() {
+            Utils.assertNotNull(this.mView, "MenuItem or MediaRouteButton");
+            return new IntroductoryOverlay();
+        }
+
+        @TargetApi(11)
+        public Builder setMenuItem(MenuItem menuItem) {
+            this.mView = menuItem.getActionView();
+            return this;
+        }
+
+        public Builder setMediaRouteButton(MediaRouteButton mediaRouteButton) {
+            this.mView = mediaRouteButton;
+            return this;
+        }
+
+        public Builder setOverlayColor(@ColorRes int i) {
+            this.mOverlayColor = this.mContext.getResources().getColor(i);
+            return this;
+        }
+
+        public Builder setFocusRadiusId(@DimenRes int i) {
+            this.mRadius = this.mContext.getResources().getDimension(i);
+            return this;
+        }
+
+        public Builder setFocusRadius(float f) {
+            this.mRadius = f;
+            return this;
+        }
+
+        public Builder setButtonText(String str) {
+            this.mButtonText = str;
+            return this;
+        }
+
+        public Builder setButtonText(@StringRes int i) {
+            this.mButtonText = this.mContext.getResources().getString(i);
+            return this;
+        }
+
+        public Builder setTitleText(@StringRes int i) {
+            this.mTitleText = this.mContext.getResources().getString(i);
+            return this;
+        }
+
+        public Builder setTitleText(String str) {
+            this.mTitleText = str;
+            return this;
+        }
+
+        public Builder setSubtitleText(@StringRes int i) {
+            this.mSubtitleText = this.mContext.getResources().getString(i);
+            return this;
+        }
+
+        public Builder setSubtitleText(String str) {
+            this.mSubtitleText = str;
+            return this;
+        }
+
+        public Builder setOnDismissed(OnOverlayDismissedListener onOverlayDismissedListener) {
+            this.mListener = onOverlayDismissedListener;
+            return this;
+        }
+
+        public Builder setSingleTime() {
+            this.mSingleTime = true;
+            return this;
+        }
+    }
+
+    public interface OnOverlayDismissedListener {
+        void onOverlayDismissed();
+    }
+
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        return true;
+    }
+
+    private IntroductoryOverlay(Builder builder) {
+        this(builder, null, R.styleable.CustomTheme_CCLIntroOverlayStyle);
+    }
+
+    @TargetApi(14)
+    public IntroductoryOverlay(Builder builder, AttributeSet attributeSet, int i) {
+        super(builder.mContext, attributeSet, i);
+        this.mIsSingleTime = builder.mSingleTime;
+        LayoutInflater.from(getContext()).inflate(R.layout.ccl_intro_overlay, this);
+        this.mButton = (Button) findViewById(R.id.button);
+        this.mTitleText = (TextView) findViewById(R.id.textTitle);
+        this.mSubtitleText = (TextView) findViewById(R.id.textSubtitle);
+        attributeSet = getContext().getTheme().obtainStyledAttributes(attributeSet, R.styleable.CCLIntroOverlay, R.attr.CCLIntroOverlayStyle, R.style.CCLIntroOverlay);
+        if (builder.mOverlayColor != 0) {
+            this.mOverlayColorId = builder.mOverlayColor;
+        } else {
+            this.mOverlayColorId = attributeSet.getColor(R.styleable.CCLIntroOverlay_ccl_IntroBackgroundColor, Color.argb(0, 0, 0, 0));
+        }
+        this.mFocusRadius = builder.mRadius;
+        this.mListener = builder.mListener;
+        if (this.mFocusRadius == 0) {
+            this.mFocusRadius = attributeSet.getDimension(R.styleable.CCLIntroOverlay_ccl_IntroFocusRadius, 0.0f);
+        }
+        i = builder.mView;
+        Rect rect = new Rect();
+        i.getGlobalVisibleRect(rect);
+        this.mCenterX = rect.centerX();
+        this.mCenterY = rect.centerY();
+        setFitsSystemWindows(1);
+        setupHolePaint();
+        setText(builder.mTitleText, builder.mSubtitleText);
+        setButton(builder.mButtonText, attributeSet);
+        attributeSet.recycle();
+    }
+
+    public void show() {
+        if (this.mIsSingleTime &amp;&amp; isFtuShown()) {
+            this.mListener = null;
+            return;
+        }
+        if (!this.mIsOverlayVisible) {
+            this.mIsOverlayVisible = true;
+            ((ViewGroup) ((Activity) getContext()).getWindow().getDecorView()).addView(this);
+        }
+    }
+
+    public void remove() {
+        if (getContext() != null) {
+            ((ViewGroup) ((Activity) getContext()).getWindow().getDecorView()).removeView(this);
+        }
+        if (!(this.mBitmap == null || this.mBitmap.isRecycled())) {
+            this.mBitmap.recycle();
+        }
+        this.mBitmap = null;
+        this.mListener = null;
+    }
+
+    private void setButton(String str, TypedArray typedArray) {
+        if (TextUtils.isEmpty(str)) {
+            str = typedArray.getString(R.styleable.CCLIntroOverlay_ccl_IntroButtonText);
+        }
+        typedArray = typedArray.getColor(R.styleable.CCLIntroOverlay_ccl_IntroButtonBackgroundColor, Color.argb(0, 0, 0, 0));
+        this.mButton.setText(str);
+        this.mButton.getBackground().setColorFilter(typedArray, Mode.MULTIPLY);
+        this.mButton.setOnClickListener(new OnClickListener() {
+            public void onClick(View view) {
+                IntroductoryOverlay.this.fadeOut(IntroductoryOverlay.FADE_OUT_LENGTH_MS);
+            }
+        });
+    }
+
+    private void setText(CharSequence charSequence, CharSequence charSequence2) {
+        if (!TextUtils.isEmpty(charSequence)) {
+            this.mTitleText.setText(charSequence);
+        }
+        if (TextUtils.isEmpty(charSequence2) == null) {
+            this.mSubtitleText.append(charSequence2);
+        }
+    }
+
+    private void setupHolePaint() {
+        Xfermode porterDuffXfermode = new PorterDuffXfermode(Mode.MULTIPLY);
+        this.mHolePaint = new Paint();
+        this.mHolePaint.setColor(ViewCompat.MEASURED_SIZE_MASK);
+        this.mHolePaint.setAlpha(0);
+        this.mHolePaint.setXfermode(porterDuffXfermode);
+        this.mHolePaint.setAntiAlias(true);
+    }
+
+    protected void dispatchDraw(Canvas canvas) {
+        this.mBitmap = Bitmap.createBitmap(getWidth(), getHeight(), Config.ARGB_8888);
+        Canvas canvas2 = new Canvas(this.mBitmap);
+        canvas2.drawColor(this.mOverlayColorId);
+        canvas2.drawCircle((float) this.mCenterX, (float) this.mCenterY, this.mFocusRadius, this.mHolePaint);
+        canvas.drawBitmap(this.mBitmap, 0.0f, 0.0f, null);
+        super.dispatchDraw(canvas);
+    }
+
+    @TargetApi(11)
+    public void fadeOut(long j) {
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, ALPHA_PROPERTY, new float[]{0.0f});
+        ofFloat.setDuration(j).addListener(new AnimatorListenerAdapter() {
+            public void onAnimationEnd(Animator animator) {
+                IntroductoryOverlay.this.setFtuShown();
+                if (IntroductoryOverlay.this.mListener != null) {
+                    IntroductoryOverlay.this.mListener.onOverlayDismissed();
+                    IntroductoryOverlay.this.mListener = null;
+                }
+                IntroductoryOverlay.this.remove();
+            }
+        });
+        ofFloat.start();
+    }
+
+    private void setFtuShown() {
+        PreferenceManager.getDefaultSharedPreferences(getContext()).edit().putBoolean(FTU_SHOWN_KEY, true).apply();
+    }
+
+    private boolean isFtuShown() {
+        return PreferenceManager.getDefaultSharedPreferences(getContext()).getBoolean(FTU_SHOWN_KEY, false);
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:7 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

@@ -1,0 +1,419 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/ads/interactivemedia/v3/internal/hl.java" target="_blank">/xumo_apk/jadx_source_code/com/google/ads/interactivemedia/v3/internal/hl.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="hl.java" data-line="" class="code line-numbers"><code>package com.google.ads.interactivemedia.v3.internal;
+
+import java.io.IOException;
+import java.io.Reader;
+import java.util.Iterator;
+import java.util.Map.Entry;
+
+/* compiled from: IMASDK */
+public final class hl extends hx {
+    private static final Reader b = new Reader() {
+        public int read(char[] cArr, int i, int i2) throws IOException {
+            throw new AssertionError();
+        }
+
+        public void close() throws IOException {
+            throw new AssertionError();
+        }
+    };
+    private static final Object c = new Object();
+    private Object[] d = new Object[32];
+    private int e = 0;
+    private String[] f = new String[32];
+    private int[] g = new int[32];
+
+    public hl(gf gfVar) {
+        super(b);
+        a((Object) gfVar);
+    }
+
+    public void a() throws IOException {
+        a(hy.BEGIN_ARRAY);
+        a(((gc) s()).iterator());
+        this.g[this.e - 1] = 0;
+    }
+
+    public void b() throws IOException {
+        a(hy.END_ARRAY);
+        t();
+        t();
+        if (this.e &gt; 0) {
+            int[] iArr = this.g;
+            int i = this.e - 1;
+            iArr[i] = iArr[i] + 1;
+        }
+    }
+
+    public void c() throws IOException {
+        a(hy.BEGIN_OBJECT);
+        a(((gi) s()).o().iterator());
+    }
+
+    public void d() throws IOException {
+        a(hy.END_OBJECT);
+        t();
+        t();
+        if (this.e &gt; 0) {
+            int[] iArr = this.g;
+            int i = this.e - 1;
+            iArr[i] = iArr[i] + 1;
+        }
+    }
+
+    public boolean e() throws IOException {
+        hy f = f();
+        return (f == hy.END_OBJECT || f == hy.END_ARRAY) ? false : true;
+    }
+
+    public hy f() throws IOException {
+        if (this.e == 0) {
+            return hy.END_DOCUMENT;
+        }
+        Object s = s();
+        if (s instanceof Iterator) {
+            boolean z = this.d[this.e - 2] instanceof gi;
+            Iterator it = (Iterator) s;
+            if (!it.hasNext()) {
+                return z ? hy.END_OBJECT : hy.END_ARRAY;
+            } else if (z) {
+                return hy.NAME;
+            } else {
+                a(it.next());
+                return f();
+            }
+        } else if (s instanceof gi) {
+            return hy.BEGIN_OBJECT;
+        } else {
+            if (s instanceof gc) {
+                return hy.BEGIN_ARRAY;
+            }
+            if (s instanceof gk) {
+                gk gkVar = (gk) s;
+                if (gkVar.q()) {
+                    return hy.STRING;
+                }
+                if (gkVar.o()) {
+                    return hy.BOOLEAN;
+                }
+                if (gkVar.p()) {
+                    return hy.NUMBER;
+                }
+                throw new AssertionError();
+            } else if (s instanceof gh) {
+                return hy.NULL;
+            } else {
+                if (s == c) {
+                    throw new IllegalStateException("JsonReader is closed");
+                }
+                throw new AssertionError();
+            }
+        }
+    }
+
+    private Object s() {
+        return this.d[this.e - 1];
+    }
+
+    private Object t() {
+        Object[] objArr = this.d;
+        int i = this.e - 1;
+        this.e = i;
+        Object obj = objArr[i];
+        this.d[this.e] = null;
+        return obj;
+    }
+
+    private void a(hy hyVar) throws IOException {
+        if (f() != hyVar) {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("Expected ");
+            stringBuilder.append(hyVar);
+            stringBuilder.append(" but was ");
+            stringBuilder.append(f());
+            stringBuilder.append(u());
+            throw new IllegalStateException(stringBuilder.toString());
+        }
+    }
+
+    public String g() throws IOException {
+        a(hy.NAME);
+        Entry entry = (Entry) ((Iterator) s()).next();
+        String str = (String) entry.getKey();
+        this.f[this.e - 1] = str;
+        a(entry.getValue());
+        return str;
+    }
+
+    public String h() throws IOException {
+        hy f = f();
+        if (f != hy.STRING) {
+            if (f != hy.NUMBER) {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("Expected ");
+                stringBuilder.append(hy.STRING);
+                stringBuilder.append(" but was ");
+                stringBuilder.append(f);
+                stringBuilder.append(u());
+                throw new IllegalStateException(stringBuilder.toString());
+            }
+        }
+        String b = ((gk) t()).b();
+        if (this.e &gt; 0) {
+            int[] iArr = this.g;
+            int i = this.e - 1;
+            iArr[i] = iArr[i] + 1;
+        }
+        return b;
+    }
+
+    public boolean i() throws IOException {
+        a(hy.BOOLEAN);
+        boolean f = ((gk) t()).f();
+        if (this.e &gt; 0) {
+            int[] iArr = this.g;
+            int i = this.e - 1;
+            iArr[i] = iArr[i] + 1;
+        }
+        return f;
+    }
+
+    public void j() throws IOException {
+        a(hy.NULL);
+        t();
+        if (this.e &gt; 0) {
+            int[] iArr = this.g;
+            int i = this.e - 1;
+            iArr[i] = iArr[i] + 1;
+        }
+    }
+
+    public double k() throws IOException {
+        hy f = f();
+        if (f != hy.NUMBER) {
+            if (f != hy.STRING) {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("Expected ");
+                stringBuilder.append(hy.NUMBER);
+                stringBuilder.append(" but was ");
+                stringBuilder.append(f);
+                stringBuilder.append(u());
+                throw new IllegalStateException(stringBuilder.toString());
+            }
+        }
+        double c = ((gk) s()).c();
+        if (!q()) {
+            if (Double.isNaN(c) || Double.isInfinite(c)) {
+                StringBuilder stringBuilder2 = new StringBuilder();
+                stringBuilder2.append("JSON forbids NaN and infinities: ");
+                stringBuilder2.append(c);
+                throw new NumberFormatException(stringBuilder2.toString());
+            }
+        }
+        t();
+        if (this.e &gt; 0) {
+            int[] iArr = this.g;
+            int i = this.e - 1;
+            iArr[i] = iArr[i] + 1;
+        }
+        return c;
+    }
+
+    public long l() throws IOException {
+        hy f = f();
+        if (f != hy.NUMBER) {
+            if (f != hy.STRING) {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("Expected ");
+                stringBuilder.append(hy.NUMBER);
+                stringBuilder.append(" but was ");
+                stringBuilder.append(f);
+                stringBuilder.append(u());
+                throw new IllegalStateException(stringBuilder.toString());
+            }
+        }
+        long d = ((gk) s()).d();
+        t();
+        if (this.e &gt; 0) {
+            int[] iArr = this.g;
+            int i = this.e - 1;
+            iArr[i] = iArr[i] + 1;
+        }
+        return d;
+    }
+
+    public int m() throws IOException {
+        hy f = f();
+        if (f != hy.NUMBER) {
+            if (f != hy.STRING) {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("Expected ");
+                stringBuilder.append(hy.NUMBER);
+                stringBuilder.append(" but was ");
+                stringBuilder.append(f);
+                stringBuilder.append(u());
+                throw new IllegalStateException(stringBuilder.toString());
+            }
+        }
+        int e = ((gk) s()).e();
+        t();
+        if (this.e &gt; 0) {
+            int[] iArr = this.g;
+            int i = this.e - 1;
+            iArr[i] = iArr[i] + 1;
+        }
+        return e;
+    }
+
+    public void close() throws IOException {
+        this.d = new Object[]{c};
+        this.e = 1;
+    }
+
+    public void n() throws IOException {
+        if (f() == hy.NAME) {
+            g();
+            this.f[this.e - 2] = "null";
+        } else {
+            t();
+            this.f[this.e - 1] = "null";
+        }
+        int[] iArr = this.g;
+        int i = this.e - 1;
+        iArr[i] = iArr[i] + 1;
+    }
+
+    public String toString() {
+        return getClass().getSimpleName();
+    }
+
+    public void o() throws IOException {
+        a(hy.NAME);
+        Entry entry = (Entry) ((Iterator) s()).next();
+        a(entry.getValue());
+        a(new gk((String) entry.getKey()));
+    }
+
+    private void a(Object obj) {
+        if (this.e == this.d.length) {
+            Object obj2 = new Object[(this.e * 2)];
+            Object obj3 = new int[(this.e * 2)];
+            Object obj4 = new String[(this.e * 2)];
+            System.arraycopy(this.d, 0, obj2, 0, this.e);
+            System.arraycopy(this.g, 0, obj3, 0, this.e);
+            System.arraycopy(this.f, 0, obj4, 0, this.e);
+            this.d = obj2;
+            this.g = obj3;
+            this.f = obj4;
+        }
+        Object[] objArr = this.d;
+        int i = this.e;
+        this.e = i + 1;
+        objArr[i] = obj;
+    }
+
+    public String p() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append('$');
+        int i = 0;
+        while (i &lt; this.e) {
+            if (this.d[i] instanceof gc) {
+                i++;
+                if (this.d[i] instanceof Iterator) {
+                    stringBuilder.append('[');
+                    stringBuilder.append(this.g[i]);
+                    stringBuilder.append(']');
+                }
+            } else if (this.d[i] instanceof gi) {
+                i++;
+                if (this.d[i] instanceof Iterator) {
+                    stringBuilder.append('.');
+                    if (this.f[i] != null) {
+                        stringBuilder.append(this.f[i]);
+                    }
+                }
+            }
+            i++;
+        }
+        return stringBuilder.toString();
+    }
+
+    private String u() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(" at path ");
+        stringBuilder.append(p());
+        return stringBuilder.toString();
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:7 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

@@ -1,0 +1,241 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/gms/common/util/CollectionUtils.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/gms/common/util/CollectionUtils.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="CollectionUtils.java" data-line="" class="code line-numbers"><code>package com.google.android.gms.common.util;
+
+import androidx.annotation.Nullable;
+import androidx.collection.ArrayMap;
+import androidx.collection.ArraySet;
+import com.google.android.gms.common.annotation.KeepForSdk;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+@KeepForSdk
+public final class CollectionUtils {
+    private CollectionUtils() {
+    }
+
+    @KeepForSdk
+    public static boolean isEmpty(@Nullable Collection&lt;?&gt; collection) {
+        return collection == null ? true : collection.isEmpty();
+    }
+
+    @KeepForSdk
+    @Deprecated
+    public static &lt;T&gt; List&lt;T&gt; listOf() {
+        return Collections.emptyList();
+    }
+
+    @KeepForSdk
+    @Deprecated
+    public static &lt;T&gt; List&lt;T&gt; listOf(T t) {
+        return Collections.singletonList(t);
+    }
+
+    @KeepForSdk
+    @Deprecated
+    public static &lt;T&gt; List&lt;T&gt; listOf(T... tArr) {
+        switch (tArr.length) {
+            case 0:
+                return listOf();
+            case 1:
+                return listOf(tArr[0]);
+            default:
+                return Collections.unmodifiableList(Arrays.asList(tArr));
+        }
+    }
+
+    private static &lt;T&gt; Set&lt;T&gt; zza(int i, boolean z) {
+        float f = z ? 0.75f : 1.0f;
+        if (i &lt;= (z ? true : true)) {
+            return new ArraySet(i);
+        }
+        return new HashSet(i, f);
+    }
+
+    @KeepForSdk
+    @Deprecated
+    public static &lt;T&gt; Set&lt;T&gt; setOf(T t, T t2, T t3) {
+        Set zza = zza(3, false);
+        zza.add(t);
+        zza.add(t2);
+        zza.add(t3);
+        return Collections.unmodifiableSet(zza);
+    }
+
+    @KeepForSdk
+    @Deprecated
+    public static &lt;T&gt; Set&lt;T&gt; setOf(T... tArr) {
+        Object obj;
+        switch (tArr.length) {
+            case 0:
+                return Collections.emptySet();
+            case 1:
+                return Collections.singleton(tArr[0]);
+            case 2:
+                obj = tArr[0];
+                tArr = tArr[1];
+                Set zza = zza(2, false);
+                zza.add(obj);
+                zza.add(tArr);
+                return Collections.unmodifiableSet(zza);
+            case 3:
+                return setOf(tArr[0], tArr[1], tArr[2]);
+            case 4:
+                obj = tArr[0];
+                Object obj2 = tArr[1];
+                Object obj3 = tArr[2];
+                tArr = tArr[3];
+                Set zza2 = zza(4, false);
+                zza2.add(obj);
+                zza2.add(obj2);
+                zza2.add(obj3);
+                zza2.add(tArr);
+                return Collections.unmodifiableSet(zza2);
+            default:
+                obj = zza(tArr.length, false);
+                Collections.addAll(obj, tArr);
+                return Collections.unmodifiableSet(obj);
+        }
+    }
+
+    @KeepForSdk
+    public static &lt;T&gt; Set&lt;T&gt; mutableSetOfWithSize(int i) {
+        if (i == 0) {
+            return new ArraySet();
+        }
+        return zza(i, true);
+    }
+
+    private static &lt;K, V&gt; Map&lt;K, V&gt; zzb(int i, boolean z) {
+        if (i &lt;= true) {
+            return new ArrayMap(i);
+        }
+        return new HashMap(i, 1.0f);
+    }
+
+    @KeepForSdk
+    public static &lt;K, V&gt; Map&lt;K, V&gt; mapOf(K k, V v, K k2, V v2, K k3, V v3) {
+        Map zzb = zzb(3, false);
+        zzb.put(k, v);
+        zzb.put(k2, v2);
+        zzb.put(k3, v3);
+        return Collections.unmodifiableMap(zzb);
+    }
+
+    @KeepForSdk
+    public static &lt;K, V&gt; Map&lt;K, V&gt; mapOf(K k, V v, K k2, V v2, K k3, V v3, K k4, V v4, K k5, V v5, K k6, V v6) {
+        Map zzb = zzb(6, false);
+        zzb.put(k, v);
+        zzb.put(k2, v2);
+        zzb.put(k3, v3);
+        zzb.put(k4, v4);
+        zzb.put(k5, v5);
+        zzb.put(k6, v6);
+        return Collections.unmodifiableMap(zzb);
+    }
+
+    @KeepForSdk
+    public static &lt;K, V&gt; Map&lt;K, V&gt; mapOfKeyValueArrays(K[] kArr, V[] vArr) {
+        if (kArr.length == vArr.length) {
+            int i = 0;
+            switch (kArr.length) {
+                case 0:
+                    return Collections.emptyMap();
+                case 1:
+                    return Collections.singletonMap(kArr[0], vArr[0]);
+                default:
+                    Map zzb = zzb(kArr.length, false);
+                    while (i &lt; kArr.length) {
+                        zzb.put(kArr[i], vArr[i]);
+                        i++;
+                    }
+                    return Collections.unmodifiableMap(zzb);
+            }
+        }
+        kArr = kArr.length;
+        vArr = vArr.length;
+        StringBuilder stringBuilder = new StringBuilder(66);
+        stringBuilder.append("Key and values array lengths not equal: ");
+        stringBuilder.append(kArr);
+        stringBuilder.append(" != ");
+        stringBuilder.append(vArr);
+        throw new IllegalArgumentException(stringBuilder.toString());
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:12 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

@@ -1,0 +1,265 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/ads/interactivemedia/v3/internal/ds.java" target="_blank">/xumo_apk/jadx_source_code/com/google/ads/interactivemedia/v3/internal/ds.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="ds.java" data-line="" class="code line-numbers"><code>package com.google.ads.interactivemedia.v3.internal;
+
+import android.util.Log;
+import android.util.Pair;
+import androidx.core.app.FrameMetricsAggregator;
+import com.google.android.exoplayer2.extractor.ts.PsExtractor;
+import com.google.android.exoplayer2.util.MimeTypes;
+import java.util.Arrays;
+import java.util.Collections;
+
+/* compiled from: IMASDK */
+final class ds extends du {
+    private static final byte[] b = new byte[]{(byte) 73, (byte) 68, (byte) 51};
+    private final fo c = new fo(new byte[7]);
+    private final fp d = new fp(Arrays.copyOf(b, 10));
+    private final ck e;
+    private int f;
+    private int g;
+    private int h;
+    private boolean i;
+    private boolean j;
+    private long k;
+    private int l;
+    private long m;
+    private ck n;
+    private long o;
+
+    public ds(ck ckVar, ck ckVar2) {
+        super(ckVar);
+        this.e = ckVar2;
+        ckVar2.a(bj.a());
+        c();
+    }
+
+    public void b() {
+    }
+
+    public void a() {
+        c();
+    }
+
+    public void a(long j, boolean z) {
+        this.m = j;
+    }
+
+    public void a(fp fpVar) {
+        while (fpVar.b() &gt; 0) {
+            switch (this.f) {
+                case 0:
+                    b(fpVar);
+                    break;
+                case 1:
+                    if (!a(fpVar, this.d.a, 10)) {
+                        break;
+                    }
+                    f();
+                    break;
+                case 2:
+                    if (!a(fpVar, this.c.a, this.i ? 7 : 5)) {
+                        break;
+                    }
+                    g();
+                    break;
+                case 3:
+                    c(fpVar);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    private boolean a(fp fpVar, byte[] bArr, int i) {
+        int min = Math.min(fpVar.b(), i - this.g);
+        fpVar.a(bArr, this.g, min);
+        this.g += min;
+        return this.g == i ? true : null;
+    }
+
+    private void c() {
+        this.f = 0;
+        this.g = 0;
+        this.h = 256;
+    }
+
+    private void d() {
+        this.f = 1;
+        this.g = b.length;
+        this.l = 0;
+        this.d.c(0);
+    }
+
+    private void a(ck ckVar, long j, int i, int i2) {
+        this.f = 3;
+        this.g = i;
+        this.n = ckVar;
+        this.o = j;
+        this.l = i2;
+    }
+
+    private void e() {
+        this.f = 2;
+        this.g = 0;
+    }
+
+    private void b(fp fpVar) {
+        byte[] bArr = fpVar.a;
+        int d = fpVar.d();
+        int c = fpVar.c();
+        while (d &lt; c) {
+            int i = d + 1;
+            d = bArr[d] &amp; 255;
+            if (this.h != 512 || d &lt; PsExtractor.VIDEO_STREAM_MASK || d == 255) {
+                d |= this.h;
+                if (d == 329) {
+                    this.h = 768;
+                } else if (d == FrameMetricsAggregator.EVERY_DURATION) {
+                    this.h = 512;
+                } else if (d == 836) {
+                    this.h = 1024;
+                } else if (d == 1075) {
+                    d();
+                    fpVar.c(i);
+                    return;
+                } else if (this.h != 256) {
+                    this.h = 256;
+                    i--;
+                }
+                d = i;
+            } else {
+                boolean z = true;
+                if ((d &amp; 1) != 0) {
+                    z = false;
+                }
+                this.i = z;
+                e();
+                fpVar.c(i);
+                return;
+            }
+        }
+        fpVar.c(d);
+    }
+
+    private void f() {
+        this.e.a(this.d, 10);
+        this.d.c(6);
+        a(this.e, 0, 10, this.d.r() + 10);
+    }
+
+    private void g() {
+        int c;
+        this.c.a(0);
+        if (this.j) {
+            this.c.b(10);
+        } else {
+            c = this.c.c(2) + 1;
+            if (c != 2) {
+                StringBuilder stringBuilder = new StringBuilder(61);
+                stringBuilder.append("Detected audio object type: ");
+                stringBuilder.append(c);
+                stringBuilder.append(", but assuming AAC LC.");
+                Log.w("AdtsReader", stringBuilder.toString());
+                c = 2;
+            }
+            int c2 = this.c.c(4);
+            this.c.b(1);
+            Object a = ff.a(c, c2, this.c.c(3));
+            Pair a2 = ff.a(a);
+            bj a3 = bj.a(null, MimeTypes.AUDIO_AAC, -1, -1, -1, ((Integer) a2.second).intValue(), ((Integer) a2.first).intValue(), Collections.singletonList(a), null);
+            this.k = 1024000000 / ((long) a3.r);
+            this.a.a(a3);
+            this.j = true;
+        }
+        this.c.b(4);
+        c = (this.c.c(13) - 2) - 5;
+        if (this.i) {
+            c -= 2;
+        }
+        a(this.a, this.k, 0, c);
+    }
+
+    private void c(fp fpVar) {
+        int min = Math.min(fpVar.b(), this.l - this.g);
+        this.n.a(fpVar, min);
+        this.g += min;
+        if (this.g == this.l) {
+            this.n.a(this.m, 1, this.l, 0, null);
+            this.m += this.o;
+            c();
+        }
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:6 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

@@ -1,0 +1,1146 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9"><div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/androidx/preference/Preference.java" target="_blank">/xumo_apk/jadx_source_code/androidx/preference/Preference.java</a></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-83">report</i><h5>password =|secret =|username =|key =</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>the app contain hardcoded sensitive informations like usernames, passwords, keys etc: Hard coded sensitive information in Application Code (including Crypto)</span></div></li></ul><ul class="collapsible"><li><div class="collapsible-header"><img data-position="top" data-tooltip="OWASP item" src="html/owasp_logo.png" height="20em" style="margin-right: 1rem;margin-left: 5px;" class="tooltipped"></img> OWASP Item</div><div class="collapsible-body"><span>For more information, have a look at: https://www.owasp.org/index.php/OWASP_Mobile_Security_Testing_Guide</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#Preference_java151pass" class="active">line 151</a></li><li class="tab"><a style="color: #d82c2b;" href="#Preference_java161pass">line 161</a></li><li class="tab"><a style="color: #d82c2b;" href="#Preference_java455pass">line 455</a></li><li class="tab"><a style="color: #d82c2b;" href="#Preference_java469pass">line 469</a></li><li class="tab"><a style="color: #d82c2b;" href="#Preference_java729pass">line 729</a></li></ul></div><div class="card-content"><div id="Preference_java151pass">Code @ line 151<pre data-start="148" data-line="151" data-src="Preference.java" class="code line-numbers"><code>        this.mContext = context;
+        context = context.obtainStyledAttributes(attributeSet, R.styleable.Preference, i, i2);
+        this.mIconResId = TypedArrayUtils.getResourceId(context, R.styleable.Preference_icon, R.styleable.Preference_android_icon, 0);
+        this.mKey = TypedArrayUtils.getString(context, R.styleable.Preference_key, R.styleable.Preference_android_key);
+        this.mTitle = TypedArrayUtils.getText(context, R.styleable.Preference_title, R.styleable.Preference_android_title);
+        this.mSummary = TypedArrayUtils.getText(context, R.styleable.Preference_summary, R.styleable.Preference_android_summary);
+        this.mOrder = TypedArrayUtils.getInt(context, R.styleable.Preference_order, R.styleable.Preference_android_order, Integer.MAX_VALUE);
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L3ByZWZlcmVuY2UvUHJlZmVyZW5jZS5qYXZhfHx8bGluZTogMTUxIDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwxNTF8fHwxNDg">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L3ByZWZlcmVuY2UvUHJlZmVyZW5jZS5qYXZhfHx8bGluZTogMTUxIDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwxNTF8fHwxNDg')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L3ByZWZlcmVuY2UvUHJlZmVyZW5jZS5qYXZhfHx8bGluZTogMTUxIDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwxNTF8fHwxNDg').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L3ByZWZlcmVuY2UvUHJlZmVyZW5jZS5qYXZhfHx8bGluZTogMTUxIDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwxNTF8fHwxNDg" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L3ByZWZlcmVuY2UvUHJlZmVyZW5jZS5qYXZhfHx8bGluZTogMTUxIDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwxNTF8fHwxNDg' , 'ICAgICAgICB0aGlzLm1Db250ZXh0ID0gY29udGV4dDsKICAgICAgICBjb250ZXh0ID0gY29udGV4dC5vYnRhaW5TdHlsZWRBdHRyaWJ1dGVzKGF0dHJpYnV0ZVNldCwgUi5zdHlsZWFibGUuUHJlZmVyZW5jZSwgaSwgaTIpOwogICAgICAgIHRoaXMubUljb25SZXNJZCA9IFR5cGVkQXJyYXlVdGlscy5nZXRSZXNvdXJjZUlkKGNvbnRleHQsIFIuc3R5bGVhYmxlLlByZWZlcmVuY2VfaWNvbiwgUi5zdHlsZWFibGUuUHJlZmVyZW5jZV9hbmRyb2lkX2ljb24sIDApOwogICAgICAgIHRoaXMubUtleSA9IFR5cGVkQXJyYXlVdGlscy5nZXRTdHJpbmcoY29udGV4dCwgUi5zdHlsZWFibGUuUHJlZmVyZW5jZV9rZXksIFIuc3R5bGVhYmxlLlByZWZlcmVuY2VfYW5kcm9pZF9rZXkpOwogICAgICAgIHRoaXMubVRpdGxlID0gVHlwZWRBcnJheVV0aWxzLmdldFRleHQoY29udGV4dCwgUi5zdHlsZWFibGUuUHJlZmVyZW5jZV90aXRsZSwgUi5zdHlsZWFibGUuUHJlZmVyZW5jZV9hbmRyb2lkX3RpdGxlKTsKICAgICAgICB0aGlzLm1TdW1tYXJ5ID0gVHlwZWRBcnJheVV0aWxzLmdldFRleHQoY29udGV4dCwgUi5zdHlsZWFibGUuUHJlZmVyZW5jZV9zdW1tYXJ5LCBSLnN0eWxlYWJsZS5QcmVmZXJlbmNlX2FuZHJvaWRfc3VtbWFyeSk7CiAgICAgICAgdGhpcy5tT3JkZXIgPSBUeXBlZEFycmF5VXRpbHMuZ2V0SW50KGNvbnRleHQsIFIuc3R5bGVhYmxlLlByZWZlcmVuY2Vfb3JkZXIsIFIuc3R5bGVhYmxlLlByZWZlcmVuY2VfYW5kcm9pZF9vcmRlciwgSW50ZWdlci5NQVhfVkFMVUUpOwo=');  
+                                            });
+                                            </script>
+                                            </div><div id="Preference_java161pass">Code @ line 161<pre data-start="158" data-line="161" data-src="Preference.java" class="code line-numbers"><code>        this.mEnabled = TypedArrayUtils.getBoolean(context, R.styleable.Preference_enabled, R.styleable.Preference_android_enabled, true);
+        this.mSelectable = TypedArrayUtils.getBoolean(context, R.styleable.Preference_selectable, R.styleable.Preference_android_selectable, true);
+        this.mPersistent = TypedArrayUtils.getBoolean(context, R.styleable.Preference_persistent, R.styleable.Preference_android_persistent, true);
+        this.mDependencyKey = TypedArrayUtils.getString(context, R.styleable.Preference_dependency, R.styleable.Preference_android_dependency);
+        this.mAllowDividerAbove = TypedArrayUtils.getBoolean(context, R.styleable.Preference_allowDividerAbove, R.styleable.Preference_allowDividerAbove, this.mSelectable);
+        this.mAllowDividerBelow = TypedArrayUtils.getBoolean(context, R.styleable.Preference_allowDividerBelow, R.styleable.Preference_allowDividerBelow, this.mSelectable);
+        if (context.hasValue(R.styleable.Preference_defaultValue) != null) {
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L3ByZWZlcmVuY2UvUHJlZmVyZW5jZS5qYXZhfHx8bGluZTogMTYxIDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwxNjF8fHwxNTg">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L3ByZWZlcmVuY2UvUHJlZmVyZW5jZS5qYXZhfHx8bGluZTogMTYxIDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwxNjF8fHwxNTg')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L3ByZWZlcmVuY2UvUHJlZmVyZW5jZS5qYXZhfHx8bGluZTogMTYxIDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwxNjF8fHwxNTg').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L3ByZWZlcmVuY2UvUHJlZmVyZW5jZS5qYXZhfHx8bGluZTogMTYxIDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwxNjF8fHwxNTg" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L3ByZWZlcmVuY2UvUHJlZmVyZW5jZS5qYXZhfHx8bGluZTogMTYxIDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwxNjF8fHwxNTg' , 'ICAgICAgICB0aGlzLm1FbmFibGVkID0gVHlwZWRBcnJheVV0aWxzLmdldEJvb2xlYW4oY29udGV4dCwgUi5zdHlsZWFibGUuUHJlZmVyZW5jZV9lbmFibGVkLCBSLnN0eWxlYWJsZS5QcmVmZXJlbmNlX2FuZHJvaWRfZW5hYmxlZCwgdHJ1ZSk7CiAgICAgICAgdGhpcy5tU2VsZWN0YWJsZSA9IFR5cGVkQXJyYXlVdGlscy5nZXRCb29sZWFuKGNvbnRleHQsIFIuc3R5bGVhYmxlLlByZWZlcmVuY2Vfc2VsZWN0YWJsZSwgUi5zdHlsZWFibGUuUHJlZmVyZW5jZV9hbmRyb2lkX3NlbGVjdGFibGUsIHRydWUpOwogICAgICAgIHRoaXMubVBlcnNpc3RlbnQgPSBUeXBlZEFycmF5VXRpbHMuZ2V0Qm9vbGVhbihjb250ZXh0LCBSLnN0eWxlYWJsZS5QcmVmZXJlbmNlX3BlcnNpc3RlbnQsIFIuc3R5bGVhYmxlLlByZWZlcmVuY2VfYW5kcm9pZF9wZXJzaXN0ZW50LCB0cnVlKTsKICAgICAgICB0aGlzLm1EZXBlbmRlbmN5S2V5ID0gVHlwZWRBcnJheVV0aWxzLmdldFN0cmluZyhjb250ZXh0LCBSLnN0eWxlYWJsZS5QcmVmZXJlbmNlX2RlcGVuZGVuY3ksIFIuc3R5bGVhYmxlLlByZWZlcmVuY2VfYW5kcm9pZF9kZXBlbmRlbmN5KTsKICAgICAgICB0aGlzLm1BbGxvd0RpdmlkZXJBYm92ZSA9IFR5cGVkQXJyYXlVdGlscy5nZXRCb29sZWFuKGNvbnRleHQsIFIuc3R5bGVhYmxlLlByZWZlcmVuY2VfYWxsb3dEaXZpZGVyQWJvdmUsIFIuc3R5bGVhYmxlLlByZWZlcmVuY2VfYWxsb3dEaXZpZGVyQWJvdmUsIHRoaXMubVNlbGVjdGFibGUpOwogICAgICAgIHRoaXMubUFsbG93RGl2aWRlckJlbG93ID0gVHlwZWRBcnJheVV0aWxzLmdldEJvb2xlYW4oY29udGV4dCwgUi5zdHlsZWFibGUuUHJlZmVyZW5jZV9hbGxvd0RpdmlkZXJCZWxvdywgUi5zdHlsZWFibGUuUHJlZmVyZW5jZV9hbGxvd0RpdmlkZXJCZWxvdywgdGhpcy5tU2VsZWN0YWJsZSk7CiAgICAgICAgaWYgKGNvbnRleHQuaGFzVmFsdWUoUi5zdHlsZWFibGUuUHJlZmVyZW5jZV9kZWZhdWx0VmFsdWUpICE9IG51bGwpIHsK');  
+                                            });
+                                            </script>
+                                            </div><div id="Preference_java455pass">Code @ line 455<pre data-start="452" data-line="455" data-src="Preference.java" class="code line-numbers"><code>    }
+
+    public void setKey(String str) {
+        this.mKey = str;
+        if (this.mRequiresKey != null &amp;&amp; hasKey() == null) {
+            requireKey();
+        }
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L3ByZWZlcmVuY2UvUHJlZmVyZW5jZS5qYXZhfHx8bGluZTogNDU1IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw0NTV8fHw0NTI">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L3ByZWZlcmVuY2UvUHJlZmVyZW5jZS5qYXZhfHx8bGluZTogNDU1IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw0NTV8fHw0NTI')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L3ByZWZlcmVuY2UvUHJlZmVyZW5jZS5qYXZhfHx8bGluZTogNDU1IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw0NTV8fHw0NTI').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L3ByZWZlcmVuY2UvUHJlZmVyZW5jZS5qYXZhfHx8bGluZTogNDU1IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw0NTV8fHw0NTI" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L3ByZWZlcmVuY2UvUHJlZmVyZW5jZS5qYXZhfHx8bGluZTogNDU1IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw0NTV8fHw0NTI' , 'ICAgIH0KCiAgICBwdWJsaWMgdm9pZCBzZXRLZXkoU3RyaW5nIHN0cikgewogICAgICAgIHRoaXMubUtleSA9IHN0cjsKICAgICAgICBpZiAodGhpcy5tUmVxdWlyZXNLZXkgIT0gbnVsbCAmJiBoYXNLZXkoKSA9PSBudWxsKSB7CiAgICAgICAgICAgIHJlcXVpcmVLZXkoKTsKICAgICAgICB9Cg==');  
+                                            });
+                                            </script>
+                                            </div><div id="Preference_java469pass">Code @ line 469<pre data-start="466" data-line="469" data-src="Preference.java" class="code line-numbers"><code>        if (TextUtils.isEmpty(this.mKey)) {
+            throw new IllegalStateException("Preference does not have a key assigned.");
+        }
+        this.mRequiresKey = true;
+    }
+
+    public boolean hasKey() {
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L3ByZWZlcmVuY2UvUHJlZmVyZW5jZS5qYXZhfHx8bGluZTogNDY5IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw0Njl8fHw0NjY">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L3ByZWZlcmVuY2UvUHJlZmVyZW5jZS5qYXZhfHx8bGluZTogNDY5IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw0Njl8fHw0NjY')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L3ByZWZlcmVuY2UvUHJlZmVyZW5jZS5qYXZhfHx8bGluZTogNDY5IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw0Njl8fHw0NjY').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L3ByZWZlcmVuY2UvUHJlZmVyZW5jZS5qYXZhfHx8bGluZTogNDY5IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw0Njl8fHw0NjY" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L3ByZWZlcmVuY2UvUHJlZmVyZW5jZS5qYXZhfHx8bGluZTogNDY5IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw0Njl8fHw0NjY' , 'ICAgICAgICBpZiAoVGV4dFV0aWxzLmlzRW1wdHkodGhpcy5tS2V5KSkgewogICAgICAgICAgICB0aHJvdyBuZXcgSWxsZWdhbFN0YXRlRXhjZXB0aW9uKCJQcmVmZXJlbmNlIGRvZXMgbm90IGhhdmUgYSBrZXkgYXNzaWduZWQuIik7CiAgICAgICAgfQogICAgICAgIHRoaXMubVJlcXVpcmVzS2V5ID0gdHJ1ZTsKICAgIH0KCiAgICBwdWJsaWMgYm9vbGVhbiBoYXNLZXkoKSB7Cg==');  
+                                            });
+                                            </script>
+                                            </div><div id="Preference_java729pass">Code @ line 729<pre data-start="726" data-line="729" data-src="Preference.java" class="code line-numbers"><code>
+    public void setDependency(String str) {
+        unregisterDependency();
+        this.mDependencyKey = str;
+        registerDependency();
+    }
+
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L3ByZWZlcmVuY2UvUHJlZmVyZW5jZS5qYXZhfHx8bGluZTogNzI5IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw3Mjl8fHw3MjY">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L3ByZWZlcmVuY2UvUHJlZmVyZW5jZS5qYXZhfHx8bGluZTogNzI5IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw3Mjl8fHw3MjY')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L3ByZWZlcmVuY2UvUHJlZmVyZW5jZS5qYXZhfHx8bGluZTogNzI5IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw3Mjl8fHw3MjY').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L3ByZWZlcmVuY2UvUHJlZmVyZW5jZS5qYXZhfHx8bGluZTogNzI5IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw3Mjl8fHw3MjY" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L3ByZWZlcmVuY2UvUHJlZmVyZW5jZS5qYXZhfHx8bGluZTogNzI5IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw3Mjl8fHw3MjY' , 'CiAgICBwdWJsaWMgdm9pZCBzZXREZXBlbmRlbmN5KFN0cmluZyBzdHIpIHsKICAgICAgICB1bnJlZ2lzdGVyRGVwZW5kZW5jeSgpOwogICAgICAgIHRoaXMubURlcGVuZGVuY3lLZXkgPSBzdHI7CiAgICAgICAgcmVnaXN0ZXJEZXBlbmRlbmN5KCk7CiAgICB9Cgo=');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="Preference.java" data-line="151,161,455,469,729," class="code line-numbers"><code>package androidx.preference;
+
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.os.Parcelable.Creator;
+import android.text.TextUtils;
+import android.util.AttributeSet;
+import android.view.AbsSavedState;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import androidx.annotation.CallSuper;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo.Scope;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.res.TypedArrayUtils;
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
+import androidx.preference.PreferenceManager.OnPreferenceTreeClickListener;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
+public class Preference implements Comparable&lt;Preference&gt; {
+    public static final int DEFAULT_ORDER = Integer.MAX_VALUE;
+    private boolean mAllowDividerAbove;
+    private boolean mAllowDividerBelow;
+    private boolean mBaseMethodCalled;
+    private final OnClickListener mClickListener;
+    private Context mContext;
+    private Object mDefaultValue;
+    private String mDependencyKey;
+    private boolean mDependencyMet;
+    private List&lt;Preference&gt; mDependents;
+    private boolean mEnabled;
+    private Bundle mExtras;
+    private String mFragment;
+    private boolean mHasId;
+    private boolean mHasSingleLineTitleAttr;
+    private Drawable mIcon;
+    private int mIconResId;
+    private boolean mIconSpaceReserved;
+    private long mId;
+    private Intent mIntent;
+    private String mKey;
+    private int mLayoutResId;
+    private OnPreferenceChangeInternalListener mListener;
+    private OnPreferenceChangeListener mOnChangeListener;
+    private OnPreferenceClickListener mOnClickListener;
+    private int mOrder;
+    private boolean mParentDependencyMet;
+    private PreferenceGroup mParentGroup;
+    private boolean mPersistent;
+    @Nullable
+    private PreferenceDataStore mPreferenceDataStore;
+    @Nullable
+    private PreferenceManager mPreferenceManager;
+    private boolean mRequiresKey;
+    private boolean mSelectable;
+    private boolean mShouldDisableView;
+    private boolean mSingleLineTitle;
+    private CharSequence mSummary;
+    private CharSequence mTitle;
+    private int mViewId;
+    private boolean mVisible;
+    private boolean mWasDetached;
+    private int mWidgetLayoutResId;
+
+    public static class BaseSavedState extends AbsSavedState {
+        public static final Creator&lt;BaseSavedState&gt; CREATOR = new Creator&lt;BaseSavedState&gt;() {
+            public BaseSavedState createFromParcel(Parcel parcel) {
+                return new BaseSavedState(parcel);
+            }
+
+            public BaseSavedState[] newArray(int i) {
+                return new BaseSavedState[i];
+            }
+        };
+
+        public BaseSavedState(Parcel parcel) {
+            super(parcel);
+        }
+
+        public BaseSavedState(Parcelable parcelable) {
+            super(parcelable);
+        }
+    }
+
+    interface OnPreferenceChangeInternalListener {
+        void onPreferenceChange(Preference preference);
+
+        void onPreferenceHierarchyChange(Preference preference);
+
+        void onPreferenceVisibilityChange(Preference preference);
+    }
+
+    public interface OnPreferenceChangeListener {
+        boolean onPreferenceChange(Preference preference, Object obj);
+    }
+
+    public interface OnPreferenceClickListener {
+        boolean onPreferenceClick(Preference preference);
+    }
+
+    protected void onClick() {
+    }
+
+    protected Object onGetDefaultValue(TypedArray typedArray, int i) {
+        return null;
+    }
+
+    @CallSuper
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfoCompat accessibilityNodeInfoCompat) {
+    }
+
+    protected void onSetInitialValue(@Nullable Object obj) {
+    }
+
+    public Preference(Context context, AttributeSet attributeSet, int i, int i2) {
+        this.mOrder = Integer.MAX_VALUE;
+        this.mViewId = 0;
+        this.mEnabled = true;
+        this.mSelectable = true;
+        this.mPersistent = true;
+        this.mDependencyMet = true;
+        this.mParentDependencyMet = true;
+        this.mVisible = true;
+        this.mAllowDividerAbove = true;
+        this.mAllowDividerBelow = true;
+        this.mSingleLineTitle = true;
+        this.mShouldDisableView = true;
+        this.mLayoutResId = R.layout.preference;
+        this.mClickListener = new OnClickListener() {
+            public void onClick(View view) {
+                Preference.this.performClick(view);
+            }
+        };
+        this.mContext = context;
+        context = context.obtainStyledAttributes(attributeSet, R.styleable.Preference, i, i2);
+        this.mIconResId = TypedArrayUtils.getResourceId(context, R.styleable.Preference_icon, R.styleable.Preference_android_icon, 0);
+        this.mKey = TypedArrayUtils.getString(context, R.styleable.Preference_key, R.styleable.Preference_android_key);
+        this.mTitle = TypedArrayUtils.getText(context, R.styleable.Preference_title, R.styleable.Preference_android_title);
+        this.mSummary = TypedArrayUtils.getText(context, R.styleable.Preference_summary, R.styleable.Preference_android_summary);
+        this.mOrder = TypedArrayUtils.getInt(context, R.styleable.Preference_order, R.styleable.Preference_android_order, Integer.MAX_VALUE);
+        this.mFragment = TypedArrayUtils.getString(context, R.styleable.Preference_fragment, R.styleable.Preference_android_fragment);
+        this.mLayoutResId = TypedArrayUtils.getResourceId(context, R.styleable.Preference_layout, R.styleable.Preference_android_layout, R.layout.preference);
+        this.mWidgetLayoutResId = TypedArrayUtils.getResourceId(context, R.styleable.Preference_widgetLayout, R.styleable.Preference_android_widgetLayout, 0);
+        this.mEnabled = TypedArrayUtils.getBoolean(context, R.styleable.Preference_enabled, R.styleable.Preference_android_enabled, true);
+        this.mSelectable = TypedArrayUtils.getBoolean(context, R.styleable.Preference_selectable, R.styleable.Preference_android_selectable, true);
+        this.mPersistent = TypedArrayUtils.getBoolean(context, R.styleable.Preference_persistent, R.styleable.Preference_android_persistent, true);
+        this.mDependencyKey = TypedArrayUtils.getString(context, R.styleable.Preference_dependency, R.styleable.Preference_android_dependency);
+        this.mAllowDividerAbove = TypedArrayUtils.getBoolean(context, R.styleable.Preference_allowDividerAbove, R.styleable.Preference_allowDividerAbove, this.mSelectable);
+        this.mAllowDividerBelow = TypedArrayUtils.getBoolean(context, R.styleable.Preference_allowDividerBelow, R.styleable.Preference_allowDividerBelow, this.mSelectable);
+        if (context.hasValue(R.styleable.Preference_defaultValue) != null) {
+            this.mDefaultValue = onGetDefaultValue(context, R.styleable.Preference_defaultValue);
+        } else if (context.hasValue(R.styleable.Preference_android_defaultValue) != null) {
+            this.mDefaultValue = onGetDefaultValue(context, R.styleable.Preference_android_defaultValue);
+        }
+        this.mShouldDisableView = TypedArrayUtils.getBoolean(context, R.styleable.Preference_shouldDisableView, R.styleable.Preference_android_shouldDisableView, true);
+        this.mHasSingleLineTitleAttr = context.hasValue(R.styleable.Preference_singleLineTitle);
+        if (this.mHasSingleLineTitleAttr != null) {
+            this.mSingleLineTitle = TypedArrayUtils.getBoolean(context, R.styleable.Preference_singleLineTitle, R.styleable.Preference_android_singleLineTitle, true);
+        }
+        this.mIconSpaceReserved = TypedArrayUtils.getBoolean(context, R.styleable.Preference_iconSpaceReserved, R.styleable.Preference_android_iconSpaceReserved, false);
+        this.mVisible = TypedArrayUtils.getBoolean(context, R.styleable.Preference_isPreferenceVisible, R.styleable.Preference_isPreferenceVisible, true);
+        context.recycle();
+    }
+
+    public Preference(Context context, AttributeSet attributeSet, int i) {
+        this(context, attributeSet, i, 0);
+    }
+
+    public Preference(Context context, AttributeSet attributeSet) {
+        this(context, attributeSet, TypedArrayUtils.getAttr(context, R.attr.preferenceStyle, 16842894));
+    }
+
+    public Preference(Context context) {
+        this(context, null);
+    }
+
+    public void setIntent(Intent intent) {
+        this.mIntent = intent;
+    }
+
+    public Intent getIntent() {
+        return this.mIntent;
+    }
+
+    public void setFragment(String str) {
+        this.mFragment = str;
+    }
+
+    public String getFragment() {
+        return this.mFragment;
+    }
+
+    public void setPreferenceDataStore(PreferenceDataStore preferenceDataStore) {
+        this.mPreferenceDataStore = preferenceDataStore;
+    }
+
+    @Nullable
+    public PreferenceDataStore getPreferenceDataStore() {
+        if (this.mPreferenceDataStore != null) {
+            return this.mPreferenceDataStore;
+        }
+        return this.mPreferenceManager != null ? this.mPreferenceManager.getPreferenceDataStore() : null;
+    }
+
+    public Bundle getExtras() {
+        if (this.mExtras == null) {
+            this.mExtras = new Bundle();
+        }
+        return this.mExtras;
+    }
+
+    public Bundle peekExtras() {
+        return this.mExtras;
+    }
+
+    public void setLayoutResource(int i) {
+        this.mLayoutResId = i;
+    }
+
+    public final int getLayoutResource() {
+        return this.mLayoutResId;
+    }
+
+    public void setWidgetLayoutResource(int i) {
+        this.mWidgetLayoutResId = i;
+    }
+
+    public final int getWidgetLayoutResource() {
+        return this.mWidgetLayoutResId;
+    }
+
+    public void onBindViewHolder(PreferenceViewHolder preferenceViewHolder) {
+        CharSequence title;
+        preferenceViewHolder.itemView.setOnClickListener(this.mClickListener);
+        preferenceViewHolder.itemView.setId(this.mViewId);
+        TextView textView = (TextView) preferenceViewHolder.findViewById(16908310);
+        int i = 8;
+        if (textView != null) {
+            title = getTitle();
+            if (TextUtils.isEmpty(title)) {
+                textView.setVisibility(8);
+            } else {
+                textView.setText(title);
+                textView.setVisibility(0);
+                if (this.mHasSingleLineTitleAttr) {
+                    textView.setSingleLine(this.mSingleLineTitle);
+                }
+            }
+        }
+        textView = (TextView) preferenceViewHolder.findViewById(16908304);
+        if (textView != null) {
+            title = getSummary();
+            if (TextUtils.isEmpty(title)) {
+                textView.setVisibility(8);
+            } else {
+                textView.setText(title);
+                textView.setVisibility(0);
+            }
+        }
+        ImageView imageView = (ImageView) preferenceViewHolder.findViewById(16908294);
+        if (imageView != null) {
+            if (!(this.mIconResId == 0 &amp;&amp; this.mIcon == null)) {
+                if (this.mIcon == null) {
+                    this.mIcon = ContextCompat.getDrawable(getContext(), this.mIconResId);
+                }
+                if (this.mIcon != null) {
+                    imageView.setImageDrawable(this.mIcon);
+                }
+            }
+            if (this.mIcon != null) {
+                imageView.setVisibility(0);
+            } else {
+                imageView.setVisibility(this.mIconSpaceReserved ? 4 : 8);
+            }
+        }
+        View findViewById = preferenceViewHolder.findViewById(R.id.icon_frame);
+        if (findViewById == null) {
+            findViewById = preferenceViewHolder.findViewById(AndroidResources.ANDROID_R_ICON_FRAME);
+        }
+        if (findViewById != null) {
+            if (this.mIcon != null) {
+                findViewById.setVisibility(0);
+            } else {
+                if (this.mIconSpaceReserved) {
+                    i = 4;
+                }
+                findViewById.setVisibility(i);
+            }
+        }
+        if (this.mShouldDisableView) {
+            setEnabledStateOnViews(preferenceViewHolder.itemView, isEnabled());
+        } else {
+            setEnabledStateOnViews(preferenceViewHolder.itemView, true);
+        }
+        boolean isSelectable = isSelectable();
+        preferenceViewHolder.itemView.setFocusable(isSelectable);
+        preferenceViewHolder.itemView.setClickable(isSelectable);
+        preferenceViewHolder.setDividerAllowedAbove(this.mAllowDividerAbove);
+        preferenceViewHolder.setDividerAllowedBelow(this.mAllowDividerBelow);
+    }
+
+    private void setEnabledStateOnViews(View view, boolean z) {
+        view.setEnabled(z);
+        if (view instanceof ViewGroup) {
+            ViewGroup viewGroup = (ViewGroup) view;
+            for (int childCount = viewGroup.getChildCount() - 1; childCount &gt;= 0; childCount--) {
+                setEnabledStateOnViews(viewGroup.getChildAt(childCount), z);
+            }
+        }
+    }
+
+    public void setOrder(int i) {
+        if (i != this.mOrder) {
+            this.mOrder = i;
+            notifyHierarchyChanged();
+        }
+    }
+
+    public int getOrder() {
+        return this.mOrder;
+    }
+
+    public void setViewId(int i) {
+        this.mViewId = i;
+    }
+
+    public void setTitle(CharSequence charSequence) {
+        if ((charSequence == null &amp;&amp; this.mTitle != null) || (charSequence != null &amp;&amp; !charSequence.equals(this.mTitle))) {
+            this.mTitle = charSequence;
+            notifyChanged();
+        }
+    }
+
+    public void setTitle(int i) {
+        setTitle(this.mContext.getString(i));
+    }
+
+    public CharSequence getTitle() {
+        return this.mTitle;
+    }
+
+    public void setIcon(Drawable drawable) {
+        if ((drawable == null &amp;&amp; this.mIcon != null) || (drawable != null &amp;&amp; this.mIcon != drawable)) {
+            this.mIcon = drawable;
+            this.mIconResId = null;
+            notifyChanged();
+        }
+    }
+
+    public void setIcon(int i) {
+        setIcon(ContextCompat.getDrawable(this.mContext, i));
+        this.mIconResId = i;
+    }
+
+    public Drawable getIcon() {
+        if (this.mIcon == null &amp;&amp; this.mIconResId != 0) {
+            this.mIcon = ContextCompat.getDrawable(this.mContext, this.mIconResId);
+        }
+        return this.mIcon;
+    }
+
+    public CharSequence getSummary() {
+        return this.mSummary;
+    }
+
+    public void setSummary(CharSequence charSequence) {
+        if ((charSequence == null &amp;&amp; this.mSummary != null) || (charSequence != null &amp;&amp; !charSequence.equals(this.mSummary))) {
+            this.mSummary = charSequence;
+            notifyChanged();
+        }
+    }
+
+    public void setSummary(int i) {
+        setSummary(this.mContext.getString(i));
+    }
+
+    public void setEnabled(boolean z) {
+        if (this.mEnabled != z) {
+            this.mEnabled = z;
+            notifyDependencyChange(shouldDisableDependents());
+            notifyChanged();
+        }
+    }
+
+    public boolean isEnabled() {
+        return this.mEnabled &amp;&amp; this.mDependencyMet &amp;&amp; this.mParentDependencyMet;
+    }
+
+    public void setSelectable(boolean z) {
+        if (this.mSelectable != z) {
+            this.mSelectable = z;
+            notifyChanged();
+        }
+    }
+
+    public boolean isSelectable() {
+        return this.mSelectable;
+    }
+
+    public void setShouldDisableView(boolean z) {
+        this.mShouldDisableView = z;
+        notifyChanged();
+    }
+
+    public boolean getShouldDisableView() {
+        return this.mShouldDisableView;
+    }
+
+    public final void setVisible(boolean z) {
+        if (this.mVisible != z) {
+            this.mVisible = z;
+            if (this.mListener) {
+                this.mListener.onPreferenceVisibilityChange(this);
+            }
+        }
+    }
+
+    public final boolean isVisible() {
+        return this.mVisible;
+    }
+
+    public final boolean isShown() {
+        if (!isVisible() || getPreferenceManager() == null) {
+            return false;
+        }
+        if (this == getPreferenceManager().getPreferenceScreen()) {
+            return true;
+        }
+        PreferenceGroup parent = getParent();
+        if (parent == null) {
+            return false;
+        }
+        return parent.isShown();
+    }
+
+    long getId() {
+        return this.mId;
+    }
+
+    public void setKey(String str) {
+        this.mKey = str;
+        if (this.mRequiresKey != null &amp;&amp; hasKey() == null) {
+            requireKey();
+        }
+    }
+
+    public String getKey() {
+        return this.mKey;
+    }
+
+    void requireKey() {
+        if (TextUtils.isEmpty(this.mKey)) {
+            throw new IllegalStateException("Preference does not have a key assigned.");
+        }
+        this.mRequiresKey = true;
+    }
+
+    public boolean hasKey() {
+        return TextUtils.isEmpty(this.mKey) ^ 1;
+    }
+
+    public boolean isPersistent() {
+        return this.mPersistent;
+    }
+
+    protected boolean shouldPersist() {
+        return this.mPreferenceManager != null &amp;&amp; isPersistent() &amp;&amp; hasKey();
+    }
+
+    public void setPersistent(boolean z) {
+        this.mPersistent = z;
+    }
+
+    public void setSingleLineTitle(boolean z) {
+        this.mHasSingleLineTitleAttr = true;
+        this.mSingleLineTitle = z;
+    }
+
+    public boolean isSingleLineTitle() {
+        return this.mSingleLineTitle;
+    }
+
+    public void setIconSpaceReserved(boolean z) {
+        this.mIconSpaceReserved = z;
+        notifyChanged();
+    }
+
+    public boolean isIconSpaceReserved() {
+        return this.mIconSpaceReserved;
+    }
+
+    public boolean callChangeListener(Object obj) {
+        if (this.mOnChangeListener != null) {
+            if (this.mOnChangeListener.onPreferenceChange(this, obj) == null) {
+                return null;
+            }
+        }
+        return true;
+    }
+
+    public void setOnPreferenceChangeListener(OnPreferenceChangeListener onPreferenceChangeListener) {
+        this.mOnChangeListener = onPreferenceChangeListener;
+    }
+
+    public OnPreferenceChangeListener getOnPreferenceChangeListener() {
+        return this.mOnChangeListener;
+    }
+
+    public void setOnPreferenceClickListener(OnPreferenceClickListener onPreferenceClickListener) {
+        this.mOnClickListener = onPreferenceClickListener;
+    }
+
+    public OnPreferenceClickListener getOnPreferenceClickListener() {
+        return this.mOnClickListener;
+    }
+
+    @RestrictTo({Scope.LIBRARY_GROUP})
+    protected void performClick(View view) {
+        performClick();
+    }
+
+    @RestrictTo({Scope.LIBRARY_GROUP})
+    public void performClick() {
+        if (isEnabled()) {
+            onClick();
+            if (this.mOnClickListener == null || !this.mOnClickListener.onPreferenceClick(this)) {
+                PreferenceManager preferenceManager = getPreferenceManager();
+                if (preferenceManager != null) {
+                    OnPreferenceTreeClickListener onPreferenceTreeClickListener = preferenceManager.getOnPreferenceTreeClickListener();
+                    if (onPreferenceTreeClickListener != null &amp;&amp; onPreferenceTreeClickListener.onPreferenceTreeClick(this)) {
+                        return;
+                    }
+                }
+                if (this.mIntent != null) {
+                    getContext().startActivity(this.mIntent);
+                }
+            }
+        }
+    }
+
+    public Context getContext() {
+        return this.mContext;
+    }
+
+    public SharedPreferences getSharedPreferences() {
+        if (this.mPreferenceManager != null) {
+            if (getPreferenceDataStore() == null) {
+                return this.mPreferenceManager.getSharedPreferences();
+            }
+        }
+        return null;
+    }
+
+    public int compareTo(@NonNull Preference preference) {
+        if (this.mOrder != preference.mOrder) {
+            return this.mOrder - preference.mOrder;
+        }
+        if (this.mTitle == preference.mTitle) {
+            return null;
+        }
+        if (this.mTitle == null) {
+            return 1;
+        }
+        if (preference.mTitle == null) {
+            return -1;
+        }
+        return this.mTitle.toString().compareToIgnoreCase(preference.mTitle.toString());
+    }
+
+    final void setOnPreferenceChangeInternalListener(OnPreferenceChangeInternalListener onPreferenceChangeInternalListener) {
+        this.mListener = onPreferenceChangeInternalListener;
+    }
+
+    protected void notifyChanged() {
+        if (this.mListener != null) {
+            this.mListener.onPreferenceChange(this);
+        }
+    }
+
+    protected void notifyHierarchyChanged() {
+        if (this.mListener != null) {
+            this.mListener.onPreferenceHierarchyChange(this);
+        }
+    }
+
+    public PreferenceManager getPreferenceManager() {
+        return this.mPreferenceManager;
+    }
+
+    protected void onAttachedToHierarchy(PreferenceManager preferenceManager) {
+        this.mPreferenceManager = preferenceManager;
+        if (!this.mHasId) {
+            this.mId = preferenceManager.getNextId();
+        }
+        dispatchSetInitialValue();
+    }
+
+    @RestrictTo({Scope.LIBRARY_GROUP})
+    protected void onAttachedToHierarchy(PreferenceManager preferenceManager, long j) {
+        this.mId = j;
+        this.mHasId = 1;
+        try {
+            onAttachedToHierarchy(preferenceManager);
+        } finally {
+            this.mHasId = 0;
+        }
+    }
+
+    void assignParent(@Nullable PreferenceGroup preferenceGroup) {
+        this.mParentGroup = preferenceGroup;
+    }
+
+    public void onAttached() {
+        registerDependency();
+    }
+
+    public void onDetached() {
+        unregisterDependency();
+        this.mWasDetached = true;
+    }
+
+    @RestrictTo({Scope.LIBRARY})
+    public final boolean wasDetached() {
+        return this.mWasDetached;
+    }
+
+    @RestrictTo({Scope.LIBRARY})
+    public final void clearWasDetached() {
+        this.mWasDetached = false;
+    }
+
+    private void registerDependency() {
+        if (!TextUtils.isEmpty(this.mDependencyKey)) {
+            Preference findPreferenceInHierarchy = findPreferenceInHierarchy(this.mDependencyKey);
+            if (findPreferenceInHierarchy != null) {
+                findPreferenceInHierarchy.registerDependent(this);
+                return;
+            }
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("Dependency \"");
+            stringBuilder.append(this.mDependencyKey);
+            stringBuilder.append("\" not found for preference \"");
+            stringBuilder.append(this.mKey);
+            stringBuilder.append("\" (title: \"");
+            stringBuilder.append(this.mTitle);
+            stringBuilder.append("\"");
+            throw new IllegalStateException(stringBuilder.toString());
+        }
+    }
+
+    private void unregisterDependency() {
+        if (this.mDependencyKey != null) {
+            Preference findPreferenceInHierarchy = findPreferenceInHierarchy(this.mDependencyKey);
+            if (findPreferenceInHierarchy != null) {
+                findPreferenceInHierarchy.unregisterDependent(this);
+            }
+        }
+    }
+
+    protected Preference findPreferenceInHierarchy(String str) {
+        if (!TextUtils.isEmpty(str)) {
+            if (this.mPreferenceManager != null) {
+                return this.mPreferenceManager.findPreference(str);
+            }
+        }
+        return null;
+    }
+
+    private void registerDependent(Preference preference) {
+        if (this.mDependents == null) {
+            this.mDependents = new ArrayList();
+        }
+        this.mDependents.add(preference);
+        preference.onDependencyChanged(this, shouldDisableDependents());
+    }
+
+    private void unregisterDependent(Preference preference) {
+        if (this.mDependents != null) {
+            this.mDependents.remove(preference);
+        }
+    }
+
+    public void notifyDependencyChange(boolean z) {
+        List list = this.mDependents;
+        if (list != null) {
+            int size = list.size();
+            for (int i = 0; i &lt; size; i++) {
+                ((Preference) list.get(i)).onDependencyChanged(this, z);
+            }
+        }
+    }
+
+    public void onDependencyChanged(Preference preference, boolean z) {
+        if (this.mDependencyMet == z) {
+            this.mDependencyMet = z ^ 1;
+            notifyDependencyChange(shouldDisableDependents());
+            notifyChanged();
+        }
+    }
+
+    public void onParentChanged(Preference preference, boolean z) {
+        if (this.mParentDependencyMet == z) {
+            this.mParentDependencyMet = z ^ 1;
+            notifyDependencyChange(shouldDisableDependents());
+            notifyChanged();
+        }
+    }
+
+    public boolean shouldDisableDependents() {
+        return isEnabled() ^ 1;
+    }
+
+    public void setDependency(String str) {
+        unregisterDependency();
+        this.mDependencyKey = str;
+        registerDependency();
+    }
+
+    public String getDependency() {
+        return this.mDependencyKey;
+    }
+
+    @Nullable
+    public PreferenceGroup getParent() {
+        return this.mParentGroup;
+    }
+
+    protected void onPrepareForRemoval() {
+        unregisterDependency();
+    }
+
+    public void setDefaultValue(Object obj) {
+        this.mDefaultValue = obj;
+    }
+
+    private void dispatchSetInitialValue() {
+        if (getPreferenceDataStore() != null) {
+            onSetInitialValue(true, this.mDefaultValue);
+            return;
+        }
+        if (shouldPersist()) {
+            if (getSharedPreferences().contains(this.mKey)) {
+                onSetInitialValue(true, null);
+            }
+        }
+        if (this.mDefaultValue != null) {
+            onSetInitialValue(false, this.mDefaultValue);
+        }
+    }
+
+    @Deprecated
+    protected void onSetInitialValue(boolean z, Object obj) {
+        onSetInitialValue(obj);
+    }
+
+    private void tryCommit(@NonNull Editor editor) {
+        if (this.mPreferenceManager.shouldCommit()) {
+            editor.apply();
+        }
+    }
+
+    protected boolean persistString(String str) {
+        if (!shouldPersist()) {
+            return null;
+        }
+        if (TextUtils.equals(str, getPersistedString(null))) {
+            return true;
+        }
+        PreferenceDataStore preferenceDataStore = getPreferenceDataStore();
+        if (preferenceDataStore != null) {
+            preferenceDataStore.putString(this.mKey, str);
+        } else {
+            Editor editor = this.mPreferenceManager.getEditor();
+            editor.putString(this.mKey, str);
+            tryCommit(editor);
+        }
+        return true;
+    }
+
+    protected String getPersistedString(String str) {
+        if (!shouldPersist()) {
+            return str;
+        }
+        PreferenceDataStore preferenceDataStore = getPreferenceDataStore();
+        if (preferenceDataStore != null) {
+            return preferenceDataStore.getString(this.mKey, str);
+        }
+        return this.mPreferenceManager.getSharedPreferences().getString(this.mKey, str);
+    }
+
+    public boolean persistStringSet(Set&lt;String&gt; set) {
+        if (!shouldPersist()) {
+            return null;
+        }
+        if (set.equals(getPersistedStringSet(null))) {
+            return true;
+        }
+        PreferenceDataStore preferenceDataStore = getPreferenceDataStore();
+        if (preferenceDataStore != null) {
+            preferenceDataStore.putStringSet(this.mKey, set);
+        } else {
+            Editor editor = this.mPreferenceManager.getEditor();
+            editor.putStringSet(this.mKey, set);
+            tryCommit(editor);
+        }
+        return true;
+    }
+
+    public Set&lt;String&gt; getPersistedStringSet(Set&lt;String&gt; set) {
+        if (!shouldPersist()) {
+            return set;
+        }
+        PreferenceDataStore preferenceDataStore = getPreferenceDataStore();
+        if (preferenceDataStore != null) {
+            return preferenceDataStore.getStringSet(this.mKey, set);
+        }
+        return this.mPreferenceManager.getSharedPreferences().getStringSet(this.mKey, set);
+    }
+
+    protected boolean persistInt(int i) {
+        if (!shouldPersist()) {
+            return false;
+        }
+        if (i == getPersistedInt(i ^ -1)) {
+            return true;
+        }
+        PreferenceDataStore preferenceDataStore = getPreferenceDataStore();
+        if (preferenceDataStore != null) {
+            preferenceDataStore.putInt(this.mKey, i);
+        } else {
+            Editor editor = this.mPreferenceManager.getEditor();
+            editor.putInt(this.mKey, i);
+            tryCommit(editor);
+        }
+        return true;
+    }
+
+    protected int getPersistedInt(int i) {
+        if (!shouldPersist()) {
+            return i;
+        }
+        PreferenceDataStore preferenceDataStore = getPreferenceDataStore();
+        if (preferenceDataStore != null) {
+            return preferenceDataStore.getInt(this.mKey, i);
+        }
+        return this.mPreferenceManager.getSharedPreferences().getInt(this.mKey, i);
+    }
+
+    protected boolean persistFloat(float f) {
+        if (!shouldPersist()) {
+            return false;
+        }
+        if (f == getPersistedFloat(Float.NaN)) {
+            return true;
+        }
+        PreferenceDataStore preferenceDataStore = getPreferenceDataStore();
+        if (preferenceDataStore != null) {
+            preferenceDataStore.putFloat(this.mKey, f);
+        } else {
+            Editor editor = this.mPreferenceManager.getEditor();
+            editor.putFloat(this.mKey, f);
+            tryCommit(editor);
+        }
+        return true;
+    }
+
+    protected float getPersistedFloat(float f) {
+        if (!shouldPersist()) {
+            return f;
+        }
+        PreferenceDataStore preferenceDataStore = getPreferenceDataStore();
+        if (preferenceDataStore != null) {
+            return preferenceDataStore.getFloat(this.mKey, f);
+        }
+        return this.mPreferenceManager.getSharedPreferences().getFloat(this.mKey, f);
+    }
+
+    protected boolean persistLong(long j) {
+        if (!shouldPersist()) {
+            return 0;
+        }
+        if (j == getPersistedLong(-1 ^ j)) {
+            return true;
+        }
+        PreferenceDataStore preferenceDataStore = getPreferenceDataStore();
+        if (preferenceDataStore != null) {
+            preferenceDataStore.putLong(this.mKey, j);
+        } else {
+            Editor editor = this.mPreferenceManager.getEditor();
+            editor.putLong(this.mKey, j);
+            tryCommit(editor);
+        }
+        return true;
+    }
+
+    protected long getPersistedLong(long j) {
+        if (!shouldPersist()) {
+            return j;
+        }
+        PreferenceDataStore preferenceDataStore = getPreferenceDataStore();
+        if (preferenceDataStore != null) {
+            return preferenceDataStore.getLong(this.mKey, j);
+        }
+        return this.mPreferenceManager.getSharedPreferences().getLong(this.mKey, j);
+    }
+
+    protected boolean persistBoolean(boolean z) {
+        if (!shouldPersist()) {
+            return false;
+        }
+        if (z == getPersistedBoolean(z ^ 1)) {
+            return true;
+        }
+        PreferenceDataStore preferenceDataStore = getPreferenceDataStore();
+        if (preferenceDataStore != null) {
+            preferenceDataStore.putBoolean(this.mKey, z);
+        } else {
+            Editor editor = this.mPreferenceManager.getEditor();
+            editor.putBoolean(this.mKey, z);
+            tryCommit(editor);
+        }
+        return true;
+    }
+
+    protected boolean getPersistedBoolean(boolean z) {
+        if (!shouldPersist()) {
+            return z;
+        }
+        PreferenceDataStore preferenceDataStore = getPreferenceDataStore();
+        if (preferenceDataStore != null) {
+            return preferenceDataStore.getBoolean(this.mKey, z);
+        }
+        return this.mPreferenceManager.getSharedPreferences().getBoolean(this.mKey, z);
+    }
+
+    public String toString() {
+        return getFilterableStringBuilder().toString();
+    }
+
+    StringBuilder getFilterableStringBuilder() {
+        StringBuilder stringBuilder = new StringBuilder();
+        CharSequence title = getTitle();
+        if (!TextUtils.isEmpty(title)) {
+            stringBuilder.append(title);
+            stringBuilder.append(' ');
+        }
+        title = getSummary();
+        if (!TextUtils.isEmpty(title)) {
+            stringBuilder.append(title);
+            stringBuilder.append(' ');
+        }
+        if (stringBuilder.length() &gt; 0) {
+            stringBuilder.setLength(stringBuilder.length() - 1);
+        }
+        return stringBuilder;
+    }
+
+    public void saveHierarchyState(Bundle bundle) {
+        dispatchSaveInstanceState(bundle);
+    }
+
+    void dispatchSaveInstanceState(Bundle bundle) {
+        if (hasKey()) {
+            this.mBaseMethodCalled = false;
+            Parcelable onSaveInstanceState = onSaveInstanceState();
+            if (!this.mBaseMethodCalled) {
+                throw new IllegalStateException("Derived class did not call super.onSaveInstanceState()");
+            } else if (onSaveInstanceState != null) {
+                bundle.putParcelable(this.mKey, onSaveInstanceState);
+            }
+        }
+    }
+
+    protected Parcelable onSaveInstanceState() {
+        this.mBaseMethodCalled = true;
+        return BaseSavedState.EMPTY_STATE;
+    }
+
+    public void restoreHierarchyState(Bundle bundle) {
+        dispatchRestoreInstanceState(bundle);
+    }
+
+    void dispatchRestoreInstanceState(Bundle bundle) {
+        if (hasKey()) {
+            bundle = bundle.getParcelable(this.mKey);
+            if (bundle != null) {
+                this.mBaseMethodCalled = false;
+                onRestoreInstanceState(bundle);
+                if (this.mBaseMethodCalled == null) {
+                    throw new IllegalStateException("Derived class did not call super.onRestoreInstanceState()");
+                }
+            }
+        }
+    }
+
+    protected void onRestoreInstanceState(Parcelable parcelable) {
+        this.mBaseMethodCalled = true;
+        if (parcelable == BaseSavedState.EMPTY_STATE) {
+            return;
+        }
+        if (parcelable != null) {
+            throw new IllegalArgumentException("Wrong state class -- expecting Preference State");
+        }
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:4 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

@@ -1,0 +1,308 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/androidx/constraintlayout/solver/SolverVariable.java" target="_blank">/xumo_apk/jadx_source_code/androidx/constraintlayout/solver/SolverVariable.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="SolverVariable.java" data-line="" class="code line-numbers"><code>package androidx.constraintlayout.solver;
+
+import java.util.Arrays;
+
+public class SolverVariable {
+    private static final boolean INTERNAL_DEBUG = false;
+    static final int MAX_STRENGTH = 7;
+    public static final int STRENGTH_BARRIER = 7;
+    public static final int STRENGTH_EQUALITY = 5;
+    public static final int STRENGTH_FIXED = 6;
+    public static final int STRENGTH_HIGH = 3;
+    public static final int STRENGTH_HIGHEST = 4;
+    public static final int STRENGTH_LOW = 1;
+    public static final int STRENGTH_MEDIUM = 2;
+    public static final int STRENGTH_NONE = 0;
+    private static int uniqueConstantId = 1;
+    private static int uniqueErrorId = 1;
+    private static int uniqueId = 1;
+    private static int uniqueSlackId = 1;
+    private static int uniqueUnrestrictedId = 1;
+    public float computedValue;
+    int definitionId;
+    public int id;
+    ArrayRow[] mClientEquations;
+    int mClientEquationsCount;
+    private String mName;
+    Type mType;
+    public int strength;
+    float[] strengthVector;
+    public int usageInRowCount;
+
+    public enum Type {
+        UNRESTRICTED,
+        CONSTANT,
+        SLACK,
+        ERROR,
+        UNKNOWN
+    }
+
+    static void increaseErrorId() {
+        uniqueErrorId++;
+    }
+
+    private static String getUniqueName(Type type, String str) {
+        if (str != null) {
+            type = new StringBuilder();
+            type.append(str);
+            type.append(uniqueErrorId);
+            return type.toString();
+        }
+        switch (type) {
+            case UNRESTRICTED:
+                type = new StringBuilder();
+                type.append("U");
+                str = uniqueUnrestrictedId + 1;
+                uniqueUnrestrictedId = str;
+                type.append(str);
+                return type.toString();
+            case CONSTANT:
+                type = new StringBuilder();
+                type.append("C");
+                str = uniqueConstantId + 1;
+                uniqueConstantId = str;
+                type.append(str);
+                return type.toString();
+            case SLACK:
+                type = new StringBuilder();
+                type.append("S");
+                str = uniqueSlackId + 1;
+                uniqueSlackId = str;
+                type.append(str);
+                return type.toString();
+            case ERROR:
+                type = new StringBuilder();
+                type.append("e");
+                str = uniqueErrorId + 1;
+                uniqueErrorId = str;
+                type.append(str);
+                return type.toString();
+            case UNKNOWN:
+                type = new StringBuilder();
+                type.append("V");
+                str = uniqueId + 1;
+                uniqueId = str;
+                type.append(str);
+                return type.toString();
+            default:
+                throw new AssertionError(type.name());
+        }
+    }
+
+    public SolverVariable(String str, Type type) {
+        this.id = -1;
+        this.definitionId = -1;
+        this.strength = 0;
+        this.strengthVector = new float[7];
+        this.mClientEquations = new ArrayRow[8];
+        this.mClientEquationsCount = 0;
+        this.usageInRowCount = 0;
+        this.mName = str;
+        this.mType = type;
+    }
+
+    public SolverVariable(Type type, String str) {
+        this.id = -1;
+        this.definitionId = -1;
+        this.strength = 0;
+        this.strengthVector = new float[7];
+        this.mClientEquations = new ArrayRow[8];
+        this.mClientEquationsCount = 0;
+        this.usageInRowCount = 0;
+        this.mType = type;
+    }
+
+    void clearStrengths() {
+        for (int i = 0; i &lt; 7; i++) {
+            this.strengthVector[i] = 0.0f;
+        }
+    }
+
+    String strengthsToString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(this);
+        stringBuilder.append("[");
+        String stringBuilder2 = stringBuilder.toString();
+        Object obj = null;
+        Object obj2 = 1;
+        for (int i = 0; i &lt; this.strengthVector.length; i++) {
+            StringBuilder stringBuilder3 = new StringBuilder();
+            stringBuilder3.append(stringBuilder2);
+            stringBuilder3.append(this.strengthVector[i]);
+            stringBuilder2 = stringBuilder3.toString();
+            if (this.strengthVector[i] &gt; 0.0f) {
+                obj = null;
+            } else if (this.strengthVector[i] &lt; 0.0f) {
+                obj = 1;
+            }
+            if (this.strengthVector[i] != 0.0f) {
+                obj2 = null;
+            }
+            if (i &lt; this.strengthVector.length - 1) {
+                stringBuilder3 = new StringBuilder();
+                stringBuilder3.append(stringBuilder2);
+                stringBuilder3.append(", ");
+                stringBuilder2 = stringBuilder3.toString();
+            } else {
+                stringBuilder3 = new StringBuilder();
+                stringBuilder3.append(stringBuilder2);
+                stringBuilder3.append("] ");
+                stringBuilder2 = stringBuilder3.toString();
+            }
+        }
+        if (obj != null) {
+            stringBuilder = new StringBuilder();
+            stringBuilder.append(stringBuilder2);
+            stringBuilder.append(" (-)");
+            stringBuilder2 = stringBuilder.toString();
+        }
+        if (obj2 == null) {
+            return stringBuilder2;
+        }
+        stringBuilder = new StringBuilder();
+        stringBuilder.append(stringBuilder2);
+        stringBuilder.append(" (*)");
+        return stringBuilder.toString();
+    }
+
+    public final void addToRow(ArrayRow arrayRow) {
+        int i = 0;
+        while (i &lt; this.mClientEquationsCount) {
+            if (this.mClientEquations[i] != arrayRow) {
+                i++;
+            } else {
+                return;
+            }
+        }
+        if (this.mClientEquationsCount &gt;= this.mClientEquations.length) {
+            this.mClientEquations = (ArrayRow[]) Arrays.copyOf(this.mClientEquations, this.mClientEquations.length * 2);
+        }
+        this.mClientEquations[this.mClientEquationsCount] = arrayRow;
+        this.mClientEquationsCount++;
+    }
+
+    public final void removeFromRow(ArrayRow arrayRow) {
+        int i = this.mClientEquationsCount;
+        for (int i2 = 0; i2 &lt; i; i2++) {
+            if (this.mClientEquations[i2] == arrayRow) {
+                for (int i3 = 0; i3 &lt; (i - i2) - 1; i3++) {
+                    int i4 = i2 + i3;
+                    this.mClientEquations[i4] = this.mClientEquations[i4 + 1];
+                }
+                this.mClientEquationsCount--;
+                return;
+            }
+        }
+    }
+
+    public final void updateReferencesWithNewDefinition(ArrayRow arrayRow) {
+        int i = this.mClientEquationsCount;
+        for (int i2 = 0; i2 &lt; i; i2++) {
+            this.mClientEquations[i2].variables.updateFromRow(this.mClientEquations[i2], arrayRow, false);
+        }
+        this.mClientEquationsCount = 0;
+    }
+
+    public void reset() {
+        this.mName = null;
+        this.mType = Type.UNKNOWN;
+        this.strength = 0;
+        this.id = -1;
+        this.definitionId = -1;
+        this.computedValue = 0.0f;
+        this.mClientEquationsCount = 0;
+        this.usageInRowCount = 0;
+    }
+
+    public String getName() {
+        return this.mName;
+    }
+
+    public void setName(String str) {
+        this.mName = str;
+    }
+
+    public void setType(Type type, String str) {
+        this.mType = type;
+    }
+
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("");
+        stringBuilder.append(this.mName);
+        return stringBuilder.toString();
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:5 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

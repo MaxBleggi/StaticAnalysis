@@ -1,0 +1,508 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9"><div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/gms/common/api/internal/zabe.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/gms/common/api/internal/zabe.java</a></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-60">report</i><h5>ServerSocket|net.ServerSocket|connect[(][)]</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>the app opens TCP Server Sockets: Insecure use of network sockets</span></div></li></ul><ul class="collapsible"><li><div class="collapsible-header"><img data-position="top" data-tooltip="OWASP item" src="html/owasp_logo.png" height="20em" style="margin-right: 1rem;margin-left: 5px;" class="tooltipped"></img> OWASP Item</div><div class="collapsible-body"><span>For more information, have a look at: https://www.owasp.org/index.php/OWASP_Mobile_Security_Testing_Guide</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#zabe_java89Serv" class="active">line 89</a></li><li class="tab"><a style="color: #d82c2b;" href="#zabe_java90Serv">line 90</a></li><li class="tab"><a style="color: #d82c2b;" href="#zabe_java94Serv">line 94</a></li><li class="tab"><a style="color: #d82c2b;" href="#zabe_java113Serv">line 113</a></li><li class="tab"><a style="color: #d82c2b;" href="#zabe_java147Serv">line 147</a></li><li class="tab"><a style="color: #d82c2b;" href="#zabe_java170Serv">line 170</a></li><li class="tab"><a style="color: #d82c2b;" href="#zabe_java181Serv">line 181</a></li><li class="tab"><a style="color: #d82c2b;" href="#zabe_java219Serv">line 219</a></li><li class="tab"><a style="color: #d82c2b;" href="#zabe_java220Serv">line 220</a></li></ul></div><div class="card-content"><div id="zabe_java89Serv">Code @ line 89<pre data-start="86" data-line="89" data-src="zabe.java" class="code line-numbers"><code>    }
+
+    @GuardedBy("mLock")
+    public final void connect() {
+        this.zahp.connect();
+    }
+
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiA4OSA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw4OXx8fDg2">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiA4OSA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw4OXx8fDg2')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiA4OSA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw4OXx8fDg2').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiA4OSA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw4OXx8fDg2" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiA4OSA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw4OXx8fDg2' , 'ICAgIH0KCiAgICBAR3VhcmRlZEJ5KCJtTG9jayIpCiAgICBwdWJsaWMgZmluYWwgdm9pZCBjb25uZWN0KCkgewogICAgICAgIHRoaXMuemFocC5jb25uZWN0KCk7CiAgICB9Cgo=');  
+                                            });
+                                            </script>
+                                            </div><div id="zabe_java90Serv">Code @ line 90<pre data-start="87" data-line="90" data-src="zabe.java" class="code line-numbers"><code>
+    @GuardedBy("mLock")
+    public final void connect() {
+        this.zahp.connect();
+    }
+
+    @javax.annotation.concurrent.GuardedBy("mLock")
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiA5MCA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw5MHx8fDg3">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiA5MCA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw5MHx8fDg3')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiA5MCA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw5MHx8fDg3').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiA5MCA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw5MHx8fDg3" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiA5MCA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw5MHx8fDg3' , 'CiAgICBAR3VhcmRlZEJ5KCJtTG9jayIpCiAgICBwdWJsaWMgZmluYWwgdm9pZCBjb25uZWN0KCkgewogICAgICAgIHRoaXMuemFocC5jb25uZWN0KCk7CiAgICB9CgogICAgQGphdmF4LmFubm90YXRpb24uY29uY3VycmVudC5HdWFyZGVkQnkoIm1Mb2NrIikK');  
+                                            });
+                                            </script>
+                                            </div><div id="zabe_java94Serv">Code @ line 94<pre data-start="91" data-line="94" data-src="zabe.java" class="code line-numbers"><code>    }
+
+    @javax.annotation.concurrent.GuardedBy("mLock")
+    public final com.google.android.gms.common.ConnectionResult blockingConnect() {
+        /* JADX: method processing error */
+/*
+Error: java.lang.NullPointerException
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiA5NCA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw5NHx8fDkx">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiA5NCA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw5NHx8fDkx')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiA5NCA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw5NHx8fDkx').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiA5NCA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw5NHx8fDkx" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiA5NCA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw5NHx8fDkx' , 'ICAgIH0KCiAgICBAamF2YXguYW5ub3RhdGlvbi5jb25jdXJyZW50Lkd1YXJkZWRCeSgibUxvY2siKQogICAgcHVibGljIGZpbmFsIGNvbS5nb29nbGUuYW5kcm9pZC5nbXMuY29tbW9uLkNvbm5lY3Rpb25SZXN1bHQgYmxvY2tpbmdDb25uZWN0KCkgewogICAgICAgIC8qIEpBRFg6IG1ldGhvZCBwcm9jZXNzaW5nIGVycm9yICovCi8qCkVycm9yOiBqYXZhLmxhbmcuTnVsbFBvaW50ZXJFeGNlcHRpb24K');  
+                                            });
+                                            </script>
+                                            </div><div id="zabe_java113Serv">Code @ line 113<pre data-start="110" data-line="113" data-src="zabe.java" class="code line-numbers"><code>*/
+        /*
+        r3 = this;
+        r3.connect();
+    L_0x0003:
+        r0 = r3.isConnecting();
+        r1 = 0;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiAxMTMgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MTEzfHx8MTEw">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiAxMTMgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MTEzfHx8MTEw')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiAxMTMgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MTEzfHx8MTEw').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiAxMTMgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MTEzfHx8MTEw" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiAxMTMgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MTEzfHx8MTEw' , 'Ki8KICAgICAgICAvKgogICAgICAgIHIzID0gdGhpczsKICAgICAgICByMy5jb25uZWN0KCk7CiAgICBMXzB4MDAwMzoKICAgICAgICByMCA9IHIzLmlzQ29ubmVjdGluZygpOwogICAgICAgIHIxID0gMDsK');  
+                                            });
+                                            </script>
+                                            </div><div id="zabe_java147Serv">Code @ line 147<pre data-start="144" data-line="147" data-src="zabe.java" class="code line-numbers"><code>        r0.&lt;init&gt;(r2, r1);
+        return r0;
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.google.android.gms.common.api.internal.zabe.blockingConnect():com.google.android.gms.common.ConnectionResult");
+    }
+
+    @javax.annotation.concurrent.GuardedBy("mLock")
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiAxNDcgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MTQ3fHx8MTQ0">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiAxNDcgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MTQ3fHx8MTQ0')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiAxNDcgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MTQ3fHx8MTQ0').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiAxNDcgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MTQ3fHx8MTQ0" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiAxNDcgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MTQ3fHx8MTQ0' , 'ICAgICAgICByMC48aW5pdD4ocjIsIHIxKTsKICAgICAgICByZXR1cm4gcjA7CiAgICAgICAgKi8KICAgICAgICB0aHJvdyBuZXcgVW5zdXBwb3J0ZWRPcGVyYXRpb25FeGNlcHRpb24oIk1ldGhvZCBub3QgZGVjb21waWxlZDogY29tLmdvb2dsZS5hbmRyb2lkLmdtcy5jb21tb24uYXBpLmludGVybmFsLnphYmUuYmxvY2tpbmdDb25uZWN0KCk6Y29tLmdvb2dsZS5hbmRyb2lkLmdtcy5jb21tb24uQ29ubmVjdGlvblJlc3VsdCIpOwogICAgfQoKICAgIEBqYXZheC5hbm5vdGF0aW9uLmNvbmN1cnJlbnQuR3VhcmRlZEJ5KCJtTG9jayIpCg==');  
+                                            });
+                                            </script>
+                                            </div><div id="zabe_java170Serv">Code @ line 170<pre data-start="167" data-line="170" data-src="zabe.java" class="code line-numbers"><code>*/
+        /*
+        r3 = this;
+        r3.connect();
+        r4 = r6.toNanos(r4);
+    L_0x0007:
+        r6 = r3.isConnecting();
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiAxNzAgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MTcwfHx8MTY3">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiAxNzAgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MTcwfHx8MTY3')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiAxNzAgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MTcwfHx8MTY3').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiAxNzAgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MTcwfHx8MTY3" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiAxNzAgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MTcwfHx8MTY3' , 'Ki8KICAgICAgICAvKgogICAgICAgIHIzID0gdGhpczsKICAgICAgICByMy5jb25uZWN0KCk7CiAgICAgICAgcjQgPSByNi50b05hbm9zKHI0KTsKICAgIExfMHgwMDA3OgogICAgICAgIHI2ID0gcjMuaXNDb25uZWN0aW5nKCk7Cg==');  
+                                            });
+                                            </script>
+                                            </div><div id="zabe_java181Serv">Code @ line 181<pre data-start="178" data-line="181" data-src="zabe.java" class="code line-numbers"><code>        r6 = (r4 &gt; r1 ? 1 : (r4 == r1 ? 0 : -1));
+        if (r6 &gt; 0) goto L_0x001f;
+    L_0x0014:
+        r3.disconnect();	 Catch:{ InterruptedException -&gt; 0x0026 }
+        r4 = new com.google.android.gms.common.ConnectionResult;	 Catch:{ InterruptedException -&gt; 0x0026 }
+        r5 = 14;	 Catch:{ InterruptedException -&gt; 0x0026 }
+        r4.&lt;init&gt;(r5, r0);	 Catch:{ InterruptedException -&gt; 0x0026 }
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiAxODEgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MTgxfHx8MTc4">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiAxODEgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MTgxfHx8MTc4')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiAxODEgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MTgxfHx8MTc4').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiAxODEgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MTgxfHx8MTc4" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiAxODEgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MTgxfHx8MTc4' , 'ICAgICAgICByNiA9IChyNCA+IHIxID8gMSA6IChyNCA9PSByMSA/IDAgOiAtMSkpOwogICAgICAgIGlmIChyNiA+IDApIGdvdG8gTF8weDAwMWY7CiAgICBMXzB4MDAxNDoKICAgICAgICByMy5kaXNjb25uZWN0KCk7CSBDYXRjaDp7IEludGVycnVwdGVkRXhjZXB0aW9uIC0+IDB4MDAyNiB9CiAgICAgICAgcjQgPSBuZXcgY29tLmdvb2dsZS5hbmRyb2lkLmdtcy5jb21tb24uQ29ubmVjdGlvblJlc3VsdDsJIENhdGNoOnsgSW50ZXJydXB0ZWRFeGNlcHRpb24gLT4gMHgwMDI2IH0KICAgICAgICByNSA9IDE0OwkgQ2F0Y2g6eyBJbnRlcnJ1cHRlZEV4Y2VwdGlvbiAtPiAweDAwMjYgfQogICAgICAgIHI0Ljxpbml0PihyNSwgcjApOwkgQ2F0Y2g6eyBJbnRlcnJ1cHRlZEV4Y2VwdGlvbiAtPiAweDAwMjYgfQo=');  
+                                            });
+                                            </script>
+                                            </div><div id="zabe_java219Serv">Code @ line 219<pre data-start="216" data-line="219" data-src="zabe.java" class="code line-numbers"><code>    }
+
+    @GuardedBy("mLock")
+    public final void disconnect() {
+        if (this.zahp.disconnect()) {
+            this.zaho.clear();
+        }
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiAyMTkgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MjE5fHx8MjE2">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiAyMTkgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MjE5fHx8MjE2')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiAyMTkgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MjE5fHx8MjE2').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiAyMTkgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MjE5fHx8MjE2" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiAyMTkgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MjE5fHx8MjE2' , 'ICAgIH0KCiAgICBAR3VhcmRlZEJ5KCJtTG9jayIpCiAgICBwdWJsaWMgZmluYWwgdm9pZCBkaXNjb25uZWN0KCkgewogICAgICAgIGlmICh0aGlzLnphaHAuZGlzY29ubmVjdCgpKSB7CiAgICAgICAgICAgIHRoaXMuemFoby5jbGVhcigpOwogICAgICAgIH0K');  
+                                            });
+                                            </script>
+                                            </div><div id="zabe_java220Serv">Code @ line 220<pre data-start="217" data-line="220" data-src="zabe.java" class="code line-numbers"><code>
+    @GuardedBy("mLock")
+    public final void disconnect() {
+        if (this.zahp.disconnect()) {
+            this.zaho.clear();
+        }
+    }
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiAyMjAgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MjIwfHx8MjE3">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiAyMjAgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MjIwfHx8MjE3')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiAyMjAgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MjIwfHx8MjE3').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiAyMjAgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MjIwfHx8MjE3" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWJlLmphdmF8fHxsaW5lOiAyMjAgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MjIwfHx8MjE3' , 'CiAgICBAR3VhcmRlZEJ5KCJtTG9jayIpCiAgICBwdWJsaWMgZmluYWwgdm9pZCBkaXNjb25uZWN0KCkgewogICAgICAgIGlmICh0aGlzLnphaHAuZGlzY29ubmVjdCgpKSB7CiAgICAgICAgICAgIHRoaXMuemFoby5jbGVhcigpOwogICAgICAgIH0KICAgIH0K');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="zabe.java" data-line="89,90,94,113,147,170,181,219,220," class="code line-numbers"><code>package com.google.android.gms.common.api.internal;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.os.Looper;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailabilityLight;
+import com.google.android.gms.common.api.Api;
+import com.google.android.gms.common.api.Api.AbstractClientBuilder;
+import com.google.android.gms.common.api.Api.AnyClient;
+import com.google.android.gms.common.api.Api.AnyClientKey;
+import com.google.android.gms.common.api.Api.Client;
+import com.google.android.gms.common.api.Result;
+import com.google.android.gms.common.api.internal.BaseImplementation.ApiMethodImpl;
+import com.google.android.gms.common.internal.ClientSettings;
+import com.google.android.gms.signin.SignInOptions;
+import com.google.android.gms.signin.zad;
+import java.io.FileDescriptor;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import javax.annotation.concurrent.GuardedBy;
+
+public final class zabe implements zabs, zar {
+    private final Context mContext;
+    private final AbstractClientBuilder&lt;? extends zad, SignInOptions&gt; zacd;
+    final zaaw zaed;
+    private final Lock zaen;
+    private final ClientSettings zaes;
+    private final Map&lt;Api&lt;?&gt;, Boolean&gt; zaev;
+    private final GoogleApiAvailabilityLight zaex;
+    final Map&lt;AnyClientKey&lt;?&gt;, Client&gt; zagy;
+    private final Condition zahm;
+    private final zabg zahn;
+    final Map&lt;AnyClientKey&lt;?&gt;, ConnectionResult&gt; zaho = new HashMap();
+    private volatile zabd zahp;
+    private ConnectionResult zahq = null;
+    int zahr;
+    final zabt zahs;
+
+    public zabe(Context context, zaaw com_google_android_gms_common_api_internal_zaaw, Lock lock, Looper looper, GoogleApiAvailabilityLight googleApiAvailabilityLight, Map&lt;AnyClientKey&lt;?&gt;, Client&gt; map, ClientSettings clientSettings, Map&lt;Api&lt;?&gt;, Boolean&gt; map2, AbstractClientBuilder&lt;? extends zad, SignInOptions&gt; abstractClientBuilder, ArrayList&lt;zaq&gt; arrayList, zabt com_google_android_gms_common_api_internal_zabt) {
+        this.mContext = context;
+        this.zaen = lock;
+        this.zaex = googleApiAvailabilityLight;
+        this.zagy = map;
+        this.zaes = clientSettings;
+        this.zaev = map2;
+        this.zacd = abstractClientBuilder;
+        this.zaed = com_google_android_gms_common_api_internal_zaaw;
+        this.zahs = com_google_android_gms_common_api_internal_zabt;
+        arrayList = arrayList;
+        zaaw size = arrayList.size();
+        com_google_android_gms_common_api_internal_zaaw = null;
+        while (com_google_android_gms_common_api_internal_zaaw &lt; size) {
+            googleApiAvailabilityLight = arrayList.get(com_google_android_gms_common_api_internal_zaaw);
+            com_google_android_gms_common_api_internal_zaaw++;
+            ((zaq) googleApiAvailabilityLight).zaa(this);
+        }
+        this.zahn = new zabg(this, looper);
+        this.zahm = lock.newCondition();
+        this.zahp = new zaav(this);
+    }
+
+    public final boolean maybeSignIn(SignInConnectionListener signInConnectionListener) {
+        return false;
+    }
+
+    public final void maybeSignOut() {
+    }
+
+    @GuardedBy("mLock")
+    public final &lt;A extends AnyClient, R extends Result, T extends ApiMethodImpl&lt;R, A&gt;&gt; T enqueue(@NonNull T t) {
+        t.zau();
+        return this.zahp.enqueue(t);
+    }
+
+    @GuardedBy("mLock")
+    public final &lt;A extends AnyClient, T extends ApiMethodImpl&lt;? extends Result, A&gt;&gt; T execute(@NonNull T t) {
+        t.zau();
+        return this.zahp.execute(t);
+    }
+
+    @GuardedBy("mLock")
+    public final void connect() {
+        this.zahp.connect();
+    }
+
+    @javax.annotation.concurrent.GuardedBy("mLock")
+    public final com.google.android.gms.common.ConnectionResult blockingConnect() {
+        /* JADX: method processing error */
+/*
+Error: java.lang.NullPointerException
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.searchTryCatchDominators(ProcessTryCatchRegions.java:75)
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.process(ProcessTryCatchRegions.java:45)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.postProcessRegions(RegionMakerVisitor.java:63)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.visit(RegionMakerVisitor.java:58)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:31)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:17)
+	at jadx.core.ProcessClass.process(ProcessClass.java:37)
+	at jadx.core.ProcessClass.processDependencies(ProcessClass.java:59)
+	at jadx.core.ProcessClass.process(ProcessClass.java:42)
+	at jadx.api.JadxDecompiler.processClass(JadxDecompiler.java:306)
+	at jadx.api.JavaClass.decompile(JavaClass.java:62)
+	at jadx.api.JadxDecompiler$1.run(JadxDecompiler.java:199)
+*/
+        /*
+        r3 = this;
+        r3.connect();
+    L_0x0003:
+        r0 = r3.isConnecting();
+        r1 = 0;
+        if (r0 == 0) goto L_0x001f;
+    L_0x000a:
+        r0 = r3.zahm;	 Catch:{ InterruptedException -&gt; 0x0010 }
+        r0.await();	 Catch:{ InterruptedException -&gt; 0x0010 }
+        goto L_0x0003;
+    L_0x0010:
+        r0 = java.lang.Thread.currentThread();
+        r0.interrupt();
+        r0 = new com.google.android.gms.common.ConnectionResult;
+        r2 = 15;
+        r0.&lt;init&gt;(r2, r1);
+        return r0;
+    L_0x001f:
+        r0 = r3.isConnected();
+        if (r0 == 0) goto L_0x0028;
+    L_0x0025:
+        r0 = com.google.android.gms.common.ConnectionResult.RESULT_SUCCESS;
+        return r0;
+    L_0x0028:
+        r0 = r3.zahq;
+        if (r0 == 0) goto L_0x002f;
+    L_0x002c:
+        r0 = r3.zahq;
+        return r0;
+    L_0x002f:
+        r0 = new com.google.android.gms.common.ConnectionResult;
+        r2 = 13;
+        r0.&lt;init&gt;(r2, r1);
+        return r0;
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.google.android.gms.common.api.internal.zabe.blockingConnect():com.google.android.gms.common.ConnectionResult");
+    }
+
+    @javax.annotation.concurrent.GuardedBy("mLock")
+    public final com.google.android.gms.common.ConnectionResult blockingConnect(long r4, java.util.concurrent.TimeUnit r6) {
+        /* JADX: method processing error */
+/*
+Error: java.lang.NullPointerException
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.searchTryCatchDominators(ProcessTryCatchRegions.java:75)
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.process(ProcessTryCatchRegions.java:45)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.postProcessRegions(RegionMakerVisitor.java:63)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.visit(RegionMakerVisitor.java:58)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:31)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:17)
+	at jadx.core.ProcessClass.process(ProcessClass.java:37)
+	at jadx.core.ProcessClass.processDependencies(ProcessClass.java:59)
+	at jadx.core.ProcessClass.process(ProcessClass.java:42)
+	at jadx.api.JadxDecompiler.processClass(JadxDecompiler.java:306)
+	at jadx.api.JavaClass.decompile(JavaClass.java:62)
+	at jadx.api.JadxDecompiler$1.run(JadxDecompiler.java:199)
+*/
+        /*
+        r3 = this;
+        r3.connect();
+        r4 = r6.toNanos(r4);
+    L_0x0007:
+        r6 = r3.isConnecting();
+        r0 = 0;
+        if (r6 == 0) goto L_0x0035;
+    L_0x000e:
+        r1 = 0;
+        r6 = (r4 &gt; r1 ? 1 : (r4 == r1 ? 0 : -1));
+        if (r6 &gt; 0) goto L_0x001f;
+    L_0x0014:
+        r3.disconnect();	 Catch:{ InterruptedException -&gt; 0x0026 }
+        r4 = new com.google.android.gms.common.ConnectionResult;	 Catch:{ InterruptedException -&gt; 0x0026 }
+        r5 = 14;	 Catch:{ InterruptedException -&gt; 0x0026 }
+        r4.&lt;init&gt;(r5, r0);	 Catch:{ InterruptedException -&gt; 0x0026 }
+        return r4;	 Catch:{ InterruptedException -&gt; 0x0026 }
+    L_0x001f:
+        r6 = r3.zahm;	 Catch:{ InterruptedException -&gt; 0x0026 }
+        r4 = r6.awaitNanos(r4);	 Catch:{ InterruptedException -&gt; 0x0026 }
+        goto L_0x0007;
+    L_0x0026:
+        r4 = java.lang.Thread.currentThread();
+        r4.interrupt();
+        r4 = new com.google.android.gms.common.ConnectionResult;
+        r5 = 15;
+        r4.&lt;init&gt;(r5, r0);
+        return r4;
+    L_0x0035:
+        r4 = r3.isConnected();
+        if (r4 == 0) goto L_0x003e;
+    L_0x003b:
+        r4 = com.google.android.gms.common.ConnectionResult.RESULT_SUCCESS;
+        return r4;
+    L_0x003e:
+        r4 = r3.zahq;
+        if (r4 == 0) goto L_0x0045;
+    L_0x0042:
+        r4 = r3.zahq;
+        return r4;
+    L_0x0045:
+        r4 = new com.google.android.gms.common.ConnectionResult;
+        r5 = 13;
+        r4.&lt;init&gt;(r5, r0);
+        return r4;
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.google.android.gms.common.api.internal.zabe.blockingConnect(long, java.util.concurrent.TimeUnit):com.google.android.gms.common.ConnectionResult");
+    }
+
+    @GuardedBy("mLock")
+    public final void disconnect() {
+        if (this.zahp.disconnect()) {
+            this.zaho.clear();
+        }
+    }
+
+    @GuardedBy("mLock")
+    @Nullable
+    public final ConnectionResult getConnectionResult(@NonNull Api&lt;?&gt; api) {
+        api = api.getClientKey();
+        if (this.zagy.containsKey(api)) {
+            if (((Client) this.zagy.get(api)).isConnected()) {
+                return ConnectionResult.RESULT_SUCCESS;
+            }
+            if (this.zaho.containsKey(api)) {
+                return (ConnectionResult) this.zaho.get(api);
+            }
+        }
+        return null;
+    }
+
+    final void zaaz() {
+        this.zaen.lock();
+        try {
+            this.zahp = new zaak(this, this.zaes, this.zaev, this.zaex, this.zacd, this.zaen, this.mContext);
+            this.zahp.begin();
+            this.zahm.signalAll();
+        } finally {
+            this.zaen.unlock();
+        }
+    }
+
+    final void zaba() {
+        this.zaen.lock();
+        try {
+            this.zaed.zaaw();
+            this.zahp = new zaah(this);
+            this.zahp.begin();
+            this.zahm.signalAll();
+        } finally {
+            this.zaen.unlock();
+        }
+    }
+
+    final void zaf(ConnectionResult connectionResult) {
+        this.zaen.lock();
+        try {
+            this.zahq = connectionResult;
+            this.zahp = new zaav(this);
+            this.zahp.begin();
+            this.zahm.signalAll();
+        } finally {
+            this.zaen.unlock();
+        }
+    }
+
+    public final boolean isConnected() {
+        return this.zahp instanceof zaah;
+    }
+
+    public final boolean isConnecting() {
+        return this.zahp instanceof zaak;
+    }
+
+    @GuardedBy("mLock")
+    public final void zaw() {
+        if (isConnected()) {
+            ((zaah) this.zahp).zaam();
+        }
+    }
+
+    public final void zaa(@NonNull ConnectionResult connectionResult, @NonNull Api&lt;?&gt; api, boolean z) {
+        this.zaen.lock();
+        try {
+            this.zahp.zaa(connectionResult, api, z);
+        } finally {
+            this.zaen.unlock();
+        }
+    }
+
+    public final void onConnected(@Nullable Bundle bundle) {
+        this.zaen.lock();
+        try {
+            this.zahp.onConnected(bundle);
+        } finally {
+            this.zaen.unlock();
+        }
+    }
+
+    public final void onConnectionSuspended(int i) {
+        this.zaen.lock();
+        try {
+            this.zahp.onConnectionSuspended(i);
+        } finally {
+            this.zaen.unlock();
+        }
+    }
+
+    final void zaa(zabf com_google_android_gms_common_api_internal_zabf) {
+        this.zahn.sendMessage(this.zahn.obtainMessage(1, com_google_android_gms_common_api_internal_zabf));
+    }
+
+    final void zab(RuntimeException runtimeException) {
+        this.zahn.sendMessage(this.zahn.obtainMessage(2, runtimeException));
+    }
+
+    public final void dump(String str, FileDescriptor fileDescriptor, PrintWriter printWriter, String[] strArr) {
+        String concat = String.valueOf(str).concat("  ");
+        printWriter.append(str).append("mState=").println(this.zahp);
+        for (Api api : this.zaev.keySet()) {
+            printWriter.append(str).append(api.getName()).println(":");
+            ((Client) this.zagy.get(api.getClientKey())).dump(concat, fileDescriptor, printWriter, strArr);
+        }
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:12 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

@@ -1,0 +1,481 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9"><div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/libraries/cast/companionlibrary/utils/FetchBitmapTask.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/libraries/cast/companionlibrary/utils/FetchBitmapTask.java</a></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-55">report</i><h5>net.URL|openStream</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>Insecure Communication: the app URL can connect to http/https/ftp/jar</span></div></li></ul><ul class="collapsible"><li><div class="collapsible-header"><img data-position="top" data-tooltip="OWASP item" src="html/owasp_logo.png" height="20em" style="margin-right: 1rem;margin-left: 5px;" class="tooltipped"></img> OWASP Item</div><div class="collapsible-body"><span>For more information, have a look at: https://www.owasp.org/index.php/OWASP_Mobile_Security_Testing_Guide</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#FetchBitmapTask_java14netU" class="active">line 14</a></li><li class="tab"><a style="color: #d82c2b;" href="#FetchBitmapTask_java17netU">line 17</a></li><li class="tab"><a style="color: #d82c2b;" href="#FetchBitmapTask_java81netU">line 81</a></li><li class="tab"><a style="color: #d82c2b;" href="#FetchBitmapTask_java126netU">line 126</a></li></ul></div><div class="card-content"><div id="FetchBitmapTask_java14netU">Code @ line 14<pre data-start="11" data-line="14" data-src="FetchBitmapTask.java" class="code line-numbers"><code>    private final int mPreferredHeight;
+    private final int mPreferredWidth;
+
+    private android.graphics.Point calculateOriginalDimensions(java.net.URL r1) {
+        /* JADX: method processing error */
+/*
+Error: jadx.core.utils.exceptions.DecodeException: Load method exception in method: com.google.android.libraries.cast.companionlibrary.utils.FetchBitmapTask.calculateOriginalDimensions(java.net.URL):android.graphics.Point
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogMTQgOiBuZXQuVVJMfG9wZW5TdHJlYW18fHw1NXx8fG5ldC5VUkx8b3BlblN0cmVhbXx8fDE0fHx8MTE">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogMTQgOiBuZXQuVVJMfG9wZW5TdHJlYW18fHw1NXx8fG5ldC5VUkx8b3BlblN0cmVhbXx8fDE0fHx8MTE')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogMTQgOiBuZXQuVVJMfG9wZW5TdHJlYW18fHw1NXx8fG5ldC5VUkx8b3BlblN0cmVhbXx8fDE0fHx8MTE').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogMTQgOiBuZXQuVVJMfG9wZW5TdHJlYW18fHw1NXx8fG5ldC5VUkx8b3BlblN0cmVhbXx8fDE0fHx8MTE" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogMTQgOiBuZXQuVVJMfG9wZW5TdHJlYW18fHw1NXx8fG5ldC5VUkx8b3BlblN0cmVhbXx8fDE0fHx8MTE' , 'ICAgIHByaXZhdGUgZmluYWwgaW50IG1QcmVmZXJyZWRIZWlnaHQ7CiAgICBwcml2YXRlIGZpbmFsIGludCBtUHJlZmVycmVkV2lkdGg7CgogICAgcHJpdmF0ZSBhbmRyb2lkLmdyYXBoaWNzLlBvaW50IGNhbGN1bGF0ZU9yaWdpbmFsRGltZW5zaW9ucyhqYXZhLm5ldC5VUkwgcjEpIHsKICAgICAgICAvKiBKQURYOiBtZXRob2QgcHJvY2Vzc2luZyBlcnJvciAqLwovKgpFcnJvcjogamFkeC5jb3JlLnV0aWxzLmV4Y2VwdGlvbnMuRGVjb2RlRXhjZXB0aW9uOiBMb2FkIG1ldGhvZCBleGNlcHRpb24gaW4gbWV0aG9kOiBjb20uZ29vZ2xlLmFuZHJvaWQubGlicmFyaWVzLmNhc3QuY29tcGFuaW9ubGlicmFyeS51dGlscy5GZXRjaEJpdG1hcFRhc2suY2FsY3VsYXRlT3JpZ2luYWxEaW1lbnNpb25zKGphdmEubmV0LlVSTCk6YW5kcm9pZC5ncmFwaGljcy5Qb2ludAo=');  
+                                            });
+                                            </script>
+                                            </div><div id="FetchBitmapTask_java17netU">Code @ line 17<pre data-start="14" data-line="17" data-src="FetchBitmapTask.java" class="code line-numbers"><code>    private android.graphics.Point calculateOriginalDimensions(java.net.URL r1) {
+        /* JADX: method processing error */
+/*
+Error: jadx.core.utils.exceptions.DecodeException: Load method exception in method: com.google.android.libraries.cast.companionlibrary.utils.FetchBitmapTask.calculateOriginalDimensions(java.net.URL):android.graphics.Point
+	at jadx.core.dex.nodes.MethodNode.load(MethodNode.java:116)
+	at jadx.core.dex.nodes.ClassNode.load(ClassNode.java:249)
+	at jadx.core.ProcessClass.process(ProcessClass.java:34)
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogMTcgOiBuZXQuVVJMfG9wZW5TdHJlYW18fHw1NXx8fG5ldC5VUkx8b3BlblN0cmVhbXx8fDE3fHx8MTQ">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogMTcgOiBuZXQuVVJMfG9wZW5TdHJlYW18fHw1NXx8fG5ldC5VUkx8b3BlblN0cmVhbXx8fDE3fHx8MTQ')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogMTcgOiBuZXQuVVJMfG9wZW5TdHJlYW18fHw1NXx8fG5ldC5VUkx8b3BlblN0cmVhbXx8fDE3fHx8MTQ').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogMTcgOiBuZXQuVVJMfG9wZW5TdHJlYW18fHw1NXx8fG5ldC5VUkx8b3BlblN0cmVhbXx8fDE3fHx8MTQ" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogMTcgOiBuZXQuVVJMfG9wZW5TdHJlYW18fHw1NXx8fG5ldC5VUkx8b3BlblN0cmVhbXx8fDE3fHx8MTQ' , 'ICAgIHByaXZhdGUgYW5kcm9pZC5ncmFwaGljcy5Qb2ludCBjYWxjdWxhdGVPcmlnaW5hbERpbWVuc2lvbnMoamF2YS5uZXQuVVJMIHIxKSB7CiAgICAgICAgLyogSkFEWDogbWV0aG9kIHByb2Nlc3NpbmcgZXJyb3IgKi8KLyoKRXJyb3I6IGphZHguY29yZS51dGlscy5leGNlcHRpb25zLkRlY29kZUV4Y2VwdGlvbjogTG9hZCBtZXRob2QgZXhjZXB0aW9uIGluIG1ldGhvZDogY29tLmdvb2dsZS5hbmRyb2lkLmxpYnJhcmllcy5jYXN0LmNvbXBhbmlvbmxpYnJhcnkudXRpbHMuRmV0Y2hCaXRtYXBUYXNrLmNhbGN1bGF0ZU9yaWdpbmFsRGltZW5zaW9ucyhqYXZhLm5ldC5VUkwpOmFuZHJvaWQuZ3JhcGhpY3MuUG9pbnQKCWF0IGphZHguY29yZS5kZXgubm9kZXMuTWV0aG9kTm9kZS5sb2FkKE1ldGhvZE5vZGUuamF2YToxMTYpCglhdCBqYWR4LmNvcmUuZGV4Lm5vZGVzLkNsYXNzTm9kZS5sb2FkKENsYXNzTm9kZS5qYXZhOjI0OSkKCWF0IGphZHguY29yZS5Qcm9jZXNzQ2xhc3MucHJvY2VzcyhQcm9jZXNzQ2xhc3MuamF2YTozNCkK');  
+                                            });
+                                            </script>
+                                            </div><div id="FetchBitmapTask_java81netU">Code @ line 81<pre data-start="78" data-line="81" data-src="FetchBitmapTask.java" class="code line-numbers"><code>        r6.&lt;init&gt;(r1, r1);
+        return r6;
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.google.android.libraries.cast.companionlibrary.utils.FetchBitmapTask.calculateOriginalDimensions(java.net.URL):android.graphics.Point");
+    }
+
+    public FetchBitmapTask(int i, int i2, boolean z) {
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogODEgOiBuZXQuVVJMfG9wZW5TdHJlYW18fHw1NXx8fG5ldC5VUkx8b3BlblN0cmVhbXx8fDgxfHx8Nzg">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogODEgOiBuZXQuVVJMfG9wZW5TdHJlYW18fHw1NXx8fG5ldC5VUkx8b3BlblN0cmVhbXx8fDgxfHx8Nzg')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogODEgOiBuZXQuVVJMfG9wZW5TdHJlYW18fHw1NXx8fG5ldC5VUkx8b3BlblN0cmVhbXx8fDgxfHx8Nzg').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogODEgOiBuZXQuVVJMfG9wZW5TdHJlYW18fHw1NXx8fG5ldC5VUkx8b3BlblN0cmVhbXx8fDgxfHx8Nzg" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogODEgOiBuZXQuVVJMfG9wZW5TdHJlYW18fHw1NXx8fG5ldC5VUkx8b3BlblN0cmVhbXx8fDgxfHx8Nzg' , 'ICAgICAgICByNi48aW5pdD4ocjEsIHIxKTsKICAgICAgICByZXR1cm4gcjY7CiAgICAgICAgKi8KICAgICAgICB0aHJvdyBuZXcgVW5zdXBwb3J0ZWRPcGVyYXRpb25FeGNlcHRpb24oIk1ldGhvZCBub3QgZGVjb21waWxlZDogY29tLmdvb2dsZS5hbmRyb2lkLmxpYnJhcmllcy5jYXN0LmNvbXBhbmlvbmxpYnJhcnkudXRpbHMuRmV0Y2hCaXRtYXBUYXNrLmNhbGN1bGF0ZU9yaWdpbmFsRGltZW5zaW9ucyhqYXZhLm5ldC5VUkwpOmFuZHJvaWQuZ3JhcGhpY3MuUG9pbnQiKTsKICAgIH0KCiAgICBwdWJsaWMgRmV0Y2hCaXRtYXBUYXNrKGludCBpLCBpbnQgaTIsIGJvb2xlYW4geikgewo=');  
+                                            });
+                                            </script>
+                                            </div><div id="FetchBitmapTask_java126netU">Code @ line 126<pre data-start="123" data-line="126" data-src="FetchBitmapTask.java" class="code line-numbers"><code>    L_0x000a:
+        goto L_0x00d9;
+    L_0x000c:
+        r3 = new java.net.URL;	 Catch:{ MalformedURLException -&gt; 0x00d0 }
+        r8 = r8[r0];	 Catch:{ MalformedURLException -&gt; 0x00d0 }
+        r8 = r8.toString();	 Catch:{ MalformedURLException -&gt; 0x00d0 }
+        r3.&lt;init&gt;(r8);	 Catch:{ MalformedURLException -&gt; 0x00d0 }
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogMTI2IDogbmV0LlVSTHxvcGVuU3RyZWFtfHx8NTV8fHxuZXQuVVJMfG9wZW5TdHJlYW18fHwxMjZ8fHwxMjM">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogMTI2IDogbmV0LlVSTHxvcGVuU3RyZWFtfHx8NTV8fHxuZXQuVVJMfG9wZW5TdHJlYW18fHwxMjZ8fHwxMjM')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogMTI2IDogbmV0LlVSTHxvcGVuU3RyZWFtfHx8NTV8fHxuZXQuVVJMfG9wZW5TdHJlYW18fHwxMjZ8fHwxMjM').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogMTI2IDogbmV0LlVSTHxvcGVuU3RyZWFtfHx8NTV8fHxuZXQuVVJMfG9wZW5TdHJlYW18fHwxMjZ8fHwxMjM" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogMTI2IDogbmV0LlVSTHxvcGVuU3RyZWFtfHx8NTV8fHxuZXQuVVJMfG9wZW5TdHJlYW18fHwxMjZ8fHwxMjM' , 'ICAgIExfMHgwMDBhOgogICAgICAgIGdvdG8gTF8weDAwZDk7CiAgICBMXzB4MDAwYzoKICAgICAgICByMyA9IG5ldyBqYXZhLm5ldC5VUkw7CSBDYXRjaDp7IE1hbGZvcm1lZFVSTEV4Y2VwdGlvbiAtPiAweDAwZDAgfQogICAgICAgIHI4ID0gcjhbcjBdOwkgQ2F0Y2g6eyBNYWxmb3JtZWRVUkxFeGNlcHRpb24gLT4gMHgwMGQwIH0KICAgICAgICByOCA9IHI4LnRvU3RyaW5nKCk7CSBDYXRjaDp7IE1hbGZvcm1lZFVSTEV4Y2VwdGlvbiAtPiAweDAwZDAgfQogICAgICAgIHIzLjxpbml0PihyOCk7CSBDYXRjaDp7IE1hbGZvcm1lZFVSTEV4Y2VwdGlvbiAtPiAweDAwZDAgfQo=');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-60">report</i><h5>ServerSocket|net.ServerSocket|connect[(][)]</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>the app opens TCP Server Sockets: Insecure use of network sockets</span></div></li></ul><ul class="collapsible"><li><div class="collapsible-header"><img data-position="top" data-tooltip="OWASP item" src="html/owasp_logo.png" height="20em" style="margin-right: 1rem;margin-left: 5px;" class="tooltipped"></img> OWASP Item</div><div class="collapsible-body"><span>For more information, have a look at: https://www.owasp.org/index.php/OWASP_Mobile_Security_Testing_Guide</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#FetchBitmapTask_java47Serv" class="active">line 47</a></li><li class="tab"><a style="color: #d82c2b;" href="#FetchBitmapTask_java66Serv">line 66</a></li><li class="tab"><a style="color: #d82c2b;" href="#FetchBitmapTask_java74Serv">line 74</a></li><li class="tab"><a style="color: #d82c2b;" href="#FetchBitmapTask_java201Serv">line 201</a></li><li class="tab"><a style="color: #d82c2b;" href="#FetchBitmapTask_java221Serv">line 221</a></li><li class="tab"><a style="color: #d82c2b;" href="#FetchBitmapTask_java234Serv">line 234</a></li></ul></div><div class="card-content"><div id="FetchBitmapTask_java47Serv">Code @ line 47<pre data-start="44" data-line="47" data-src="FetchBitmapTask.java" class="code line-numbers"><code>        r0 = r0.outHeight;
+        r2.&lt;init&gt;(r4, r0);
+        if (r6 == 0) goto L_0x0027;
+        r6.disconnect();
+        if (r3 == 0) goto L_0x002c;
+        r3.close();
+        return r2;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogNDcgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NDd8fHw0NA">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogNDcgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NDd8fHw0NA')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogNDcgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NDd8fHw0NA').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogNDcgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NDd8fHw0NA" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogNDcgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NDd8fHw0NA' , 'ICAgICAgICByMCA9IHIwLm91dEhlaWdodDsKICAgICAgICByMi48aW5pdD4ocjQsIHIwKTsKICAgICAgICBpZiAocjYgPT0gMCkgZ290byBMXzB4MDAyNzsKICAgICAgICByNi5kaXNjb25uZWN0KCk7CiAgICAgICAgaWYgKHIzID09IDApIGdvdG8gTF8weDAwMmM7CiAgICAgICAgcjMuY2xvc2UoKTsKICAgICAgICByZXR1cm4gcjI7Cg==');  
+                                            });
+                                            </script>
+                                            </div><div id="FetchBitmapTask_java66Serv">Code @ line 66<pre data-start="63" data-line="66" data-src="FetchBitmapTask.java" class="code line-numbers"><code>        r6 = r2;
+        r3 = r6;
+        if (r6 == 0) goto L_0x003e;
+        r6.disconnect();
+        if (r3 == 0) goto L_0x0043;
+        r3.close();
+        throw r0;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogNjYgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjZ8fHw2Mw">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogNjYgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjZ8fHw2Mw')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogNjYgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjZ8fHw2Mw').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogNjYgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjZ8fHw2Mw" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogNjYgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjZ8fHw2Mw' , 'ICAgICAgICByNiA9IHIyOwogICAgICAgIHIzID0gcjY7CiAgICAgICAgaWYgKHI2ID09IDApIGdvdG8gTF8weDAwM2U7CiAgICAgICAgcjYuZGlzY29ubmVjdCgpOwogICAgICAgIGlmIChyMyA9PSAwKSBnb3RvIExfMHgwMDQzOwogICAgICAgIHIzLmNsb3NlKCk7CiAgICAgICAgdGhyb3cgcjA7Cg==');  
+                                            });
+                                            </script>
+                                            </div><div id="FetchBitmapTask_java74Serv">Code @ line 74<pre data-start="71" data-line="74" data-src="FetchBitmapTask.java" class="code line-numbers"><code>        r6 = r2;
+        r3 = r6;
+        if (r6 == 0) goto L_0x004b;
+        r6.disconnect();
+        if (r3 == 0) goto L_0x0050;
+        r3.close();
+        r6 = new android.graphics.Point;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogNzQgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NzR8fHw3MQ">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogNzQgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NzR8fHw3MQ')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogNzQgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NzR8fHw3MQ').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogNzQgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NzR8fHw3MQ" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogNzQgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NzR8fHw3MQ' , 'ICAgICAgICByNiA9IHIyOwogICAgICAgIHIzID0gcjY7CiAgICAgICAgaWYgKHI2ID09IDApIGdvdG8gTF8weDAwNGI7CiAgICAgICAgcjYuZGlzY29ubmVjdCgpOwogICAgICAgIGlmIChyMyA9PSAwKSBnb3RvIExfMHgwMDUwOwogICAgICAgIHIzLmNsb3NlKCk7CiAgICAgICAgcjYgPSBuZXcgYW5kcm9pZC5ncmFwaGljcy5Qb2ludDsK');  
+                                            });
+                                            </script>
+                                            </div><div id="FetchBitmapTask_java201Serv">Code @ line 201<pre data-start="198" data-line="201" data-src="FetchBitmapTask.java" class="code line-numbers"><code>    L_0x0090:
+        if (r0 == 0) goto L_0x0095;
+    L_0x0092:
+        r0.disconnect();
+    L_0x0095:
+        if (r1 == 0) goto L_0x009a;
+    L_0x0097:
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogMjAxIDogU2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDYwfHx8U2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDIwMXx8fDE5OA">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogMjAxIDogU2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDYwfHx8U2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDIwMXx8fDE5OA')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogMjAxIDogU2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDYwfHx8U2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDIwMXx8fDE5OA').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogMjAxIDogU2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDYwfHx8U2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDIwMXx8fDE5OA" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogMjAxIDogU2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDYwfHx8U2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDIwMXx8fDE5OA' , 'ICAgIExfMHgwMDkwOgogICAgICAgIGlmIChyMCA9PSAwKSBnb3RvIExfMHgwMDk1OwogICAgTF8weDAwOTI6CiAgICAgICAgcjAuZGlzY29ubmVjdCgpOwogICAgTF8weDAwOTU6CiAgICAgICAgaWYgKHIxID09IDApIGdvdG8gTF8weDAwOWE7CiAgICBMXzB4MDA5NzoK');  
+                                            });
+                                            </script>
+                                            </div><div id="FetchBitmapTask_java221Serv">Code @ line 221<pre data-start="218" data-line="221" data-src="FetchBitmapTask.java" class="code line-numbers"><code>    L_0x00a2:
+        if (r0 == 0) goto L_0x00a7;
+    L_0x00a4:
+        r0.disconnect();
+    L_0x00a7:
+        if (r2 == 0) goto L_0x00ac;
+    L_0x00a9:
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogMjIxIDogU2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDYwfHx8U2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDIyMXx8fDIxOA">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogMjIxIDogU2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDYwfHx8U2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDIyMXx8fDIxOA')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogMjIxIDogU2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDYwfHx8U2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDIyMXx8fDIxOA').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogMjIxIDogU2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDYwfHx8U2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDIyMXx8fDIxOA" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogMjIxIDogU2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDYwfHx8U2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDIyMXx8fDIxOA' , 'ICAgIExfMHgwMGEyOgogICAgICAgIGlmIChyMCA9PSAwKSBnb3RvIExfMHgwMGE3OwogICAgTF8weDAwYTQ6CiAgICAgICAgcjAuZGlzY29ubmVjdCgpOwogICAgTF8weDAwYTc6CiAgICAgICAgaWYgKHIyID09IDApIGdvdG8gTF8weDAwYWM7CiAgICBMXzB4MDBhOToK');  
+                                            });
+                                            </script>
+                                            </div><div id="FetchBitmapTask_java234Serv">Code @ line 234<pre data-start="231" data-line="234" data-src="FetchBitmapTask.java" class="code line-numbers"><code>    L_0x00af:
+        if (r0 == 0) goto L_0x00b4;
+    L_0x00b1:
+        r0.disconnect();
+    L_0x00b4:
+        if (r2 == 0) goto L_0x00b9;
+    L_0x00b6:
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogMjM0IDogU2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDYwfHx8U2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDIzNHx8fDIzMQ">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogMjM0IDogU2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDYwfHx8U2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDIzNHx8fDIzMQ')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogMjM0IDogU2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDYwfHx8U2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDIzNHx8fDIzMQ').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogMjM0IDogU2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDYwfHx8U2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDIzNHx8fDIzMQ" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9saWJyYXJpZXMvY2FzdC9jb21wYW5pb25saWJyYXJ5L3V0aWxzL0ZldGNoQml0bWFwVGFzay5qYXZhfHx8bGluZTogMjM0IDogU2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDYwfHx8U2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDIzNHx8fDIzMQ' , 'ICAgIExfMHgwMGFmOgogICAgICAgIGlmIChyMCA9PSAwKSBnb3RvIExfMHgwMGI0OwogICAgTF8weDAwYjE6CiAgICAgICAgcjAuZGlzY29ubmVjdCgpOwogICAgTF8weDAwYjQ6CiAgICAgICAgaWYgKHIyID09IDApIGdvdG8gTF8weDAwYjk7CiAgICBMXzB4MDBiNjoK');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="FetchBitmapTask.java" data-line="14,17,81,126,47,66,74,201,221,234," class="code line-numbers"><code>package com.google.android.libraries.cast.companionlibrary.utils;
+
+import android.annotation.TargetApi;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Build.VERSION;
+
+public abstract class FetchBitmapTask extends AsyncTask&lt;Uri, Void, Bitmap&gt; {
+    private final boolean mAllowedToScale;
+    private final int mPreferredHeight;
+    private final int mPreferredWidth;
+
+    private android.graphics.Point calculateOriginalDimensions(java.net.URL r1) {
+        /* JADX: method processing error */
+/*
+Error: jadx.core.utils.exceptions.DecodeException: Load method exception in method: com.google.android.libraries.cast.companionlibrary.utils.FetchBitmapTask.calculateOriginalDimensions(java.net.URL):android.graphics.Point
+	at jadx.core.dex.nodes.MethodNode.load(MethodNode.java:116)
+	at jadx.core.dex.nodes.ClassNode.load(ClassNode.java:249)
+	at jadx.core.ProcessClass.process(ProcessClass.java:34)
+	at jadx.api.JadxDecompiler.processClass(JadxDecompiler.java:306)
+	at jadx.api.JavaClass.decompile(JavaClass.java:62)
+	at jadx.api.JadxDecompiler$1.run(JadxDecompiler.java:199)
+Caused by: java.lang.NullPointerException
+	at jadx.core.dex.nodes.MethodNode.initTryCatches(MethodNode.java:305)
+	at jadx.core.dex.nodes.MethodNode.load(MethodNode.java:105)
+	... 5 more
+*/
+        /*
+        r0 = this;
+        r0 = new android.graphics.BitmapFactory$Options;
+        r0.&lt;init&gt;();
+        r1 = 1;
+        r0.inJustDecodeBounds = r1;
+        r1 = 0;
+        r0.inSampleSize = r1;
+        r2 = 0;
+        r6 = r6.openConnection();
+        r6 = (java.net.HttpURLConnection) r6;
+        r3 = r6.getInputStream();
+        android.graphics.BitmapFactory.decodeStream(r3, r2, r0);
+        r2 = new android.graphics.Point;
+        r4 = r0.outWidth;
+        r0 = r0.outHeight;
+        r2.&lt;init&gt;(r4, r0);
+        if (r6 == 0) goto L_0x0027;
+        r6.disconnect();
+        if (r3 == 0) goto L_0x002c;
+        r3.close();
+        return r2;
+        r0 = move-exception;
+        goto L_0x0039;
+        goto L_0x0046;
+    L_0x0031:
+        r0 = move-exception;
+        r3 = r2;
+        goto L_0x0039;
+    L_0x0034:
+        r3 = r2;
+        goto L_0x0046;
+    L_0x0036:
+        r0 = move-exception;
+        r6 = r2;
+        r3 = r6;
+        if (r6 == 0) goto L_0x003e;
+        r6.disconnect();
+        if (r3 == 0) goto L_0x0043;
+        r3.close();
+        throw r0;
+    L_0x0044:
+        r6 = r2;
+        r3 = r6;
+        if (r6 == 0) goto L_0x004b;
+        r6.disconnect();
+        if (r3 == 0) goto L_0x0050;
+        r3.close();
+        r6 = new android.graphics.Point;
+        r6.&lt;init&gt;(r1, r1);
+        return r6;
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.google.android.libraries.cast.companionlibrary.utils.FetchBitmapTask.calculateOriginalDimensions(java.net.URL):android.graphics.Point");
+    }
+
+    public FetchBitmapTask(int i, int i2, boolean z) {
+        this.mPreferredWidth = i;
+        this.mPreferredHeight = i2;
+        this.mAllowedToScale = z;
+    }
+
+    public FetchBitmapTask(int i, int i2) {
+        this(i, i2, false);
+    }
+
+    public FetchBitmapTask() {
+        this(0, 0);
+    }
+
+    protected android.graphics.Bitmap doInBackground(android.net.Uri... r8) {
+        /* JADX: method processing error */
+/*
+Error: java.lang.NullPointerException
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.searchTryCatchDominators(ProcessTryCatchRegions.java:75)
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.process(ProcessTryCatchRegions.java:45)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.postProcessRegions(RegionMakerVisitor.java:63)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.visit(RegionMakerVisitor.java:58)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:31)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:17)
+	at jadx.core.ProcessClass.process(ProcessClass.java:37)
+	at jadx.api.JadxDecompiler.processClass(JadxDecompiler.java:306)
+	at jadx.api.JavaClass.decompile(JavaClass.java:62)
+	at jadx.api.JadxDecompiler$1.run(JadxDecompiler.java:199)
+*/
+        /*
+        r7 = this;
+        r0 = r8.length;
+        r1 = 1;
+        r2 = 0;
+        if (r0 != r1) goto L_0x00d9;
+    L_0x0005:
+        r0 = 0;
+        r3 = r8[r0];
+        if (r3 != 0) goto L_0x000c;
+    L_0x000a:
+        goto L_0x00d9;
+    L_0x000c:
+        r3 = new java.net.URL;	 Catch:{ MalformedURLException -&gt; 0x00d0 }
+        r8 = r8[r0];	 Catch:{ MalformedURLException -&gt; 0x00d0 }
+        r8 = r8.toString();	 Catch:{ MalformedURLException -&gt; 0x00d0 }
+        r3.&lt;init&gt;(r8);	 Catch:{ MalformedURLException -&gt; 0x00d0 }
+        r8 = "CCL";	 Catch:{ MalformedURLException -&gt; 0x00d0 }
+        r4 = new java.lang.StringBuilder;	 Catch:{ MalformedURLException -&gt; 0x00d0 }
+        r4.&lt;init&gt;();	 Catch:{ MalformedURLException -&gt; 0x00d0 }
+        r5 = "url=";	 Catch:{ MalformedURLException -&gt; 0x00d0 }
+        r4.append(r5);	 Catch:{ MalformedURLException -&gt; 0x00d0 }
+        r4.append(r3);	 Catch:{ MalformedURLException -&gt; 0x00d0 }
+        r4 = r4.toString();	 Catch:{ MalformedURLException -&gt; 0x00d0 }
+        com.google.android.libraries.cast.companionlibrary.utils.LogUtils.d(r8, r4);	 Catch:{ MalformedURLException -&gt; 0x00d0 }
+        r8 = new android.graphics.BitmapFactory$Options;
+        r8.&lt;init&gt;();
+        r8.inJustDecodeBounds = r0;
+        r8.inSampleSize = r1;
+        r0 = r7.mPreferredWidth;
+        if (r0 &lt;= 0) goto L_0x0058;
+    L_0x003a:
+        r0 = r7.mPreferredHeight;
+        if (r0 &lt;= 0) goto L_0x0058;
+    L_0x003e:
+        r0 = r7.calculateOriginalDimensions(r3);
+        r4 = r0.x;
+        if (r4 &lt;= 0) goto L_0x0058;
+    L_0x0046:
+        r4 = r0.y;
+        if (r4 &lt;= 0) goto L_0x0058;
+    L_0x004a:
+        r4 = r0.x;
+        r0 = r0.y;
+        r5 = r7.mPreferredWidth;
+        r6 = r7.mPreferredHeight;
+        r0 = r7.calculateInSampleSize(r4, r0, r5, r6);
+        r8.inSampleSize = r0;
+    L_0x0058:
+        r0 = r3.openConnection();	 Catch:{ IOException -&gt; 0x00ad, all -&gt; 0x00a0 }
+        r0 = (java.net.HttpURLConnection) r0;	 Catch:{ IOException -&gt; 0x00ad, all -&gt; 0x00a0 }
+        r0.setDoInput(r1);	 Catch:{ IOException -&gt; 0x009e, all -&gt; 0x009c }
+        r1 = r0.getResponseCode();	 Catch:{ IOException -&gt; 0x009e, all -&gt; 0x009c }
+        r3 = 200; // 0xc8 float:2.8E-43 double:9.9E-322;	 Catch:{ IOException -&gt; 0x009e, all -&gt; 0x009c }
+        if (r1 != r3) goto L_0x008f;	 Catch:{ IOException -&gt; 0x009e, all -&gt; 0x009c }
+    L_0x0069:
+        r1 = new java.io.BufferedInputStream;	 Catch:{ IOException -&gt; 0x009e, all -&gt; 0x009c }
+        r3 = r0.getInputStream();	 Catch:{ IOException -&gt; 0x009e, all -&gt; 0x009c }
+        r1.&lt;init&gt;(r3);	 Catch:{ IOException -&gt; 0x009e, all -&gt; 0x009c }
+        r8 = android.graphics.BitmapFactory.decodeStream(r1, r2, r8);	 Catch:{ IOException -&gt; 0x008c, all -&gt; 0x0089 }
+        r2 = r7.mPreferredWidth;	 Catch:{ IOException -&gt; 0x008d, all -&gt; 0x0089 }
+        if (r2 &lt;= 0) goto L_0x0087;	 Catch:{ IOException -&gt; 0x008d, all -&gt; 0x0089 }
+    L_0x007a:
+        r2 = r7.mPreferredHeight;	 Catch:{ IOException -&gt; 0x008d, all -&gt; 0x0089 }
+        if (r2 &lt;= 0) goto L_0x0087;	 Catch:{ IOException -&gt; 0x008d, all -&gt; 0x0089 }
+    L_0x007e:
+        r2 = r7.mAllowedToScale;	 Catch:{ IOException -&gt; 0x008d, all -&gt; 0x0089 }
+        if (r2 == 0) goto L_0x0087;	 Catch:{ IOException -&gt; 0x008d, all -&gt; 0x0089 }
+    L_0x0082:
+        r2 = r7.scaleBitmap(r8);	 Catch:{ IOException -&gt; 0x008d, all -&gt; 0x0089 }
+        goto L_0x0090;
+    L_0x0087:
+        r2 = r8;
+        goto L_0x0090;
+    L_0x0089:
+        r8 = move-exception;
+        r2 = r1;
+        goto L_0x00a2;
+    L_0x008c:
+        r8 = r2;
+    L_0x008d:
+        r2 = r1;
+        goto L_0x00af;
+    L_0x008f:
+        r1 = r2;
+    L_0x0090:
+        if (r0 == 0) goto L_0x0095;
+    L_0x0092:
+        r0.disconnect();
+    L_0x0095:
+        if (r1 == 0) goto L_0x009a;
+    L_0x0097:
+        r1.close();	 Catch:{ IOException -&gt; 0x009a }
+    L_0x009a:
+        r8 = r2;
+        goto L_0x00b9;
+    L_0x009c:
+        r8 = move-exception;
+        goto L_0x00a2;
+    L_0x009e:
+        r8 = r2;
+        goto L_0x00af;
+    L_0x00a0:
+        r8 = move-exception;
+        r0 = r2;
+    L_0x00a2:
+        if (r0 == 0) goto L_0x00a7;
+    L_0x00a4:
+        r0.disconnect();
+    L_0x00a7:
+        if (r2 == 0) goto L_0x00ac;
+    L_0x00a9:
+        r2.close();	 Catch:{ IOException -&gt; 0x00ac }
+    L_0x00ac:
+        throw r8;
+    L_0x00ad:
+        r8 = r2;
+        r0 = r8;
+    L_0x00af:
+        if (r0 == 0) goto L_0x00b4;
+    L_0x00b1:
+        r0.disconnect();
+    L_0x00b4:
+        if (r2 == 0) goto L_0x00b9;
+    L_0x00b6:
+        r2.close();	 Catch:{ IOException -&gt; 0x00b9 }
+    L_0x00b9:
+        r0 = "CCL";
+        r1 = new java.lang.StringBuilder;
+        r1.&lt;init&gt;();
+        r2 = "bitmap=";
+        r1.append(r2);
+        r1.append(r8);
+        r1 = r1.toString();
+        com.google.android.libraries.cast.companionlibrary.utils.LogUtils.d(r0, r1);
+        return r8;
+    L_0x00d0:
+        r8 = move-exception;
+        r0 = "CCL";
+        r1 = "MalformedURLException";
+        com.google.android.libraries.cast.companionlibrary.utils.LogUtils.d(r0, r1, r8);
+        return r2;
+    L_0x00d9:
+        return r2;
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.google.android.libraries.cast.companionlibrary.utils.FetchBitmapTask.doInBackground(android.net.Uri[]):android.graphics.Bitmap");
+    }
+
+    @TargetApi(11)
+    public void execute(Uri uri) {
+        if (VERSION.SDK_INT &gt;= 11) {
+            executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, new Uri[]{uri});
+            return;
+        }
+        execute(new Uri[]{uri});
+    }
+
+    private Bitmap scaleBitmap(Bitmap bitmap) {
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+        int i = height - this.mPreferredHeight;
+        if (width - this.mPreferredWidth == 0 &amp;&amp; i == 0) {
+            return bitmap;
+        }
+        float f = (float) width;
+        float f2 = (float) height;
+        float min = Math.min(((float) this.mPreferredHeight) / f2, ((float) this.mPreferredWidth) / f);
+        return Bitmap.createScaledBitmap(bitmap, (int) ((f * min) + 0.5f), (int) ((f2 * min) + 0.5f), false);
+    }
+
+    private int calculateInSampleSize(int i, int i2, int i3, int i4) {
+        int i5 = 1;
+        if (i2 &gt; i4 || i &gt; i3) {
+            i2 /= 2;
+            i /= 2;
+            while (i2 / i5 &gt; i4 &amp;&amp; i / i5 &gt; i3) {
+                i5 *= 2;
+            }
+        }
+        return i5;
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:7 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

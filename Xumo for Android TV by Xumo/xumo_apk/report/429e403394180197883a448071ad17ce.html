@@ -1,0 +1,253 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9"><div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/crashlytics/android/answers/SessionEvent.java" target="_blank">/xumo_apk/jadx_source_code/com/crashlytics/android/answers/SessionEvent.java</a></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-83">report</i><h5>password =|secret =|username =|key =</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>the app contain hardcoded sensitive informations like usernames, passwords, keys etc: Hard coded sensitive information in Application Code (including Crypto)</span></div></li></ul><ul class="collapsible"><li><div class="collapsible-header"><img data-position="top" data-tooltip="OWASP item" src="html/owasp_logo.png" height="20em" style="margin-right: 1rem;margin-left: 5px;" class="tooltipped"></img> OWASP Item</div><div class="collapsible-body"><span>For more information, have a look at: https://www.owasp.org/index.php/OWASP_Mobile_Security_Testing_Guide</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#SessionEvent_java8pass" class="active">line 8</a></li><li class="tab"><a style="color: #d82c2b;" href="#SessionEvent_java9pass">line 9</a></li><li class="tab"><a style="color: #d82c2b;" href="#SessionEvent_java10pass">line 10</a></li><li class="tab"><a style="color: #d82c2b;" href="#SessionEvent_java11pass">line 11</a></li></ul></div><div class="card-content"><div id="SessionEvent_java8pass">Code @ line 8<pre data-start="5" data-line="8" data-src="SessionEvent.java" class="code line-numbers"><code>import java.util.Map;
+
+final class SessionEvent {
+    static final String ACTIVITY_KEY = "activity";
+    static final String EXCEPTION_NAME_KEY = "exceptionName";
+    static final String INSTALLED_AT_KEY = "installedAt";
+    static final String SESSION_ID_KEY = "sessionId";
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2Fuc3dlcnMvU2Vzc2lvbkV2ZW50LmphdmF8fHxsaW5lOiA4IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4fHx8NQ">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2Fuc3dlcnMvU2Vzc2lvbkV2ZW50LmphdmF8fHxsaW5lOiA4IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4fHx8NQ')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2Fuc3dlcnMvU2Vzc2lvbkV2ZW50LmphdmF8fHxsaW5lOiA4IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4fHx8NQ').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2Fuc3dlcnMvU2Vzc2lvbkV2ZW50LmphdmF8fHxsaW5lOiA4IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4fHx8NQ" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2Fuc3dlcnMvU2Vzc2lvbkV2ZW50LmphdmF8fHxsaW5lOiA4IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4fHx8NQ' , 'aW1wb3J0IGphdmEudXRpbC5NYXA7CgpmaW5hbCBjbGFzcyBTZXNzaW9uRXZlbnQgewogICAgc3RhdGljIGZpbmFsIFN0cmluZyBBQ1RJVklUWV9LRVkgPSAiYWN0aXZpdHkiOwogICAgc3RhdGljIGZpbmFsIFN0cmluZyBFWENFUFRJT05fTkFNRV9LRVkgPSAiZXhjZXB0aW9uTmFtZSI7CiAgICBzdGF0aWMgZmluYWwgU3RyaW5nIElOU1RBTExFRF9BVF9LRVkgPSAiaW5zdGFsbGVkQXQiOwogICAgc3RhdGljIGZpbmFsIFN0cmluZyBTRVNTSU9OX0lEX0tFWSA9ICJzZXNzaW9uSWQiOwo=');  
+                                            });
+                                            </script>
+                                            </div><div id="SessionEvent_java9pass">Code @ line 9<pre data-start="6" data-line="9" data-src="SessionEvent.java" class="code line-numbers"><code>
+final class SessionEvent {
+    static final String ACTIVITY_KEY = "activity";
+    static final String EXCEPTION_NAME_KEY = "exceptionName";
+    static final String INSTALLED_AT_KEY = "installedAt";
+    static final String SESSION_ID_KEY = "sessionId";
+    public final Map&lt;String, Object&gt; customAttributes;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2Fuc3dlcnMvU2Vzc2lvbkV2ZW50LmphdmF8fHxsaW5lOiA5IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw5fHx8Ng">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2Fuc3dlcnMvU2Vzc2lvbkV2ZW50LmphdmF8fHxsaW5lOiA5IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw5fHx8Ng')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2Fuc3dlcnMvU2Vzc2lvbkV2ZW50LmphdmF8fHxsaW5lOiA5IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw5fHx8Ng').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2Fuc3dlcnMvU2Vzc2lvbkV2ZW50LmphdmF8fHxsaW5lOiA5IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw5fHx8Ng" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2Fuc3dlcnMvU2Vzc2lvbkV2ZW50LmphdmF8fHxsaW5lOiA5IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw5fHx8Ng' , 'CmZpbmFsIGNsYXNzIFNlc3Npb25FdmVudCB7CiAgICBzdGF0aWMgZmluYWwgU3RyaW5nIEFDVElWSVRZX0tFWSA9ICJhY3Rpdml0eSI7CiAgICBzdGF0aWMgZmluYWwgU3RyaW5nIEVYQ0VQVElPTl9OQU1FX0tFWSA9ICJleGNlcHRpb25OYW1lIjsKICAgIHN0YXRpYyBmaW5hbCBTdHJpbmcgSU5TVEFMTEVEX0FUX0tFWSA9ICJpbnN0YWxsZWRBdCI7CiAgICBzdGF0aWMgZmluYWwgU3RyaW5nIFNFU1NJT05fSURfS0VZID0gInNlc3Npb25JZCI7CiAgICBwdWJsaWMgZmluYWwgTWFwPFN0cmluZywgT2JqZWN0PiBjdXN0b21BdHRyaWJ1dGVzOwo=');  
+                                            });
+                                            </script>
+                                            </div><div id="SessionEvent_java10pass">Code @ line 10<pre data-start="7" data-line="10" data-src="SessionEvent.java" class="code line-numbers"><code>final class SessionEvent {
+    static final String ACTIVITY_KEY = "activity";
+    static final String EXCEPTION_NAME_KEY = "exceptionName";
+    static final String INSTALLED_AT_KEY = "installedAt";
+    static final String SESSION_ID_KEY = "sessionId";
+    public final Map&lt;String, Object&gt; customAttributes;
+    public final String customType;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2Fuc3dlcnMvU2Vzc2lvbkV2ZW50LmphdmF8fHxsaW5lOiAxMCA6IHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDgzfHx8cGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8MTB8fHw3">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2Fuc3dlcnMvU2Vzc2lvbkV2ZW50LmphdmF8fHxsaW5lOiAxMCA6IHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDgzfHx8cGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8MTB8fHw3')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2Fuc3dlcnMvU2Vzc2lvbkV2ZW50LmphdmF8fHxsaW5lOiAxMCA6IHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDgzfHx8cGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8MTB8fHw3').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2Fuc3dlcnMvU2Vzc2lvbkV2ZW50LmphdmF8fHxsaW5lOiAxMCA6IHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDgzfHx8cGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8MTB8fHw3" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2Fuc3dlcnMvU2Vzc2lvbkV2ZW50LmphdmF8fHxsaW5lOiAxMCA6IHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDgzfHx8cGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8MTB8fHw3' , 'ZmluYWwgY2xhc3MgU2Vzc2lvbkV2ZW50IHsKICAgIHN0YXRpYyBmaW5hbCBTdHJpbmcgQUNUSVZJVFlfS0VZID0gImFjdGl2aXR5IjsKICAgIHN0YXRpYyBmaW5hbCBTdHJpbmcgRVhDRVBUSU9OX05BTUVfS0VZID0gImV4Y2VwdGlvbk5hbWUiOwogICAgc3RhdGljIGZpbmFsIFN0cmluZyBJTlNUQUxMRURfQVRfS0VZID0gImluc3RhbGxlZEF0IjsKICAgIHN0YXRpYyBmaW5hbCBTdHJpbmcgU0VTU0lPTl9JRF9LRVkgPSAic2Vzc2lvbklkIjsKICAgIHB1YmxpYyBmaW5hbCBNYXA8U3RyaW5nLCBPYmplY3Q+IGN1c3RvbUF0dHJpYnV0ZXM7CiAgICBwdWJsaWMgZmluYWwgU3RyaW5nIGN1c3RvbVR5cGU7Cg==');  
+                                            });
+                                            </script>
+                                            </div><div id="SessionEvent_java11pass">Code @ line 11<pre data-start="8" data-line="11" data-src="SessionEvent.java" class="code line-numbers"><code>    static final String ACTIVITY_KEY = "activity";
+    static final String EXCEPTION_NAME_KEY = "exceptionName";
+    static final String INSTALLED_AT_KEY = "installedAt";
+    static final String SESSION_ID_KEY = "sessionId";
+    public final Map&lt;String, Object&gt; customAttributes;
+    public final String customType;
+    public final Map&lt;String, String&gt; details;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2Fuc3dlcnMvU2Vzc2lvbkV2ZW50LmphdmF8fHxsaW5lOiAxMSA6IHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDgzfHx8cGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8MTF8fHw4">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2Fuc3dlcnMvU2Vzc2lvbkV2ZW50LmphdmF8fHxsaW5lOiAxMSA6IHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDgzfHx8cGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8MTF8fHw4')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2Fuc3dlcnMvU2Vzc2lvbkV2ZW50LmphdmF8fHxsaW5lOiAxMSA6IHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDgzfHx8cGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8MTF8fHw4').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2Fuc3dlcnMvU2Vzc2lvbkV2ZW50LmphdmF8fHxsaW5lOiAxMSA6IHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDgzfHx8cGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8MTF8fHw4" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9jcmFzaGx5dGljcy9hbmRyb2lkL2Fuc3dlcnMvU2Vzc2lvbkV2ZW50LmphdmF8fHxsaW5lOiAxMSA6IHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDgzfHx8cGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8MTF8fHw4' , 'ICAgIHN0YXRpYyBmaW5hbCBTdHJpbmcgQUNUSVZJVFlfS0VZID0gImFjdGl2aXR5IjsKICAgIHN0YXRpYyBmaW5hbCBTdHJpbmcgRVhDRVBUSU9OX05BTUVfS0VZID0gImV4Y2VwdGlvbk5hbWUiOwogICAgc3RhdGljIGZpbmFsIFN0cmluZyBJTlNUQUxMRURfQVRfS0VZID0gImluc3RhbGxlZEF0IjsKICAgIHN0YXRpYyBmaW5hbCBTdHJpbmcgU0VTU0lPTl9JRF9LRVkgPSAic2Vzc2lvbklkIjsKICAgIHB1YmxpYyBmaW5hbCBNYXA8U3RyaW5nLCBPYmplY3Q+IGN1c3RvbUF0dHJpYnV0ZXM7CiAgICBwdWJsaWMgZmluYWwgU3RyaW5nIGN1c3RvbVR5cGU7CiAgICBwdWJsaWMgZmluYWwgTWFwPFN0cmluZywgU3RyaW5nPiBkZXRhaWxzOwo=');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="SessionEvent.java" data-line="8,9,10,11," class="code line-numbers"><code>package com.crashlytics.android.answers;
+
+import android.app.Activity;
+import java.util.Collections;
+import java.util.Map;
+
+final class SessionEvent {
+    static final String ACTIVITY_KEY = "activity";
+    static final String EXCEPTION_NAME_KEY = "exceptionName";
+    static final String INSTALLED_AT_KEY = "installedAt";
+    static final String SESSION_ID_KEY = "sessionId";
+    public final Map&lt;String, Object&gt; customAttributes;
+    public final String customType;
+    public final Map&lt;String, String&gt; details;
+    public final Map&lt;String, Object&gt; predefinedAttributes;
+    public final String predefinedType;
+    public final SessionEventMetadata sessionEventMetadata;
+    private String stringRepresentation;
+    public final long timestamp;
+    public final Type type;
+
+    static class Builder {
+        Map&lt;String, Object&gt; customAttributes = null;
+        String customType = null;
+        Map&lt;String, String&gt; details = null;
+        Map&lt;String, Object&gt; predefinedAttributes = null;
+        String predefinedType = null;
+        final long timestamp = System.currentTimeMillis();
+        final Type type;
+
+        public Builder(Type type) {
+            this.type = type;
+        }
+
+        public Builder details(Map&lt;String, String&gt; map) {
+            this.details = map;
+            return this;
+        }
+
+        public Builder customType(String str) {
+            this.customType = str;
+            return this;
+        }
+
+        public Builder customAttributes(Map&lt;String, Object&gt; map) {
+            this.customAttributes = map;
+            return this;
+        }
+
+        public Builder predefinedType(String str) {
+            this.predefinedType = str;
+            return this;
+        }
+
+        public Builder predefinedAttributes(Map&lt;String, Object&gt; map) {
+            this.predefinedAttributes = map;
+            return this;
+        }
+
+        public SessionEvent build(SessionEventMetadata sessionEventMetadata) {
+            return new SessionEvent(sessionEventMetadata, this.timestamp, this.type, this.details, this.customType, this.customAttributes, this.predefinedType, this.predefinedAttributes);
+        }
+    }
+
+    enum Type {
+        START,
+        RESUME,
+        PAUSE,
+        STOP,
+        CRASH,
+        INSTALL,
+        CUSTOM,
+        PREDEFINED
+    }
+
+    public static Builder lifecycleEventBuilder(Type type, Activity activity) {
+        return new Builder(type).details(Collections.singletonMap(ACTIVITY_KEY, activity.getClass().getName()));
+    }
+
+    public static Builder installEventBuilder(long j) {
+        return new Builder(Type.INSTALL).details(Collections.singletonMap(INSTALLED_AT_KEY, String.valueOf(j)));
+    }
+
+    public static Builder crashEventBuilder(String str) {
+        return new Builder(Type.CRASH).details(Collections.singletonMap("sessionId", str));
+    }
+
+    public static Builder crashEventBuilder(String str, String str2) {
+        return crashEventBuilder(str).customAttributes(Collections.singletonMap(EXCEPTION_NAME_KEY, str2));
+    }
+
+    public static Builder customEventBuilder(CustomEvent customEvent) {
+        return new Builder(Type.CUSTOM).customType(customEvent.getCustomType()).customAttributes(customEvent.getCustomAttributes());
+    }
+
+    public static Builder predefinedEventBuilder(PredefinedEvent&lt;?&gt; predefinedEvent) {
+        return new Builder(Type.PREDEFINED).predefinedType(predefinedEvent.getPredefinedType()).predefinedAttributes(predefinedEvent.getPredefinedAttributes()).customAttributes(predefinedEvent.getCustomAttributes());
+    }
+
+    private SessionEvent(SessionEventMetadata sessionEventMetadata, long j, Type type, Map&lt;String, String&gt; map, String str, Map&lt;String, Object&gt; map2, String str2, Map&lt;String, Object&gt; map3) {
+        this.sessionEventMetadata = sessionEventMetadata;
+        this.timestamp = j;
+        this.type = type;
+        this.details = map;
+        this.customType = str;
+        this.customAttributes = map2;
+        this.predefinedType = str2;
+        this.predefinedAttributes = map3;
+    }
+
+    public String toString() {
+        if (this.stringRepresentation == null) {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("[");
+            stringBuilder.append(getClass().getSimpleName());
+            stringBuilder.append(": ");
+            stringBuilder.append("timestamp=");
+            stringBuilder.append(this.timestamp);
+            stringBuilder.append(", type=");
+            stringBuilder.append(this.type);
+            stringBuilder.append(", details=");
+            stringBuilder.append(this.details);
+            stringBuilder.append(", customType=");
+            stringBuilder.append(this.customType);
+            stringBuilder.append(", customAttributes=");
+            stringBuilder.append(this.customAttributes);
+            stringBuilder.append(", predefinedType=");
+            stringBuilder.append(this.predefinedType);
+            stringBuilder.append(", predefinedAttributes=");
+            stringBuilder.append(this.predefinedAttributes);
+            stringBuilder.append(", metadata=[");
+            stringBuilder.append(this.sessionEventMetadata);
+            stringBuilder.append("]]");
+            this.stringRepresentation = stringBuilder.toString();
+        }
+        return this.stringRepresentation;
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:5 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

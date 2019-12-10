@@ -1,0 +1,230 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/exoplayer2/text/cea/CeaDecoder.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/exoplayer2/text/cea/CeaDecoder.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="CeaDecoder.java" data-line="" class="code line-numbers"><code>package com.google.android.exoplayer2.text.cea;
+
+import androidx.annotation.NonNull;
+import com.google.android.exoplayer2.text.Subtitle;
+import com.google.android.exoplayer2.text.SubtitleDecoder;
+import com.google.android.exoplayer2.text.SubtitleDecoderException;
+import com.google.android.exoplayer2.text.SubtitleInputBuffer;
+import com.google.android.exoplayer2.text.SubtitleOutputBuffer;
+import com.google.android.exoplayer2.util.Assertions;
+import java.util.ArrayDeque;
+import java.util.PriorityQueue;
+
+abstract class CeaDecoder implements SubtitleDecoder {
+    private static final int NUM_INPUT_BUFFERS = 10;
+    private static final int NUM_OUTPUT_BUFFERS = 2;
+    private final ArrayDeque&lt;CeaInputBuffer&gt; availableInputBuffers = new ArrayDeque();
+    private final ArrayDeque&lt;SubtitleOutputBuffer&gt; availableOutputBuffers;
+    private CeaInputBuffer dequeuedInputBuffer;
+    private long playbackPositionUs;
+    private long queuedInputBufferCount;
+    private final PriorityQueue&lt;CeaInputBuffer&gt; queuedInputBuffers;
+
+    private static final class CeaInputBuffer extends SubtitleInputBuffer implements Comparable&lt;CeaInputBuffer&gt; {
+        private long queuedInputBufferCount;
+
+        private CeaInputBuffer() {
+        }
+
+        public int compareTo(@NonNull CeaInputBuffer ceaInputBuffer) {
+            int i = -1;
+            if (isEndOfStream() != ceaInputBuffer.isEndOfStream()) {
+                if (isEndOfStream() != null) {
+                    i = 1;
+                }
+                return i;
+            }
+            long j = this.timeUs - ceaInputBuffer.timeUs;
+            if (j == 0) {
+                j = this.queuedInputBufferCount - ceaInputBuffer.queuedInputBufferCount;
+                if (j == 0) {
+                    return null;
+                }
+            }
+            if (j &gt; 0) {
+                i = 1;
+            }
+            return i;
+        }
+    }
+
+    private final class CeaOutputBuffer extends SubtitleOutputBuffer {
+        private CeaOutputBuffer() {
+        }
+
+        public final void release() {
+            CeaDecoder.this.releaseOutputBuffer(this);
+        }
+    }
+
+    protected abstract Subtitle createSubtitle();
+
+    protected abstract void decode(SubtitleInputBuffer subtitleInputBuffer);
+
+    public abstract String getName();
+
+    protected abstract boolean isNewSubtitleDataAvailable();
+
+    public void release() {
+    }
+
+    public CeaDecoder() {
+        for (int i = 0; i &lt; 10; i++) {
+            this.availableInputBuffers.add(new CeaInputBuffer());
+        }
+        this.availableOutputBuffers = new ArrayDeque();
+        for (int i2 = 0; i2 &lt; 2; i2++) {
+            this.availableOutputBuffers.add(new CeaOutputBuffer());
+        }
+        this.queuedInputBuffers = new PriorityQueue();
+    }
+
+    public void setPositionUs(long j) {
+        this.playbackPositionUs = j;
+    }
+
+    public SubtitleInputBuffer dequeueInputBuffer() throws SubtitleDecoderException {
+        Assertions.checkState(this.dequeuedInputBuffer == null);
+        if (this.availableInputBuffers.isEmpty()) {
+            return null;
+        }
+        this.dequeuedInputBuffer = (CeaInputBuffer) this.availableInputBuffers.pollFirst();
+        return this.dequeuedInputBuffer;
+    }
+
+    public void queueInputBuffer(SubtitleInputBuffer subtitleInputBuffer) throws SubtitleDecoderException {
+        Assertions.checkArgument(subtitleInputBuffer == this.dequeuedInputBuffer);
+        if (subtitleInputBuffer.isDecodeOnly() != null) {
+            releaseInputBuffer(this.dequeuedInputBuffer);
+        } else {
+            subtitleInputBuffer = this.dequeuedInputBuffer;
+            long j = this.queuedInputBufferCount;
+            this.queuedInputBufferCount = 1 + j;
+            subtitleInputBuffer.queuedInputBufferCount = j;
+            this.queuedInputBuffers.add(this.dequeuedInputBuffer);
+        }
+        this.dequeuedInputBuffer = null;
+    }
+
+    public SubtitleOutputBuffer dequeueOutputBuffer() throws SubtitleDecoderException {
+        if (this.availableOutputBuffers.isEmpty()) {
+            return null;
+        }
+        while (!this.queuedInputBuffers.isEmpty() &amp;&amp; ((CeaInputBuffer) this.queuedInputBuffers.peek()).timeUs &lt;= this.playbackPositionUs) {
+            CeaInputBuffer ceaInputBuffer = (CeaInputBuffer) this.queuedInputBuffers.poll();
+            if (ceaInputBuffer.isEndOfStream()) {
+                SubtitleOutputBuffer subtitleOutputBuffer = (SubtitleOutputBuffer) this.availableOutputBuffers.pollFirst();
+                subtitleOutputBuffer.addFlag(4);
+                releaseInputBuffer(ceaInputBuffer);
+                return subtitleOutputBuffer;
+            }
+            decode(ceaInputBuffer);
+            if (isNewSubtitleDataAvailable()) {
+                Subtitle createSubtitle = createSubtitle();
+                if (!ceaInputBuffer.isDecodeOnly()) {
+                    subtitleOutputBuffer = (SubtitleOutputBuffer) this.availableOutputBuffers.pollFirst();
+                    subtitleOutputBuffer.setContent(ceaInputBuffer.timeUs, createSubtitle, Long.MAX_VALUE);
+                    releaseInputBuffer(ceaInputBuffer);
+                    return subtitleOutputBuffer;
+                }
+            }
+            releaseInputBuffer(ceaInputBuffer);
+        }
+        return null;
+    }
+
+    private void releaseInputBuffer(CeaInputBuffer ceaInputBuffer) {
+        ceaInputBuffer.clear();
+        this.availableInputBuffers.add(ceaInputBuffer);
+    }
+
+    protected void releaseOutputBuffer(SubtitleOutputBuffer subtitleOutputBuffer) {
+        subtitleOutputBuffer.clear();
+        this.availableOutputBuffers.add(subtitleOutputBuffer);
+    }
+
+    public void flush() {
+        this.queuedInputBufferCount = 0;
+        this.playbackPositionUs = 0;
+        while (!this.queuedInputBuffers.isEmpty()) {
+            releaseInputBuffer((CeaInputBuffer) this.queuedInputBuffers.poll());
+        }
+        if (this.dequeuedInputBuffer != null) {
+            releaseInputBuffer(this.dequeuedInputBuffer);
+            this.dequeuedInputBuffer = null;
+        }
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:9 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

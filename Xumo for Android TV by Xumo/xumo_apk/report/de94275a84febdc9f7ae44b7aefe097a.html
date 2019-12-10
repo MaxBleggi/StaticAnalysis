@@ -1,0 +1,271 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/gson/reflect/TypeToken.java" target="_blank">/xumo_apk/jadx_source_code/com/google/gson/reflect/TypeToken.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="TypeToken.java" data-line="" class="code line-numbers"><code>package com.google.gson.reflect;
+
+import com.google.gson.internal.C$Gson$Preconditions;
+import com.google.gson.internal.C$Gson$Types;
+import java.lang.reflect.GenericArrayType;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.lang.reflect.TypeVariable;
+import java.util.HashMap;
+import java.util.Map;
+
+public class TypeToken&lt;T&gt; {
+    final int hashCode;
+    final Class&lt;? super T&gt; rawType;
+    final Type type;
+
+    protected TypeToken() {
+        this.type = getSuperclassTypeParameter(getClass());
+        this.rawType = C$Gson$Types.getRawType(this.type);
+        this.hashCode = this.type.hashCode();
+    }
+
+    TypeToken(Type type) {
+        this.type = C$Gson$Types.canonicalize((Type) C$Gson$Preconditions.checkNotNull(type));
+        this.rawType = C$Gson$Types.getRawType(this.type);
+        this.hashCode = this.type.hashCode();
+    }
+
+    static Type getSuperclassTypeParameter(Class&lt;?&gt; cls) {
+        cls = cls.getGenericSuperclass();
+        if (!(cls instanceof Class)) {
+            return C$Gson$Types.canonicalize(((ParameterizedType) cls).getActualTypeArguments()[0]);
+        }
+        throw new RuntimeException("Missing type parameter.");
+    }
+
+    public final Class&lt;? super T&gt; getRawType() {
+        return this.rawType;
+    }
+
+    public final Type getType() {
+        return this.type;
+    }
+
+    @Deprecated
+    public boolean isAssignableFrom(Class&lt;?&gt; cls) {
+        return isAssignableFrom((Type) cls);
+    }
+
+    @Deprecated
+    public boolean isAssignableFrom(Type type) {
+        boolean z = false;
+        if (type == null) {
+            return false;
+        }
+        if (this.type.equals(type)) {
+            return true;
+        }
+        if (this.type instanceof Class) {
+            return this.rawType.isAssignableFrom(C$Gson$Types.getRawType(type));
+        }
+        if (this.type instanceof ParameterizedType) {
+            return isAssignableFrom(type, (ParameterizedType) this.type, new HashMap());
+        }
+        if (this.type instanceof GenericArrayType) {
+            if (this.rawType.isAssignableFrom(C$Gson$Types.getRawType(type)) &amp;&amp; isAssignableFrom(type, (GenericArrayType) this.type) != null) {
+                z = true;
+            }
+            return z;
+        }
+        throw buildUnexpectedTypeError(this.type, Class.class, ParameterizedType.class, GenericArrayType.class);
+    }
+
+    @Deprecated
+    public boolean isAssignableFrom(TypeToken&lt;?&gt; typeToken) {
+        return isAssignableFrom(typeToken.getType());
+    }
+
+    private static boolean isAssignableFrom(Type type, GenericArrayType genericArrayType) {
+        genericArrayType = genericArrayType.getGenericComponentType();
+        if (!(genericArrayType instanceof ParameterizedType)) {
+            return true;
+        }
+        if (type instanceof GenericArrayType) {
+            type = ((GenericArrayType) type).getGenericComponentType();
+        } else if (type instanceof Class) {
+            type = (Class) type;
+            while (type.isArray()) {
+                type = type.getComponentType();
+            }
+        }
+        return isAssignableFrom(type, (ParameterizedType) genericArrayType, new HashMap());
+    }
+
+    private static boolean isAssignableFrom(Type type, ParameterizedType parameterizedType, Map&lt;String, Type&gt; map) {
+        int i = 0;
+        if (type == null) {
+            return false;
+        }
+        if (parameterizedType.equals(type)) {
+            return true;
+        }
+        Class rawType = C$Gson$Types.getRawType(type);
+        ParameterizedType parameterizedType2 = null;
+        if (type instanceof ParameterizedType) {
+            parameterizedType2 = (ParameterizedType) type;
+        }
+        if (parameterizedType2 != null) {
+            type = parameterizedType2.getActualTypeArguments();
+            TypeVariable[] typeParameters = rawType.getTypeParameters();
+            for (int i2 = 0; i2 &lt; type.length; i2++) {
+                Object obj = type[i2];
+                TypeVariable typeVariable = typeParameters[i2];
+                while (obj instanceof TypeVariable) {
+                    Type type2 = (Type) map.get(((TypeVariable) obj).getName());
+                }
+                map.put(typeVariable.getName(), obj);
+            }
+            if (typeEquals(parameterizedType2, parameterizedType, map) != null) {
+                return true;
+            }
+        }
+        type = rawType.getGenericInterfaces();
+        int length = type.length;
+        while (i &lt; length) {
+            if (isAssignableFrom(type[i], parameterizedType, new HashMap(map))) {
+                return true;
+            }
+            i++;
+        }
+        return isAssignableFrom(rawType.getGenericSuperclass(), parameterizedType, new HashMap(map));
+    }
+
+    private static boolean typeEquals(ParameterizedType parameterizedType, ParameterizedType parameterizedType2, Map&lt;String, Type&gt; map) {
+        if (!parameterizedType.getRawType().equals(parameterizedType2.getRawType())) {
+            return false;
+        }
+        parameterizedType = parameterizedType.getActualTypeArguments();
+        parameterizedType2 = parameterizedType2.getActualTypeArguments();
+        for (int i = 0; i &lt; parameterizedType.length; i++) {
+            if (!matches(parameterizedType[i], parameterizedType2[i], map)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static AssertionError buildUnexpectedTypeError(Type type, Class&lt;?&gt;... clsArr) {
+        StringBuilder stringBuilder = new StringBuilder("Unexpected type. Expected one of: ");
+        for (Class name : clsArr) {
+            stringBuilder.append(name.getName());
+            stringBuilder.append(", ");
+        }
+        stringBuilder.append("but got: ");
+        stringBuilder.append(type.getClass().getName());
+        stringBuilder.append(", for type token: ");
+        stringBuilder.append(type.toString());
+        stringBuilder.append('.');
+        return new AssertionError(stringBuilder.toString());
+    }
+
+    private static boolean matches(Type type, Type type2, Map&lt;String, Type&gt; map) {
+        if (!type2.equals(type)) {
+            if (!(type instanceof TypeVariable) || type2.equals(map.get(((TypeVariable) type).getName())) == null) {
+                return null;
+            }
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        return this.hashCode;
+    }
+
+    public final boolean equals(Object obj) {
+        return (!(obj instanceof TypeToken) || C$Gson$Types.equals(this.type, ((TypeToken) obj).type) == null) ? null : true;
+    }
+
+    public final String toString() {
+        return C$Gson$Types.typeToString(this.type);
+    }
+
+    public static TypeToken&lt;?&gt; get(Type type) {
+        return new TypeToken(type);
+    }
+
+    public static &lt;T&gt; TypeToken&lt;T&gt; get(Class&lt;T&gt; cls) {
+        return new TypeToken(cls);
+    }
+
+    public static TypeToken&lt;?&gt; getParameterized(Type type, Type... typeArr) {
+        return new TypeToken(C$Gson$Types.newParameterizedTypeWithOwner(null, type, typeArr));
+    }
+
+    public static TypeToken&lt;?&gt; getArray(Type type) {
+        return new TypeToken(C$Gson$Types.arrayOf(type));
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:7 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

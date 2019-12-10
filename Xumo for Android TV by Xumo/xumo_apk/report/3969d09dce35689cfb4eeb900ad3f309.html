@@ -1,0 +1,212 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/androidx/appcompat/widget/PopupMenu.java" target="_blank">/xumo_apk/jadx_source_code/androidx/appcompat/widget/PopupMenu.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="PopupMenu.java" data-line="" class="code line-numbers"><code>package androidx.appcompat.widget;
+
+import android.content.Context;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnTouchListener;
+import android.widget.ListView;
+import androidx.annotation.AttrRes;
+import androidx.annotation.MenuRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RestrictTo;
+import androidx.annotation.RestrictTo.Scope;
+import androidx.annotation.StyleRes;
+import androidx.appcompat.R;
+import androidx.appcompat.view.SupportMenuInflater;
+import androidx.appcompat.view.menu.MenuBuilder;
+import androidx.appcompat.view.menu.MenuBuilder.Callback;
+import androidx.appcompat.view.menu.MenuPopupHelper;
+import androidx.appcompat.view.menu.ShowableListMenu;
+
+public class PopupMenu {
+    private final View mAnchor;
+    private final Context mContext;
+    private OnTouchListener mDragListener;
+    private final MenuBuilder mMenu;
+    OnMenuItemClickListener mMenuItemClickListener;
+    OnDismissListener mOnDismissListener;
+    final MenuPopupHelper mPopup;
+
+    public interface OnDismissListener {
+        void onDismiss(PopupMenu popupMenu);
+    }
+
+    public interface OnMenuItemClickListener {
+        boolean onMenuItemClick(MenuItem menuItem);
+    }
+
+    public PopupMenu(@NonNull Context context, @NonNull View view) {
+        this(context, view, 0);
+    }
+
+    public PopupMenu(@NonNull Context context, @NonNull View view, int i) {
+        this(context, view, i, R.attr.popupMenuStyle, 0);
+    }
+
+    public PopupMenu(@NonNull Context context, @NonNull View view, int i, @AttrRes int i2, @StyleRes int i3) {
+        this.mContext = context;
+        this.mAnchor = view;
+        this.mMenu = new MenuBuilder(context);
+        this.mMenu.setCallback(new Callback() {
+            public void onMenuModeChange(MenuBuilder menuBuilder) {
+            }
+
+            public boolean onMenuItemSelected(MenuBuilder menuBuilder, MenuItem menuItem) {
+                return PopupMenu.this.mMenuItemClickListener != null ? PopupMenu.this.mMenuItemClickListener.onMenuItemClick(menuItem) : null;
+            }
+        });
+        this.mPopup = new MenuPopupHelper(context, this.mMenu, view, false, i2, i3);
+        this.mPopup.setGravity(i);
+        this.mPopup.setOnDismissListener(new android.widget.PopupWindow.OnDismissListener() {
+            public void onDismiss() {
+                if (PopupMenu.this.mOnDismissListener != null) {
+                    PopupMenu.this.mOnDismissListener.onDismiss(PopupMenu.this);
+                }
+            }
+        });
+    }
+
+    public void setGravity(int i) {
+        this.mPopup.setGravity(i);
+    }
+
+    public int getGravity() {
+        return this.mPopup.getGravity();
+    }
+
+    @NonNull
+    public OnTouchListener getDragToOpenListener() {
+        if (this.mDragListener == null) {
+            this.mDragListener = new ForwardingListener(this.mAnchor) {
+                protected boolean onForwardingStarted() {
+                    PopupMenu.this.show();
+                    return true;
+                }
+
+                protected boolean onForwardingStopped() {
+                    PopupMenu.this.dismiss();
+                    return true;
+                }
+
+                public ShowableListMenu getPopup() {
+                    return PopupMenu.this.mPopup.getPopup();
+                }
+            };
+        }
+        return this.mDragListener;
+    }
+
+    @NonNull
+    public Menu getMenu() {
+        return this.mMenu;
+    }
+
+    @NonNull
+    public MenuInflater getMenuInflater() {
+        return new SupportMenuInflater(this.mContext);
+    }
+
+    public void inflate(@MenuRes int i) {
+        getMenuInflater().inflate(i, this.mMenu);
+    }
+
+    public void show() {
+        this.mPopup.show();
+    }
+
+    public void dismiss() {
+        this.mPopup.dismiss();
+    }
+
+    public void setOnMenuItemClickListener(@Nullable OnMenuItemClickListener onMenuItemClickListener) {
+        this.mMenuItemClickListener = onMenuItemClickListener;
+    }
+
+    public void setOnDismissListener(@Nullable OnDismissListener onDismissListener) {
+        this.mOnDismissListener = onDismissListener;
+    }
+
+    @RestrictTo({Scope.LIBRARY_GROUP})
+    ListView getMenuListView() {
+        if (this.mPopup.isShowing()) {
+            return this.mPopup.getListView();
+        }
+        return null;
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:4 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

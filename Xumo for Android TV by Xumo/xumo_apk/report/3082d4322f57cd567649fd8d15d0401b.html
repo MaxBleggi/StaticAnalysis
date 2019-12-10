@@ -1,0 +1,605 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9"><div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/gms/ads/identifier/AdvertisingIdClient.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/gms/ads/identifier/AdvertisingIdClient.java</a></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-60">report</i><h5>ServerSocket|net.ServerSocket|connect[(][)]</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>the app opens TCP Server Sockets: Insecure use of network sockets</span></div></li></ul><ul class="collapsible"><li><div class="collapsible-header"><img data-position="top" data-tooltip="OWASP item" src="html/owasp_logo.png" height="20em" style="margin-right: 1rem;margin-left: 5px;" class="tooltipped"></img> OWASP Item</div><div class="collapsible-body"><span>For more information, have a look at: https://www.owasp.org/index.php/OWASP_Mobile_Security_Testing_Guide</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#AdvertisingIdClient_java86Serv" class="active">line 86</a></li><li class="tab"><a style="color: #d82c2b;" href="#AdvertisingIdClient_java118Serv">line 118</a></li><li class="tab"><a style="color: #d82c2b;" href="#AdvertisingIdClient_java122Serv">line 122</a></li></ul></div><div class="card-content"><div id="AdvertisingIdClient_java86Serv">Code @ line 86<pre data-start="83" data-line="86" data-src="AdvertisingIdClient.java" class="code line-numbers"><code>            start();
+        }
+
+        private final void disconnect() {
+            AdvertisingIdClient advertisingIdClient = (AdvertisingIdClient) this.zzm.get();
+            if (advertisingIdClient != null) {
+                advertisingIdClient.finish();
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvYWRzL2lkZW50aWZpZXIvQWR2ZXJ0aXNpbmdJZENsaWVudC5qYXZhfHx8bGluZTogODYgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8ODZ8fHw4Mw">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvYWRzL2lkZW50aWZpZXIvQWR2ZXJ0aXNpbmdJZENsaWVudC5qYXZhfHx8bGluZTogODYgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8ODZ8fHw4Mw')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvYWRzL2lkZW50aWZpZXIvQWR2ZXJ0aXNpbmdJZENsaWVudC5qYXZhfHx8bGluZTogODYgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8ODZ8fHw4Mw').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvYWRzL2lkZW50aWZpZXIvQWR2ZXJ0aXNpbmdJZENsaWVudC5qYXZhfHx8bGluZTogODYgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8ODZ8fHw4Mw" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvYWRzL2lkZW50aWZpZXIvQWR2ZXJ0aXNpbmdJZENsaWVudC5qYXZhfHx8bGluZTogODYgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8ODZ8fHw4Mw' , 'ICAgICAgICAgICAgc3RhcnQoKTsKICAgICAgICB9CgogICAgICAgIHByaXZhdGUgZmluYWwgdm9pZCBkaXNjb25uZWN0KCkgewogICAgICAgICAgICBBZHZlcnRpc2luZ0lkQ2xpZW50IGFkdmVydGlzaW5nSWRDbGllbnQgPSAoQWR2ZXJ0aXNpbmdJZENsaWVudCkgdGhpcy56em0uZ2V0KCk7CiAgICAgICAgICAgIGlmIChhZHZlcnRpc2luZ0lkQ2xpZW50ICE9IG51bGwpIHsKICAgICAgICAgICAgICAgIGFkdmVydGlzaW5nSWRDbGllbnQuZmluaXNoKCk7Cg==');  
+                                            });
+                                            </script>
+                                            </div><div id="AdvertisingIdClient_java118Serv">Code @ line 118<pre data-start="115" data-line="118" data-src="AdvertisingIdClient.java" class="code line-numbers"><code>            r0 = r0.await(r1, r3);	 Catch:{ InterruptedException -&gt; 0x0010 }
+            if (r0 != 0) goto L_0x000f;	 Catch:{ InterruptedException -&gt; 0x0010 }
+        L_0x000c:
+            r4.disconnect();	 Catch:{ InterruptedException -&gt; 0x0010 }
+        L_0x000f:
+            return;
+        L_0x0010:
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvYWRzL2lkZW50aWZpZXIvQWR2ZXJ0aXNpbmdJZENsaWVudC5qYXZhfHx8bGluZTogMTE4IDogU2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDYwfHx8U2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDExOHx8fDExNQ">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvYWRzL2lkZW50aWZpZXIvQWR2ZXJ0aXNpbmdJZENsaWVudC5qYXZhfHx8bGluZTogMTE4IDogU2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDYwfHx8U2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDExOHx8fDExNQ')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvYWRzL2lkZW50aWZpZXIvQWR2ZXJ0aXNpbmdJZENsaWVudC5qYXZhfHx8bGluZTogMTE4IDogU2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDYwfHx8U2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDExOHx8fDExNQ').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvYWRzL2lkZW50aWZpZXIvQWR2ZXJ0aXNpbmdJZENsaWVudC5qYXZhfHx8bGluZTogMTE4IDogU2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDYwfHx8U2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDExOHx8fDExNQ" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvYWRzL2lkZW50aWZpZXIvQWR2ZXJ0aXNpbmdJZENsaWVudC5qYXZhfHx8bGluZTogMTE4IDogU2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDYwfHx8U2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDExOHx8fDExNQ' , 'ICAgICAgICAgICAgcjAgPSByMC5hd2FpdChyMSwgcjMpOwkgQ2F0Y2g6eyBJbnRlcnJ1cHRlZEV4Y2VwdGlvbiAtPiAweDAwMTAgfQogICAgICAgICAgICBpZiAocjAgIT0gMCkgZ290byBMXzB4MDAwZjsJIENhdGNoOnsgSW50ZXJydXB0ZWRFeGNlcHRpb24gLT4gMHgwMDEwIH0KICAgICAgICBMXzB4MDAwYzoKICAgICAgICAgICAgcjQuZGlzY29ubmVjdCgpOwkgQ2F0Y2g6eyBJbnRlcnJ1cHRlZEV4Y2VwdGlvbiAtPiAweDAwMTAgfQogICAgICAgIExfMHgwMDBmOgogICAgICAgICAgICByZXR1cm47CiAgICAgICAgTF8weDAwMTA6Cg==');  
+                                            });
+                                            </script>
+                                            </div><div id="AdvertisingIdClient_java122Serv">Code @ line 122<pre data-start="119" data-line="122" data-src="AdvertisingIdClient.java" class="code line-numbers"><code>        L_0x000f:
+            return;
+        L_0x0010:
+            r4.disconnect();
+            return;
+            */
+            throw new UnsupportedOperationException("Method not decompiled: com.google.android.gms.ads.identifier.AdvertisingIdClient.zza.run():void");
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvYWRzL2lkZW50aWZpZXIvQWR2ZXJ0aXNpbmdJZENsaWVudC5qYXZhfHx8bGluZTogMTIyIDogU2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDYwfHx8U2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDEyMnx8fDExOQ">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvYWRzL2lkZW50aWZpZXIvQWR2ZXJ0aXNpbmdJZENsaWVudC5qYXZhfHx8bGluZTogMTIyIDogU2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDYwfHx8U2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDEyMnx8fDExOQ')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvYWRzL2lkZW50aWZpZXIvQWR2ZXJ0aXNpbmdJZENsaWVudC5qYXZhfHx8bGluZTogMTIyIDogU2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDYwfHx8U2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDEyMnx8fDExOQ').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvYWRzL2lkZW50aWZpZXIvQWR2ZXJ0aXNpbmdJZENsaWVudC5qYXZhfHx8bGluZTogMTIyIDogU2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDYwfHx8U2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDEyMnx8fDExOQ" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvYWRzL2lkZW50aWZpZXIvQWR2ZXJ0aXNpbmdJZENsaWVudC5qYXZhfHx8bGluZTogMTIyIDogU2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDYwfHx8U2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDEyMnx8fDExOQ' , 'ICAgICAgICBMXzB4MDAwZjoKICAgICAgICAgICAgcmV0dXJuOwogICAgICAgIExfMHgwMDEwOgogICAgICAgICAgICByNC5kaXNjb25uZWN0KCk7CiAgICAgICAgICAgIHJldHVybjsKICAgICAgICAgICAgKi8KICAgICAgICAgICAgdGhyb3cgbmV3IFVuc3VwcG9ydGVkT3BlcmF0aW9uRXhjZXB0aW9uKCJNZXRob2Qgbm90IGRlY29tcGlsZWQ6IGNvbS5nb29nbGUuYW5kcm9pZC5nbXMuYWRzLmlkZW50aWZpZXIuQWR2ZXJ0aXNpbmdJZENsaWVudC56emEucnVuKCk6dm9pZCIpOwo=');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="AdvertisingIdClient.java" data-line="86,118,122," class="code line-numbers"><code>package com.google.android.gms.ads.identifier;
+
+import android.content.Context;
+import android.os.SystemClock;
+import android.util.Log;
+import androidx.annotation.Nullable;
+import com.google.android.gms.common.BlockingServiceConnection;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.common.annotation.KeepForSdk;
+import com.google.android.gms.common.annotation.KeepForSdkWithMembers;
+import com.google.android.gms.common.internal.Preconditions;
+import com.google.android.gms.common.util.VisibleForTesting;
+import com.google.android.gms.internal.ads_identifier.zze;
+import java.io.IOException;
+import java.lang.ref.WeakReference;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.CountDownLatch;
+import javax.annotation.ParametersAreNonnullByDefault;
+import javax.annotation.concurrent.GuardedBy;
+
+@KeepForSdk
+@ParametersAreNonnullByDefault
+public class AdvertisingIdClient {
+    @GuardedBy("this")
+    private final Context mContext;
+    @GuardedBy("this")
+    @Nullable
+    private BlockingServiceConnection zze;
+    @GuardedBy("this")
+    @Nullable
+    private zze zzf;
+    @GuardedBy("this")
+    private boolean zzg;
+    private final Object zzh;
+    @GuardedBy("mAutoDisconnectTaskLock")
+    @Nullable
+    private zza zzi;
+    private final boolean zzj;
+    private final long zzk;
+
+    @KeepForSdkWithMembers
+    public static final class Info {
+        private final String zzq;
+        private final boolean zzr;
+
+        public Info(String str, boolean z) {
+            this.zzq = str;
+            this.zzr = z;
+        }
+
+        public final String getId() {
+            return this.zzq;
+        }
+
+        public final boolean isLimitAdTrackingEnabled() {
+            return this.zzr;
+        }
+
+        public final String toString() {
+            String str = this.zzq;
+            boolean z = this.zzr;
+            StringBuilder stringBuilder = new StringBuilder(String.valueOf(str).length() + 7);
+            stringBuilder.append("{");
+            stringBuilder.append(str);
+            stringBuilder.append("}");
+            stringBuilder.append(z);
+            return stringBuilder.toString();
+        }
+    }
+
+    @VisibleForTesting
+    static class zza extends Thread {
+        private WeakReference&lt;AdvertisingIdClient&gt; zzm;
+        private long zzn;
+        CountDownLatch zzo = new CountDownLatch(1);
+        boolean zzp = false;
+
+        public zza(AdvertisingIdClient advertisingIdClient, long j) {
+            this.zzm = new WeakReference(advertisingIdClient);
+            this.zzn = j;
+            start();
+        }
+
+        private final void disconnect() {
+            AdvertisingIdClient advertisingIdClient = (AdvertisingIdClient) this.zzm.get();
+            if (advertisingIdClient != null) {
+                advertisingIdClient.finish();
+                this.zzp = true;
+            }
+        }
+
+        public final void run() {
+            /* JADX: method processing error */
+/*
+Error: java.lang.NullPointerException
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.searchTryCatchDominators(ProcessTryCatchRegions.java:75)
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.process(ProcessTryCatchRegions.java:45)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.postProcessRegions(RegionMakerVisitor.java:63)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.visit(RegionMakerVisitor.java:58)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:31)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:17)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:14)
+	at jadx.core.ProcessClass.process(ProcessClass.java:37)
+	at jadx.api.JadxDecompiler.processClass(JadxDecompiler.java:306)
+	at jadx.api.JavaClass.decompile(JavaClass.java:62)
+	at jadx.api.JadxDecompiler$1.run(JadxDecompiler.java:199)
+*/
+            /*
+            r4 = this;
+            r0 = r4.zzo;	 Catch:{ InterruptedException -&gt; 0x0010 }
+            r1 = r4.zzn;	 Catch:{ InterruptedException -&gt; 0x0010 }
+            r3 = java.util.concurrent.TimeUnit.MILLISECONDS;	 Catch:{ InterruptedException -&gt; 0x0010 }
+            r0 = r0.await(r1, r3);	 Catch:{ InterruptedException -&gt; 0x0010 }
+            if (r0 != 0) goto L_0x000f;	 Catch:{ InterruptedException -&gt; 0x0010 }
+        L_0x000c:
+            r4.disconnect();	 Catch:{ InterruptedException -&gt; 0x0010 }
+        L_0x000f:
+            return;
+        L_0x0010:
+            r4.disconnect();
+            return;
+            */
+            throw new UnsupportedOperationException("Method not decompiled: com.google.android.gms.ads.identifier.AdvertisingIdClient.zza.run():void");
+        }
+    }
+
+    @KeepForSdk
+    public AdvertisingIdClient(Context context) {
+        this(context, 30000, false, false);
+    }
+
+    @VisibleForTesting
+    private AdvertisingIdClient(Context context, long j, boolean z, boolean z2) {
+        this.zzh = new Object();
+        Preconditions.checkNotNull(context);
+        if (z) {
+            Context applicationContext = context.getApplicationContext();
+            if (applicationContext != null) {
+                context = applicationContext;
+            }
+        }
+        this.mContext = context;
+        this.zzg = false;
+        this.zzk = j;
+        this.zzj = z2;
+    }
+
+    @KeepForSdk
+    public static Info getAdvertisingIdInfo(Context context) throws IOException, IllegalStateException, GooglePlayServicesNotAvailableException, GooglePlayServicesRepairableException {
+        zzb com_google_android_gms_ads_identifier_zzb = new zzb(context);
+        boolean z = com_google_android_gms_ads_identifier_zzb.getBoolean("gads:ad_id_app_context:enabled", false);
+        float f = com_google_android_gms_ads_identifier_zzb.getFloat("gads:ad_id_app_context:ping_ratio", 0.0f);
+        String string = com_google_android_gms_ads_identifier_zzb.getString("gads:ad_id_use_shared_preference:experiment_id", "");
+        AdvertisingIdClient advertisingIdClient = new AdvertisingIdClient(context, -1, z, com_google_android_gms_ads_identifier_zzb.getBoolean("gads:ad_id_use_persistent_service:enabled", false));
+        try {
+            long elapsedRealtime = SystemClock.elapsedRealtime();
+            advertisingIdClient.zza(false);
+            Info info = advertisingIdClient.getInfo();
+            advertisingIdClient.zza(info, z, f, SystemClock.elapsedRealtime() - elapsedRealtime, string, null);
+            advertisingIdClient.finish();
+            return info;
+        } catch (Throwable th) {
+            advertisingIdClient.finish();
+        }
+    }
+
+    @KeepForSdk
+    public static boolean getIsAdIdFakeForDebugLogging(Context context) throws IOException, GooglePlayServicesNotAvailableException, GooglePlayServicesRepairableException {
+        zzb com_google_android_gms_ads_identifier_zzb = new zzb(context);
+        AdvertisingIdClient advertisingIdClient = new AdvertisingIdClient(context, -1, com_google_android_gms_ads_identifier_zzb.getBoolean("gads:ad_id_app_context:enabled", false), com_google_android_gms_ads_identifier_zzb.getBoolean("com.google.android.gms.ads.identifier.service.PERSISTENT_START", false));
+        try {
+            advertisingIdClient.zza(false);
+            boolean zzb = advertisingIdClient.zzb();
+            return zzb;
+        } finally {
+            advertisingIdClient.finish();
+        }
+    }
+
+    @KeepForSdk
+    public static void setShouldSkipGmsCoreVersionCheck(boolean z) {
+    }
+
+    private static com.google.android.gms.common.BlockingServiceConnection zza(android.content.Context r3, boolean r4) throws java.io.IOException, com.google.android.gms.common.GooglePlayServicesNotAvailableException, com.google.android.gms.common.GooglePlayServicesRepairableException {
+        /* JADX: method processing error */
+/*
+Error: java.lang.NullPointerException
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.searchTryCatchDominators(ProcessTryCatchRegions.java:75)
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.process(ProcessTryCatchRegions.java:45)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.postProcessRegions(RegionMakerVisitor.java:63)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.visit(RegionMakerVisitor.java:58)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:31)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:17)
+	at jadx.core.ProcessClass.process(ProcessClass.java:37)
+	at jadx.api.JadxDecompiler.processClass(JadxDecompiler.java:306)
+	at jadx.api.JavaClass.decompile(JavaClass.java:62)
+	at jadx.api.JadxDecompiler$1.run(JadxDecompiler.java:199)
+*/
+        /*
+        r0 = r3.getPackageManager();	 Catch:{ NameNotFoundException -&gt; 0x0054 }
+        r1 = "com.android.vending";	 Catch:{ NameNotFoundException -&gt; 0x0054 }
+        r2 = 0;	 Catch:{ NameNotFoundException -&gt; 0x0054 }
+        r0.getPackageInfo(r1, r2);	 Catch:{ NameNotFoundException -&gt; 0x0054 }
+        r0 = com.google.android.gms.common.GoogleApiAvailabilityLight.getInstance();
+        r1 = 12451000; // 0xbdfcb8 float:1.7447567E-38 double:6.1516114E-317;
+        r0 = r0.isGooglePlayServicesAvailable(r3, r1);
+        if (r0 == 0) goto L_0x0023;
+    L_0x0017:
+        r1 = 2;
+        if (r0 != r1) goto L_0x001b;
+    L_0x001a:
+        goto L_0x0023;
+    L_0x001b:
+        r3 = new java.io.IOException;
+        r4 = "Google Play services not available";
+        r3.&lt;init&gt;(r4);
+        throw r3;
+    L_0x0023:
+        if (r4 == 0) goto L_0x0028;
+    L_0x0025:
+        r4 = "com.google.android.gms.ads.identifier.service.PERSISTENT_START";
+        goto L_0x002a;
+    L_0x0028:
+        r4 = "com.google.android.gms.ads.identifier.service.START";
+    L_0x002a:
+        r0 = new com.google.android.gms.common.BlockingServiceConnection;
+        r0.&lt;init&gt;();
+        r1 = new android.content.Intent;
+        r1.&lt;init&gt;(r4);
+        r4 = "com.google.android.gms";
+        r1.setPackage(r4);
+        r4 = com.google.android.gms.common.stats.ConnectionTracker.getInstance();	 Catch:{ Throwable -&gt; 0x004d }
+        r2 = 1;	 Catch:{ Throwable -&gt; 0x004d }
+        r3 = r4.bindService(r3, r1, r0, r2);	 Catch:{ Throwable -&gt; 0x004d }
+        if (r3 == 0) goto L_0x0045;
+    L_0x0044:
+        return r0;
+    L_0x0045:
+        r3 = new java.io.IOException;
+        r4 = "Connection failure";
+        r3.&lt;init&gt;(r4);
+        throw r3;
+    L_0x004d:
+        r3 = move-exception;
+        r4 = new java.io.IOException;
+        r4.&lt;init&gt;(r3);
+        throw r4;
+    L_0x0054:
+        r3 = new com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+        r4 = 9;
+        r3.&lt;init&gt;(r4);
+        throw r3;
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.google.android.gms.ads.identifier.AdvertisingIdClient.zza(android.content.Context, boolean):com.google.android.gms.common.BlockingServiceConnection");
+    }
+
+    @com.google.android.gms.common.util.VisibleForTesting
+    private static com.google.android.gms.internal.ads_identifier.zze zza(android.content.Context r2, com.google.android.gms.common.BlockingServiceConnection r3) throws java.io.IOException {
+        /* JADX: method processing error */
+/*
+Error: java.lang.NullPointerException
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.searchTryCatchDominators(ProcessTryCatchRegions.java:75)
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.process(ProcessTryCatchRegions.java:45)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.postProcessRegions(RegionMakerVisitor.java:63)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.visit(RegionMakerVisitor.java:58)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:31)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:17)
+	at jadx.core.ProcessClass.process(ProcessClass.java:37)
+	at jadx.api.JadxDecompiler.processClass(JadxDecompiler.java:306)
+	at jadx.api.JavaClass.decompile(JavaClass.java:62)
+	at jadx.api.JadxDecompiler$1.run(JadxDecompiler.java:199)
+*/
+        /*
+        r0 = 10000; // 0x2710 float:1.4013E-41 double:4.9407E-320;
+        r2 = java.util.concurrent.TimeUnit.MILLISECONDS;	 Catch:{ InterruptedException -&gt; 0x0014, Throwable -&gt; 0x000d }
+        r2 = r3.getServiceWithTimeout(r0, r2);	 Catch:{ InterruptedException -&gt; 0x0014, Throwable -&gt; 0x000d }
+        r2 = com.google.android.gms.internal.ads_identifier.zzf.zza(r2);	 Catch:{ InterruptedException -&gt; 0x0014, Throwable -&gt; 0x000d }
+        return r2;
+    L_0x000d:
+        r2 = move-exception;
+        r3 = new java.io.IOException;
+        r3.&lt;init&gt;(r2);
+        throw r3;
+    L_0x0014:
+        r2 = new java.io.IOException;
+        r3 = "Interrupted exception";
+        r2.&lt;init&gt;(r3);
+        throw r2;
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.google.android.gms.ads.identifier.AdvertisingIdClient.zza(android.content.Context, com.google.android.gms.common.BlockingServiceConnection):com.google.android.gms.internal.ads_identifier.zze");
+    }
+
+    private final void zza() {
+        /* JADX: method processing error */
+/*
+Error: java.lang.NullPointerException
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.searchTryCatchDominators(ProcessTryCatchRegions.java:75)
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.process(ProcessTryCatchRegions.java:45)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.postProcessRegions(RegionMakerVisitor.java:63)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.visit(RegionMakerVisitor.java:58)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:31)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:17)
+	at jadx.core.ProcessClass.process(ProcessClass.java:37)
+	at jadx.api.JadxDecompiler.processClass(JadxDecompiler.java:306)
+	at jadx.api.JavaClass.decompile(JavaClass.java:62)
+	at jadx.api.JadxDecompiler$1.run(JadxDecompiler.java:199)
+*/
+        /*
+        r6 = this;
+        r0 = r6.zzh;
+        monitor-enter(r0);
+        r1 = r6.zzi;	 Catch:{ all -&gt; 0x0026 }
+        if (r1 == 0) goto L_0x0013;	 Catch:{ all -&gt; 0x0026 }
+    L_0x0007:
+        r1 = r6.zzi;	 Catch:{ all -&gt; 0x0026 }
+        r1 = r1.zzo;	 Catch:{ all -&gt; 0x0026 }
+        r1.countDown();	 Catch:{ all -&gt; 0x0026 }
+        r1 = r6.zzi;	 Catch:{ InterruptedException -&gt; 0x0013 }
+        r1.join();	 Catch:{ InterruptedException -&gt; 0x0013 }
+    L_0x0013:
+        r1 = r6.zzk;	 Catch:{ all -&gt; 0x0026 }
+        r3 = 0;	 Catch:{ all -&gt; 0x0026 }
+        r5 = (r1 &gt; r3 ? 1 : (r1 == r3 ? 0 : -1));	 Catch:{ all -&gt; 0x0026 }
+        if (r5 &lt;= 0) goto L_0x0024;	 Catch:{ all -&gt; 0x0026 }
+    L_0x001b:
+        r1 = new com.google.android.gms.ads.identifier.AdvertisingIdClient$zza;	 Catch:{ all -&gt; 0x0026 }
+        r2 = r6.zzk;	 Catch:{ all -&gt; 0x0026 }
+        r1.&lt;init&gt;(r6, r2);	 Catch:{ all -&gt; 0x0026 }
+        r6.zzi = r1;	 Catch:{ all -&gt; 0x0026 }
+    L_0x0024:
+        monitor-exit(r0);	 Catch:{ all -&gt; 0x0026 }
+        return;	 Catch:{ all -&gt; 0x0026 }
+    L_0x0026:
+        r1 = move-exception;	 Catch:{ all -&gt; 0x0026 }
+        monitor-exit(r0);	 Catch:{ all -&gt; 0x0026 }
+        throw r1;
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.google.android.gms.ads.identifier.AdvertisingIdClient.zza():void");
+    }
+
+    @VisibleForTesting
+    private final void zza(boolean z) throws IOException, IllegalStateException, GooglePlayServicesNotAvailableException, GooglePlayServicesRepairableException {
+        Preconditions.checkNotMainThread("Calling this from your main thread can lead to deadlock");
+        synchronized (this) {
+            if (this.zzg) {
+                finish();
+            }
+            this.zze = zza(this.mContext, this.zzj);
+            this.zzf = zza(this.mContext, this.zze);
+            this.zzg = true;
+            if (z) {
+                zza();
+            }
+        }
+    }
+
+    @VisibleForTesting
+    private final boolean zza(Info info, boolean z, float f, long j, String str, Throwable th) {
+        if (Math.random() &gt; ((double) f)) {
+            return false;
+        }
+        Map hashMap = new HashMap();
+        hashMap.put("app_context", z ? "1" : "0");
+        if (info != null) {
+            hashMap.put("limit_ad_tracking", info.isLimitAdTrackingEnabled() ? "1" : "0");
+        }
+        if (!(info == null || info.getId() == null)) {
+            hashMap.put("ad_id_size", Integer.toString(info.getId().length()));
+        }
+        if (th != null) {
+            hashMap.put(MediaRouteProviderProtocol.SERVICE_DATA_ERROR, th.getClass().getName());
+        }
+        if (!(str == null || str.isEmpty())) {
+            hashMap.put("experiment_id", str);
+        }
+        hashMap.put("tag", "AdvertisingIdClient");
+        hashMap.put("time_spent", Long.toString(j));
+        new zza(this, hashMap).start();
+        return true;
+    }
+
+    private final boolean zzb() throws IOException {
+        boolean zzc;
+        Preconditions.checkNotMainThread("Calling this from your main thread can lead to deadlock");
+        synchronized (this) {
+            if (!this.zzg) {
+                synchronized (this.zzh) {
+                    if (this.zzi == null || !this.zzi.zzp) {
+                        throw new IOException("AdvertisingIdClient is not connected.");
+                    }
+                }
+                try {
+                    zza(false);
+                    if (!this.zzg) {
+                        throw new IOException("AdvertisingIdClient cannot reconnect.");
+                    }
+                } catch (Throwable e) {
+                    Log.i("AdvertisingIdClient", "GMS remote exception ", e);
+                    throw new IOException("Remote exception");
+                } catch (Throwable e2) {
+                    throw new IOException("AdvertisingIdClient cannot reconnect.", e2);
+                }
+            }
+            Preconditions.checkNotNull(this.zze);
+            Preconditions.checkNotNull(this.zzf);
+            zzc = this.zzf.zzc();
+        }
+        zza();
+        return zzc;
+    }
+
+    protected void finalize() throws Throwable {
+        finish();
+        super.finalize();
+    }
+
+    /* JADX WARNING: inconsistent code. */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    public final void finish() {
+        /*
+        r3 = this;
+        r0 = "Calling this from your main thread can lead to deadlock";
+        com.google.android.gms.common.internal.Preconditions.checkNotMainThread(r0);
+        monitor-enter(r3);
+        r0 = r3.mContext;	 Catch:{ all -&gt; 0x0033 }
+        if (r0 == 0) goto L_0x0031;
+    L_0x000a:
+        r0 = r3.zze;	 Catch:{ all -&gt; 0x0033 }
+        if (r0 != 0) goto L_0x000f;
+    L_0x000e:
+        goto L_0x0031;
+    L_0x000f:
+        r0 = r3.zzg;	 Catch:{ Throwable -&gt; 0x001f }
+        if (r0 == 0) goto L_0x0027;
+    L_0x0013:
+        r0 = com.google.android.gms.common.stats.ConnectionTracker.getInstance();	 Catch:{ Throwable -&gt; 0x001f }
+        r1 = r3.mContext;	 Catch:{ Throwable -&gt; 0x001f }
+        r2 = r3.zze;	 Catch:{ Throwable -&gt; 0x001f }
+        r0.unbindService(r1, r2);	 Catch:{ Throwable -&gt; 0x001f }
+        goto L_0x0027;
+    L_0x001f:
+        r0 = move-exception;
+        r1 = "AdvertisingIdClient";
+        r2 = "AdvertisingIdClient unbindService failed.";
+        android.util.Log.i(r1, r2, r0);	 Catch:{ all -&gt; 0x0033 }
+    L_0x0027:
+        r0 = 0;
+        r3.zzg = r0;	 Catch:{ all -&gt; 0x0033 }
+        r0 = 0;
+        r3.zzf = r0;	 Catch:{ all -&gt; 0x0033 }
+        r3.zze = r0;	 Catch:{ all -&gt; 0x0033 }
+        monitor-exit(r3);	 Catch:{ all -&gt; 0x0033 }
+        return;
+    L_0x0031:
+        monitor-exit(r3);	 Catch:{ all -&gt; 0x0033 }
+        return;
+    L_0x0033:
+        r0 = move-exception;
+        monitor-exit(r3);	 Catch:{ all -&gt; 0x0033 }
+        throw r0;
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.google.android.gms.ads.identifier.AdvertisingIdClient.finish():void");
+    }
+
+    @KeepForSdk
+    public Info getInfo() throws IOException {
+        Info info;
+        Preconditions.checkNotMainThread("Calling this from your main thread can lead to deadlock");
+        synchronized (this) {
+            if (!this.zzg) {
+                synchronized (this.zzh) {
+                    if (this.zzi == null || !this.zzi.zzp) {
+                        throw new IOException("AdvertisingIdClient is not connected.");
+                    }
+                }
+                try {
+                    zza(false);
+                    if (!this.zzg) {
+                        throw new IOException("AdvertisingIdClient cannot reconnect.");
+                    }
+                } catch (Throwable e) {
+                    Log.i("AdvertisingIdClient", "GMS remote exception ", e);
+                    throw new IOException("Remote exception");
+                } catch (Throwable e2) {
+                    throw new IOException("AdvertisingIdClient cannot reconnect.", e2);
+                }
+            }
+            Preconditions.checkNotNull(this.zze);
+            Preconditions.checkNotNull(this.zzf);
+            info = new Info(this.zzf.getId(), this.zzf.zzb(true));
+        }
+        zza();
+        return info;
+    }
+
+    @KeepForSdk
+    public void start() throws IOException, IllegalStateException, GooglePlayServicesNotAvailableException, GooglePlayServicesRepairableException {
+        zza(true);
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:9 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

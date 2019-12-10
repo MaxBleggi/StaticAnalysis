@@ -1,0 +1,329 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/exoplayer2/ui/TrackSelectionView.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/exoplayer2/ui/TrackSelectionView.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="TrackSelectionView.java" data-line="" class="code line-numbers"><code>package com.google.android.exoplayer2.ui;
+
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.Context;
+import android.util.AttributeSet;
+import android.util.Pair;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.CheckedTextView;
+import android.widget.LinearLayout;
+import androidx.annotation.AttrRes;
+import androidx.annotation.Nullable;
+import com.google.android.exoplayer2.source.TrackGroup;
+import com.google.android.exoplayer2.source.TrackGroupArray;
+import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
+import com.google.android.exoplayer2.trackselection.DefaultTrackSelector.Parameters;
+import com.google.android.exoplayer2.trackselection.DefaultTrackSelector.ParametersBuilder;
+import com.google.android.exoplayer2.trackselection.DefaultTrackSelector.SelectionOverride;
+import com.google.android.exoplayer2.trackselection.MappingTrackSelector.MappedTrackInfo;
+import com.google.android.exoplayer2.util.Assertions;
+import java.util.Arrays;
+
+public class TrackSelectionView extends LinearLayout {
+    private boolean allowAdaptiveSelections;
+    private final ComponentListener componentListener;
+    private final CheckedTextView defaultView;
+    private final CheckedTextView disableView;
+    private final LayoutInflater inflater;
+    private boolean isDisabled;
+    @Nullable
+    private SelectionOverride override;
+    private int rendererIndex;
+    private final int selectableItemBackgroundResourceId;
+    private TrackGroupArray trackGroups;
+    private TrackNameProvider trackNameProvider;
+    private DefaultTrackSelector trackSelector;
+    private CheckedTextView[][] trackViews;
+
+    private class ComponentListener implements OnClickListener {
+        private ComponentListener() {
+        }
+
+        public void onClick(View view) {
+            TrackSelectionView.this.onClick(view);
+        }
+    }
+
+    public static Pair&lt;AlertDialog, TrackSelectionView&gt; getDialog(Activity activity, CharSequence charSequence, DefaultTrackSelector defaultTrackSelector, int i) {
+        Builder builder = new Builder(activity);
+        activity = LayoutInflater.from(builder.getContext()).inflate(R.layout.exo_track_selection_dialog, null);
+        TrackSelectionView trackSelectionView = (TrackSelectionView) activity.findViewById(R.id.exo_track_selection_view);
+        trackSelectionView.init(defaultTrackSelector, i);
+        return Pair.create(builder.setTitle(charSequence).setView(activity).setPositiveButton(17039370, new -$$Lambda$TrackSelectionView$Fni8J5PCSkla_I2ocA1wVoa_7Zg(trackSelectionView)).setNegativeButton(17039360, null).create(), trackSelectionView);
+    }
+
+    public TrackSelectionView(Context context) {
+        this(context, null);
+    }
+
+    public TrackSelectionView(Context context, @Nullable AttributeSet attributeSet) {
+        this(context, attributeSet, 0);
+    }
+
+    public TrackSelectionView(Context context, @Nullable AttributeSet attributeSet, @AttrRes int i) {
+        super(context, attributeSet, i);
+        attributeSet = context.getTheme().obtainStyledAttributes(new int[]{16843534});
+        this.selectableItemBackgroundResourceId = attributeSet.getResourceId(0, 0);
+        attributeSet.recycle();
+        this.inflater = LayoutInflater.from(context);
+        this.componentListener = new ComponentListener();
+        this.trackNameProvider = new DefaultTrackNameProvider(getResources());
+        this.disableView = (CheckedTextView) this.inflater.inflate(17367055, this, false);
+        this.disableView.setBackgroundResource(this.selectableItemBackgroundResourceId);
+        this.disableView.setText(R.string.exo_track_selection_none);
+        this.disableView.setEnabled(false);
+        this.disableView.setFocusable(true);
+        this.disableView.setOnClickListener(this.componentListener);
+        this.disableView.setVisibility(8);
+        addView(this.disableView);
+        addView(this.inflater.inflate(R.layout.exo_list_divider, this, false));
+        this.defaultView = (CheckedTextView) this.inflater.inflate(17367055, this, false);
+        this.defaultView.setBackgroundResource(this.selectableItemBackgroundResourceId);
+        this.defaultView.setText(R.string.exo_track_selection_auto);
+        this.defaultView.setEnabled(false);
+        this.defaultView.setFocusable(true);
+        this.defaultView.setOnClickListener(this.componentListener);
+        addView(this.defaultView);
+    }
+
+    public void setAllowAdaptiveSelections(boolean z) {
+        if (this.allowAdaptiveSelections != z) {
+            this.allowAdaptiveSelections = z;
+            updateViews();
+        }
+    }
+
+    public void setShowDisableOption(boolean z) {
+        this.disableView.setVisibility(z ? false : true);
+    }
+
+    public void setTrackNameProvider(TrackNameProvider trackNameProvider) {
+        this.trackNameProvider = (TrackNameProvider) Assertions.checkNotNull(trackNameProvider);
+        updateViews();
+    }
+
+    public void init(DefaultTrackSelector defaultTrackSelector, int i) {
+        this.trackSelector = defaultTrackSelector;
+        this.rendererIndex = i;
+        updateViews();
+    }
+
+    private void updateViews() {
+        MappedTrackInfo mappedTrackInfo;
+        for (int childCount = getChildCount() - 1; childCount &gt;= 3; childCount--) {
+            removeViewAt(childCount);
+        }
+        if (this.trackSelector == null) {
+            mappedTrackInfo = null;
+        } else {
+            mappedTrackInfo = this.trackSelector.getCurrentMappedTrackInfo();
+        }
+        if (this.trackSelector != null) {
+            if (mappedTrackInfo != null) {
+                this.disableView.setEnabled(true);
+                this.defaultView.setEnabled(true);
+                this.trackGroups = mappedTrackInfo.getTrackGroups(this.rendererIndex);
+                Parameters parameters = this.trackSelector.getParameters();
+                this.isDisabled = parameters.getRendererDisabled(this.rendererIndex);
+                this.override = parameters.getSelectionOverride(this.rendererIndex, this.trackGroups);
+                this.trackViews = new CheckedTextView[this.trackGroups.length][];
+                for (int i = 0; i &lt; this.trackGroups.length; i++) {
+                    TrackGroup trackGroup = this.trackGroups.get(i);
+                    Object obj = (!this.allowAdaptiveSelections || this.trackGroups.get(i).length &lt;= 1 || mappedTrackInfo.getAdaptiveSupport(this.rendererIndex, i, false) == 0) ? null : 1;
+                    this.trackViews[i] = new CheckedTextView[trackGroup.length];
+                    for (int i2 = 0; i2 &lt; trackGroup.length; i2++) {
+                        if (i2 == 0) {
+                            addView(this.inflater.inflate(R.layout.exo_list_divider, this, false));
+                        }
+                        CheckedTextView checkedTextView = (CheckedTextView) this.inflater.inflate(obj != null ? 17367056 : 17367055, this, false);
+                        checkedTextView.setBackgroundResource(this.selectableItemBackgroundResourceId);
+                        checkedTextView.setText(this.trackNameProvider.getTrackName(trackGroup.getFormat(i2)));
+                        if (mappedTrackInfo.getTrackSupport(this.rendererIndex, i, i2) == 4) {
+                            checkedTextView.setFocusable(true);
+                            checkedTextView.setTag(Pair.create(Integer.valueOf(i), Integer.valueOf(i2)));
+                            checkedTextView.setOnClickListener(this.componentListener);
+                        } else {
+                            checkedTextView.setFocusable(false);
+                            checkedTextView.setEnabled(false);
+                        }
+                        this.trackViews[i][i2] = checkedTextView;
+                        addView(checkedTextView);
+                    }
+                }
+                updateViewStates();
+                return;
+            }
+        }
+        this.disableView.setEnabled(false);
+        this.defaultView.setEnabled(false);
+    }
+
+    private void updateViewStates() {
+        this.disableView.setChecked(this.isDisabled);
+        CheckedTextView checkedTextView = this.defaultView;
+        boolean z = !this.isDisabled &amp;&amp; this.override == null;
+        checkedTextView.setChecked(z);
+        int i = 0;
+        while (i &lt; this.trackViews.length) {
+            for (int i2 = 0; i2 &lt; this.trackViews[i].length; i2++) {
+                CheckedTextView checkedTextView2 = this.trackViews[i][i2];
+                boolean z2 = this.override != null &amp;&amp; this.override.groupIndex == i &amp;&amp; this.override.containsTrack(i2);
+                checkedTextView2.setChecked(z2);
+            }
+            i++;
+        }
+    }
+
+    private void applySelection() {
+        ParametersBuilder buildUponParameters = this.trackSelector.buildUponParameters();
+        buildUponParameters.setRendererDisabled(this.rendererIndex, this.isDisabled);
+        if (this.override != null) {
+            buildUponParameters.setSelectionOverride(this.rendererIndex, this.trackGroups, this.override);
+        } else {
+            buildUponParameters.clearSelectionOverrides(this.rendererIndex);
+        }
+        this.trackSelector.setParameters(buildUponParameters);
+    }
+
+    private void onClick(View view) {
+        if (view == this.disableView) {
+            onDisableViewClicked();
+        } else if (view == this.defaultView) {
+            onDefaultViewClicked();
+        } else {
+            onTrackViewClicked(view);
+        }
+        updateViewStates();
+    }
+
+    private void onDisableViewClicked() {
+        this.isDisabled = true;
+        this.override = null;
+    }
+
+    private void onDefaultViewClicked() {
+        this.isDisabled = false;
+        this.override = null;
+    }
+
+    private void onTrackViewClicked(View view) {
+        this.isDisabled = false;
+        Pair pair = (Pair) view.getTag();
+        int intValue = ((Integer) pair.first).intValue();
+        int intValue2 = ((Integer) pair.second).intValue();
+        if (this.override != null &amp;&amp; this.override.groupIndex == intValue) {
+            if (this.allowAdaptiveSelections) {
+                int i = this.override.length;
+                int[] iArr = this.override.tracks;
+                if (((CheckedTextView) view).isChecked() == null) {
+                    this.override = new SelectionOverride(intValue, getTracksAdding(iArr, intValue2));
+                    return;
+                } else if (i == 1) {
+                    this.override = null;
+                    this.isDisabled = true;
+                    return;
+                } else {
+                    this.override = new SelectionOverride(intValue, getTracksRemoving(iArr, intValue2));
+                    return;
+                }
+            }
+        }
+        this.override = new SelectionOverride(intValue, intValue2);
+    }
+
+    private static int[] getTracksAdding(int[] iArr, int i) {
+        iArr = Arrays.copyOf(iArr, iArr.length + 1);
+        iArr[iArr.length - 1] = i;
+        return iArr;
+    }
+
+    private static int[] getTracksRemoving(int[] iArr, int i) {
+        int[] iArr2 = new int[(iArr.length - 1)];
+        int i2 = 0;
+        for (int i3 : iArr) {
+            if (i3 != i) {
+                int i4 = i2 + 1;
+                iArr2[i2] = i3;
+                i2 = i4;
+            }
+        }
+        return iArr2;
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:7 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

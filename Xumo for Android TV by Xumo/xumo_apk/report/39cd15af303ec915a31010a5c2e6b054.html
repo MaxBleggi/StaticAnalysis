@@ -1,0 +1,112 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/res/layout/cast_expanded_controller_activity.xml" target="_blank">/xumo_apk/jadx_source_code/res/layout/cast_expanded_controller_activity.xml</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="cast_expanded_controller_activity.xml" data-line="" class="code line-numbers"><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@id/expanded_controller_layout" android:background="@color/cast_expanded_controller_background_color" android:layout_width="match_parent" android:layout_height="match_parent"&gt;
+    &lt;ImageView android:id="@id/background_image_view" android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="centerCrop" android:contentDescription="@string/cast_expanded_controller_background_image" /&gt;
+    &lt;ImageView android:id="@id/blurred_background_image_view" android:visibility="gone" android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="centerCrop" android:contentDescription="@string/cast_expanded_controller_background_image" /&gt;
+    &lt;RelativeLayout android:background="@drawable/cast_expanded_controller_bg_gradient_light" android:layout_width="match_parent" android:layout_height="match_parent"&gt;
+        &lt;androidx.appcompat.widget.Toolbar android:theme="?attr/castExpandedControllerToolbarStyle" android:id="@id/toolbar" android:background="@drawable/cast_expanded_controller_actionbar_bg_gradient_light" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="@dimen/cast_expanded_controller_control_toolbar_min_height" /&gt;
+        &lt;RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent" android:layout_above="@id/controllers" android:layout_below="@id/toolbar"&gt;
+            &lt;ImageView android:id="@id/background_place_holder_image_view" android:layout_width="UNKNOWN_DATA_0x6001" android:layout_height="UNKNOWN_DATA_0x6001" android:src="@drawable/quantum_ic_art_track_grey600_48" android:scaleType="fitCenter" android:layout_centerInParent="true" android:contentDescription="@string/cast_expanded_controller_background_image" /&gt;
+            &lt;RelativeLayout android:id="@id/ad_container" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_centerInParent="true"&gt;
+                &lt;TextView android:textAppearance="?unknown_attr_ref: 1010042" android:textColor="@color/cast_expanded_controller_text_color" android:id="@id/ad_label" android:background="@color/cast_expanded_controller_ad_label_background_color" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/cast_ad_label" android:layout_centerHorizontal="true" /&gt;
+                &lt;RelativeLayout android:background="@color/cast_expanded_controller_ad_container_white_stripe_color" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:layout_below="@id/ad_label"&gt;
+                    &lt;View android:background="0x106000c" android:layout_width="UNKNOWN_DATA_0x7f07004f" android:layout_height="UNKNOWN_DATA_0x7f07004e" android:layout_centerHorizontal="true" /&gt;
+                    &lt;TextView android:textAppearance="?unknown_attr_ref: 1010042" android:textColor="@color/cast_expanded_controller_text_color" android:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end" android:id="@id/ad_in_progress_label" android:layout_width="UNKNOWN_DATA_0x7f070051" android:layout_height="UNKNOWN_DATA_0x7f070050" android:text="@string/cast_expanded_controller_ad_in_progress" android:layout_centerHorizontal="true" /&gt;
+                    &lt;ImageView android:id="@id/ad_image_view" android:visibility="gone" android:clickable="false" android:layout_width="UNKNOWN_DATA_0x7f070051" android:layout_height="UNKNOWN_DATA_0x7f070050" android:src="@drawable/quantum_ic_bigtop_updates_white_24" android:scaleType="fitXY" android:layout_centerInParent="true" android:layout_centerHorizontal="true" android:layout_centerVertical="true" android:contentDescription="@string/cast_expanded_controller_ad_image_description" /&gt;
+                &lt;/RelativeLayout&gt;
+            &lt;/RelativeLayout&gt;
+            &lt;TextView android:textAppearance="?unknown_attr_ref: 1010042" android:textColor="@color/cast_expanded_controller_text_color" android:id="@id/ad_skip_text" android:paddingLeft="15dp" android:paddingTop="4dp" android:paddingRight="15dp" android:paddingBottom="4dp" android:visibility="gone" android:clickable="false" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="4dp" android:text="@string/cast_expanded_controller_skip_ad_text" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" /&gt;
+            &lt;TextView android:textAppearance="?unknown_attr_ref: 1010042" android:textColor="@color/cast_expanded_controller_text_color" android:id="@id/ad_skip_button" android:background="@drawable/cast_skip_ad_label_border" android:paddingLeft="15dp" android:paddingTop="4dp" android:paddingRight="15dp" android:paddingBottom="4dp" android:visibility="gone" android:clickable="false" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="4dp" android:text="@string/cast_expanded_controller_skip_ad_label" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" /&gt;
+            &lt;ProgressBar android:id="@id/loading_indicator" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true" style="?unknown_attr_ref: 101007a" /&gt;
+        &lt;/RelativeLayout&gt;
+        &lt;RelativeLayout android:id="@id/controllers" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="8dp" android:layout_alignParentBottom="true"&gt;
+            &lt;TextView android:textAppearance="?unknown_attr_ref: 1010042" android:textColor="@color/cast_expanded_controller_text_color" android:ellipsize="end" android:gravity="left|right|center_horizontal|fill_horizontal|center|fill|start|end" android:id="@id/status_text" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/cast_expanded_controller_margin_between_status_text_and_seek_bar" android:maxLines="1" android:layout_alignParentTop="true" /&gt;
+            &lt;RelativeLayout android:id="@id/seek_bar_controls" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginLeft="16dp" android:layout_marginRight="16dp" android:layout_below="@id/status_text" android:layoutDirection="ltr" android:layout_marginStart="16dp" android:layout_marginEnd="16dp"&gt;
+                &lt;TextView android:textColor="@color/cast_expanded_controller_progress_text_color" android:id="@id/start_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/cast_invalid_stream_position_text" android:maxLines="1" android:layout_alignParentLeft="true" android:layout_centerVertical="true" /&gt;
+                &lt;TextView android:textColor="@color/cast_expanded_controller_progress_text_color" android:id="@id/end_text" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/cast_invalid_stream_duration_text" android:maxLines="1" android:layout_alignParentRight="true" android:layout_centerVertical="true" android:layout_alignWithParentIfMissing="true" /&gt;
+                &lt;ImageView android:id="@id/live_stream_indicator" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/quantum_ic_bigtop_updates_white_24" android:layout_alignLeft="@id/end_text" android:layout_alignTop="@id/end_text" android:layout_alignRight="@id/end_text" android:layout_alignBottom="@id/end_text" android:layout_centerVertical="true" android:contentDescription="@string/cast_expanded_controller_live_stream_indicator" /&gt;
+                &lt;SeekBar android:disabledAlpha="1.0" android:id="@id/seek_bar" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_toLeftOf="@id/end_text" android:layout_toRightOf="@id/start_text" android:layout_centerVertical="true" android:contentDescription="@string/cast_seek_bar" /&gt;
+                &lt;SeekBar android:id="@id/live_stream_seek_bar" android:visibility="invisible" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_toLeftOf="@id/end_text" android:layout_toRightOf="@id/start_text" android:layout_alignLeft="@id/seek_bar" android:layout_alignTop="@id/seek_bar" android:layout_alignRight="@id/seek_bar" android:layout_alignBottom="@id/seek_bar" android:layout_centerVertical="true" android:contentDescription="@string/cast_seek_bar" /&gt;
+            &lt;/RelativeLayout&gt;
+            &lt;RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/cast_expanded_controller_margin_between_seek_bar_and_control_buttons" android:layout_below="@id/seek_bar_controls"&gt;
+                &lt;ImageButton android:id="@id/button_0" android:padding="0dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="@dimen/cast_expanded_controller_control_button_margin" android:layout_toLeftOf="@id/button_1" android:layout_centerVertical="true" android:layout_marginEnd="@dimen/cast_expanded_controller_control_button_margin" android:layout_toStartOf="@id/button_1" /&gt;
+                &lt;ImageButton android:id="@id/button_1" android:padding="0dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="@dimen/cast_expanded_controller_control_button_margin" android:layout_toLeftOf="@id/button_play_pause_toggle" android:layout_centerVertical="true" android:layout_marginEnd="@dimen/cast_expanded_controller_control_button_margin" android:layout_toStartOf="@id/button_play_pause_toggle" /&gt;
+                &lt;ImageButton android:id="@id/button_play_pause_toggle" android:padding="0dp" android:layout_width="UNKNOWN_DATA_0x4001" android:layout_height="UNKNOWN_DATA_0x4001" android:scaleType="fitCenter" android:layout_centerInParent="true" /&gt;
+                &lt;ImageButton android:id="@id/button_2" android:padding="0dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/cast_expanded_controller_control_button_margin" android:layout_toRightOf="@id/button_play_pause_toggle" android:layout_centerVertical="true" android:layout_marginStart="@dimen/cast_expanded_controller_control_button_margin" android:layout_toEndOf="@id/button_play_pause_toggle" /&gt;
+                &lt;ImageButton android:id="@id/button_3" android:padding="0dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="@dimen/cast_expanded_controller_control_button_margin" android:layout_toRightOf="@id/button_2" android:layout_centerVertical="true" android:layout_marginStart="@dimen/cast_expanded_controller_control_button_margin" android:layout_toEndOf="@id/button_2" /&gt;
+            &lt;/RelativeLayout&gt;
+        &lt;/RelativeLayout&gt;
+    &lt;/RelativeLayout&gt;
+&lt;/RelativeLayout&gt;
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:2 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

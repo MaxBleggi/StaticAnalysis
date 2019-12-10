@@ -1,0 +1,346 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9"><div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/ads/interactivemedia/v3/internal/lo.java" target="_blank">/xumo_apk/jadx_source_code/com/google/ads/interactivemedia/v3/internal/lo.java</a></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-83">report</i><h5>password =|secret =|username =|key =</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>the app contain hardcoded sensitive informations like usernames, passwords, keys etc: Hard coded sensitive information in Application Code (including Crypto)</span></div></li></ul><ul class="collapsible"><li><div class="collapsible-header"><img data-position="top" data-tooltip="OWASP item" src="html/owasp_logo.png" height="20em" style="margin-right: 1rem;margin-left: 5px;" class="tooltipped"></img> OWASP Item</div><div class="collapsible-body"><span>For more information, have a look at: https://www.owasp.org/index.php/OWASP_Mobile_Security_Testing_Guide</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#lo_java75pass" class="active">line 75</a></li></ul></div><div class="card-content"><div id="lo_java75pass">Code @ line 75<pre data-start="72" data-line="75" data-src="lo.java" class="code line-numbers"><code>                return false;
+            }
+            Entry entry = (Entry) obj;
+            Object key = entry.getKey();
+            obj = entry.getValue();
+            if (!(obj == null || obj.equals(this.a.get(key)) == null)) {
+                z = true;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYWRzL2ludGVyYWN0aXZlbWVkaWEvdjMvaW50ZXJuYWwvbG8uamF2YXx8fGxpbmU6IDc1IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw3NXx8fDcy">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYWRzL2ludGVyYWN0aXZlbWVkaWEvdjMvaW50ZXJuYWwvbG8uamF2YXx8fGxpbmU6IDc1IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw3NXx8fDcy')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYWRzL2ludGVyYWN0aXZlbWVkaWEvdjMvaW50ZXJuYWwvbG8uamF2YXx8fGxpbmU6IDc1IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw3NXx8fDcy').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYWRzL2ludGVyYWN0aXZlbWVkaWEvdjMvaW50ZXJuYWwvbG8uamF2YXx8fGxpbmU6IDc1IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw3NXx8fDcy" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYWRzL2ludGVyYWN0aXZlbWVkaWEvdjMvaW50ZXJuYWwvbG8uamF2YXx8fGxpbmU6IDc1IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw3NXx8fDcy' , 'ICAgICAgICAgICAgICAgIHJldHVybiBmYWxzZTsKICAgICAgICAgICAgfQogICAgICAgICAgICBFbnRyeSBlbnRyeSA9IChFbnRyeSkgb2JqOwogICAgICAgICAgICBPYmplY3Qga2V5ID0gZW50cnkuZ2V0S2V5KCk7CiAgICAgICAgICAgIG9iaiA9IGVudHJ5LmdldFZhbHVlKCk7CiAgICAgICAgICAgIGlmICghKG9iaiA9PSBudWxsIHx8IG9iai5lcXVhbHModGhpcy5hLmdldChrZXkpKSA9PSBudWxsKSkgewogICAgICAgICAgICAgICAgeiA9IHRydWU7Cg==');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="lo.java" data-line="75," class="code line-numbers"><code>package com.google.ads.interactivemedia.v3.internal;
+
+import java.util.AbstractMap.SimpleImmutableEntry;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.Map.Entry;
+
+/* compiled from: IMASDK */
+final class lo&lt;K, V&gt; extends lf&lt;K, V&gt; {
+    static final lf&lt;Object, Object&gt; b = new lo(null, new Object[0], 0);
+    final transient Object[] c;
+    private final transient int[] d;
+    private final transient int e;
+
+    /* compiled from: IMASDK */
+    static class a&lt;K, V&gt; extends lg&lt;Entry&lt;K, V&gt;&gt; {
+        private final transient lf&lt;K, V&gt; a;
+        private final transient Object[] b;
+        private final transient int c;
+        private final transient int d;
+
+        a(lf&lt;K, V&gt; lfVar, Object[] objArr, int i, int i2) {
+            this.a = lfVar;
+            this.b = objArr;
+            this.c = i;
+            this.d = i2;
+        }
+
+        boolean c() {
+            return true;
+        }
+
+        public lr&lt;Entry&lt;K, V&gt;&gt; a() {
+            return b().a();
+        }
+
+        int a(Object[] objArr, int i) {
+            return b().a(objArr, i);
+        }
+
+        le&lt;Entry&lt;K, V&gt;&gt; e() {
+            return new le&lt;Entry&lt;K, V&gt;&gt;(this) {
+                final /* synthetic */ a a;
+
+                {
+                    this.a = r1;
+                }
+
+                public boolean c() {
+                    return true;
+                }
+
+                public Entry&lt;K, V&gt; b(int i) {
+                    kv.a(i, this.a.d);
+                    i *= 2;
+                    return new SimpleImmutableEntry(this.a.b[this.a.c + i], this.a.b[i + (this.a.c ^ 1)]);
+                }
+
+                public int size() {
+                    return this.a.d;
+                }
+
+                public /* synthetic */ Object get(int i) {
+                    return b(i);
+                }
+            };
+        }
+
+        public boolean contains(Object obj) {
+            boolean z = false;
+            if (!(obj instanceof Entry)) {
+                return false;
+            }
+            Entry entry = (Entry) obj;
+            Object key = entry.getKey();
+            obj = entry.getValue();
+            if (!(obj == null || obj.equals(this.a.get(key)) == null)) {
+                z = true;
+            }
+            return z;
+        }
+
+        public int size() {
+            return this.d;
+        }
+
+        public /* synthetic */ Iterator iterator() {
+            return a();
+        }
+    }
+
+    /* compiled from: IMASDK */
+    static final class b&lt;K&gt; extends lg&lt;K&gt; {
+        private final transient lf&lt;K, ?&gt; a;
+        private final transient le&lt;K&gt; b;
+
+        b(lf&lt;K, ?&gt; lfVar, le&lt;K&gt; leVar) {
+            this.a = lfVar;
+            this.b = leVar;
+        }
+
+        boolean c() {
+            return true;
+        }
+
+        public lr&lt;K&gt; a() {
+            return b().a();
+        }
+
+        int a(Object[] objArr, int i) {
+            return b().a(objArr, i);
+        }
+
+        public le&lt;K&gt; b() {
+            return this.b;
+        }
+
+        public boolean contains(Object obj) {
+            return this.a.get(obj) != null ? true : null;
+        }
+
+        public int size() {
+            return this.a.size();
+        }
+
+        public /* synthetic */ Iterator iterator() {
+            return a();
+        }
+    }
+
+    /* compiled from: IMASDK */
+    static final class c extends le&lt;Object&gt; {
+        private final transient Object[] a;
+        private final transient int b;
+        private final transient int c;
+
+        c(Object[] objArr, int i, int i2) {
+            this.a = objArr;
+            this.b = i;
+            this.c = i2;
+        }
+
+        boolean c() {
+            return true;
+        }
+
+        public Object get(int i) {
+            kv.a(i, this.c);
+            return this.a[(i * 2) + this.b];
+        }
+
+        public int size() {
+            return this.c;
+        }
+    }
+
+    static &lt;K, V&gt; lo&lt;K, V&gt; a(int i, Object[] objArr) {
+        if (i == 0) {
+            return (lo) b;
+        }
+        if (i == 1) {
+            kz.a(objArr[0], objArr[1]);
+            return new lo(null, objArr, 1);
+        }
+        kv.b(i, objArr.length &gt;&gt; 1);
+        return new lo(a(objArr, i, lg.a(i), 0), objArr, i);
+    }
+
+    static int[] a(Object[] objArr, int i, int i2, int i3) {
+        if (i == 1) {
+            kz.a(objArr[i3], objArr[i3 ^ 1]);
+            return null;
+        }
+        int i4 = i2 - 1;
+        i2 = new int[i2];
+        Arrays.fill(i2, -1);
+        for (int i5 = 0; i5 &lt; i; i5++) {
+            int i6 = i5 * 2;
+            int i7 = i6 + i3;
+            Object obj = objArr[i7];
+            Object obj2 = objArr[i6 + (i3 ^ 1)];
+            kz.a(obj, obj2);
+            int a = lc.a(obj.hashCode());
+            while (true) {
+                a &amp;= i4;
+                int i8 = i2[a];
+                if (i8 == -1) {
+                    break;
+                } else if (objArr[i8].equals(obj)) {
+                    i2 = String.valueOf(obj);
+                    i3 = String.valueOf(obj2);
+                    String valueOf = String.valueOf(objArr[i8]);
+                    objArr = String.valueOf(objArr[1 ^ i8]);
+                    StringBuilder stringBuilder = new StringBuilder((((String.valueOf(i2).length() + 39) + String.valueOf(i3).length()) + String.valueOf(valueOf).length()) + String.valueOf(objArr).length());
+                    stringBuilder.append("Multiple entries with same key: ");
+                    stringBuilder.append(i2);
+                    stringBuilder.append("=");
+                    stringBuilder.append(i3);
+                    stringBuilder.append(" and ");
+                    stringBuilder.append(valueOf);
+                    stringBuilder.append("=");
+                    stringBuilder.append(objArr);
+                    throw new IllegalArgumentException(stringBuilder.toString());
+                } else {
+                    a++;
+                }
+            }
+            i2[a] = i7;
+        }
+        return i2;
+    }
+
+    private lo(int[] iArr, Object[] objArr, int i) {
+        this.d = iArr;
+        this.c = objArr;
+        this.e = i;
+    }
+
+    public int size() {
+        return this.e;
+    }
+
+    public V get(Object obj) {
+        return a(this.d, this.c, this.e, 0, obj);
+    }
+
+    static Object a(int[] iArr, Object[] objArr, int i, int i2, Object obj) {
+        Object obj2 = null;
+        if (obj == null) {
+            return null;
+        }
+        if (i == 1) {
+            if (objArr[i2].equals(obj) != null) {
+                obj2 = objArr[i2 ^ 1];
+            }
+            return obj2;
+        } else if (iArr == null) {
+            return null;
+        } else {
+            i = iArr.length - 1;
+            i2 = lc.a(obj.hashCode());
+            while (true) {
+                i2 &amp;= i;
+                int i3 = iArr[i2];
+                if (i3 == -1) {
+                    return null;
+                }
+                if (objArr[i3].equals(obj)) {
+                    return objArr[i3 ^ 1];
+                }
+                i2++;
+            }
+        }
+    }
+
+    lg&lt;Entry&lt;K, V&gt;&gt; b() {
+        return new a(this, this.c, 0, this.e);
+    }
+
+    lg&lt;K&gt; d() {
+        return new b(this, new c(this.c, 0, this.e));
+    }
+
+    ld&lt;V&gt; f() {
+        return new c(this.c, 1, this.e);
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:6 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

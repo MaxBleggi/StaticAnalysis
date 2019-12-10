@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res-auto" app:layout_width="match_parent" app:layout_height="match_parent">
+    <LinearLayout app:orientation="horizontal" app:layout_width="match_parent" app:layout_height="match_parent"
+        <LinearLayout app:orientation="vertical" app:id="@+id/player_layout" app:layout_width="UNKNOWN_DATA_0x1" app:layout_height="match_parent" app:layout_weight="6.0">
+            <androidx.constraintlayout.widget.ConstraintLayout app:background="0x106000c" app:layout_width="match_parent" app:layout_height="wrap_content">
+                <com.google.android.exoplayer2.ui.PlayerView app:id="@+id/player_view" app:layout_width="match_parent" app:layout_height="UNKNOWN_DATA_0x1" app:layout_constraintDimensionRatio="h,320:180" app:resize_mode="2">
+                    <RelativeLayout app:id="@+id/player_error_message_layout" app:background="0x106000c" app:layout_width="match_parent" app:layout_height="match_parent">
+                        <TextView app:textSize="16sp" app:textColor="@color/xumoGrayFourth" app:id="@+id/player_error_message" app:layout_width="wrap_content" app:layout_height="wrap_content" app:layout_centerInParent="true" app:lineSpacingExtra="12sp" app:textAlignment="center" fontPath="fonts/Raleway-Medium.ttf" />
+                    </RelativeLayout>
+                    <ProgressBar app:layout_gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end" app:id="@+id/buffering_indicator" app:visibility="gone" app:layout_width="wrap_content" app:layout_height="wrap_content" />
+                    <FrameLayout app:id="@+id/fb_ad_view" app:visibility="gone" app:layout_width="match_parent" app:layout_height="match_parent" />
+                </com.google.android.exoplayer2.ui.PlayerView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <ScrollView app:background="@color/onNowDescriptionBackgroundColor" app:layout_width="match_parent" app:layout_height="match_parent" app:paddingStart="16dp" app:paddingEnd="16dp">
+                <RelativeLayout app:paddingTop="16dp" app:paddingBottom="16dp" app:layout_width="match_parent" app:layout_height="wrap_content">
+                    <ImageView app:id="@+id/channel_icon" app:layout_width="UNKNOWN_DATA_0x4401" app:layout_height="UNKNOWN_DATA_0x4401" app:scaleType="fitCenter" app:contentDescription="@string/channel_logo_description" app:layout_alignParentStart="true" />
+                    <TextView app:textSize="12sp" app:textColor="@color/xumoWhite" app:id="@+id/channel_program_number" app:layout_width="UNKNOWN_DATA_0x4401" app:layout_height="wrap_content" app:layout_marginTop="10dp" app:layout_below="@+id/channel_icon" app:textAlignment="center" fontPath="fonts/Lato-Bold.ttf" />
+                    <TextView app:textSize="24sp" app:textColor="@color/xumoWhite" app:ellipsize="end" app:id="@+id/content_title" app:layout_width="wrap_content" app:layout_height="wrap_content" app:layout_marginTop="8dp" app:maxLines="1" app:textAlignment="textStart" app:layout_marginStart="20dp" app:layout_toEndOf="@+id/channel_icon" fontPath="fonts/Raleway-Bold.ttf" />
+                    <TextView app:textSize="16sp" app:textColor="@color/xumoWhiteSecond" app:id="@+id/content_description" app:layout_width="wrap_content" app:layout_height="wrap_content" app:layout_marginTop="8dp" app:layout_below="@+id/content_title" app:lineSpacingExtra="8sp" app:textAlignment="textStart" app:layout_marginStart="20dp" app:layout_toEndOf="@+id/channel_icon" fontPath="fonts/Raleway-Regular.ttf" />
+                </RelativeLayout>
+            </ScrollView>
+        </LinearLayout>
+        <RelativeLayout app:layout_width="UNKNOWN_DATA_0x1" app:layout_height="match_parent" app:layout_weight="4.0">
+            <com.google.android.material.tabs.TabLayout app:id="@+id/category_tabs" app:background="@color/brandTabLayoutBackgroundColor" app:layout_width="match_parent" app:layout_height="wrap_content" app:tabIndicatorColor="@color/tabIndicatorColor" />
+            <se.emilsjolander.stickylistheaders.StickyListHeadersListView app:id="@+id/video_asset_list" app:background="@color/brandTabLayoutBackgroundColor" app:layout_width="match_parent" app:layout_height="match_parent" app:divider="#00ffffff" app:dividerHeight="0dp" app:layout_below="@+id/category_tabs" app:layout_alignParentBottom="true" />
+        </RelativeLayout>
+    </LinearLayout>
+    <RelativeLayout app:id="@+id/channel_error_message_layout" app:background="0x106000c" app:layout_width="match_parent" app:layout_height="match_parent">
+        <TextView app:textSize="16sp" app:textColor="@color/xumoGrayFourth" app:layout_width="wrap_content" app:layout_height="wrap_content" app:text="@string/channel_error_message" app:layout_centerInParent="true" app:lineSpacingExtra="12sp" app:textAlignment="center" fontPath="fonts/Raleway-Medium.ttf" />
+    </RelativeLayout>
+</RelativeLayout>

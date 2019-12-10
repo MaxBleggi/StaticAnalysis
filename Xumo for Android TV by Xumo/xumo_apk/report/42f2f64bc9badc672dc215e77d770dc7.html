@@ -1,0 +1,217 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/gms/internal/measurement/zzxj.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/gms/internal/measurement/zzxj.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="zzxj.java" data-line="" class="code line-numbers"><code>package com.google.android.gms.internal.measurement;
+
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.Map.Entry;
+
+final class zzxj&lt;T&gt; implements zzxu&lt;T&gt; {
+    private final zzxe zzcby;
+    private final boolean zzcbz;
+    private final zzym&lt;?, ?&gt; zzcci;
+    private final zzvl&lt;?&gt; zzccj;
+
+    private zzxj(zzym&lt;?, ?&gt; com_google_android_gms_internal_measurement_zzym___, zzvl&lt;?&gt; com_google_android_gms_internal_measurement_zzvl_, zzxe com_google_android_gms_internal_measurement_zzxe) {
+        this.zzcci = com_google_android_gms_internal_measurement_zzym___;
+        this.zzcbz = com_google_android_gms_internal_measurement_zzvl_.zze(com_google_android_gms_internal_measurement_zzxe);
+        this.zzccj = com_google_android_gms_internal_measurement_zzvl_;
+        this.zzcby = com_google_android_gms_internal_measurement_zzxe;
+    }
+
+    static &lt;T&gt; zzxj&lt;T&gt; zza(zzym&lt;?, ?&gt; com_google_android_gms_internal_measurement_zzym___, zzvl&lt;?&gt; com_google_android_gms_internal_measurement_zzvl_, zzxe com_google_android_gms_internal_measurement_zzxe) {
+        return new zzxj(com_google_android_gms_internal_measurement_zzym___, com_google_android_gms_internal_measurement_zzvl_, com_google_android_gms_internal_measurement_zzxe);
+    }
+
+    public final T newInstance() {
+        return this.zzcby.zzwp().zzwu();
+    }
+
+    public final boolean equals(T t, T t2) {
+        if (this.zzcci.zzal(t).equals(this.zzcci.zzal(t2))) {
+            return this.zzcbz ? this.zzccj.zzw(t).equals(this.zzccj.zzw(t2)) : true;
+        } else {
+            return null;
+        }
+    }
+
+    public final int hashCode(T t) {
+        int hashCode = this.zzcci.zzal(t).hashCode();
+        return this.zzcbz ? (hashCode * 53) + this.zzccj.zzw(t).hashCode() : hashCode;
+    }
+
+    public final void zzd(T t, T t2) {
+        zzxw.zza(this.zzcci, (Object) t, (Object) t2);
+        if (this.zzcbz) {
+            zzxw.zza(this.zzccj, (Object) t, (Object) t2);
+        }
+    }
+
+    public final void zza(T t, zzzh com_google_android_gms_internal_measurement_zzzh) throws IOException {
+        Iterator it = this.zzccj.zzw(t).iterator();
+        while (it.hasNext()) {
+            Entry entry = (Entry) it.next();
+            zzvq com_google_android_gms_internal_measurement_zzvq = (zzvq) entry.getKey();
+            if (com_google_android_gms_internal_measurement_zzvq.zzwh() != zzzg.MESSAGE || com_google_android_gms_internal_measurement_zzvq.zzwi() || com_google_android_gms_internal_measurement_zzvq.zzwj()) {
+                throw new IllegalStateException("Found invalid MessageSet item.");
+            } else if (entry instanceof zzwj) {
+                com_google_android_gms_internal_measurement_zzzh.zza(com_google_android_gms_internal_measurement_zzvq.zzc(), ((zzwj) entry).zzxh().zzud());
+            } else {
+                com_google_android_gms_internal_measurement_zzzh.zza(com_google_android_gms_internal_measurement_zzvq.zzc(), entry.getValue());
+            }
+        }
+        zzym com_google_android_gms_internal_measurement_zzym = this.zzcci;
+        com_google_android_gms_internal_measurement_zzym.zzc(com_google_android_gms_internal_measurement_zzym.zzal(t), com_google_android_gms_internal_measurement_zzzh);
+    }
+
+    public final void zza(T t, zzxt com_google_android_gms_internal_measurement_zzxt, zzvk com_google_android_gms_internal_measurement_zzvk) throws IOException {
+        zzym com_google_android_gms_internal_measurement_zzym = this.zzcci;
+        zzvl com_google_android_gms_internal_measurement_zzvl = this.zzccj;
+        Object zzam = com_google_android_gms_internal_measurement_zzym.zzam(t);
+        zzvo zzx = com_google_android_gms_internal_measurement_zzvl.zzx(t);
+        while (com_google_android_gms_internal_measurement_zzxt.zzvo() != Integer.MAX_VALUE) {
+            try {
+                boolean zza;
+                int tag = com_google_android_gms_internal_measurement_zzxt.getTag();
+                if (tag != 11) {
+                    if ((tag &amp; 7) == 2) {
+                        Object zza2 = com_google_android_gms_internal_measurement_zzvl.zza(com_google_android_gms_internal_measurement_zzvk, this.zzcby, tag &gt;&gt;&gt; 3);
+                        if (zza2 != null) {
+                            com_google_android_gms_internal_measurement_zzvl.zza(com_google_android_gms_internal_measurement_zzxt, zza2, com_google_android_gms_internal_measurement_zzvk, zzx);
+                        } else {
+                            zza = com_google_android_gms_internal_measurement_zzym.zza(zzam, com_google_android_gms_internal_measurement_zzxt);
+                            continue;
+                        }
+                    } else {
+                        zza = com_google_android_gms_internal_measurement_zzxt.zzvp();
+                        continue;
+                    }
+                    if (!zza) {
+                        return;
+                    }
+                }
+                Object obj = null;
+                zzun com_google_android_gms_internal_measurement_zzun = null;
+                int i = 0;
+                while (com_google_android_gms_internal_measurement_zzxt.zzvo() != Integer.MAX_VALUE) {
+                    int tag2 = com_google_android_gms_internal_measurement_zzxt.getTag();
+                    if (tag2 == 16) {
+                        i = com_google_android_gms_internal_measurement_zzxt.zzuz();
+                        obj = com_google_android_gms_internal_measurement_zzvl.zza(com_google_android_gms_internal_measurement_zzvk, this.zzcby, i);
+                    } else if (tag2 == 26) {
+                        if (obj != null) {
+                            com_google_android_gms_internal_measurement_zzvl.zza(com_google_android_gms_internal_measurement_zzxt, obj, com_google_android_gms_internal_measurement_zzvk, zzx);
+                        } else {
+                            com_google_android_gms_internal_measurement_zzun = com_google_android_gms_internal_measurement_zzxt.zzuy();
+                        }
+                    } else if (!com_google_android_gms_internal_measurement_zzxt.zzvp()) {
+                        break;
+                    }
+                }
+                if (com_google_android_gms_internal_measurement_zzxt.getTag() != 12) {
+                    throw zzwe.zzxa();
+                } else if (com_google_android_gms_internal_measurement_zzun != null) {
+                    if (obj != null) {
+                        com_google_android_gms_internal_measurement_zzvl.zza(com_google_android_gms_internal_measurement_zzun, obj, com_google_android_gms_internal_measurement_zzvk, zzx);
+                    } else {
+                        com_google_android_gms_internal_measurement_zzym.zza(zzam, i, com_google_android_gms_internal_measurement_zzun);
+                    }
+                }
+                zza = true;
+                continue;
+                if (zza) {
+                    return;
+                }
+            } finally {
+                com_google_android_gms_internal_measurement_zzym.zzg(t, zzam);
+            }
+        }
+        com_google_android_gms_internal_measurement_zzym.zzg(t, zzam);
+    }
+
+    public final void zzy(T t) {
+        this.zzcci.zzy(t);
+        this.zzccj.zzy(t);
+    }
+
+    public final boolean zzaj(T t) {
+        return this.zzccj.zzw(t).isInitialized();
+    }
+
+    public final int zzai(T t) {
+        zzym com_google_android_gms_internal_measurement_zzym = this.zzcci;
+        int zzan = com_google_android_gms_internal_measurement_zzym.zzan(com_google_android_gms_internal_measurement_zzym.zzal(t)) + 0;
+        return this.zzcbz ? zzan + this.zzccj.zzw(t).zzwf() : zzan;
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:11 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

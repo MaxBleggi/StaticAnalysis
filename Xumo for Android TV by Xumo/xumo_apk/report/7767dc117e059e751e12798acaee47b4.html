@@ -1,0 +1,268 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/material/snackbar/SnackbarManager.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/material/snackbar/SnackbarManager.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="SnackbarManager.java" data-line="" class="code line-numbers"><code>package com.google.android.material.snackbar;
+
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import java.lang.ref.WeakReference;
+
+class SnackbarManager {
+    private static final int LONG_DURATION_MS = 2750;
+    static final int MSG_TIMEOUT = 0;
+    private static final int SHORT_DURATION_MS = 1500;
+    private static SnackbarManager snackbarManager;
+    private SnackbarRecord currentSnackbar;
+    private final Handler handler = new Handler(Looper.getMainLooper(), new android.os.Handler.Callback() {
+        public boolean handleMessage(Message message) {
+            if (message.what != 0) {
+                return null;
+            }
+            SnackbarManager.this.handleTimeout((SnackbarRecord) message.obj);
+            return true;
+        }
+    });
+    private final Object lock = new Object();
+    private SnackbarRecord nextSnackbar;
+
+    interface Callback {
+        void dismiss(int i);
+
+        void show();
+    }
+
+    private static class SnackbarRecord {
+        final WeakReference&lt;Callback&gt; callback;
+        int duration;
+        boolean paused;
+
+        SnackbarRecord(int i, Callback callback) {
+            this.callback = new WeakReference(callback);
+            this.duration = i;
+        }
+
+        boolean isSnackbar(Callback callback) {
+            return (callback == null || this.callback.get() != callback) ? null : true;
+        }
+    }
+
+    static SnackbarManager getInstance() {
+        if (snackbarManager == null) {
+            snackbarManager = new SnackbarManager();
+        }
+        return snackbarManager;
+    }
+
+    private SnackbarManager() {
+    }
+
+    public void show(int i, Callback callback) {
+        synchronized (this.lock) {
+            if (isCurrentSnackbarLocked(callback)) {
+                this.currentSnackbar.duration = i;
+                this.handler.removeCallbacksAndMessages(this.currentSnackbar);
+                scheduleTimeoutLocked(this.currentSnackbar);
+                return;
+            }
+            if (isNextSnackbarLocked(callback)) {
+                this.nextSnackbar.duration = i;
+            } else {
+                this.nextSnackbar = new SnackbarRecord(i, callback);
+            }
+            if (this.currentSnackbar == 0 || cancelSnackbarLocked(this.currentSnackbar, 4) == 0) {
+                this.currentSnackbar = 0;
+                showNextSnackbarLocked();
+                return;
+            }
+        }
+    }
+
+    public void dismiss(Callback callback, int i) {
+        synchronized (this.lock) {
+            if (isCurrentSnackbarLocked(callback)) {
+                cancelSnackbarLocked(this.currentSnackbar, i);
+            } else if (isNextSnackbarLocked(callback) != null) {
+                cancelSnackbarLocked(this.nextSnackbar, i);
+            }
+        }
+    }
+
+    public void onDismissed(Callback callback) {
+        synchronized (this.lock) {
+            if (isCurrentSnackbarLocked(callback) != null) {
+                this.currentSnackbar = null;
+                if (this.nextSnackbar != null) {
+                    showNextSnackbarLocked();
+                }
+            }
+        }
+    }
+
+    public void onShown(Callback callback) {
+        synchronized (this.lock) {
+            if (isCurrentSnackbarLocked(callback) != null) {
+                scheduleTimeoutLocked(this.currentSnackbar);
+            }
+        }
+    }
+
+    public void pauseTimeout(Callback callback) {
+        synchronized (this.lock) {
+            if (isCurrentSnackbarLocked(callback) != null &amp;&amp; this.currentSnackbar.paused == null) {
+                this.currentSnackbar.paused = true;
+                this.handler.removeCallbacksAndMessages(this.currentSnackbar);
+            }
+        }
+    }
+
+    public void restoreTimeoutIfPaused(Callback callback) {
+        synchronized (this.lock) {
+            if (!(isCurrentSnackbarLocked(callback) == null || this.currentSnackbar.paused == null)) {
+                this.currentSnackbar.paused = false;
+                scheduleTimeoutLocked(this.currentSnackbar);
+            }
+        }
+    }
+
+    public boolean isCurrent(Callback callback) {
+        synchronized (this.lock) {
+            callback = isCurrentSnackbarLocked(callback);
+        }
+        return callback;
+    }
+
+    public boolean isCurrentOrNext(Callback callback) {
+        synchronized (this.lock) {
+            if (!isCurrentSnackbarLocked(callback)) {
+                if (isNextSnackbarLocked(callback) == null) {
+                    callback = null;
+                }
+            }
+            callback = true;
+        }
+        return callback;
+    }
+
+    private void showNextSnackbarLocked() {
+        if (this.nextSnackbar != null) {
+            this.currentSnackbar = this.nextSnackbar;
+            this.nextSnackbar = null;
+            Callback callback = (Callback) this.currentSnackbar.callback.get();
+            if (callback != null) {
+                callback.show();
+            } else {
+                this.currentSnackbar = null;
+            }
+        }
+    }
+
+    private boolean cancelSnackbarLocked(SnackbarRecord snackbarRecord, int i) {
+        Callback callback = (Callback) snackbarRecord.callback.get();
+        if (callback == null) {
+            return null;
+        }
+        this.handler.removeCallbacksAndMessages(snackbarRecord);
+        callback.dismiss(i);
+        return true;
+    }
+
+    private boolean isCurrentSnackbarLocked(Callback callback) {
+        return (this.currentSnackbar == null || this.currentSnackbar.isSnackbar(callback) == null) ? null : true;
+    }
+
+    private boolean isNextSnackbarLocked(Callback callback) {
+        return (this.nextSnackbar == null || this.nextSnackbar.isSnackbar(callback) == null) ? null : true;
+    }
+
+    private void scheduleTimeoutLocked(SnackbarRecord snackbarRecord) {
+        if (snackbarRecord.duration != -2) {
+            int i = LONG_DURATION_MS;
+            if (snackbarRecord.duration &gt; 0) {
+                i = snackbarRecord.duration;
+            } else if (snackbarRecord.duration == -1) {
+                i = 1500;
+            }
+            this.handler.removeCallbacksAndMessages(snackbarRecord);
+            this.handler.sendMessageDelayed(Message.obtain(this.handler, 0, snackbarRecord), (long) i);
+        }
+    }
+
+    void handleTimeout(SnackbarRecord snackbarRecord) {
+        synchronized (this.lock) {
+            if (this.currentSnackbar == snackbarRecord || this.nextSnackbar == snackbarRecord) {
+                cancelSnackbarLocked(snackbarRecord, 2);
+            }
+        }
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:13 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

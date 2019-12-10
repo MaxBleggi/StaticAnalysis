@@ -1,0 +1,257 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/exoplayer2/source/ShuffleOrder.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/exoplayer2/source/ShuffleOrder.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="ShuffleOrder.java" data-line="" class="code line-numbers"><code>package com.google.android.exoplayer2.source;
+
+import java.util.Arrays;
+import java.util.Random;
+
+public interface ShuffleOrder {
+
+    public static class DefaultShuffleOrder implements ShuffleOrder {
+        private final int[] indexInShuffled;
+        private final Random random;
+        private final int[] shuffled;
+
+        public DefaultShuffleOrder(int i) {
+            this(i, new Random());
+        }
+
+        public DefaultShuffleOrder(int i, long j) {
+            this(i, new Random(j));
+        }
+
+        private DefaultShuffleOrder(int i, Random random) {
+            this(createShuffledList(i, random), random);
+        }
+
+        private DefaultShuffleOrder(int[] iArr, Random random) {
+            this.shuffled = iArr;
+            this.random = random;
+            this.indexInShuffled = new int[iArr.length];
+            for (random = null; random &lt; iArr.length; random++) {
+                this.indexInShuffled[iArr[random]] = random;
+            }
+        }
+
+        public int getLength() {
+            return this.shuffled.length;
+        }
+
+        public int getNextIndex(int i) {
+            i = this.indexInShuffled[i] + 1;
+            return i &lt; this.shuffled.length ? this.shuffled[i] : -1;
+        }
+
+        public int getPreviousIndex(int i) {
+            i = this.indexInShuffled[i] - 1;
+            if (i &gt;= 0) {
+                return this.shuffled[i];
+            }
+            return -1;
+        }
+
+        public int getLastIndex() {
+            return this.shuffled.length &gt; 0 ? this.shuffled[this.shuffled.length - 1] : -1;
+        }
+
+        public int getFirstIndex() {
+            return this.shuffled.length &gt; 0 ? this.shuffled[0] : -1;
+        }
+
+        public ShuffleOrder cloneAndInsert(int i, int i2) {
+            int i3;
+            int nextInt;
+            int[] iArr = new int[i2];
+            int[] iArr2 = new int[i2];
+            int i4 = 0;
+            while (i4 &lt; i2) {
+                iArr[i4] = this.random.nextInt(this.shuffled.length + 1);
+                i3 = i4 + 1;
+                nextInt = this.random.nextInt(i3);
+                iArr2[i4] = iArr2[nextInt];
+                iArr2[nextInt] = i4 + i;
+                i4 = i3;
+            }
+            Arrays.sort(iArr);
+            int[] iArr3 = new int[(this.shuffled.length + i2)];
+            nextInt = 0;
+            i3 = 0;
+            for (int i5 = 0; i5 &lt; this.shuffled.length + i2; i5++) {
+                if (nextInt &gt;= i2 || i3 != iArr[nextInt]) {
+                    int i6 = i3 + 1;
+                    iArr3[i5] = this.shuffled[i3];
+                    if (iArr3[i5] &gt;= i) {
+                        iArr3[i5] = iArr3[i5] + i2;
+                    }
+                    i3 = i6;
+                } else {
+                    int i7 = nextInt + 1;
+                    iArr3[i5] = iArr2[nextInt];
+                    nextInt = i7;
+                }
+            }
+            return new DefaultShuffleOrder(iArr3, new Random(this.random.nextLong()));
+        }
+
+        public ShuffleOrder cloneAndRemove(int i) {
+            int[] iArr = new int[(this.shuffled.length - 1)];
+            int i2 = 0;
+            Object obj = null;
+            while (i2 &lt; this.shuffled.length) {
+                if (this.shuffled[i2] == i) {
+                    obj = 1;
+                } else {
+                    iArr[obj != null ? i2 - 1 : i2] = this.shuffled[i2] &gt; i ? this.shuffled[i2] - 1 : this.shuffled[i2];
+                }
+                i2++;
+            }
+            return new DefaultShuffleOrder(iArr, new Random(this.random.nextLong()));
+        }
+
+        public ShuffleOrder cloneAndClear() {
+            return new DefaultShuffleOrder(0, new Random(this.random.nextLong()));
+        }
+
+        private static int[] createShuffledList(int i, Random random) {
+            int[] iArr = new int[i];
+            int i2 = 0;
+            while (i2 &lt; i) {
+                int i3 = i2 + 1;
+                int nextInt = random.nextInt(i3);
+                iArr[i2] = iArr[nextInt];
+                iArr[nextInt] = i2;
+                i2 = i3;
+            }
+            return iArr;
+        }
+    }
+
+    public static final class UnshuffledShuffleOrder implements ShuffleOrder {
+        private final int length;
+
+        public int getPreviousIndex(int i) {
+            i--;
+            return i &gt;= 0 ? i : -1;
+        }
+
+        public UnshuffledShuffleOrder(int i) {
+            this.length = i;
+        }
+
+        public int getLength() {
+            return this.length;
+        }
+
+        public int getNextIndex(int i) {
+            i++;
+            return i &lt; this.length ? i : -1;
+        }
+
+        public int getLastIndex() {
+            return this.length &gt; 0 ? this.length - 1 : -1;
+        }
+
+        public int getFirstIndex() {
+            return this.length &gt; 0 ? 0 : -1;
+        }
+
+        public ShuffleOrder cloneAndInsert(int i, int i2) {
+            return new UnshuffledShuffleOrder(this.length + i2);
+        }
+
+        public ShuffleOrder cloneAndRemove(int i) {
+            return new UnshuffledShuffleOrder(this.length - 1);
+        }
+
+        public ShuffleOrder cloneAndClear() {
+            return new UnshuffledShuffleOrder(0);
+        }
+    }
+
+    ShuffleOrder cloneAndClear();
+
+    ShuffleOrder cloneAndInsert(int i, int i2);
+
+    ShuffleOrder cloneAndRemove(int i);
+
+    int getFirstIndex();
+
+    int getLastIndex();
+
+    int getLength();
+
+    int getNextIndex(int i);
+
+    int getPreviousIndex(int i);
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:8 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

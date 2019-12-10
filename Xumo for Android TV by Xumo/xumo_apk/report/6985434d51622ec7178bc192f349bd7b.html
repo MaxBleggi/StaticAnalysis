@@ -1,0 +1,217 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/androidx/mediarouter/media/MediaItemStatus.java" target="_blank">/xumo_apk/jadx_source_code/androidx/mediarouter/media/MediaItemStatus.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="MediaItemStatus.java" data-line="" class="code line-numbers"><code>package androidx.mediarouter.media;
+
+import android.os.Bundle;
+import android.os.SystemClock;
+import androidx.core.util.TimeUtils;
+
+public final class MediaItemStatus {
+    public static final String EXTRA_HTTP_RESPONSE_HEADERS = "android.media.status.extra.HTTP_RESPONSE_HEADERS";
+    public static final String EXTRA_HTTP_STATUS_CODE = "android.media.status.extra.HTTP_STATUS_CODE";
+    static final String KEY_CONTENT_DURATION = "contentDuration";
+    static final String KEY_CONTENT_POSITION = "contentPosition";
+    static final String KEY_EXTRAS = "extras";
+    static final String KEY_PLAYBACK_STATE = "playbackState";
+    static final String KEY_TIMESTAMP = "timestamp";
+    public static final int PLAYBACK_STATE_BUFFERING = 3;
+    public static final int PLAYBACK_STATE_CANCELED = 5;
+    public static final int PLAYBACK_STATE_ERROR = 7;
+    public static final int PLAYBACK_STATE_FINISHED = 4;
+    public static final int PLAYBACK_STATE_INVALIDATED = 6;
+    public static final int PLAYBACK_STATE_PAUSED = 2;
+    public static final int PLAYBACK_STATE_PENDING = 0;
+    public static final int PLAYBACK_STATE_PLAYING = 1;
+    final Bundle mBundle;
+
+    public static final class Builder {
+        private final Bundle mBundle;
+
+        public Builder(int i) {
+            this.mBundle = new Bundle();
+            setTimestamp(SystemClock.elapsedRealtime());
+            setPlaybackState(i);
+        }
+
+        public Builder(MediaItemStatus mediaItemStatus) {
+            if (mediaItemStatus != null) {
+                this.mBundle = new Bundle(mediaItemStatus.mBundle);
+                return;
+            }
+            throw new IllegalArgumentException("status must not be null");
+        }
+
+        public Builder setTimestamp(long j) {
+            this.mBundle.putLong("timestamp", j);
+            return this;
+        }
+
+        public Builder setPlaybackState(int i) {
+            this.mBundle.putInt(MediaItemStatus.KEY_PLAYBACK_STATE, i);
+            return this;
+        }
+
+        public Builder setContentPosition(long j) {
+            this.mBundle.putLong(MediaItemStatus.KEY_CONTENT_POSITION, j);
+            return this;
+        }
+
+        public Builder setContentDuration(long j) {
+            this.mBundle.putLong(MediaItemStatus.KEY_CONTENT_DURATION, j);
+            return this;
+        }
+
+        public Builder setExtras(Bundle bundle) {
+            this.mBundle.putBundle(MediaItemStatus.KEY_EXTRAS, bundle);
+            return this;
+        }
+
+        public MediaItemStatus build() {
+            return new MediaItemStatus(this.mBundle);
+        }
+    }
+
+    MediaItemStatus(Bundle bundle) {
+        this.mBundle = bundle;
+    }
+
+    public long getTimestamp() {
+        return this.mBundle.getLong("timestamp");
+    }
+
+    public int getPlaybackState() {
+        return this.mBundle.getInt(KEY_PLAYBACK_STATE, 7);
+    }
+
+    public long getContentPosition() {
+        return this.mBundle.getLong(KEY_CONTENT_POSITION, -1);
+    }
+
+    public long getContentDuration() {
+        return this.mBundle.getLong(KEY_CONTENT_DURATION, -1);
+    }
+
+    public Bundle getExtras() {
+        return this.mBundle.getBundle(KEY_EXTRAS);
+    }
+
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("MediaItemStatus{ ");
+        stringBuilder.append("timestamp=");
+        TimeUtils.formatDuration(SystemClock.elapsedRealtime() - getTimestamp(), stringBuilder);
+        stringBuilder.append(" ms ago");
+        stringBuilder.append(", playbackState=");
+        stringBuilder.append(playbackStateToString(getPlaybackState()));
+        stringBuilder.append(", contentPosition=");
+        stringBuilder.append(getContentPosition());
+        stringBuilder.append(", contentDuration=");
+        stringBuilder.append(getContentDuration());
+        stringBuilder.append(", extras=");
+        stringBuilder.append(getExtras());
+        stringBuilder.append(" }");
+        return stringBuilder.toString();
+    }
+
+    private static String playbackStateToString(int i) {
+        switch (i) {
+            case 0:
+                return "pending";
+            case 1:
+                return "playing";
+            case 2:
+                return "paused";
+            case 3:
+                return "buffering";
+            case 4:
+                return "finished";
+            case 5:
+                return "canceled";
+            case 6:
+                return "invalidated";
+            case 7:
+                return MediaRouteProviderProtocol.SERVICE_DATA_ERROR;
+            default:
+                return Integer.toString(i);
+        }
+    }
+
+    public Bundle asBundle() {
+        return this.mBundle;
+    }
+
+    public static MediaItemStatus fromBundle(Bundle bundle) {
+        return bundle != null ? new MediaItemStatus(bundle) : null;
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:3 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

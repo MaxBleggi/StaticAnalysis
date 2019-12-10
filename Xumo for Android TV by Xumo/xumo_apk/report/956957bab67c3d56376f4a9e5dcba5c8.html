@@ -1,0 +1,292 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/androidx/core/view/NestedScrollingChildHelper.java" target="_blank">/xumo_apk/jadx_source_code/androidx/core/view/NestedScrollingChildHelper.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="NestedScrollingChildHelper.java" data-line="" class="code line-numbers"><code>package androidx.core.view;
+
+import android.view.View;
+import android.view.ViewParent;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+public class NestedScrollingChildHelper {
+    private boolean mIsNestedScrollingEnabled;
+    private ViewParent mNestedScrollingParentNonTouch;
+    private ViewParent mNestedScrollingParentTouch;
+    private int[] mTempNestedScrollConsumed;
+    private final View mView;
+
+    public NestedScrollingChildHelper(@NonNull View view) {
+        this.mView = view;
+    }
+
+    public void setNestedScrollingEnabled(boolean z) {
+        if (this.mIsNestedScrollingEnabled) {
+            ViewCompat.stopNestedScroll(this.mView);
+        }
+        this.mIsNestedScrollingEnabled = z;
+    }
+
+    public boolean isNestedScrollingEnabled() {
+        return this.mIsNestedScrollingEnabled;
+    }
+
+    public boolean hasNestedScrollingParent() {
+        return hasNestedScrollingParent(0);
+    }
+
+    public boolean hasNestedScrollingParent(int i) {
+        return getNestedScrollingParentForType(i) != 0;
+    }
+
+    public boolean startNestedScroll(int i) {
+        return startNestedScroll(i, 0);
+    }
+
+    public boolean startNestedScroll(int i, int i2) {
+        if (hasNestedScrollingParent(i2)) {
+            return true;
+        }
+        if (isNestedScrollingEnabled()) {
+            View view = this.mView;
+            for (ViewParent parent = this.mView.getParent(); parent != null; parent = parent.getParent()) {
+                if (ViewParentCompat.onStartNestedScroll(parent, view, this.mView, i, i2)) {
+                    setNestedScrollingParentForType(i2, parent);
+                    ViewParentCompat.onNestedScrollAccepted(parent, view, this.mView, i, i2);
+                    return true;
+                }
+                if (parent instanceof View) {
+                    view = (View) parent;
+                }
+            }
+        }
+        return false;
+    }
+
+    public void stopNestedScroll() {
+        stopNestedScroll(0);
+    }
+
+    public void stopNestedScroll(int i) {
+        ViewParent nestedScrollingParentForType = getNestedScrollingParentForType(i);
+        if (nestedScrollingParentForType != null) {
+            ViewParentCompat.onStopNestedScroll(nestedScrollingParentForType, this.mView, i);
+            setNestedScrollingParentForType(i, null);
+        }
+    }
+
+    public boolean dispatchNestedScroll(int i, int i2, int i3, int i4, @Nullable int[] iArr) {
+        return dispatchNestedScroll(i, i2, i3, i4, iArr, 0);
+    }
+
+    public boolean dispatchNestedScroll(int i, int i2, int i3, int i4, @Nullable int[] iArr, int i5) {
+        NestedScrollingChildHelper nestedScrollingChildHelper = this;
+        int[] iArr2 = iArr;
+        if (isNestedScrollingEnabled()) {
+            ViewParent nestedScrollingParentForType = getNestedScrollingParentForType(i5);
+            if (nestedScrollingParentForType == null) {
+                return false;
+            }
+            int i6;
+            int i7;
+            if (i == 0 &amp;&amp; i2 == 0 &amp;&amp; i3 == 0) {
+                if (i4 == 0) {
+                    if (iArr2 != null) {
+                        iArr2[0] = 0;
+                        iArr2[1] = 0;
+                    }
+                }
+            }
+            if (iArr2 != null) {
+                nestedScrollingChildHelper.mView.getLocationInWindow(iArr2);
+                i6 = iArr2[0];
+                i7 = iArr2[1];
+            } else {
+                i6 = 0;
+                i7 = 0;
+            }
+            ViewParentCompat.onNestedScroll(nestedScrollingParentForType, nestedScrollingChildHelper.mView, i, i2, i3, i4, i5);
+            if (iArr2 != null) {
+                nestedScrollingChildHelper.mView.getLocationInWindow(iArr2);
+                iArr2[0] = iArr2[0] - i6;
+                iArr2[1] = iArr2[1] - i7;
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public boolean dispatchNestedPreScroll(int i, int i2, @Nullable int[] iArr, @Nullable int[] iArr2) {
+        return dispatchNestedPreScroll(i, i2, iArr, iArr2, 0);
+    }
+
+    public boolean dispatchNestedPreScroll(int i, int i2, @Nullable int[] iArr, @Nullable int[] iArr2, int i3) {
+        if (isNestedScrollingEnabled()) {
+            ViewParent nestedScrollingParentForType = getNestedScrollingParentForType(i3);
+            if (nestedScrollingParentForType == null) {
+                return false;
+            }
+            int i4;
+            int i5;
+            boolean z = true;
+            if (i == 0) {
+                if (i2 == 0) {
+                    if (iArr2 != null) {
+                        iArr2[0] = 0;
+                        iArr2[1] = 0;
+                    }
+                }
+            }
+            if (iArr2 != null) {
+                this.mView.getLocationInWindow(iArr2);
+                i4 = iArr2[0];
+                i5 = iArr2[1];
+            } else {
+                i4 = 0;
+                i5 = 0;
+            }
+            if (iArr == null) {
+                if (this.mTempNestedScrollConsumed == null) {
+                    this.mTempNestedScrollConsumed = new int[2];
+                }
+                iArr = this.mTempNestedScrollConsumed;
+            }
+            iArr[0] = 0;
+            iArr[1] = 0;
+            ViewParentCompat.onNestedPreScroll(nestedScrollingParentForType, this.mView, i, i2, iArr, i3);
+            if (iArr2 != null) {
+                this.mView.getLocationInWindow(iArr2);
+                iArr2[0] = iArr2[0] - i4;
+                iArr2[1] = iArr2[1] - i5;
+            }
+            if (iArr[0] == 0) {
+                if (iArr[1] == 0) {
+                    z = false;
+                }
+            }
+            return z;
+        }
+        return false;
+    }
+
+    public boolean dispatchNestedFling(float f, float f2, boolean z) {
+        if (isNestedScrollingEnabled()) {
+            ViewParent nestedScrollingParentForType = getNestedScrollingParentForType(0);
+            if (nestedScrollingParentForType != null) {
+                return ViewParentCompat.onNestedFling(nestedScrollingParentForType, this.mView, f, f2, z);
+            }
+        }
+        return false;
+    }
+
+    public boolean dispatchNestedPreFling(float f, float f2) {
+        if (isNestedScrollingEnabled()) {
+            ViewParent nestedScrollingParentForType = getNestedScrollingParentForType(0);
+            if (nestedScrollingParentForType != null) {
+                return ViewParentCompat.onNestedPreFling(nestedScrollingParentForType, this.mView, f, f2);
+            }
+        }
+        return false;
+    }
+
+    public void onDetachedFromWindow() {
+        ViewCompat.stopNestedScroll(this.mView);
+    }
+
+    public void onStopNestedScroll(@NonNull View view) {
+        ViewCompat.stopNestedScroll(this.mView);
+    }
+
+    private ViewParent getNestedScrollingParentForType(int i) {
+        switch (i) {
+            case 0:
+                return this.mNestedScrollingParentTouch;
+            case 1:
+                return this.mNestedScrollingParentNonTouch;
+            default:
+                return 0;
+        }
+    }
+
+    private void setNestedScrollingParentForType(int i, ViewParent viewParent) {
+        switch (i) {
+            case 0:
+                this.mNestedScrollingParentTouch = viewParent;
+                return;
+            case 1:
+                this.mNestedScrollingParentNonTouch = viewParent;
+                return;
+            default:
+                return;
+        }
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:3 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

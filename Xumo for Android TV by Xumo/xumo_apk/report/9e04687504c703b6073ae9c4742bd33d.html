@@ -1,0 +1,853 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9"><div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/androidx/mediarouter/media/RegisteredMediaRouteProvider.java" target="_blank">/xumo_apk/jadx_source_code/androidx/mediarouter/media/RegisteredMediaRouteProvider.java</a></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-60">report</i><h5>ServerSocket|net.ServerSocket|connect[(][)]</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>the app opens TCP Server Sockets: Insecure use of network sockets</span></div></li></ul><ul class="collapsible"><li><div class="collapsible-header"><img data-position="top" data-tooltip="OWASP item" src="html/owasp_logo.png" height="20em" style="margin-right: 1rem;margin-left: 5px;" class="tooltipped"></img> OWASP Item</div><div class="collapsible-body"><span>For more information, have a look at: https://www.owasp.org/index.php/OWASP_Mobile_Security_Testing_Guide</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#RegisteredMediaRouteProvider_java478Serv" class="active">line 478</a></li><li class="tab"><a style="color: #d82c2b;" href="#RegisteredMediaRouteProvider_java512Serv">line 512</a></li><li class="tab"><a style="color: #d82c2b;" href="#RegisteredMediaRouteProvider_java620Serv">line 620</a></li><li class="tab"><a style="color: #d82c2b;" href="#RegisteredMediaRouteProvider_java665Serv">line 665</a></li><li class="tab"><a style="color: #d82c2b;" href="#RegisteredMediaRouteProvider_java697Serv">line 697</a></li></ul></div><div class="card-content"><div id="RegisteredMediaRouteProvider_java478Serv">Code @ line 478<pre data-start="475" data-line="478" data-src="RegisteredMediaRouteProvider.java" class="code line-numbers"><code>            Log.d(componentName, stringBuilder.toString());
+        }
+        if (this.mBound != null) {
+            disconnect();
+            componentName = iBinder != null ? new Messenger(iBinder) : null;
+            if (MediaRouteProviderProtocol.isValidRemoteMessenger(componentName) != null) {
+                iBinder = new Connection(componentName);
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L21lZGlhcm91dGVyL21lZGlhL1JlZ2lzdGVyZWRNZWRpYVJvdXRlUHJvdmlkZXIuamF2YXx8fGxpbmU6IDQ3OCA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw0Nzh8fHw0NzU">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L21lZGlhcm91dGVyL21lZGlhL1JlZ2lzdGVyZWRNZWRpYVJvdXRlUHJvdmlkZXIuamF2YXx8fGxpbmU6IDQ3OCA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw0Nzh8fHw0NzU')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L21lZGlhcm91dGVyL21lZGlhL1JlZ2lzdGVyZWRNZWRpYVJvdXRlUHJvdmlkZXIuamF2YXx8fGxpbmU6IDQ3OCA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw0Nzh8fHw0NzU').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L21lZGlhcm91dGVyL21lZGlhL1JlZ2lzdGVyZWRNZWRpYVJvdXRlUHJvdmlkZXIuamF2YXx8fGxpbmU6IDQ3OCA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw0Nzh8fHw0NzU" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L21lZGlhcm91dGVyL21lZGlhL1JlZ2lzdGVyZWRNZWRpYVJvdXRlUHJvdmlkZXIuamF2YXx8fGxpbmU6IDQ3OCA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw0Nzh8fHw0NzU' , 'ICAgICAgICAgICAgTG9nLmQoY29tcG9uZW50TmFtZSwgc3RyaW5nQnVpbGRlci50b1N0cmluZygpKTsKICAgICAgICB9CiAgICAgICAgaWYgKHRoaXMubUJvdW5kICE9IG51bGwpIHsKICAgICAgICAgICAgZGlzY29ubmVjdCgpOwogICAgICAgICAgICBjb21wb25lbnROYW1lID0gaUJpbmRlciAhPSBudWxsID8gbmV3IE1lc3NlbmdlcihpQmluZGVyKSA6IG51bGw7CiAgICAgICAgICAgIGlmIChNZWRpYVJvdXRlUHJvdmlkZXJQcm90b2NvbC5pc1ZhbGlkUmVtb3RlTWVzc2VuZ2VyKGNvbXBvbmVudE5hbWUpICE9IG51bGwpIHsKICAgICAgICAgICAgICAgIGlCaW5kZXIgPSBuZXcgQ29ubmVjdGlvbihjb21wb25lbnROYW1lKTsK');  
+                                            });
+                                            </script>
+                                            </div><div id="RegisteredMediaRouteProvider_java512Serv">Code @ line 512<pre data-start="509" data-line="512" data-src="RegisteredMediaRouteProvider.java" class="code line-numbers"><code>            stringBuilder.append(": Service disconnected");
+            Log.d(componentName, stringBuilder.toString());
+        }
+        disconnect();
+    }
+
+    public String toString() {
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L21lZGlhcm91dGVyL21lZGlhL1JlZ2lzdGVyZWRNZWRpYVJvdXRlUHJvdmlkZXIuamF2YXx8fGxpbmU6IDUxMiA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw1MTJ8fHw1MDk">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L21lZGlhcm91dGVyL21lZGlhL1JlZ2lzdGVyZWRNZWRpYVJvdXRlUHJvdmlkZXIuamF2YXx8fGxpbmU6IDUxMiA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw1MTJ8fHw1MDk')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L21lZGlhcm91dGVyL21lZGlhL1JlZ2lzdGVyZWRNZWRpYVJvdXRlUHJvdmlkZXIuamF2YXx8fGxpbmU6IDUxMiA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw1MTJ8fHw1MDk').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L21lZGlhcm91dGVyL21lZGlhL1JlZ2lzdGVyZWRNZWRpYVJvdXRlUHJvdmlkZXIuamF2YXx8fGxpbmU6IDUxMiA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw1MTJ8fHw1MDk" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L21lZGlhcm91dGVyL21lZGlhL1JlZ2lzdGVyZWRNZWRpYVJvdXRlUHJvdmlkZXIuamF2YXx8fGxpbmU6IDUxMiA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw1MTJ8fHw1MDk' , 'ICAgICAgICAgICAgc3RyaW5nQnVpbGRlci5hcHBlbmQoIjogU2VydmljZSBkaXNjb25uZWN0ZWQiKTsKICAgICAgICAgICAgTG9nLmQoY29tcG9uZW50TmFtZSwgc3RyaW5nQnVpbGRlci50b1N0cmluZygpKTsKICAgICAgICB9CiAgICAgICAgZGlzY29ubmVjdCgpOwogICAgfQoKICAgIHB1YmxpYyBTdHJpbmcgdG9TdHJpbmcoKSB7Cg==');  
+                                            });
+                                            </script>
+                                            </div><div id="RegisteredMediaRouteProvider_java620Serv">Code @ line 620<pre data-start="617" data-line="620" data-src="RegisteredMediaRouteProvider.java" class="code line-numbers"><code>                Log.d(str, stringBuilder.toString());
+            }
+            this.mBound = false;
+            disconnect();
+            getContext().unbindService(this);
+        }
+    }
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L21lZGlhcm91dGVyL21lZGlhL1JlZ2lzdGVyZWRNZWRpYVJvdXRlUHJvdmlkZXIuamF2YXx8fGxpbmU6IDYyMCA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MjB8fHw2MTc">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L21lZGlhcm91dGVyL21lZGlhL1JlZ2lzdGVyZWRNZWRpYVJvdXRlUHJvdmlkZXIuamF2YXx8fGxpbmU6IDYyMCA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MjB8fHw2MTc')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L21lZGlhcm91dGVyL21lZGlhL1JlZ2lzdGVyZWRNZWRpYVJvdXRlUHJvdmlkZXIuamF2YXx8fGxpbmU6IDYyMCA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MjB8fHw2MTc').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L21lZGlhcm91dGVyL21lZGlhL1JlZ2lzdGVyZWRNZWRpYVJvdXRlUHJvdmlkZXIuamF2YXx8fGxpbmU6IDYyMCA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MjB8fHw2MTc" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L21lZGlhcm91dGVyL21lZGlhL1JlZ2lzdGVyZWRNZWRpYVJvdXRlUHJvdmlkZXIuamF2YXx8fGxpbmU6IDYyMCA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MjB8fHw2MTc' , 'ICAgICAgICAgICAgICAgIExvZy5kKHN0ciwgc3RyaW5nQnVpbGRlci50b1N0cmluZygpKTsKICAgICAgICAgICAgfQogICAgICAgICAgICB0aGlzLm1Cb3VuZCA9IGZhbHNlOwogICAgICAgICAgICBkaXNjb25uZWN0KCk7CiAgICAgICAgICAgIGdldENvbnRleHQoKS51bmJpbmRTZXJ2aWNlKHRoaXMpOwogICAgICAgIH0KICAgIH0K');  
+                                            });
+                                            </script>
+                                            </div><div id="RegisteredMediaRouteProvider_java665Serv">Code @ line 665<pre data-start="662" data-line="665" data-src="RegisteredMediaRouteProvider.java" class="code line-numbers"><code>                stringBuilder.append(": Service connection died");
+                Log.d(connection, stringBuilder.toString());
+            }
+            disconnect();
+        }
+    }
+
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L21lZGlhcm91dGVyL21lZGlhL1JlZ2lzdGVyZWRNZWRpYVJvdXRlUHJvdmlkZXIuamF2YXx8fGxpbmU6IDY2NSA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2NjV8fHw2NjI">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L21lZGlhcm91dGVyL21lZGlhL1JlZ2lzdGVyZWRNZWRpYVJvdXRlUHJvdmlkZXIuamF2YXx8fGxpbmU6IDY2NSA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2NjV8fHw2NjI')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L21lZGlhcm91dGVyL21lZGlhL1JlZ2lzdGVyZWRNZWRpYVJvdXRlUHJvdmlkZXIuamF2YXx8fGxpbmU6IDY2NSA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2NjV8fHw2NjI').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L21lZGlhcm91dGVyL21lZGlhL1JlZ2lzdGVyZWRNZWRpYVJvdXRlUHJvdmlkZXIuamF2YXx8fGxpbmU6IDY2NSA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2NjV8fHw2NjI" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L21lZGlhcm91dGVyL21lZGlhL1JlZ2lzdGVyZWRNZWRpYVJvdXRlUHJvdmlkZXIuamF2YXx8fGxpbmU6IDY2NSA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2NjV8fHw2NjI' , 'ICAgICAgICAgICAgICAgIHN0cmluZ0J1aWxkZXIuYXBwZW5kKCI6IFNlcnZpY2UgY29ubmVjdGlvbiBkaWVkIik7CiAgICAgICAgICAgICAgICBMb2cuZChjb25uZWN0aW9uLCBzdHJpbmdCdWlsZGVyLnRvU3RyaW5nKCkpOwogICAgICAgICAgICB9CiAgICAgICAgICAgIGRpc2Nvbm5lY3QoKTsKICAgICAgICB9CiAgICB9Cgo=');  
+                                            });
+                                            </script>
+                                            </div><div id="RegisteredMediaRouteProvider_java697Serv">Code @ line 697<pre data-start="694" data-line="697" data-src="RegisteredMediaRouteProvider.java" class="code line-numbers"><code>        }
+    }
+
+    private void disconnect() {
+        if (this.mActiveConnection != null) {
+            setDescriptor(null);
+            this.mConnectionReady = false;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L21lZGlhcm91dGVyL21lZGlhL1JlZ2lzdGVyZWRNZWRpYVJvdXRlUHJvdmlkZXIuamF2YXx8fGxpbmU6IDY5NyA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2OTd8fHw2OTQ">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L21lZGlhcm91dGVyL21lZGlhL1JlZ2lzdGVyZWRNZWRpYVJvdXRlUHJvdmlkZXIuamF2YXx8fGxpbmU6IDY5NyA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2OTd8fHw2OTQ')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L21lZGlhcm91dGVyL21lZGlhL1JlZ2lzdGVyZWRNZWRpYVJvdXRlUHJvdmlkZXIuamF2YXx8fGxpbmU6IDY5NyA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2OTd8fHw2OTQ').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L21lZGlhcm91dGVyL21lZGlhL1JlZ2lzdGVyZWRNZWRpYVJvdXRlUHJvdmlkZXIuamF2YXx8fGxpbmU6IDY5NyA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2OTd8fHw2OTQ" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2FuZHJvaWR4L21lZGlhcm91dGVyL21lZGlhL1JlZ2lzdGVyZWRNZWRpYVJvdXRlUHJvdmlkZXIuamF2YXx8fGxpbmU6IDY5NyA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2OTd8fHw2OTQ' , 'ICAgICAgICB9CiAgICB9CgogICAgcHJpdmF0ZSB2b2lkIGRpc2Nvbm5lY3QoKSB7CiAgICAgICAgaWYgKHRoaXMubUFjdGl2ZUNvbm5lY3Rpb24gIT0gbnVsbCkgewogICAgICAgICAgICBzZXREZXNjcmlwdG9yKG51bGwpOwogICAgICAgICAgICB0aGlzLm1Db25uZWN0aW9uUmVhZHkgPSBmYWxzZTsK');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="RegisteredMediaRouteProvider.java" data-line="478,512,620,665,697," class="code line-numbers"><code>package androidx.mediarouter.media;
+
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.IBinder;
+import android.os.IBinder.DeathRecipient;
+import android.os.Message;
+import android.os.Messenger;
+import android.util.Log;
+import android.util.SparseArray;
+import androidx.annotation.NonNull;
+import androidx.mediarouter.media.MediaRouteProvider.ProviderMetadata;
+import androidx.mediarouter.media.MediaRouteProvider.RouteController;
+import androidx.mediarouter.media.MediaRouter.ControlRequestCallback;
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.List;
+
+final class RegisteredMediaRouteProvider extends MediaRouteProvider implements ServiceConnection {
+    static final boolean DEBUG = Log.isLoggable(TAG, 3);
+    static final String TAG = "MediaRouteProviderProxy";
+    private Connection mActiveConnection;
+    private boolean mBound;
+    private final ComponentName mComponentName;
+    private boolean mConnectionReady;
+    private final ArrayList&lt;Controller&gt; mControllers = new ArrayList();
+    final PrivateHandler mPrivateHandler;
+    private boolean mStarted;
+
+    private final class Connection implements DeathRecipient {
+        private int mNextControllerId = 1;
+        private int mNextRequestId = 1;
+        private final SparseArray&lt;ControlRequestCallback&gt; mPendingCallbacks = new SparseArray();
+        private int mPendingRegisterRequestId;
+        private final ReceiveHandler mReceiveHandler;
+        private final Messenger mReceiveMessenger;
+        private final Messenger mServiceMessenger;
+        private int mServiceVersion;
+
+        public boolean onGenericSuccess(int i) {
+            return true;
+        }
+
+        public Connection(Messenger messenger) {
+            this.mServiceMessenger = messenger;
+            this.mReceiveHandler = new ReceiveHandler(this);
+            this.mReceiveMessenger = new Messenger(this.mReceiveHandler);
+        }
+
+        public boolean register() {
+            /* JADX: method processing error */
+/*
+Error: java.lang.NullPointerException
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.searchTryCatchDominators(ProcessTryCatchRegions.java:75)
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.process(ProcessTryCatchRegions.java:45)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.postProcessRegions(RegionMakerVisitor.java:63)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.visit(RegionMakerVisitor.java:58)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:31)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:17)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:14)
+	at jadx.core.ProcessClass.process(ProcessClass.java:37)
+	at jadx.core.ProcessClass.processDependencies(ProcessClass.java:59)
+	at jadx.core.ProcessClass.process(ProcessClass.java:42)
+	at jadx.api.JadxDecompiler.processClass(JadxDecompiler.java:306)
+	at jadx.api.JavaClass.decompile(JavaClass.java:62)
+	at jadx.api.JadxDecompiler$1.run(JadxDecompiler.java:199)
+*/
+            /*
+            r8 = this;
+            r0 = r8.mNextRequestId;
+            r1 = r0 + 1;
+            r8.mNextRequestId = r1;
+            r8.mPendingRegisterRequestId = r0;
+            r4 = r8.mPendingRegisterRequestId;
+            r3 = 1;
+            r5 = 2;
+            r6 = 0;
+            r7 = 0;
+            r2 = r8;
+            r0 = r2.sendRequest(r3, r4, r5, r6, r7);
+            r1 = 0;
+            if (r0 != 0) goto L_0x0017;
+        L_0x0016:
+            return r1;
+        L_0x0017:
+            r0 = r8.mServiceMessenger;	 Catch:{ RemoteException -&gt; 0x0022 }
+            r0 = r0.getBinder();	 Catch:{ RemoteException -&gt; 0x0022 }
+            r0.linkToDeath(r8, r1);	 Catch:{ RemoteException -&gt; 0x0022 }
+            r0 = 1;
+            return r0;
+        L_0x0022:
+            r8.binderDied();
+            return r1;
+            */
+            throw new UnsupportedOperationException("Method not decompiled: androidx.mediarouter.media.RegisteredMediaRouteProvider.Connection.register():boolean");
+        }
+
+        public void dispose() {
+            sendRequest(2, 0, 0, null, null);
+            this.mReceiveHandler.dispose();
+            this.mServiceMessenger.getBinder().unlinkToDeath(this, 0);
+            RegisteredMediaRouteProvider.this.mPrivateHandler.post(new Runnable() {
+                public void run() {
+                    Connection.this.failPendingCallbacks();
+                }
+            });
+        }
+
+        void failPendingCallbacks() {
+            for (int i = 0; i &lt; this.mPendingCallbacks.size(); i++) {
+                ((ControlRequestCallback) this.mPendingCallbacks.valueAt(i)).onError(null, null);
+            }
+            this.mPendingCallbacks.clear();
+        }
+
+        public boolean onGenericFailure(int i) {
+            if (i == this.mPendingRegisterRequestId) {
+                this.mPendingRegisterRequestId = 0;
+                RegisteredMediaRouteProvider.this.onConnectionError(this, "Registration failed");
+            }
+            ControlRequestCallback controlRequestCallback = (ControlRequestCallback) this.mPendingCallbacks.get(i);
+            if (controlRequestCallback != null) {
+                this.mPendingCallbacks.remove(i);
+                controlRequestCallback.onError(null, null);
+            }
+            return true;
+        }
+
+        public boolean onRegistered(int i, int i2, Bundle bundle) {
+            if (this.mServiceVersion != 0 || i != this.mPendingRegisterRequestId || i2 &lt; 1) {
+                return false;
+            }
+            this.mPendingRegisterRequestId = 0;
+            this.mServiceVersion = i2;
+            RegisteredMediaRouteProvider.this.onConnectionDescriptorChanged(this, MediaRouteProviderDescriptor.fromBundle(bundle));
+            RegisteredMediaRouteProvider.this.onConnectionReady(this);
+            return true;
+        }
+
+        public boolean onDescriptorChanged(Bundle bundle) {
+            if (this.mServiceVersion == 0) {
+                return null;
+            }
+            RegisteredMediaRouteProvider.this.onConnectionDescriptorChanged(this, MediaRouteProviderDescriptor.fromBundle(bundle));
+            return true;
+        }
+
+        public boolean onControlRequestSucceeded(int i, Bundle bundle) {
+            ControlRequestCallback controlRequestCallback = (ControlRequestCallback) this.mPendingCallbacks.get(i);
+            if (controlRequestCallback == null) {
+                return false;
+            }
+            this.mPendingCallbacks.remove(i);
+            controlRequestCallback.onResult(bundle);
+            return true;
+        }
+
+        public boolean onControlRequestFailed(int i, String str, Bundle bundle) {
+            ControlRequestCallback controlRequestCallback = (ControlRequestCallback) this.mPendingCallbacks.get(i);
+            if (controlRequestCallback == null) {
+                return false;
+            }
+            this.mPendingCallbacks.remove(i);
+            controlRequestCallback.onError(str, bundle);
+            return true;
+        }
+
+        public void binderDied() {
+            RegisteredMediaRouteProvider.this.mPrivateHandler.post(new Runnable() {
+                public void run() {
+                    RegisteredMediaRouteProvider.this.onConnectionDied(Connection.this);
+                }
+            });
+        }
+
+        public int createRouteController(String str, String str2) {
+            int i = this.mNextControllerId;
+            this.mNextControllerId = i + 1;
+            Bundle bundle = new Bundle();
+            bundle.putString(MediaRouteProviderProtocol.CLIENT_DATA_ROUTE_ID, str);
+            bundle.putString(MediaRouteProviderProtocol.CLIENT_DATA_ROUTE_LIBRARY_GROUP, str2);
+            int i2 = this.mNextRequestId;
+            this.mNextRequestId = i2 + 1;
+            sendRequest(3, i2, i, null, bundle);
+            return i;
+        }
+
+        public void releaseRouteController(int i) {
+            int i2 = this.mNextRequestId;
+            this.mNextRequestId = i2 + 1;
+            sendRequest(4, i2, i, null, null);
+        }
+
+        public void selectRoute(int i) {
+            int i2 = this.mNextRequestId;
+            this.mNextRequestId = i2 + 1;
+            sendRequest(5, i2, i, null, null);
+        }
+
+        public void unselectRoute(int i, int i2) {
+            Bundle bundle = new Bundle();
+            bundle.putInt(MediaRouteProviderProtocol.CLIENT_DATA_UNSELECT_REASON, i2);
+            int i3 = this.mNextRequestId;
+            this.mNextRequestId = i3 + 1;
+            sendRequest(6, i3, i, null, bundle);
+        }
+
+        public void setVolume(int i, int i2) {
+            Bundle bundle = new Bundle();
+            bundle.putInt(MediaRouteProviderProtocol.CLIENT_DATA_VOLUME, i2);
+            int i3 = this.mNextRequestId;
+            this.mNextRequestId = i3 + 1;
+            sendRequest(7, i3, i, null, bundle);
+        }
+
+        public void updateVolume(int i, int i2) {
+            Bundle bundle = new Bundle();
+            bundle.putInt(MediaRouteProviderProtocol.CLIENT_DATA_VOLUME, i2);
+            int i3 = this.mNextRequestId;
+            this.mNextRequestId = i3 + 1;
+            sendRequest(8, i3, i, null, bundle);
+        }
+
+        public boolean sendControlRequest(int i, Intent intent, ControlRequestCallback controlRequestCallback) {
+            int i2 = this.mNextRequestId;
+            this.mNextRequestId = i2 + 1;
+            if (sendRequest(9, i2, i, intent, null) == 0) {
+                return false;
+            }
+            if (controlRequestCallback != null) {
+                this.mPendingCallbacks.put(i2, controlRequestCallback);
+            }
+            return true;
+        }
+
+        public void setDiscoveryRequest(MediaRouteDiscoveryRequest mediaRouteDiscoveryRequest) {
+            int i = this.mNextRequestId;
+            this.mNextRequestId = i + 1;
+            sendRequest(10, i, 0, mediaRouteDiscoveryRequest != null ? mediaRouteDiscoveryRequest.asBundle() : null, null);
+        }
+
+        private boolean sendRequest(int r2, int r3, int r4, java.lang.Object r5, android.os.Bundle r6) {
+            /* JADX: method processing error */
+/*
+Error: java.lang.NullPointerException
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.searchTryCatchDominators(ProcessTryCatchRegions.java:75)
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.process(ProcessTryCatchRegions.java:45)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.postProcessRegions(RegionMakerVisitor.java:63)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.visit(RegionMakerVisitor.java:58)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:31)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:17)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:14)
+	at jadx.core.ProcessClass.process(ProcessClass.java:37)
+	at jadx.core.ProcessClass.processDependencies(ProcessClass.java:59)
+	at jadx.core.ProcessClass.process(ProcessClass.java:42)
+	at jadx.api.JadxDecompiler.processClass(JadxDecompiler.java:306)
+	at jadx.api.JavaClass.decompile(JavaClass.java:62)
+	at jadx.api.JadxDecompiler$1.run(JadxDecompiler.java:199)
+*/
+            /*
+            r1 = this;
+            r0 = android.os.Message.obtain();
+            r0.what = r2;
+            r0.arg1 = r3;
+            r0.arg2 = r4;
+            r0.obj = r5;
+            r0.setData(r6);
+            r3 = r1.mReceiveMessenger;
+            r0.replyTo = r3;
+            r3 = r1.mServiceMessenger;	 Catch:{ DeadObjectException -&gt; 0x0025, RemoteException -&gt; 0x001a }
+            r3.send(r0);	 Catch:{ DeadObjectException -&gt; 0x0025, RemoteException -&gt; 0x001a }
+            r2 = 1;
+            return r2;
+        L_0x001a:
+            r3 = move-exception;
+            r4 = 2;
+            if (r2 == r4) goto L_0x0025;
+        L_0x001e:
+            r2 = "MediaRouteProviderProxy";
+            r4 = "Could not send message to service.";
+            android.util.Log.e(r2, r4, r3);
+        L_0x0025:
+            r2 = 0;
+            return r2;
+            */
+            throw new UnsupportedOperationException("Method not decompiled: androidx.mediarouter.media.RegisteredMediaRouteProvider.Connection.sendRequest(int, int, int, java.lang.Object, android.os.Bundle):boolean");
+        }
+    }
+
+    private static final class PrivateHandler extends Handler {
+        PrivateHandler() {
+        }
+    }
+
+    private static final class ReceiveHandler extends Handler {
+        private final WeakReference&lt;Connection&gt; mConnectionRef;
+
+        public ReceiveHandler(Connection connection) {
+            this.mConnectionRef = new WeakReference(connection);
+        }
+
+        public void dispose() {
+            this.mConnectionRef.clear();
+        }
+
+        public void handleMessage(Message message) {
+            Connection connection = (Connection) this.mConnectionRef.get();
+            if (connection != null &amp;&amp; !processMessage(connection, message.what, message.arg1, message.arg2, message.obj, message.peekData()) &amp;&amp; RegisteredMediaRouteProvider.DEBUG) {
+                String str = RegisteredMediaRouteProvider.TAG;
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append("Unhandled message from server: ");
+                stringBuilder.append(message);
+                Log.d(str, stringBuilder.toString());
+            }
+        }
+
+        private boolean processMessage(Connection connection, int i, int i2, int i3, Object obj, Bundle bundle) {
+            switch (i) {
+                case 0:
+                    connection.onGenericFailure(i2);
+                    return true;
+                case 1:
+                    connection.onGenericSuccess(i2);
+                    return true;
+                case 2:
+                    if (obj == null || (obj instanceof Bundle) != 0) {
+                        return connection.onRegistered(i2, i3, (Bundle) obj);
+                    }
+                case 3:
+                    if (obj == null || (obj instanceof Bundle) != 0) {
+                        return connection.onControlRequestSucceeded(i2, (Bundle) obj);
+                    }
+                case 4:
+                    if (obj == null || (obj instanceof Bundle) != 0) {
+                        if (bundle == null) {
+                            i = 0;
+                        } else {
+                            i = bundle.getString(MediaRouteProviderProtocol.SERVICE_DATA_ERROR);
+                        }
+                        return connection.onControlRequestFailed(i2, i, (Bundle) obj);
+                    }
+                case 5:
+                    if (obj == null || (obj instanceof Bundle) != 0) {
+                        return connection.onDescriptorChanged((Bundle) obj);
+                    }
+                default:
+                    break;
+            }
+            return null;
+        }
+    }
+
+    private final class Controller extends RouteController {
+        private Connection mConnection;
+        private int mControllerId;
+        private int mPendingSetVolume = -1;
+        private int mPendingUpdateVolumeDelta;
+        private final String mRouteGroupId;
+        private final String mRouteId;
+        private boolean mSelected;
+
+        public Controller(String str, String str2) {
+            this.mRouteId = str;
+            this.mRouteGroupId = str2;
+        }
+
+        public void attachConnection(Connection connection) {
+            this.mConnection = connection;
+            this.mControllerId = connection.createRouteController(this.mRouteId, this.mRouteGroupId);
+            if (this.mSelected) {
+                connection.selectRoute(this.mControllerId);
+                if (this.mPendingSetVolume &gt;= 0) {
+                    connection.setVolume(this.mControllerId, this.mPendingSetVolume);
+                    this.mPendingSetVolume = -1;
+                }
+                if (this.mPendingUpdateVolumeDelta != 0) {
+                    connection.updateVolume(this.mControllerId, this.mPendingUpdateVolumeDelta);
+                    this.mPendingUpdateVolumeDelta = null;
+                }
+            }
+        }
+
+        public void detachConnection() {
+            if (this.mConnection != null) {
+                this.mConnection.releaseRouteController(this.mControllerId);
+                this.mConnection = null;
+                this.mControllerId = 0;
+            }
+        }
+
+        public void onRelease() {
+            RegisteredMediaRouteProvider.this.onControllerReleased(this);
+        }
+
+        public void onSelect() {
+            this.mSelected = true;
+            if (this.mConnection != null) {
+                this.mConnection.selectRoute(this.mControllerId);
+            }
+        }
+
+        public void onUnselect() {
+            onUnselect(0);
+        }
+
+        public void onUnselect(int i) {
+            this.mSelected = false;
+            if (this.mConnection != null) {
+                this.mConnection.unselectRoute(this.mControllerId, i);
+            }
+        }
+
+        public void onSetVolume(int i) {
+            if (this.mConnection != null) {
+                this.mConnection.setVolume(this.mControllerId, i);
+                return;
+            }
+            this.mPendingSetVolume = i;
+            this.mPendingUpdateVolumeDelta = 0;
+        }
+
+        public void onUpdateVolume(int i) {
+            if (this.mConnection != null) {
+                this.mConnection.updateVolume(this.mControllerId, i);
+            } else {
+                this.mPendingUpdateVolumeDelta += i;
+            }
+        }
+
+        public boolean onControlRequest(Intent intent, ControlRequestCallback controlRequestCallback) {
+            return this.mConnection != null ? this.mConnection.sendControlRequest(this.mControllerId, intent, controlRequestCallback) : null;
+        }
+    }
+
+    public RegisteredMediaRouteProvider(Context context, ComponentName componentName) {
+        super(context, new ProviderMetadata(componentName));
+        this.mComponentName = componentName;
+        this.mPrivateHandler = new PrivateHandler();
+    }
+
+    public RouteController onCreateRouteController(@NonNull String str) {
+        if (str != null) {
+            return createRouteController(str, null);
+        }
+        throw new IllegalArgumentException("routeId cannot be null");
+    }
+
+    public RouteController onCreateRouteController(@NonNull String str, @NonNull String str2) {
+        if (str == null) {
+            throw new IllegalArgumentException("routeId cannot be null");
+        } else if (str2 != null) {
+            return createRouteController(str, str2);
+        } else {
+            throw new IllegalArgumentException("routeGroupId cannot be null");
+        }
+    }
+
+    public void onDiscoveryRequestChanged(MediaRouteDiscoveryRequest mediaRouteDiscoveryRequest) {
+        if (this.mConnectionReady) {
+            this.mActiveConnection.setDiscoveryRequest(mediaRouteDiscoveryRequest);
+        }
+        updateBinding();
+    }
+
+    public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+        if (DEBUG != null) {
+            componentName = TAG;
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(this);
+            stringBuilder.append(": Connected");
+            Log.d(componentName, stringBuilder.toString());
+        }
+        if (this.mBound != null) {
+            disconnect();
+            componentName = iBinder != null ? new Messenger(iBinder) : null;
+            if (MediaRouteProviderProtocol.isValidRemoteMessenger(componentName) != null) {
+                iBinder = new Connection(componentName);
+                if (iBinder.register() != null) {
+                    this.mActiveConnection = iBinder;
+                    return;
+                } else if (DEBUG != null) {
+                    componentName = TAG;
+                    iBinder = new StringBuilder();
+                    iBinder.append(this);
+                    iBinder.append(": Registration failed");
+                    Log.d(componentName, iBinder.toString());
+                    return;
+                } else {
+                    return;
+                }
+            }
+            componentName = TAG;
+            iBinder = new StringBuilder();
+            iBinder.append(this);
+            iBinder.append(": Service returned invalid messenger binder");
+            Log.e(componentName, iBinder.toString());
+        }
+    }
+
+    public void onServiceDisconnected(ComponentName componentName) {
+        if (DEBUG != null) {
+            componentName = TAG;
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(this);
+            stringBuilder.append(": Service disconnected");
+            Log.d(componentName, stringBuilder.toString());
+        }
+        disconnect();
+    }
+
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Service connection ");
+        stringBuilder.append(this.mComponentName.flattenToShortString());
+        return stringBuilder.toString();
+    }
+
+    public boolean hasComponentName(String str, String str2) {
+        return (this.mComponentName.getPackageName().equals(str) == null || this.mComponentName.getClassName().equals(str2) == null) ? null : true;
+    }
+
+    public void start() {
+        if (!this.mStarted) {
+            if (DEBUG) {
+                String str = TAG;
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append(this);
+                stringBuilder.append(": Starting");
+                Log.d(str, stringBuilder.toString());
+            }
+            this.mStarted = true;
+            updateBinding();
+        }
+    }
+
+    public void stop() {
+        if (this.mStarted) {
+            if (DEBUG) {
+                String str = TAG;
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append(this);
+                stringBuilder.append(": Stopping");
+                Log.d(str, stringBuilder.toString());
+            }
+            this.mStarted = false;
+            updateBinding();
+        }
+    }
+
+    public void rebindIfDisconnected() {
+        if (this.mActiveConnection == null &amp;&amp; shouldBind()) {
+            unbind();
+            bind();
+        }
+    }
+
+    private void updateBinding() {
+        if (shouldBind()) {
+            bind();
+        } else {
+            unbind();
+        }
+    }
+
+    private boolean shouldBind() {
+        if (!this.mStarted || (getDiscoveryRequest() == null &amp;&amp; this.mControllers.isEmpty())) {
+            return false;
+        }
+        return true;
+    }
+
+    private void bind() {
+        if (!this.mBound) {
+            String str;
+            StringBuilder stringBuilder;
+            if (DEBUG) {
+                str = TAG;
+                stringBuilder = new StringBuilder();
+                stringBuilder.append(this);
+                stringBuilder.append(": Binding");
+                Log.d(str, stringBuilder.toString());
+            }
+            Intent intent = new Intent("android.media.MediaRouteProviderService");
+            intent.setComponent(this.mComponentName);
+            try {
+                this.mBound = getContext().bindService(intent, this, 1);
+                if (!this.mBound &amp;&amp; DEBUG) {
+                    str = TAG;
+                    stringBuilder = new StringBuilder();
+                    stringBuilder.append(this);
+                    stringBuilder.append(": Bind failed");
+                    Log.d(str, stringBuilder.toString());
+                }
+            } catch (Throwable e) {
+                if (DEBUG) {
+                    String str2 = TAG;
+                    StringBuilder stringBuilder2 = new StringBuilder();
+                    stringBuilder2.append(this);
+                    stringBuilder2.append(": Bind failed");
+                    Log.d(str2, stringBuilder2.toString(), e);
+                }
+            }
+        }
+    }
+
+    private void unbind() {
+        if (this.mBound) {
+            if (DEBUG) {
+                String str = TAG;
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append(this);
+                stringBuilder.append(": Unbinding");
+                Log.d(str, stringBuilder.toString());
+            }
+            this.mBound = false;
+            disconnect();
+            getContext().unbindService(this);
+        }
+    }
+
+    private RouteController createRouteController(String str, String str2) {
+        MediaRouteProviderDescriptor descriptor = getDescriptor();
+        if (descriptor != null) {
+            List routes = descriptor.getRoutes();
+            int size = routes.size();
+            for (int i = 0; i &lt; size; i++) {
+                if (((MediaRouteDescriptor) routes.get(i)).getId().equals(str)) {
+                    RouteController controller = new Controller(str, str2);
+                    this.mControllers.add(controller);
+                    if (this.mConnectionReady != null) {
+                        controller.attachConnection(this.mActiveConnection);
+                    }
+                    updateBinding();
+                    return controller;
+                }
+            }
+        }
+        return null;
+    }
+
+    void onConnectionReady(Connection connection) {
+        if (this.mActiveConnection == connection) {
+            this.mConnectionReady = true;
+            attachControllersToConnection();
+            connection = getDiscoveryRequest();
+            if (connection != null) {
+                this.mActiveConnection.setDiscoveryRequest(connection);
+            }
+        }
+    }
+
+    void onConnectionDied(Connection connection) {
+        if (this.mActiveConnection == connection) {
+            if (DEBUG != null) {
+                connection = TAG;
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append(this);
+                stringBuilder.append(": Service connection died");
+                Log.d(connection, stringBuilder.toString());
+            }
+            disconnect();
+        }
+    }
+
+    void onConnectionError(Connection connection, String str) {
+        if (this.mActiveConnection == connection) {
+            if (DEBUG != null) {
+                connection = TAG;
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append(this);
+                stringBuilder.append(": Service connection error - ");
+                stringBuilder.append(str);
+                Log.d(connection, stringBuilder.toString());
+            }
+            unbind();
+        }
+    }
+
+    void onConnectionDescriptorChanged(Connection connection, MediaRouteProviderDescriptor mediaRouteProviderDescriptor) {
+        if (this.mActiveConnection == connection) {
+            if (DEBUG != null) {
+                connection = TAG;
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append(this);
+                stringBuilder.append(": Descriptor changed, descriptor=");
+                stringBuilder.append(mediaRouteProviderDescriptor);
+                Log.d(connection, stringBuilder.toString());
+            }
+            setDescriptor(mediaRouteProviderDescriptor);
+        }
+    }
+
+    private void disconnect() {
+        if (this.mActiveConnection != null) {
+            setDescriptor(null);
+            this.mConnectionReady = false;
+            detachControllersFromConnection();
+            this.mActiveConnection.dispose();
+            this.mActiveConnection = null;
+        }
+    }
+
+    void onControllerReleased(Controller controller) {
+        this.mControllers.remove(controller);
+        controller.detachConnection();
+        updateBinding();
+    }
+
+    private void attachControllersToConnection() {
+        int size = this.mControllers.size();
+        for (int i = 0; i &lt; size; i++) {
+            ((Controller) this.mControllers.get(i)).attachConnection(this.mActiveConnection);
+        }
+    }
+
+    private void detachControllersFromConnection() {
+        int size = this.mControllers.size();
+        for (int i = 0; i &lt; size; i++) {
+            ((Controller) this.mControllers.get(i)).detachConnection();
+        }
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:3 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

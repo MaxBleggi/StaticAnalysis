@@ -1,0 +1,309 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/exoplayer2/trackselection/MappingTrackSelector.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/exoplayer2/trackselection/MappingTrackSelector.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="MappingTrackSelector.java" data-line="" class="code line-numbers"><code>package com.google.android.exoplayer2.trackselection;
+
+import android.util.Pair;
+import androidx.annotation.Nullable;
+import com.google.android.exoplayer2.ExoPlaybackException;
+import com.google.android.exoplayer2.RendererCapabilities;
+import com.google.android.exoplayer2.RendererConfiguration;
+import com.google.android.exoplayer2.source.TrackGroup;
+import com.google.android.exoplayer2.source.TrackGroupArray;
+import com.google.android.exoplayer2.util.Util;
+import java.util.Arrays;
+
+public abstract class MappingTrackSelector extends TrackSelector {
+    @Nullable
+    private MappedTrackInfo currentMappedTrackInfo;
+
+    public static final class MappedTrackInfo {
+        public static final int RENDERER_SUPPORT_EXCEEDS_CAPABILITIES_TRACKS = 2;
+        public static final int RENDERER_SUPPORT_NO_TRACKS = 0;
+        public static final int RENDERER_SUPPORT_PLAYABLE_TRACKS = 3;
+        public static final int RENDERER_SUPPORT_UNSUPPORTED_TRACKS = 1;
+        @Deprecated
+        public final int length = this.rendererCount;
+        private final int rendererCount;
+        private final int[][][] rendererFormatSupports;
+        private final int[] rendererMixedMimeTypeAdaptiveSupports;
+        private final TrackGroupArray[] rendererTrackGroups;
+        private final int[] rendererTrackTypes;
+        private final TrackGroupArray unmappedTrackGroups;
+
+        MappedTrackInfo(int[] iArr, TrackGroupArray[] trackGroupArrayArr, int[] iArr2, int[][][] iArr3, TrackGroupArray trackGroupArray) {
+            this.rendererTrackTypes = iArr;
+            this.rendererTrackGroups = trackGroupArrayArr;
+            this.rendererFormatSupports = iArr3;
+            this.rendererMixedMimeTypeAdaptiveSupports = iArr2;
+            this.unmappedTrackGroups = trackGroupArray;
+            this.rendererCount = iArr.length;
+        }
+
+        public int getRendererCount() {
+            return this.rendererCount;
+        }
+
+        public int getRendererType(int i) {
+            return this.rendererTrackTypes[i];
+        }
+
+        public TrackGroupArray getTrackGroups(int i) {
+            return this.rendererTrackGroups[i];
+        }
+
+        public int getRendererSupport(int i) {
+            i = this.rendererFormatSupports[i];
+            int i2 = 0;
+            int i3 = 0;
+            while (i2 &lt; i.length) {
+                int i4 = i3;
+                for (int i5 : i[i2]) {
+                    int i52;
+                    switch (i52 &amp; 7) {
+                        case 3:
+                            i52 = 2;
+                            break;
+                        case 4:
+                            return 3;
+                        default:
+                            i52 = 1;
+                            break;
+                    }
+                    i4 = Math.max(i4, i52);
+                }
+                i2++;
+                i3 = i4;
+            }
+            return i3;
+        }
+
+        @Deprecated
+        public int getTrackTypeRendererSupport(int i) {
+            return getTypeSupport(i);
+        }
+
+        public int getTypeSupport(int i) {
+            int i2 = 0;
+            for (int i3 = 0; i3 &lt; this.rendererCount; i3++) {
+                if (this.rendererTrackTypes[i3] == i) {
+                    i2 = Math.max(i2, getRendererSupport(i3));
+                }
+            }
+            return i2;
+        }
+
+        @Deprecated
+        public int getTrackFormatSupport(int i, int i2, int i3) {
+            return getTrackSupport(i, i2, i3);
+        }
+
+        public int getTrackSupport(int i, int i2, int i3) {
+            return this.rendererFormatSupports[i][i2][i3] &amp; 7;
+        }
+
+        public int getAdaptiveSupport(int i, int i2, boolean z) {
+            int i3 = this.rendererTrackGroups[i].get(i2).length;
+            int[] iArr = new int[i3];
+            int i4 = 0;
+            for (int i5 = 0; i5 &lt; i3; i5++) {
+                int trackSupport = getTrackSupport(i, i2, i5);
+                if (trackSupport == 4 || (z &amp;&amp; trackSupport == 3)) {
+                    trackSupport = i4 + 1;
+                    iArr[i4] = i5;
+                    i4 = trackSupport;
+                }
+            }
+            return getAdaptiveSupport(i, i2, Arrays.copyOf(iArr, i4));
+        }
+
+        public int getAdaptiveSupport(int i, int i2, int[] iArr) {
+            int i3 = 0;
+            Object obj = null;
+            int i4 = 0;
+            int i5 = 0;
+            int i6 = 16;
+            while (i3 &lt; iArr.length) {
+                String str = this.rendererTrackGroups[i].get(i2).getFormat(iArr[i3]).sampleMimeType;
+                int i7 = i4 + 1;
+                if (i4 == 0) {
+                    obj = str;
+                } else {
+                    i5 = (Util.areEqual(obj, str) ^ 1) | i5;
+                }
+                i6 = Math.min(i6, this.rendererFormatSupports[i][i2][i3] &amp; 24);
+                i3++;
+                i4 = i7;
+            }
+            return i5 != 0 ? Math.min(i6, this.rendererMixedMimeTypeAdaptiveSupports[i]) : i6;
+        }
+
+        @Deprecated
+        public TrackGroupArray getUnassociatedTrackGroups() {
+            return getUnmappedTrackGroups();
+        }
+
+        public TrackGroupArray getUnmappedTrackGroups() {
+            return this.unmappedTrackGroups;
+        }
+    }
+
+    protected abstract Pair&lt;RendererConfiguration[], TrackSelection[]&gt; selectTracks(MappedTrackInfo mappedTrackInfo, int[][][] iArr, int[] iArr2) throws ExoPlaybackException;
+
+    @Nullable
+    public final MappedTrackInfo getCurrentMappedTrackInfo() {
+        return this.currentMappedTrackInfo;
+    }
+
+    public final void onSelectionActivated(Object obj) {
+        this.currentMappedTrackInfo = (MappedTrackInfo) obj;
+    }
+
+    public final TrackSelectorResult selectTracks(RendererCapabilities[] rendererCapabilitiesArr, TrackGroupArray trackGroupArray) throws ExoPlaybackException {
+        int i;
+        int[] iArr = new int[(rendererCapabilitiesArr.length + 1)];
+        TrackGroup[][] trackGroupArr = new TrackGroup[(rendererCapabilitiesArr.length + 1)][];
+        int[][][] iArr2 = new int[(rendererCapabilitiesArr.length + 1)][][];
+        for (i = 0; i &lt; trackGroupArr.length; i++) {
+            trackGroupArr[i] = new TrackGroup[trackGroupArray.length];
+            iArr2[i] = new int[trackGroupArray.length][];
+        }
+        int[] mixedMimeTypeAdaptationSupports = getMixedMimeTypeAdaptationSupports(rendererCapabilitiesArr);
+        for (i = 0; i &lt; trackGroupArray.length; i++) {
+            int[] iArr3;
+            TrackGroup trackGroup = trackGroupArray.get(i);
+            int findRenderer = findRenderer(rendererCapabilitiesArr, trackGroup);
+            if (findRenderer == rendererCapabilitiesArr.length) {
+                iArr3 = new int[trackGroup.length];
+            } else {
+                iArr3 = getFormatSupport(rendererCapabilitiesArr[findRenderer], trackGroup);
+            }
+            int i2 = iArr[findRenderer];
+            trackGroupArr[findRenderer][i2] = trackGroup;
+            iArr2[findRenderer][i2] = iArr3;
+            iArr[findRenderer] = iArr[findRenderer] + 1;
+        }
+        TrackGroupArray[] trackGroupArrayArr = new TrackGroupArray[rendererCapabilitiesArr.length];
+        int[] iArr4 = new int[rendererCapabilitiesArr.length];
+        for (int i3 = 0; i3 &lt; rendererCapabilitiesArr.length; i3++) {
+            trackGroupArray = iArr[i3];
+            trackGroupArrayArr[i3] = new TrackGroupArray((TrackGroup[]) Util.nullSafeArrayCopy(trackGroupArr[i3], trackGroupArray));
+            iArr2[i3] = (int[][]) Util.nullSafeArrayCopy(iArr2[i3], trackGroupArray);
+            iArr4[i3] = rendererCapabilitiesArr[i3].getTrackType();
+        }
+        int[] iArr5 = mixedMimeTypeAdaptationSupports;
+        int[][][] iArr6 = iArr2;
+        MappedTrackInfo mappedTrackInfo = new MappedTrackInfo(iArr4, trackGroupArrayArr, iArr5, iArr6, new TrackGroupArray((TrackGroup[]) Util.nullSafeArrayCopy(trackGroupArr[rendererCapabilitiesArr.length], iArr[rendererCapabilitiesArr.length])));
+        trackGroupArray = selectTracks(mappedTrackInfo, iArr2, mixedMimeTypeAdaptationSupports);
+        return new TrackSelectorResult((RendererConfiguration[]) trackGroupArray.first, (TrackSelection[]) trackGroupArray.second, mappedTrackInfo);
+    }
+
+    private static int findRenderer(RendererCapabilities[] rendererCapabilitiesArr, TrackGroup trackGroup) throws ExoPlaybackException {
+        int length = rendererCapabilitiesArr.length;
+        int i = 0;
+        int i2 = 0;
+        while (i &lt; rendererCapabilitiesArr.length) {
+            RendererCapabilities rendererCapabilities = rendererCapabilitiesArr[i];
+            int i3 = length;
+            for (length = 0; length &lt; trackGroup.length; length++) {
+                int supportsFormat = rendererCapabilities.supportsFormat(trackGroup.getFormat(length)) &amp; 7;
+                if (supportsFormat &gt; i2) {
+                    if (supportsFormat == 4) {
+                        return i;
+                    }
+                    i3 = i;
+                    i2 = supportsFormat;
+                }
+            }
+            i++;
+            length = i3;
+        }
+        return length;
+    }
+
+    private static int[] getFormatSupport(RendererCapabilities rendererCapabilities, TrackGroup trackGroup) throws ExoPlaybackException {
+        int[] iArr = new int[trackGroup.length];
+        for (int i = 0; i &lt; trackGroup.length; i++) {
+            iArr[i] = rendererCapabilities.supportsFormat(trackGroup.getFormat(i));
+        }
+        return iArr;
+    }
+
+    private static int[] getMixedMimeTypeAdaptationSupports(RendererCapabilities[] rendererCapabilitiesArr) throws ExoPlaybackException {
+        int[] iArr = new int[rendererCapabilitiesArr.length];
+        for (int i = 0; i &lt; iArr.length; i++) {
+            iArr[i] = rendererCapabilitiesArr[i].supportsMixedMimeTypeAdaptation();
+        }
+        return iArr;
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:8 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

@@ -1,0 +1,162 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9"><div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/exoplayer2/upstream/crypto/AesCipherDataSink.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/exoplayer2/upstream/crypto/AesCipherDataSink.java</a></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-50">report</i><h5>(private|secret|api|aws)[_-]?key</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>Sensitive parameters which can contain hardcoded credentials. The score is quite low because this query is often a false-positive.</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#AesCipherDataSink_java10priv" class="active">line 10</a></li><li class="tab"><a style="color: #d82c2b;" href="#AesCipherDataSink_java19priv">line 19</a></li><li class="tab"><a style="color: #d82c2b;" href="#AesCipherDataSink_java25priv">line 25</a></li></ul></div><div class="card-content"><div id="AesCipherDataSink_java10priv">Code @ line 10<pre data-start="7" data-line="10" data-src="AesCipherDataSink.java" class="code line-numbers"><code>public final class AesCipherDataSink implements DataSink {
+    private AesFlushingCipher cipher;
+    private final byte[] scratch;
+    private final byte[] secretKey;
+    private final DataSink wrappedDataSink;
+
+    public AesCipherDataSink(byte[] bArr, DataSink dataSink) {
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NyeXB0by9BZXNDaXBoZXJEYXRhU2luay5qYXZhfHx8bGluZTogMTAgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwxMHx8fDc">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NyeXB0by9BZXNDaXBoZXJEYXRhU2luay5qYXZhfHx8bGluZTogMTAgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwxMHx8fDc')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NyeXB0by9BZXNDaXBoZXJEYXRhU2luay5qYXZhfHx8bGluZTogMTAgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwxMHx8fDc').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NyeXB0by9BZXNDaXBoZXJEYXRhU2luay5qYXZhfHx8bGluZTogMTAgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwxMHx8fDc" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NyeXB0by9BZXNDaXBoZXJEYXRhU2luay5qYXZhfHx8bGluZTogMTAgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwxMHx8fDc' , 'cHVibGljIGZpbmFsIGNsYXNzIEFlc0NpcGhlckRhdGFTaW5rIGltcGxlbWVudHMgRGF0YVNpbmsgewogICAgcHJpdmF0ZSBBZXNGbHVzaGluZ0NpcGhlciBjaXBoZXI7CiAgICBwcml2YXRlIGZpbmFsIGJ5dGVbXSBzY3JhdGNoOwogICAgcHJpdmF0ZSBmaW5hbCBieXRlW10gc2VjcmV0S2V5OwogICAgcHJpdmF0ZSBmaW5hbCBEYXRhU2luayB3cmFwcGVkRGF0YVNpbms7CgogICAgcHVibGljIEFlc0NpcGhlckRhdGFTaW5rKGJ5dGVbXSBiQXJyLCBEYXRhU2luayBkYXRhU2luaykgewo=');  
+                                            });
+                                            </script>
+                                            </div><div id="AesCipherDataSink_java19priv">Code @ line 19<pre data-start="16" data-line="19" data-src="AesCipherDataSink.java" class="code line-numbers"><code>
+    public AesCipherDataSink(byte[] bArr, DataSink dataSink, byte[] bArr2) {
+        this.wrappedDataSink = dataSink;
+        this.secretKey = bArr;
+        this.scratch = bArr2;
+    }
+
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NyeXB0by9BZXNDaXBoZXJEYXRhU2luay5qYXZhfHx8bGluZTogMTkgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwxOXx8fDE2">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NyeXB0by9BZXNDaXBoZXJEYXRhU2luay5qYXZhfHx8bGluZTogMTkgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwxOXx8fDE2')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NyeXB0by9BZXNDaXBoZXJEYXRhU2luay5qYXZhfHx8bGluZTogMTkgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwxOXx8fDE2').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NyeXB0by9BZXNDaXBoZXJEYXRhU2luay5qYXZhfHx8bGluZTogMTkgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwxOXx8fDE2" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NyeXB0by9BZXNDaXBoZXJEYXRhU2luay5qYXZhfHx8bGluZTogMTkgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwxOXx8fDE2' , 'CiAgICBwdWJsaWMgQWVzQ2lwaGVyRGF0YVNpbmsoYnl0ZVtdIGJBcnIsIERhdGFTaW5rIGRhdGFTaW5rLCBieXRlW10gYkFycjIpIHsKICAgICAgICB0aGlzLndyYXBwZWREYXRhU2luayA9IGRhdGFTaW5rOwogICAgICAgIHRoaXMuc2VjcmV0S2V5ID0gYkFycjsKICAgICAgICB0aGlzLnNjcmF0Y2ggPSBiQXJyMjsKICAgIH0KCg==');  
+                                            });
+                                            </script>
+                                            </div><div id="AesCipherDataSink_java25priv">Code @ line 25<pre data-start="22" data-line="25" data-src="AesCipherDataSink.java" class="code line-numbers"><code>
+    public void open(DataSpec dataSpec) throws IOException {
+        this.wrappedDataSink.open(dataSpec);
+        this.cipher = new AesFlushingCipher(1, this.secretKey, CryptoUtil.getFNV64Hash(dataSpec.key), dataSpec.absoluteStreamPosition);
+    }
+
+    public void write(byte[] bArr, int i, int i2) throws IOException {
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NyeXB0by9BZXNDaXBoZXJEYXRhU2luay5qYXZhfHx8bGluZTogMjUgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwyNXx8fDIy">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NyeXB0by9BZXNDaXBoZXJEYXRhU2luay5qYXZhfHx8bGluZTogMjUgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwyNXx8fDIy')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NyeXB0by9BZXNDaXBoZXJEYXRhU2luay5qYXZhfHx8bGluZTogMjUgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwyNXx8fDIy').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NyeXB0by9BZXNDaXBoZXJEYXRhU2luay5qYXZhfHx8bGluZTogMjUgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwyNXx8fDIy" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NyeXB0by9BZXNDaXBoZXJEYXRhU2luay5qYXZhfHx8bGluZTogMjUgOiAocHJpdmF0ZXxzZWNyZXR8YXBpfGF3cylbXy1dP2tleXx8fDUwfHx8KHByaXZhdGV8c2VjcmV0fGFwaXxhd3MpW18tXT9rZXl8fHwyNXx8fDIy' , 'CiAgICBwdWJsaWMgdm9pZCBvcGVuKERhdGFTcGVjIGRhdGFTcGVjKSB0aHJvd3MgSU9FeGNlcHRpb24gewogICAgICAgIHRoaXMud3JhcHBlZERhdGFTaW5rLm9wZW4oZGF0YVNwZWMpOwogICAgICAgIHRoaXMuY2lwaGVyID0gbmV3IEFlc0ZsdXNoaW5nQ2lwaGVyKDEsIHRoaXMuc2VjcmV0S2V5LCBDcnlwdG9VdGlsLmdldEZOVjY0SGFzaChkYXRhU3BlYy5rZXkpLCBkYXRhU3BlYy5hYnNvbHV0ZVN0cmVhbVBvc2l0aW9uKTsKICAgIH0KCiAgICBwdWJsaWMgdm9pZCB3cml0ZShieXRlW10gYkFyciwgaW50IGksIGludCBpMikgdGhyb3dzIElPRXhjZXB0aW9uIHsK');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-83">report</i><h5>password =|secret =|username =|key =</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>the app contain hardcoded sensitive informations like usernames, passwords, keys etc: Hard coded sensitive information in Application Code (including Crypto)</span></div></li></ul><ul class="collapsible"><li><div class="collapsible-header"><img data-position="top" data-tooltip="OWASP item" src="html/owasp_logo.png" height="20em" style="margin-right: 1rem;margin-left: 5px;" class="tooltipped"></img> OWASP Item</div><div class="collapsible-body"><span>For more information, have a look at: https://www.owasp.org/index.php/OWASP_Mobile_Security_Testing_Guide</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#AesCipherDataSink_java19pass" class="active">line 19</a></li></ul></div><div class="card-content"><div id="AesCipherDataSink_java19pass">Code @ line 19<pre data-start="16" data-line="19" data-src="AesCipherDataSink.java" class="code line-numbers"><code>
+    public AesCipherDataSink(byte[] bArr, DataSink dataSink, byte[] bArr2) {
+        this.wrappedDataSink = dataSink;
+        this.secretKey = bArr;
+        this.scratch = bArr2;
+    }
+
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NyeXB0by9BZXNDaXBoZXJEYXRhU2luay5qYXZhfHx8bGluZTogMTkgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE5fHx8MTY">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NyeXB0by9BZXNDaXBoZXJEYXRhU2luay5qYXZhfHx8bGluZTogMTkgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE5fHx8MTY')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NyeXB0by9BZXNDaXBoZXJEYXRhU2luay5qYXZhfHx8bGluZTogMTkgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE5fHx8MTY').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NyeXB0by9BZXNDaXBoZXJEYXRhU2luay5qYXZhfHx8bGluZTogMTkgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE5fHx8MTY" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3Vwc3RyZWFtL2NyeXB0by9BZXNDaXBoZXJEYXRhU2luay5qYXZhfHx8bGluZTogMTkgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDE5fHx8MTY' , 'CiAgICBwdWJsaWMgQWVzQ2lwaGVyRGF0YVNpbmsoYnl0ZVtdIGJBcnIsIERhdGFTaW5rIGRhdGFTaW5rLCBieXRlW10gYkFycjIpIHsKICAgICAgICB0aGlzLndyYXBwZWREYXRhU2luayA9IGRhdGFTaW5rOwogICAgICAgIHRoaXMuc2VjcmV0S2V5ID0gYkFycjsKICAgICAgICB0aGlzLnNjcmF0Y2ggPSBiQXJyMjsKICAgIH0KCg==');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="AesCipherDataSink.java" data-line="10,19,25,19," class="code line-numbers"><code>package com.google.android.exoplayer2.upstream.crypto;
+
+import com.google.android.exoplayer2.upstream.DataSink;
+import com.google.android.exoplayer2.upstream.DataSpec;
+import java.io.IOException;
+
+public final class AesCipherDataSink implements DataSink {
+    private AesFlushingCipher cipher;
+    private final byte[] scratch;
+    private final byte[] secretKey;
+    private final DataSink wrappedDataSink;
+
+    public AesCipherDataSink(byte[] bArr, DataSink dataSink) {
+        this(bArr, dataSink, null);
+    }
+
+    public AesCipherDataSink(byte[] bArr, DataSink dataSink, byte[] bArr2) {
+        this.wrappedDataSink = dataSink;
+        this.secretKey = bArr;
+        this.scratch = bArr2;
+    }
+
+    public void open(DataSpec dataSpec) throws IOException {
+        this.wrappedDataSink.open(dataSpec);
+        this.cipher = new AesFlushingCipher(1, this.secretKey, CryptoUtil.getFNV64Hash(dataSpec.key), dataSpec.absoluteStreamPosition);
+    }
+
+    public void write(byte[] bArr, int i, int i2) throws IOException {
+        if (this.scratch == null) {
+            this.cipher.updateInPlace(bArr, i, i2);
+            this.wrappedDataSink.write(bArr, i, i2);
+            return;
+        }
+        int i3 = 0;
+        while (i3 &lt; i2) {
+            int min = Math.min(i2 - i3, this.scratch.length);
+            this.cipher.update(bArr, i + i3, min, this.scratch, 0);
+            this.wrappedDataSink.write(this.scratch, 0, min);
+            i3 += min;
+        }
+    }
+
+    public void close() throws IOException {
+        this.cipher = null;
+        this.wrappedDataSink.close();
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:9 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

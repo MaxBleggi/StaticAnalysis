@@ -1,0 +1,115 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/res/layout/fragment_srttings.xml" target="_blank">/xumo_apk/jadx_source_code/res/layout/fragment_srttings.xml</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="fragment_srttings.xml" data-line="" class="code line-numbers"><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="match_parent"
+    &lt;LinearLayout android:orientation="vertical" android:layout_width="UNKNOWN_DATA_0x1" android:layout_height="match_parent" android:layout_weight="1.0"&gt;
+        &lt;TextView android:textSize="15sp" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="HELP SETTINGS" android:fontFamily="@font/open_sans_semi_bold" /&gt;
+        &lt;LinearLayout android:gravity="top|bottom|center_vertical|fill_vertical|center|fill" android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="UNKNOWN_DATA_0x2301" android:layout_marginTop="10dp"&gt;
+            &lt;TextView android:textSize="10sp" android:id="@+id/default_tv" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="DISPLAY CLOSED CAPTIONS BY DEFAULT" android:fontFamily="@font/open_sans_bold" /&gt;
+            &lt;Switch android:id="@+id/default_switch" android:background="@drawable/switch_custom_thumb_selector" android:layout_width="UNKNOWN_DATA_0x1e01" android:layout_height="UNKNOWN_DATA_0xf01" android:thumb="0x0" android:track="0x0" android:layout_marginStart="50dp" /&gt;
+        &lt;/LinearLayout&gt;
+        &lt;TextView android:textSize="10sp" android:textColor="@color/tab_noselect" android:gravity="top|bottom|center_vertical|fill_vertical|center|fill" android:id="@+id/app_tv" android:layout_width="match_parent" android:layout_height="UNKNOWN_DATA_0x2301" android:layout_marginTop="10dp" android:text="DEFINE THE APPEARANCE OF CLOSED CAPTIONS" android:fontFamily="@font/open_sans_bold" /&gt;
+    &lt;/LinearLayout&gt;
+    &lt;RelativeLayout android:layout_width="UNKNOWN_DATA_0x1" android:layout_height="match_parent" android:layout_weight="1.0"&gt;
+        &lt;LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent"&gt;
+            &lt;TextView android:textSize="15sp" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="MORE INFORMATION" android:fontFamily="@font/open_sans_semi_bold" /&gt;
+            &lt;TextView android:textSize="12.5sp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:text="Terms of Service" /&gt;
+            &lt;TextView android:textSize="11sp" android:textColor="@color/xumoGrayFourth" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:text="xumo.com/terms" /&gt;
+            &lt;TextView android:textSize="12.5sp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="15dp" android:text="Privacy Policy" /&gt;
+            &lt;TextView android:textSize="11sp" android:textColor="@color/xumoGrayFourth" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:text="xumo.com/privacy" /&gt;
+            &lt;TextView android:textSize="12.5sp" android:id="@+id/licenses_tv" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="15dp" android:text="Licenses" /&gt;
+            &lt;TextView android:textSize="12.5sp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="15dp" android:text="Support for App" /&gt;
+            &lt;TextView android:textSize="11sp" android:textColor="@color/xumoGrayFourth" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:text="xumo.com/support" /&gt;
+            &lt;TextView android:textSize="12.5sp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="15dp" android:text="Support Email" /&gt;
+            &lt;TextView android:textSize="11sp" android:textColor="@color/xumoGrayFourth" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:text="support@xumo.com" /&gt;
+            &lt;TextView android:textSize="12.5sp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="15dp" android:text="Client ID for Customer Service" /&gt;
+            &lt;TextView android:textSize="11sp" android:textColor="@color/xumoGrayFourth" android:id="@+id/clientId_tv" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="5dp" /&gt;
+            &lt;TextView android:textSize="12.5sp" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="15dp" android:text="App Version" /&gt;
+            &lt;TextView android:textSize="11sp" android:textColor="@color/xumoGrayFourth" android:id="@+id/appVersion_tv" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="5dp" /&gt;
+        &lt;/LinearLayout&gt;
+        &lt;LinearLayout android:gravity="left|right|center_horizontal|fill_horizontal|center|fill|start|end" android:orientation="vertical" android:layout_width="UNKNOWN_DATA_0xd201" android:layout_height="UNKNOWN_DATA_0x8c01" android:layout_alignParentBottom="true" android:layout_alignParentEnd="true"
+            &lt;LinearLayout android:id="@+id/debug_mode_tv" android:visibility="invisible" android:layout_width="match_parent" android:layout_height="wrap_content"&gt;
+                &lt;TextView android:textStyle="bold" android:textColor="@color/yellow" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/settings_debug_mode_asterisk" /&gt;
+                &lt;TextView android:textStyle="bold" android:textColor="@color/yellow" android:id="@+id/debug_mode_code_1_tv" android:layout_width="wrap_content" android:layout_height="wrap_content" /&gt;
+                &lt;TextView android:textStyle="bold" android:textColor="@color/yellow" android:id="@+id/debug_mode_separator" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/settings_debug_mode_separator" /&gt;
+                &lt;TextView android:textStyle="bold" android:textColor="@color/yellow" android:id="@+id/debug_mode_code_2_tv" android:layout_width="wrap_content" android:layout_height="wrap_content" /&gt;
+            &lt;/LinearLayout&gt;
+            &lt;TextView android:textColor="@color/red" android:id="@+id/enable_debug_logs_tv" android:visibility="invisible" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="debug log enabled" /&gt;
+            &lt;TextView android:textColor="@color/red" android:id="@+id/enable_test_channels_tv" android:visibility="invisible" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="test channels enabled" /&gt;
+            &lt;TextView android:textColor="@color/red" android:id="@+id/enable_staging_players_tv" android:visibility="invisible" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="staging-players.json enabled" /&gt;
+            &lt;TextView android:textColor="@color/red" android:id="@+id/viewbooster_staging_tv" android:visibility="invisible" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="viewbooster-staging.json" /&gt;
+            &lt;TextView android:textColor="@color/red" android:id="@+id/clear_local_storage_tv" android:visibility="invisible" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="local storage reset" /&gt;
+        &lt;/LinearLayout&gt;
+    &lt;/RelativeLayout&gt;
+&lt;/LinearLayout&gt;
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:2 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

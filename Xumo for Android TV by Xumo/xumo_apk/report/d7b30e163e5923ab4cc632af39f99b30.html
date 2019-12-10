@@ -1,0 +1,285 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9"><div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/exoplayer2/source/ExtractorMediaSource.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/exoplayer2/source/ExtractorMediaSource.java</a></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-83">report</i><h5>password =|secret =|username =|key =</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>the app contain hardcoded sensitive informations like usernames, passwords, keys etc: Hard coded sensitive information in Application Code (including Crypto)</span></div></li></ul><ul class="collapsible"><li><div class="collapsible-header"><img data-position="top" data-tooltip="OWASP item" src="html/owasp_logo.png" height="20em" style="margin-right: 1rem;margin-left: 5px;" class="tooltipped"></img> OWASP Item</div><div class="collapsible-body"><span>For more information, have a look at: https://www.owasp.org/index.php/OWASP_Mobile_Security_Testing_Guide</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#ExtractorMediaSource_java66pass" class="active">line 66</a></li><li class="tab"><a style="color: #d82c2b;" href="#ExtractorMediaSource_java157pass">line 157</a></li></ul></div><div class="card-content"><div id="ExtractorMediaSource_java66pass">Code @ line 66<pre data-start="63" data-line="66" data-src="ExtractorMediaSource.java" class="code line-numbers"><code>
+        public Factory setCustomCacheKey(String str) {
+            Assertions.checkState(this.isCreateCalled ^ 1);
+            this.customCacheKey = str;
+            return this;
+        }
+
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3NvdXJjZS9FeHRyYWN0b3JNZWRpYVNvdXJjZS5qYXZhfHx8bGluZTogNjYgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDY2fHx8NjM">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3NvdXJjZS9FeHRyYWN0b3JNZWRpYVNvdXJjZS5qYXZhfHx8bGluZTogNjYgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDY2fHx8NjM')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3NvdXJjZS9FeHRyYWN0b3JNZWRpYVNvdXJjZS5qYXZhfHx8bGluZTogNjYgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDY2fHx8NjM').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3NvdXJjZS9FeHRyYWN0b3JNZWRpYVNvdXJjZS5qYXZhfHx8bGluZTogNjYgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDY2fHx8NjM" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3NvdXJjZS9FeHRyYWN0b3JNZWRpYVNvdXJjZS5qYXZhfHx8bGluZTogNjYgOiBwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHw4M3x8fHBhc3N3b3JkID18c2VjcmV0ID18dXNlcm5hbWUgPXxrZXkgPXx8fDY2fHx8NjM' , 'CiAgICAgICAgcHVibGljIEZhY3Rvcnkgc2V0Q3VzdG9tQ2FjaGVLZXkoU3RyaW5nIHN0cikgewogICAgICAgICAgICBBc3NlcnRpb25zLmNoZWNrU3RhdGUodGhpcy5pc0NyZWF0ZUNhbGxlZCBeIDEpOwogICAgICAgICAgICB0aGlzLmN1c3RvbUNhY2hlS2V5ID0gc3RyOwogICAgICAgICAgICByZXR1cm4gdGhpczsKICAgICAgICB9Cgo=');  
+                                            });
+                                            </script>
+                                            </div><div id="ExtractorMediaSource_java157pass">Code @ line 157<pre data-start="154" data-line="157" data-src="ExtractorMediaSource.java" class="code line-numbers"><code>        this.dataSourceFactory = factory;
+        this.extractorsFactory = extractorsFactory;
+        this.loadableLoadErrorHandlingPolicy = loadErrorHandlingPolicy;
+        this.customCacheKey = str;
+        this.continueLoadingCheckIntervalBytes = i;
+        this.timelineDurationUs = 1;
+        this.tag = obj;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3NvdXJjZS9FeHRyYWN0b3JNZWRpYVNvdXJjZS5qYXZhfHx8bGluZTogMTU3IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwxNTd8fHwxNTQ">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3NvdXJjZS9FeHRyYWN0b3JNZWRpYVNvdXJjZS5qYXZhfHx8bGluZTogMTU3IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwxNTd8fHwxNTQ')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3NvdXJjZS9FeHRyYWN0b3JNZWRpYVNvdXJjZS5qYXZhfHx8bGluZTogMTU3IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwxNTd8fHwxNTQ').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3NvdXJjZS9FeHRyYWN0b3JNZWRpYVNvdXJjZS5qYXZhfHx8bGluZTogMTU3IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwxNTd8fHwxNTQ" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9leG9wbGF5ZXIyL3NvdXJjZS9FeHRyYWN0b3JNZWRpYVNvdXJjZS5qYXZhfHx8bGluZTogMTU3IDogcGFzc3dvcmQgPXxzZWNyZXQgPXx1c2VybmFtZSA9fGtleSA9fHx8ODN8fHxwYXNzd29yZCA9fHNlY3JldCA9fHVzZXJuYW1lID18a2V5ID18fHwxNTd8fHwxNTQ' , 'ICAgICAgICB0aGlzLmRhdGFTb3VyY2VGYWN0b3J5ID0gZmFjdG9yeTsKICAgICAgICB0aGlzLmV4dHJhY3RvcnNGYWN0b3J5ID0gZXh0cmFjdG9yc0ZhY3Rvcnk7CiAgICAgICAgdGhpcy5sb2FkYWJsZUxvYWRFcnJvckhhbmRsaW5nUG9saWN5ID0gbG9hZEVycm9ySGFuZGxpbmdQb2xpY3k7CiAgICAgICAgdGhpcy5jdXN0b21DYWNoZUtleSA9IHN0cjsKICAgICAgICB0aGlzLmNvbnRpbnVlTG9hZGluZ0NoZWNrSW50ZXJ2YWxCeXRlcyA9IGk7CiAgICAgICAgdGhpcy50aW1lbGluZUR1cmF0aW9uVXMgPSAxOwogICAgICAgIHRoaXMudGFnID0gb2JqOwo=');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="ExtractorMediaSource.java" data-line="66,157," class="code line-numbers"><code>package com.google.android.exoplayer2.source;
+
+import android.net.Uri;
+import android.os.Handler;
+import androidx.annotation.Nullable;
+import com.google.android.exoplayer2.C;
+import com.google.android.exoplayer2.ExoPlayer;
+import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory;
+import com.google.android.exoplayer2.extractor.ExtractorsFactory;
+import com.google.android.exoplayer2.source.MediaSource.MediaPeriodId;
+import com.google.android.exoplayer2.source.MediaSourceEventListener.LoadEventInfo;
+import com.google.android.exoplayer2.source.MediaSourceEventListener.MediaLoadData;
+import com.google.android.exoplayer2.source.ads.AdsMediaSource.MediaSourceFactory;
+import com.google.android.exoplayer2.upstream.Allocator;
+import com.google.android.exoplayer2.upstream.DataSource;
+import com.google.android.exoplayer2.upstream.DefaultLoadErrorHandlingPolicy;
+import com.google.android.exoplayer2.upstream.LoadErrorHandlingPolicy;
+import com.google.android.exoplayer2.upstream.TransferListener;
+import com.google.android.exoplayer2.util.Assertions;
+import java.io.IOException;
+
+public final class ExtractorMediaSource extends BaseMediaSource implements Listener {
+    public static final int DEFAULT_LOADING_CHECK_INTERVAL_BYTES = 1048576;
+    private final int continueLoadingCheckIntervalBytes;
+    private final String customCacheKey;
+    private final com.google.android.exoplayer2.upstream.DataSource.Factory dataSourceFactory;
+    private final ExtractorsFactory extractorsFactory;
+    private final LoadErrorHandlingPolicy loadableLoadErrorHandlingPolicy;
+    @Nullable
+    private final Object tag;
+    private long timelineDurationUs;
+    private boolean timelineIsSeekable;
+    @Nullable
+    private TransferListener transferListener;
+    private final Uri uri;
+
+    @Deprecated
+    public interface EventListener {
+        void onLoadError(IOException iOException);
+    }
+
+    public static final class Factory implements MediaSourceFactory {
+        private int continueLoadingCheckIntervalBytes = 1048576;
+        @Nullable
+        private String customCacheKey;
+        private final com.google.android.exoplayer2.upstream.DataSource.Factory dataSourceFactory;
+        @Nullable
+        private ExtractorsFactory extractorsFactory;
+        private boolean isCreateCalled;
+        private LoadErrorHandlingPolicy loadErrorHandlingPolicy = new DefaultLoadErrorHandlingPolicy();
+        @Nullable
+        private Object tag;
+
+        public Factory(com.google.android.exoplayer2.upstream.DataSource.Factory factory) {
+            this.dataSourceFactory = factory;
+        }
+
+        public Factory setExtractorsFactory(ExtractorsFactory extractorsFactory) {
+            Assertions.checkState(this.isCreateCalled ^ 1);
+            this.extractorsFactory = extractorsFactory;
+            return this;
+        }
+
+        public Factory setCustomCacheKey(String str) {
+            Assertions.checkState(this.isCreateCalled ^ 1);
+            this.customCacheKey = str;
+            return this;
+        }
+
+        public Factory setTag(Object obj) {
+            Assertions.checkState(this.isCreateCalled ^ 1);
+            this.tag = obj;
+            return this;
+        }
+
+        @Deprecated
+        public Factory setMinLoadableRetryCount(int i) {
+            return setLoadErrorHandlingPolicy(new DefaultLoadErrorHandlingPolicy(i));
+        }
+
+        public Factory setLoadErrorHandlingPolicy(LoadErrorHandlingPolicy loadErrorHandlingPolicy) {
+            Assertions.checkState(this.isCreateCalled ^ 1);
+            this.loadErrorHandlingPolicy = loadErrorHandlingPolicy;
+            return this;
+        }
+
+        public Factory setContinueLoadingCheckIntervalBytes(int i) {
+            Assertions.checkState(this.isCreateCalled ^ 1);
+            this.continueLoadingCheckIntervalBytes = i;
+            return this;
+        }
+
+        public ExtractorMediaSource createMediaSource(Uri uri) {
+            this.isCreateCalled = true;
+            if (this.extractorsFactory == null) {
+                this.extractorsFactory = new DefaultExtractorsFactory();
+            }
+            return new ExtractorMediaSource(uri, this.dataSourceFactory, this.extractorsFactory, this.loadErrorHandlingPolicy, this.customCacheKey, this.continueLoadingCheckIntervalBytes, this.tag);
+        }
+
+        @Deprecated
+        public ExtractorMediaSource createMediaSource(Uri uri, @Nullable Handler handler, @Nullable MediaSourceEventListener mediaSourceEventListener) {
+            uri = createMediaSource(uri);
+            if (!(handler == null || mediaSourceEventListener == null)) {
+                uri.addEventListener(handler, mediaSourceEventListener);
+            }
+            return uri;
+        }
+
+        public int[] getSupportedTypes() {
+            return new int[]{3};
+        }
+    }
+
+    @Deprecated
+    private static final class EventListenerWrapper extends DefaultMediaSourceEventListener {
+        private final EventListener eventListener;
+
+        public EventListenerWrapper(EventListener eventListener) {
+            this.eventListener = (EventListener) Assertions.checkNotNull(eventListener);
+        }
+
+        public void onLoadError(int i, @Nullable MediaPeriodId mediaPeriodId, LoadEventInfo loadEventInfo, MediaLoadData mediaLoadData, IOException iOException, boolean z) {
+            this.eventListener.onLoadError(iOException);
+        }
+    }
+
+    public void maybeThrowSourceInfoRefreshError() throws IOException {
+    }
+
+    public void releaseSourceInternal() {
+    }
+
+    @Deprecated
+    public ExtractorMediaSource(Uri uri, com.google.android.exoplayer2.upstream.DataSource.Factory factory, ExtractorsFactory extractorsFactory, Handler handler, EventListener eventListener) {
+        this(uri, factory, extractorsFactory, handler, eventListener, null);
+    }
+
+    @Deprecated
+    public ExtractorMediaSource(Uri uri, com.google.android.exoplayer2.upstream.DataSource.Factory factory, ExtractorsFactory extractorsFactory, Handler handler, EventListener eventListener, String str) {
+        this(uri, factory, extractorsFactory, handler, eventListener, str, 1048576);
+    }
+
+    @Deprecated
+    public ExtractorMediaSource(Uri uri, com.google.android.exoplayer2.upstream.DataSource.Factory factory, ExtractorsFactory extractorsFactory, Handler handler, EventListener eventListener, String str, int i) {
+        this(uri, factory, extractorsFactory, new DefaultLoadErrorHandlingPolicy(), str, i, null);
+        if (eventListener != null &amp;&amp; handler != null) {
+            addEventListener(handler, new EventListenerWrapper(eventListener));
+        }
+    }
+
+    private ExtractorMediaSource(Uri uri, com.google.android.exoplayer2.upstream.DataSource.Factory factory, ExtractorsFactory extractorsFactory, LoadErrorHandlingPolicy loadErrorHandlingPolicy, @Nullable String str, int i, @Nullable Object obj) {
+        this.uri = uri;
+        this.dataSourceFactory = factory;
+        this.extractorsFactory = extractorsFactory;
+        this.loadableLoadErrorHandlingPolicy = loadErrorHandlingPolicy;
+        this.customCacheKey = str;
+        this.continueLoadingCheckIntervalBytes = i;
+        this.timelineDurationUs = 1;
+        this.tag = obj;
+    }
+
+    public void prepareSourceInternal(ExoPlayer exoPlayer, boolean z, @Nullable TransferListener transferListener) {
+        this.transferListener = transferListener;
+        notifySourceInfoRefreshed(this.timelineDurationUs, null);
+    }
+
+    public MediaPeriod createPeriod(MediaPeriodId mediaPeriodId, Allocator allocator) {
+        DataSource createDataSource = this.dataSourceFactory.createDataSource();
+        if (this.transferListener != null) {
+            createDataSource.addTransferListener(this.transferListener);
+        }
+        return new ExtractorMediaPeriod(this.uri, createDataSource, this.extractorsFactory.createExtractors(), this.loadableLoadErrorHandlingPolicy, createEventDispatcher(mediaPeriodId), this, allocator, this.customCacheKey, this.continueLoadingCheckIntervalBytes);
+    }
+
+    public void releasePeriod(MediaPeriod mediaPeriod) {
+        ((ExtractorMediaPeriod) mediaPeriod).release();
+    }
+
+    public void onSourceInfoRefreshed(long j, boolean z) {
+        if (j == C.TIME_UNSET) {
+            j = this.timelineDurationUs;
+        }
+        if (this.timelineDurationUs != j || this.timelineIsSeekable != z) {
+            notifySourceInfoRefreshed(j, z);
+        }
+    }
+
+    private void notifySourceInfoRefreshed(long j, boolean z) {
+        this.timelineDurationUs = j;
+        this.timelineIsSeekable = z;
+        refreshSourceInfo(new SinglePeriodTimeline(this.timelineDurationUs, this.timelineIsSeekable, false, this.tag), null);
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:8 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

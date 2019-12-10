@@ -1,0 +1,190 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/exoplayer2/extractor/mp4/Sniffer.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/exoplayer2/extractor/mp4/Sniffer.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="Sniffer.java" data-line="" class="code line-numbers"><code>package com.google.android.exoplayer2.extractor.mp4;
+
+import android.support.v4.media.session.PlaybackStateCompat;
+import com.google.android.exoplayer2.extractor.ExtractorInput;
+import com.google.android.exoplayer2.util.ParsableByteArray;
+import com.google.android.exoplayer2.util.Util;
+import java.io.IOException;
+
+final class Sniffer {
+    private static final int[] COMPATIBLE_BRANDS = new int[]{Util.getIntegerCodeForString("isom"), Util.getIntegerCodeForString("iso2"), Util.getIntegerCodeForString("iso3"), Util.getIntegerCodeForString("iso4"), Util.getIntegerCodeForString("iso5"), Util.getIntegerCodeForString("iso6"), Util.getIntegerCodeForString("avc1"), Util.getIntegerCodeForString("hvc1"), Util.getIntegerCodeForString("hev1"), Util.getIntegerCodeForString("mp41"), Util.getIntegerCodeForString("mp42"), Util.getIntegerCodeForString("3g2a"), Util.getIntegerCodeForString("3g2b"), Util.getIntegerCodeForString("3gr6"), Util.getIntegerCodeForString("3gs6"), Util.getIntegerCodeForString("3ge6"), Util.getIntegerCodeForString("3gg6"), Util.getIntegerCodeForString("M4V "), Util.getIntegerCodeForString("M4A "), Util.getIntegerCodeForString("f4v "), Util.getIntegerCodeForString("kddi"), Util.getIntegerCodeForString("M4VP"), Util.getIntegerCodeForString("qt  "), Util.getIntegerCodeForString("MSNV")};
+    private static final int SEARCH_LENGTH = 4096;
+
+    public static boolean sniffFragmented(ExtractorInput extractorInput) throws IOException, InterruptedException {
+        return sniffInternal(extractorInput, true);
+    }
+
+    public static boolean sniffUnfragmented(ExtractorInput extractorInput) throws IOException, InterruptedException {
+        return sniffInternal(extractorInput, false);
+    }
+
+    private static boolean sniffInternal(ExtractorInput extractorInput, boolean z) throws IOException, InterruptedException {
+        boolean z2;
+        ExtractorInput extractorInput2 = extractorInput;
+        long length = extractorInput.getLength();
+        long j = -1;
+        if (length == -1 || length &gt; PlaybackStateCompat.ACTION_SKIP_TO_QUEUE_ITEM) {
+            length = PlaybackStateCompat.ACTION_SKIP_TO_QUEUE_ITEM;
+        }
+        int i = (int) length;
+        ParsableByteArray parsableByteArray = new ParsableByteArray(64);
+        boolean z3 = false;
+        int i2 = 0;
+        Object obj = null;
+        while (i2 &lt; i) {
+            long length2;
+            parsableByteArray.reset(8);
+            extractorInput2.peekFully(parsableByteArray.data, 0, 8);
+            long readUnsignedInt = parsableByteArray.readUnsignedInt();
+            int readInt = parsableByteArray.readInt();
+            int i3 = 16;
+            if (readUnsignedInt == 1) {
+                extractorInput2.peekFully(parsableByteArray.data, 8, 8);
+                parsableByteArray.setLimit(16);
+                readUnsignedInt = parsableByteArray.readUnsignedLongToLong();
+            } else {
+                if (readUnsignedInt == 0) {
+                    length2 = extractorInput.getLength();
+                    if (length2 != j) {
+                        readUnsignedInt = ((long) 8) + (length2 - extractorInput.getPosition());
+                    }
+                }
+                i3 = 8;
+            }
+            length2 = (long) i3;
+            if (readUnsignedInt &gt;= length2) {
+                i2 += i3;
+                if (readInt != Atom.TYPE_moov) {
+                    if (readInt != Atom.TYPE_moof) {
+                        if (readInt != Atom.TYPE_mvex) {
+                            if ((((long) i2) + readUnsignedInt) - length2 &gt;= ((long) i)) {
+                                break;
+                            }
+                            int i4 = (int) (readUnsignedInt - length2);
+                            i2 += i4;
+                            if (readInt == Atom.TYPE_ftyp) {
+                                if (i4 &lt; 8) {
+                                    return false;
+                                }
+                                parsableByteArray.reset(i4);
+                                extractorInput2.peekFully(parsableByteArray.data, 0, i4);
+                                i4 /= 4;
+                                for (int i5 = 0; i5 &lt; i4; i5++) {
+                                    if (i5 == 1) {
+                                        parsableByteArray.skipBytes(4);
+                                    } else if (isCompatibleBrand(parsableByteArray.readInt())) {
+                                        obj = 1;
+                                        break;
+                                    }
+                                }
+                                if (obj == null) {
+                                    return false;
+                                }
+                            } else if (i4 != 0) {
+                                extractorInput2.advancePeekPosition(i4);
+                            }
+                            j = -1;
+                        }
+                    }
+                    z2 = true;
+                    break;
+                }
+            } else {
+                return false;
+            }
+        }
+        z2 = false;
+        if (obj != null &amp;&amp; z == r0) {
+            z3 = true;
+        }
+        return z3;
+    }
+
+    private static boolean isCompatibleBrand(int i) {
+        if ((i &gt;&gt;&gt; 8) == Util.getIntegerCodeForString("3gp")) {
+            return true;
+        }
+        for (int i2 : COMPATIBLE_BRANDS) {
+            if (i2 == i) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private Sniffer() {
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:8 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

@@ -1,0 +1,499 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9"><div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/gms/common/api/internal/zaak.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/gms/common/api/internal/zaak.java</a></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-60">report</i><h5>ServerSocket|net.ServerSocket|connect[(][)]</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>the app opens TCP Server Sockets: Insecure use of network sockets</span></div></li></ul><ul class="collapsible"><li><div class="collapsible-header"><img data-position="top" data-tooltip="OWASP item" src="html/owasp_logo.png" height="20em" style="margin-right: 1rem;margin-left: 5px;" class="tooltipped"></img> OWASP Item</div><div class="collapsible-body"><span>For more information, have a look at: https://www.owasp.org/index.php/OWASP_Mobile_Security_Testing_Guide</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#zaak_java77Serv" class="active">line 77</a></li><li class="tab"><a style="color: #d82c2b;" href="#zaak_java220Serv">line 220</a></li><li class="tab"><a style="color: #d82c2b;" href="#zaak_java234Serv">line 234</a></li><li class="tab"><a style="color: #d82c2b;" href="#zaak_java326Serv">line 326</a></li></ul></div><div class="card-content"><div id="zaak_java77Serv">Code @ line 77<pre data-start="74" data-line="77" data-src="zaak.java" class="code line-numbers"><code>        }
+    }
+
+    public final void connect() {
+    }
+
+    public final void begin() {
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWFrLmphdmF8fHxsaW5lOiA3NyA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw3N3x8fDc0">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWFrLmphdmF8fHxsaW5lOiA3NyA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw3N3x8fDc0')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWFrLmphdmF8fHxsaW5lOiA3NyA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw3N3x8fDc0').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWFrLmphdmF8fHxsaW5lOiA3NyA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw3N3x8fDc0" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWFrLmphdmF8fHxsaW5lOiA3NyA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw3N3x8fDc0' , 'ICAgICAgICB9CiAgICB9CgogICAgcHVibGljIGZpbmFsIHZvaWQgY29ubmVjdCgpIHsKICAgIH0KCiAgICBwdWJsaWMgZmluYWwgdm9pZCBiZWdpbigpIHsK');  
+                                            });
+                                            </script>
+                                            </div><div id="zaak_java220Serv">Code @ line 220<pre data-start="217" data-line="220" data-src="zaak.java" class="code line-numbers"><code>            zab(false);
+        }
+        for (AnyClientKey anyClientKey : this.zafs.zaho.keySet()) {
+            ((Client) this.zafs.zagy.get(anyClientKey)).disconnect();
+        }
+        this.zafs.zahs.zab(this.zafy.isEmpty() ? null : this.zafy);
+    }
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWFrLmphdmF8fHxsaW5lOiAyMjAgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MjIwfHx8MjE3">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWFrLmphdmF8fHxsaW5lOiAyMjAgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MjIwfHx8MjE3')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWFrLmphdmF8fHxsaW5lOiAyMjAgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MjIwfHx8MjE3').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWFrLmphdmF8fHxsaW5lOiAyMjAgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MjIwfHx8MjE3" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWFrLmphdmF8fHxsaW5lOiAyMjAgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MjIwfHx8MjE3' , 'ICAgICAgICAgICAgemFiKGZhbHNlKTsKICAgICAgICB9CiAgICAgICAgZm9yIChBbnlDbGllbnRLZXkgYW55Q2xpZW50S2V5IDogdGhpcy56YWZzLnphaG8ua2V5U2V0KCkpIHsKICAgICAgICAgICAgKChDbGllbnQpIHRoaXMuemFmcy56YWd5LmdldChhbnlDbGllbnRLZXkpKS5kaXNjb25uZWN0KCk7CiAgICAgICAgfQogICAgICAgIHRoaXMuemFmcy56YWhzLnphYih0aGlzLnphZnkuaXNFbXB0eSgpID8gbnVsbCA6IHRoaXMuemFmeSk7CiAgICB9Cg==');  
+                                            });
+                                            </script>
+                                            </div><div id="zaak_java234Serv">Code @ line 234<pre data-start="231" data-line="234" data-src="zaak.java" class="code line-numbers"><code>        throw new IllegalStateException("GoogleApiClient is not connected yet.");
+    }
+
+    public final boolean disconnect() {
+        zaas();
+        zab(true);
+        this.zafs.zaf(null);
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWFrLmphdmF8fHxsaW5lOiAyMzQgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MjM0fHx8MjMx">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWFrLmphdmF8fHxsaW5lOiAyMzQgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MjM0fHx8MjMx')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWFrLmphdmF8fHxsaW5lOiAyMzQgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MjM0fHx8MjMx').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWFrLmphdmF8fHxsaW5lOiAyMzQgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MjM0fHx8MjMx" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWFrLmphdmF8fHxsaW5lOiAyMzQgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MjM0fHx8MjMx' , 'ICAgICAgICB0aHJvdyBuZXcgSWxsZWdhbFN0YXRlRXhjZXB0aW9uKCJHb29nbGVBcGlDbGllbnQgaXMgbm90IGNvbm5lY3RlZCB5ZXQuIik7CiAgICB9CgogICAgcHVibGljIGZpbmFsIGJvb2xlYW4gZGlzY29ubmVjdCgpIHsKICAgICAgICB6YWFzKCk7CiAgICAgICAgemFiKHRydWUpOwogICAgICAgIHRoaXMuemFmcy56YWYobnVsbCk7Cg==');  
+                                            });
+                                            </script>
+                                            </div><div id="zaak_java326Serv">Code @ line 326<pre data-start="323" data-line="326" data-src="zaak.java" class="code line-numbers"><code>            if (this.zaga.isConnected() &amp;&amp; z) {
+                this.zaga.zacv();
+            }
+            this.zaga.disconnect();
+            this.zage = false;
+        }
+    }
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWFrLmphdmF8fHxsaW5lOiAzMjYgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MzI2fHx8MzIz">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWFrLmphdmF8fHxsaW5lOiAzMjYgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MzI2fHx8MzIz')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWFrLmphdmF8fHxsaW5lOiAzMjYgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MzI2fHx8MzIz').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWFrLmphdmF8fHxsaW5lOiAzMjYgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MzI2fHx8MzIz" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC96YWFrLmphdmF8fHxsaW5lOiAzMjYgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MzI2fHx8MzIz' , 'ICAgICAgICAgICAgaWYgKHRoaXMuemFnYS5pc0Nvbm5lY3RlZCgpICYmIHopIHsKICAgICAgICAgICAgICAgIHRoaXMuemFnYS56YWN2KCk7CiAgICAgICAgICAgIH0KICAgICAgICAgICAgdGhpcy56YWdhLmRpc2Nvbm5lY3QoKTsKICAgICAgICAgICAgdGhpcy56YWdlID0gZmFsc2U7CiAgICAgICAgfQogICAgfQo=');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="zaak.java" data-line="77,220,234,326," class="code line-numbers"><code>package com.google.android.gms.common.api.internal;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.util.Log;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailabilityLight;
+import com.google.android.gms.common.api.Api;
+import com.google.android.gms.common.api.Api.AbstractClientBuilder;
+import com.google.android.gms.common.api.Api.AnyClient;
+import com.google.android.gms.common.api.Api.AnyClientKey;
+import com.google.android.gms.common.api.Api.Client;
+import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
+import com.google.android.gms.common.api.Result;
+import com.google.android.gms.common.api.Scope;
+import com.google.android.gms.common.api.internal.BaseImplementation.ApiMethodImpl;
+import com.google.android.gms.common.internal.ClientSettings;
+import com.google.android.gms.common.internal.ClientSettings.OptionalApiSettings;
+import com.google.android.gms.common.internal.IAccountAccessor;
+import com.google.android.gms.signin.SignInOptions;
+import com.google.android.gms.signin.internal.zaj;
+import com.google.android.gms.signin.zad;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.Future;
+import java.util.concurrent.locks.Lock;
+import javax.annotation.concurrent.GuardedBy;
+
+public final class zaak implements zabd {
+    private final Context mContext;
+    private final AbstractClientBuilder&lt;? extends zad, SignInOptions&gt; zacd;
+    private final Lock zaen;
+    private final ClientSettings zaes;
+    private final Map&lt;Api&lt;?&gt;, Boolean&gt; zaev;
+    private final GoogleApiAvailabilityLight zaex;
+    private ConnectionResult zafg;
+    private final zabe zafs;
+    private int zafv;
+    private int zafw = 0;
+    private int zafx;
+    private final Bundle zafy = new Bundle();
+    private final Set&lt;AnyClientKey&gt; zafz = new HashSet();
+    private zad zaga;
+    private boolean zagb;
+    private boolean zagc;
+    private boolean zagd;
+    private IAccountAccessor zage;
+    private boolean zagf;
+    private boolean zagg;
+    private ArrayList&lt;Future&lt;?&gt;&gt; zagh = new ArrayList();
+
+    public zaak(zabe com_google_android_gms_common_api_internal_zabe, ClientSettings clientSettings, Map&lt;Api&lt;?&gt;, Boolean&gt; map, GoogleApiAvailabilityLight googleApiAvailabilityLight, AbstractClientBuilder&lt;? extends zad, SignInOptions&gt; abstractClientBuilder, Lock lock, Context context) {
+        this.zafs = com_google_android_gms_common_api_internal_zabe;
+        this.zaes = clientSettings;
+        this.zaev = map;
+        this.zaex = googleApiAvailabilityLight;
+        this.zacd = abstractClientBuilder;
+        this.zaen = lock;
+        this.mContext = context;
+    }
+
+    private static String zad(int i) {
+        switch (i) {
+            case 0:
+                return "STEP_SERVICE_BINDINGS_AND_SIGN_IN";
+            case 1:
+                return "STEP_GETTING_REMOTE_SERVICE";
+            default:
+                return "UNKNOWN";
+        }
+    }
+
+    public final void connect() {
+    }
+
+    public final void begin() {
+        this.zafs.zaho.clear();
+        this.zagc = false;
+        this.zafg = null;
+        this.zafw = 0;
+        this.zagb = true;
+        this.zagd = false;
+        this.zagf = false;
+        Map hashMap = new HashMap();
+        int i = 0;
+        for (Api api : this.zaev.keySet()) {
+            Client client = (Client) this.zafs.zagy.get(api.getClientKey());
+            i |= api.zah().getPriority() == 1 ? 1 : 0;
+            boolean booleanValue = ((Boolean) this.zaev.get(api)).booleanValue();
+            if (client.requiresSignIn()) {
+                this.zagc = true;
+                if (booleanValue) {
+                    this.zafz.add(api.getClientKey());
+                } else {
+                    this.zagb = false;
+                }
+            }
+            hashMap.put(client, new zaam(this, api, booleanValue));
+        }
+        if (i != 0) {
+            this.zagc = false;
+        }
+        if (this.zagc) {
+            this.zaes.setClientSessionId(Integer.valueOf(System.identityHashCode(this.zafs.zaed)));
+            OnConnectionFailedListener com_google_android_gms_common_api_internal_zaat = new zaat();
+            this.zaga = (zad) this.zacd.buildClient(this.mContext, this.zafs.zaed.getLooper(), this.zaes, this.zaes.getSignInOptions(), com_google_android_gms_common_api_internal_zaat, com_google_android_gms_common_api_internal_zaat);
+        }
+        this.zafx = this.zafs.zagy.size();
+        this.zagh.add(zabh.zabb().submit(new zaan(this, hashMap)));
+    }
+
+    @GuardedBy("mLock")
+    private final boolean zaao() {
+        this.zafx--;
+        if (this.zafx &gt; 0) {
+            return false;
+        }
+        if (this.zafx &lt; 0) {
+            Log.w("GoogleApiClientConnecting", this.zafs.zaed.zaay());
+            Log.wtf("GoogleApiClientConnecting", "GoogleApiClient received too many callbacks for the given step. Clients may be in an unexpected state; GoogleApiClient will now disconnect.", new Exception());
+            zae(new ConnectionResult(8, null));
+            return false;
+        } else if (this.zafg == null) {
+            return true;
+        } else {
+            this.zafs.zahr = this.zafv;
+            zae(this.zafg);
+            return false;
+        }
+    }
+
+    @GuardedBy("mLock")
+    private final void zaa(zaj com_google_android_gms_signin_internal_zaj) {
+        if (zac(0)) {
+            ConnectionResult connectionResult = com_google_android_gms_signin_internal_zaj.getConnectionResult();
+            if (connectionResult.isSuccess()) {
+                com_google_android_gms_signin_internal_zaj = com_google_android_gms_signin_internal_zaj.zacw();
+                connectionResult = com_google_android_gms_signin_internal_zaj.getConnectionResult();
+                if (connectionResult.isSuccess()) {
+                    this.zagd = true;
+                    this.zage = com_google_android_gms_signin_internal_zaj.getAccountAccessor();
+                    this.zagf = com_google_android_gms_signin_internal_zaj.getSaveDefaultAccount();
+                    this.zagg = com_google_android_gms_signin_internal_zaj.isFromCrossClientAuth();
+                    zaap();
+                    return;
+                }
+                String valueOf = String.valueOf(connectionResult);
+                StringBuilder stringBuilder = new StringBuilder(String.valueOf(valueOf).length() + 48);
+                stringBuilder.append("Sign-in succeeded with resolve account failure: ");
+                stringBuilder.append(valueOf);
+                Log.wtf("GoogleApiClientConnecting", stringBuilder.toString(), new Exception());
+                zae(connectionResult);
+            } else if (zad(connectionResult) != null) {
+                zaar();
+                zaap();
+            } else {
+                zae(connectionResult);
+            }
+        }
+    }
+
+    @GuardedBy("mLock")
+    private final void zaap() {
+        if (this.zafx == 0) {
+            if (!this.zagc || this.zagd) {
+                ArrayList arrayList = new ArrayList();
+                this.zafw = 1;
+                this.zafx = this.zafs.zagy.size();
+                for (AnyClientKey anyClientKey : this.zafs.zagy.keySet()) {
+                    if (!this.zafs.zaho.containsKey(anyClientKey)) {
+                        arrayList.add((Client) this.zafs.zagy.get(anyClientKey));
+                    } else if (zaao()) {
+                        zaaq();
+                    }
+                }
+                if (!arrayList.isEmpty()) {
+                    this.zagh.add(zabh.zabb().submit(new zaaq(this, arrayList)));
+                }
+            }
+        }
+    }
+
+    @GuardedBy("mLock")
+    public final void onConnected(Bundle bundle) {
+        if (zac(1)) {
+            if (bundle != null) {
+                this.zafy.putAll(bundle);
+            }
+            if (zaao() != null) {
+                zaaq();
+            }
+        }
+    }
+
+    @GuardedBy("mLock")
+    public final void zaa(ConnectionResult connectionResult, Api&lt;?&gt; api, boolean z) {
+        if (zac(1)) {
+            zab(connectionResult, api, z);
+            if (zaao() != null) {
+                zaaq();
+            }
+        }
+    }
+
+    @GuardedBy("mLock")
+    private final void zaaq() {
+        this.zafs.zaba();
+        zabh.zabb().execute(new zaal(this));
+        if (this.zaga != null) {
+            if (this.zagf) {
+                this.zaga.zaa(this.zage, this.zagg);
+            }
+            zab(false);
+        }
+        for (AnyClientKey anyClientKey : this.zafs.zaho.keySet()) {
+            ((Client) this.zafs.zagy.get(anyClientKey)).disconnect();
+        }
+        this.zafs.zahs.zab(this.zafy.isEmpty() ? null : this.zafy);
+    }
+
+    public final &lt;A extends AnyClient, R extends Result, T extends ApiMethodImpl&lt;R, A&gt;&gt; T enqueue(T t) {
+        this.zafs.zaed.zafb.add(t);
+        return t;
+    }
+
+    public final &lt;A extends AnyClient, T extends ApiMethodImpl&lt;? extends Result, A&gt;&gt; T execute(T t) {
+        throw new IllegalStateException("GoogleApiClient is not connected yet.");
+    }
+
+    public final boolean disconnect() {
+        zaas();
+        zab(true);
+        this.zafs.zaf(null);
+        return true;
+    }
+
+    @GuardedBy("mLock")
+    public final void onConnectionSuspended(int i) {
+        zae(new ConnectionResult(8, null));
+    }
+
+    /* JADX WARNING: inconsistent code. */
+    /* Code decompiled incorrectly, please refer to instructions dump. */
+    @javax.annotation.concurrent.GuardedBy("mLock")
+    private final void zab(com.google.android.gms.common.ConnectionResult r5, com.google.android.gms.common.api.Api&lt;?&gt; r6, boolean r7) {
+        /*
+        r4 = this;
+        r0 = r6.zah();
+        r0 = r0.getPriority();
+        r1 = 0;
+        r2 = 1;
+        if (r7 == 0) goto L_0x0024;
+    L_0x000c:
+        r7 = r5.hasResolution();
+        if (r7 == 0) goto L_0x0014;
+    L_0x0012:
+        r7 = 1;
+        goto L_0x0022;
+    L_0x0014:
+        r7 = r4.zaex;
+        r3 = r5.getErrorCode();
+        r7 = r7.getErrorResolutionIntent(r3);
+        if (r7 == 0) goto L_0x0021;
+    L_0x0020:
+        goto L_0x0012;
+    L_0x0021:
+        r7 = 0;
+    L_0x0022:
+        if (r7 == 0) goto L_0x002d;
+    L_0x0024:
+        r7 = r4.zafg;
+        if (r7 == 0) goto L_0x002c;
+    L_0x0028:
+        r7 = r4.zafv;
+        if (r0 &gt;= r7) goto L_0x002d;
+    L_0x002c:
+        r1 = 1;
+    L_0x002d:
+        if (r1 == 0) goto L_0x0033;
+    L_0x002f:
+        r4.zafg = r5;
+        r4.zafv = r0;
+    L_0x0033:
+        r7 = r4.zafs;
+        r7 = r7.zaho;
+        r6 = r6.getClientKey();
+        r7.put(r6, r5);
+        return;
+        */
+        throw new UnsupportedOperationException("Method not decompiled: com.google.android.gms.common.api.internal.zaak.zab(com.google.android.gms.common.ConnectionResult, com.google.android.gms.common.api.Api, boolean):void");
+    }
+
+    @GuardedBy("mLock")
+    private final void zaar() {
+        this.zagc = false;
+        this.zafs.zaed.zagz = Collections.emptySet();
+        for (AnyClientKey anyClientKey : this.zafz) {
+            if (!this.zafs.zaho.containsKey(anyClientKey)) {
+                this.zafs.zaho.put(anyClientKey, new ConnectionResult(17, null));
+            }
+        }
+    }
+
+    @GuardedBy("mLock")
+    private final boolean zad(ConnectionResult connectionResult) {
+        return (this.zagb &amp;&amp; connectionResult.hasResolution() == null) ? true : null;
+    }
+
+    @GuardedBy("mLock")
+    private final void zae(ConnectionResult connectionResult) {
+        zaas();
+        zab(connectionResult.hasResolution() ^ 1);
+        this.zafs.zaf(connectionResult);
+        this.zafs.zahs.zac(connectionResult);
+    }
+
+    private final void zab(boolean z) {
+        if (this.zaga != null) {
+            if (this.zaga.isConnected() &amp;&amp; z) {
+                this.zaga.zacv();
+            }
+            this.zaga.disconnect();
+            this.zage = false;
+        }
+    }
+
+    private final void zaas() {
+        ArrayList arrayList = this.zagh;
+        int size = arrayList.size();
+        int i = 0;
+        while (i &lt; size) {
+            Object obj = arrayList.get(i);
+            i++;
+            ((Future) obj).cancel(true);
+        }
+        this.zagh.clear();
+    }
+
+    private final Set&lt;Scope&gt; zaat() {
+        if (this.zaes == null) {
+            return Collections.emptySet();
+        }
+        Set&lt;Scope&gt; hashSet = new HashSet(this.zaes.getRequiredScopes());
+        Map optionalApiSettings = this.zaes.getOptionalApiSettings();
+        for (Api api : optionalApiSettings.keySet()) {
+            if (!this.zafs.zaho.containsKey(api.getClientKey())) {
+                hashSet.addAll(((OptionalApiSettings) optionalApiSettings.get(api)).mScopes);
+            }
+        }
+        return hashSet;
+    }
+
+    @GuardedBy("mLock")
+    private final boolean zac(int i) {
+        if (this.zafw == i) {
+            return true;
+        }
+        Log.w("GoogleApiClientConnecting", this.zafs.zaed.zaay());
+        String valueOf = String.valueOf(this);
+        StringBuilder stringBuilder = new StringBuilder(String.valueOf(valueOf).length() + 23);
+        stringBuilder.append("Unexpected callback in ");
+        stringBuilder.append(valueOf);
+        Log.w("GoogleApiClientConnecting", stringBuilder.toString());
+        int i2 = this.zafx;
+        stringBuilder = new StringBuilder(33);
+        stringBuilder.append("mRemainingConnections=");
+        stringBuilder.append(i2);
+        Log.w("GoogleApiClientConnecting", stringBuilder.toString());
+        valueOf = zad(this.zafw);
+        i = zad(i);
+        stringBuilder = new StringBuilder((String.valueOf(valueOf).length() + 70) + String.valueOf(i).length());
+        stringBuilder.append("GoogleApiClient connecting is in step ");
+        stringBuilder.append(valueOf);
+        stringBuilder.append(" but received callback for step ");
+        stringBuilder.append(i);
+        Log.wtf("GoogleApiClientConnecting", stringBuilder.toString(), new Exception());
+        zae(new ConnectionResult(8, null));
+        return false;
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:13 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

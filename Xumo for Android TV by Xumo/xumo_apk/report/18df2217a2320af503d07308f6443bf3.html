@@ -1,0 +1,287 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/libraries/cast/companionlibrary/cast/tracks/ui/TracksChooserDialog.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/libraries/cast/companionlibrary/cast/tracks/ui/TracksChooserDialog.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="TracksChooserDialog.java" data-line="" class="code line-numbers"><code>package com.google.android.libraries.cast.companionlibrary.cast.tracks.ui;
+
+import android.app.AlertDialog.Builder;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnCancelListener;
+import android.content.DialogInterface.OnClickListener;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ListView;
+import android.widget.TabHost;
+import android.widget.TabHost.TabSpec;
+import android.widget.TextView;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
+import com.google.android.gms.cast.MediaInfo;
+import com.google.android.gms.cast.MediaTrack;
+import com.google.android.libraries.cast.companionlibrary.R;
+import com.google.android.libraries.cast.companionlibrary.cast.VideoCastManager;
+import com.google.android.libraries.cast.companionlibrary.utils.Utils;
+import java.util.ArrayList;
+import java.util.List;
+
+public class TracksChooserDialog extends DialogFragment {
+    private static final long TEXT_TRACK_NONE_ID = -1;
+    private long[] mActiveTracks = null;
+    private List&lt;MediaTrack&gt; mAudioTracks = new ArrayList();
+    private TracksListAdapter mAudioVideoAdapter;
+    private VideoCastManager mCastManager;
+    private MediaInfo mMediaInfo;
+    private int mSelectedAudioPosition = -1;
+    private int mSelectedTextPosition = 0;
+    private TracksListAdapter mTextAdapter;
+    private List&lt;MediaTrack&gt; mTextTracks = new ArrayList();
+    private List&lt;MediaTrack&gt; mVideoTracks = new ArrayList();
+
+    @NonNull
+    public Dialog onCreateDialog(Bundle bundle) {
+        bundle = new Builder(getActivity());
+        View inflate = getActivity().getLayoutInflater().inflate(R.layout.custom_tracks_dialog_layout, null);
+        setUpView(inflate);
+        bundle.setView(inflate).setPositiveButton(getString(R.string.ccl_ok), new OnClickListener() {
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface = new ArrayList();
+                i = TracksChooserDialog.this.mTextAdapter.getSelectedTrack();
+                if (i.getId() != -1) {
+                    dialogInterface.add(i);
+                }
+                i = TracksChooserDialog.this.mAudioVideoAdapter.getSelectedTrack();
+                if (i != 0) {
+                    dialogInterface.add(i);
+                }
+                if (TracksChooserDialog.this.mVideoTracks.isEmpty() == 0) {
+                    Object obj = null;
+                    for (MediaTrack mediaTrack : TracksChooserDialog.this.mVideoTracks) {
+                        for (long valueOf : TracksChooserDialog.this.mCastManager.getActiveTrackIds()) {
+                            if (mediaTrack.getId() == Long.valueOf(valueOf).longValue()) {
+                                dialogInterface.add(mediaTrack);
+                                obj = 1;
+                                continue;
+                                break;
+                            }
+                        }
+                        if (obj != null) {
+                            break;
+                        }
+                    }
+                }
+                TracksChooserDialog.this.mCastManager.notifyTracksSelectedListeners(dialogInterface);
+                TracksChooserDialog.this.getDialog().cancel();
+            }
+        }).setNegativeButton(R.string.ccl_cancel, new OnClickListener() {
+            public void onClick(DialogInterface dialogInterface, int i) {
+                TracksChooserDialog.this.getDialog().cancel();
+            }
+        }).setOnCancelListener(new OnCancelListener() {
+            public void onCancel(DialogInterface dialogInterface) {
+                TracksChooserDialog.this.getDialog().cancel();
+            }
+        });
+        return bundle.create();
+    }
+
+    public void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+        setRetainInstance(true);
+        this.mMediaInfo = Utils.bundleToMediaInfo(getArguments().getBundle(VideoCastManager.EXTRA_MEDIA));
+        this.mCastManager = VideoCastManager.getInstance();
+        this.mActiveTracks = this.mCastManager.getActiveTrackIds();
+        bundle = this.mMediaInfo.getMediaTracks();
+        if (bundle == null || bundle.isEmpty() != null) {
+            Utils.showToast(getActivity(), R.string.ccl_caption_no_tracks_available);
+            dismiss();
+        }
+    }
+
+    public void onDestroyView() {
+        if (getDialog() != null &amp;&amp; getRetainInstance()) {
+            getDialog().setDismissMessage(null);
+        }
+        super.onDestroyView();
+    }
+
+    private void setUpView(View view) {
+        TabSpec newTabSpec;
+        ListView listView = (ListView) view.findViewById(R.id.listview1);
+        ListView listView2 = (ListView) view.findViewById(R.id.listview2);
+        TextView textView = (TextView) view.findViewById(R.id.text_empty_message);
+        TextView textView2 = (TextView) view.findViewById(R.id.audio_empty_message);
+        partitionTracks();
+        this.mTextAdapter = new TracksListAdapter(getActivity(), R.layout.tracks_row_layout, this.mTextTracks, this.mSelectedTextPosition);
+        this.mAudioVideoAdapter = new TracksListAdapter(getActivity(), R.layout.tracks_row_layout, this.mAudioTracks, this.mSelectedAudioPosition);
+        listView.setAdapter(this.mTextAdapter);
+        listView2.setAdapter(this.mAudioVideoAdapter);
+        TabHost tabHost = (TabHost) view.findViewById(R.id.tabhost);
+        tabHost.setup();
+        TabSpec newTabSpec2 = tabHost.newTabSpec("tab1");
+        if (this.mTextTracks != null) {
+            if (!this.mTextTracks.isEmpty()) {
+                textView.setVisibility(4);
+                newTabSpec2.setContent(R.id.listview1);
+                newTabSpec2.setIndicator(getString(R.string.ccl_caption_subtitles));
+                tabHost.addTab(newTabSpec2);
+                newTabSpec = tabHost.newTabSpec("tab2");
+                if (this.mAudioTracks != null) {
+                    if (this.mAudioTracks.isEmpty()) {
+                        textView2.setVisibility(4);
+                        newTabSpec.setContent(R.id.listview2);
+                        newTabSpec.setIndicator(getString(R.string.ccl_caption_audio));
+                        tabHost.addTab(newTabSpec);
+                    }
+                }
+                listView2.setVisibility(4);
+                newTabSpec.setContent(R.id.audio_empty_message);
+                newTabSpec.setIndicator(getString(R.string.ccl_caption_audio));
+                tabHost.addTab(newTabSpec);
+            }
+        }
+        listView.setVisibility(4);
+        newTabSpec2.setContent(R.id.text_empty_message);
+        newTabSpec2.setIndicator(getString(R.string.ccl_caption_subtitles));
+        tabHost.addTab(newTabSpec2);
+        newTabSpec = tabHost.newTabSpec("tab2");
+        if (this.mAudioTracks != null) {
+            if (this.mAudioTracks.isEmpty()) {
+                textView2.setVisibility(4);
+                newTabSpec.setContent(R.id.listview2);
+                newTabSpec.setIndicator(getString(R.string.ccl_caption_audio));
+                tabHost.addTab(newTabSpec);
+            }
+        }
+        listView2.setVisibility(4);
+        newTabSpec.setContent(R.id.audio_empty_message);
+        newTabSpec.setIndicator(getString(R.string.ccl_caption_audio));
+        tabHost.addTab(newTabSpec);
+    }
+
+    private MediaTrack buildNoneTrack() {
+        return new MediaTrack.Builder(-1, 1).setName(getString(R.string.ccl_none)).setSubtype(2).setContentId("").build();
+    }
+
+    private void partitionTracks() {
+        List&lt;MediaTrack&gt; mediaTracks = this.mMediaInfo.getMediaTracks();
+        this.mAudioTracks.clear();
+        this.mTextTracks.clear();
+        this.mVideoTracks.clear();
+        this.mTextTracks.add(buildNoneTrack());
+        this.mSelectedTextPosition = 0;
+        this.mSelectedAudioPosition = -1;
+        if (mediaTracks != null) {
+            int i = 1;
+            int i2 = 0;
+            for (MediaTrack mediaTrack : mediaTracks) {
+                switch (mediaTrack.getType()) {
+                    case 1:
+                        this.mTextTracks.add(mediaTrack);
+                        if (this.mActiveTracks != null) {
+                            for (long j : this.mActiveTracks) {
+                                if (j == mediaTrack.getId()) {
+                                    this.mSelectedTextPosition = i;
+                                }
+                            }
+                        }
+                        i++;
+                        break;
+                    case 2:
+                        this.mAudioTracks.add(mediaTrack);
+                        if (this.mActiveTracks != null) {
+                            for (long j2 : this.mActiveTracks) {
+                                if (j2 == mediaTrack.getId()) {
+                                    this.mSelectedAudioPosition = i2;
+                                }
+                            }
+                        }
+                        i2++;
+                        break;
+                    case 3:
+                        this.mVideoTracks.add(mediaTrack);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+    }
+
+    public static TracksChooserDialog newInstance(MediaInfo mediaInfo) {
+        TracksChooserDialog tracksChooserDialog = new TracksChooserDialog();
+        Bundle bundle = new Bundle();
+        bundle.putBundle(VideoCastManager.EXTRA_MEDIA, Utils.mediaInfoToBundle(mediaInfo));
+        tracksChooserDialog.setArguments(bundle);
+        return tracksChooserDialog;
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:7 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

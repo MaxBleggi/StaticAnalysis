@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res-auto" app:layout_width="match_parent" app:layout_height="wrap_content" app:layout_marginTop="8dp" app:layout_marginBottom="8dp" app:layout_marginStart="?unknown_attr_ref: 10103bd">
+    <LinearLayout app:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end" app:orientation="horizontal" app:id="@id/icon_frame" app:layout_width="wrap_content" app:layout_height="wrap_content">
+        <androidx.preference.internal.PreferenceImageView app:id="0x1020006" app:layout_width="wrap_content" app:layout_height="wrap_content" app:maxHeight="18dp" app:maxWidth="18dp" />
+    </LinearLayout>
+    <LinearLayout app:orientation="vertical" app:layout_width="match_parent" app:layout_height="wrap_content" app:paddingStart="@dimen/preference_category_padding_start">
+        <TextView app:textColor="@color/preference_fallback_accent_color" app:id="0x1020016" app:layout_width="match_parent" app:layout_height="wrap_content" app:layout_marginTop="16dp" app:textAlignment="viewStart" app:paddingEnd="?unknown_attr_ref: 10103be" />
+        <TextView app:textColor="?unknown_attr_ref: 1010038" app:ellipsize="end" app:id="0x1020010" app:layout_width="wrap_content" app:layout_height="wrap_content" app:singleLine="true" />
+    </LinearLayout>
+</FrameLayout>

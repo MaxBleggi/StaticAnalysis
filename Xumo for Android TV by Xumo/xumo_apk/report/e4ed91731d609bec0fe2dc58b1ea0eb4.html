@@ -1,0 +1,191 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/ads/interactivemedia/v3/internal/jq.java" target="_blank">/xumo_apk/jadx_source_code/com/google/ads/interactivemedia/v3/internal/jq.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="jq.java" data-line="" class="code line-numbers"><code>package com.google.ads.interactivemedia.v3.internal;
+
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Paint.Style;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.GradientDrawable.Orientation;
+import android.graphics.drawable.LayerDrawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.Shape;
+import android.text.TextUtils.TruncateAt;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
+import android.widget.TextView;
+import java.util.ArrayList;
+import java.util.List;
+
+/* compiled from: IMASDK */
+public class jq extends LinearLayout {
+    private jt a;
+    private TextView b;
+    private TextView c;
+    private List&lt;a&gt; d;
+
+    /* compiled from: IMASDK */
+    public interface a {
+        void c();
+    }
+
+    public jq(Context context, jt jtVar) {
+        this(context, jtVar, new TextView(context), new TextView(context));
+    }
+
+    jq(Context context, jt jtVar, TextView textView, TextView textView2) {
+        super(context);
+        this.d = new ArrayList();
+        this.a = jtVar;
+        this.b = textView;
+        this.c = textView2;
+        textView.setTextColor(jtVar.i);
+        textView.setIncludeFontPadding(false);
+        textView.setGravity(16);
+        textView.setEllipsize(TruncateAt.END);
+        textView.setSingleLine();
+        int a = js.a(jtVar.l, getResources().getDisplayMetrics().density);
+        textView.setPadding(a, a, a, a);
+        addView(textView, new LayoutParams(-2, -2, 1.0f));
+        if (jtVar.m != null) {
+            textView2.setTextColor(jtVar.p);
+            textView2.setTextSize(jtVar.q);
+            textView2.setText(jtVar.o);
+            textView2.setIncludeFontPadding(false);
+            textView2.setPadding(10, 10, 10, 10);
+            textView2.setGravity(16);
+            textView2.setEllipsize(TruncateAt.END);
+            textView2.setSingleLine();
+            context = new ShapeDrawable(new Shape(this) {
+                public void draw(Canvas canvas, Paint paint) {
+                    canvas.drawLine(0.0f, 0.0f, 0.0f, getHeight(), paint);
+                }
+            });
+            context.getPaint().setColor(jtVar.f);
+            context.getPaint().setStrokeWidth((float) jtVar.g);
+            context.getPaint().setStyle(Style.STROKE);
+            textView2.setBackgroundDrawable(context);
+            textView2.setOnClickListener(new OnClickListener(this) {
+                final /* synthetic */ jq a;
+
+                {
+                    this.a = r1;
+                }
+
+                public void onClick(View view) {
+                    this.a.a();
+                }
+            });
+            context = new LayoutParams(-2, -2);
+            textView2.setLayoutParams(context);
+            addView(textView2, context);
+        }
+    }
+
+    public void a(String str) {
+        this.b.setText(str);
+    }
+
+    public void b(String str) {
+        this.c.setText(str);
+    }
+
+    public void a(a aVar) {
+        this.d.add(aVar);
+    }
+
+    protected void a() {
+        for (a c : this.d) {
+            c.c();
+        }
+    }
+
+    protected void onSizeChanged(int i, int i2, int i3, int i4) {
+        new GradientDrawable(Orientation.TOP_BOTTOM, this.a.c).setBounds(0, 0, i, i2);
+        ShapeDrawable shapeDrawable = new ShapeDrawable(new Shape(this) {
+            public void draw(Canvas canvas, Paint paint) {
+                canvas.drawLine(0.0f, getHeight(), getWidth(), getHeight(), paint);
+            }
+        });
+        shapeDrawable.getPaint().setColor(this.a.d);
+        shapeDrawable.getPaint().setStrokeWidth((float) this.a.e);
+        shapeDrawable.getPaint().setStyle(Style.STROKE);
+        shapeDrawable.setBounds(0, 0, i, i2);
+        setBackgroundDrawable(new LayerDrawable(new Drawable[]{i3, shapeDrawable}));
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:6 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

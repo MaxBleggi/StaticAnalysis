@@ -1,0 +1,431 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/ads/interactivemedia/v3/internal/bj.java" target="_blank">/xumo_apk/jadx_source_code/com/google/ads/interactivemedia/v3/internal/bj.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="bj.java" data-line="" class="code line-numbers"><code>package com.google.ads.interactivemedia.v3.internal;
+
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
+import android.media.MediaFormat;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.os.Parcelable.Creator;
+import com.google.android.exoplayer2.util.MimeTypes;
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+/* compiled from: IMASDK */
+public final class bj implements Parcelable {
+    public static final Creator&lt;bj&gt; x = new Creator&lt;bj&gt;() {
+        public bj a(Parcel parcel) {
+            return new bj(parcel);
+        }
+
+        public bj[] a(int i) {
+            return new bj[i];
+        }
+
+        public /* synthetic */ Object[] newArray(int i) {
+            return a(i);
+        }
+
+        public /* synthetic */ Object createFromParcel(Parcel parcel) {
+            return a(parcel);
+        }
+    };
+    public final String a;
+    public final String b;
+    public final int c;
+    public final int d;
+    public final long e;
+    public final List&lt;byte[]&gt; f;
+    public final boolean g;
+    public final int h;
+    public final int i;
+    public final int j;
+    public final int k;
+    public final int l;
+    public final float m;
+    public final int n;
+    public final byte[] o;
+    public final aw p;
+    public final int q;
+    public final int r;
+    public final int s;
+    public final int t;
+    public final int u;
+    public final String v;
+    public final long w;
+    private int y;
+    private MediaFormat z;
+
+    public static bj a(String str, String str2, int i, int i2, long j, int i3, int i4, List&lt;byte[]&gt; list, int i5, float f) {
+        return new bj(str, str2, i, i2, j, i3, i4, i5, f, -1, -1, null, Long.MAX_VALUE, list, false, -1, -1, -1, -1, -1, null, -1, null);
+    }
+
+    public int describeContents() {
+        return 0;
+    }
+
+    public static bj a(String str, String str2, int i, int i2, long j, int i3, int i4, List&lt;byte[]&gt; list, int i5, float f, byte[] bArr, int i6, aw awVar) {
+        return new bj(str, str2, i, i2, j, i3, i4, i5, f, -1, -1, null, Long.MAX_VALUE, list, false, -1, -1, -1, -1, -1, bArr, i6, awVar);
+    }
+
+    public static bj a(String str, String str2, int i, int i2, long j, int i3, int i4, List&lt;byte[]&gt; list, String str3) {
+        return a(str, str2, i, i2, j, i3, i4, (List) list, str3, -1);
+    }
+
+    public static bj a(String str, String str2, int i, int i2, long j, int i3, int i4, List&lt;byte[]&gt; list, String str3, int i5) {
+        return new bj(str, str2, i, i2, j, -1, -1, -1, -1.0f, i3, i4, str3, Long.MAX_VALUE, list, false, -1, -1, i5, -1, -1, null, -1, null);
+    }
+
+    public static bj a(String str, String str2, int i, long j, String str3) {
+        return a(str, str2, i, j, str3, Long.MAX_VALUE);
+    }
+
+    public static bj a(String str, String str2, int i, long j, String str3, long j2) {
+        return new bj(str, str2, i, -1, j, -1, -1, -1, -1.0f, -1, -1, str3, j2, null, false, -1, -1, -1, -1, -1, null, -1, null);
+    }
+
+    public static bj a(String str, String str2, int i, long j, List&lt;byte[]&gt; list, String str3) {
+        return new bj(str, str2, i, -1, j, -1, -1, -1, -1.0f, -1, -1, str3, Long.MAX_VALUE, list, false, -1, -1, -1, -1, -1, null, -1, null);
+    }
+
+    public static bj a(String str, String str2, int i, long j) {
+        return new bj(str, str2, i, -1, j, -1, -1, -1, -1.0f, -1, -1, null, Long.MAX_VALUE, null, false, -1, -1, -1, -1, -1, null, -1, null);
+    }
+
+    public static bj a() {
+        return a(null, MimeTypes.APPLICATION_ID3, -1, -1);
+    }
+
+    bj(Parcel parcel) {
+        this.a = parcel.readString();
+        this.b = parcel.readString();
+        this.c = parcel.readInt();
+        this.d = parcel.readInt();
+        this.e = parcel.readLong();
+        this.h = parcel.readInt();
+        this.i = parcel.readInt();
+        this.l = parcel.readInt();
+        this.m = parcel.readFloat();
+        this.q = parcel.readInt();
+        this.r = parcel.readInt();
+        this.v = parcel.readString();
+        this.w = parcel.readLong();
+        this.f = new ArrayList();
+        byte[] bArr = null;
+        parcel.readList(this.f, null);
+        Object obj = null;
+        this.g = parcel.readInt() == 1;
+        this.j = parcel.readInt();
+        this.k = parcel.readInt();
+        this.s = parcel.readInt();
+        this.t = parcel.readInt();
+        this.u = parcel.readInt();
+        if (parcel.readInt() != 0) {
+            obj = 1;
+        }
+        if (obj != null) {
+            bArr = parcel.createByteArray();
+        }
+        this.o = bArr;
+        this.n = parcel.readInt();
+        this.p = (aw) parcel.readParcelable(aw.class.getClassLoader());
+    }
+
+    bj(String str, String str2, int i, int i2, long j, int i3, int i4, int i5, float f, int i6, int i7, String str3, long j2, List&lt;byte[]&gt; list, boolean z, int i8, int i9, int i10, int i11, int i12, byte[] bArr, int i13, aw awVar) {
+        this.a = str;
+        this.b = fe.a(str2);
+        this.c = i;
+        this.d = i2;
+        this.e = j;
+        this.h = i3;
+        this.i = i4;
+        this.l = i5;
+        this.m = f;
+        this.q = i6;
+        this.r = i7;
+        this.v = str3;
+        this.w = j2;
+        r0.f = list == null ? Collections.emptyList() : list;
+        r0.g = z;
+        r0.j = i8;
+        r0.k = i9;
+        r0.s = i10;
+        r0.t = i11;
+        r0.u = i12;
+        r0.o = bArr;
+        r0.n = i13;
+        r0.p = awVar;
+    }
+
+    public bj a(int i) {
+        int i2 = i;
+        return new bj(this.a, this.b, this.c, i2, this.e, this.h, this.i, this.l, this.m, this.q, this.r, this.v, this.w, this.f, this.g, this.j, this.k, this.s, this.t, this.u, this.o, this.n, this.p);
+    }
+
+    public bj a(int i, int i2) {
+        int i3 = i;
+        int i4 = i2;
+        return new bj(this.a, this.b, this.c, this.d, this.e, this.h, this.i, this.l, this.m, this.q, this.r, this.v, this.w, this.f, this.g, this.j, this.k, this.s, i3, i4, this.o, this.n, this.p);
+    }
+
+    @SuppressLint({"InlinedApi"})
+    @TargetApi(16)
+    public final MediaFormat b() {
+        if (this.z == null) {
+            MediaFormat mediaFormat = new MediaFormat();
+            mediaFormat.setString("mime", this.b);
+            a(mediaFormat, "language", this.v);
+            a(mediaFormat, "max-input-size", this.d);
+            a(mediaFormat, "width", this.h);
+            a(mediaFormat, "height", this.i);
+            a(mediaFormat, "rotation-degrees", this.l);
+            a(mediaFormat, "max-width", this.j);
+            a(mediaFormat, "max-height", this.k);
+            a(mediaFormat, "channel-count", this.q);
+            a(mediaFormat, "sample-rate", this.r);
+            a(mediaFormat, "encoder-delay", this.t);
+            a(mediaFormat, "encoder-padding", this.u);
+            for (int i = 0; i &lt; this.f.size(); i++) {
+                StringBuilder stringBuilder = new StringBuilder(15);
+                stringBuilder.append("csd-");
+                stringBuilder.append(i);
+                mediaFormat.setByteBuffer(stringBuilder.toString(), ByteBuffer.wrap((byte[]) this.f.get(i)));
+            }
+            if (this.e != -1) {
+                mediaFormat.setLong("durationUs", this.e);
+            }
+            a(mediaFormat, this.p);
+            this.z = mediaFormat;
+        }
+        return this.z;
+    }
+
+    public String toString() {
+        String str = this.a;
+        String str2 = this.b;
+        int i = this.c;
+        int i2 = this.d;
+        int i3 = this.h;
+        int i4 = this.i;
+        int i5 = this.l;
+        float f = this.m;
+        int i6 = this.q;
+        int i7 = this.r;
+        String str3 = this.v;
+        long j = this.e;
+        boolean z = this.g;
+        int i8 = this.j;
+        int i9 = this.k;
+        int i10 = this.s;
+        int i11 = this.t;
+        int i12 = this.u;
+        StringBuilder stringBuilder = new StringBuilder(((String.valueOf(str).length() + 219) + String.valueOf(str2).length()) + String.valueOf(str3).length());
+        stringBuilder.append("MediaFormat(");
+        stringBuilder.append(str);
+        stringBuilder.append(", ");
+        stringBuilder.append(str2);
+        stringBuilder.append(", ");
+        stringBuilder.append(i);
+        stringBuilder.append(", ");
+        stringBuilder.append(i2);
+        stringBuilder.append(", ");
+        stringBuilder.append(i3);
+        stringBuilder.append(", ");
+        stringBuilder.append(i4);
+        stringBuilder.append(", ");
+        stringBuilder.append(i5);
+        stringBuilder.append(", ");
+        stringBuilder.append(f);
+        stringBuilder.append(", ");
+        stringBuilder.append(i6);
+        stringBuilder.append(", ");
+        stringBuilder.append(i7);
+        stringBuilder.append(", ");
+        stringBuilder.append(str3);
+        stringBuilder.append(", ");
+        stringBuilder.append(j);
+        stringBuilder.append(", ");
+        stringBuilder.append(z);
+        stringBuilder.append(", ");
+        stringBuilder.append(i8);
+        stringBuilder.append(", ");
+        stringBuilder.append(i9);
+        stringBuilder.append(", ");
+        stringBuilder.append(i10);
+        stringBuilder.append(", ");
+        stringBuilder.append(i11);
+        stringBuilder.append(", ");
+        stringBuilder.append(i12);
+        stringBuilder.append(")");
+        return stringBuilder.toString();
+    }
+
+    public int hashCode() {
+        if (this.y == 0) {
+            int hashCode = ((((((((((((((((((((((((((((((((((((527 + (this.a == null ? 0 : this.a.hashCode())) * 31) + (this.b == null ? 0 : this.b.hashCode())) * 31) + this.c) * 31) + this.d) * 31) + this.h) * 31) + this.i) * 31) + this.l) * 31) + Float.floatToRawIntBits(this.m)) * 31) + ((int) this.e)) * 31) + (this.g ? 1231 : 1237)) * 31) + this.j) * 31) + this.k) * 31) + this.q) * 31) + this.r) * 31) + this.s) * 31) + this.t) * 31) + this.u) * 31) + (this.v == null ? 0 : this.v.hashCode())) * 31) + ((int) this.w);
+            for (int i = 0; i &lt; this.f.size(); i++) {
+                hashCode = (hashCode * 31) + Arrays.hashCode((byte[]) this.f.get(i));
+            }
+            this.y = (((hashCode * 31) + Arrays.hashCode(this.o)) * 31) + this.n;
+        }
+        return this.y;
+    }
+
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null) {
+            if (getClass() == obj.getClass()) {
+                bj bjVar = (bj) obj;
+                if (this.g == bjVar.g &amp;&amp; this.c == bjVar.c &amp;&amp; this.d == bjVar.d &amp;&amp; this.e == bjVar.e &amp;&amp; this.h == bjVar.h &amp;&amp; this.i == bjVar.i &amp;&amp; this.l == bjVar.l &amp;&amp; this.m == bjVar.m &amp;&amp; this.j == bjVar.j &amp;&amp; this.k == bjVar.k &amp;&amp; this.q == bjVar.q &amp;&amp; this.r == bjVar.r &amp;&amp; this.s == bjVar.s &amp;&amp; this.t == bjVar.t &amp;&amp; this.u == bjVar.u &amp;&amp; this.w == bjVar.w &amp;&amp; ft.a(this.a, bjVar.a) &amp;&amp; ft.a(this.v, bjVar.v) &amp;&amp; ft.a(this.b, bjVar.b) &amp;&amp; this.f.size() == bjVar.f.size() &amp;&amp; ft.a(this.p, bjVar.p) &amp;&amp; Arrays.equals(this.o, bjVar.o)) {
+                    if (this.n == bjVar.n) {
+                        for (int i = 0; i &lt; this.f.size(); i++) {
+                            if (!Arrays.equals((byte[]) this.f.get(i), (byte[]) bjVar.f.get(i))) {
+                                return false;
+                            }
+                        }
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
+        return false;
+    }
+
+    @TargetApi(24)
+    private static void a(MediaFormat mediaFormat, aw awVar) {
+        if (awVar != null) {
+            a(mediaFormat, "color-transfer", awVar.c);
+            a(mediaFormat, "color-standard", awVar.a);
+            a(mediaFormat, "color-range", awVar.b);
+            a(mediaFormat, "hdr-static-info", awVar.d);
+        }
+    }
+
+    @TargetApi(16)
+    private static final void a(MediaFormat mediaFormat, String str, String str2) {
+        if (str2 != null) {
+            mediaFormat.setString(str, str2);
+        }
+    }
+
+    @TargetApi(16)
+    private static final void a(MediaFormat mediaFormat, String str, int i) {
+        if (i != -1) {
+            mediaFormat.setInteger(str, i);
+        }
+    }
+
+    @TargetApi(16)
+    private static void a(MediaFormat mediaFormat, String str, byte[] bArr) {
+        if (bArr != null) {
+            mediaFormat.setByteBuffer(str, ByteBuffer.wrap(bArr));
+        }
+    }
+
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(this.a);
+        parcel.writeString(this.b);
+        parcel.writeInt(this.c);
+        parcel.writeInt(this.d);
+        parcel.writeLong(this.e);
+        parcel.writeInt(this.h);
+        parcel.writeInt(this.i);
+        parcel.writeInt(this.l);
+        parcel.writeFloat(this.m);
+        parcel.writeInt(this.q);
+        parcel.writeInt(this.r);
+        parcel.writeString(this.v);
+        parcel.writeLong(this.w);
+        parcel.writeList(this.f);
+        parcel.writeInt(this.g);
+        parcel.writeInt(this.j);
+        parcel.writeInt(this.k);
+        parcel.writeInt(this.s);
+        parcel.writeInt(this.t);
+        parcel.writeInt(this.u);
+        parcel.writeInt(this.o != null ? 1 : 0);
+        if (this.o != null) {
+            parcel.writeByteArray(this.o);
+        }
+        parcel.writeInt(this.n);
+        parcel.writeParcelable(this.p, i);
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:6 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

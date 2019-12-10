@@ -1,0 +1,364 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/exoplayer2/source/SingleSampleMediaPeriod.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/exoplayer2/source/SingleSampleMediaPeriod.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="SingleSampleMediaPeriod.java" data-line="" class="code line-numbers"><code>package com.google.android.exoplayer2.source;
+
+import androidx.annotation.Nullable;
+import com.google.android.exoplayer2.C;
+import com.google.android.exoplayer2.Format;
+import com.google.android.exoplayer2.FormatHolder;
+import com.google.android.exoplayer2.SeekParameters;
+import com.google.android.exoplayer2.decoder.DecoderInputBuffer;
+import com.google.android.exoplayer2.source.MediaSourceEventListener.EventDispatcher;
+import com.google.android.exoplayer2.trackselection.TrackSelection;
+import com.google.android.exoplayer2.upstream.DataSource;
+import com.google.android.exoplayer2.upstream.DataSource.Factory;
+import com.google.android.exoplayer2.upstream.DataSpec;
+import com.google.android.exoplayer2.upstream.LoadErrorHandlingPolicy;
+import com.google.android.exoplayer2.upstream.Loader;
+import com.google.android.exoplayer2.upstream.Loader.Callback;
+import com.google.android.exoplayer2.upstream.Loader.LoadErrorAction;
+import com.google.android.exoplayer2.upstream.Loader.Loadable;
+import com.google.android.exoplayer2.upstream.StatsDataSource;
+import com.google.android.exoplayer2.upstream.TransferListener;
+import com.google.android.exoplayer2.util.MimeTypes;
+import com.google.android.exoplayer2.util.Util;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+final class SingleSampleMediaPeriod implements MediaPeriod, Callback&lt;SourceLoadable&gt; {
+    private static final int INITIAL_SAMPLE_SIZE = 1024;
+    private final Factory dataSourceFactory;
+    private final DataSpec dataSpec;
+    private final long durationUs;
+    private final EventDispatcher eventDispatcher;
+    final Format format;
+    private final LoadErrorHandlingPolicy loadErrorHandlingPolicy;
+    final Loader loader = new Loader("Loader:SingleSampleMediaPeriod");
+    boolean loadingFinished;
+    boolean loadingSucceeded;
+    boolean notifiedReadingStarted;
+    byte[] sampleData;
+    int sampleSize;
+    private final ArrayList&lt;SampleStreamImpl&gt; sampleStreams = new ArrayList();
+    private final TrackGroupArray tracks;
+    @Nullable
+    private final TransferListener transferListener;
+    final boolean treatLoadErrorsAsEndOfStream;
+
+    private final class SampleStreamImpl implements SampleStream {
+        private static final int STREAM_STATE_END_OF_STREAM = 2;
+        private static final int STREAM_STATE_SEND_FORMAT = 0;
+        private static final int STREAM_STATE_SEND_SAMPLE = 1;
+        private boolean notifiedDownstreamFormat;
+        private int streamState;
+
+        private SampleStreamImpl() {
+        }
+
+        public void reset() {
+            if (this.streamState == 2) {
+                this.streamState = 1;
+            }
+        }
+
+        public boolean isReady() {
+            return SingleSampleMediaPeriod.this.loadingFinished;
+        }
+
+        public void maybeThrowError() throws IOException {
+            if (!SingleSampleMediaPeriod.this.treatLoadErrorsAsEndOfStream) {
+                SingleSampleMediaPeriod.this.loader.maybeThrowError();
+            }
+        }
+
+        public int readData(FormatHolder formatHolder, DecoderInputBuffer decoderInputBuffer, boolean z) {
+            maybeNotifyDownstreamFormat();
+            if (this.streamState == 2) {
+                decoderInputBuffer.addFlag(4);
+                return -4;
+            }
+            if (!z) {
+                if (this.streamState) {
+                    if (SingleSampleMediaPeriod.this.loadingFinished == null) {
+                        return -3;
+                    }
+                    if (SingleSampleMediaPeriod.this.loadingSucceeded != null) {
+                        decoderInputBuffer.timeUs = 0;
+                        decoderInputBuffer.addFlag(1);
+                        decoderInputBuffer.ensureSpaceForWrite(SingleSampleMediaPeriod.this.sampleSize);
+                        decoderInputBuffer.data.put(SingleSampleMediaPeriod.this.sampleData, false, SingleSampleMediaPeriod.this.sampleSize);
+                    } else {
+                        decoderInputBuffer.addFlag(4);
+                    }
+                    this.streamState = 2;
+                    return -4;
+                }
+            }
+            formatHolder.format = SingleSampleMediaPeriod.this.format;
+            this.streamState = 1;
+            return -5;
+        }
+
+        public int skipData(long j) {
+            maybeNotifyDownstreamFormat();
+            if (j &lt;= 0 || this.streamState == 2) {
+                return 0;
+            }
+            this.streamState = 2;
+            return 1;
+        }
+
+        private void maybeNotifyDownstreamFormat() {
+            if (!this.notifiedDownstreamFormat) {
+                SingleSampleMediaPeriod.this.eventDispatcher.downstreamFormatChanged(MimeTypes.getTrackType(SingleSampleMediaPeriod.this.format.sampleMimeType), SingleSampleMediaPeriod.this.format, 0, null, 0);
+                this.notifiedDownstreamFormat = true;
+            }
+        }
+    }
+
+    static final class SourceLoadable implements Loadable {
+        private final StatsDataSource dataSource;
+        public final DataSpec dataSpec;
+        private byte[] sampleData;
+
+        public void cancelLoad() {
+        }
+
+        public SourceLoadable(DataSpec dataSpec, DataSource dataSource) {
+            this.dataSpec = dataSpec;
+            this.dataSource = new StatsDataSource(dataSource);
+        }
+
+        public void load() throws IOException, InterruptedException {
+            this.dataSource.resetBytesRead();
+            try {
+                this.dataSource.open(this.dataSpec);
+                int i = 0;
+                while (i != -1) {
+                    i = (int) this.dataSource.getBytesRead();
+                    if (this.sampleData == null) {
+                        this.sampleData = new byte[1024];
+                    } else if (i == this.sampleData.length) {
+                        this.sampleData = Arrays.copyOf(this.sampleData, this.sampleData.length * 2);
+                    }
+                    i = this.dataSource.read(this.sampleData, i, this.sampleData.length - i);
+                }
+            } finally {
+                Util.closeQuietly(this.dataSource);
+            }
+        }
+    }
+
+    public void discardBuffer(long j, boolean z) {
+    }
+
+    public long getAdjustedSeekPositionUs(long j, SeekParameters seekParameters) {
+        return j;
+    }
+
+    public void maybeThrowPrepareError() throws IOException {
+    }
+
+    public void reevaluateBuffer(long j) {
+    }
+
+    public SingleSampleMediaPeriod(DataSpec dataSpec, Factory factory, @Nullable TransferListener transferListener, Format format, long j, LoadErrorHandlingPolicy loadErrorHandlingPolicy, EventDispatcher eventDispatcher, boolean z) {
+        this.dataSpec = dataSpec;
+        this.dataSourceFactory = factory;
+        this.transferListener = transferListener;
+        this.format = format;
+        this.durationUs = j;
+        this.loadErrorHandlingPolicy = loadErrorHandlingPolicy;
+        this.eventDispatcher = eventDispatcher;
+        this.treatLoadErrorsAsEndOfStream = z;
+        TrackGroup[] trackGroupArr = new TrackGroup[1];
+        trackGroupArr[0] = new TrackGroup(format);
+        this.tracks = new TrackGroupArray(trackGroupArr);
+        eventDispatcher.mediaPeriodCreated();
+    }
+
+    public void release() {
+        this.loader.release();
+        this.eventDispatcher.mediaPeriodReleased();
+    }
+
+    public void prepare(MediaPeriod.Callback callback, long j) {
+        callback.onPrepared(this);
+    }
+
+    public TrackGroupArray getTrackGroups() {
+        return this.tracks;
+    }
+
+    public long selectTracks(TrackSelection[] trackSelectionArr, boolean[] zArr, SampleStream[] sampleStreamArr, boolean[] zArr2, long j) {
+        int i = 0;
+        while (i &lt; trackSelectionArr.length) {
+            if (sampleStreamArr[i] != null &amp;&amp; (trackSelectionArr[i] == null || !zArr[i])) {
+                this.sampleStreams.remove(sampleStreamArr[i]);
+                sampleStreamArr[i] = null;
+            }
+            if (sampleStreamArr[i] == null &amp;&amp; trackSelectionArr[i] != null) {
+                SampleStreamImpl sampleStreamImpl = new SampleStreamImpl();
+                this.sampleStreams.add(sampleStreamImpl);
+                sampleStreamArr[i] = sampleStreamImpl;
+                zArr2[i] = true;
+            }
+            i++;
+        }
+        return j;
+    }
+
+    public boolean continueLoading(long j) {
+        if (!this.loadingFinished) {
+            if (!r0.loader.isLoading()) {
+                DataSource createDataSource = r0.dataSourceFactory.createDataSource();
+                if (r0.transferListener != null) {
+                    createDataSource.addTransferListener(r0.transferListener);
+                }
+                r0.eventDispatcher.loadStarted(r0.dataSpec, 1, -1, r0.format, 0, null, 0, r0.durationUs, r0.loader.startLoading(new SourceLoadable(r0.dataSpec, createDataSource), r0, r0.loadErrorHandlingPolicy.getMinimumLoadableRetryCount(1)));
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public long readDiscontinuity() {
+        if (!this.notifiedReadingStarted) {
+            this.eventDispatcher.readingStarted();
+            this.notifiedReadingStarted = true;
+        }
+        return C.TIME_UNSET;
+    }
+
+    public long getNextLoadPositionUs() {
+        if (!this.loadingFinished) {
+            if (!this.loader.isLoading()) {
+                return 0;
+            }
+        }
+        return Long.MIN_VALUE;
+    }
+
+    public long getBufferedPositionUs() {
+        return this.loadingFinished ? Long.MIN_VALUE : 0;
+    }
+
+    public long seekToUs(long j) {
+        for (int i = 0; i &lt; this.sampleStreams.size(); i++) {
+            ((SampleStreamImpl) this.sampleStreams.get(i)).reset();
+        }
+        return j;
+    }
+
+    public void onLoadCompleted(SourceLoadable sourceLoadable, long j, long j2) {
+        long j3 = j;
+        long j4 = j2;
+        this.sampleSize = (int) sourceLoadable.dataSource.getBytesRead();
+        this.sampleData = sourceLoadable.sampleData;
+        this.loadingFinished = true;
+        this.loadingSucceeded = true;
+        this.eventDispatcher.loadCompleted(sourceLoadable.dataSpec, sourceLoadable.dataSource.getLastOpenedUri(), sourceLoadable.dataSource.getLastResponseHeaders(), 1, -1, this.format, 0, null, 0, this.durationUs, j3, j4, (long) this.sampleSize);
+    }
+
+    public void onLoadCanceled(SourceLoadable sourceLoadable, long j, long j2, boolean z) {
+        this.eventDispatcher.loadCanceled(sourceLoadable.dataSpec, sourceLoadable.dataSource.getLastOpenedUri(), sourceLoadable.dataSource.getLastResponseHeaders(), 1, -1, null, 0, null, 0, this.durationUs, j, j2, sourceLoadable.dataSource.getBytesRead());
+    }
+
+    public LoadErrorAction onLoadError(SourceLoadable sourceLoadable, long j, long j2, IOException iOException, int i) {
+        Object obj;
+        LoadErrorAction createRetryAction;
+        long retryDelayMsFor = this.loadErrorHandlingPolicy.getRetryDelayMsFor(1, this.durationUs, iOException, i);
+        if (retryDelayMsFor != C.TIME_UNSET) {
+            if (i &lt; r0.loadErrorHandlingPolicy.getMinimumLoadableRetryCount(1)) {
+                obj = null;
+                if (r0.treatLoadErrorsAsEndOfStream || r7 == null) {
+                    createRetryAction = retryDelayMsFor == C.TIME_UNSET ? Loader.createRetryAction(false, retryDelayMsFor) : Loader.DONT_RETRY_FATAL;
+                } else {
+                    r0.loadingFinished = true;
+                    createRetryAction = Loader.DONT_RETRY;
+                }
+                r0.eventDispatcher.loadError(sourceLoadable.dataSpec, sourceLoadable.dataSource.getLastOpenedUri(), sourceLoadable.dataSource.getLastResponseHeaders(), 1, -1, r0.format, 0, null, 0, r0.durationUs, j, j2, sourceLoadable.dataSource.getBytesRead(), iOException, createRetryAction.isRetry() ^ 1);
+                return createRetryAction;
+            }
+        }
+        obj = 1;
+        if (r0.treatLoadErrorsAsEndOfStream) {
+        }
+        if (retryDelayMsFor == C.TIME_UNSET) {
+        }
+        r0.eventDispatcher.loadError(sourceLoadable.dataSpec, sourceLoadable.dataSource.getLastOpenedUri(), sourceLoadable.dataSource.getLastResponseHeaders(), 1, -1, r0.format, 0, null, 0, r0.durationUs, j, j2, sourceLoadable.dataSource.getBytesRead(), iOException, createRetryAction.isRetry() ^ 1);
+        return createRetryAction;
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:8 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

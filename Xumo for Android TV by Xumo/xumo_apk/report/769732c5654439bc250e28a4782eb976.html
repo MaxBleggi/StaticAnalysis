@@ -1,0 +1,187 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9"><div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/xumo/xumo/util/OmnitureBeaconUtil.java" target="_blank">/xumo_apk/jadx_source_code/com/xumo/xumo/util/OmnitureBeaconUtil.java</a></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-55">report</i><h5>net.URL|openStream</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>Insecure Communication: the app URL can connect to http/https/ftp/jar</span></div></li></ul><ul class="collapsible"><li><div class="collapsible-header"><img data-position="top" data-tooltip="OWASP item" src="html/owasp_logo.png" height="20em" style="margin-right: 1rem;margin-left: 5px;" class="tooltipped"></img> OWASP Item</div><div class="collapsible-body"><span>For more information, have a look at: https://www.owasp.org/index.php/OWASP_Mobile_Security_Testing_Guide</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#OmnitureBeaconUtil_java7netU" class="active">line 7</a></li></ul></div><div class="card-content"><div id="OmnitureBeaconUtil_java7netU">Code @ line 7<pre data-start="4" data-line="7" data-src="OmnitureBeaconUtil.java" class="code line-numbers"><code>import com.xumo.xumo.model.VideoAsset;
+import com.xumo.xumo.util.BeaconUtil.PlayType;
+import io.fabric.sdk.android.services.network.HttpRequest;
+import java.net.URL;
+import java.util.Collections;
+import java.util.List;
+import javax.net.ssl.HttpsURLConnection;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9PbW5pdHVyZUJlYWNvblV0aWwuamF2YXx8fGxpbmU6IDcgOiBuZXQuVVJMfG9wZW5TdHJlYW18fHw1NXx8fG5ldC5VUkx8b3BlblN0cmVhbXx8fDd8fHw0">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9PbW5pdHVyZUJlYWNvblV0aWwuamF2YXx8fGxpbmU6IDcgOiBuZXQuVVJMfG9wZW5TdHJlYW18fHw1NXx8fG5ldC5VUkx8b3BlblN0cmVhbXx8fDd8fHw0')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9PbW5pdHVyZUJlYWNvblV0aWwuamF2YXx8fGxpbmU6IDcgOiBuZXQuVVJMfG9wZW5TdHJlYW18fHw1NXx8fG5ldC5VUkx8b3BlblN0cmVhbXx8fDd8fHw0').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9PbW5pdHVyZUJlYWNvblV0aWwuamF2YXx8fGxpbmU6IDcgOiBuZXQuVVJMfG9wZW5TdHJlYW18fHw1NXx8fG5ldC5VUkx8b3BlblN0cmVhbXx8fDd8fHw0" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9PbW5pdHVyZUJlYWNvblV0aWwuamF2YXx8fGxpbmU6IDcgOiBuZXQuVVJMfG9wZW5TdHJlYW18fHw1NXx8fG5ldC5VUkx8b3BlblN0cmVhbXx8fDd8fHw0' , 'aW1wb3J0IGNvbS54dW1vLnh1bW8ubW9kZWwuVmlkZW9Bc3NldDsKaW1wb3J0IGNvbS54dW1vLnh1bW8udXRpbC5CZWFjb25VdGlsLlBsYXlUeXBlOwppbXBvcnQgaW8uZmFicmljLnNkay5hbmRyb2lkLnNlcnZpY2VzLm5ldHdvcmsuSHR0cFJlcXVlc3Q7CmltcG9ydCBqYXZhLm5ldC5VUkw7CmltcG9ydCBqYXZhLnV0aWwuQ29sbGVjdGlvbnM7CmltcG9ydCBqYXZhLnV0aWwuTGlzdDsKaW1wb3J0IGphdmF4Lm5ldC5zc2wuSHR0cHNVUkxDb25uZWN0aW9uOwo=');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-7">report</i><h5>https?:</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>An URL was found, this might be an API endpoint or just a link to documentation. Hopefully the first one.</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#OmnitureBeaconUtil_java13http" class="active">line 13</a></li><li class="tab"><a style="color: #d82c2b;" href="#OmnitureBeaconUtil_java18http">line 18</a></li></ul></div><div class="card-content"><div id="OmnitureBeaconUtil_java13http">Code @ line 13<pre data-start="10" data-line="13" data-src="OmnitureBeaconUtil.java" class="code line-numbers"><code>import javax.net.ssl.HttpsURLConnection;
+
+public class OmnitureBeaconUtil {
+    private static final String kBaseUrl = "https://som.cbsi.com/b/ss/cbsicbsnewssite,cbsicbsiall/1/5.4/REDIR";
+    private static final List&lt;String&gt; kChannelIds = Collections.singletonList("9999158");
+    private static final String kPlatformName = "app,mobile";
+
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9PbW5pdHVyZUJlYWNvblV0aWwuamF2YXx8fGxpbmU6IDEzIDogaHR0cHM/Onx8fDd8fHxodHRwcz86fHx8MTN8fHwxMA">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9PbW5pdHVyZUJlYWNvblV0aWwuamF2YXx8fGxpbmU6IDEzIDogaHR0cHM/Onx8fDd8fHxodHRwcz86fHx8MTN8fHwxMA')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9PbW5pdHVyZUJlYWNvblV0aWwuamF2YXx8fGxpbmU6IDEzIDogaHR0cHM/Onx8fDd8fHxodHRwcz86fHx8MTN8fHwxMA').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9PbW5pdHVyZUJlYWNvblV0aWwuamF2YXx8fGxpbmU6IDEzIDogaHR0cHM/Onx8fDd8fHxodHRwcz86fHx8MTN8fHwxMA" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9PbW5pdHVyZUJlYWNvblV0aWwuamF2YXx8fGxpbmU6IDEzIDogaHR0cHM/Onx8fDd8fHxodHRwcz86fHx8MTN8fHwxMA' , 'aW1wb3J0IGphdmF4Lm5ldC5zc2wuSHR0cHNVUkxDb25uZWN0aW9uOwoKcHVibGljIGNsYXNzIE9tbml0dXJlQmVhY29uVXRpbCB7CiAgICBwcml2YXRlIHN0YXRpYyBmaW5hbCBTdHJpbmcga0Jhc2VVcmwgPSAiaHR0cHM6Ly9zb20uY2JzaS5jb20vYi9zcy9jYnNpY2JzbmV3c3NpdGUsY2JzaWNic2lhbGwvMS81LjQvUkVESVIiOwogICAgcHJpdmF0ZSBzdGF0aWMgZmluYWwgTGlzdDxTdHJpbmc+IGtDaGFubmVsSWRzID0gQ29sbGVjdGlvbnMuc2luZ2xldG9uTGlzdCgiOTk5OTE1OCIpOwogICAgcHJpdmF0ZSBzdGF0aWMgZmluYWwgU3RyaW5nIGtQbGF0Zm9ybU5hbWUgPSAiYXBwLG1vYmlsZSI7Cgo=');  
+                                            });
+                                            </script>
+                                            </div><div id="OmnitureBeaconUtil_java18http">Code @ line 18<pre data-start="15" data-line="18" data-src="OmnitureBeaconUtil.java" class="code line-numbers"><code>    private static final String kPlatformName = "app,mobile";
+
+    private static String buildBeaconURL(String str) {
+        return Uri.parse(kBaseUrl).buildUpon().appendQueryParameter("AQB", "1").appendQueryParameter("events", "D=\"event52:\" X-Playback-Session-Id").appendQueryParameter("ndh", "0").appendQueryParameter("ce", "UTF-8").appendQueryParameter("g", "http://www.cbsnews.com/news/live/?c=24").appendQueryParameter("ch", "cbs-news-digital-channel").appendQueryParameter("j", "xumo_tv").appendQueryParameter("h1", "D=\"cbsnews:\" ch").appendQueryParameter("server", "www.cbsnews.com").appendQueryParameter("c2", "D=v2").appendQueryParameter("c3", "D=v3").appendQueryParameter("c5", "D=v5").appendQueryParameter("c6", "D=v6").appendQueryParameter("c7", "D=v7").appendQueryParameter("c8", "D=v8").appendQueryParameter("c9", "D=User-Agent").appendQueryParameter("c10", "D=v10").appendQueryParameter("c11", "D=v11").appendQueryParameter("c20", "D=v20").appendQueryParameter("c22", "D=v22").appendQueryParameter("c23", "D=v23").appendQueryParameter("c30", "D=v30").appendQueryParameter("v1", "cbsnews").appendQueryParameter("v2", "us").appendQueryParameter("v3", "xumo_tv|||app,mobile").appendQueryParameter("v5", "cbsicbsnewssite").appendQueryParameter("v6", "D=h1").appendQueryParameter("v7", "D=g").appendQueryParameter("v10", "news_item_xumo_tv").appendQueryParameter("v11", "D=ch \":\" v10").appendQueryParameter("v15", "").appendQueryParameter("v20", "CBSN Live Video").appendQueryParameter("v22", "cbsn_third_party|xumo_tv").appendQueryParameter("v23", "8a37c65b-cbd4-4bcb-b0d6-fb0eac279178").appendQueryParameter("v24", "").appendQueryParameter("v30", "9mwStzqtXKyib_egzSUPPh4DldNaEjJ2").appendQueryParameter("v31", "9mwStzqtXKyib_egzSUPPh4DldNaEjJ2").appendQueryParameter("c24", "D=v24").appendQueryParameter("c25", "D=v25").appendQueryParameter("c31", "D=v31").appendQueryParameter("c32", "D=v32").appendQueryParameter("c38", "D=v38").appendQueryParameter("c59", "D=v59").appendQueryParameter("v25", "CBSN Live Video").appendQueryParameter("v32", "xumo_tv").appendQueryParameter("v38", "live video").appendQueryParameter("v59", "non-svod").appendQueryParameter("pe", "m_s").appendQueryParameter("pev1", "D=url").appendQueryParameter("pev3", "D=v10").appendQueryParameter("url", "http://www.cbsnews.com/news/live/").appendQueryParameter("vid", str).appendQueryParameter("AQE", "1").build().toString();
+    }
+
+    public static void sendBeacon(String str) {
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9PbW5pdHVyZUJlYWNvblV0aWwuamF2YXx8fGxpbmU6IDE4IDogaHR0cHM/Onx8fDd8fHxodHRwcz86fHx8MTh8fHwxNQ">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9PbW5pdHVyZUJlYWNvblV0aWwuamF2YXx8fGxpbmU6IDE4IDogaHR0cHM/Onx8fDd8fHxodHRwcz86fHx8MTh8fHwxNQ')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9PbW5pdHVyZUJlYWNvblV0aWwuamF2YXx8fGxpbmU6IDE4IDogaHR0cHM/Onx8fDd8fHxodHRwcz86fHx8MTh8fHwxNQ').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9PbW5pdHVyZUJlYWNvblV0aWwuamF2YXx8fGxpbmU6IDE4IDogaHR0cHM/Onx8fDd8fHxodHRwcz86fHx8MTh8fHwxNQ" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9PbW5pdHVyZUJlYWNvblV0aWwuamF2YXx8fGxpbmU6IDE4IDogaHR0cHM/Onx8fDd8fHxodHRwcz86fHx8MTh8fHwxNQ' , 'ICAgIHByaXZhdGUgc3RhdGljIGZpbmFsIFN0cmluZyBrUGxhdGZvcm1OYW1lID0gImFwcCxtb2JpbGUiOwoKICAgIHByaXZhdGUgc3RhdGljIFN0cmluZyBidWlsZEJlYWNvblVSTChTdHJpbmcgc3RyKSB7CiAgICAgICAgcmV0dXJuIFVyaS5wYXJzZShrQmFzZVVybCkuYnVpbGRVcG9uKCkuYXBwZW5kUXVlcnlQYXJhbWV0ZXIoIkFRQiIsICIxIikuYXBwZW5kUXVlcnlQYXJhbWV0ZXIoImV2ZW50cyIsICJEPVwiZXZlbnQ1MjpcIiBYLVBsYXliYWNrLVNlc3Npb24tSWQiKS5hcHBlbmRRdWVyeVBhcmFtZXRlcigibmRoIiwgIjAiKS5hcHBlbmRRdWVyeVBhcmFtZXRlcigiY2UiLCAiVVRGLTgiKS5hcHBlbmRRdWVyeVBhcmFtZXRlcigiZyIsICJodHRwOi8vd3d3LmNic25ld3MuY29tL25ld3MvbGl2ZS8/Yz0yNCIpLmFwcGVuZFF1ZXJ5UGFyYW1ldGVyKCJjaCIsICJjYnMtbmV3cy1kaWdpdGFsLWNoYW5uZWwiKS5hcHBlbmRRdWVyeVBhcmFtZXRlcigiaiIsICJ4dW1vX3R2IikuYXBwZW5kUXVlcnlQYXJhbWV0ZXIoImgxIiwgIkQ9XCJjYnNuZXdzOlwiIGNoIikuYXBwZW5kUXVlcnlQYXJhbWV0ZXIoInNlcnZlciIsICJ3d3cuY2JzbmV3cy5jb20iKS5hcHBlbmRRdWVyeVBhcmFtZXRlcigiYzIiLCAiRD12MiIpLmFwcGVuZFF1ZXJ5UGFyYW1ldGVyKCJjMyIsICJEPXYzIikuYXBwZW5kUXVlcnlQYXJhbWV0ZXIoImM1IiwgIkQ9djUiKS5hcHBlbmRRdWVyeVBhcmFtZXRlcigiYzYiLCAiRD12NiIpLmFwcGVuZFF1ZXJ5UGFyYW1ldGVyKCJjNyIsICJEPXY3IikuYXBwZW5kUXVlcnlQYXJhbWV0ZXIoImM4IiwgIkQ9djgiKS5hcHBlbmRRdWVyeVBhcmFtZXRlcigiYzkiLCAiRD1Vc2VyLUFnZW50IikuYXBwZW5kUXVlcnlQYXJhbWV0ZXIoImMxMCIsICJEPXYxMCIpLmFwcGVuZFF1ZXJ5UGFyYW1ldGVyKCJjMTEiLCAiRD12MTEiKS5hcHBlbmRRdWVyeVBhcmFtZXRlcigiYzIwIiwgIkQ9djIwIikuYXBwZW5kUXVlcnlQYXJhbWV0ZXIoImMyMiIsICJEPXYyMiIpLmFwcGVuZFF1ZXJ5UGFyYW1ldGVyKCJjMjMiLCAiRD12MjMiKS5hcHBlbmRRdWVyeVBhcmFtZXRlcigiYzMwIiwgIkQ9djMwIikuYXBwZW5kUXVlcnlQYXJhbWV0ZXIoInYxIiwgImNic25ld3MiKS5hcHBlbmRRdWVyeVBhcmFtZXRlcigidjIiLCAidXMiKS5hcHBlbmRRdWVyeVBhcmFtZXRlcigidjMiLCAieHVtb190dnx8fGFwcCxtb2JpbGUiKS5hcHBlbmRRdWVyeVBhcmFtZXRlcigidjUiLCAiY2JzaWNic25ld3NzaXRlIikuYXBwZW5kUXVlcnlQYXJhbWV0ZXIoInY2IiwgIkQ9aDEiKS5hcHBlbmRRdWVyeVBhcmFtZXRlcigidjciLCAiRD1nIikuYXBwZW5kUXVlcnlQYXJhbWV0ZXIoInYxMCIsICJuZXdzX2l0ZW1feHVtb190diIpLmFwcGVuZFF1ZXJ5UGFyYW1ldGVyKCJ2MTEiLCAiRD1jaCBcIjpcIiB2MTAiKS5hcHBlbmRRdWVyeVBhcmFtZXRlcigidjE1IiwgIiIpLmFwcGVuZFF1ZXJ5UGFyYW1ldGVyKCJ2MjAiLCAiQ0JTTiBMaXZlIFZpZGVvIikuYXBwZW5kUXVlcnlQYXJhbWV0ZXIoInYyMiIsICJjYnNuX3RoaXJkX3BhcnR5fHh1bW9fdHYiKS5hcHBlbmRRdWVyeVBhcmFtZXRlcigidjIzIiwgIjhhMzdjNjViLWNiZDQtNGJjYi1iMGQ2LWZiMGVhYzI3OTE3OCIpLmFwcGVuZFF1ZXJ5UGFyYW1ldGVyKCJ2MjQiLCAiIikuYXBwZW5kUXVlcnlQYXJhbWV0ZXIoInYzMCIsICI5bXdTdHpxdFhLeWliX2VnelNVUFBoNERsZE5hRWpKMiIpLmFwcGVuZFF1ZXJ5UGFyYW1ldGVyKCJ2MzEiLCAiOW13U3R6cXRYS3lpYl9lZ3pTVVBQaDREbGROYUVqSjIiKS5hcHBlbmRRdWVyeVBhcmFtZXRlcigiYzI0IiwgIkQ9djI0IikuYXBwZW5kUXVlcnlQYXJhbWV0ZXIoImMyNSIsICJEPXYyNSIpLmFwcGVuZFF1ZXJ5UGFyYW1ldGVyKCJjMzEiLCAiRD12MzEiKS5hcHBlbmRRdWVyeVBhcmFtZXRlcigiYzMyIiwgIkQ9djMyIikuYXBwZW5kUXVlcnlQYXJhbWV0ZXIoImMzOCIsICJEPXYzOCIpLmFwcGVuZFF1ZXJ5UGFyYW1ldGVyKCJjNTkiLCAiRD12NTkiKS5hcHBlbmRRdWVyeVBhcmFtZXRlcigidjI1IiwgIkNCU04gTGl2ZSBWaWRlbyIpLmFwcGVuZFF1ZXJ5UGFyYW1ldGVyKCJ2MzIiLCAieHVtb190diIpLmFwcGVuZFF1ZXJ5UGFyYW1ldGVyKCJ2MzgiLCAibGl2ZSB2aWRlbyIpLmFwcGVuZFF1ZXJ5UGFyYW1ldGVyKCJ2NTkiLCAibm9uLXN2b2QiKS5hcHBlbmRRdWVyeVBhcmFtZXRlcigicGUiLCAibV9zIikuYXBwZW5kUXVlcnlQYXJhbWV0ZXIoInBldjEiLCAiRD11cmwiKS5hcHBlbmRRdWVyeVBhcmFtZXRlcigicGV2MyIsICJEPXYxMCIpLmFwcGVuZFF1ZXJ5UGFyYW1ldGVyKCJ1cmwiLCAiaHR0cDovL3d3dy5jYnNuZXdzLmNvbS9uZXdzL2xpdmUvIikuYXBwZW5kUXVlcnlQYXJhbWV0ZXIoInZpZCIsIHN0cikuYXBwZW5kUXVlcnlQYXJhbWV0ZXIoIkFRRSIsICIxIikuYnVpbGQoKS50b1N0cmluZygpOwogICAgfQoKICAgIHB1YmxpYyBzdGF0aWMgdm9pZCBzZW5kQmVhY29uKFN0cmluZyBzdHIpIHsK');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-60">report</i><h5>ServerSocket|net.ServerSocket|connect[(][)]</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>the app opens TCP Server Sockets: Insecure use of network sockets</span></div></li></ul><ul class="collapsible"><li><div class="collapsible-header"><img data-position="top" data-tooltip="OWASP item" src="html/owasp_logo.png" height="20em" style="margin-right: 1rem;margin-left: 5px;" class="tooltipped"></img> OWASP Item</div><div class="collapsible-body"><span>For more information, have a look at: https://www.owasp.org/index.php/OWASP_Mobile_Security_Testing_Guide</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#OmnitureBeaconUtil_java31Serv" class="active">line 31</a></li><li class="tab"><a style="color: #d82c2b;" href="#OmnitureBeaconUtil_java37Serv">line 37</a></li></ul></div><div class="card-content"><div id="OmnitureBeaconUtil_java31Serv">Code @ line 31<pre data-start="28" data-line="31" data-src="OmnitureBeaconUtil.java" class="code line-numbers"><code>                        HttpsURLConnection httpsURLConnection = (HttpsURLConnection) new URL(str).openConnection();
+                        httpsURLConnection.setRequestMethod(HttpRequest.METHOD_GET);
+                        httpsURLConnection.setRequestProperty(HttpRequest.HEADER_CACHE_CONTROL, "no-cache");
+                        httpsURLConnection.connect();
+                        int responseCode = httpsURLConnection.getResponseCode();
+                        StringBuilder stringBuilder = new StringBuilder();
+                        stringBuilder.append("Omniture Beacon responseCode:");
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9PbW5pdHVyZUJlYWNvblV0aWwuamF2YXx8fGxpbmU6IDMxIDogU2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDYwfHx8U2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDMxfHx8Mjg">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9PbW5pdHVyZUJlYWNvblV0aWwuamF2YXx8fGxpbmU6IDMxIDogU2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDYwfHx8U2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDMxfHx8Mjg')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9PbW5pdHVyZUJlYWNvblV0aWwuamF2YXx8fGxpbmU6IDMxIDogU2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDYwfHx8U2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDMxfHx8Mjg').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9PbW5pdHVyZUJlYWNvblV0aWwuamF2YXx8fGxpbmU6IDMxIDogU2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDYwfHx8U2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDMxfHx8Mjg" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9PbW5pdHVyZUJlYWNvblV0aWwuamF2YXx8fGxpbmU6IDMxIDogU2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDYwfHx8U2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDMxfHx8Mjg' , 'ICAgICAgICAgICAgICAgICAgICAgICAgSHR0cHNVUkxDb25uZWN0aW9uIGh0dHBzVVJMQ29ubmVjdGlvbiA9IChIdHRwc1VSTENvbm5lY3Rpb24pIG5ldyBVUkwoc3RyKS5vcGVuQ29ubmVjdGlvbigpOwogICAgICAgICAgICAgICAgICAgICAgICBodHRwc1VSTENvbm5lY3Rpb24uc2V0UmVxdWVzdE1ldGhvZChIdHRwUmVxdWVzdC5NRVRIT0RfR0VUKTsKICAgICAgICAgICAgICAgICAgICAgICAgaHR0cHNVUkxDb25uZWN0aW9uLnNldFJlcXVlc3RQcm9wZXJ0eShIdHRwUmVxdWVzdC5IRUFERVJfQ0FDSEVfQ09OVFJPTCwgIm5vLWNhY2hlIik7CiAgICAgICAgICAgICAgICAgICAgICAgIGh0dHBzVVJMQ29ubmVjdGlvbi5jb25uZWN0KCk7CiAgICAgICAgICAgICAgICAgICAgICAgIGludCByZXNwb25zZUNvZGUgPSBodHRwc1VSTENvbm5lY3Rpb24uZ2V0UmVzcG9uc2VDb2RlKCk7CiAgICAgICAgICAgICAgICAgICAgICAgIFN0cmluZ0J1aWxkZXIgc3RyaW5nQnVpbGRlciA9IG5ldyBTdHJpbmdCdWlsZGVyKCk7CiAgICAgICAgICAgICAgICAgICAgICAgIHN0cmluZ0J1aWxkZXIuYXBwZW5kKCJPbW5pdHVyZSBCZWFjb24gcmVzcG9uc2VDb2RlOiIpOwo=');  
+                                            });
+                                            </script>
+                                            </div><div id="OmnitureBeaconUtil_java37Serv">Code @ line 37<pre data-start="34" data-line="37" data-src="OmnitureBeaconUtil.java" class="code line-numbers"><code>                        stringBuilder.append("Omniture Beacon responseCode:");
+                        stringBuilder.append(responseCode);
+                        LogUtil.d("Beacon", stringBuilder.toString());
+                        httpsURLConnection.disconnect();
+                    } catch (Exception e) {
+                        StringBuilder stringBuilder2 = new StringBuilder();
+                        stringBuilder2.append("");
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9PbW5pdHVyZUJlYWNvblV0aWwuamF2YXx8fGxpbmU6IDM3IDogU2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDYwfHx8U2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDM3fHx8MzQ">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9PbW5pdHVyZUJlYWNvblV0aWwuamF2YXx8fGxpbmU6IDM3IDogU2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDYwfHx8U2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDM3fHx8MzQ')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9PbW5pdHVyZUJlYWNvblV0aWwuamF2YXx8fGxpbmU6IDM3IDogU2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDYwfHx8U2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDM3fHx8MzQ').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9PbW5pdHVyZUJlYWNvblV0aWwuamF2YXx8fGxpbmU6IDM3IDogU2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDYwfHx8U2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDM3fHx8MzQ" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS94dW1vL3h1bW8vdXRpbC9PbW5pdHVyZUJlYWNvblV0aWwuamF2YXx8fGxpbmU6IDM3IDogU2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDYwfHx8U2VydmVyU29ja2V0fG5ldC5TZXJ2ZXJTb2NrZXR8Y29ubmVjdFsoXVspXXx8fDM3fHx8MzQ' , 'ICAgICAgICAgICAgICAgICAgICAgICAgc3RyaW5nQnVpbGRlci5hcHBlbmQoIk9tbml0dXJlIEJlYWNvbiByZXNwb25zZUNvZGU6Iik7CiAgICAgICAgICAgICAgICAgICAgICAgIHN0cmluZ0J1aWxkZXIuYXBwZW5kKHJlc3BvbnNlQ29kZSk7CiAgICAgICAgICAgICAgICAgICAgICAgIExvZ1V0aWwuZCgiQmVhY29uIiwgc3RyaW5nQnVpbGRlci50b1N0cmluZygpKTsKICAgICAgICAgICAgICAgICAgICAgICAgaHR0cHNVUkxDb25uZWN0aW9uLmRpc2Nvbm5lY3QoKTsKICAgICAgICAgICAgICAgICAgICB9IGNhdGNoIChFeGNlcHRpb24gZSkgewogICAgICAgICAgICAgICAgICAgICAgICBTdHJpbmdCdWlsZGVyIHN0cmluZ0J1aWxkZXIyID0gbmV3IFN0cmluZ0J1aWxkZXIoKTsKICAgICAgICAgICAgICAgICAgICAgICAgc3RyaW5nQnVpbGRlcjIuYXBwZW5kKCIiKTsK');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="OmnitureBeaconUtil.java" data-line="7,13,18,31,37," class="code line-numbers"><code>package com.xumo.xumo.util;
+
+import android.net.Uri;
+import com.xumo.xumo.model.VideoAsset;
+import com.xumo.xumo.util.BeaconUtil.PlayType;
+import io.fabric.sdk.android.services.network.HttpRequest;
+import java.net.URL;
+import java.util.Collections;
+import java.util.List;
+import javax.net.ssl.HttpsURLConnection;
+
+public class OmnitureBeaconUtil {
+    private static final String kBaseUrl = "https://som.cbsi.com/b/ss/cbsicbsnewssite,cbsicbsiall/1/5.4/REDIR";
+    private static final List&lt;String&gt; kChannelIds = Collections.singletonList("9999158");
+    private static final String kPlatformName = "app,mobile";
+
+    private static String buildBeaconURL(String str) {
+        return Uri.parse(kBaseUrl).buildUpon().appendQueryParameter("AQB", "1").appendQueryParameter("events", "D=\"event52:\" X-Playback-Session-Id").appendQueryParameter("ndh", "0").appendQueryParameter("ce", "UTF-8").appendQueryParameter("g", "http://www.cbsnews.com/news/live/?c=24").appendQueryParameter("ch", "cbs-news-digital-channel").appendQueryParameter("j", "xumo_tv").appendQueryParameter("h1", "D=\"cbsnews:\" ch").appendQueryParameter("server", "www.cbsnews.com").appendQueryParameter("c2", "D=v2").appendQueryParameter("c3", "D=v3").appendQueryParameter("c5", "D=v5").appendQueryParameter("c6", "D=v6").appendQueryParameter("c7", "D=v7").appendQueryParameter("c8", "D=v8").appendQueryParameter("c9", "D=User-Agent").appendQueryParameter("c10", "D=v10").appendQueryParameter("c11", "D=v11").appendQueryParameter("c20", "D=v20").appendQueryParameter("c22", "D=v22").appendQueryParameter("c23", "D=v23").appendQueryParameter("c30", "D=v30").appendQueryParameter("v1", "cbsnews").appendQueryParameter("v2", "us").appendQueryParameter("v3", "xumo_tv|||app,mobile").appendQueryParameter("v5", "cbsicbsnewssite").appendQueryParameter("v6", "D=h1").appendQueryParameter("v7", "D=g").appendQueryParameter("v10", "news_item_xumo_tv").appendQueryParameter("v11", "D=ch \":\" v10").appendQueryParameter("v15", "").appendQueryParameter("v20", "CBSN Live Video").appendQueryParameter("v22", "cbsn_third_party|xumo_tv").appendQueryParameter("v23", "8a37c65b-cbd4-4bcb-b0d6-fb0eac279178").appendQueryParameter("v24", "").appendQueryParameter("v30", "9mwStzqtXKyib_egzSUPPh4DldNaEjJ2").appendQueryParameter("v31", "9mwStzqtXKyib_egzSUPPh4DldNaEjJ2").appendQueryParameter("c24", "D=v24").appendQueryParameter("c25", "D=v25").appendQueryParameter("c31", "D=v31").appendQueryParameter("c32", "D=v32").appendQueryParameter("c38", "D=v38").appendQueryParameter("c59", "D=v59").appendQueryParameter("v25", "CBSN Live Video").appendQueryParameter("v32", "xumo_tv").appendQueryParameter("v38", "live video").appendQueryParameter("v59", "non-svod").appendQueryParameter("pe", "m_s").appendQueryParameter("pev1", "D=url").appendQueryParameter("pev3", "D=v10").appendQueryParameter("url", "http://www.cbsnews.com/news/live/").appendQueryParameter("vid", str).appendQueryParameter("AQE", "1").build().toString();
+    }
+
+    public static void sendBeacon(String str) {
+        str = buildBeaconURL(str);
+        if (str != null) {
+            LogUtil.d("Beacon", str);
+            new Thread(new Runnable() {
+                public void run() {
+                    try {
+                        HttpsURLConnection httpsURLConnection = (HttpsURLConnection) new URL(str).openConnection();
+                        httpsURLConnection.setRequestMethod(HttpRequest.METHOD_GET);
+                        httpsURLConnection.setRequestProperty(HttpRequest.HEADER_CACHE_CONTROL, "no-cache");
+                        httpsURLConnection.connect();
+                        int responseCode = httpsURLConnection.getResponseCode();
+                        StringBuilder stringBuilder = new StringBuilder();
+                        stringBuilder.append("Omniture Beacon responseCode:");
+                        stringBuilder.append(responseCode);
+                        LogUtil.d("Beacon", stringBuilder.toString());
+                        httpsURLConnection.disconnect();
+                    } catch (Exception e) {
+                        StringBuilder stringBuilder2 = new StringBuilder();
+                        stringBuilder2.append("");
+                        stringBuilder2.append(e);
+                        LogUtil.d(stringBuilder2.toString());
+                    }
+                }
+            }).start();
+            return;
+        }
+        LogUtil.d("Cannot build Omniture Beacon URL!!!");
+    }
+
+    public static boolean isTarget(VideoAsset videoAsset) {
+        if (videoAsset != null) {
+            PlayType playType = videoAsset.getAssetType() == 1 ? PlayType.VOD : PlayType.LiveLite;
+            if (kChannelIds.contains(videoAsset.getChannelId()) != null &amp;&amp; playType == PlayType.LiveLite) {
+                return true;
+            }
+        }
+        return null;
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:13 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

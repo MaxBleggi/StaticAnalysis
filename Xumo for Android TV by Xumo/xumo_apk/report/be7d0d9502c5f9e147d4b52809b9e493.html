@@ -1,0 +1,181 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9">
+                <script>
+                $( document ).ready(function() {
+                    Materialize.toast('No matches found in this file', 9000)
+                });
+                </script>
+                <div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/material/appbar/HeaderScrollingViewBehavior.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/material/appbar/HeaderScrollingViewBehavior.java</a></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="HeaderScrollingViewBehavior.java" data-line="" class="code line-numbers"><code>package com.google.android.material.appbar;
+
+import android.content.Context;
+import android.graphics.Rect;
+import android.util.AttributeSet;
+import android.view.View;
+import android.view.View.MeasureSpec;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.coordinatorlayout.widget.CoordinatorLayout.LayoutParams;
+import androidx.core.math.MathUtils;
+import androidx.core.view.GravityCompat;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+import java.util.List;
+
+abstract class HeaderScrollingViewBehavior extends ViewOffsetBehavior&lt;View&gt; {
+    private int overlayTop;
+    final Rect tempRect1 = new Rect();
+    final Rect tempRect2 = new Rect();
+    private int verticalLayoutGap = 0;
+
+    private static int resolveGravity(int i) {
+        return i == 0 ? 8388659 : i;
+    }
+
+    abstract View findFirstDependency(List&lt;View&gt; list);
+
+    float getOverlapRatioForOffset(View view) {
+        return 1.0f;
+    }
+
+    public HeaderScrollingViewBehavior(Context context, AttributeSet attributeSet) {
+        super(context, attributeSet);
+    }
+
+    public boolean onMeasureChild(CoordinatorLayout coordinatorLayout, View view, int i, int i2, int i3, int i4) {
+        HeaderScrollingViewBehavior headerScrollingViewBehavior = this;
+        int i5 = view.getLayoutParams().height;
+        if (i5 == -1 || i5 == -2) {
+            View findFirstDependency = findFirstDependency(coordinatorLayout.getDependencies(view));
+            if (findFirstDependency != null) {
+                View view2;
+                if (!ViewCompat.getFitsSystemWindows(findFirstDependency) || ViewCompat.getFitsSystemWindows(view)) {
+                    view2 = view;
+                } else {
+                    view2 = view;
+                    ViewCompat.setFitsSystemWindows(view, true);
+                    if (ViewCompat.getFitsSystemWindows(view)) {
+                        view.requestLayout();
+                        return true;
+                    }
+                }
+                int size = MeasureSpec.getSize(i3);
+                if (size == 0) {
+                    size = coordinatorLayout.getHeight();
+                }
+                coordinatorLayout.onMeasureChild(view, i, i2, MeasureSpec.makeMeasureSpec((size - findFirstDependency.getMeasuredHeight()) + getScrollRange(findFirstDependency), i5 == -1 ? 1073741824 : Integer.MIN_VALUE), i4);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    protected void layoutChild(CoordinatorLayout coordinatorLayout, View view, int i) {
+        View findFirstDependency = findFirstDependency(coordinatorLayout.getDependencies(view));
+        if (findFirstDependency != null) {
+            LayoutParams layoutParams = (LayoutParams) view.getLayoutParams();
+            Rect rect = this.tempRect1;
+            rect.set(coordinatorLayout.getPaddingLeft() + layoutParams.leftMargin, findFirstDependency.getBottom() + layoutParams.topMargin, (coordinatorLayout.getWidth() - coordinatorLayout.getPaddingRight()) - layoutParams.rightMargin, ((coordinatorLayout.getHeight() + findFirstDependency.getBottom()) - coordinatorLayout.getPaddingBottom()) - layoutParams.bottomMargin);
+            WindowInsetsCompat lastWindowInsets = coordinatorLayout.getLastWindowInsets();
+            if (!(lastWindowInsets == null || ViewCompat.getFitsSystemWindows(coordinatorLayout) == null || ViewCompat.getFitsSystemWindows(view) != null)) {
+                rect.left += lastWindowInsets.getSystemWindowInsetLeft();
+                rect.right -= lastWindowInsets.getSystemWindowInsetRight();
+            }
+            coordinatorLayout = this.tempRect2;
+            GravityCompat.apply(resolveGravity(layoutParams.gravity), view.getMeasuredWidth(), view.getMeasuredHeight(), rect, coordinatorLayout, i);
+            i = getOverlapPixelsForOffset(findFirstDependency);
+            view.layout(coordinatorLayout.left, coordinatorLayout.top - i, coordinatorLayout.right, coordinatorLayout.bottom - i);
+            this.verticalLayoutGap = coordinatorLayout.top - findFirstDependency.getBottom();
+            return;
+        }
+        super.layoutChild(coordinatorLayout, view, i);
+        this.verticalLayoutGap = null;
+    }
+
+    final int getOverlapPixelsForOffset(View view) {
+        if (this.overlayTop == 0) {
+            return 0;
+        }
+        return MathUtils.clamp((int) (getOverlapRatioForOffset(view) * ((float) this.overlayTop)), 0, this.overlayTop);
+    }
+
+    int getScrollRange(View view) {
+        return view.getMeasuredHeight();
+    }
+
+    final int getVerticalLayoutGap() {
+        return this.verticalLayoutGap;
+    }
+
+    public final void setOverlayTop(int i) {
+        this.overlayTop = i;
+    }
+
+    public final int getOverlayTop() {
+        return this.overlayTop;
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:13 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

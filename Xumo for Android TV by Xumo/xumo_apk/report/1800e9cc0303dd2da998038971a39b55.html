@@ -1,0 +1,1197 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9"><div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/gms/common/api/internal/GoogleApiManager.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/gms/common/api/internal/GoogleApiManager.java</a></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-60">report</i><h5>ServerSocket|net.ServerSocket|connect[(][)]</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>the app opens TCP Server Sockets: Insecure use of network sockets</span></div></li></ul><ul class="collapsible"><li><div class="collapsible-header"><img data-position="top" data-tooltip="OWASP item" src="html/owasp_logo.png" height="20em" style="margin-right: 1rem;margin-left: 5px;" class="tooltipped"></img> OWASP Item</div><div class="collapsible-body"><span>For more information, have a look at: https://www.owasp.org/index.php/OWASP_Mobile_Security_Testing_Guide</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#GoogleApiManager_java254Serv" class="active">line 254</a></li><li class="tab"><a style="color: #d82c2b;" href="#GoogleApiManager_java284Serv">line 284</a></li><li class="tab"><a style="color: #d82c2b;" href="#GoogleApiManager_java363Serv">line 363</a></li><li class="tab"><a style="color: #d82c2b;" href="#GoogleApiManager_java472Serv">line 472</a></li><li class="tab"><a style="color: #d82c2b;" href="#GoogleApiManager_java491Serv">line 491</a></li><li class="tab"><a style="color: #d82c2b;" href="#GoogleApiManager_java516Serv">line 516</a></li><li class="tab"><a style="color: #d82c2b;" href="#GoogleApiManager_java542Serv">line 542</a></li><li class="tab"><a style="color: #d82c2b;" href="#GoogleApiManager_java547Serv">line 547</a></li><li class="tab"><a style="color: #d82c2b;" href="#GoogleApiManager_java633Serv">line 633</a></li><li class="tab"><a style="color: #d82c2b;" href="#GoogleApiManager_java729Serv">line 729</a></li><li class="tab"><a style="color: #d82c2b;" href="#GoogleApiManager_java823Serv">line 823</a></li><li class="tab"><a style="color: #d82c2b;" href="#GoogleApiManager_java830Serv">line 830</a></li></ul></div><div class="card-content"><div id="GoogleApiManager_java254Serv">Code @ line 254<pre data-start="251" data-line="254" data-src="GoogleApiManager.java" class="code line-numbers"><code>            r0 = 1;
+            r4.onConnectionSuspended(r0);
+            r0 = r4.zain;
+            r0.disconnect();
+        L_0x004b:
+            r4.zabi();
+            r4.zabo();
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiAyNTQgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MjU0fHx8MjUx">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiAyNTQgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MjU0fHx8MjUx')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiAyNTQgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MjU0fHx8MjUx').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiAyNTQgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MjU0fHx8MjUx" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiAyNTQgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MjU0fHx8MjUx' , 'ICAgICAgICAgICAgcjAgPSAxOwogICAgICAgICAgICByNC5vbkNvbm5lY3Rpb25TdXNwZW5kZWQocjApOwogICAgICAgICAgICByMCA9IHI0LnphaW47CiAgICAgICAgICAgIHIwLmRpc2Nvbm5lY3QoKTsKICAgICAgICBMXzB4MDA0YjoKICAgICAgICAgICAgcjQuemFiaSgpOwogICAgICAgICAgICByNC56YWJvKCk7Cg==');  
+                                            });
+                                            </script>
+                                            </div><div id="GoogleApiManager_java284Serv">Code @ line 284<pre data-start="281" data-line="284" data-src="GoogleApiManager.java" class="code line-numbers"><code>        @WorkerThread
+        public final void zag(@NonNull ConnectionResult connectionResult) {
+            Preconditions.checkHandlerThread(this.zail.handler);
+            this.zain.disconnect();
+            onConnectionFailed(connectionResult);
+        }
+
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiAyODQgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8Mjg0fHx8Mjgx">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiAyODQgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8Mjg0fHx8Mjgx')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiAyODQgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8Mjg0fHx8Mjgx').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiAyODQgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8Mjg0fHx8Mjgx" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiAyODQgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8Mjg0fHx8Mjgx' , 'ICAgICAgICBAV29ya2VyVGhyZWFkCiAgICAgICAgcHVibGljIGZpbmFsIHZvaWQgemFnKEBOb25OdWxsIENvbm5lY3Rpb25SZXN1bHQgY29ubmVjdGlvblJlc3VsdCkgewogICAgICAgICAgICBQcmVjb25kaXRpb25zLmNoZWNrSGFuZGxlclRocmVhZCh0aGlzLnphaWwuaGFuZGxlcik7CiAgICAgICAgICAgIHRoaXMuemFpbi5kaXNjb25uZWN0KCk7CiAgICAgICAgICAgIG9uQ29ubmVjdGlvbkZhaWxlZChjb25uZWN0aW9uUmVzdWx0KTsKICAgICAgICB9Cgo=');  
+                                            });
+                                            </script>
+                                            </div><div id="GoogleApiManager_java363Serv">Code @ line 363<pre data-start="360" data-line="363" data-src="GoogleApiManager.java" class="code line-numbers"><code>            if (!this.zain.isConnected()) {
+                this.zaim.add(com_google_android_gms_common_api_internal_zab);
+                if (this.zaiw == null || this.zaiw.hasResolution() == null) {
+                    connect();
+                } else {
+                    onConnectionFailed(this.zaiw);
+                }
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiAzNjMgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MzYzfHx8MzYw">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiAzNjMgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MzYzfHx8MzYw')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiAzNjMgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MzYzfHx8MzYw').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiAzNjMgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MzYzfHx8MzYw" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiAzNjMgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8MzYzfHx8MzYw' , 'ICAgICAgICAgICAgaWYgKCF0aGlzLnphaW4uaXNDb25uZWN0ZWQoKSkgewogICAgICAgICAgICAgICAgdGhpcy56YWltLmFkZChjb21fZ29vZ2xlX2FuZHJvaWRfZ21zX2NvbW1vbl9hcGlfaW50ZXJuYWxfemFiKTsKICAgICAgICAgICAgICAgIGlmICh0aGlzLnphaXcgPT0gbnVsbCB8fCB0aGlzLnphaXcuaGFzUmVzb2x1dGlvbigpID09IG51bGwpIHsKICAgICAgICAgICAgICAgICAgICBjb25uZWN0KCk7CiAgICAgICAgICAgICAgICB9IGVsc2UgewogICAgICAgICAgICAgICAgICAgIG9uQ29ubmVjdGlvbkZhaWxlZCh0aGlzLnphaXcpOwogICAgICAgICAgICAgICAgfQo=');  
+                                            });
+                                            </script>
+                                            </div><div id="GoogleApiManager_java472Serv">Code @ line 472<pre data-start="469" data-line="472" data-src="GoogleApiManager.java" class="code line-numbers"><code>            r3 = 1;
+            r2.onConnectionSuspended(r3);
+            r3 = r2.zain;
+            r3.disconnect();
+            return;
+            */
+            throw new UnsupportedOperationException("Method not decompiled: com.google.android.gms.common.api.internal.GoogleApiManager.zaa.zac(com.google.android.gms.common.api.internal.zab):void");
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA0NzIgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NDcyfHx8NDY5">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA0NzIgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NDcyfHx8NDY5')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA0NzIgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NDcyfHx8NDY5').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA0NzIgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NDcyfHx8NDY5" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA0NzIgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NDcyfHx8NDY5' , 'ICAgICAgICAgICAgcjMgPSAxOwogICAgICAgICAgICByMi5vbkNvbm5lY3Rpb25TdXNwZW5kZWQocjMpOwogICAgICAgICAgICByMyA9IHIyLnphaW47CiAgICAgICAgICAgIHIzLmRpc2Nvbm5lY3QoKTsKICAgICAgICAgICAgcmV0dXJuOwogICAgICAgICAgICAqLwogICAgICAgICAgICB0aHJvdyBuZXcgVW5zdXBwb3J0ZWRPcGVyYXRpb25FeGNlcHRpb24oIk1ldGhvZCBub3QgZGVjb21waWxlZDogY29tLmdvb2dsZS5hbmRyb2lkLmdtcy5jb21tb24uYXBpLmludGVybmFsLkdvb2dsZUFwaU1hbmFnZXIuemFhLnphYyhjb20uZ29vZ2xlLmFuZHJvaWQuZ21zLmNvbW1vbi5hcGkuaW50ZXJuYWwuemFiKTp2b2lkIik7Cg==');  
+                                            });
+                                            </script>
+                                            </div><div id="GoogleApiManager_java491Serv">Code @ line 491<pre data-start="488" data-line="491" data-src="GoogleApiManager.java" class="code line-numbers"><code>        public final void resume() {
+            Preconditions.checkHandlerThread(this.zail.handler);
+            if (this.zaiu) {
+                connect();
+            }
+        }
+
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA0OTEgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NDkxfHx8NDg4">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA0OTEgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NDkxfHx8NDg4')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA0OTEgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NDkxfHx8NDg4').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA0OTEgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NDkxfHx8NDg4" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA0OTEgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NDkxfHx8NDg4' , 'ICAgICAgICBwdWJsaWMgZmluYWwgdm9pZCByZXN1bWUoKSB7CiAgICAgICAgICAgIFByZWNvbmRpdGlvbnMuY2hlY2tIYW5kbGVyVGhyZWFkKHRoaXMuemFpbC5oYW5kbGVyKTsKICAgICAgICAgICAgaWYgKHRoaXMuemFpdSkgewogICAgICAgICAgICAgICAgY29ubmVjdCgpOwogICAgICAgICAgICB9CiAgICAgICAgfQoK');  
+                                            });
+                                            </script>
+                                            </div><div id="GoogleApiManager_java516Serv">Code @ line 516<pre data-start="513" data-line="516" data-src="GoogleApiManager.java" class="code line-numbers"><code>                    status = new Status(8, "API failed to connect while resuming due to an unknown error.");
+                }
+                zac(status);
+                this.zain.disconnect();
+            }
+        }
+
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA1MTYgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NTE2fHx8NTEz">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA1MTYgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NTE2fHx8NTEz')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA1MTYgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NTE2fHx8NTEz').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA1MTYgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NTE2fHx8NTEz" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA1MTYgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NTE2fHx8NTEz' , 'ICAgICAgICAgICAgICAgICAgICBzdGF0dXMgPSBuZXcgU3RhdHVzKDgsICJBUEkgZmFpbGVkIHRvIGNvbm5lY3Qgd2hpbGUgcmVzdW1pbmcgZHVlIHRvIGFuIHVua25vd24gZXJyb3IuIik7CiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICB6YWMoc3RhdHVzKTsKICAgICAgICAgICAgICAgIHRoaXMuemFpbi5kaXNjb25uZWN0KCk7CiAgICAgICAgICAgIH0KICAgICAgICB9Cgo=');  
+                                            });
+                                            </script>
+                                            </div><div id="GoogleApiManager_java542Serv">Code @ line 542<pre data-start="539" data-line="542" data-src="GoogleApiManager.java" class="code line-numbers"><code>                }
+                return false;
+            }
+            this.zain.disconnect();
+            return true;
+        }
+
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA1NDIgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NTQyfHx8NTM5">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA1NDIgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NTQyfHx8NTM5')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA1NDIgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NTQyfHx8NTM5').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA1NDIgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NTQyfHx8NTM5" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA1NDIgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NTQyfHx8NTM5' , 'ICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgIHJldHVybiBmYWxzZTsKICAgICAgICAgICAgfQogICAgICAgICAgICB0aGlzLnphaW4uZGlzY29ubmVjdCgpOwogICAgICAgICAgICByZXR1cm4gdHJ1ZTsKICAgICAgICB9Cgo=');  
+                                            });
+                                            </script>
+                                            </div><div id="GoogleApiManager_java547Serv">Code @ line 547<pre data-start="544" data-line="547" data-src="GoogleApiManager.java" class="code line-numbers"><code>        }
+
+        @WorkerThread
+        public final void connect() {
+            Preconditions.checkHandlerThread(this.zail.handler);
+            if (!this.zain.isConnected()) {
+                if (!this.zain.isConnecting()) {
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA1NDcgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NTQ3fHx8NTQ0">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA1NDcgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NTQ3fHx8NTQ0')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA1NDcgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NTQ3fHx8NTQ0').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA1NDcgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NTQ3fHx8NTQ0" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA1NDcgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NTQ3fHx8NTQ0' , 'ICAgICAgICB9CgogICAgICAgIEBXb3JrZXJUaHJlYWQKICAgICAgICBwdWJsaWMgZmluYWwgdm9pZCBjb25uZWN0KCkgewogICAgICAgICAgICBQcmVjb25kaXRpb25zLmNoZWNrSGFuZGxlclRocmVhZCh0aGlzLnphaWwuaGFuZGxlcik7CiAgICAgICAgICAgIGlmICghdGhpcy56YWluLmlzQ29ubmVjdGVkKCkpIHsKICAgICAgICAgICAgICAgIGlmICghdGhpcy56YWluLmlzQ29ubmVjdGluZygpKSB7Cg==');  
+                                            });
+                                            </script>
+                                            </div><div id="GoogleApiManager_java633Serv">Code @ line 633<pre data-start="630" data-line="633" data-src="GoogleApiManager.java" class="code line-numbers"><code>        private final void zaa(zab com_google_android_gms_common_api_internal_GoogleApiManager_zab) {
+            if (this.zaiv.contains(com_google_android_gms_common_api_internal_GoogleApiManager_zab) != null &amp;&amp; this.zaiu == null) {
+                if (this.zain.isConnected() == null) {
+                    connect();
+                    return;
+                }
+                zabi();
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA2MzMgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjMzfHx8NjMw">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA2MzMgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjMzfHx8NjMw')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA2MzMgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjMzfHx8NjMw').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA2MzMgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjMzfHx8NjMw" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA2MzMgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjMzfHx8NjMw' , 'ICAgICAgICBwcml2YXRlIGZpbmFsIHZvaWQgemFhKHphYiBjb21fZ29vZ2xlX2FuZHJvaWRfZ21zX2NvbW1vbl9hcGlfaW50ZXJuYWxfR29vZ2xlQXBpTWFuYWdlcl96YWIpIHsKICAgICAgICAgICAgaWYgKHRoaXMuemFpdi5jb250YWlucyhjb21fZ29vZ2xlX2FuZHJvaWRfZ21zX2NvbW1vbl9hcGlfaW50ZXJuYWxfR29vZ2xlQXBpTWFuYWdlcl96YWIpICE9IG51bGwgJiYgdGhpcy56YWl1ID09IG51bGwpIHsKICAgICAgICAgICAgICAgIGlmICh0aGlzLnphaW4uaXNDb25uZWN0ZWQoKSA9PSBudWxsKSB7CiAgICAgICAgICAgICAgICAgICAgY29ubmVjdCgpOwogICAgICAgICAgICAgICAgICAgIHJldHVybjsKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgIHphYmkoKTsK');  
+                                            });
+                                            </script>
+                                            </div><div id="GoogleApiManager_java729Serv">Code @ line 729<pre data-start="726" data-line="729" data-src="GoogleApiManager.java" class="code line-numbers"><code>        if (com_google_android_gms_common_api_internal_GoogleApiManager_zaa.requiresSignIn() != null) {
+            this.zaik.add(zak);
+        }
+        com_google_android_gms_common_api_internal_GoogleApiManager_zaa.connect();
+    }
+
+    public final void zaa(@NonNull zaae com_google_android_gms_common_api_internal_zaae) {
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA3MjkgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NzI5fHx8NzI2">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA3MjkgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NzI5fHx8NzI2')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA3MjkgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NzI5fHx8NzI2').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA3MjkgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NzI5fHx8NzI2" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA3MjkgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NzI5fHx8NzI2' , 'ICAgICAgICBpZiAoY29tX2dvb2dsZV9hbmRyb2lkX2dtc19jb21tb25fYXBpX2ludGVybmFsX0dvb2dsZUFwaU1hbmFnZXJfemFhLnJlcXVpcmVzU2lnbkluKCkgIT0gbnVsbCkgewogICAgICAgICAgICB0aGlzLnphaWsuYWRkKHphayk7CiAgICAgICAgfQogICAgICAgIGNvbV9nb29nbGVfYW5kcm9pZF9nbXNfY29tbW9uX2FwaV9pbnRlcm5hbF9Hb29nbGVBcGlNYW5hZ2VyX3phYS5jb25uZWN0KCk7CiAgICB9CgogICAgcHVibGljIGZpbmFsIHZvaWQgemFhKEBOb25OdWxsIHphYWUgY29tX2dvb2dsZV9hbmRyb2lkX2dtc19jb21tb25fYXBpX2ludGVybmFsX3phYWUpIHsK');  
+                                            });
+                                            </script>
+                                            </div><div id="GoogleApiManager_java823Serv">Code @ line 823<pre data-start="820" data-line="823" data-src="GoogleApiManager.java" class="code line-numbers"><code>                        com_google_android_gms_common_api_internal_zak.zaa(obtainMessage2, com_google_android_gms_common_api_internal_GoogleApiManager_zaa.zabm(), null);
+                    } else {
+                        com_google_android_gms_common_api_internal_GoogleApiManager_zaa.zaa(com_google_android_gms_common_api_internal_zak);
+                        com_google_android_gms_common_api_internal_GoogleApiManager_zaa.connect();
+                    }
+                }
+                break;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA4MjMgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8ODIzfHx8ODIw">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA4MjMgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8ODIzfHx8ODIw')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA4MjMgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8ODIzfHx8ODIw').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA4MjMgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8ODIzfHx8ODIw" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA4MjMgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8ODIzfHx8ODIw' , 'ICAgICAgICAgICAgICAgICAgICAgICAgY29tX2dvb2dsZV9hbmRyb2lkX2dtc19jb21tb25fYXBpX2ludGVybmFsX3phay56YWEob2J0YWluTWVzc2FnZTIsIGNvbV9nb29nbGVfYW5kcm9pZF9nbXNfY29tbW9uX2FwaV9pbnRlcm5hbF9Hb29nbGVBcGlNYW5hZ2VyX3phYS56YWJtKCksIG51bGwpOwogICAgICAgICAgICAgICAgICAgIH0gZWxzZSB7CiAgICAgICAgICAgICAgICAgICAgICAgIGNvbV9nb29nbGVfYW5kcm9pZF9nbXNfY29tbW9uX2FwaV9pbnRlcm5hbF9Hb29nbGVBcGlNYW5hZ2VyX3phYS56YWEoY29tX2dvb2dsZV9hbmRyb2lkX2dtc19jb21tb25fYXBpX2ludGVybmFsX3phayk7CiAgICAgICAgICAgICAgICAgICAgICAgIGNvbV9nb29nbGVfYW5kcm9pZF9nbXNfY29tbW9uX2FwaV9pbnRlcm5hbF9Hb29nbGVBcGlNYW5hZ2VyX3phYS5jb25uZWN0KCk7CiAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgYnJlYWs7Cg==');  
+                                            });
+                                            </script>
+                                            </div><div id="GoogleApiManager_java830Serv">Code @ line 830<pre data-start="827" data-line="830" data-src="GoogleApiManager.java" class="code line-numbers"><code>            case 3:
+                for (zaa com_google_android_gms_common_api_internal_GoogleApiManager_zaa22 : this.zaih.values()) {
+                    com_google_android_gms_common_api_internal_GoogleApiManager_zaa22.zabl();
+                    com_google_android_gms_common_api_internal_GoogleApiManager_zaa22.connect();
+                }
+                break;
+            case 4:
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA4MzAgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8ODMwfHx8ODI3">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA4MzAgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8ODMwfHx8ODI3')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA4MzAgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8ODMwfHx8ODI3').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA4MzAgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8ODMwfHx8ODI3" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY29tbW9uL2FwaS9pbnRlcm5hbC9Hb29nbGVBcGlNYW5hZ2VyLmphdmF8fHxsaW5lOiA4MzAgOiBTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8NjB8fHxTZXJ2ZXJTb2NrZXR8bmV0LlNlcnZlclNvY2tldHxjb25uZWN0WyhdWyldfHx8ODMwfHx8ODI3' , 'ICAgICAgICAgICAgY2FzZSAzOgogICAgICAgICAgICAgICAgZm9yICh6YWEgY29tX2dvb2dsZV9hbmRyb2lkX2dtc19jb21tb25fYXBpX2ludGVybmFsX0dvb2dsZUFwaU1hbmFnZXJfemFhMjIgOiB0aGlzLnphaWgudmFsdWVzKCkpIHsKICAgICAgICAgICAgICAgICAgICBjb21fZ29vZ2xlX2FuZHJvaWRfZ21zX2NvbW1vbl9hcGlfaW50ZXJuYWxfR29vZ2xlQXBpTWFuYWdlcl96YWEyMi56YWJsKCk7CiAgICAgICAgICAgICAgICAgICAgY29tX2dvb2dsZV9hbmRyb2lkX2dtc19jb21tb25fYXBpX2ludGVybmFsX0dvb2dsZUFwaU1hbmFnZXJfemFhMjIuY29ubmVjdCgpOwogICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgYnJlYWs7CiAgICAgICAgICAgIGNhc2UgNDoK');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="GoogleApiManager.java" data-line="254,284,363,472,491,516,542,547,633,729,823,830," class="code line-numbers"><code>package com.google.android.gms.common.api.internal;
+
+import android.app.Application;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Handler.Callback;
+import android.os.HandlerThread;
+import android.os.Looper;
+import android.os.Message;
+import android.util.Log;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.WorkerThread;
+import androidx.collection.ArrayMap;
+import androidx.collection.ArraySet;
+import com.google.android.gms.cast.framework.media.NotificationOptions;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.Feature;
+import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.common.annotation.KeepForSdk;
+import com.google.android.gms.common.api.Api;
+import com.google.android.gms.common.api.Api.AnyClient;
+import com.google.android.gms.common.api.Api.ApiOptions;
+import com.google.android.gms.common.api.Api.Client;
+import com.google.android.gms.common.api.GoogleApi;
+import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
+import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
+import com.google.android.gms.common.api.Result;
+import com.google.android.gms.common.api.Scope;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.common.api.UnsupportedApiCallException;
+import com.google.android.gms.common.api.internal.BaseImplementation.ApiMethodImpl;
+import com.google.android.gms.common.api.internal.ListenerHolder.ListenerKey;
+import com.google.android.gms.common.internal.BaseGmsClient.ConnectionProgressReportCallbacks;
+import com.google.android.gms.common.internal.GoogleApiAvailabilityCache;
+import com.google.android.gms.common.internal.IAccountAccessor;
+import com.google.android.gms.common.internal.Objects;
+import com.google.android.gms.common.internal.Preconditions;
+import com.google.android.gms.common.internal.SimpleClientAdapter;
+import com.google.android.gms.common.util.ArrayUtils;
+import com.google.android.gms.common.util.PlatformVersion;
+import com.google.android.gms.internal.base.zal;
+import com.google.android.gms.signin.zad;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.TaskCompletionSource;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Queue;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
+import javax.annotation.concurrent.GuardedBy;
+
+@KeepForSdk
+public class GoogleApiManager implements Callback {
+    private static final Object lock = new Object();
+    public static final Status zahw = new Status(4, "Sign-out occurred while this API call was in progress.");
+    private static final Status zahx = new Status(4, "The user must be signed in to make this API call.");
+    @GuardedBy("lock")
+    private static GoogleApiManager zaib;
+    private final Handler handler;
+    private long zahy = 5000;
+    private long zahz = 120000;
+    private long zaia = NotificationOptions.SKIP_STEP_TEN_SECONDS_IN_MS;
+    private final Context zaic;
+    private final GoogleApiAvailability zaid;
+    private final GoogleApiAvailabilityCache zaie;
+    private final AtomicInteger zaif = new AtomicInteger(1);
+    private final AtomicInteger zaig = new AtomicInteger(0);
+    private final Map&lt;zai&lt;?&gt;, zaa&lt;?&gt;&gt; zaih = new ConcurrentHashMap(5, 0.75f, 1);
+    @GuardedBy("lock")
+    private zaae zaii = null;
+    @GuardedBy("lock")
+    private final Set&lt;zai&lt;?&gt;&gt; zaij = new ArraySet();
+    private final Set&lt;zai&lt;?&gt;&gt; zaik = new ArraySet();
+
+    private static class zab {
+        private final zai&lt;?&gt; zaja;
+        private final Feature zajb;
+
+        private zab(zai&lt;?&gt; com_google_android_gms_common_api_internal_zai_, Feature feature) {
+            this.zaja = com_google_android_gms_common_api_internal_zai_;
+            this.zajb = feature;
+        }
+
+        public final boolean equals(Object obj) {
+            if (obj == null || !(obj instanceof zab)) {
+                return false;
+            }
+            zab com_google_android_gms_common_api_internal_GoogleApiManager_zab = (zab) obj;
+            if (!Objects.equal(this.zaja, com_google_android_gms_common_api_internal_GoogleApiManager_zab.zaja) || Objects.equal(this.zajb, com_google_android_gms_common_api_internal_GoogleApiManager_zab.zajb) == null) {
+                return false;
+            }
+            return true;
+        }
+
+        public final int hashCode() {
+            return Objects.hashCode(this.zaja, this.zajb);
+        }
+
+        public final String toString() {
+            return Objects.toStringHelper(this).add("key", this.zaja).add("feature", this.zajb).toString();
+        }
+    }
+
+    private class zac implements zach, ConnectionProgressReportCallbacks {
+        private final zai&lt;?&gt; zafp;
+        final /* synthetic */ GoogleApiManager zail;
+        private final Client zain;
+        private IAccountAccessor zajc = null;
+        private Set&lt;Scope&gt; zajd = null;
+        private boolean zaje = null;
+
+        public zac(GoogleApiManager googleApiManager, Client client, zai&lt;?&gt; com_google_android_gms_common_api_internal_zai_) {
+            this.zail = googleApiManager;
+            this.zain = client;
+            this.zafp = com_google_android_gms_common_api_internal_zai_;
+        }
+
+        public final void onReportServiceBinding(@NonNull ConnectionResult connectionResult) {
+            this.zail.handler.post(new zabo(this, connectionResult));
+        }
+
+        @WorkerThread
+        public final void zag(ConnectionResult connectionResult) {
+            ((zaa) this.zail.zaih.get(this.zafp)).zag(connectionResult);
+        }
+
+        @WorkerThread
+        public final void zaa(IAccountAccessor iAccountAccessor, Set&lt;Scope&gt; set) {
+            if (iAccountAccessor != null) {
+                if (set != null) {
+                    this.zajc = iAccountAccessor;
+                    this.zajd = set;
+                    zabr();
+                    return;
+                }
+            }
+            Log.wtf("GoogleApiManager", "Received null response from onSignInSuccess", new Exception());
+            zag(new ConnectionResult(4));
+        }
+
+        @WorkerThread
+        private final void zabr() {
+            if (this.zaje &amp;&amp; this.zajc != null) {
+                this.zain.getRemoteService(this.zajc, this.zajd);
+            }
+        }
+    }
+
+    public class zaa&lt;O extends ApiOptions&gt; implements ConnectionCallbacks, OnConnectionFailedListener, zar {
+        private final zai&lt;O&gt; zafp;
+        final /* synthetic */ GoogleApiManager zail;
+        private final Queue&lt;zab&gt; zaim = new LinkedList();
+        private final Client zain;
+        private final AnyClient zaio;
+        private final zaab zaip;
+        private final Set&lt;zak&gt; zaiq = new HashSet();
+        private final Map&lt;ListenerKey&lt;?&gt;, zabw&gt; zair = new HashMap();
+        private final int zais;
+        private final zace zait;
+        private boolean zaiu;
+        private final List&lt;zab&gt; zaiv = new ArrayList();
+        private ConnectionResult zaiw = null;
+
+        @WorkerThread
+        public zaa(GoogleApiManager googleApiManager, GoogleApi&lt;O&gt; googleApi) {
+            this.zail = googleApiManager;
+            this.zain = googleApi.zaa(googleApiManager.handler.getLooper(), this);
+            if (this.zain instanceof SimpleClientAdapter) {
+                this.zaio = ((SimpleClientAdapter) this.zain).getClient();
+            } else {
+                this.zaio = this.zain;
+            }
+            this.zafp = googleApi.zak();
+            this.zaip = new zaab();
+            this.zais = googleApi.getInstanceId();
+            if (this.zain.requiresSignIn()) {
+                this.zait = googleApi.zaa(googleApiManager.zaic, googleApiManager.handler);
+            } else {
+                this.zait = null;
+            }
+        }
+
+        public final void onConnected(@Nullable Bundle bundle) {
+            if (Looper.myLooper() == this.zail.handler.getLooper()) {
+                zabg();
+            } else {
+                this.zail.handler.post(new zabj(this));
+            }
+        }
+
+        @androidx.annotation.WorkerThread
+        private final void zabg() {
+            /* JADX: method processing error */
+/*
+Error: java.lang.NullPointerException
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.searchTryCatchDominators(ProcessTryCatchRegions.java:75)
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.process(ProcessTryCatchRegions.java:45)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.postProcessRegions(RegionMakerVisitor.java:63)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.visit(RegionMakerVisitor.java:58)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:31)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:17)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:14)
+	at jadx.core.ProcessClass.process(ProcessClass.java:37)
+	at jadx.core.ProcessClass.processDependencies(ProcessClass.java:59)
+	at jadx.core.ProcessClass.process(ProcessClass.java:42)
+	at jadx.api.JadxDecompiler.processClass(JadxDecompiler.java:306)
+	at jadx.api.JavaClass.decompile(JavaClass.java:62)
+	at jadx.api.JadxDecompiler$1.run(JadxDecompiler.java:199)
+*/
+            /*
+            r4 = this;
+            r4.zabl();
+            r0 = com.google.android.gms.common.ConnectionResult.RESULT_SUCCESS;
+            r4.zai(r0);
+            r4.zabn();
+            r0 = r4.zair;
+            r0 = r0.values();
+            r0 = r0.iterator();
+        L_0x0015:
+            r1 = r0.hasNext();
+            if (r1 == 0) goto L_0x004b;
+        L_0x001b:
+            r1 = r0.next();
+            r1 = (com.google.android.gms.common.api.internal.zabw) r1;
+            r2 = r1.zajw;
+            r2 = r2.getRequiredFeatures();
+            r2 = r4.zaa(r2);
+            if (r2 == 0) goto L_0x0031;
+        L_0x002d:
+            r0.remove();
+            goto L_0x0015;
+        L_0x0031:
+            r1 = r1.zajw;	 Catch:{ DeadObjectException -&gt; 0x0042, RemoteException -&gt; 0x003e }
+            r2 = r4.zaio;	 Catch:{ DeadObjectException -&gt; 0x0042, RemoteException -&gt; 0x003e }
+            r3 = new com.google.android.gms.tasks.TaskCompletionSource;	 Catch:{ DeadObjectException -&gt; 0x0042, RemoteException -&gt; 0x003e }
+            r3.&lt;init&gt;();	 Catch:{ DeadObjectException -&gt; 0x0042, RemoteException -&gt; 0x003e }
+            r1.registerListener(r2, r3);	 Catch:{ DeadObjectException -&gt; 0x0042, RemoteException -&gt; 0x003e }
+            goto L_0x0015;
+        L_0x003e:
+            r0.remove();
+            goto L_0x0015;
+        L_0x0042:
+            r0 = 1;
+            r4.onConnectionSuspended(r0);
+            r0 = r4.zain;
+            r0.disconnect();
+        L_0x004b:
+            r4.zabi();
+            r4.zabo();
+            return;
+            */
+            throw new UnsupportedOperationException("Method not decompiled: com.google.android.gms.common.api.internal.GoogleApiManager.zaa.zabg():void");
+        }
+
+        public final void onConnectionSuspended(int i) {
+            if (Looper.myLooper() == this.zail.handler.getLooper()) {
+                zabh();
+            } else {
+                this.zail.handler.post(new zabk(this));
+            }
+        }
+
+        @WorkerThread
+        private final void zabh() {
+            zabl();
+            this.zaiu = true;
+            this.zaip.zaai();
+            this.zail.handler.sendMessageDelayed(Message.obtain(this.zail.handler, 9, this.zafp), this.zail.zahy);
+            this.zail.handler.sendMessageDelayed(Message.obtain(this.zail.handler, 11, this.zafp), this.zail.zahz);
+            this.zail.zaie.flush();
+        }
+
+        @WorkerThread
+        public final void zag(@NonNull ConnectionResult connectionResult) {
+            Preconditions.checkHandlerThread(this.zail.handler);
+            this.zain.disconnect();
+            onConnectionFailed(connectionResult);
+        }
+
+        @WorkerThread
+        private final boolean zah(@NonNull ConnectionResult connectionResult) {
+            synchronized (GoogleApiManager.lock) {
+                if (this.zail.zaii == null || !this.zail.zaij.contains(this.zafp)) {
+                    return null;
+                }
+                this.zail.zaii.zab(connectionResult, this.zais);
+                return true;
+            }
+        }
+
+        public final void zaa(ConnectionResult connectionResult, Api&lt;?&gt; api, boolean z) {
+            if (Looper.myLooper() == this.zail.handler.getLooper()) {
+                onConnectionFailed(connectionResult);
+            } else {
+                this.zail.handler.post(new zabl(this, connectionResult));
+            }
+        }
+
+        @WorkerThread
+        public final void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+            Preconditions.checkHandlerThread(this.zail.handler);
+            if (this.zait != null) {
+                this.zait.zabs();
+            }
+            zabl();
+            this.zail.zaie.flush();
+            zai(connectionResult);
+            if (connectionResult.getErrorCode() == 4) {
+                zac(GoogleApiManager.zahx);
+            } else if (this.zaim.isEmpty()) {
+                this.zaiw = connectionResult;
+            } else {
+                if (!(zah(connectionResult) || this.zail.zac(connectionResult, this.zais))) {
+                    if (connectionResult.getErrorCode() == 18) {
+                        this.zaiu = true;
+                    }
+                    if (this.zaiu != null) {
+                        this.zail.handler.sendMessageDelayed(Message.obtain(this.zail.handler, 9, this.zafp), this.zail.zahy);
+                        return;
+                    }
+                    String zan = this.zafp.zan();
+                    StringBuilder stringBuilder = new StringBuilder(String.valueOf(zan).length() + 38);
+                    stringBuilder.append("API: ");
+                    stringBuilder.append(zan);
+                    stringBuilder.append(" is not available on this device.");
+                    zac(new Status(17, stringBuilder.toString()));
+                }
+            }
+        }
+
+        @WorkerThread
+        private final void zabi() {
+            ArrayList arrayList = new ArrayList(this.zaim);
+            int size = arrayList.size();
+            int i = 0;
+            while (i &lt; size) {
+                Object obj = arrayList.get(i);
+                i++;
+                zab com_google_android_gms_common_api_internal_zab = (zab) obj;
+                if (!this.zain.isConnected()) {
+                    return;
+                }
+                if (zab(com_google_android_gms_common_api_internal_zab)) {
+                    this.zaim.remove(com_google_android_gms_common_api_internal_zab);
+                }
+            }
+        }
+
+        @WorkerThread
+        public final void zaa(zab com_google_android_gms_common_api_internal_zab) {
+            Preconditions.checkHandlerThread(this.zail.handler);
+            if (!this.zain.isConnected()) {
+                this.zaim.add(com_google_android_gms_common_api_internal_zab);
+                if (this.zaiw == null || this.zaiw.hasResolution() == null) {
+                    connect();
+                } else {
+                    onConnectionFailed(this.zaiw);
+                }
+            } else if (zab(com_google_android_gms_common_api_internal_zab)) {
+                zabo();
+            } else {
+                this.zaim.add(com_google_android_gms_common_api_internal_zab);
+            }
+        }
+
+        @WorkerThread
+        public final void zabj() {
+            Preconditions.checkHandlerThread(this.zail.handler);
+            zac(GoogleApiManager.zahw);
+            this.zaip.zaah();
+            for (ListenerKey com_google_android_gms_common_api_internal_zah : (ListenerKey[]) this.zair.keySet().toArray(new ListenerKey[this.zair.size()])) {
+                zaa(new zah(com_google_android_gms_common_api_internal_zah, new TaskCompletionSource()));
+            }
+            zai(new ConnectionResult(4));
+            if (this.zain.isConnected()) {
+                this.zain.onUserSignOut(new zabm(this));
+            }
+        }
+
+        public final Client zaab() {
+            return this.zain;
+        }
+
+        public final Map&lt;ListenerKey&lt;?&gt;, zabw&gt; zabk() {
+            return this.zair;
+        }
+
+        @WorkerThread
+        public final void zabl() {
+            Preconditions.checkHandlerThread(this.zail.handler);
+            this.zaiw = null;
+        }
+
+        @WorkerThread
+        public final ConnectionResult zabm() {
+            Preconditions.checkHandlerThread(this.zail.handler);
+            return this.zaiw;
+        }
+
+        @WorkerThread
+        private final boolean zab(zab com_google_android_gms_common_api_internal_zab) {
+            if (com_google_android_gms_common_api_internal_zab instanceof zac) {
+                zac com_google_android_gms_common_api_internal_zac = (zac) com_google_android_gms_common_api_internal_zab;
+                Feature zaa = zaa(com_google_android_gms_common_api_internal_zac.zab(this));
+                if (zaa == null) {
+                    zac(com_google_android_gms_common_api_internal_zab);
+                    return true;
+                }
+                if (com_google_android_gms_common_api_internal_zac.zac(this) != null) {
+                    com_google_android_gms_common_api_internal_zab = new zab(this.zafp, zaa);
+                    int indexOf = this.zaiv.indexOf(com_google_android_gms_common_api_internal_zab);
+                    if (indexOf &gt;= 0) {
+                        zab com_google_android_gms_common_api_internal_GoogleApiManager_zab = (zab) this.zaiv.get(indexOf);
+                        this.zail.handler.removeMessages(15, com_google_android_gms_common_api_internal_GoogleApiManager_zab);
+                        this.zail.handler.sendMessageDelayed(Message.obtain(this.zail.handler, 15, com_google_android_gms_common_api_internal_GoogleApiManager_zab), this.zail.zahy);
+                    } else {
+                        this.zaiv.add(com_google_android_gms_common_api_internal_zab);
+                        this.zail.handler.sendMessageDelayed(Message.obtain(this.zail.handler, 15, com_google_android_gms_common_api_internal_zab), this.zail.zahy);
+                        this.zail.handler.sendMessageDelayed(Message.obtain(this.zail.handler, 16, com_google_android_gms_common_api_internal_zab), this.zail.zahz);
+                        com_google_android_gms_common_api_internal_zab = new ConnectionResult(2, null);
+                        if (!zah(com_google_android_gms_common_api_internal_zab)) {
+                            this.zail.zac(com_google_android_gms_common_api_internal_zab, this.zais);
+                        }
+                    }
+                } else {
+                    com_google_android_gms_common_api_internal_zac.zaa(new UnsupportedApiCallException(zaa));
+                }
+                return null;
+            }
+            zac(com_google_android_gms_common_api_internal_zab);
+            return true;
+        }
+
+        @androidx.annotation.WorkerThread
+        private final void zac(com.google.android.gms.common.api.internal.zab r3) {
+            /* JADX: method processing error */
+/*
+Error: java.lang.NullPointerException
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.searchTryCatchDominators(ProcessTryCatchRegions.java:75)
+	at jadx.core.dex.visitors.regions.ProcessTryCatchRegions.process(ProcessTryCatchRegions.java:45)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.postProcessRegions(RegionMakerVisitor.java:63)
+	at jadx.core.dex.visitors.regions.RegionMakerVisitor.visit(RegionMakerVisitor.java:58)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:31)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:17)
+	at jadx.core.dex.visitors.DepthTraversal.visit(DepthTraversal.java:14)
+	at jadx.core.ProcessClass.process(ProcessClass.java:37)
+	at jadx.core.ProcessClass.processDependencies(ProcessClass.java:59)
+	at jadx.core.ProcessClass.process(ProcessClass.java:42)
+	at jadx.api.JadxDecompiler.processClass(JadxDecompiler.java:306)
+	at jadx.api.JavaClass.decompile(JavaClass.java:62)
+	at jadx.api.JadxDecompiler$1.run(JadxDecompiler.java:199)
+*/
+            /*
+            r2 = this;
+            r0 = r2.zaip;
+            r1 = r2.requiresSignIn();
+            r3.zaa(r0, r1);
+            r3.zaa(r2);	 Catch:{ DeadObjectException -&gt; 0x000d }
+            return;
+        L_0x000d:
+            r3 = 1;
+            r2.onConnectionSuspended(r3);
+            r3 = r2.zain;
+            r3.disconnect();
+            return;
+            */
+            throw new UnsupportedOperationException("Method not decompiled: com.google.android.gms.common.api.internal.GoogleApiManager.zaa.zac(com.google.android.gms.common.api.internal.zab):void");
+        }
+
+        @WorkerThread
+        public final void zac(Status status) {
+            Preconditions.checkHandlerThread(this.zail.handler);
+            for (zab zaa : this.zaim) {
+                zaa.zaa(status);
+            }
+            this.zaim.clear();
+        }
+
+        @WorkerThread
+        public final void resume() {
+            Preconditions.checkHandlerThread(this.zail.handler);
+            if (this.zaiu) {
+                connect();
+            }
+        }
+
+        @WorkerThread
+        private final void zabn() {
+            if (this.zaiu) {
+                this.zail.handler.removeMessages(11, this.zafp);
+                this.zail.handler.removeMessages(9, this.zafp);
+                this.zaiu = false;
+            }
+        }
+
+        @WorkerThread
+        public final void zaav() {
+            Preconditions.checkHandlerThread(this.zail.handler);
+            if (this.zaiu) {
+                Status status;
+                zabn();
+                if (this.zail.zaid.isGooglePlayServicesAvailable(this.zail.zaic) == 18) {
+                    status = new Status(8, "Connection timed out while waiting for Google Play services update to complete.");
+                } else {
+                    status = new Status(8, "API failed to connect while resuming due to an unknown error.");
+                }
+                zac(status);
+                this.zain.disconnect();
+            }
+        }
+
+        private final void zabo() {
+            this.zail.handler.removeMessages(12, this.zafp);
+            this.zail.handler.sendMessageDelayed(this.zail.handler.obtainMessage(12, this.zafp), this.zail.zaia);
+        }
+
+        @WorkerThread
+        public final boolean zabp() {
+            return zac(true);
+        }
+
+        @WorkerThread
+        private final boolean zac(boolean z) {
+            Preconditions.checkHandlerThread(this.zail.handler);
+            if (!this.zain.isConnected() || this.zair.size() != 0) {
+                return false;
+            }
+            if (this.zaip.zaag()) {
+                if (z) {
+                    zabo();
+                }
+                return false;
+            }
+            this.zain.disconnect();
+            return true;
+        }
+
+        @WorkerThread
+        public final void connect() {
+            Preconditions.checkHandlerThread(this.zail.handler);
+            if (!this.zain.isConnected()) {
+                if (!this.zain.isConnecting()) {
+                    int clientAvailability = this.zail.zaie.getClientAvailability(this.zail.zaic, this.zain);
+                    if (clientAvailability != 0) {
+                        onConnectionFailed(new ConnectionResult(clientAvailability, null));
+                        return;
+                    }
+                    zach com_google_android_gms_common_api_internal_GoogleApiManager_zac = new zac(this.zail, this.zain, this.zafp);
+                    if (this.zain.requiresSignIn()) {
+                        this.zait.zaa(com_google_android_gms_common_api_internal_GoogleApiManager_zac);
+                    }
+                    this.zain.connect(com_google_android_gms_common_api_internal_GoogleApiManager_zac);
+                }
+            }
+        }
+
+        @WorkerThread
+        public final void zaa(zak com_google_android_gms_common_api_internal_zak) {
+            Preconditions.checkHandlerThread(this.zail.handler);
+            this.zaiq.add(com_google_android_gms_common_api_internal_zak);
+        }
+
+        @WorkerThread
+        private final void zai(ConnectionResult connectionResult) {
+            for (zak com_google_android_gms_common_api_internal_zak : this.zaiq) {
+                String str = null;
+                if (Objects.equal(connectionResult, ConnectionResult.RESULT_SUCCESS)) {
+                    str = this.zain.getEndpointPackageName();
+                }
+                com_google_android_gms_common_api_internal_zak.zaa(this.zafp, connectionResult, str);
+            }
+            this.zaiq.clear();
+        }
+
+        final boolean isConnected() {
+            return this.zain.isConnected();
+        }
+
+        public final boolean requiresSignIn() {
+            return this.zain.requiresSignIn();
+        }
+
+        public final int getInstanceId() {
+            return this.zais;
+        }
+
+        final zad zabq() {
+            return this.zait == null ? null : this.zait.zabq();
+        }
+
+        @WorkerThread
+        @Nullable
+        private final Feature zaa(@Nullable Feature[] featureArr) {
+            if (featureArr != null) {
+                if (featureArr.length != 0) {
+                    Feature[] availableFeatures = this.zain.getAvailableFeatures();
+                    int i = 0;
+                    if (availableFeatures == null) {
+                        availableFeatures = new Feature[0];
+                    }
+                    Map arrayMap = new ArrayMap(availableFeatures.length);
+                    for (Feature feature : availableFeatures) {
+                        arrayMap.put(feature.getName(), Long.valueOf(feature.getVersion()));
+                    }
+                    int length = featureArr.length;
+                    while (i &lt; length) {
+                        Feature feature2 = featureArr[i];
+                        if (arrayMap.containsKey(feature2.getName())) {
+                            if (((Long) arrayMap.get(feature2.getName())).longValue() &gt;= feature2.getVersion()) {
+                                i++;
+                            }
+                        }
+                        return feature2;
+                    }
+                    return null;
+                }
+            }
+            return null;
+        }
+
+        @WorkerThread
+        private final void zaa(zab com_google_android_gms_common_api_internal_GoogleApiManager_zab) {
+            if (this.zaiv.contains(com_google_android_gms_common_api_internal_GoogleApiManager_zab) != null &amp;&amp; this.zaiu == null) {
+                if (this.zain.isConnected() == null) {
+                    connect();
+                    return;
+                }
+                zabi();
+            }
+        }
+
+        @WorkerThread
+        private final void zab(zab com_google_android_gms_common_api_internal_GoogleApiManager_zab) {
+            if (this.zaiv.remove(com_google_android_gms_common_api_internal_GoogleApiManager_zab)) {
+                this.zail.handler.removeMessages(15, com_google_android_gms_common_api_internal_GoogleApiManager_zab);
+                this.zail.handler.removeMessages(16, com_google_android_gms_common_api_internal_GoogleApiManager_zab);
+                Object zad = com_google_android_gms_common_api_internal_GoogleApiManager_zab.zajb;
+                ArrayList arrayList = new ArrayList(this.zaim.size());
+                for (zab com_google_android_gms_common_api_internal_zab : this.zaim) {
+                    if (com_google_android_gms_common_api_internal_zab instanceof zac) {
+                        Object[] zab = ((zac) com_google_android_gms_common_api_internal_zab).zab(this);
+                        if (zab != null &amp;&amp; ArrayUtils.contains(zab, zad)) {
+                            arrayList.add(com_google_android_gms_common_api_internal_zab);
+                        }
+                    }
+                }
+                arrayList = arrayList;
+                int size = arrayList.size();
+                int i = 0;
+                while (i &lt; size) {
+                    Object obj = arrayList.get(i);
+                    i++;
+                    zab com_google_android_gms_common_api_internal_zab2 = (zab) obj;
+                    this.zaim.remove(com_google_android_gms_common_api_internal_zab2);
+                    com_google_android_gms_common_api_internal_zab2.zaa(new UnsupportedApiCallException(zad));
+                }
+            }
+        }
+    }
+
+    public static GoogleApiManager zab(Context context) {
+        synchronized (lock) {
+            if (zaib == null) {
+                HandlerThread handlerThread = new HandlerThread("GoogleApiHandler", 9);
+                handlerThread.start();
+                zaib = new GoogleApiManager(context.getApplicationContext(), handlerThread.getLooper(), GoogleApiAvailability.getInstance());
+            }
+            context = zaib;
+        }
+        return context;
+    }
+
+    public static GoogleApiManager zabc() {
+        GoogleApiManager googleApiManager;
+        synchronized (lock) {
+            Preconditions.checkNotNull(zaib, "Must guarantee manager is non-null before using getInstance");
+            googleApiManager = zaib;
+        }
+        return googleApiManager;
+    }
+
+    @KeepForSdk
+    public static void reportSignOut() {
+        synchronized (lock) {
+            if (zaib != null) {
+                GoogleApiManager googleApiManager = zaib;
+                googleApiManager.zaig.incrementAndGet();
+                googleApiManager.handler.sendMessageAtFrontOfQueue(googleApiManager.handler.obtainMessage(10));
+            }
+        }
+    }
+
+    @KeepForSdk
+    private GoogleApiManager(Context context, Looper looper, GoogleApiAvailability googleApiAvailability) {
+        this.zaic = context;
+        this.handler = new zal(looper, this);
+        this.zaid = googleApiAvailability;
+        this.zaie = new GoogleApiAvailabilityCache(googleApiAvailability);
+        this.handler.sendMessage(this.handler.obtainMessage(6));
+    }
+
+    public final int zabd() {
+        return this.zaif.getAndIncrement();
+    }
+
+    public final void zaa(GoogleApi&lt;?&gt; googleApi) {
+        this.handler.sendMessage(this.handler.obtainMessage(7, googleApi));
+    }
+
+    @WorkerThread
+    private final void zab(GoogleApi&lt;?&gt; googleApi) {
+        zai zak = googleApi.zak();
+        zaa com_google_android_gms_common_api_internal_GoogleApiManager_zaa = (zaa) this.zaih.get(zak);
+        if (com_google_android_gms_common_api_internal_GoogleApiManager_zaa == null) {
+            com_google_android_gms_common_api_internal_GoogleApiManager_zaa = new zaa(this, googleApi);
+            this.zaih.put(zak, com_google_android_gms_common_api_internal_GoogleApiManager_zaa);
+        }
+        if (com_google_android_gms_common_api_internal_GoogleApiManager_zaa.requiresSignIn() != null) {
+            this.zaik.add(zak);
+        }
+        com_google_android_gms_common_api_internal_GoogleApiManager_zaa.connect();
+    }
+
+    public final void zaa(@NonNull zaae com_google_android_gms_common_api_internal_zaae) {
+        synchronized (lock) {
+            if (this.zaii != com_google_android_gms_common_api_internal_zaae) {
+                this.zaii = com_google_android_gms_common_api_internal_zaae;
+                this.zaij.clear();
+            }
+            this.zaij.addAll(com_google_android_gms_common_api_internal_zaae.zaaj());
+        }
+    }
+
+    final void zab(@NonNull zaae com_google_android_gms_common_api_internal_zaae) {
+        synchronized (lock) {
+            if (this.zaii == com_google_android_gms_common_api_internal_zaae) {
+                this.zaii = null;
+                this.zaij.clear();
+            }
+        }
+    }
+
+    public final Task&lt;Map&lt;zai&lt;?&gt;, String&gt;&gt; zaa(Iterable&lt;? extends GoogleApi&lt;?&gt;&gt; iterable) {
+        zak com_google_android_gms_common_api_internal_zak = new zak(iterable);
+        this.handler.sendMessage(this.handler.obtainMessage(2, com_google_android_gms_common_api_internal_zak));
+        return com_google_android_gms_common_api_internal_zak.getTask();
+    }
+
+    public final void zao() {
+        this.handler.sendMessage(this.handler.obtainMessage(3));
+    }
+
+    final void maybeSignOut() {
+        this.zaig.incrementAndGet();
+        this.handler.sendMessage(this.handler.obtainMessage(10));
+    }
+
+    public final Task&lt;Boolean&gt; zac(GoogleApi&lt;?&gt; googleApi) {
+        zaaf com_google_android_gms_common_api_internal_zaaf = new zaaf(googleApi.zak());
+        this.handler.sendMessage(this.handler.obtainMessage(14, com_google_android_gms_common_api_internal_zaaf));
+        return com_google_android_gms_common_api_internal_zaaf.zaal().getTask();
+    }
+
+    public final &lt;O extends ApiOptions&gt; void zaa(GoogleApi&lt;O&gt; googleApi, int i, ApiMethodImpl&lt;? extends Result, AnyClient&gt; apiMethodImpl) {
+        this.handler.sendMessage(this.handler.obtainMessage(4, new zabv(new zae(i, apiMethodImpl), this.zaig.get(), googleApi)));
+    }
+
+    public final &lt;O extends ApiOptions, ResultT&gt; void zaa(GoogleApi&lt;O&gt; googleApi, int i, TaskApiCall&lt;AnyClient, ResultT&gt; taskApiCall, TaskCompletionSource&lt;ResultT&gt; taskCompletionSource, StatusExceptionMapper statusExceptionMapper) {
+        this.handler.sendMessage(this.handler.obtainMessage(4, new zabv(new zag(i, taskApiCall, taskCompletionSource, statusExceptionMapper), this.zaig.get(), googleApi)));
+    }
+
+    public final &lt;O extends ApiOptions&gt; Task&lt;Void&gt; zaa(@NonNull GoogleApi&lt;O&gt; googleApi, @NonNull RegisterListenerMethod&lt;AnyClient, ?&gt; registerListenerMethod, @NonNull UnregisterListenerMethod&lt;AnyClient, ?&gt; unregisterListenerMethod) {
+        TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
+        this.handler.sendMessage(this.handler.obtainMessage(8, new zabv(new zaf(new zabw(registerListenerMethod, unregisterListenerMethod), taskCompletionSource), this.zaig.get(), googleApi)));
+        return taskCompletionSource.getTask();
+    }
+
+    public final &lt;O extends ApiOptions&gt; Task&lt;Boolean&gt; zaa(@NonNull GoogleApi&lt;O&gt; googleApi, @NonNull ListenerKey&lt;?&gt; listenerKey) {
+        TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
+        this.handler.sendMessage(this.handler.obtainMessage(13, new zabv(new zah(listenerKey, taskCompletionSource), this.zaig.get(), googleApi)));
+        return taskCompletionSource.getTask();
+    }
+
+    @WorkerThread
+    public boolean handleMessage(Message message) {
+        long j = 300000;
+        zaa com_google_android_gms_common_api_internal_GoogleApiManager_zaa;
+        zaa com_google_android_gms_common_api_internal_GoogleApiManager_zaa2;
+        zai zak;
+        zab com_google_android_gms_common_api_internal_GoogleApiManager_zab;
+        switch (message.what) {
+            case 1:
+                if (((Boolean) message.obj).booleanValue() != null) {
+                    j = NotificationOptions.SKIP_STEP_TEN_SECONDS_IN_MS;
+                }
+                this.zaia = j;
+                this.handler.removeMessages(12);
+                for (zai obtainMessage : this.zaih.keySet()) {
+                    this.handler.sendMessageDelayed(this.handler.obtainMessage(12, obtainMessage), this.zaia);
+                }
+                break;
+            case 2:
+                zak com_google_android_gms_common_api_internal_zak = (zak) message.obj;
+                for (zai obtainMessage2 : com_google_android_gms_common_api_internal_zak.zap()) {
+                    com_google_android_gms_common_api_internal_GoogleApiManager_zaa = (zaa) this.zaih.get(obtainMessage2);
+                    if (com_google_android_gms_common_api_internal_GoogleApiManager_zaa == null) {
+                        com_google_android_gms_common_api_internal_zak.zaa(obtainMessage2, new ConnectionResult(13), null);
+                        break;
+                    } else if (com_google_android_gms_common_api_internal_GoogleApiManager_zaa.isConnected()) {
+                        com_google_android_gms_common_api_internal_zak.zaa(obtainMessage2, ConnectionResult.RESULT_SUCCESS, com_google_android_gms_common_api_internal_GoogleApiManager_zaa.zaab().getEndpointPackageName());
+                    } else if (com_google_android_gms_common_api_internal_GoogleApiManager_zaa.zabm() != null) {
+                        com_google_android_gms_common_api_internal_zak.zaa(obtainMessage2, com_google_android_gms_common_api_internal_GoogleApiManager_zaa.zabm(), null);
+                    } else {
+                        com_google_android_gms_common_api_internal_GoogleApiManager_zaa.zaa(com_google_android_gms_common_api_internal_zak);
+                        com_google_android_gms_common_api_internal_GoogleApiManager_zaa.connect();
+                    }
+                }
+                break;
+            case 3:
+                for (zaa com_google_android_gms_common_api_internal_GoogleApiManager_zaa22 : this.zaih.values()) {
+                    com_google_android_gms_common_api_internal_GoogleApiManager_zaa22.zabl();
+                    com_google_android_gms_common_api_internal_GoogleApiManager_zaa22.connect();
+                }
+                break;
+            case 4:
+            case 8:
+            case 13:
+                zabv com_google_android_gms_common_api_internal_zabv = (zabv) message.obj;
+                com_google_android_gms_common_api_internal_GoogleApiManager_zaa22 = (zaa) this.zaih.get(com_google_android_gms_common_api_internal_zabv.zajs.zak());
+                if (com_google_android_gms_common_api_internal_GoogleApiManager_zaa22 == null) {
+                    zab(com_google_android_gms_common_api_internal_zabv.zajs);
+                    com_google_android_gms_common_api_internal_GoogleApiManager_zaa22 = (zaa) this.zaih.get(com_google_android_gms_common_api_internal_zabv.zajs.zak());
+                }
+                if (com_google_android_gms_common_api_internal_GoogleApiManager_zaa22.requiresSignIn() &amp;&amp; this.zaig.get() != com_google_android_gms_common_api_internal_zabv.zajr) {
+                    com_google_android_gms_common_api_internal_zabv.zajq.zaa(zahw);
+                    com_google_android_gms_common_api_internal_GoogleApiManager_zaa22.zabj();
+                    break;
+                }
+                com_google_android_gms_common_api_internal_GoogleApiManager_zaa22.zaa(com_google_android_gms_common_api_internal_zabv.zajq);
+                break;
+                break;
+            case 5:
+                StringBuilder stringBuilder;
+                String errorString;
+                StringBuilder stringBuilder2;
+                int i = message.arg1;
+                ConnectionResult connectionResult = (ConnectionResult) message.obj;
+                for (zaa com_google_android_gms_common_api_internal_GoogleApiManager_zaa3 : this.zaih.values()) {
+                    if (com_google_android_gms_common_api_internal_GoogleApiManager_zaa3.getInstanceId() == i) {
+                        if (com_google_android_gms_common_api_internal_GoogleApiManager_zaa3 != null) {
+                            stringBuilder = new StringBuilder(76);
+                            stringBuilder.append("Could not find API instance ");
+                            stringBuilder.append(i);
+                            stringBuilder.append(" while trying to fail enqueued calls.");
+                            Log.wtf("GoogleApiManager", stringBuilder.toString(), new Exception());
+                            break;
+                        }
+                        errorString = this.zaid.getErrorString(connectionResult.getErrorCode());
+                        message = connectionResult.getErrorMessage();
+                        stringBuilder2 = new StringBuilder((String.valueOf(errorString).length() + 69) + String.valueOf(message).length());
+                        stringBuilder2.append("Error resolution was canceled by the user, original error message: ");
+                        stringBuilder2.append(errorString);
+                        stringBuilder2.append(": ");
+                        stringBuilder2.append(message);
+                        com_google_android_gms_common_api_internal_GoogleApiManager_zaa3.zac(new Status(17, stringBuilder2.toString()));
+                        break;
+                    }
+                }
+                com_google_android_gms_common_api_internal_GoogleApiManager_zaa3 = null;
+                if (com_google_android_gms_common_api_internal_GoogleApiManager_zaa3 != null) {
+                    stringBuilder = new StringBuilder(76);
+                    stringBuilder.append("Could not find API instance ");
+                    stringBuilder.append(i);
+                    stringBuilder.append(" while trying to fail enqueued calls.");
+                    Log.wtf("GoogleApiManager", stringBuilder.toString(), new Exception());
+                } else {
+                    errorString = this.zaid.getErrorString(connectionResult.getErrorCode());
+                    message = connectionResult.getErrorMessage();
+                    stringBuilder2 = new StringBuilder((String.valueOf(errorString).length() + 69) + String.valueOf(message).length());
+                    stringBuilder2.append("Error resolution was canceled by the user, original error message: ");
+                    stringBuilder2.append(errorString);
+                    stringBuilder2.append(": ");
+                    stringBuilder2.append(message);
+                    com_google_android_gms_common_api_internal_GoogleApiManager_zaa3.zac(new Status(17, stringBuilder2.toString()));
+                }
+            case 6:
+                if (!(PlatformVersion.isAtLeastIceCreamSandwich() == null || (this.zaic.getApplicationContext() instanceof Application) == null)) {
+                    BackgroundDetector.initialize((Application) this.zaic.getApplicationContext());
+                    BackgroundDetector.getInstance().addListener(new zabi(this));
+                    if (BackgroundDetector.getInstance().readCurrentStateIfPossible(true) == null) {
+                        this.zaia = 300000;
+                        break;
+                    }
+                }
+                break;
+            case 7:
+                zab((GoogleApi) message.obj);
+                break;
+            case 9:
+                if (this.zaih.containsKey(message.obj)) {
+                    ((zaa) this.zaih.get(message.obj)).resume();
+                    break;
+                }
+                break;
+            case 10:
+                for (zai zak2 : this.zaik) {
+                    ((zaa) this.zaih.remove(zak2)).zabj();
+                }
+                this.zaik.clear();
+                break;
+            case 11:
+                if (this.zaih.containsKey(message.obj)) {
+                    ((zaa) this.zaih.get(message.obj)).zaav();
+                    break;
+                }
+                break;
+            case 12:
+                if (this.zaih.containsKey(message.obj)) {
+                    ((zaa) this.zaih.get(message.obj)).zabp();
+                    break;
+                }
+                break;
+            case 14:
+                zaaf com_google_android_gms_common_api_internal_zaaf = (zaaf) message.obj;
+                zak2 = com_google_android_gms_common_api_internal_zaaf.zak();
+                if (!this.zaih.containsKey(zak2)) {
+                    com_google_android_gms_common_api_internal_zaaf.zaal().setResult(Boolean.valueOf(false));
+                    break;
+                }
+                com_google_android_gms_common_api_internal_zaaf.zaal().setResult(Boolean.valueOf(((zaa) this.zaih.get(zak2)).zac(false)));
+                break;
+            case 15:
+                com_google_android_gms_common_api_internal_GoogleApiManager_zab = (zab) message.obj;
+                if (this.zaih.containsKey(com_google_android_gms_common_api_internal_GoogleApiManager_zab.zaja)) {
+                    ((zaa) this.zaih.get(com_google_android_gms_common_api_internal_GoogleApiManager_zab.zaja)).zaa(com_google_android_gms_common_api_internal_GoogleApiManager_zab);
+                    break;
+                }
+                break;
+            case 16:
+                com_google_android_gms_common_api_internal_GoogleApiManager_zab = (zab) message.obj;
+                if (this.zaih.containsKey(com_google_android_gms_common_api_internal_GoogleApiManager_zab.zaja)) {
+                    ((zaa) this.zaih.get(com_google_android_gms_common_api_internal_GoogleApiManager_zab.zaja)).zab(com_google_android_gms_common_api_internal_GoogleApiManager_zab);
+                    break;
+                }
+                break;
+            default:
+                message = message.what;
+                StringBuilder stringBuilder3 = new StringBuilder(31);
+                stringBuilder3.append("Unknown message id: ");
+                stringBuilder3.append(message);
+                Log.w("GoogleApiManager", stringBuilder3.toString());
+                return false;
+        }
+        return true;
+    }
+
+    final PendingIntent zaa(zai&lt;?&gt; com_google_android_gms_common_api_internal_zai_, int i) {
+        zaa com_google_android_gms_common_api_internal_GoogleApiManager_zaa = (zaa) this.zaih.get(com_google_android_gms_common_api_internal_zai_);
+        if (com_google_android_gms_common_api_internal_GoogleApiManager_zaa == null) {
+            return null;
+        }
+        com_google_android_gms_common_api_internal_zai_ = com_google_android_gms_common_api_internal_GoogleApiManager_zaa.zabq();
+        if (com_google_android_gms_common_api_internal_zai_ == null) {
+            return null;
+        }
+        return PendingIntent.getActivity(this.zaic, i, com_google_android_gms_common_api_internal_zai_.getSignInIntent(), 134217728);
+    }
+
+    final boolean zac(ConnectionResult connectionResult, int i) {
+        return this.zaid.zaa(this.zaic, connectionResult, i);
+    }
+
+    public final void zaa(ConnectionResult connectionResult, int i) {
+        if (!zac(connectionResult, i)) {
+            this.handler.sendMessage(this.handler.obtainMessage(5, i, 0, connectionResult));
+        }
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:13 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>

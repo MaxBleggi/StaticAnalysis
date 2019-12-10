@@ -1,0 +1,500 @@
+<head><script type="text/javascript" src="html/jquery.min.js"></script><link rel="stylesheet" type="text/css" href="html/font-awesome.min.css"></link><link rel="stylesheet" type="text/css" href="html/ui.fancytree.min.css"></link><script type="text/javascript" src="html/jquery.fancytree-all-deps.min.js"></script><script type="text/javascript" src="html/jquery.fancytree.glyph.js"></script><script type="text/javascript" src="html/jquery.fancytree.persist.js"></script><script type="text/javascript" src="html/report.js"></script><link rel="stylesheet" type="text/css" href="html/prism.css"></link><link rel="stylesheet" type="text/css" href="html/report.css"></link><link rel="stylesheet" type="text/css" href="html/fontawesome/fontawesome-all.min.css"></link><link media="screen,projection" rel="stylesheet" type="text/css" href="html/materialise/css/materialize.min.css"></link><meta name="viewport" content="width=device-width, initial-scale=1.0"></meta><meta charset="UTF-8"></meta></head>
+        <ul id="slide-out" class="side-nav">
+             <h5>Settings</h5>
+             <div class="divider"></div>
+             <div class="switch" id="matchless_files">
+                Remove matchless files:
+                <label>
+                  Off
+                  <input type="checkbox">
+                  <span class="lever"></span>
+                  On
+                </label>
+            </div>
+            <script>
+                $(function() {
+                    if (localStorage.getItem('matchless_files') === "true"){
+                    removeUnimportantFiles();
+                    $('#matchless_files').find("input[type=checkbox]").prop('checked', true);
+                    }
+                });
+                $("#matchless_files").find("input[type=checkbox]").on("change",function() {
+                    var status = $(this).prop('checked');
+                    if (status==true){
+                        removeUnimportantFiles();
+                        localStorage.setItem('matchless_files', true); 
+                    }else{
+                         Materialize.toast('Refresh page to take effect.', 4000);
+                         localStorage.setItem('matchless_files', false); 
+                    }
+                     console.log(status);
+                });
+            </script>
+            Expand tree: <a id="expand_tree" class="waves-effect waves-light btn" style="background-color: #30363A !important;height: 24px;line-height: 24px;padding: 0 0.5rem;">Expand</a>
+            <script>
+                $( "#expand_tree" ).click(function() {
+                  $("#tree").fancytree("getTree").visit(function(node){
+                    node.setExpanded();
+                  });
+                });
+            </script>
+        </ul>
+        
+            <nav>
+                <div class="nav-wrapper" style="background-color: #30363A !important;">
+                  <a href="start.html" class="brand-logo center" style="position:relative;"><img style="height:100%;" src="html/logo.png"></a>
+                  <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+                            
+                <li><a href="start.html">Treeview</a></li>
+                <li><a href="lootbox.html">Lootbox</a></li>
+                <li><a href="log.html">Logs</a></li>
+                
+                    <li><a href="#" data-activates="slide-out" id="button-collapse" class="button"><i class="material-icons">settings</i></a></li>
+                        <script>
+                        $(function() {
+                            // Initialize collapse button
+                            $("#button-collapse").sideNav();
+                            // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+                            //$('.collapsible').collapsible();
+                        });
+                        </script>
+                    </ul>
+                </div>
+            </nav>
+        <div class="jadx_source_code_div"><h1 class="jadx_source_code_title center-align">Project: xumo_apk</h1><div class="row"><div id="tree" class="col s12 m12 l3"></div><div id="codeview" class="col s12 m12 l9"><div class="chip col"><i class="material-icons">attach_file</i><a href="html/view_source.html?file=/Users/Max/Desktop/deploy/xumo_apk/jadx_source_code/com/google/android/gms/cast/framework/CastSession.java" target="_blank">/xumo_apk/jadx_source_code/com/google/android/gms/cast/framework/CastSession.java</a></div><div class="col s12"><div class="card"><div class="valign-wrapper"><i class="material-icons medium grade-60">report</i><h5>ServerSocket|net.ServerSocket|connect[(][)]</h5></div><ul class="collapsible"><li><div class="collapsible-header"><i class="material-icons">info</i>Issue Description</div><div class="collapsible-body"><span>the app opens TCP Server Sockets: Insecure use of network sockets</span></div></li></ul><ul class="collapsible"><li><div class="collapsible-header"><img data-position="top" data-tooltip="OWASP item" src="html/owasp_logo.png" height="20em" style="margin-right: 1rem;margin-left: 5px;" class="tooltipped"></img> OWASP Item</div><div class="collapsible-body"><span>For more information, have a look at: https://www.owasp.org/index.php/OWASP_Mobile_Security_Testing_Guide</span></div></li></ul><div class="card-tabs"><ul class="tabs tabs-fixed-width" style="background-color: #30363A !important;"><li class="tab"><a style="color: #d82c2b;" href="#CastSession_java348Serv" class="active">line 348</a></li><li class="tab"><a style="color: #d82c2b;" href="#CastSession_java368Serv">line 368</a></li><li class="tab"><a style="color: #d82c2b;" href="#CastSession_java379Serv">line 379</a></li></ul></div><div class="card-content"><div id="CastSession_java348Serv">Code @ line 348<pre data-start="345" data-line="348" data-src="CastSession.java" class="code line-numbers"><code>        this.zzih = CastDevice.getFromBundle(bundle);
+        if (this.zzih != null) {
+            if (this.zzif != null) {
+                this.zzif.disconnect();
+                this.zzif = null;
+            }
+            boolean z = true;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY2FzdC9mcmFtZXdvcmsvQ2FzdFNlc3Npb24uamF2YXx8fGxpbmU6IDM0OCA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHwzNDh8fHwzNDU">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY2FzdC9mcmFtZXdvcmsvQ2FzdFNlc3Npb24uamF2YXx8fGxpbmU6IDM0OCA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHwzNDh8fHwzNDU')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY2FzdC9mcmFtZXdvcmsvQ2FzdFNlc3Npb24uamF2YXx8fGxpbmU6IDM0OCA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHwzNDh8fHwzNDU').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY2FzdC9mcmFtZXdvcmsvQ2FzdFNlc3Npb24uamF2YXx8fGxpbmU6IDM0OCA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHwzNDh8fHwzNDU" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY2FzdC9mcmFtZXdvcmsvQ2FzdFNlc3Npb24uamF2YXx8fGxpbmU6IDM0OCA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHwzNDh8fHwzNDU' , 'ICAgICAgICB0aGlzLnp6aWggPSBDYXN0RGV2aWNlLmdldEZyb21CdW5kbGUoYnVuZGxlKTsKICAgICAgICBpZiAodGhpcy56emloICE9IG51bGwpIHsKICAgICAgICAgICAgaWYgKHRoaXMuenppZiAhPSBudWxsKSB7CiAgICAgICAgICAgICAgICB0aGlzLnp6aWYuZGlzY29ubmVjdCgpOwogICAgICAgICAgICAgICAgdGhpcy56emlmID0gbnVsbDsKICAgICAgICAgICAgfQogICAgICAgICAgICBib29sZWFuIHogPSB0cnVlOwo=');  
+                                            });
+                                            </script>
+                                            </div><div id="CastSession_java368Serv">Code @ line 368<pre data-start="365" data-line="368" data-src="CastSession.java" class="code line-numbers"><code>            }
+            bundle2.putBoolean(str, z);
+            this.zzif = new Builder(context).addApi(Cast.API, new CastOptions.Builder(castDevice, com_google_android_gms_cast_framework_CastSession_zzc).zza(bundle2).build()).addConnectionCallbacks(bundle).addOnConnectionFailedListener(bundle).build();
+            this.zzif.connect();
+        } else if (isResuming() != null) {
+            notifyFailedToResumeSession(8);
+        } else {
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY2FzdC9mcmFtZXdvcmsvQ2FzdFNlc3Npb24uamF2YXx8fGxpbmU6IDM2OCA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHwzNjh8fHwzNjU">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY2FzdC9mcmFtZXdvcmsvQ2FzdFNlc3Npb24uamF2YXx8fGxpbmU6IDM2OCA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHwzNjh8fHwzNjU')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY2FzdC9mcmFtZXdvcmsvQ2FzdFNlc3Npb24uamF2YXx8fGxpbmU6IDM2OCA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHwzNjh8fHwzNjU').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY2FzdC9mcmFtZXdvcmsvQ2FzdFNlc3Npb24uamF2YXx8fGxpbmU6IDM2OCA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHwzNjh8fHwzNjU" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY2FzdC9mcmFtZXdvcmsvQ2FzdFNlc3Npb24uamF2YXx8fGxpbmU6IDM2OCA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHwzNjh8fHwzNjU' , 'ICAgICAgICAgICAgfQogICAgICAgICAgICBidW5kbGUyLnB1dEJvb2xlYW4oc3RyLCB6KTsKICAgICAgICAgICAgdGhpcy56emlmID0gbmV3IEJ1aWxkZXIoY29udGV4dCkuYWRkQXBpKENhc3QuQVBJLCBuZXcgQ2FzdE9wdGlvbnMuQnVpbGRlcihjYXN0RGV2aWNlLCBjb21fZ29vZ2xlX2FuZHJvaWRfZ21zX2Nhc3RfZnJhbWV3b3JrX0Nhc3RTZXNzaW9uX3p6YykuenphKGJ1bmRsZTIpLmJ1aWxkKCkpLmFkZENvbm5lY3Rpb25DYWxsYmFja3MoYnVuZGxlKS5hZGRPbkNvbm5lY3Rpb25GYWlsZWRMaXN0ZW5lcihidW5kbGUpLmJ1aWxkKCk7CiAgICAgICAgICAgIHRoaXMuenppZi5jb25uZWN0KCk7CiAgICAgICAgfSBlbHNlIGlmIChpc1Jlc3VtaW5nKCkgIT0gbnVsbCkgewogICAgICAgICAgICBub3RpZnlGYWlsZWRUb1Jlc3VtZVNlc3Npb24oOCk7CiAgICAgICAgfSBlbHNlIHsK');  
+                                            });
+                                            </script>
+                                            </div><div id="CastSession_java379Serv">Code @ line 379<pre data-start="376" data-line="379" data-src="CastSession.java" class="code line-numbers"><code>    private final void zze(int i) {
+        this.zzie.zzi(i);
+        if (this.zzif != 0) {
+            this.zzif.disconnect();
+            this.zzif = null;
+        }
+        this.zzih = null;
+</code></pre><a class="waves-effect waves-light btn" style='background-color: #30363A;' id="loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY2FzdC9mcmFtZXdvcmsvQ2FzdFNlc3Npb24uamF2YXx8fGxpbmU6IDM3OSA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHwzNzl8fHwzNzY">Add to lootbox</a><script>if (localStorage.getItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY2FzdC9mcmFtZXdvcmsvQ2FzdFNlc3Npb24uamF2YXx8fGxpbmU6IDM3OSA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHwzNzl8fHwzNzY')){$('#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY2FzdC9mcmFtZXdvcmsvQ2FzdFNlc3Npb24uamF2YXx8fGxpbmU6IDM3OSA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHwzNzl8fHwzNzY').addClass('disabled');}$( "#loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY2FzdC9mcmFtZXdvcmsvQ2FzdFNlc3Npb24uamF2YXx8fGxpbmU6IDM3OSA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHwzNzl8fHwzNzY" ).click(function() {
+                                            $(this).addClass('disabled');
+                                            localStorage.setItem('loot_L1VzZXJzL01heC9EZXNrdG9wL2RlcGxveS94dW1vX2Fway9qYWR4X3NvdXJjZV9jb2RlL2NvbS9nb29nbGUvYW5kcm9pZC9nbXMvY2FzdC9mcmFtZXdvcmsvQ2FzdFNlc3Npb24uamF2YXx8fGxpbmU6IDM3OSA6IFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHw2MHx8fFNlcnZlclNvY2tldHxuZXQuU2VydmVyU29ja2V0fGNvbm5lY3RbKF1bKV18fHwzNzl8fHwzNzY' , 'ICAgIHByaXZhdGUgZmluYWwgdm9pZCB6emUoaW50IGkpIHsKICAgICAgICB0aGlzLnp6aWUuenppKGkpOwogICAgICAgIGlmICh0aGlzLnp6aWYgIT0gMCkgewogICAgICAgICAgICB0aGlzLnp6aWYuZGlzY29ubmVjdCgpOwogICAgICAgICAgICB0aGlzLnp6aWYgPSBudWxsOwogICAgICAgIH0KICAgICAgICB0aGlzLnp6aWggPSBudWxsOwo=');  
+                                            });
+                                            </script>
+                                            </div></div></div></div><div class="row"><div class="col s12"><div class="card"><div class="card-content"><h5>Source code</h5><pre data-src="CastSession.java" data-line="348,368,379," class="code line-numbers"><code>package com.google.android.gms.cast.framework;
+
+import android.content.Context;
+import android.os.Bundle;
+import androidx.annotation.NonNull;
+import com.google.android.gms.cast.ApplicationMetadata;
+import com.google.android.gms.cast.Cast;
+import com.google.android.gms.cast.Cast.ApplicationConnectionResult;
+import com.google.android.gms.cast.Cast.CastApi;
+import com.google.android.gms.cast.Cast.CastOptions;
+import com.google.android.gms.cast.Cast.Listener;
+import com.google.android.gms.cast.Cast.MessageReceivedCallback;
+import com.google.android.gms.cast.CastDevice;
+import com.google.android.gms.cast.LaunchOptions;
+import com.google.android.gms.cast.framework.media.RemoteMediaClient;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.GoogleApiClient.Builder;
+import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
+import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.Result;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.common.internal.Preconditions;
+import com.google.android.gms.internal.cast.zzai;
+import com.google.android.gms.internal.cast.zzdh;
+import com.google.android.gms.internal.cast.zzdi;
+import com.google.android.gms.internal.cast.zze;
+import com.google.android.gms.internal.cast.zzg;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
+
+public class CastSession extends Session {
+    private static final zzdh zzbe = new zzdh("CastSession");
+    private final Context zzhh;
+    private final CastOptions zzhn;
+    private final Set&lt;Listener&gt; zzia = new HashSet();
+    private final zzl zzib;
+    private final CastApi zzic;
+    private final zzg zzid;
+    private final zzai zzie;
+    private GoogleApiClient zzif;
+    private RemoteMediaClient zzig;
+    private CastDevice zzih;
+    private ApplicationConnectionResult zzii;
+
+    private class zza implements ResultCallback&lt;ApplicationConnectionResult&gt; {
+        private String command;
+        private final /* synthetic */ CastSession zzij;
+
+        zza(CastSession castSession, String str) {
+            this.zzij = castSession;
+            this.command = str;
+        }
+
+        public final /* synthetic */ void onResult(@NonNull Result result) {
+            ApplicationConnectionResult applicationConnectionResult = (ApplicationConnectionResult) result;
+            this.zzij.zzii = applicationConnectionResult;
+            try {
+                if (applicationConnectionResult.getStatus().isSuccess()) {
+                    CastSession.zzbe.d("%s() -&gt; success result", this.command);
+                    this.zzij.zzig = new RemoteMediaClient(new zzdi(null), this.zzij.zzic);
+                    try {
+                        this.zzij.zzig.zzb(this.zzij.zzif);
+                        this.zzij.zzig.zzcb();
+                        this.zzij.zzig.requestStatus();
+                        this.zzij.zzie.zza(this.zzij.zzig, this.zzij.getCastDevice());
+                    } catch (Throwable e) {
+                        CastSession.zzbe.zzc(e, "Exception when setting GoogleApiClient.", new Object[0]);
+                        this.zzij.zzig = null;
+                    }
+                    this.zzij.zzib.zza(applicationConnectionResult.getApplicationMetadata(), applicationConnectionResult.getApplicationStatus(), applicationConnectionResult.getSessionId(), applicationConnectionResult.getWasLaunched());
+                    return;
+                }
+                CastSession.zzbe.d("%s() -&gt; failure result", this.command);
+                this.zzij.zzib.zzf(applicationConnectionResult.getStatus().getStatusCode());
+            } catch (Result result2) {
+                CastSession.zzbe.zza(result2, "Unable to call %s on %s.", "methods", zzl.class.getSimpleName());
+            }
+        }
+    }
+
+    private class zzc extends Listener {
+        private final /* synthetic */ CastSession zzij;
+
+        private zzc(CastSession castSession) {
+            this.zzij = castSession;
+        }
+
+        public final void onApplicationDisconnected(int i) {
+            this.zzij.zze(i);
+            this.zzij.notifySessionEnded(i);
+            for (Listener onApplicationDisconnected : new HashSet(this.zzij.zzia)) {
+                onApplicationDisconnected.onApplicationDisconnected(i);
+            }
+        }
+
+        public final void onApplicationStatusChanged() {
+            for (Listener onApplicationStatusChanged : new HashSet(this.zzij.zzia)) {
+                onApplicationStatusChanged.onApplicationStatusChanged();
+            }
+        }
+
+        public final void onApplicationMetadataChanged(ApplicationMetadata applicationMetadata) {
+            for (Listener onApplicationMetadataChanged : new HashSet(this.zzij.zzia)) {
+                onApplicationMetadataChanged.onApplicationMetadataChanged(applicationMetadata);
+            }
+        }
+
+        public final void onActiveInputStateChanged(int i) {
+            for (Listener onActiveInputStateChanged : new HashSet(this.zzij.zzia)) {
+                onActiveInputStateChanged.onActiveInputStateChanged(i);
+            }
+        }
+
+        public final void onStandbyStateChanged(int i) {
+            for (Listener onStandbyStateChanged : new HashSet(this.zzij.zzia)) {
+                onStandbyStateChanged.onStandbyStateChanged(i);
+            }
+        }
+
+        public final void onVolumeChanged() {
+            for (Listener onVolumeChanged : new HashSet(this.zzij.zzia)) {
+                onVolumeChanged.onVolumeChanged();
+            }
+        }
+    }
+
+    private class zzd implements ConnectionCallbacks, OnConnectionFailedListener {
+        private final /* synthetic */ CastSession zzij;
+
+        private zzd(CastSession castSession) {
+            this.zzij = castSession;
+        }
+
+        public final void onConnected(Bundle bundle) {
+            try {
+                if (this.zzij.zzig != null) {
+                    try {
+                        this.zzij.zzig.zzcb();
+                        this.zzij.zzig.requestStatus();
+                    } catch (Throwable e) {
+                        CastSession.zzbe.zzc(e, "Exception when setting GoogleApiClient.", new Object[0]);
+                        this.zzij.zzig = null;
+                    }
+                }
+                this.zzij.zzib.onConnected(bundle);
+            } catch (Bundle bundle2) {
+                CastSession.zzbe.zza(bundle2, "Unable to call %s on %s.", "onConnected", zzl.class.getSimpleName());
+            }
+        }
+
+        public final void onConnectionSuspended(int i) {
+            try {
+                this.zzij.zzib.onConnectionSuspended(i);
+            } catch (int i2) {
+                CastSession.zzbe.zza(i2, "Unable to call %s on %s.", "onConnectionSuspended", zzl.class.getSimpleName());
+            }
+        }
+
+        public final void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+            try {
+                this.zzij.zzib.onConnectionFailed(connectionResult);
+            } catch (ConnectionResult connectionResult2) {
+                CastSession.zzbe.zza(connectionResult2, "Unable to call %s on %s.", "onConnectionFailed", zzl.class.getSimpleName());
+            }
+        }
+    }
+
+    private class zzb extends zzi {
+        private final /* synthetic */ CastSession zzij;
+
+        private zzb(CastSession castSession) {
+            this.zzij = castSession;
+        }
+
+        public final int zzm() {
+            return 12451009;
+        }
+
+        public final void zza(String str, String str2) {
+            if (this.zzij.zzif != null) {
+                this.zzij.zzic.joinApplication(this.zzij.zzif, str, str2).setResultCallback(new zza(this.zzij, "joinApplication"));
+            }
+        }
+
+        public final void zza(String str, LaunchOptions launchOptions) {
+            if (this.zzij.zzif != null) {
+                this.zzij.zzic.launchApplication(this.zzij.zzif, str, launchOptions).setResultCallback(new zza(this.zzij, "launchApplication"));
+            }
+        }
+
+        public final void zzi(String str) {
+            if (this.zzij.zzif != null) {
+                this.zzij.zzic.stopApplication(this.zzij.zzif, str);
+            }
+        }
+
+        public final void zze(int i) {
+            this.zzij.zze(i);
+        }
+    }
+
+    public CastSession(Context context, String str, String str2, CastOptions castOptions, CastApi castApi, zzg com_google_android_gms_internal_cast_zzg, zzai com_google_android_gms_internal_cast_zzai) {
+        super(context, str, str2);
+        this.zzhh = context.getApplicationContext();
+        this.zzhn = castOptions;
+        this.zzic = castApi;
+        this.zzid = com_google_android_gms_internal_cast_zzg;
+        this.zzie = com_google_android_gms_internal_cast_zzai;
+        this.zzib = zze.zza(context, castOptions, zzz(), new zzb());
+    }
+
+    protected void onStarting(Bundle bundle) {
+        this.zzih = CastDevice.getFromBundle(bundle);
+    }
+
+    protected void onResuming(Bundle bundle) {
+        this.zzih = CastDevice.getFromBundle(bundle);
+    }
+
+    protected void start(Bundle bundle) {
+        zzb(bundle);
+    }
+
+    protected void resume(Bundle bundle) {
+        zzb(bundle);
+    }
+
+    protected void end(boolean z) {
+        try {
+            this.zzib.zza(z, 0);
+        } catch (boolean z2) {
+            zzbe.zza(z2, "Unable to call %s on %s.", "disconnectFromDevice", zzl.class.getSimpleName());
+        }
+        notifySessionEnded(0);
+    }
+
+    public RemoteMediaClient getRemoteMediaClient() {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        return this.zzig;
+    }
+
+    public CastDevice getCastDevice() {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        return this.zzih;
+    }
+
+    public void requestStatus() throws IOException, IllegalStateException {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        if (this.zzif != null) {
+            this.zzic.requestStatus(this.zzif);
+        }
+    }
+
+    public int getActiveInputState() throws IllegalStateException {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        return this.zzif != null ? this.zzic.getActiveInputState(this.zzif) : -1;
+    }
+
+    public int getStandbyState() throws IllegalStateException {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        return this.zzif != null ? this.zzic.getStandbyState(this.zzif) : -1;
+    }
+
+    public ApplicationMetadata getApplicationMetadata() throws IllegalStateException {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        return this.zzif != null ? this.zzic.getApplicationMetadata(this.zzif) : null;
+    }
+
+    public String getApplicationStatus() throws IllegalStateException {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        return this.zzif != null ? this.zzic.getApplicationStatus(this.zzif) : null;
+    }
+
+    public void setVolume(double d) throws IOException {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        if (this.zzif != null) {
+            this.zzic.setVolume(this.zzif, d);
+        }
+    }
+
+    public double getVolume() throws IllegalStateException {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        return this.zzif != null ? this.zzic.getVolume(this.zzif) : 0.0d;
+    }
+
+    public final zzai zzs() {
+        return this.zzie;
+    }
+
+    public void setMute(boolean z) throws IOException, IllegalStateException {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        if (this.zzif != null) {
+            this.zzic.setMute(this.zzif, z);
+        }
+    }
+
+    public boolean isMute() throws IllegalStateException {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        return this.zzif != null ? this.zzic.isMute(this.zzif) : false;
+    }
+
+    public ApplicationConnectionResult getApplicationConnectionResult() {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        return this.zzii;
+    }
+
+    public void setMessageReceivedCallbacks(String str, MessageReceivedCallback messageReceivedCallback) throws IOException, IllegalStateException {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        if (this.zzif != null) {
+            this.zzic.setMessageReceivedCallbacks(this.zzif, str, messageReceivedCallback);
+        }
+    }
+
+    public void removeMessageReceivedCallbacks(String str) throws IOException, IllegalArgumentException {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        if (this.zzif != null) {
+            this.zzic.removeMessageReceivedCallbacks(this.zzif, str);
+        }
+    }
+
+    public PendingResult&lt;Status&gt; sendMessage(String str, String str2) {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        return this.zzif != null ? this.zzic.sendMessage(this.zzif, str, str2) : null;
+    }
+
+    public void addCastListener(Listener listener) {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        if (listener != null) {
+            this.zzia.add(listener);
+        }
+    }
+
+    public void removeCastListener(Listener listener) {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        if (listener != null) {
+            this.zzia.remove(listener);
+        }
+    }
+
+    private final void zzb(Bundle bundle) {
+        this.zzih = CastDevice.getFromBundle(bundle);
+        if (this.zzih != null) {
+            if (this.zzif != null) {
+                this.zzif.disconnect();
+                this.zzif = null;
+            }
+            boolean z = true;
+            zzbe.d("Acquiring a connection to Google Play Services for %s", this.zzih);
+            bundle = new zzd();
+            Context context = this.zzhh;
+            CastDevice castDevice = this.zzih;
+            CastOptions castOptions = this.zzhn;
+            Listener com_google_android_gms_cast_framework_CastSession_zzc = new zzc();
+            Bundle bundle2 = new Bundle();
+            String str = "com.google.android.gms.cast.EXTRA_CAST_FRAMEWORK_NOTIFICATION_ENABLED";
+            boolean z2 = (castOptions == null || castOptions.getCastMediaOptions() == null || castOptions.getCastMediaOptions().getNotificationOptions() == null) ? false : true;
+            bundle2.putBoolean(str, z2);
+            str = "com.google.android.gms.cast.EXTRA_CAST_REMOTE_CONTROL_NOTIFICATION_ENABLED";
+            if (castOptions == null || castOptions.getCastMediaOptions() == null || !castOptions.getCastMediaOptions().zzaw()) {
+                z = false;
+            }
+            bundle2.putBoolean(str, z);
+            this.zzif = new Builder(context).addApi(Cast.API, new CastOptions.Builder(castDevice, com_google_android_gms_cast_framework_CastSession_zzc).zza(bundle2).build()).addConnectionCallbacks(bundle).addOnConnectionFailedListener(bundle).build();
+            this.zzif.connect();
+        } else if (isResuming() != null) {
+            notifyFailedToResumeSession(8);
+        } else {
+            notifyFailedToStartSession(8);
+        }
+    }
+
+    private final void zze(int i) {
+        this.zzie.zzi(i);
+        if (this.zzif != 0) {
+            this.zzif.disconnect();
+            this.zzif = null;
+        }
+        this.zzih = null;
+        if (this.zzig != 0) {
+            this.zzig.zzb(null);
+            this.zzig = null;
+        }
+        this.zzii = null;
+    }
+
+    public long getSessionRemainingTimeMs() {
+        Preconditions.checkMainThread("Must be called from the main thread.");
+        if (this.zzig == null) {
+            return 0;
+        }
+        return this.zzig.getStreamDuration() - this.zzig.getApproximateStreamPosition();
+    }
+}
+</code></pre></div></div></div></div></div></div>
+            <script src="tree_js_content.js"></script>
+            </div><script data-manual type="text/javascript" src="html/prism.js"></script><script type="text/javascript" src="html/materialise/js/materialize.min.js"></script><footer style="background-color: #30363A !important;" class="page-footer"><div class="container"><div class="row"><div class="col l6 s12"><h5 class="white-text">StaCoAn</h5><p class="grey-text text-lighten-4">If you like this project, feel free to give this a star on Github.If you don't and would like to see other features, feel free to make a feature request.</p></div><div class="col l4 offset-l2 s12"><h5 class="white-text">links</h5><ul><li><a href="https://github.com/vincentcox/StaCoAn" class="grey-text text-lighten-3">StaCoAn Github page</a></li><li><a href="https://github.com/vincentcox/StaCoAn/blob/master/LICENSE" class="grey-text text-lighten-3">License</a></li></ul></div></div></div><div class="footer-copyright"><div class="container">Report generated at 21:0:10 5/11/2019</div></div></footer><script type="text/javascript" src="html/looty.js"></script>
