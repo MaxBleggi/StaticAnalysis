@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:background="@color/black_background" android:layout_width="match_parent" android:layout_height="wrap_content">
-    <TextView android:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end" android:padding="30dp" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Are you sure you want to exit?" />
-    <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content">
-        <TextView android:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end" android:id="@+id/no_tv" android:background="@drawable/shape_blue" android:layout_width="UNKNOWN_DATA_0x1" android:layout_height="UNKNOWN_DATA_0x1e01" android:layout_margin="10dp" android:text="CANCEL" android:layout_weight="1.0" />
-        <TextView android:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end" android:id="@+id/yes_tv" android:background="@drawable/shape_white_round" android:layout_width="UNKNOWN_DATA_0x1" android:layout_height="UNKNOWN_DATA_0x1e01" android:layout_margin="10dp" android:text="EXIT" android:layout_weight="1.0" />
-    </LinearLayout>
-</LinearLayout>

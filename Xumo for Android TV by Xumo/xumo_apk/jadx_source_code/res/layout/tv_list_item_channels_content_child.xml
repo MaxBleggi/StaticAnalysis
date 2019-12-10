@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/father_ly" android:paddingBottom="10dp" android:layout_width="wrap_content" android:layout_height="wrap_content">
-    <RelativeLayout android:id="@+id/back_rl" android:layout_width="UNKNOWN_DATA_0xb901" android:layout_height="UNKNOWN_DATA_0x6e01"
-        <RelativeLayout android:layout_width="UNKNOWN_DATA_0xb501" android:layout_height="UNKNOWN_DATA_0x6a01" android:layout_centerInParent="true">
-            <ImageView android:id="@+id/content_iv" android:background="@color/channelsBackgroundColor" android:layout_width="match_parent" android:layout_height="match_parent" android:scaleType="centerCrop" />
-            <ImageView android:id="@+id/new_iv" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="5dp" android:src="@drawable/channel_tag_new" android:text="new" />
-        </RelativeLayout>
-    </RelativeLayout>
-</LinearLayout>

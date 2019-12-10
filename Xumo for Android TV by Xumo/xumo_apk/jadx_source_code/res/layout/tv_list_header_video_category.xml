@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:background="@color/videoListBackgroundColor" android:layout_width="match_parent" android:layout_height="UNKNOWN_DATA_0x2801">
-    <TextView android:textSize="12sp" android:textColor="@color/xumoGrayThird" android:ellipsize="end" android:id="@+id/category_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:maxLines="1" android:layout_centerVertical="true" android:layout_marginStart="12dp" />
-</RelativeLayout>
